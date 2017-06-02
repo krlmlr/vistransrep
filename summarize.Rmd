@@ -29,37 +29,47 @@ Don't forget `na.rm = TRUE` if needed!
 
 ```{r}
 flights %>%
-  summarize(mean(arr_delay, na.rm = ...))
+  summarize(mean(arr_delay, na.rm = TRUE))
 ```
 
 ```{r}
 flights %>%
-  summarize(mean(..., na.rm = ...))
+  summarize(mean(dep_delay, na.rm = TRUE))
 ```
 
 ```{r}
 flights %>%
   summarize(
-    mean(arr_delay, na.rm = ...),
-    mean(dep_delay, na.rm = ...)
+    mean(arr_delay, na.rm = TRUE),
+    mean(dep_delay, na.rm = TRUE)
   )
 ```
 
+```{r}
+flights %>%
+  group_by(origin) %>%
+  summarize(
+    mean(arr_delay, na.rm = TRUE),
+    mean(dep_delay, na.rm = TRUE)
+  )
+```
 
 ```{r}
 flights %>%
-  group_by(...) %>% 
-  summarize(...) %>% 
-  ungroup
+  group_by(origin) %>%
+  summarize(
+    mean(!is.na(arr_time))
+  )
 ```
+
 
 # Air time by carrier
 
 ```{r}
 total_airtime_by_carrier <-
   flights %>% 
-    group_by(...) %>% 
-    summarize(acc_air_time = ...(air_time, ...)) %>% 
+    group_by(carrier) %>% 
+    summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>% 
     ungroup
 
 total_airtime_by_carrier
@@ -67,16 +77,18 @@ total_airtime_by_carrier
 
 ```{r}
 total_airtime_by_carrier %>% 
-  arrange(...) %>%
+  arrange(acc_air_time) %>%
+  mutate(carrier = forcats::fct_inorder(carrier)) %>%
   ggplot() +
-  geom_col(aes(factor(...), ...))
+  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
+  coord_flip()
 ```
 
 ## Carriers for long-distance routes
 
 ```{r}
 carrier_arranged_by_total_distance <-
-  flights %>% 
+  flights %>%
     group_by(...) %>% 
     summarize(...) %>% 
     ungroup %>% 
@@ -96,16 +108,25 @@ total_distance_by_carrier %>%
 
 ```{r}
 flights %>% 
-  filter(...(dep_time)) %>%
-  group_by(...) %>% 
-  summarize(...) %>% 
+  filter(is.na(dep_time)) %>%
+  group_by(tailnum) %>% 
+  summarize(not_departed = n()) %>% 
+  ungroup() %>% 
+  arrange(desc(not_departed))
+```
+
+```{r}
+flights %>% 
+  group_by(tailnum) %>% 
+  summarize(not_departed = sum(is.na(dep_time))) %>% 
   ungroup()
 ```
 
 ```{r}
 flights %>% 
-  filter(...(dep_time)) %>%
-  ...(...)
+  filter(is.na(dep_time)) %>%
+  count(tailnum) %>%
+  arrange(desc(n))
 ```
 
 
@@ -117,4 +138,3 @@ flights %>%
   summarize(ratio = mean(...)) %>% 
   ungroup
 ```
-

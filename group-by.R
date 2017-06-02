@@ -47,3 +47,6 @@ flights %>%
 flights %>%
   summarize(mean(dep_time, na.rm = TRUE))
 
+flights %>%
+  group_by(year, month, day) %>%
+  summarize(departed = sum(!is.na(dep_time)))
