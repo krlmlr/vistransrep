@@ -1,0 +1,28 @@
+---
+title: "Summarize"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Mean arrival and dep delay
+
+```{r}
+flights %>%
+  summarize(mean(..., na.rm = ...))
+```
+
+
+```{r}
+flights %>%
+  group_by(...) %>% 
+  summarize(mean(..., na.rm = ...)) %>% 
+  ungroup
+```
