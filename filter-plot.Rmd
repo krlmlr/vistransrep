@@ -1,0 +1,40 @@
+---
+title: "Filtering and plotting"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+
+## Histogram of air time of all flights
+
+```{r}
+flights %>% 
+  filter(...) %>% 
+  ggplot() +
+  geom_histogram(aes(x = ...))
+```
+
+
+```{r}
+flights %>% 
+  filter(...) %>% 
+  filter(...) %>% 
+  ggplot() +
+  geom_histogram(aes(x = ...))
+```
+
+## All very close relations
+
+```{r}
+flights %>%
+  filter() %>% 
+  ggplot() +
+  geom_bin2d(aes(..., ...))
+```
