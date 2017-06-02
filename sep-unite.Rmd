@@ -41,6 +41,6 @@ table2 %>%
 # Use a numeric value for sep
 
 flights %>%
-  separate(..., into = c(..., ...), sep = ...) %>% 
-  separate(..., into = c(..., ...), sep = ...)
+  separate(..., into = c(..., ...), sep = ..., convert = TRUE) %>% 
+  separate(..., into = c(..., ...), sep = ..., convert = TRUE)
 ```

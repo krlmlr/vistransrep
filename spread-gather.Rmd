@@ -15,23 +15,31 @@ library(tidyverse)
 
 ```{r}
 table2 %>% 
-  spread(..., ...)
+  spread(type, count)
 ```
 
 # table1 to table2
 
 ```{r}
-table2 %>% 
-  gather(..., ..., ........)
+table1 %>% 
+  gather(type, count, cases, population)
 ```
 
 ```{r}
 table2 %>% 
-  gather(..., ..., ........) %>% 
-  ...
+  gather(type, count, -country, -year)
 ```
 
 Are the two calls symmetrical?
+
+No, we need to arrange this result:
+
+```{r}
+table1 %>% 
+  gather(type, count, -country, -year) %>% 
+  arrange(country, year, type)
+```
+
 
 # Plot table-x
 
@@ -46,10 +54,18 @@ table... %>%
 For showing both measurements:
 
 ```{r}
-table... %>%
+table2 %>%
   ggplot() +
-  geom_col(aes(..., ..., fill = ...)) +
-  facet_wrap(~...)
+  geom_col(aes(country, count, fill = type)) +
+  facet_wrap(~year)
+```
+
+```{r}
+table2 %>%
+  filter(type == "cases") %>%
+  ggplot() +
+  geom_col(aes(country, count, fill = type)) +
+  facet_wrap(~year)
 ```
 
 # Binding
@@ -57,22 +73,24 @@ table... %>%
 ```{r}
 cases_tbl <-
   table4a %>%
-  ...()
+  mutate(type = "cases")
 
 population_tbl <-
   table4b %>% 
-  ...()
+  mutate(type = "population")
 
 bind_rows(cases_tbl, population_tbl) %>%
-  ...() # add more steps as needed
+  gather(year, count, -country, -type) %>%
+  select(country, year, everything()) %>% 
+  arrange(country, year, type)
 ```
 
 # Economies
 
 ```{r}
 mpg %>%
-  select(...) %>%
-  ...(........, hwy, cty) %>%
+  select(displ, hwy, cty) %>%
+  gather(cty_hwy, value, hwy, cty) %>%
   ggplot() +
-  geom_point(aes(..., ..., color = ...))
+  geom_jitter(aes(displ, value, color = cty_hwy))
 ```
