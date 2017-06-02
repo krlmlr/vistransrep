@@ -1,0 +1,66 @@
+---
+title: "Arrange"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+
+## Flight with shortest airtime
+
+```{r}
+flights %>% 
+  arrange(...) %>%
+  head(...)
+```
+
+
+## Flight with heaviest delay
+
+```{r}
+flights %>% 
+  arrange(...) %>%
+  tail(...)
+```
+
+Why doesn't this give the result we're looking for? Can we use a filter? Or the pattern below?
+
+```{r}
+flights %>% 
+  arrange(..., ...) %>%
+  tail(...)
+```
+
+
+# Flight with longest airtime
+
+
+
+# UA flights with lowest delay
+
+```{r}
+flights %>% 
+  ...(...) %>% 
+  ...(...)
+```
+
+
+```{r}
+flights %>% 
+  ...(...) %>% 
+  ...(...)
+```
+
+
+# Recovering delay
+
+```{r}
+flights %>% 
+  arrange(...)
+```
