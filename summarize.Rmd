@@ -67,6 +67,7 @@ total_airtime_by_carrier
 
 ```{r}
 total_airtime_by_carrier %>% 
+  arrange(...) %>%
   ggplot() +
   geom_col(aes(factor(...), ...))
 ```
