@@ -51,3 +51,18 @@ table... %>%
   geom_col(aes(..., ..., fill = ...)) +
   facet_wrap(~...)
 ```
+
+# Binding
+
+```{r}
+cases_tbl <-
+  table4a %>%
+  ...()
+
+population_tbl <-
+  table4b %>% 
+  ...()
+
+bind_rows(cases_tbl, population_tbl) %>%
+  ...() # add more steps as needed
+```
