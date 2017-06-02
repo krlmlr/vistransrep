@@ -17,3 +17,10 @@ library(tidyverse)
 table2 %>% 
   spread(..., ...)
 ```
+
+# table1 to table2
+
+```{r}
+table2 %>% 
+  gather(..., ..., ........)
+```
