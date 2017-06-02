@@ -16,7 +16,7 @@ library(nycflights13)
 ## Speed as miles per hour
 
 ```{r}
-flights %>% 
+flights %>%
   mutate(mph_speed = ...) %>%
   ggplot() +
   geom_histogram(aes(...))

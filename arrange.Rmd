@@ -16,8 +16,8 @@ library(nycflights13)
 
 ```{r}
 flights %>% 
-  arrange(...) %>%
-  head(...)
+  arrange(air_time) %>%
+  head(1)
 ```
 
 
@@ -25,36 +25,62 @@ flights %>%
 
 ```{r}
 flights %>% 
-  arrange(...) %>%
-  tail(...)
+  arrange(arr_delay) %>%
+  tail(1)
 ```
 
-Why doesn't this give the result we're looking for? Can we use a filter? Or the pattern below?
+Why doesn't this give the result we're looking for? Can we use a filter?
 
 ```{r}
 flights %>% 
-  arrange(..., ...) %>%
-  tail(...)
+  filter(!is.na(arr_delay)) %>%
+  arrange(arr_delay) %>%
+  tail(1)
+```
+
+Or the pattern below?
+
+```{r}
+flights %>% 
+  arrange(!is.na(arr_delay), arr_delay) %>%
+  tail(1)
+```
+
+```{r}
+flights %>% 
+  arrange(-arr_delay) %>%
+  head(1)
+```
+
+```{r}
+flights %>% 
+  arrange(desc(arr_delay)) %>%
+  head(1)
 ```
 
 
 # Flight with longest airtime
 
+```{r}
+flights %>% 
+  arrange(desc(air_time)) %>%
+  head(1)
+```
 
 
 # UA flights with lowest delay
 
 ```{r}
 flights %>% 
-  ...(...) %>% 
-  ...(...)
+  filter(carrier == "UA") %>% 
+  arrange(arr_delay)
 ```
 
 
 ```{r}
 flights %>% 
-  ...(...) %>% 
-  ...(...)
+  arrange(arr_delay) %>% 
+  filter(carrier == "UA")
 ```
 
 
@@ -62,5 +88,5 @@ flights %>%
 
 ```{r}
 flights %>% 
-  arrange(...)
+  arrange(dep_delay - arr_delay)
 ```

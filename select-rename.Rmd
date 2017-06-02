@@ -76,10 +76,9 @@ flights %>%
 
 flights %>% 
   ggplot() +
-  geom_contour(aes(..., ...)) +
-  xlab() +
-  ylab() +
-  geom
+  geom_bin2d(aes(dep_time, arr_time)) +
+  xlab("Departure time") +
+  ylab("Arrival time")
 ```
 
 
