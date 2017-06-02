@@ -34,7 +34,16 @@ flights %>%
 
 ```{r}
 flights %>%
-  filter() %>% 
+  filter(air_time < 60) %>% 
   ggplot() +
-  geom_bin2d(aes(..., ...))
+  geom_bin2d(aes(origin, dest))
+```
+
+
+
+```{r}
+flights %>%
+  filter(air_time < 60) %>% 
+  ggplot() +
+  geom_bin2d(aes(air_time, distance))
 ```
