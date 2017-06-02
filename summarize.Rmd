@@ -52,5 +52,5 @@ total_distance_by_carrier
 ```{r}
 total_distance_by_carrier %>% 
   ggplot() +
-  geom_col(aes(factor(...), ...)
+  geom_col(aes(factor(...), ...))
 ```
