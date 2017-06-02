@@ -1,0 +1,36 @@
+---
+title: "Separating and uniting"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights)
+```
+
+
+## table3
+
+```{r}
+table3 %>%
+  separate(..., into = c(..., ...), sep = "/")
+```
+
+```{r}
+table3 %>%
+  separate(..., into = c(..., ...), sep = "/") %>%
+  ...(...)
+```
+
+
+## To table3
+
+```{r}
+table2 %>%
+  ...(...) %>% 
+  unite(..., ......., sep = "/")
+```
+
