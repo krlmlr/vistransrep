@@ -66,3 +66,13 @@ population_tbl <-
 bind_rows(cases_tbl, population_tbl) %>%
   ...() # add more steps as needed
 ```
+
+# Economies
+
+```{r}
+mpg %>%
+  select(...) %>%
+  ...(........, hwy, cty) %>%
+  ggplot() +
+  geom_point(aes(..., ..., color = ...))
+```
