@@ -1,0 +1,75 @@
+---
+title: "Filtering"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+# All flights on this day x years ago
+
+```{r}
+flights %>% 
+  filter(month == 6, day == 2)
+```
+
+Can we make a dynamic query?
+
+```{r}
+flights %>% 
+  filter(
+    month == lubridate::month(Sys.Date()),
+    day == lubridate::day(Sys.Date())
+  )
+```
+
+Can we use arguments?
+
+```{r}
+month_ <- lubridate::month(Sys.Date())
+day_ <- lubridate::day(Sys.Date())
+flights %>% 
+  filter(
+    month == month_,
+    day == day_
+  )
+```
+
+
+# All flights between 8:00 AM and 10:00 AM
+
+```{r}
+flights %>% 
+  filter(dep_time >= 800, dep_time <= 2200)
+```
+
+```{r}
+flights %>% 
+  filter(between(dep_time, 800, 2200))
+```
+
+# Flights in winter months
+
+```{r}
+flights %>%
+  filter(month %in% c(12, 1, 2))
+```
+
+```{r}
+winter_months <- c(12, 1, 2)
+flights %>%
+  filter(month %in% winter_months)
+```
+
+# Departure time later than arrival time
+
+```{r}
+flights %>% 
+  filter(dep_time > arr_time)
+```
+
