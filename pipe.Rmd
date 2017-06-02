@@ -1,0 +1,91 @@
+---
+title: "Pipe"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Pipe
+
+### Combined
+
+```{r}
+filter(flights, arr_time >= 2200)
+filter(
+  flights,
+  arr_time >= 2200,
+  carrier == "UA"
+)
+filter(
+  flights,
+  arr_time >= 2200,
+  carrier == "UA",
+  arr_delay > 120,
+  dest != "HNL"
+)
+```
+
+```{r}
+filter(
+  flights,
+  arr_time >= 2200 &
+    carrier == "UA" &
+    arr_delay > 120 &
+    origin %in% c("JFK", "LGA", "EWR") &
+    dest != "HNL"
+)
+
+```
+
+### Intermediate
+
+```{r}
+late_flights <- filter(flights, arr_time >= 2200)
+late_ua_flights <- filter(late_flights, carrier == "UA")
+late_late_ua_flights <- filter(late_ua_flights, arr_delay > 120)
+late_late_ua_flights_not_honolulu <- filter(late_late_ua_flights, dest != "HNL")
+late_late_ua_flights_not_honolulu
+```
+
+### Nested
+
+```{r}
+filter(
+  filter(
+    filter(
+      filter(
+        flights,
+        arr_time >= 2200
+      ),
+      carrier == "UA"
+    ),
+    arr_delay > 120
+  ),
+  dest != "HNL"
+)
+```
+
+### Pipe
+
+```{r}
+flights %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL")
+```
+
+
+
+
+
+
+
+
+
