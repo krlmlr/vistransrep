@@ -12,6 +12,19 @@ library(tidyverse)
 library(nycflights13)
 ```
 
+## Useful summary functions
+
+- `sum()`, `prod()`
+- `mean()`, `median()`
+- `sd()`, `IQR()`, `mad()`
+- `min()`, `quantile()`, `max()`
+- `n()`
+- `sum()` and `mean()` for logical variables
+- `first()`, `last()`, `nth()`
+
+Don't forget `na.rm = TRUE` if needed!
+
+
 ## Mean arrival and dep delay
 
 ```{r}
@@ -90,3 +103,4 @@ flights %>%
   summarize(ratio = mean(...)) %>% 
   ungroup
 ```
+
