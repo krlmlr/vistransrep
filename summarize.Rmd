@@ -29,14 +29,27 @@ Don't forget `na.rm = TRUE` if needed!
 
 ```{r}
 flights %>%
+  summarize(mean(arr_delay, na.rm = ...))
+```
+
+```{r}
+flights %>%
   summarize(mean(..., na.rm = ...))
+```
+
+```{r}
+flights %>%
+  summarize(
+    mean(arr_delay, na.rm = ...),
+    mean(dep_delay, na.rm = ...)
+  )
 ```
 
 
 ```{r}
 flights %>%
   group_by(...) %>% 
-  summarize(mean(..., na.rm = ...)) %>% 
+  summarize(...) %>% 
   ungroup
 ```
 
