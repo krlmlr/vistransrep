@@ -32,3 +32,22 @@ table2 %>%
 ```
 
 Are the two calls symmetrical?
+
+# Plot table-x
+
+For showing one measurement:
+
+```{r}
+table... %>%
+  ggplot() +
+  geom_col(aes(..., ..., fill = ...))
+```
+
+For showing both measurements:
+
+```{r}
+table... %>%
+  ggplot() +
+  geom_col(aes(..., ..., fill = ...)) +
+  facet_wrap(~...)
+```
