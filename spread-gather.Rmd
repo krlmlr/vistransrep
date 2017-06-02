@@ -24,3 +24,11 @@ table2 %>%
 table2 %>% 
   gather(..., ..., ........)
 ```
+
+```{r}
+table2 %>% 
+  gather(..., ..., ........) %>% 
+  ...
+```
+
+Are the two calls symmetrical?
