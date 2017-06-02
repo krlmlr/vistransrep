@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
-library(nycflights)
+library(nycflights13)
 ```
 
 
@@ -16,13 +16,18 @@ library(nycflights)
 
 ```{r}
 table3 %>%
-  separate(..., into = c(..., ...), sep = "/", convert = TRUE)
+  separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 ```
 
 ```{r}
 table3 %>%
-  separate(..., into = c(..., ...), sep = "/", convert = TRUE) %>%
-  ...(...)
+  separate(
+    rate,
+    into = c("cases", "population"),
+    sep = "/",
+    convert = TRUE
+  ) %>%
+  gather(type, count, -country, -year)
 ```
 
 
@@ -30,8 +35,8 @@ table3 %>%
 
 ```{r}
 table2 %>%
-  ...(...) %>% 
-  unite(..., ......., sep = "/")
+  spread(type, count) %>% 
+  unite(rate, cases, population, sep = "/")
 ```
 
 
@@ -41,6 +46,7 @@ table2 %>%
 # Use a numeric value for sep
 
 flights %>%
-  separate(..., into = c(..., ...), sep = ..., convert = TRUE) %>% 
-  separate(..., into = c(..., ...), sep = ..., convert = TRUE)
+  separate(dep_time, into = c("dep_hour", "dep_minute"), sep = -3, convert = TRUE) %>%
+  separate(arr_time, into = c("arr_hour", "arr_minute"), sep = -3, convert = TRUE) %>% 
+  View
 ```
