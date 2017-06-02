@@ -1,0 +1,57 @@
+---
+title: "Mutate"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+
+## Speed as miles per hour
+
+```{r}
+flights %>% 
+  mutate(mph_speed = ...) %>%
+  ggplot() +
+  geom_histogram(aes(...))
+```
+
+
+```{r}
+flights %>% 
+  ggplot() +
+  geom_histogram(aes(...))
+```
+
+## Speed distributions
+
+```{r}
+flights %>%
+  mutate(Delayed = ...) %>%
+  ggplot() +
+  geom_freqpoly(aes(..., ..., color = ...))
+```
+
+
+```{r}
+flights %>%
+  mutate(Delayed = ...) %>%
+  ggplot() +
+  geom_freqpoly(aes(..., ...)) +
+  facet_wrap(~Delayed)
+```
+
+# Deviation from average departure delay
+
+```{r}
+flights %>% 
+  mutate(dev = dep_delay - mean(dep_delay)) %>%
+  ggplot() +
+  geom_violin(aes(..., ...))
+```
