@@ -26,3 +26,13 @@ flights %>%
   summarize(mean(..., na.rm = ...)) %>% 
   ungroup
 ```
+
+# Air time by carrier
+
+```{r}
+flights %>% 
+  group_by(...) %>% 
+  summarize(acc_air_time = ...(air_time, ...)) %>% 
+  ungroup
+```
+
