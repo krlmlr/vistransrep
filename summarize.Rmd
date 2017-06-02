@@ -36,3 +36,21 @@ flights %>%
   ungroup
 ```
 
+## Carriers for long-distance routes
+
+```{r}
+total_distance_by_carrier <-
+  flights %>% 
+    group_by(...) %>% 
+    summarize(...) %>% 
+    ungroup %>% 
+    ...()
+
+total_distance_by_carrier
+```
+
+```{r}
+total_distance_by_carrier %>% 
+  ggplot() +
+  geom_col(aes(factor(...), ...)
+```
