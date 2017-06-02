@@ -1,0 +1,19 @@
+---
+title: "Spreading and gathering"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+# table2 to table1
+
+```{r}
+table2 %>% 
+  spread(..., ...)
+```
