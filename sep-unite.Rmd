@@ -16,12 +16,12 @@ library(nycflights)
 
 ```{r}
 table3 %>%
-  separate(..., into = c(..., ...), sep = "/")
+  separate(..., into = c(..., ...), sep = "/", convert = TRUE)
 ```
 
 ```{r}
 table3 %>%
-  separate(..., into = c(..., ...), sep = "/") %>%
+  separate(..., into = c(..., ...), sep = "/", convert = TRUE) %>%
   ...(...)
 ```
 
