@@ -30,23 +30,32 @@ flights %>%
 # Air time by carrier
 
 ```{r}
-flights %>% 
-  group_by(...) %>% 
-  summarize(acc_air_time = ...(air_time, ...)) %>% 
-  ungroup
+total_airtime_by_carrier <-
+  flights %>% 
+    group_by(...) %>% 
+    summarize(acc_air_time = ...(air_time, ...)) %>% 
+    ungroup
+
+total_airtime_by_carrier
+```
+
+```{r}
+total_airtime_by_carrier %>% 
+  ggplot() +
+  geom_col(aes(factor(...), ...))
 ```
 
 ## Carriers for long-distance routes
 
 ```{r}
-total_distance_by_carrier <-
+carrier_arranged_by_total_distance <-
   flights %>% 
     group_by(...) %>% 
     summarize(...) %>% 
     ungroup %>% 
     ...()
 
-total_distance_by_carrier
+carrier_arranged_by_total_distance
 ```
 
 ```{r}
