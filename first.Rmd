@@ -1,0 +1,42 @@
+---
+title: "First RMarkdown"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+options(warn = 2)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(tidy = TRUE)
+```
+
+## R Markdown
+
+The **sum** of 3 and 5 is `r 3 + 5`.
+
+```{r scatter-rug}
+ggplot(mpg,aes(displ ,hwy)) +
+  geom_jitter(
+    ) +
+  geom_rug()
+```
+
+### Second-level caption
+
+#### Third-level caption
+
+1. Enum
+
+1. Enum
+
+    1. Sub-enum
+    
+        Second paragraph
+    
+    1. Sub-enum
+        - Item
+
+        - Other item

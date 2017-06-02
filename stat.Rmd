@@ -1,0 +1,148 @@
+---
+title: "Statistical transformations"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Bar plot
+
+I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
+
+```{r}
+ggplot(mpg) +
+  geom_bar(aes(x = drv))
+```
+
+
+## ..count..
+
+I think the results look pretty much the same if I add `y = ..count..` to the `aes()` call.
+Perhaps this is related to `count` being a "computed variable" (according to `?geom_bar`)?
+
+
+```{r}
+ggplot(mpg) +
+  geom_bar(aes(x = drv, y = ..count..))
+```
+
+## ..prop..
+
+
+
+## Fuel economy
+
+The histogram call was pretty straightforward, very similar to the bar chart above.
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(aes(hwy))
+```
+
+I did obey the warning and specified a width for the bins:
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(aes(hwy), binwidth = 2)
+```
+
+To overlay the frequency polygon, I use a second layer. I can make the aesthetic mapping global because both layers use the same.
+
+```{r}
+ggplot(mpg, aes(hwy)) +
+  geom_histogram(binwidth = 2) +
+  geom_freqpoly()
+```
+
+Can I specify the bin width once for both layers?
+
+```{r}
+ggplot(mpg, aes(hwy), binwidth = 2) +
+  geom_histogram() +
+  geom_freqpoly()
+```
+
+Nope.
+
+The frequency polygon blends into the histogram, let's make it stand out a bit more:
+
+```{r}
+ggplot(mpg, aes(hwy)) +
+  geom_histogram(binwidth = 2) +
+  geom_freqpoly(binwidth = 2, color = "red")
+```
+
+I still hate it. Do the bars need to be solid?
+
+```{r}
+ggplot(mpg, aes(hwy)) +
+  geom_histogram(binwidth = 2, fill = NA, color = "black", size = 0.2) +
+  geom_freqpoly(binwidth = 2, color = "red")
+```
+
+## Fuel economy per drivetrain, groupwise
+
+Can I just copy and adapt the code from the last solution?
+
+```{r}
+ggplot(mpg, aes(hwy, color = drv)) +
+  geom_histogram(fill = NA, color = "black", size = 0.2, binwidth = 2) +
+  geom_freqpoly(color = "red", binwidth = 2)
+```
+
+Nope. Something's wrong here. Maybe if I follow the template?
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    fill = NA,
+    color = "black",
+    size = 0.2
+  )
+```
+
+I can't use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.
+
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  ) +
+  geom_freqpoly(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2
+  )
+```
+
+
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  )
+```
+
+
+```{r}
+ggplot(mpg) +
+  geom_freqpoly(
+    aes(hwy, color = drv),
+    binwidth = 2
+  )
+```
+
