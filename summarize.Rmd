@@ -71,3 +71,13 @@ flights %>%
   filter(...(dep_time)) %>%
   ...(...)
 ```
+
+
+## Short-distance routes per airline
+
+```{r}
+flights %>%
+  group_by(...) %>% 
+  summarize(ratio = mean(...)) %>% 
+  ungroup
+```
