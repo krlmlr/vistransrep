@@ -54,3 +54,20 @@ total_distance_by_carrier %>%
   ggplot() +
   geom_col(aes(factor(...), ...))
 ```
+
+
+## Worst plane
+
+```{r}
+flights %>% 
+  filter(...(dep_time)) %>%
+  group_by(...) %>% 
+  summarize(...) %>% 
+  ungroup()
+```
+
+```{r}
+flights %>% 
+  filter(...(dep_time)) %>%
+  ...(...)
+```
