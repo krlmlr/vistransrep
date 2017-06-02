@@ -34,3 +34,13 @@ table2 %>%
   unite(..., ......., sep = "/")
 ```
 
+
+## Hours and minutes
+
+```{r}
+# Use a numeric value for sep
+
+flights %>%
+  separate(..., into = c(..., ...), sep = ...) %>% 
+  separate(..., into = c(..., ...), sep = ...)
+```
