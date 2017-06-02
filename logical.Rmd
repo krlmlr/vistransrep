@@ -1,0 +1,50 @@
+---
+title: "Logical"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Inconvenient flights
+
+```{r}
+# Logical OR: |
+
+flights %>% 
+  filter(... ... ...)
+```
+
+## Not by UA or WN
+
+```{r}
+flights %>% 
+  filter(... ... ...)
+```
+
+
+```{r}
+flights %>% 
+  filter((...) ... (...))
+```
+
+
+```{r}
+flights %>% 
+  filter(...) %>% 
+  filter(...)
+```
+
+## Missing dep or arr
+
+```{r}
+# is.na()
+
+flights %>% 
+  filter(... ... ...)
+```

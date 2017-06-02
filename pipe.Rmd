@@ -74,11 +74,37 @@ filter(
 ### Pipe
 
 ```{r}
-flights %>% 
+late_flights <- filter(flights, arr_time >= 2200)
+late_ua_flights <- filter(late_flights, carrier == "UA")
+late_late_ua_flights <- filter(late_ua_flights, arr_delay > 120)
+late_late_ua_flights_not_honolulu <- filter(late_late_ua_flights, dest != "HNL")
+late_late_ua_flights_not_honolulu
+```
+
+```{r}
+late_late_ua_flights_not_honolulu <-
+  flights %>% 
   filter(arr_time >= 2200) %>% 
   filter(carrier == "UA") %>% 
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL")
+```
+
+```{r}
+late_late_ua_flights_not_honolulu <-
+  flights %>% 
+    filter(arr_time >= 2200) %>% 
+    filter(carrier == "UA") %>% 
+    filter(arr_delay > 120) %>% 
+    filter(dest != "HNL")
+```
+
+```{r}
+flights %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL") -> late_late_ua_flights_not_honolulu
 ```
 
 
