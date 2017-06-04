@@ -52,7 +52,15 @@ mpg_plot +
     mapping = aes(x = displ, y = 235 / hwy, color = "yellow")
   )
 
+# Error: A continuous variable can not be mapped to shape
+if (FALSE) {
 mpg_plot +
   geom_point(
     mapping = aes(x = displ, y = hwy, shape = year)
+  )
+}
+
+mpg_plot +
+  geom_point(
+    mapping = aes(x = displ, y = hwy, shape = factor(year))
   )

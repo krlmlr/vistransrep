@@ -6,4 +6,4 @@ flights %>%
   View
 
 flights %>%
-  arrange(
+  arrange(month, day, arr_delay)

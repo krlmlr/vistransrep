@@ -1,4 +1,5 @@
 library(tidyverse)
+library(nycflights13)
 
 
 w <- mpg
@@ -68,11 +69,11 @@ mpg %>%
   View
 
 mpg %>%
-  mutate(`Litre per 100 km on the highway` = 235 / hwy) %>%
+  mutate(`Liter per 100 km on the highway` = 235 / hwy) %>%
   rename(`Engine displacement` = displ) %>%
   ggplot() +
   geom_jitter(aes(x = `Engine displacement`,
-                  y = `Litre per 100 km on the highway`))
+                  y = `Liter per 100 km on the highway`))
 
 x <- 1:10
 x
@@ -81,17 +82,16 @@ cummean(x)
 
 mpg %>%
   mutate(lpkm = 2.35 / hwy,
-         `Litre per 100 km on the highway` = 100 * lpkm) %>%
+         `Liter per 100 km on the highway` = 100 * lpkm) %>%
   rename(`Engine displacement` = displ) %>%
   ggplot() +
   geom_jitter(aes(`Engine displacement`,
-                  `Litre per 100 km on the highway`))
+                  `Liter per 100 km on the highway`))
 
-`Litre per 100 km on the highway`
-"Litre per 100 km on the highway"
+# `Liter per 100 km on the highway`
+"Liter per 100 km on the highway"
 
 
-library(nycflights13)
 flights %>%
   filter(year == 2013, month == 7, day == 1)
 
