@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-/.lib
+/.lib*
 *.html
 *.pdf
 /.Rprofile.local
