@@ -1,0 +1,5 @@
+---
+title: "Data visualization, reporting, and processing with R"
+---
+
+This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.
