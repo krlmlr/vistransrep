@@ -1,0 +1,191 @@
+---
+title: "Exercises 1"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+# RStudio walkthrough
+
+1. Evaluate a few arithmetic expressions in the console. Do operator precendence rules hold?
+
+1. Practice:
+    - repeating and searching expressions in the history,
+    - aborting and restarting the entry of an expression
+
+1. What happens if you type `5 + <enter> 3 <enter>`? Is the result different from `5 <enter> + 3 <enter>`? Why?
+
+1. Practice:
+    - restarting the R session
+    - other shortcuts from the RStudio cheat sheet
+
+# Getting help
+
+1. Look up the help for the following objects and functions:
+    - `diamonds`
+    - `geom_boxplot()`
+    - `near()`
+
+    Hint: Make sure you have loaded the `tidyverse` package with `library(tidyverse)`.
+
+1. Copy-paste the example for `near()` in your console.
+
+1. Run the example for `geom_boxplot()`.
+
+    Hint: Look up in the help what `example()` does.
+
+1. Find the example for `geom_boxplot()` on http://ggplot2.tidyverse.org or on the USB stick (index.html -> tidyverse -> ggplot2 icon). Do you have a preference for either?
+
+5. The `example()` function is part of base R, can you find it on http://rdocumentation.org? Can you find the other functions you looked up earlier in this example?
+
+
+# Scatterplots
+
+1. Print the `mpg` dataset to your console.
+
+1. View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?
+
+1. Create a few scatterplots using the following template (here with `hwy` versus `displ`):
+
+    ```{r echo=TRUE}
+    ggplot(data = mpg) +
+      geom_point(mapping = aes(x = displ, y = hwy))
+    ```
+    
+    Share particularly interesting or boring examples you might encounter.  Did you find anything surprising?
+
+1. Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?
+
+    Hint: Use the formula `235 / hwy` to convert from miles per gallon.
+
+1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz or USB stick -> index.html -> "R for data science")
+
+
+# Scatterplots with three or more variables
+
+1. In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
+
+1. Experiment with the "color", "shape", "size", and "alpha" aesthetics.  Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don't? Expand on the more surprising examples in the previous exercises.
+
+    Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
+
+1. What happens if you map the same variable to more than one aesthetics?
+
+1. Find more exercises in Section 3.3.1 of r4ds.
+
+
+# Manual aesthetics
+
+1. Plot `hwy` vs. `displ` with approx. 1/3 opacity for each point, in blue.
+
+    Hint: Use quotes `"` for the color.
+
+1. What happens if you assign a variable, e.g. `year`, to an aesthetic *outside* the `aes()` call?
+
+1. What happens if you assign a constant, e.g. `3`, to the "size" aesthetic *inside* the `aes()` call?
+
+1. What values are valid for `color`, `alpha`, `shape` and `size`?
+
+
+# Other geoms
+
+1. What do the arguments `se` and `method` to `geom_smooth()` change?
+
+1. What does `geom_rug()` do? Try to reduce overplotting with transparency or by adding `position = "jitter"`. How do you reduce overplotting for the points layer?
+
+1. How does the order of the `geom_...()` calls affect the display?
+
+1. Can you plot both highway and city economy in one plot?
+
+    Hint: The solution to this exercise is probably *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
+
+1. Find more exercises in Section 3.6.1 of r4ds.
+
+
+# Statistical transformations
+
+1. Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the `mpg` dataset contains. Which aesthetic mappings do you need to specify? 
+
+    Hint: Find the relevant geom by typing `geom_` on the console or in your script file.
+
+1. Does the appearance of the plot change when you add `y = ..count..` to the `aes()` call? Why/why not?
+
+1. What happens if you instead use `y = ..prop.., group = 1` in the `aes()` call? What happens if you omit `group = 1`? Why?
+
+    Hint: The section "Computed variables" to `geom_bar()` offers a brief explanation.
+
+1. Visualize the overall distribution of fuel economy in the dataset with a histogram.  Compare this with a frequency polygon, use a second layer if you like.
+
+1. Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+
+1. Find more exercises in Section 3.7.1 of r4ds.
+
+
+# Position adjustments
+
+1. Use a bar chart to show how many cars of each kind of drivetrain the `mpg` dataset contains.
+
+1. What's the most prevalent number of gears for manual or automatic transmissions?
+
+1. Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?
+
+1. Draw a boxplot of highway fuel economy versus drivetrain.  Is fuel economy also affected by the number of cylinders?
+
+    Hint: Use `factor()` as necessary.
+
+1. Find more exercises in Section 3.8.1 of r4ds.
+
+
+# Faceting
+
+1. Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with `facet_wrap()`, `facet_grid()`, aesthetic mappings, and smoothing layers.
+
+1. What changes if you add the argument `labeller = "label_both"` to the `facet_wrap()` call?
+
+1. Is it possible to use a different x and y scale for each facet? How?
+
+1. Experiment with other arguments to `facet_wrap()` and `facet_grid()`.
+
+1. Find more exercises in Section 3.5.1 of r4ds.
+
+
+# Scales
+
+1. Choose one or two of your previous plots, and give the scales a proper name.
+
+    Hint: Use one or more `scale_...()` functions.
+
+1. What happens if you call the same `scale_...()` function twice in a plot?
+
+1. Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.
+
+    Hint: Insert a code chunk containing `RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)`
+
+1. Choose an appealing scale for one of your plots that use the "color" or "fill" aesthetics. Apply it with `scale_..._brewer("<name>", palette = "<palette>")`
+
+    Hint: Use `scale_..._distiller()` if you have mapped a continuous variable.
+
+1. Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .
+
+
+# Coordinate systems
+
+1. Create a flipped boxplot of fuel economy by transmission type.
+
+1. Plot highway vs. city fuel economy with an additional `geom_abline()` layer.  How do you set a 45° degree for the diagonal line? 
+
+1. Try to "estimate" an approximate ratio between the two economy measures by tweaking the `slope` argument to `geom_abline()`.
+
+
+# Theming
+
+1. Choose your favorite among the predefined themes.
+
+    Hint: All start with `theme_...()`, but watch out for `theme_set()`.
+
+1. Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
