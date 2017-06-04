@@ -3,3 +3,22 @@
 language: R
 sudo: false
 cache: packages
+
+#before_install
+before_install:
+- R -q -e 'install.packages("remotes"); devtools::install_github("ropenscilabs/tic"); tic::prepare_all_stages()'
+
+#script
+script:
+- R -q -e 'tic::script()'
+
+#deploy
+deploy:
+  provider: script
+  script: R -q -e 'tic::deploy()'
+  on:
+    all_branches: true
+
+#after_success
+after_success:
+- R -q -e 'tic::after_success()'
