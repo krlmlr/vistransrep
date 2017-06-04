@@ -1,0 +1,15 @@
+Seq	Host	Starttime	JobRuntime	Send	Receive	Exitval	Signal	Command
+3	:	1496581650.909	     4.242	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args filter-plot.Rmd
+6	:	1496581650.915	     4.246	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args logical.Rmd
+7	:	1496581650.922	     4.481	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args mutate.Rmd
+5	:	1496581650.913	     4.745	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args joins.Rmd
+2	:	1496581650.908	     6.490	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args filtering.Rmd
+4	:	1496581650.911	     6.507	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args first.Rmd
+8	:	1496581650.975	     6.465	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args pipe.Rmd
+10	:	1496581655.196	     4.789	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args select-rename.Rmd
+12	:	1496581655.695	     4.478	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args spread-gather.Rmd
+1	:	1496581650.906	     9.742	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args arrange.Rmd
+14	:	1496581657.440	     5.586	0	0	1	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args summarize.Rmd
+9	:	1496581655.162	    10.756	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args position.Rmd
+13	:	1496581657.419	    10.613	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args stat.Rmd
+11	:	1496581655.419	    20.414	0	0	0	0	R -q -e rmarkdown::render\(commandArgs\(TRUE\)\) --args sep-unite.Rmd
