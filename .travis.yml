@@ -7,7 +7,7 @@ latex: false
 
 #before_install
 before_install:
-- R -q -e 'install.packages("remotes"); devtools::install_github("ropenscilabs/tic"); tic::prepare_all_stages()'
+- R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages()'
 
 #script
 script:
