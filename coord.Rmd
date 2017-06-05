@@ -1,0 +1,49 @@
+---
+title: "Coordinate systems"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Flipped boxplot
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = trans, y = hwy)) +
+  coord_flip()
+```
+
+
+## Compare highway and city
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(color = "red")
+```
+
+The `coord_fixed()` calls fixes the aspect ratio, and also the angle of the red line with slope 1:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(color = "red") +
+  coord_fixed()
+```
+
+
+## Tweaking the slope
+
+Guessing 40 / 30 from the previous plot:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(slope = 40 / 30, color = "red") +
+  coord_fixed()
+```
