@@ -14,10 +14,13 @@ library(tidyverse)
 
 I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
 
-We need only the "x" aesthetic, "y" is computed automatically.
+We need only the "x" aesthetic, "y" is computed automatically. `drv` is the relevant variable.
+
 ```{r}
 ggplot(mpg) +
   geom_bar(aes(x = drv))
+```
+
 ## Explicit count
 
 The output is the same:
