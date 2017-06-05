@@ -5,8 +5,6 @@ sudo: false
 cache: packages
 latex: false
 
-os: osx
-
 #before_install
 before_install:
 - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages()'
