@@ -12,7 +12,7 @@
 <meta name="author" content="Kirill Müller" />
 
 
-<title>Scales</title>
+<title>Coordinate systems</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -198,55 +198,41 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Scales</h1>
+<h1 class="title toc-ignore">Coordinate systems</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<div id="naming-scales" class="section level2">
-<h2>Naming scales</h2>
-<p>Reusing a plot from the previous exercise:</p>
+<div id="flipped-boxplot" class="section level2">
+<h2>Flipped boxplot</h2>
 <pre class="r"><code>ggplot(data = mpg) +
-  geom_point(
-    mapping = aes(x = displ, y = hwy, color = factor(year))
-  ) +
-  geom_smooth(
-    mapping = aes(x = displ, y = hwy, color = factor(year)),
-    method = &quot;lm&quot;
-  ) +
-  facet_wrap(~class) +
-  scale_x_continuous(name = &quot;Displacement&quot;) +
-  scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
-  scale_color_discrete(name = &quot;Year&quot;)</code></pre>
-<p><img src="scales_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.</p>
+  geom_boxplot(mapping = aes(x = trans, y = hwy)) +
+  coord_flip()</code></pre>
+<p><img src="coord_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
-<div id="changing-scales-twice" class="section level2">
-<h2>Changing scales twice</h2>
-<p>A warning occurs:</p>
+<div id="compare-highway-and-city" class="section level2">
+<h2>Compare highway and city</h2>
 <pre class="r"><code>ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy)) +
-  scale_x_continuous(name = &quot;Displacement&quot;) +
-  scale_x_continuous(name = &quot;Displacement&quot;)</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
-## will replace the existing scale.</code></pre>
-<p><img src="scales_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="colorbrewer-scales" class="section level2">
-<h2>ColorBrewer scales</h2>
-<pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
-<p><img src="scales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
-<div id="a-better-scale-for-car-class" class="section level2">
-<h2>A better scale for car class</h2>
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(color = &quot;red&quot;)</code></pre>
+<p><img src="coord_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>The <code>coord_fixed()</code> calls fixes the aspect ratio, and also the angle of the red line with slope 1:</p>
 <pre class="r"><code>ggplot(data = mpg) +
-  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
-  scale_x_continuous(name = &quot;Displacement&quot;) +
-  scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
-  scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="scales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(color = &quot;red&quot;) +
+  coord_fixed()</code></pre>
+<p><img src="coord_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="tweaking-the-slope" class="section level2">
+<h2>Tweaking the slope</h2>
+<p>Guessing 40 / 30 from the previous plot:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = cty, y = hwy)) +
+  geom_abline(slope = 40 / 30, color = &quot;red&quot;) +
+  coord_fixed()</code></pre>
+<p><img src="coord_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
