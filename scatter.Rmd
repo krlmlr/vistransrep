@@ -1,0 +1,61 @@
+---
+title: "Scatterplots"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Show mpg on console
+
+```{r}
+mpg
+```
+
+
+## RStudio's view pane
+
+```r
+View(mpg)
+```
+
+- Filtering works by clicking on the "Filter" button, then entering a text (for text columns) or restricting the range of values (for numeric columns).
+- Arranging works as usual by clicking on a column header. Because the sort operation is stable, you can sort by two variables by first sorting by the *second* variable, then by the *first*.
+- The 1999 VW Jetta 1.9 and VW New Beetle 1.9 have the best highway economy, both will drive you 44 miles for each gallon of fuel.
+- Note that the view pane currently shows at most 100 columns.
+
+## Scatterplots
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+More examples:
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = cyl, y = drv))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = year, y = cyl))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = manufacturer))
+```
+
+
+## Convert units
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = 235 / hwy))
+```
