@@ -1,4 +1,6 @@
 get_stage("install") %>%
+  add_step(step_run_code(getwd())) %>%
+  add_step(step_run_code(dir())) %>%
   add_step(step_run_code(remotes::install_deps()))
 
 get_stage("script") %>%
