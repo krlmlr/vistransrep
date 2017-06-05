@@ -1,5 +1,5 @@
 get_stage("script") %>%
-  add_step(step_run_code(rmarkdown::build_site()))
+  add_step(step_run_code(rmarkdown::render_site()))
 
 get_stage("deploy") %>%
   add_step(step_add_to_known_hosts("github.com")) %>%
