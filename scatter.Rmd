@@ -52,6 +52,11 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = manufacturer))
 ```
 
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = cty, y = hwy))
+```
+
 
 ## Convert units
 

@@ -74,6 +74,8 @@ library(tidyverse)
 
     Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
 
+1. Can you change both color and shape at the same time? What about the other aesthetics?
+
 1. What happens if you map the same variable to more than one aesthetics?
 
 1. Find more exercises in Section 3.3.1 of r4ds.
