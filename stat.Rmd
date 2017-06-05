@@ -12,13 +12,12 @@ library(tidyverse)
 
 ## Cars by drivetrain
 
+I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
+
 We need only the "x" aesthetic, "y" is computed automatically.
-
-```{r echo=TRUE}
-ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = drv))
-```
-
+```{r}
+ggplot(mpg) +
+  geom_bar(aes(x = drv))
 ## Explicit count
 
 The output is the same:
@@ -48,7 +47,7 @@ ggplot(data = mpg) +
 ```
 
 
-# Fuel economy
+## Fuel economy
 
 We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
@@ -85,7 +84,7 @@ ggplot(data = mpg) +
 ```
 
 
-# Fuel economy by drivetrain
+## Fuel economy by drivetrain
 
 We can set the "fill" aesthetic:
 
@@ -117,3 +116,65 @@ ggplot(data = mpg) +
     binwidth = 1
   )
 ```
+
+## Fuel economy per drivetrain (a history of failed attempts)
+
+Can I just copy and adapt the code from the last solution?
+
+```{r}
+ggplot(mpg, aes(hwy, color = drv)) +
+  geom_histogram(fill = NA, color = "black", size = 0.2, binwidth = 2) +
+  geom_freqpoly(color = "red", binwidth = 2)
+```
+
+Nope. Something's wrong here. Maybe if I follow the template?
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    fill = NA,
+    color = "black",
+    size = 0.2
+  )
+```
+
+I can't use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.
+
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  ) +
+  geom_freqpoly(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2
+  )
+```
+
+
+
+```{r}
+ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  )
+```
+
+
+```{r}
+ggplot(mpg) +
+  geom_freqpoly(
+    aes(hwy, color = drv),
+    binwidth = 2
+  )
+```
+
