@@ -207,9 +207,10 @@ $(document).ready(function () {
 
 <div id="cars-by-drivetrain" class="section level2">
 <h2>Cars by drivetrain</h2>
-<p>We need only the <code>x</code> aesthetic, <code>y</code> is computed automatically.</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = drv))</code></pre>
+<p>I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
+<p>We need only the “x” aesthetic, “y” is computed automatically. <code>drv</code> is the relevant variable.</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_bar(aes(x = drv))</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="explicit-count" class="section level2">
@@ -218,7 +219,7 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>By default, <code>geom_bar()</code> plots the computed <code>count</code> aesthetic, which is by convention written with two surrounding dots.</p>
+<p>By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.</p>
 </div>
 <div id="proportions" class="section level1">
 <h1>Proportions</h1>
@@ -230,10 +231,9 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-</div>
-<div id="fuel-economy" class="section level1">
-<h1>Fuel economy</h1>
-<p>We use a histogram of <code>hwy</code>, again only the <code>x</code> aesthetic needs to be supplied:</p>
+<div id="fuel-economy" class="section level2">
+<h2>Fuel economy</h2>
+<p>We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
@@ -260,8 +260,8 @@ $(document).ready(function () {
   )</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
-<div id="fuel-economy-by-drivetrain" class="section level1">
-<h1>Fuel economy by drivetrain</h1>
+<div id="fuel-economy-by-drivetrain" class="section level2">
+<h2>Fuel economy by drivetrain</h2>
 <p>We can set the “fill” aesthetic:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(
@@ -284,6 +284,52 @@ $(document).ready(function () {
     binwidth = 1
   )</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy-per-drivetrain-a-history-of-failed-attempts" class="section level2">
+<h2>Fuel economy per drivetrain (a history of failed attempts)</h2>
+<p>Can I just copy and adapt the code from the last solution?</p>
+<pre class="r"><code>ggplot(mpg, aes(hwy, color = drv)) +
+  geom_histogram(fill = NA, color = &quot;black&quot;, size = 0.2, binwidth = 2) +
+  geom_freqpoly(color = &quot;red&quot;, binwidth = 2)</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Nope. Something’s wrong here. Maybe if I follow the template?</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    fill = NA,
+    color = &quot;black&quot;,
+    size = 0.2
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>I can’t use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  ) +
+  geom_freqpoly(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_freqpoly(
+    aes(hwy, color = drv),
+    binwidth = 2
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

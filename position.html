@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Position adjustments</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,55 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Position adjustments</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-05 20:57:23</p>
+<div id="gears" class="section level2">
+<h2>Gears</h2>
+<p>Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = trans))</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Visual inspection reveals that it’s four gears for automatic, and five gears for manual transmission.</p>
+</div>
+<div id="discriminate-by-car-class" class="section level2">
+<h2>Discriminate by car class</h2>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class, fill = trans))</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with <code>position = &quot;dodge&quot;</code>, the different width of the bars indicates the number different subgroups for each car class:</p>
+<pre class="r"><code>ggplot(mpg, aes(class, fill = trans)) +
+  geom_bar(position = &quot;dodge&quot;)</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="boxplot" class="section level2">
+<h2>Boxplot</h2>
+<p>I’m using liters per 100 km as measure for fuel economy here.</p>
+<pre class="r"><code>ggplot(mpg, aes(drv, 235 / hwy)) +
+  geom_boxplot()</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Forward drivetrains seem much more economical. Does the number of cylinders play a role? I’ll try the “fill” aesthetic:</p>
+<pre class="r"><code>ggplot(mpg, aes(drv, 235 / hwy, fill = cyl)) +
+  geom_boxplot()</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>No dice. Do I also need <code>group =</code> ?</p>
+<pre class="r"><code>ggplot(mpg, aes(drv, 235 / hwy, fill = cyl, group = cyl)) +
+  geom_boxplot()</code></pre>
+<pre><code>## Warning: position_dodge requires non-overlapping x intervals</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>The legend reveals that <code>cyl</code> is a continuous variable. I’ll use its categorical equivalent, because the range is very limited.</p>
+<pre class="r"><code>ggplot(mpg, aes(drv, 235 / hwy, fill = factor(cyl))) +
+  geom_boxplot(position = &quot;identity&quot;)</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>The default position adjustments were fine for the assignments in this exercise.</p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
