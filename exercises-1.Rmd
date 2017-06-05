@@ -104,7 +104,7 @@ library(tidyverse)
 
 1. Can you plot both highway and city economy in one plot?
 
-    Hint: The solution to this exercise is probably *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
+    Hint: The solution to this exercise is *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
 
 1. Find more exercises in Section 3.6.1 of r4ds.
 

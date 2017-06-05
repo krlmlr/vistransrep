@@ -36,7 +36,7 @@ ggplot(data = mpg) +
   )
 ```
 
-The error message is fairly unhelpful in some cases:
+The error message is fairly confusing in some cases:
 
 ```{r echo=TRUE, error=TRUE}
 ggplot(data = mpg) +
