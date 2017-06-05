@@ -1,7 +1,9 @@
 get_stage("install") %>%
+  add_step(step_run_code(rownames(installed.packages()))) %>%
   add_step(step_run_code(getwd())) %>%
   add_step(step_run_code(dir())) %>%
-  add_step(step_run_code(remotes::install_deps()))
+  add_step(step_run_code(remotes::install_deps())) %>%
+  add_step(step_run_code(rownames(installed.packages())))
 
 get_stage("script") %>%
   add_step(step_run_code(rmarkdown::render_site()))
