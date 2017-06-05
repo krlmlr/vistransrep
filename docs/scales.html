@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Facets</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,56 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Facets</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-05 21:17:31</p>
+<div id="naming-scales" class="section level2">
+<h2>Naming scales</h2>
+<p>Reusing a plot from the previous exercise:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy, color = factor(year))
+  ) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, color = factor(year)),
+    method = &quot;lm&quot;
+  ) +
+  facet_wrap(~class) +
+  scale_x_continuous(name = &quot;Displacement&quot;) +
+  scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
+  scale_color_discrete(name = &quot;Year&quot;)</code></pre>
+<p><img src="scales_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.</p>
+</div>
+<div id="changing-scales-twice" class="section level2">
+<h2>Changing scales twice</h2>
+<p>A warning occurs:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  scale_x_continuous(name = &quot;Displacement&quot;) +
+  scale_x_continuous(name = &quot;Displacement&quot;)</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
+## will replace the existing scale.</code></pre>
+<p><img src="scales_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="colorbrewer-scales" class="section level2">
+<h2>ColorBrewer scales</h2>
+<pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
+<p><img src="scales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="a-better-scale-for-car-class" class="section level2">
+<h2>A better scale for car class</h2>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = &quot;Displacement&quot;) +
+  scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
+  scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
+<p><img src="scales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
