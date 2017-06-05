@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Other geoms</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,77 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Other geoms</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-05 20:26:31</p>
+<div id="arguments-to-geom_smooth" class="section level2">
+<h2>Arguments to <code>geom_smooth()</code></h2>
+<p><code>method</code> uses a different model to fit the data:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy), method = &quot;lm&quot;)</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><code>se = FALSE</code> turns off the confidence band:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="the-rug" class="section level2">
+<h2>The rug</h2>
+<p>Plots marginal distributions of the data close to the axes.</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_rug(mapping = aes(x = displ, y = hwy))</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>To reduce overplotting, the “alpha” aesthetic can be set independently for each geom to a constant value:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy),
+    alpha = 0.3
+  ) +
+  geom_rug(
+    mapping = aes(x = displ, y = hwy)
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy)
+  ) +
+  geom_rug(
+    mapping = aes(x = displ, y = hwy),
+    alpha = 0.3
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="order-of-geom_...-calls" class="section level2">
+<h2>Order of <code>geom_...()</code> calls</h2>
+<p>The geoms are painted in order of appearance:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy))</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="compare-highway-and-city" class="section level2">
+<h2>Compare highway and city</h2>
+<p>We <em>could</em> add two layers, each with a different color. But this still doesn’t give us a legend.</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), color = &quot;red&quot;) +
+  geom_point(mapping = aes(x = displ, y = cty), color = &quot;blue&quot;)</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We need better data transformation tools to reformat the data for plotting it in a more natural way.</p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
