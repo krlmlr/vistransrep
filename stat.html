@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Statistical transformations</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,93 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Statistical transformations</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-05 20:39:20</p>
+<div id="cars-by-drivetrain" class="section level2">
+<h2>Cars by drivetrain</h2>
+<p>We need only the <code>x</code> aesthetic, <code>y</code> is computed automatically.</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv))</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="explicit-count" class="section level2">
+<h2>Explicit count</h2>
+<p>The output is the same:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>By default, <code>geom_bar()</code> plots the computed <code>count</code> aesthetic, which is by convention written with two surrounding dots.</p>
+</div>
+<div id="proportions" class="section level1">
+<h1>Proportions</h1>
+<p>Plotting overall proportions changes the y scale:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Omitting <code>group</code> will plot proportions per drivetrain in each column, which are 1 by default:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy" class="section level1">
+<h1>Fuel economy</h1>
+<p>We use a histogram of <code>hwy</code>, again only the <code>x</code> aesthetic needs to be supplied:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The bin width should be set explicitly to avoid the warning:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    fill = NA,
+    color = &quot;blue&quot;,
+    binwidth = 1
+  ) +
+  geom_freqpoly(
+    mapping = aes(x = hwy),
+    binwidth = 1,
+    size = 2
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy-by-drivetrain" class="section level1">
+<h1>Fuel economy by drivetrain</h1>
+<p>We can set the “fill” aesthetic:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, fill = drv),
+    binwidth = 1
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>However, some bars are hidden. This happens less if we use color instead:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, color = drv),
+    fill = NA,
+    binwidth = 1
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The frequency polygon offers a much clearer display of the same data:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_freqpoly(
+    mapping = aes(x = hwy, color = drv),
+    binwidth = 1
+  )</code></pre>
+<p><img src="stat_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
