@@ -1,0 +1,119 @@
+---
+title: "Statistical transformations"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Cars by drivetrain
+
+We need only the `x` aesthetic, `y` is computed automatically.
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv))
+```
+
+## Explicit count
+
+The output is the same:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..count..))
+```
+
+By default, `geom_bar()` plots the computed `count` aesthetic, which is by convention written with two surrounding dots.
+
+
+# Proportions
+
+Plotting overall proportions changes the y scale:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))
+```
+
+Omitting `group` will plot proportions per drivetrain in each column, which are 1 by default:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop..))
+```
+
+
+# Fuel economy
+
+We use a histogram of `hwy`, again only the `x` aesthetic needs to be supplied:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))
+```
+
+The bin width should be set explicitly to avoid the warning:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )
+```
+
+The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    fill = NA,
+    color = "blue",
+    binwidth = 1
+  ) +
+  geom_freqpoly(
+    mapping = aes(x = hwy),
+    binwidth = 1,
+    size = 2
+  )
+```
+
+
+# Fuel economy by drivetrain
+
+We can set the "fill" aesthetic:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, fill = drv),
+    binwidth = 1
+  )
+```
+
+However, some bars are hidden. This happens less if we use color instead:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, color = drv),
+    fill = NA,
+    binwidth = 1
+  )
+```
+
+The frequency polygon offers a much clearer display of the same data:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_freqpoly(
+    mapping = aes(x = hwy, color = drv),
+    binwidth = 1
+  )
+```
