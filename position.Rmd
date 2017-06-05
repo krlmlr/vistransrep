@@ -1,0 +1,30 @@
+---
+title: "Position adjustments"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Gears per transmission
+
+Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = trans))
+```
+
+
+## Gears per transmission
+
+Bar charts support the "fill" aesthetic:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = trans))
+```

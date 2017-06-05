@@ -45,7 +45,7 @@ ggplot(mpg, aes(drv, 235 / hwy)) +
   geom_boxplot()
 ```
 
-Forward drivetrains seem much more economical. Does the number of cylinders play a role? I'll try the `fill` aesthetics:
+Forward drivetrains seem much more economical. Does the number of cylinders play a role? I'll try the "fill" aesthetic:
 
 ```{r}
 ggplot(mpg, aes(drv, 235 / hwy, fill = cyl)) +

@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Cars by drivetrain
 
-We need only the `x` aesthetic, `y` is computed automatically.
+We need only the "x" aesthetic, "y" is computed automatically.
 
 ```{r echo=TRUE}
 ggplot(data = mpg) +
@@ -28,7 +28,7 @@ ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..count..))
 ```
 
-By default, `geom_bar()` plots the computed `count` aesthetic, which is by convention written with two surrounding dots.
+By default, `geom_bar()` plots the computed "count" aesthetic, which is by convention written with two surrounding dots.
 
 
 # Proportions
@@ -50,7 +50,7 @@ ggplot(data = mpg) +
 
 # Fuel economy
 
-We use a histogram of `hwy`, again only the `x` aesthetic needs to be supplied:
+We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
 ```{r echo=TRUE}
 ggplot(data = mpg) +

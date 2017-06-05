@@ -130,8 +130,6 @@ library(tidyverse)
 
 # Position adjustments
 
-1. Use a bar chart to show how many cars of each kind of drivetrain the `mpg` dataset contains.
-
 1. What's the most prevalent number of gears for manual or automatic transmissions?
 
 1. Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?
