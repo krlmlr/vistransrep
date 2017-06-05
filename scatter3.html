@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Scatterplots with three variables</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,30 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Scatterplots with three variables</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-05 18:44:12</p>
+<div id="map-to-the-color-aesthetic" class="section level2">
+<h2>Map to the color aesthetic</h2>
+<p>Simply insert <code>color = &lt;var&gt;</code> in the <code>aes()</code> call, where <code>&lt;var&gt;</code> is a variable in the <code>mpg</code> dataset:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = cyl))</code></pre>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = trans))</code></pre>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv))</code></pre>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Looks like the cars with large displacement are two-seaters with rear drivetrain.</p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
