@@ -1,3 +1,6 @@
+get_stage("install") %>%
+  add_step(step_run_code(remotes::install_deps()))
+
 get_stage("script") %>%
   add_step(step_run_code(rmarkdown::render_site()))
 
