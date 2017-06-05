@@ -5,9 +5,7 @@ sudo: false
 cache: packages
 latex: false
 
-os:
-- linux
-- osx
+os: osx
 
 #before_install
 before_install:
