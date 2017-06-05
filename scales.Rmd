@@ -1,5 +1,5 @@
 ---
-title: "Facets"
+title: "Scales"
 author: "Kirill Müller"
 date: "June 1, 2017"
 output: html_document
