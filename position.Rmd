@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Gears per transmission
+## Gears
 
 Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:
 
@@ -19,12 +19,52 @@ ggplot(data = mpg) +
   geom_bar(mapping = aes(x = trans))
 ```
 
+Visual inspection reveals that it's four gears for automatic, and five gears for manual transmission.
 
-## Gears per transmission
-
-Bar charts support the "fill" aesthetic:
+## Discriminate by car class
 
 ```{r echo=TRUE}
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = trans))
+  geom_bar(mapping = aes(x = class, fill = trans))
 ```
+
+SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with `position = "dodge"`, the different width of the bars indicates the number different subgroups for each car class:
+
+```{r}
+ggplot(mpg, aes(class, fill = trans)) +
+  geom_bar(position = "dodge")
+```
+
+## Boxplot
+
+I'm using liters per 100 km as measure for fuel economy here.
+
+```{r}
+ggplot(mpg, aes(drv, 235 / hwy)) +
+  geom_boxplot()
+```
+
+Forward drivetrains seem much more economical. Does the number of cylinders play a role? I'll try the "fill" aesthetic:
+
+```{r}
+ggplot(mpg, aes(drv, 235 / hwy, fill = cyl)) +
+  geom_boxplot()
+```
+
+No dice. Do I also need `group =` ?
+
+```{r}
+ggplot(mpg, aes(drv, 235 / hwy, fill = cyl, group = cyl)) +
+  geom_boxplot()
+```
+
+The legend reveals that `cyl` is a continuous variable. I'll use its categorical equivalent, because the range is very limited.
+
+```{r}
+ggplot(mpg, aes(drv, 235 / hwy, fill = factor(cyl))) +
+  geom_boxplot(position = "identity")
+```
+
+## Summary
+
+The default position adjustments were fine for the assignments in this exercise.
