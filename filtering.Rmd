@@ -11,9 +11,14 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-# All flights on this day x years ago
+## All flights on this day x years ago
 
-```{r}
+Be careful with the equality operator `==`:
+
+```{r, error = TRUE}
+flights %>% 
+  filter(month = 6, day = 2)
+
 flights %>% 
   filter(month == 6, day == 2)
 ```
@@ -41,7 +46,7 @@ flights %>%
 ```
 
 
-# All flights between 8:00 AM and 10:00 AM
+## All flights between 8:00 AM and 10:00 AM
 
 ```{r}
 flights %>% 
@@ -53,7 +58,7 @@ flights %>%
   filter(between(dep_time, 800, 2200))
 ```
 
-# Flights in winter months
+## Flights in winter months
 
 ```{r}
 flights %>%
@@ -66,10 +71,9 @@ flights %>%
   filter(month %in% winter_months)
 ```
 
-# Departure time later than arrival time
+## Departure time later than arrival time
 
 ```{r}
 flights %>% 
   filter(dep_time > arr_time)
 ```
-

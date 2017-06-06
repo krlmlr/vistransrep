@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Kirill Müller" />
+
+
+<title>Separating and uniting</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="exercises-1.html">ggplot2</a>
+</li>
+<li>
+  <a href="exercises-2.html">dplyr</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Separating and uniting</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
+
+</div>
+
+
+<div id="table3" class="section level2">
+<h2>table3</h2>
+<pre class="r"><code>table3 %&gt;%
+  separate(rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##       country  year  cases population
+## *       &lt;chr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3      Brazil  1999  37737  172006362
+## 4      Brazil  2000  80488  174504898
+## 5       China  1999 212258 1272915272
+## 6       China  2000 213766 1280428583</code></pre>
+<pre class="r"><code>table3 %&gt;%
+  separate(
+    rate,
+    into = c(&quot;cases&quot;, &quot;population&quot;),
+    sep = &quot;/&quot;,
+    convert = TRUE
+  ) %&gt;%
+  gather(type, count, -country, -year) %&gt;%
+  arrange(country, year, type)</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##        country  year       type      count
+##          &lt;chr&gt; &lt;int&gt;      &lt;chr&gt;      &lt;int&gt;
+##  1 Afghanistan  1999      cases        745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000      cases       2666
+##  4 Afghanistan  2000 population   20595360
+##  5      Brazil  1999      cases      37737
+##  6      Brazil  1999 population  172006362
+##  7      Brazil  2000      cases      80488
+##  8      Brazil  2000 population  174504898
+##  9       China  1999      cases     212258
+## 10       China  1999 population 1272915272
+## 11       China  2000      cases     213766
+## 12       China  2000 population 1280428583</code></pre>
+</div>
+<div id="to-table3" class="section level2">
+<h2>To table3</h2>
+<pre class="r"><code>table2 %&gt;%
+  spread(type, count) %&gt;% 
+  unite(rate, cases, population, sep = &quot;/&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##       country  year              rate
+## *       &lt;chr&gt; &lt;int&gt;             &lt;chr&gt;
+## 1 Afghanistan  1999      745/19987071
+## 2 Afghanistan  2000     2666/20595360
+## 3      Brazil  1999   37737/172006362
+## 4      Brazil  2000   80488/174504898
+## 5       China  1999 212258/1272915272
+## 6       China  2000 213766/1280428583</code></pre>
+</div>
+<div id="hours-and-minutes" class="section level2">
+<h2>Hours and minutes</h2>
+<pre class="r"><code>## Use a numeric value for sep
+
+flights %&gt;%
+  separate(dep_time, into = c(&quot;dep_hour&quot;, &quot;dep_minute&quot;), sep = -3, convert = TRUE) %&gt;%
+  separate(arr_time, into = c(&quot;arr_hour&quot;, &quot;arr_minute&quot;), sep = -3, convert = TRUE) %&gt;% 
+  select(starts_with(&quot;dep_&quot;), starts_with(&quot;arr_&quot;))</code></pre>
+<pre><code>## # A tibble: 336,776 x 6
+##    dep_hour dep_minute dep_delay arr_hour arr_minute arr_delay
+##  *    &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;
+##  1        5         17         2        8         30        11
+##  2        5         33         4        8         50        20
+##  3        5         42         2        9         23        33
+##  4        5         44        -1       10          4       -18
+##  5        5         54        -6        8         12       -25
+##  6        5         54        -4        7         40        12
+##  7        5         55        -5        9         13        19
+##  8        5         57        -3        7          9       -14
+##  9        5         57        -3        8         38        -8
+## 10        5         58        -2        7         53         8
+## # ... with 336,766 more rows</code></pre>
+</div>
+
+<p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

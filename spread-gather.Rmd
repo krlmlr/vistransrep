@@ -11,14 +11,14 @@ library(tidyverse)
 ```
 
 
-# table2 to table1
+## table2 to table1
 
 ```{r}
 table2 %>% 
   spread(type, count)
 ```
 
-# table1 to table2
+## table1 to table2
 
 ```{r}
 table1 %>% 
@@ -41,14 +41,17 @@ table1 %>%
 ```
 
 
-# Plot table-x
+## Plot table-x
 
 For showing one measurement:
 
 ```{r}
-table... %>%
+table1 %>%
   ggplot() +
-  geom_col(aes(..., ..., fill = ...))
+  geom_col(
+    aes(country, population, fill = factor(year)),
+    position = "dodge"
+  )
 ```
 
 For showing both measurements:
@@ -60,6 +63,8 @@ table2 %>%
   facet_wrap(~year)
 ```
 
+Can also use `table1` to show only one measurement:
+
 ```{r}
 table2 %>%
   filter(type == "cases") %>%
@@ -68,7 +73,7 @@ table2 %>%
   facet_wrap(~year)
 ```
 
-# Binding
+## Binding
 
 ```{r}
 cases_tbl <-
@@ -85,7 +90,7 @@ bind_rows(cases_tbl, population_tbl) %>%
   arrange(country, year, type)
 ```
 
-# Economies
+## Economies
 
 ```{r}
 mpg %>%

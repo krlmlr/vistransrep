@@ -11,22 +11,19 @@ library(tidyverse)
 library(nycflights13)
 ```
 
+
 ## Counting distinct observations
 
 ```{r}
-flights %>%
-  count(...)
-```
-
-
-```{r}
 airlines %>%
-  count(...)
+  count(carrier) %>% 
+  filter(n > 1)
 ```
 
 ```{r}
 airports %>%
-  count(...)
+  count(faa) %>%
+  filter(n > 1)
 ```
 
 
@@ -34,10 +31,13 @@ airports %>%
 
 ```{r}
 flights %>% 
-  filter(...) %>%
-  count(..., ...) %>%
-  left_join(...) %>% 
-  left_join(..., by = c("dest" = "faa")) %>%
+  filter(distance < 300) %>%
+  count(dest, carrier) %>%
+  left_join(airlines, by = "carrier") %>%
+  rename(carrier_name = name) %>%
+  left_join(airports, by = c("dest" = "faa")) %>%
+  rename(airport_name = name) %>% 
   ggplot() +
-  geom_...(aes(..., ..., fill = ...)) +
+  geom_raster(aes(airport_name, carrier_name, fill = n)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```

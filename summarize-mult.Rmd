@@ -1,0 +1,45 @@
+---
+title: "Summarize by multiple variables"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Distinct airlines per destination
+
+```{r}
+flights %>%
+  group_by(origin, dest, carrier) %>%
+  summarize(n_flights = n()) %>%
+  summarize(n_distinct_carriers = n()) %>%
+  ungroup %>% 
+  arrange(desc(n_distinct_carriers))
+```
+
+Much shorter:
+
+```{r}
+flights %>%
+  count(origin, dest, carrier) %>%
+  count() %>% 
+  ungroup %>% 
+  arrange(desc(nn))
+```
+
+## Cancelled flights per month per airline
+
+```{r}
+flights %>% 
+  group_by(carrier, month) %>% 
+  summarize(share_of_cancelled = mean(is.na(dep_time))) %>%
+  ungroup %>%
+  ggplot() +
+  geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
+```

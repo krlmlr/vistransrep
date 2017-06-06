@@ -11,90 +11,104 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-# Select first five variables
+## Select first five variables
 
 ```{r}
 flights %>%
-  select(..., ..., ..., ..., ...)
+  select(year, month, day, dep_time, sched_dep_time)
 ```
 
 ```{r}
 flights %>%
-  select(...:...)
+  select(year:sched_dep_time)
 ```
 
 ```{r}
-# Numeric indexes work, too
+## Numeric indexes work, too
 
 flights %>%
-  select(...:...)
+  select(1:5)
 ```
 
 
-# Exclude the date
-
-```{r}
-flights %>%
-  select(-..., -..., -...)
-```
+## Exclude the date
 
 ```{r}
 flights %>%
-  select(-...:-...)
+  select(-year, -month, -day)
 ```
 
 ```{r}
-# Numeric indexes work, too
+flights %>%
+  select(-year:-day)
+```
+
+```{r}
+## Numeric indexes work, too
 
 flights %>%
-  select(-...:-...)
+  select(-1:-3)
 ```
 
-# Departure variables
+## Departure variables
 
 ```{r}
-# starts_with()
+## contains()
 
 flights %>% 
-  select(...(...))
+  select(contains("dep_"))
 ```
 
 
-# Move departure variables to end
+## Move departure variables to end
 
 ```{r}
-# everything()
+## everything()
 
 flights %>%
-  select(-...(...), ...())
+  select(-contains("dep_"), everything())
 ```
 
-# Contour plot
+## Contour plot
 
 ```{r}
-# Overriding label names
+## Overriding label names
 
 flights %>% 
   ggplot() +
-  geom_bin2d(aes(dep_time, arr_time)) +
-  xlab("Departure time") +
-  ylab("Arrival time")
+  geom_density2d(aes(dep_time, arr_time)) +
+  scale_x_continuous(name = "Departure time") +
+  scale_x_continuous(name = "Arrival time")
 ```
 
 
 ```{r}
-# Renaming in the data
+## Renaming in the data
 
 flights %>% 
-  rename(`...` = ...) %>%
-  rename(`...` = ...) %>%
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
   ggplot() +
-  geom_contour(aes(..., ...)) +
-  xlab() +
-  ylab()
+  geom_density2d(aes(`Departure time`, `Arrival time`))
+```
+
+
+```{r}
+flights %>% 
+  filter(arr_time < 500) %>%
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
+  ggplot() +
+  geom_density2d(aes(`Departure time`, `Arrival time`))
 ```
 
 ```{r}
-# Use coord_fixed() for fixing axes
+## Use coord_fixed() for fixing axes
+flights %>% 
+  filter(arr_time < 500) %>%
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
+  ggplot() +
+  geom_density2d(aes(`Departure time`, `Arrival time`)) +
+  coord_fixed()
 ```
-

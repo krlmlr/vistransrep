@@ -1,5 +1,5 @@
 ---
-title: "Logical"
+title: "Logical operators and NA"
 author: "Kirill Müller"
 date: "June 2, 2017"
 output: html_document
@@ -11,45 +11,90 @@ library(tidyverse)
 library(nycflights13)
 ```
 
+
+## Today's flights, flown by "US"
+
+```{r}
+flights %>%
+  filter((month == 6) & (day == 2) & (carrier == "US"))
+```
+
+```{r}
+flights %>%
+  filter(month == 6, day == 2, carrier == "US")
+```
+
+
 ## Inconvenient flights
 
 ```{r}
-# Logical OR: |
+## Logical OR: |
 
 flights %>% 
-  filter(... ... ...)
+  filter(dep_time < 600 | dep_time >= 2200)
 ```
 
-## Not by UA or WN
+## Flown by other airline than UA or WN
 
 
 ```{r}
-# Logical NOT and OR: ! |
+## Logical NOT and OR: ! |
 
 flights %>% 
-  filter(... ... ...)
-```
-
-
-```{r}
-# Logical NOT and AND: ! &
-
-flights %>% 
-  filter((...) ... (...))
+  filter(!(carrier == "UA" | carrier == "WN"))
 ```
 
 
 ```{r}
+## Logical NOT and %in%
+
 flights %>% 
-  filter(...) %>% 
-  filter(...)
+  filter(!(carrier %in% c("UA", "WN")))
 ```
 
-## Missing dep or arr
 
 ```{r}
-# is.na()
+## Logical AND: &
+
+flights %>%
+  filter(carrier != "UA" & carrier != "WN")
+```
+
+
+```{r}
+flights %>% 
+  filter(carrier != "UA") %>% 
+  filter(carrier != "WN")
+```
+
+## Missing departure or arrival time
+
+```{r}
+## is.na()
 
 flights %>% 
-  filter(... ... ...)
+  filter(is.na(dep_time))
 ```
+
+```{r}
+## is.na()
+
+flights %>% 
+  filter(is.na(arr_time))
+```
+
+```{r}
+## is.na()
+
+flights %>% 
+  filter(is.na(dep_time) | is.na(arr_time))
+```
+
+```{r}
+## is.na()
+
+flights %>% 
+  filter(!is.na(dep_time) & is.na(arr_time))
+```
+
+I don't think we had hundreds of plane crashes in 2013.

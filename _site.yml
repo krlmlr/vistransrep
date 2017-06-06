@@ -1,0 +1,20 @@
+name: "my-website"
+output_dir: "docs"
+include: ".nojekyll"
+exclude: "DESCRIPTION"
+navbar:
+  title: "Data visualization, reporting, and processing with R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "ggplot2"
+      href: exercises-1.html
+    - text: "dplyr"
+      href: exercises-2.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      after_body: footer.html
+    css: styles.css
