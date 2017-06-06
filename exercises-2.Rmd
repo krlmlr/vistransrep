@@ -169,7 +169,7 @@ library(tidyverse)
 1. Navigate to https://github.com/rstudio/bookdown-demo (or search for "bookdown demo" in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the `README.md` file.
 
 
-## RMarkdown workflow
+## [RMarkdown workflow](https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example)
 
 1. In your project, create two directories: `R` and `reports`
 
@@ -177,7 +177,7 @@ library(tidyverse)
 
 1. Create an RMarkdown document from template, save it as `final.Rmd` in the `reports` directory.
 
-1. Add code to `prepare.R` to transform the `mpg` data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using `<-`. Save this variable to a file using the `saveRDS()` function.
+1. Add code to `prepare.R` to transform the `flights` data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using `<-`. Save this variable to a file using the `saveRDS()` function.
 
     Hint: Use `library(here)` and `here()` to control where the file is saved.
 
@@ -187,12 +187,7 @@ library(tidyverse)
 
 1. Knit the document. This should work without failure (but show an empty document).
 
-1. Create a second code chunk that shows a plot of your transformed data. Do not refer to `mpg`. Knit again.
-
-    Hint: You can hide `mpg` from view by adding `mpg <- NULL` to the "setup" chunk.
-...
-
-
+1. Create a second code chunk that shows a plot of your transformed data. Do not refer to `flights`. Knit again.
 
 
 ## Spreading and gathering
