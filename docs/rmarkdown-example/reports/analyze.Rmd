@@ -1,0 +1,27 @@
+---
+title: "Analysis of EWR flights"
+author: "Kirill Müller"
+date: "June 6, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(tidyverse)
+ewr_flights <- readRDS(here("prepared_data/ewr_flights.rds"))
+
+# The nycflights13 package isn't needed!
+```
+
+## Histogram of distances
+
+```{r}
+ewr_flights %>% 
+  ggplot() +
+  geom_histogram(
+    aes(x = distance),
+    binwidth = 100
+  )
+```
+
