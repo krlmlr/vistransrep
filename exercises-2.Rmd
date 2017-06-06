@@ -190,7 +190,7 @@ library(tidyverse)
 1. Create a second code chunk that shows a plot of your transformed data. Do not refer to `flights`. Knit again.
 
 
-## Spreading and gathering
+## [Spreading and gathering](spread-gather.html)
 
 1. Use `spread()` to convert `table2` to `table1`. What is the meaning of the `key` and `value` arguments?
 

@@ -46,9 +46,12 @@ table1 %>%
 For showing one measurement:
 
 ```{r}
-table... %>%
+table1 %>%
   ggplot() +
-  geom_col(aes(..., ..., fill = ...))
+  geom_col(
+    aes(country, population, fill = factor(year)),
+    position = "dodge"
+  )
 ```
 
 For showing both measurements:
@@ -59,6 +62,8 @@ table2 %>%
   geom_col(aes(country, count, fill = type)) +
   facet_wrap(~year)
 ```
+
+Can also use `table1` to show only one measurement:
 
 ```{r}
 table2 %>%
