@@ -1,5 +1,5 @@
 ---
-title: "Exercises 2"
+title: "dplyr exercises"
 author: "Kirill Müller"
 date: "June 2, 2017"
 output: html_document
