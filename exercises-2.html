@@ -324,22 +324,21 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="rmarkdown-workflow" class="section level2">
-<h2>RMarkdown workflow</h2>
+<h2><a href="https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example">RMarkdown workflow</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>In your project, create two directories: <code>R</code> and <code>reports</code></p></li>
 <li><p>Create a script <code>prepare.R</code> in the <code>R</code> directory</p></li>
 <li><p>Create an RMarkdown document from template, save it as <code>final.Rmd</code> in the <code>reports</code> directory.</p></li>
-<li><p>Add code to <code>prepare.R</code> to transform the <code>mpg</code> data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using <code>&lt;-</code>. Save this variable to a file using the <code>saveRDS()</code> function.</p>
+<li><p>Add code to <code>prepare.R</code> to transform the <code>flights</code> data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using <code>&lt;-</code>. Save this variable to a file using the <code>saveRDS()</code> function.</p>
 <p>Hint: Use <code>library(here)</code> and <code>here()</code> to control where the file is saved.</p></li>
 <li><p>Leave only the header and the “setup” chunk in <code>final.Rmd</code>. In the “setup” chunk, insert a call to the <code>readRDS()</code> function for the file you saved in the previous step.</p>
 <p>Hint: Use <code>here</code> again, you should be using the same file name that you have used for <code>saveRDS()</code>.</p></li>
 <li><p>Knit the document. This should work without failure (but show an empty document).</p></li>
-<li><p>Create a second code chunk that shows a plot of your transformed data. Do not refer to <code>mpg</code>. Knit again.</p>
-<p>Hint: You can hide <code>mpg</code> from view by adding <code>mpg &lt;- NULL</code> to the “setup” chunk. …</p></li>
+<li><p>Create a second code chunk that shows a plot of your transformed data. Do not refer to <code>flights</code>. Knit again.</p></li>
 </ol>
 </div>
 <div id="spreading-and-gathering" class="section level2">
-<h2>Spreading and gathering</h2>
+<h2><a href="spread-gather.html">Spreading and gathering</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p></li>
 <li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p></li>
@@ -351,7 +350,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="separating-and-uniting" class="section level2">
-<h2>Separating and uniting</h2>
+<h2><a href="sep-unite.html">Separating and uniting</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p></li>
 <li><p>Convert <code>table2</code> to <code>table3</code>.</p></li>
@@ -360,7 +359,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="keys-and-mutating-joins" class="section level2">
-<h2>Keys and mutating joins</h2>
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
 <pre><code>presidential %&gt;%
