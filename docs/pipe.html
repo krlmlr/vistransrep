@@ -344,10 +344,10 @@ late_late_ua_flights_not_honolulu</code></pre>
 <p>Two options for assigning the result of a pipe to a variable:</p>
 <pre class="r"><code>late_late_ua_flights_not_honolulu &lt;-
   flights %&gt;% 
-    filter(arr_time &gt;= 2200) %&gt;% 
-    filter(carrier == &quot;UA&quot;) %&gt;% 
-    filter(arr_delay &gt; 120) %&gt;% 
-    filter(dest != &quot;HNL&quot;)</code></pre>
+  filter(arr_time &gt;= 2200) %&gt;% 
+  filter(carrier == &quot;UA&quot;) %&gt;% 
+  filter(arr_delay &gt; 120) %&gt;% 
+  filter(dest != &quot;HNL&quot;)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
   filter(carrier == &quot;UA&quot;) %&gt;% 

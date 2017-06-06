@@ -285,11 +285,11 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="summarize" class="section level2">
-<h2>Summarize</h2>
+<h2><a href="summarize.html">Summarize</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p></li>
 <li><p>Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.</p>
-<p>Hint: Use <code>factor()</code> to fix the ordering of a categorical variable before plotting.</p></li>
+<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p></li>
 <li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p></li>
 <li><p>Which plane had the most failed departure attempts?</p></li>
 <li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p></li>
