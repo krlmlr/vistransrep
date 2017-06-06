@@ -54,14 +54,6 @@ flights %>%
   )
 ```
 
-```{r}
-flights %>%
-  group_by(origin) %>%
-  summarize(
-    mean(!is.na(arr_time))
-  )
-```
-
 
 ## Air time by carrier
 
@@ -87,20 +79,20 @@ total_airtime_by_carrier %>%
 ## Carriers for long-distance routes
 
 ```{r}
-carrier_arranged_by_total_distance <-
+carrier_arranged_by_mean_distance <-
   flights %>%
-    group_by(...) %>% 
-    summarize(...) %>% 
-    ungroup %>% 
-    ...()
+  group_by(carrier) %>% 
+  summarize(mean_distance = mean(distance)) %>% 
+  ungroup %>%
+  arrange(desc(mean_distance))
 
-carrier_arranged_by_total_distance
+carrier_arranged_by_mean_distance
 ```
 
 ```{r}
-total_distance_by_carrier %>% 
+carrier_arranged_by_mean_distance %>% 
   ggplot() +
-  geom_col(aes(factor(...), ...))
+  geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))
 ```
 
 
@@ -112,6 +104,7 @@ flights %>%
   group_by(tailnum) %>% 
   summarize(not_departed = n()) %>% 
   ungroup() %>% 
+  filter(!is.na(tailnum)) %>%
   arrange(desc(not_departed))
 ```
 
@@ -134,7 +127,10 @@ flights %>%
 
 ```{r}
 flights %>%
-  group_by(...) %>% 
-  summarize(ratio = mean(...)) %>% 
-  ungroup
+  group_by(carrier) %>% 
+  summarize(short_distance_ratio = mean(distance < 300)) %>% 
+  ungroup %>%
+  arrange(desc(short_distance_ratio)) %>%
+  ggplot() +
+  geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
 ```

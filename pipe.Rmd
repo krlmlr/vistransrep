@@ -85,10 +85,10 @@ Two options for assigning the result of a pipe to a variable:
 ```{r}
 late_late_ua_flights_not_honolulu <-
   flights %>% 
-    filter(arr_time >= 2200) %>% 
-    filter(carrier == "UA") %>% 
-    filter(arr_delay > 120) %>% 
-    filter(dest != "HNL")
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL")
 ```
 
 ```{r}

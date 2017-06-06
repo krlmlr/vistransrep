@@ -119,13 +119,13 @@ library(tidyverse)
 1. Find more exercises in Section 5.5.2 of r4ds.
 
 
-## Summarize
+## [Summarize](summarize.html)
 
 1. Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
 
 1. Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.
 
-    Hint: Use `factor()` to fix the ordering of a categorical variable before plotting.
+    Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
 
 1. Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.
 
