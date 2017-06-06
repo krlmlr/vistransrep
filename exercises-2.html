@@ -12,7 +12,7 @@
 <meta name="author" content="Kirill Müller" />
 
 
-<title>Exercises 2</title>
+<title>dplyr exercises</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -198,7 +198,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Exercises 2</h1>
+<h1 class="title toc-ignore">dplyr exercises</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>June 2, 2017</em></h4>
 
@@ -206,7 +206,7 @@ $(document).ready(function () {
 
 
 <div id="filtering" class="section level2">
-<h2>Filtering</h2>
+<h2><a href="filtering.html">Filtering</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>View the <code>flights</code> dataset in RStudio’s data pane. Look up the meaning of the variables in the help.</p>
 <p>Hint: You need to load the <code>nycflights13</code> package.</p></li>
@@ -218,7 +218,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="assignment-the-pipe" class="section level2">
-<h2>Assignment, the pipe</h2>
+<h2><a href="pipe.html">Assignment, the pipe</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p></li>
@@ -231,7 +231,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="logical-operators-na" class="section level2">
-<h2>Logical operators, NA</h2>
+<h2><a href="logical.html">Logical operators, NA</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p></li>
 <li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p></li>
@@ -241,7 +241,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="filtering-and-plotting" class="section level2">
-<h2>Filtering and plotting</h2>
+<h2><a href="filter-plot.html">Filtering and plotting</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.</p>
 <p>Hint: Start with <code>flights %&gt;% ggplot() + ...</code></p></li>
@@ -251,7 +251,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="arrange" class="section level2">
-<h2>Arrange</h2>
+<h2><a href="arrange.html">Arrange</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>On what day did the flight with the shortest airtime take place?</p>
 <p>Hint: Use <code>head()</code> to restrict your result to one row only.</p></li>
@@ -264,19 +264,19 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="select-and-rename" class="section level2">
-<h2>Select and rename</h2>
+<h2><a href="select-rename.html">Select and rename</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p></li>
 <li><p>Find three ways to exclude the date of the flight.</p></li>
 <li><p>Select all variables related to departure.</p></li>
 <li><p>Move the variables related to scheduled time to the end of the table.</p></li>
 <li><p>Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?</p>
-<p>Hint: Use <code>geom_contour()</code></p></li>
+<p>Hint: Use <code>geom_density2d()</code></p></li>
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
 <div id="mutate" class="section level2">
-<h2>Mutate</h2>
+<h2><a href="mutate.html">Mutate</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p></li>
 <li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p></li>
@@ -285,11 +285,11 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="summarize" class="section level2">
-<h2>Summarize</h2>
+<h2><a href="summarize.html">Summarize</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p></li>
 <li><p>Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.</p>
-<p>Hint: Use <code>factor()</code> to fix the ordering of a categorical variable before plotting.</p></li>
+<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p></li>
 <li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p></li>
 <li><p>Which plane had the most failed departure attempts?</p></li>
 <li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p></li>
@@ -297,9 +297,9 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="summarize-with-multiple-variables" class="section level2">
-<h2>Summarize with multiple variables</h2>
+<h2><a href="summarize-mult.html">Summarize with multiple variables</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Which destination airport is serviced by the largest number of distinct carriers? Find a solution using <code>summarize()</code>, and one using <code>count()</code>. Which is more elegant?</p></li>
+<li><p>Which destination airport is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, and one using <code>count()</code>. Which is more elegant?</p></li>
 <li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
 <p>Hint: Use <code>geom_raster()</code></p></li>
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
@@ -324,22 +324,21 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="rmarkdown-workflow" class="section level2">
-<h2>RMarkdown workflow</h2>
+<h2><a href="https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example">RMarkdown workflow</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>In your project, create two directories: <code>R</code> and <code>reports</code></p></li>
 <li><p>Create a script <code>prepare.R</code> in the <code>R</code> directory</p></li>
 <li><p>Create an RMarkdown document from template, save it as <code>final.Rmd</code> in the <code>reports</code> directory.</p></li>
-<li><p>Add code to <code>prepare.R</code> to transform the <code>mpg</code> data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using <code>&lt;-</code>. Save this variable to a file using the <code>saveRDS()</code> function.</p>
+<li><p>Add code to <code>prepare.R</code> to transform the <code>flights</code> data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using <code>&lt;-</code>. Save this variable to a file using the <code>saveRDS()</code> function.</p>
 <p>Hint: Use <code>library(here)</code> and <code>here()</code> to control where the file is saved.</p></li>
 <li><p>Leave only the header and the “setup” chunk in <code>final.Rmd</code>. In the “setup” chunk, insert a call to the <code>readRDS()</code> function for the file you saved in the previous step.</p>
 <p>Hint: Use <code>here</code> again, you should be using the same file name that you have used for <code>saveRDS()</code>.</p></li>
 <li><p>Knit the document. This should work without failure (but show an empty document).</p></li>
-<li><p>Create a second code chunk that shows a plot of your transformed data. Do not refer to <code>mpg</code>. Knit again.</p>
-<p>Hint: You can hide <code>mpg</code> from view by adding <code>mpg &lt;- NULL</code> to the “setup” chunk. …</p></li>
+<li><p>Create a second code chunk that shows a plot of your transformed data. Do not refer to <code>flights</code>. Knit again.</p></li>
 </ol>
 </div>
 <div id="spreading-and-gathering" class="section level2">
-<h2>Spreading and gathering</h2>
+<h2><a href="spread-gather.html">Spreading and gathering</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p></li>
 <li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p></li>
@@ -351,7 +350,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="separating-and-uniting" class="section level2">
-<h2>Separating and uniting</h2>
+<h2><a href="sep-unite.html">Separating and uniting</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p></li>
 <li><p>Convert <code>table2</code> to <code>table3</code>.</p></li>
@@ -360,7 +359,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="keys-and-mutating-joins" class="section level2">
-<h2>Keys and mutating joins</h2>
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
 <pre><code>presidential %&gt;%

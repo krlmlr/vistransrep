@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Joins</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Joins</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-06 11:40:00</p>
+<div id="counting-distinct-observations" class="section level2">
+<h2>Counting distinct observations</h2>
+<pre class="r"><code>airlines %&gt;%
+  count(carrier) %&gt;% 
+  filter(n &gt; 1)</code></pre>
+<pre><code>## # A tibble: 0 x 2
+## # ... with 2 variables: carrier &lt;chr&gt;, n &lt;int&gt;</code></pre>
+<pre class="r"><code>airports %&gt;%
+  count(faa) %&gt;%
+  filter(n &gt; 1)</code></pre>
+<pre><code>## # A tibble: 0 x 2
+## # ... with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
+</div>
+<div id="heat-map-destination-by-airline" class="section level2">
+<h2>Heat map: destination by airline</h2>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(airlines, by = &quot;carrier&quot;) %&gt;%
+  rename(carrier_name = name) %&gt;%
+  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;%
+  rename(airport_name = name) %&gt;% 
+  ggplot() +
+  geom_raster(aes(airport_name, carrier_name, fill = n)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))</code></pre>
+<p><img src="joins_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
