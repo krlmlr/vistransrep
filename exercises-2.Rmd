@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-# Filtering
+## Filtering
 
 1. View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
 
@@ -27,7 +27,7 @@ library(tidyverse)
 1. Find more exercises in item 1 of Section 5.2.4 of r4ds.
 
 
-# Assignment, the pipe
+## Assignment, the pipe
 
 1. View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
 
@@ -46,7 +46,7 @@ library(tidyverse)
 1. Apply more restrictions to the four solutions.
 
 
-# Logical operators, NA
+## Logical operators, NA
 
 1. Find all flights that departed today four years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
 
@@ -59,7 +59,7 @@ library(tidyverse)
 1. Find more exercises in item 4 of Section 5.2.4 of r4ds.
 
 
-# Filtering and plotting
+## Filtering and plotting
 
 1. Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.
 
@@ -72,7 +72,7 @@ library(tidyverse)
 1. Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.
 
 
-# Arrange
+## Arrange
 
 1. On what day did the flight with the shortest airtime take place?
 
@@ -91,7 +91,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.3.1 of r4ds.
 
 
-# Select and rename
+## Select and rename
 
 1. Find three ways to select the first five variables from the `flights` dataset.
 
@@ -108,7 +108,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.4.1 of r4ds.
 
 
-# Mutate
+## Mutate
 
 1. Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
 
@@ -119,7 +119,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.5.2 of r4ds.
 
 
-# Summarize
+## Summarize
 
 1. Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
 
@@ -136,7 +136,7 @@ library(tidyverse)
 1. Find more exercises in item 1 of Section 5.6.7 of r4ds.
 
 
-# Summarize with multiple variables
+## Summarize with multiple variables
 
 1. Which destination airport is serviced by the largest number of distinct carriers? Find a solution using `summarize()`, and one using `count()`. Which is more elegant?
 
@@ -147,7 +147,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.6.7 of r4ds.
 
 
-# Grouped mutate
+## Grouped mutate
 
 1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
 
@@ -156,7 +156,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.7.1 of r4ds.
 
 
-# Slides and reports
+## Slides and reports
 
 1. Install the "xaringan", "rticles", and "bookdown" packages.
 
@@ -169,7 +169,7 @@ library(tidyverse)
 1. Navigate to https://github.com/rstudio/bookdown-demo (or search for "bookdown demo" in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the `README.md` file.
 
 
-# RMarkdown workflow
+## RMarkdown workflow
 
 1. In your project, create two directories: `R` and `reports`
 
@@ -195,7 +195,7 @@ library(tidyverse)
 
 
 
-# Spreading and gathering
+## Spreading and gathering
 
 1. Use `spread()` to convert `table2` to `table1`. What is the meaning of the `key` and `value` arguments?
 
@@ -212,7 +212,7 @@ library(tidyverse)
 1. Find more exercises in Section 12.3.3 of r4ds.
 
 
-# Separating and uniting
+## Separating and uniting
 
 1. Convert `table3` to `table1` and `table2`.
 
@@ -223,7 +223,7 @@ library(tidyverse)
 1. Find more exercises in Section 12.4.3 of r4ds.
 
 
-# Keys and mutating joins
+## Keys and mutating joins
 
 1. Do you see a problem in the `presidential` dataset? Can you see how does this affect the following bar plot without actually running the code?
 
@@ -245,14 +245,14 @@ library(tidyverse)
 1. Find more exercises in Section 13.4.6 of r4ds.
 
 
-# Filtering joins
+## Filtering joins
 
 1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
 
 1. Find more exercises in Section 13.5.1 of r4ds.
 
 
-# Case study
+## Case study
 
 1. Use your own data to answer a question about it using the tools you have learned in this course.
 
