@@ -1,0 +1,114 @@
+---
+title: "Select and rename"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Select first five variables
+
+```{r}
+flights %>%
+  select(year, month, day, dep_time, sched_dep_time)
+```
+
+```{r}
+flights %>%
+  select(year:sched_dep_time)
+```
+
+```{r}
+## Numeric indexes work, too
+
+flights %>%
+  select(1:5)
+```
+
+
+## Exclude the date
+
+```{r}
+flights %>%
+  select(-year, -month, -day)
+```
+
+```{r}
+flights %>%
+  select(-year:-day)
+```
+
+```{r}
+## Numeric indexes work, too
+
+flights %>%
+  select(-1:-3)
+```
+
+## Departure variables
+
+```{r}
+## contains()
+
+flights %>% 
+  select(contains("dep_"))
+```
+
+
+## Move departure variables to end
+
+```{r}
+## everything()
+
+flights %>%
+  select(-contains("dep_"), everything())
+```
+
+## Contour plot
+
+```{r}
+## Overriding label names
+
+flights %>% 
+  ggplot() +
+  geom_density2d(aes(dep_time, arr_time)) +
+  scale_x_continuous(name = "Departure time") +
+  scale_x_continuous(name = "Arrival time")
+```
+
+
+```{r}
+## Renaming in the data
+
+flights %>% 
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
+  ggplot() +
+  geom_density2d(aes(`Departure time`, `Arrival time`))
+```
+
+
+```{r}
+flights %>% 
+  filter(arr_time < 500) %>%
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
+  ggplot() +
+  geom_density2d(aes(`Departure time`, `Arrival time`))
+```
+
+```{r}
+## Use coord_fixed() for fixing axes
+flights %>% 
+  filter(arr_time < 500) %>%
+  rename(`Departure time` = dep_time) %>%
+  rename(`Arrival time` = arr_time) %>%
+  ggplot() +
+  geom_density2d(aes(`Departure time`, `Arrival time`)) +
+  coord_fixed()
+```

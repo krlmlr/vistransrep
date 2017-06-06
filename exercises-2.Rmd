@@ -91,7 +91,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.3.1 of r4ds.
 
 
-## Select and rename
+## [Select and rename](select-rename.html)
 
 1. Find three ways to select the first five variables from the `flights` dataset.
 
@@ -103,7 +103,7 @@ library(tidyverse)
 
 1. Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?
 
-    Hint: Use `geom_contour()`
+    Hint: Use `geom_density2d()`
 
 1. Find more exercises in Section 5.4.1 of r4ds.
 
