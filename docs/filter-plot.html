@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Filtering and plotting</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,51 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Filtering and plotting</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-06 10:10:04</p>
+<div id="histogram-of-air-time-of-all-flights" class="section level2">
+<h2>Histogram of air time of all flights</h2>
+<pre class="r"><code>flights %&gt;% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )</code></pre>
+<p><img src="filter-plot_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )</code></pre>
+<p><img src="filter-plot_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  filter(between(air_time, 400, 500)) %&gt;% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 10
+  )</code></pre>
+<p><img src="filter-plot_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="all-very-close-relations" class="section level2">
+<h2>All very close relations</h2>
+<pre class="r"><code>flights %&gt;%
+  filter(air_time &lt; 60) %&gt;% 
+  ggplot() +
+  geom_bin2d(aes(origin, dest))</code></pre>
+<p><img src="filter-plot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
