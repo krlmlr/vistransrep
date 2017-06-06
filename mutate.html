@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>Mutate</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,13 +198,63 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">Mutate</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
 
 
-<p>This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.</p>
-<p>Last updated: 2017-06-06 11:06:31</p>
+<div id="speed-as-miles-per-hour" class="section level2">
+<h2>Speed as miles per hour</h2>
+<pre class="r"><code>flights %&gt;%
+  mutate(mph_speed = distance / air_time * 60) %&gt;%
+  ggplot() +
+  geom_histogram(
+    aes(mph_speed),
+    na.rm = TRUE,
+    binwidth = 20
+  )</code></pre>
+<p><img src="mutate_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;% 
+  ggplot() +
+  geom_histogram(aes(distance / air_time))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 9430 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="mutate_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="speed-distributions" class="section level2">
+<h2>Speed distributions</h2>
+<pre class="r"><code>flights %&gt;%
+  mutate(mph_speed = distance / air_time * 60) %&gt;%
+  mutate(Delayed = arr_delay &gt; 0) %&gt;%
+  ggplot() +
+  geom_freqpoly(
+    aes(x = mph_speed, y = ..density.., color = Delayed),
+    na.rm = TRUE,
+    binwidth = 20
+  )</code></pre>
+<p><img src="mutate_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  mutate(mph_speed = distance / air_time * 60) %&gt;%
+  mutate(Delayed = arr_delay &gt; 0) %&gt;%
+  filter(!is.na(Delayed)) %&gt;%
+  ggplot() +
+  geom_histogram(
+    aes(x = mph_speed),
+    binwidth = 20
+  ) +
+  facet_wrap(~Delayed, ncol = 1)</code></pre>
+<p><img src="mutate_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="deviation-from-average-departure-delay" class="section level2">
+<h2>Deviation from average departure delay</h2>
+<pre class="r"><code>flights %&gt;% 
+  mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %&gt;%
+  ggplot() +
+  geom_violin(aes(x = origin, y = dev), na.rm = TRUE)</code></pre>
+<p><img src="mutate_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
