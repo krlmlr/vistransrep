@@ -1,0 +1,43 @@
+---
+title: "Joins"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+
+## Counting distinct observations
+
+```{r}
+airlines %>%
+  count(carrier) %>% 
+  filter(n > 1)
+```
+
+```{r}
+airports %>%
+  count(faa) %>%
+  filter(n > 1)
+```
+
+
+## Heat map: destination by airline
+
+```{r}
+flights %>% 
+  filter(distance < 300) %>%
+  count(dest, carrier) %>%
+  left_join(airlines, by = "carrier") %>%
+  rename(carrier_name = name) %>%
+  left_join(airports, by = c("dest" = "faa")) %>%
+  rename(airport_name = name) %>% 
+  ggplot() +
+  geom_raster(aes(airport_name, carrier_name, fill = n)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```

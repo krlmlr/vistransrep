@@ -218,7 +218,7 @@ library(tidyverse)
 1. Find more exercises in Section 12.4.3 of r4ds.
 
 
-## Keys and mutating joins
+## [Keys and mutating joins](joins.html)
 
 1. Do you see a problem in the `presidential` dataset? Can you see how does this affect the following bar plot without actually running the code?
 
