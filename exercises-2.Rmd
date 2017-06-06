@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-## Filtering
+## [Filtering](filtering.html)
 
 1. View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
 
@@ -27,7 +27,7 @@ library(tidyverse)
 1. Find more exercises in item 1 of Section 5.2.4 of r4ds.
 
 
-## Assignment, the pipe
+## [Assignment, the pipe](pipe.html)
 
 1. View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
 
@@ -46,7 +46,7 @@ library(tidyverse)
 1. Apply more restrictions to the four solutions.
 
 
-## Logical operators, NA
+## [Logical operators, NA](logical.html)
 
 1. Find all flights that departed today four years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
 
