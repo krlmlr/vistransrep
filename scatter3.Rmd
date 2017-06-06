@@ -1,0 +1,115 @@
+---
+title: "Scatterplots with three variables"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Map to the color aesthetic
+
+Simply insert `color = <var>` in the `aes()` call, where `<var>` is a variable in the `mpg` dataset:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = cyl))
+```
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = trans))
+```
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = drv))
+```
+
+Looks like the cars with large displacement are two-seaters with rear drivetrain.
+
+
+## Map to other aesthetics
+
+The following won't work, because `cyl` is stored as a continuous variable:
+
+```r
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, shape = cyl))
+```
+
+The `factor()` function helps:
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, shape = factor(cyl)))
+```
+
+On the other hand, a continuous variable is fine for the "size" aesthetic...
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, size = cyl))
+```
+
+...which isn't recommended (but still works) for a categorical variable:
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, size = factor(cyl)))
+```
+
+The "alpha" aesthetic controls transparency, and accepts both kinds of variable:
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = cyl))
+
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = factor(cyl)))
+```
+
+
+## Change more than one aesthetic
+
+You can change any number of properties of a geom at your discretion, this is one of **ggplot2**'s strenghts.
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ,
+    y = hwy,
+    color = class,
+    size = cyl,
+    shape = drv,
+    alpha = fl
+  ))
+```
+
+A legend is added automatically.  It may not be as useful to change all properties at the same time, but it's very easy to assign a variable to a different aesthetic, or use another variable for that aesthetic.
+
+
+## Map a variable to more than one aesthetic
+
+There are no restrictions on how many times a variable is mapped in any given plot:
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ,
+    y = hwy,
+    color = displ,
+    size = displ,
+    alpha = displ
+  ))
+```
+
+Mapping the same variable to two aesthetics is sometimes useful to further emphasize this variable.

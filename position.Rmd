@@ -12,28 +12,30 @@ library(tidyverse)
 
 ## Gears
 
-The information is available in the `trans` attribute.
+Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:
 
-```{r}
-ggplot(mpg, aes(trans)) +
-  geom_bar()
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = trans))
 ```
 
 Visual inspection reveals that it's four gears for automatic, and five gears for manual transmission.
 
-
 ## Discriminate by car class
 
-```{r}
-ggplot(mpg, aes(class, fill = trans)) +
-  geom_bar()
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class, fill = trans))
 ```
 
 SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with `position = "dodge"`, the different width of the bars indicates the number different subgroups for each car class:
 
 ```{r}
-ggplot(mpg, aes(class, fill = trans)) +
-  geom_bar(position = "dodge")
+ggplot(data = mpg) +
+  geom_bar(
+    aes(x = class, fill = trans), 
+    position = "dodge"
+  )
 ```
 
 ## Boxplot
@@ -41,31 +43,56 @@ ggplot(mpg, aes(class, fill = trans)) +
 I'm using liters per 100 km as measure for fuel economy here.
 
 ```{r}
-ggplot(mpg, aes(drv, 235 / hwy)) +
-  geom_boxplot()
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = drv, y = 235 / hwy))
 ```
 
-Forward drivetrains seem much more economical. Does the number of cylinders play a role? I'll try the `fill` aesthetics:
+Forward drivetrains seem much more economical. Does the number of cylinders play a role? I'll try the "fill" aesthetic:
 
 ```{r}
-ggplot(mpg, aes(drv, 235 / hwy, fill = cyl)) +
-  geom_boxplot()
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = drv, y = 235 / hwy, fill = cyl))
 ```
 
 No dice. Do I also need `group =` ?
 
 ```{r}
-ggplot(mpg, aes(drv, 235 / hwy, fill = cyl, group = cyl)) +
-  geom_boxplot()
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(
+      x = drv,
+      y = 235 / hwy,
+      fill = cyl,
+      group = cyl
+    )
+  )
 ```
 
 The legend reveals that `cyl` is a continuous variable. I'll use its categorical equivalent, because the range is very limited.
 
 ```{r}
-ggplot(mpg, aes(drv, 235 / hwy, fill = factor(cyl))) +
-  geom_boxplot(position = "identity")
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(
+      x = drv,
+      y = 235 / hwy,
+      fill = factor(cyl)
+    )
+  )
 ```
 
-## Summary
+The default `position` setting looks good, let's try `"identity"`:
 
-The default position adjustments were fine for the assignments in this exercise.
+```{r}
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(
+      x = drv,
+      y = 235 / hwy,
+      fill = factor(cyl)
+    ),
+    position = "identity"
+  )
+```
+
+Doesn't look useful.

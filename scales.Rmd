@@ -1,0 +1,61 @@
+---
+title: "Scales"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Naming scales
+
+Reusing a plot from the previous exercise:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy, color = factor(year))
+  ) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, color = factor(year)),
+    method = "lm"
+  ) +
+  facet_wrap(~class) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_discrete(name = "Year")
+```
+
+There exist shortcuts `xlab()` and `ylab()` for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.
+
+
+## Changing scales twice
+
+A warning occurs:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_x_continuous(name = "Displacement")
+```
+
+
+## ColorBrewer scales
+
+```{r}
+RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)
+```
+
+## A better scale for car class
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_brewer(name = "Car class", palette = "Set2")
+```

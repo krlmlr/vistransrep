@@ -10,82 +10,117 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Bar plot
+## Cars by drivetrain
 
 I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
+
+We need only the "x" aesthetic, "y" is computed automatically. `drv` is the relevant variable.
 
 ```{r}
 ggplot(mpg) +
   geom_bar(aes(x = drv))
 ```
 
+## Explicit count
 
-## ..count..
+The output is the same:
 
-I think the results look pretty much the same if I add `y = ..count..` to the `aes()` call.
-Perhaps this is related to `count` being a "computed variable" (according to `?geom_bar`)?
-
-
-```{r}
-ggplot(mpg) +
-  geom_bar(aes(x = drv, y = ..count..))
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..count..))
 ```
 
-## ..prop..
+By default, `geom_bar()` plots the computed "count" aesthetic, which is by convention written with two surrounding dots.
 
+
+# Proportions
+
+Plotting overall proportions changes the y scale:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))
+```
+
+Omitting `group` will plot proportions per drivetrain in each column, which are 1 by default:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop..))
+```
 
 
 ## Fuel economy
 
-The histogram call was pretty straightforward, very similar to the bar chart above.
+We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
-```{r}
-ggplot(mpg) +
-  geom_histogram(aes(hwy))
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))
 ```
 
-I did obey the warning and specified a width for the bins:
+The bin width should be set explicitly to avoid the warning:
 
-```{r}
-ggplot(mpg) +
-  geom_histogram(aes(hwy), binwidth = 2)
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )
 ```
 
-To overlay the frequency polygon, I use a second layer. I can make the aesthetic mapping global because both layers use the same.
+The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.
 
-```{r}
-ggplot(mpg, aes(hwy)) +
-  geom_histogram(binwidth = 2) +
-  geom_freqpoly()
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    fill = NA,
+    color = "blue",
+    binwidth = 1
+  ) +
+  geom_freqpoly(
+    mapping = aes(x = hwy),
+    binwidth = 1,
+    size = 2
+  )
 ```
 
-Can I specify the bin width once for both layers?
 
-```{r}
-ggplot(mpg, aes(hwy), binwidth = 2) +
-  geom_histogram() +
-  geom_freqpoly()
+## Fuel economy by drivetrain
+
+We can set the "fill" aesthetic:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, fill = drv),
+    binwidth = 1
+  )
 ```
 
-Nope.
+However, some bars are hidden. This happens less if we use color instead:
 
-The frequency polygon blends into the histogram, let's make it stand out a bit more:
-
-```{r}
-ggplot(mpg, aes(hwy)) +
-  geom_histogram(binwidth = 2) +
-  geom_freqpoly(binwidth = 2, color = "red")
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, color = drv),
+    fill = NA,
+    binwidth = 1
+  )
 ```
 
-I still hate it. Do the bars need to be solid?
+The frequency polygon offers a much clearer display of the same data:
 
-```{r}
-ggplot(mpg, aes(hwy)) +
-  geom_histogram(binwidth = 2, fill = NA, color = "black", size = 0.2) +
-  geom_freqpoly(binwidth = 2, color = "red")
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_freqpoly(
+    mapping = aes(x = hwy, color = drv),
+    binwidth = 1
+  )
 ```
 
-## Fuel economy per drivetrain, groupwise
+## Fuel economy per drivetrain (a history of failed attempts)
 
 Can I just copy and adapt the code from the last solution?
 

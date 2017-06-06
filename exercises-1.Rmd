@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-# RStudio walkthrough
+# [RStudio walkthrough](walkthrough.html)
 
 1. Evaluate a few arithmetic expressions in the console. Do operator precendence rules hold?
 
@@ -44,7 +44,7 @@ library(tidyverse)
 5. The `example()` function is part of base R, can you find it on http://rdocumentation.org? Can you find the other functions you looked up earlier in this example?
 
 
-# Scatterplots
+# [Scatterplots](scatter.html)
 
 1. Print the `mpg` dataset to your console.
 
@@ -66,7 +66,7 @@ library(tidyverse)
 1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz or USB stick -> index.html -> "R for data science")
 
 
-# Scatterplots with three or more variables
+# [Scatterplots with three or more variables](scatter3.html)
 
 1. In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
 
@@ -74,12 +74,14 @@ library(tidyverse)
 
     Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
 
+1. Can you change both color and shape at the same time? What about the other aesthetics?
+
 1. What happens if you map the same variable to more than one aesthetics?
 
 1. Find more exercises in Section 3.3.1 of r4ds.
 
 
-# Manual aesthetics
+# [Manual aesthetics](manual.html)
 
 1. Plot `hwy` vs. `displ` with approx. 1/3 opacity for each point, in blue.
 
@@ -92,7 +94,7 @@ library(tidyverse)
 1. What values are valid for `color`, `alpha`, `shape` and `size`?
 
 
-# Other geoms
+# [Other geoms](geoms.html)
 
 1. What do the arguments `se` and `method` to `geom_smooth()` change?
 
@@ -102,12 +104,12 @@ library(tidyverse)
 
 1. Can you plot both highway and city economy in one plot?
 
-    Hint: The solution to this exercise is probably *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
+    Hint: The solution to this exercise is *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
 
 1. Find more exercises in Section 3.6.1 of r4ds.
 
 
-# Statistical transformations
+# [Statistical transformations](stat.html)
 
 1. Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the `mpg` dataset contains. Which aesthetic mappings do you need to specify? 
 
@@ -126,9 +128,7 @@ library(tidyverse)
 1. Find more exercises in Section 3.7.1 of r4ds.
 
 
-# Position adjustments
-
-1. Use a bar chart to show how many cars of each kind of drivetrain the `mpg` dataset contains.
+# [Position adjustments](position.html)
 
 1. What's the most prevalent number of gears for manual or automatic transmissions?
 
@@ -141,7 +141,7 @@ library(tidyverse)
 1. Find more exercises in Section 3.8.1 of r4ds.
 
 
-# Faceting
+# [Faceting](facet.html)
 
 1. Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with `facet_wrap()`, `facet_grid()`, aesthetic mappings, and smoothing layers.
 
@@ -154,7 +154,7 @@ library(tidyverse)
 1. Find more exercises in Section 3.5.1 of r4ds.
 
 
-# Scales
+# [Scales](scales.html)
 
 1. Choose one or two of your previous plots, and give the scales a proper name.
 
@@ -173,7 +173,7 @@ library(tidyverse)
 1. Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .
 
 
-# Coordinate systems
+# [Coordinate systems](coord.html)
 
 1. Create a flipped boxplot of fuel economy by transmission type.
 
@@ -182,7 +182,7 @@ library(tidyverse)
 1. Try to "estimate" an approximate ratio between the two economy measures by tweaking the `slope` argument to `geom_abline()`.
 
 
-# Theming
+# [Theming](theme.html)
 
 1. Choose your favorite among the predefined themes.
 

@@ -1,0 +1,56 @@
+---
+title: "Theming"
+author: "Kirill Müller"
+date: "June 1, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Favorite theme
+
+For presentations, `theme_bw()` or `theme_minimal()` look useful:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  theme_bw() +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_brewer(name = "Car class", palette = "Set2")
+
+ggplot(data = mpg) +
+  theme_minimal() +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_brewer(name = "Car class", palette = "Set2")
+```
+
+
+## Legend at bottom
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  theme_bw() +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_brewer(name = "Car class", palette = "Set2") +
+  theme(legend.position = "bottom")
+```
+
+`theme_bw()` overwrites everything, including the legend position:
+
+```{r echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+  scale_x_continuous(name = "Displacement") +
+  scale_y_continuous(name = "Fuel economy [miles per gallon]") +
+  scale_color_brewer(name = "Car class", palette = "Set2") +
+  theme(legend.position = "bottom") +
+  theme_bw()
+```
