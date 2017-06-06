@@ -1,5 +1,5 @@
 ---
-title: "Logical"
+title: "Logical operators and NA"
 author: "Kirill Müller"
 date: "June 2, 2017"
 output: html_document

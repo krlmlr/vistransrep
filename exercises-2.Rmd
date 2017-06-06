@@ -59,7 +59,7 @@ library(tidyverse)
 1. Find more exercises in item 4 of Section 5.2.4 of r4ds.
 
 
-## Filtering and plotting
+## [Filtering and plotting](filter-plot.html)
 
 1. Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.
 
