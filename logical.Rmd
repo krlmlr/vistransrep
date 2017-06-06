@@ -12,34 +12,16 @@ library(nycflights13)
 ```
 
 
-## Today's flights
+## Today's flights, flown by "US"
 
 ```{r}
 flights %>%
-  filter((month = 6) & (day = 2))
+  filter((month == 6) & (day == 2) & (carrier == "US"))
 ```
 
 ```{r}
 flights %>%
-  filter(month = 6, day = 2)
-```
-
-Using a variable to define the date:
-
-```{r}
-current_month <- 6
-current_day <- 2
-flights %>%
-  filter(month = current_month, day = current_day)
-```
-
-Beware of name collisions! The following does not compute what we're looking for:
-
-```{r}
-month <- 6
-day <- 2
-flights %>%
-  filter(month = month, day = day)
+  filter(month == 6, day == 2, carrier == "US")
 ```
 
 

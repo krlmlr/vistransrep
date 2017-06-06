@@ -13,7 +13,12 @@ library(nycflights13)
 
 ## All flights on this day x years ago
 
-```{r}
+Be careful with the equality operator `==`:
+
+```{r, error = TRUE}
+flights %>% 
+  filter(month = 6, day = 2)
+
 flights %>% 
   filter(month == 6, day == 2)
 ```
@@ -72,4 +77,3 @@ flights %>%
 flights %>% 
   filter(dep_time > arr_time)
 ```
-
