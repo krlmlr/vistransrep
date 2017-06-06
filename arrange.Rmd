@@ -46,6 +46,8 @@ flights %>%
   tail(1)
 ```
 
+Usually it's easiest to sort in descending order:
+
 ```{r}
 flights %>% 
   arrange(-arr_delay) %>%
@@ -70,16 +72,18 @@ flights %>%
 
 ## UA flights with lowest delay
 
+If we filter first, fewer observations need to be sorted.
+
 ```{r}
 flights %>% 
-  filter(carrier == "UA") %>% 
+  filter(carrier == "UA") %>%
   arrange(arr_delay)
 ```
 
 
 ```{r}
 flights %>% 
-  arrange(arr_delay) %>% 
+  arrange(arr_delay) %>%
   filter(carrier == "UA")
 ```
 

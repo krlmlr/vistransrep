@@ -72,7 +72,7 @@ library(tidyverse)
 1. Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.
 
 
-## Arrange
+## [Arrange](arrange.html)
 
 1. On what day did the flight with the shortest airtime take place?
 
