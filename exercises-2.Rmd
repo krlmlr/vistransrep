@@ -108,7 +108,7 @@ library(tidyverse)
 1. Find more exercises in Section 5.4.1 of r4ds.
 
 
-## Mutate
+## [Mutate](mutate.html)
 
 1. Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
 
