@@ -43,7 +43,7 @@ table2 %>%
 ## Hours and minutes
 
 ```{r}
-# Use a numeric value for sep
+## Use a numeric value for sep
 
 flights %>%
   separate(dep_time, into = c("dep_hour", "dep_minute"), sep = -3, convert = TRUE) %>%

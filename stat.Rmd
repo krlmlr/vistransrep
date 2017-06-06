@@ -33,7 +33,7 @@ ggplot(data = mpg) +
 By default, `geom_bar()` plots the computed "count" aesthetic, which is by convention written with two surrounding dots.
 
 
-# Proportions
+## Proportions
 
 Plotting overall proportions changes the y scale:
 

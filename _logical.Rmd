@@ -14,7 +14,7 @@ library(nycflights13)
 ## Inconvenient flights
 
 ```{r}
-# Logical OR: |
+## Logical OR: |
 
 flights %>% 
   filter(... ... ...)
@@ -24,7 +24,7 @@ flights %>%
 
 
 ```{r}
-# Logical NOT and OR: ! |
+## Logical NOT and OR: ! |
 
 flights %>% 
   filter(... ... ...)
@@ -32,7 +32,7 @@ flights %>%
 
 
 ```{r}
-# Logical NOT and AND: ! &
+## Logical NOT and AND: ! &
 
 flights %>% 
   filter((...) ... (...))
@@ -48,7 +48,7 @@ flights %>%
 ## Missing dep or arr
 
 ```{r}
-# is.na()
+## is.na()
 
 flights %>% 
   filter(... ... ...)

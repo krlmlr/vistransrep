@@ -63,7 +63,7 @@ flights %>%
 ```
 
 
-# Air time by carrier
+## Air time by carrier
 
 ```{r}
 total_airtime_by_carrier <-

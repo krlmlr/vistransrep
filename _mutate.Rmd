@@ -47,7 +47,7 @@ flights %>%
   facet_wrap(~Delayed)
 ```
 
-# Deviation from average departure delay
+## Deviation from average departure delay
 
 ```{r}
 flights %>% 

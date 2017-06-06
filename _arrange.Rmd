@@ -59,7 +59,7 @@ flights %>%
 ```
 
 
-# Flight with longest airtime
+## Flight with longest airtime
 
 ```{r}
 flights %>% 
@@ -68,7 +68,7 @@ flights %>%
 ```
 
 
-# UA flights with lowest delay
+## UA flights with lowest delay
 
 ```{r}
 flights %>% 
@@ -84,7 +84,7 @@ flights %>%
 ```
 
 
-# Recovering delay
+## Recovering delay
 
 ```{r}
 flights %>% 

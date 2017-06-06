@@ -11,7 +11,7 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-# All flights on this day x years ago
+## All flights on this day x years ago
 
 ```{r}
 flights %>% 
@@ -41,7 +41,7 @@ flights %>%
 ```
 
 
-# All flights between 8:00 AM and 10:00 AM
+## All flights between 8:00 AM and 10:00 AM
 
 ```{r}
 flights %>% 
@@ -53,7 +53,7 @@ flights %>%
   filter(between(dep_time, 800, 2200))
 ```
 
-# Flights in winter months
+## Flights in winter months
 
 ```{r}
 flights %>%
@@ -66,7 +66,7 @@ flights %>%
   filter(month %in% winter_months)
 ```
 
-# Departure time later than arrival time
+## Departure time later than arrival time
 
 ```{r}
 flights %>% 

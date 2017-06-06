@@ -11,7 +11,7 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-# Select first five variables
+## Select first five variables
 
 ```{r}
 flights %>%
@@ -24,14 +24,14 @@ flights %>%
 ```
 
 ```{r}
-# Numeric indexes work, too
+## Numeric indexes work, too
 
 flights %>%
   select(...:...)
 ```
 
 
-# Exclude the date
+## Exclude the date
 
 ```{r}
 flights %>%
@@ -44,35 +44,35 @@ flights %>%
 ```
 
 ```{r}
-# Numeric indexes work, too
+## Numeric indexes work, too
 
 flights %>%
   select(-...:-...)
 ```
 
-# Departure variables
+## Departure variables
 
 ```{r}
-# starts_with()
+## starts_with()
 
 flights %>% 
   select(...(...))
 ```
 
 
-# Move departure variables to end
+## Move departure variables to end
 
 ```{r}
-# everything()
+## everything()
 
 flights %>%
   select(-...(...), ...())
 ```
 
-# Contour plot
+## Contour plot
 
 ```{r}
-# Overriding label names
+## Overriding label names
 
 flights %>% 
   ggplot() +
@@ -83,7 +83,7 @@ flights %>%
 
 
 ```{r}
-# Renaming in the data
+## Renaming in the data
 
 flights %>% 
   rename(`...` = ...) %>%
@@ -95,6 +95,6 @@ flights %>%
 ```
 
 ```{r}
-# Use coord_fixed() for fixing axes
+## Use coord_fixed() for fixing axes
 ```
 
