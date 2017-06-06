@@ -136,9 +136,9 @@ library(tidyverse)
 1. Find more exercises in item 1 of Section 5.6.7 of r4ds.
 
 
-## Summarize with multiple variables
+## [Summarize with multiple variables](summarize-mult.html)
 
-1. Which destination airport is serviced by the largest number of distinct carriers? Find a solution using `summarize()`, and one using `count()`. Which is more elegant?
+1. Which destination airport is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, and one using `count()`. Which is more elegant?
 
 1. Create a heat map for the share of cancelled flights per month per airline.
 
