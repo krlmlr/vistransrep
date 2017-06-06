@@ -221,8 +221,8 @@ $(document).ready(function () {
 <p><img src="stat_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.</p>
 </div>
-<div id="proportions" class="section level1">
-<h1>Proportions</h1>
+<div id="proportions" class="section level2">
+<h2>Proportions</h2>
 <p>Plotting overall proportions changes the y scale:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
@@ -231,6 +231,7 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
 <div id="fuel-economy" class="section level2">
 <h2>Fuel economy</h2>
 <p>We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
@@ -329,7 +330,6 @@ $(document).ready(function () {
     binwidth = 2
   )</code></pre>
 <p><img src="stat_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-</div>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

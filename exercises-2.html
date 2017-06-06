@@ -205,8 +205,8 @@ $(document).ready(function () {
 </div>
 
 
-<div id="filtering" class="section level1">
-<h1>Filtering</h1>
+<div id="filtering" class="section level2">
+<h2>Filtering</h2>
 <ol style="list-style-type: decimal">
 <li><p>View the <code>flights</code> dataset in RStudio’s data pane. Look up the meaning of the variables in the help.</p>
 <p>Hint: You need to load the <code>nycflights13</code> package.</p></li>
@@ -217,8 +217,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in item 1 of Section 5.2.4 of r4ds.</p></li>
 </ol>
 </div>
-<div id="assignment-the-pipe" class="section level1">
-<h1>Assignment, the pipe</h1>
+<div id="assignment-the-pipe" class="section level2">
+<h2>Assignment, the pipe</h2>
 <ol style="list-style-type: decimal">
 <li><p>View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p></li>
@@ -230,8 +230,8 @@ $(document).ready(function () {
 <li><p>Apply more restrictions to the four solutions.</p></li>
 </ol>
 </div>
-<div id="logical-operators-na" class="section level1">
-<h1>Logical operators, NA</h1>
+<div id="logical-operators-na" class="section level2">
+<h2>Logical operators, NA</h2>
 <ol style="list-style-type: decimal">
 <li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p></li>
 <li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p></li>
@@ -240,8 +240,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in item 4 of Section 5.2.4 of r4ds.</p></li>
 </ol>
 </div>
-<div id="filtering-and-plotting" class="section level1">
-<h1>Filtering and plotting</h1>
+<div id="filtering-and-plotting" class="section level2">
+<h2>Filtering and plotting</h2>
 <ol style="list-style-type: decimal">
 <li><p>Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.</p>
 <p>Hint: Start with <code>flights %&gt;% ggplot() + ...</code></p></li>
@@ -250,8 +250,8 @@ $(document).ready(function () {
 <li><p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p></li>
 </ol>
 </div>
-<div id="arrange" class="section level1">
-<h1>Arrange</h1>
+<div id="arrange" class="section level2">
+<h2>Arrange</h2>
 <ol style="list-style-type: decimal">
 <li><p>On what day did the flight with the shortest airtime take place?</p>
 <p>Hint: Use <code>head()</code> to restrict your result to one row only.</p></li>
@@ -263,8 +263,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 5.3.1 of r4ds.</p></li>
 </ol>
 </div>
-<div id="select-and-rename" class="section level1">
-<h1>Select and rename</h1>
+<div id="select-and-rename" class="section level2">
+<h2>Select and rename</h2>
 <ol style="list-style-type: decimal">
 <li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p></li>
 <li><p>Find three ways to exclude the date of the flight.</p></li>
@@ -275,8 +275,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
-<div id="mutate" class="section level1">
-<h1>Mutate</h1>
+<div id="mutate" class="section level2">
+<h2>Mutate</h2>
 <ol style="list-style-type: decimal">
 <li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p></li>
 <li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p></li>
@@ -284,8 +284,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 5.5.2 of r4ds.</p></li>
 </ol>
 </div>
-<div id="summarize" class="section level1">
-<h1>Summarize</h1>
+<div id="summarize" class="section level2">
+<h2>Summarize</h2>
 <ol style="list-style-type: decimal">
 <li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p></li>
 <li><p>Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.</p>
@@ -296,8 +296,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
-<div id="summarize-with-multiple-variables" class="section level1">
-<h1>Summarize with multiple variables</h1>
+<div id="summarize-with-multiple-variables" class="section level2">
+<h2>Summarize with multiple variables</h2>
 <ol style="list-style-type: decimal">
 <li><p>Which destination airport is serviced by the largest number of distinct carriers? Find a solution using <code>summarize()</code>, and one using <code>count()</code>. Which is more elegant?</p></li>
 <li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
@@ -305,16 +305,16 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
-<div id="grouped-mutate" class="section level1">
-<h1>Grouped mutate</h1>
+<div id="grouped-mutate" class="section level2">
+<h2>Grouped mutate</h2>
 <ol style="list-style-type: decimal">
 <li><p>Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.</p></li>
 <li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p></li>
 <li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
 </ol>
 </div>
-<div id="slides-and-reports" class="section level1">
-<h1>Slides and reports</h1>
+<div id="slides-and-reports" class="section level2">
+<h2>Slides and reports</h2>
 <ol style="list-style-type: decimal">
 <li><p>Install the “xaringan”, “rticles”, and “bookdown” packages.</p>
 <p>Hint: Use <code>install.packages()</code>.</p></li>
@@ -323,8 +323,8 @@ $(document).ready(function () {
 <li><p>Navigate to <a href="https://github.com/rstudio/bookdown-demo" class="uri">https://github.com/rstudio/bookdown-demo</a> (or search for “bookdown demo” in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the <code>README.md</code> file.</p></li>
 </ol>
 </div>
-<div id="rmarkdown-workflow" class="section level1">
-<h1>RMarkdown workflow</h1>
+<div id="rmarkdown-workflow" class="section level2">
+<h2>RMarkdown workflow</h2>
 <ol style="list-style-type: decimal">
 <li><p>In your project, create two directories: <code>R</code> and <code>reports</code></p></li>
 <li><p>Create a script <code>prepare.R</code> in the <code>R</code> directory</p></li>
@@ -338,8 +338,8 @@ $(document).ready(function () {
 <p>Hint: You can hide <code>mpg</code> from view by adding <code>mpg &lt;- NULL</code> to the “setup” chunk. …</p></li>
 </ol>
 </div>
-<div id="spreading-and-gathering" class="section level1">
-<h1>Spreading and gathering</h1>
+<div id="spreading-and-gathering" class="section level2">
+<h2>Spreading and gathering</h2>
 <ol style="list-style-type: decimal">
 <li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p></li>
 <li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p></li>
@@ -350,8 +350,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 12.3.3 of r4ds.</p></li>
 </ol>
 </div>
-<div id="separating-and-uniting" class="section level1">
-<h1>Separating and uniting</h1>
+<div id="separating-and-uniting" class="section level2">
+<h2>Separating and uniting</h2>
 <ol style="list-style-type: decimal">
 <li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p></li>
 <li><p>Convert <code>table2</code> to <code>table3</code>.</p></li>
@@ -359,8 +359,8 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 12.4.3 of r4ds.</p></li>
 </ol>
 </div>
-<div id="keys-and-mutating-joins" class="section level1">
-<h1>Keys and mutating joins</h1>
+<div id="keys-and-mutating-joins" class="section level2">
+<h2>Keys and mutating joins</h2>
 <ol style="list-style-type: decimal">
 <li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
 <pre><code>presidential %&gt;%
@@ -374,15 +374,15 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
 </ol>
 </div>
-<div id="filtering-joins" class="section level1">
-<h1>Filtering joins</h1>
+<div id="filtering-joins" class="section level2">
+<h2>Filtering joins</h2>
 <ol style="list-style-type: decimal">
 <li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
 <li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
 </ol>
 </div>
-<div id="case-study" class="section level1">
-<h1>Case study</h1>
+<div id="case-study" class="section level2">
+<h2>Case study</h2>
 <ol style="list-style-type: decimal">
 <li><p>Use your own data to answer a question about it using the tools you have learned in this course.</p>
 <p>Hint: To import, use the “readr” (CSV), “readxl” (Excel), or “haven” (SPSS/SAS/Stata) packages. Use the internet to find out how to import other kinds of data, use <code>as_tibble()</code> right after importing to get consistent printing.</p></li>
