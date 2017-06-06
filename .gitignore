@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 /.lib*
-*.html
+/*.html
 *.pdf
 /.Rprofile.local
 /*_files/
