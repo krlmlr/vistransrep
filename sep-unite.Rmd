@@ -27,7 +27,8 @@ table3 %>%
     sep = "/",
     convert = TRUE
   ) %>%
-  gather(type, count, -country, -year)
+  gather(type, count, -country, -year) %>%
+  arrange(country, year, type)
 ```
 
 
@@ -48,5 +49,5 @@ table2 %>%
 flights %>%
   separate(dep_time, into = c("dep_hour", "dep_minute"), sep = -3, convert = TRUE) %>%
   separate(arr_time, into = c("arr_hour", "arr_minute"), sep = -3, convert = TRUE) %>% 
-  View
+  select(starts_with("dep_"), starts_with("arr_"))
 ```

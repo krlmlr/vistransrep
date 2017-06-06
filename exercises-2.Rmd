@@ -207,7 +207,7 @@ library(tidyverse)
 1. Find more exercises in Section 12.3.3 of r4ds.
 
 
-## Separating and uniting
+## [Separating and uniting](sep-unite.html)
 
 1. Convert `table3` to `table1` and `table2`.
 
