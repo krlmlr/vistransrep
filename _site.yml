@@ -1,5 +1,6 @@
 name: "my-website"
 output_dir: "docs"
+include: ".nojekyll"
 exclude: "DESCRIPTION"
 navbar:
   title: "Data visualization, reporting, and processing with R"
