@@ -1,0 +1,37 @@
+---
+title: "rmarkdown exercises part 1"
+author: "Kirill Müller"
+date: "October 18, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+## [R + markdown](rmarkdown.html)
+
+1. Choose "File → New File → R Markdown...". In the dialog, choose a document title and adapt the author name if necessary.
+
+1. Choose "File → Knit document", or press Ctrl + Shift + K, or hit the "Knit" button at the top of the text pane.
+
+1. Run all chunks in the document via Ctrl + Alt + R or "Code → Run region → Run All" or via the "Run" popup at the top of the text pane.
+
+1. Run a single chunk by moving the caret in the text pane into the chunk and pressing Ctrl + Shift + Enter.
+
+1. Navigate chunks and headers by choosing from the popup at the bottom or from the document outline (you may need to hit the "Show document outline" button at the top right, or press Ctrl + Shift + O).
+
+1. Clear the entire document except the "YAML header" (the first few lines that start and end with `---`) and the setup chunk.
+
+1. In this chunk, load the tidyverse package. Knit the resulting document. Does the result surprise you?
+
+1. Insert a chunk via "Code → Insert chunk", Ctrl + Alt + I, or the "Insert" popup at the top of the text pane.
+
+1. In this new chunk, show the `mpg` dataset.
+
+1. In another new chunk, show a simple plot of the `mpg` dataset.
+
+1. Add a descriptive text, use Markdown formatting (headers, emphasis, links, ...) and perhaps try an equation in LaTeX notation.
+
+1. In this descriptive text, add a value computed from the data, e.g. `nrow(mtcars)`, as inline code.
