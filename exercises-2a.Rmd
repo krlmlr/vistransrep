@@ -1,7 +1,7 @@
 ---
 title: "dplyr exercises"
 author: "Kirill Müller"
-date: "October 18, 2017"
+date: "June 2, 2017"
 output: html_document
 ---
 
@@ -12,38 +12,41 @@ library(tidyverse)
 
 ## [Filtering](filtering.html)
 
-1. View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
+1. View the `trends` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
 
-    Hint: You need to load the `nycflights13` package.
+    Hint: You need to load the `gfdata` package.
 
-1. Find all flights that departed today four years ago.
+1. Find all observations from four years ago.
 
-1. Find all flights that departed between 8:00 AM and 10:00 PM.
+1. Find all observations that correspond to the `"Number of infant deaths: Median quantile"` indicator for the years 2000 to 2004, including.
 
-1. Find all flights that departed in the three winter months.
+1. Find all observations that correspond to any of the following indicators:
+    - `"AIDS-related deaths, estimate"`
+    - `"Malaria deaths, estimate"`
+    - `"Maternal deaths, estimate"`
 
-1. Are there any flights where departure time is later than arrival time? What does this mean?
+1. Are there any observations from the future?
 
 1. Find more exercises in item 1 of Section 5.2.4 of r4ds.
 
 
 ## [Assignment, the pipe](pipe.html)
 
-1. View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
+Use a combined filter, an intermediate variable, a nested expression, and the pipe, for the following tasks. Which appeals more to you?
 
-1. Extend the four solutions to view all `"UA"` flights that arrived after 10:00 PM.
+1. View all observations for the Central African Republic (`"CAF"`).
 
-1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM.
+1. Restrict further to view all observations from the previous century.
 
-1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.
+1. Restrict further to view only the following indicators:
+    - `"AIDS-related deaths, estimate"`
+    - `"Maternal deaths, estimate"`
 
-1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports.
+1. Restrict further to view only the observations where the indicator value was below 2500.
 
-1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
+1. Restrict further to view only the observations where the indicator value has decreased compared to the previous year.
 
-    Hint: Consult the `airports` dataset.
-
-1. Apply more restrictions to the four solutions.
+    Hint: Use the `lag()` function.
 
 
 ## [Logical operators, NA](logical.html)
@@ -154,6 +157,40 @@ library(tidyverse)
 1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
 
 1. Find more exercises in Section 5.7.1 of r4ds.
+
+
+## Slides and reports
+
+1. Install the "xaringan", "rticles", and "bookdown" packages.
+
+    Hint: Use `install.packages()`.
+
+1. Choose File / New File / R Markdown... from the RStudio menu, in the dialog select "Ninja presentation" to create an example slide deck.
+
+1. What templates were installed with "rticles"?
+
+1. Navigate to https://github.com/rstudio/bookdown-demo (or search for "bookdown demo" in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the `README.md` file.
+
+
+## [RMarkdown workflow](https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example)
+
+1. In your project, create two directories: `R` and `reports`
+
+1. Create a script `prepare.R` in the `R` directory
+
+1. Create an RMarkdown document from template, save it as `final.Rmd` in the `reports` directory.
+
+1. Add code to `prepare.R` to transform the `flights` data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using `<-`. Save this variable to a file using the `saveRDS()` function.
+
+    Hint: Use `library(here)` and `here()` to control where the file is saved.
+
+1. Leave only the header and the "setup" chunk in `final.Rmd`. In the "setup" chunk, insert a call to the `readRDS()` function for the file you saved in the previous step.
+
+    Hint: Use `here` again, you should be using the same file name that you have used for `saveRDS()`.
+
+1. Knit the document. This should work without failure (but show an empty document).
+
+1. Create a second code chunk that shows a plot of your transformed data. Do not refer to `flights`. Knit again.
 
 
 ## [Spreading and gathering](spread-gather.html)

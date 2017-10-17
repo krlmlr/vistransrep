@@ -17,6 +17,12 @@ knitr::opts_chunk$set(echo = TRUE)
 1 + 2
 3 * 5
 4 / 7
+5 %% 3
+5 %/% 3
+5 ^ 3
+ceiling(3.1415)
+tan(3.1415)
+min(3, 4, 5)
 ```
 
 ### Checking operator precedence rules

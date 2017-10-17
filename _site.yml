@@ -11,6 +11,8 @@ navbar:
       href: exercises-1.html
     - text: "dplyr"
       href: exercises-2.html
+    - text: "rmarkdown"
+      href: exercises-3.html
 output:
   html_document:
     theme: cosmo
