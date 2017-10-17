@@ -181,10 +181,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="exercises-1.html">ggplot2</a>
+  <a href="ggplot2-1.html">ggplot2-1</a>
 </li>
 <li>
-  <a href="exercises-2.html">dplyr</a>
+  <a href="dplyr-1.html">dplyr-1</a>
+</li>
+<li>
+  <a href="rmarkdown-1.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -225,13 +228,13 @@ $(document).ready(function () {
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(arr_delay, na.rm = TRUE)`
 ##                             &lt;dbl&gt;
-## 1                        6.895377</code></pre>
+## 1                            6.90</code></pre>
 <pre class="r"><code>flights %&gt;%
   summarize(mean(dep_delay, na.rm = TRUE))</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(dep_delay, na.rm = TRUE)`
 ##                             &lt;dbl&gt;
-## 1                        12.63907</code></pre>
+## 1                            12.6</code></pre>
 <pre class="r"><code>flights %&gt;%
   summarize(
     mean(arr_delay, na.rm = TRUE),
@@ -240,7 +243,7 @@ $(document).ready(function () {
 <pre><code>## # A tibble: 1 x 2
 ##   `mean(arr_delay, na.rm = TRUE)` `mean(dep_delay, na.rm = TRUE)`
 ##                             &lt;dbl&gt;                           &lt;dbl&gt;
-## 1                        6.895377                        12.63907</code></pre>
+## 1                            6.90                            12.6</code></pre>
 <pre class="r"><code>flights %&gt;%
   group_by(origin) %&gt;%
   summarize(
@@ -249,10 +252,10 @@ $(document).ready(function () {
   )</code></pre>
 <pre><code>## # A tibble: 3 x 3
 ##   origin `mean(arr_delay, na.rm = TRUE)` `mean(dep_delay, na.rm = TRUE)`
-##    &lt;chr&gt;                           &lt;dbl&gt;                           &lt;dbl&gt;
-## 1    EWR                        9.107055                        15.10795
-## 2    JFK                        5.551481                        12.11216
-## 3    LGA                        5.783488                        10.34688</code></pre>
+##   &lt;chr&gt;                            &lt;dbl&gt;                           &lt;dbl&gt;
+## 1 EWR                               9.11                            15.1
+## 2 JFK                               5.55                            12.1
+## 3 LGA                               5.78                            10.3</code></pre>
 </div>
 <div id="air-time-by-carrier" class="section level2">
 <h2>Air time by carrier</h2>
@@ -265,23 +268,23 @@ $(document).ready(function () {
 total_airtime_by_carrier</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier acc_air_time
-##      &lt;chr&gt;        &lt;dbl&gt;
-##  1      9E      1500801
-##  2      AA      6032306
-##  3      AS       230863
-##  4      B6      8170975
-##  5      DL      8277661
-##  6      EV      4603614
-##  7      F9       156357
-##  8      FL       321132
-##  9      HA       213096
-## 10      MQ      2282880
-## 11      OO         2421
-## 12      UA     12237728
-## 13      US      1756507
-## 14      VX      1724104
-## 15      WN      1780402
-## 16      YV        35763</code></pre>
+##    &lt;chr&gt;          &lt;dbl&gt;
+##  1 9E           1500801
+##  2 AA           6032306
+##  3 AS            230863
+##  4 B6           8170975
+##  5 DL           8277661
+##  6 EV           4603614
+##  7 F9            156357
+##  8 FL            321132
+##  9 HA            213096
+## 10 MQ           2282880
+## 11 OO              2421
+## 12 UA          12237728
+## 13 US           1756507
+## 14 VX           1724104
+## 15 WN           1780402
+## 16 YV             35763</code></pre>
 <pre class="r"><code>total_airtime_by_carrier %&gt;% 
   arrange(acc_air_time) %&gt;%
   mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
@@ -302,23 +305,23 @@ total_airtime_by_carrier</code></pre>
 carrier_arranged_by_mean_distance</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier mean_distance
-##      &lt;chr&gt;         &lt;dbl&gt;
-##  1      HA     4983.0000
-##  2      VX     2499.4822
-##  3      AS     2402.0000
-##  4      F9     1620.0000
-##  5      UA     1529.1149
-##  6      AA     1340.2360
-##  7      DL     1236.9012
-##  8      B6     1068.6215
-##  9      WN      996.2691
-## 10      FL      664.8294
-## 11      MQ      569.5327
-## 12      EV      562.9917
-## 13      US      553.4563
-## 14      9E      530.2358
-## 15      OO      500.8125
-## 16      YV      375.0333</code></pre>
+##    &lt;chr&gt;           &lt;dbl&gt;
+##  1 HA               4983
+##  2 VX               2499
+##  3 AS               2402
+##  4 F9               1620
+##  5 UA               1529
+##  6 AA               1340
+##  7 DL               1237
+##  8 B6               1069
+##  9 WN                996
+## 10 FL                665
+## 11 MQ                570
+## 12 EV                563
+## 13 US                553
+## 14 9E                530
+## 15 OO                501
+## 16 YV                375</code></pre>
 <pre class="r"><code>carrier_arranged_by_mean_distance %&gt;% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))</code></pre>
@@ -335,17 +338,17 @@ carrier_arranged_by_mean_distance</code></pre>
   arrange(desc(not_departed))</code></pre>
 <pre><code>## # A tibble: 1,449 x 2
 ##    tailnum not_departed
-##      &lt;chr&gt;        &lt;int&gt;
-##  1  N725MQ           29
-##  2  N713MQ           28
-##  3  N723MQ           27
-##  4  N15574           26
-##  5  N722MQ           26
-##  6  N13949           24
-##  7  N14573           24
-##  8  N735MQ           24
-##  9  N11535           23
-## 10  N11565           23
+##    &lt;chr&gt;          &lt;int&gt;
+##  1 N725MQ            29
+##  2 N713MQ            28
+##  3 N723MQ            27
+##  4 N15574            26
+##  5 N722MQ            26
+##  6 N13949            24
+##  7 N14573            24
+##  8 N735MQ            24
+##  9 N11535            23
+## 10 N11565            23
 ## # ... with 1,439 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   group_by(tailnum) %&gt;% 
@@ -353,17 +356,17 @@ carrier_arranged_by_mean_distance</code></pre>
   ungroup()</code></pre>
 <pre><code>## # A tibble: 4,044 x 2
 ##    tailnum not_departed
-##      &lt;chr&gt;        &lt;int&gt;
-##  1  D942DN            0
-##  2  N0EGMQ           17
-##  3  N10156            7
-##  4  N102UW            0
-##  5  N103US            0
-##  6  N104UW            0
-##  7  N10575           17
-##  8  N105UW            0
-##  9  N107US            0
-## 10  N108UW            0
+##    &lt;chr&gt;          &lt;int&gt;
+##  1 D942DN             0
+##  2 N0EGMQ            17
+##  3 N10156             7
+##  4 N102UW             0
+##  5 N103US             0
+##  6 N104UW             0
+##  7 N10575            17
+##  8 N105UW             0
+##  9 N107US             0
+## 10 N108UW             0
 ## # ... with 4,034 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
@@ -371,17 +374,17 @@ carrier_arranged_by_mean_distance</code></pre>
   arrange(desc(n))</code></pre>
 <pre><code>## # A tibble: 1,450 x 2
 ##    tailnum     n
-##      &lt;chr&gt; &lt;int&gt;
-##  1    &lt;NA&gt;  2512
-##  2  N725MQ    29
-##  3  N713MQ    28
-##  4  N723MQ    27
-##  5  N15574    26
-##  6  N722MQ    26
-##  7  N13949    24
-##  8  N14573    24
-##  9  N735MQ    24
-## 10  N11535    23
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 &lt;NA&gt;     2512
+##  2 N725MQ     29
+##  3 N713MQ     28
+##  4 N723MQ     27
+##  5 N15574     26
+##  6 N722MQ     26
+##  7 N13949     24
+##  8 N14573     24
+##  9 N735MQ     24
+## 10 N11535     23
 ## # ... with 1,440 more rows</code></pre>
 </div>
 <div id="short-distance-routes-per-airline" class="section level2">

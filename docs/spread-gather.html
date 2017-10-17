@@ -181,10 +181,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="exercises-1.html">ggplot2</a>
+  <a href="ggplot2-1.html">ggplot2-1</a>
 </li>
 <li>
-  <a href="exercises-2.html">dplyr</a>
+  <a href="dplyr-1.html">dplyr-1</a>
+</li>
+<li>
+  <a href="rmarkdown-1.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -210,49 +213,49 @@ $(document).ready(function () {
 <pre class="r"><code>table2 %&gt;% 
   spread(type, count)</code></pre>
 <pre><code>## # A tibble: 6 x 4
-##       country  year  cases population
-## *       &lt;chr&gt; &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+##   country      year  cases population
+## * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
 ## 1 Afghanistan  1999    745   19987071
 ## 2 Afghanistan  2000   2666   20595360
-## 3      Brazil  1999  37737  172006362
-## 4      Brazil  2000  80488  174504898
-## 5       China  1999 212258 1272915272
-## 6       China  2000 213766 1280428583</code></pre>
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
 </div>
 <div id="table1-to-table2" class="section level2">
 <h2>table1 to table2</h2>
 <pre class="r"><code>table1 %&gt;% 
   gather(type, count, cases, population)</code></pre>
 <pre><code>## # A tibble: 12 x 4
-##        country  year       type      count
-##          &lt;chr&gt; &lt;int&gt;      &lt;chr&gt;      &lt;int&gt;
-##  1 Afghanistan  1999      cases        745
-##  2 Afghanistan  2000      cases       2666
-##  3      Brazil  1999      cases      37737
-##  4      Brazil  2000      cases      80488
-##  5       China  1999      cases     212258
-##  6       China  2000      cases     213766
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  2000 cases            2666
+##  3 Brazil       1999 cases           37737
+##  4 Brazil       2000 cases           80488
+##  5 China        1999 cases          212258
+##  6 China        2000 cases          213766
 ##  7 Afghanistan  1999 population   19987071
 ##  8 Afghanistan  2000 population   20595360
-##  9      Brazil  1999 population  172006362
-## 10      Brazil  2000 population  174504898
-## 11       China  1999 population 1272915272
-## 12       China  2000 population 1280428583</code></pre>
+##  9 Brazil       1999 population  172006362
+## 10 Brazil       2000 population  174504898
+## 11 China        1999 population 1272915272
+## 12 China        2000 population 1280428583</code></pre>
 <pre class="r"><code>table2 %&gt;% 
   gather(type, count, -country, -year)</code></pre>
 <pre><code>## # A tibble: 24 x 4
-##        country  year  type      count
-##          &lt;chr&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;
-##  1 Afghanistan  1999  type      cases
-##  2 Afghanistan  1999  type population
-##  3 Afghanistan  2000  type      cases
-##  4 Afghanistan  2000  type population
-##  5      Brazil  1999  type      cases
-##  6      Brazil  1999  type population
-##  7      Brazil  2000  type      cases
-##  8      Brazil  2000  type population
-##  9       China  1999  type      cases
-## 10       China  1999  type population
+##    country      year type  count     
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt;     
+##  1 Afghanistan  1999 type  cases     
+##  2 Afghanistan  1999 type  population
+##  3 Afghanistan  2000 type  cases     
+##  4 Afghanistan  2000 type  population
+##  5 Brazil       1999 type  cases     
+##  6 Brazil       1999 type  population
+##  7 Brazil       2000 type  cases     
+##  8 Brazil       2000 type  population
+##  9 China        1999 type  cases     
+## 10 China        1999 type  population
 ## # ... with 14 more rows</code></pre>
 <p>Are the two calls symmetrical?</p>
 <p>No, we need to arrange this result:</p>
@@ -260,20 +263,20 @@ $(document).ready(function () {
   gather(type, count, -country, -year) %&gt;% 
   arrange(country, year, type)</code></pre>
 <pre><code>## # A tibble: 12 x 4
-##        country  year       type      count
-##          &lt;chr&gt; &lt;int&gt;      &lt;chr&gt;      &lt;int&gt;
-##  1 Afghanistan  1999      cases        745
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
 ##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000      cases       2666
+##  3 Afghanistan  2000 cases            2666
 ##  4 Afghanistan  2000 population   20595360
-##  5      Brazil  1999      cases      37737
-##  6      Brazil  1999 population  172006362
-##  7      Brazil  2000      cases      80488
-##  8      Brazil  2000 population  174504898
-##  9       China  1999      cases     212258
-## 10       China  1999 population 1272915272
-## 11       China  2000      cases     213766
-## 12       China  2000 population 1280428583</code></pre>
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
 </div>
 <div id="plot-table-x" class="section level2">
 <h2>Plot table-x</h2>
@@ -314,20 +317,20 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
   select(country, year, everything()) %&gt;% 
   arrange(country, year, type)</code></pre>
 <pre><code>## # A tibble: 12 x 4
-##        country  year       type      count
-##          &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt;
-##  1 Afghanistan  1999      cases        745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000      cases       2666
-##  4 Afghanistan  2000 population   20595360
-##  5      Brazil  1999      cases      37737
-##  6      Brazil  1999 population  172006362
-##  7      Brazil  2000      cases      80488
-##  8      Brazil  2000 population  174504898
-##  9       China  1999      cases     212258
-## 10       China  1999 population 1272915272
-## 11       China  2000      cases     213766
-## 12       China  2000 population 1280428583</code></pre>
+##    country     year  type            count
+##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan 1999  cases             745
+##  2 Afghanistan 1999  population   19987071
+##  3 Afghanistan 2000  cases            2666
+##  4 Afghanistan 2000  population   20595360
+##  5 Brazil      1999  cases           37737
+##  6 Brazil      1999  population  172006362
+##  7 Brazil      2000  cases           80488
+##  8 Brazil      2000  population  174504898
+##  9 China       1999  cases          212258
+## 10 China       1999  population 1272915272
+## 11 China       2000  cases          213766
+## 12 China       2000  population 1280428583</code></pre>
 </div>
 <div id="economies" class="section level2">
 <h2>Economies</h2>
