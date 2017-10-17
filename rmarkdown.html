@@ -182,13 +182,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="exercises-1.html">ggplot2</a>
+  <a href="ggplot2-1.html">ggplot2-1</a>
 </li>
 <li>
-  <a href="exercises-2.html">dplyr</a>
+  <a href="dplyr-1.html">dplyr-1</a>
 </li>
 <li>
-  <a href="exercises-3.html">rmarkdown</a>
+  <a href="rmarkdown-1.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -248,19 +248,19 @@ Possible reasons why people would choose a larger engine include:
 <p>We will be reviewing a dataset of 234 cars. The dataset is listed below.</p>
 <pre class="r"><code>mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer      model displ  year   cyl      trans   drv   cty   hwy
-##           &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-##  1         audi         a4   1.8  1999     4   auto(l5)     f    18    29
-##  2         audi         a4   1.8  1999     4 manual(m5)     f    21    29
-##  3         audi         a4   2.0  2008     4 manual(m6)     f    20    31
-##  4         audi         a4   2.0  2008     4   auto(av)     f    21    30
-##  5         audi         a4   2.8  1999     6   auto(l5)     f    16    26
-##  6         audi         a4   2.8  1999     6 manual(m5)     f    18    26
-##  7         audi         a4   3.1  2008     6   auto(av)     f    18    27
-##  8         audi a4 quattro   1.8  1999     4 manual(m5)     4    18    26
-##  9         audi a4 quattro   1.8  1999     4   auto(l5)     4    16    25
-## 10         audi a4 quattro   2.0  2008     4 manual(m6)     4    20    28
-## # ... with 224 more rows, and 2 more variables: fl &lt;chr&gt;, class &lt;chr&gt;</code></pre>
+##    manufac… model   displ  year   cyl trans  drv     cty   hwy fl    class
+##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi     a4       1.80  1999     4 auto(… f        18    29 p     comp…
+##  2 audi     a4       1.80  1999     4 manua… f        21    29 p     comp…
+##  3 audi     a4       2.00  2008     4 manua… f        20    31 p     comp…
+##  4 audi     a4       2.00  2008     4 auto(… f        21    30 p     comp…
+##  5 audi     a4       2.80  1999     6 auto(… f        16    26 p     comp…
+##  6 audi     a4       2.80  1999     6 manua… f        18    26 p     comp…
+##  7 audi     a4       3.10  2008     6 auto(… f        18    27 p     comp…
+##  8 audi     a4 qua…  1.80  1999     4 manua… 4        18    26 p     comp…
+##  9 audi     a4 qua…  1.80  1999     4 auto(… 4        16    25 p     comp…
+## 10 audi     a4 qua…  2.00  2008     4 manua… 4        20    28 p     comp…
+## # ... with 224 more rows</code></pre>
 <div id="relationship-between-engine-displacement-and-highway-mileage" class="section level2">
 <h2>Relationship between engine displacement and highway mileage</h2>
 <p>The plot below should <em>not</em> surprise us: The larger the engine, the more energy it consumes per distance driven (in <span class="math inline">\(\frac{\text{J}}{\text{km}}\)</span>), the less is the mileage per unit of gasoline (in <span class="math inline">\(\frac{\text{miles}}{\text{gallon}}\)</span>).</p>

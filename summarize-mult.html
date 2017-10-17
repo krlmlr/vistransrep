@@ -181,10 +181,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="exercises-1.html">ggplot2</a>
+  <a href="ggplot2-1.html">ggplot2-1</a>
 </li>
 <li>
-  <a href="exercises-2.html">dplyr</a>
+  <a href="dplyr-1.html">dplyr-1</a>
+</li>
+<li>
+  <a href="rmarkdown-1.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -214,18 +217,18 @@ $(document).ready(function () {
   ungroup %&gt;% 
   arrange(desc(n_distinct_carriers))</code></pre>
 <pre><code>## # A tibble: 224 x 3
-##    origin  dest n_distinct_carriers
-##     &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;
-##  1    EWR   DTW                   5
-##  2    EWR   MSP                   5
-##  3    JFK   LAX                   5
-##  4    JFK   SFO                   5
-##  5    JFK   TPA                   5
-##  6    LGA   ATL                   5
-##  7    LGA   CLE                   5
-##  8    LGA   CLT                   5
-##  9    EWR   ATL                   4
-## 10    JFK   AUS                   4
+##    origin dest  n_distinct_carriers
+##    &lt;chr&gt;  &lt;chr&gt;               &lt;int&gt;
+##  1 EWR    DTW                     5
+##  2 EWR    MSP                     5
+##  3 JFK    LAX                     5
+##  4 JFK    SFO                     5
+##  5 JFK    TPA                     5
+##  6 LGA    ATL                     5
+##  7 LGA    CLE                     5
+##  8 LGA    CLT                     5
+##  9 EWR    ATL                     4
+## 10 JFK    AUS                     4
 ## # ... with 214 more rows</code></pre>
 <p>Much shorter:</p>
 <pre class="r"><code>flights %&gt;%
@@ -233,20 +236,10 @@ $(document).ready(function () {
   count() %&gt;% 
   ungroup %&gt;% 
   arrange(desc(nn))</code></pre>
-<pre><code>## # A tibble: 224 x 3
-##    origin  dest    nn
-##     &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
-##  1    EWR   DTW     5
-##  2    EWR   MSP     5
-##  3    JFK   LAX     5
-##  4    JFK   SFO     5
-##  5    JFK   TPA     5
-##  6    LGA   ATL     5
-##  7    LGA   CLE     5
-##  8    LGA   CLT     5
-##  9    EWR   ATL     4
-## 10    JFK   AUS     4
-## # ... with 214 more rows</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##      nn
+##   &lt;int&gt;
+## 1   439</code></pre>
 </div>
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
