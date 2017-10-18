@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```r
 library(gfdata)
 ggplot(
-  data = high_impact_stats,
-  mapping = aes(
+  high_impact_stats,
+  aes(
     x = ordered(year),
     y = tb_treatment_coverage_percent
   )
@@ -31,18 +31,37 @@ ggplot(
 
 ```r
 library(gfdata)
-ggplot(data = high_impact_stats, aes(x = year)) +
+ggplot(high_impact_stats, aes(x = year)) +
   geom_ribbon(
-    mapping = aes(
+    aes(
       ymin = people_living_with_hiv_aids_lower_number,
       ymax = people_living_with_hiv_aids_higher_number
     ),
     fill = "grey"
   ) +
   geom_line(
-    mapping = aes(y = people_living_with_hiv_aids_number),
+    aes(y = people_living_with_hiv_aids_number),
     color = "green"
   ) +
+  facet_wrap(~country, scales = "free_y", ncol = 3) +
+  scale_y_continuous(limits = c(0, NA))
+```
+
+
+```r
+high_impact_stats_tb_long <-
+  high_impact_stats %>%
+  select(
+    iso3, country, five_regions, year,
+    tb_new_cases_number, tb_deaths_number
+  ) %>%
+  gather(indicator, number, starts_with("tb_"))
+
+ggplot(
+  high_impact_stats_tb_long,
+  aes(x = year, y = number, color = indicator)
+) +
+  geom_line() +
   facet_wrap(~country, scales = "free_y", ncol = 3) +
   scale_y_continuous(limits = c(0, NA))
 ```

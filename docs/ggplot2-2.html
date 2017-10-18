@@ -373,8 +373,6 @@ $(document).ready(function () {
 <div id="reverse-engineering-practice" class="section level2">
 <h2><a href="reverse.html">Reverse-engineering, practice</a></h2>
 <p>Recreate the following plots by filling in the dots in the corresponding code snippets. Use the <code>high_impact_stats</code> dataset from the <code>gfdata</code> package. What is the purpose of the predefined <code>scale_...()</code> and <code>theme()</code> calls?</p>
-<div id="plot-1-1" class="section level3">
-<h3>Plot 1</h3>
 <pre class="r"><code>library(gfdata)
 ggplot(
   data = ...,
@@ -401,7 +399,23 @@ ggplot(...) +
   facet_wrap(~..., scales = ..., ncol = 3) +
   scale_y_continuous(limits = c(0, NA))</code></pre>
 <p><img src="ggplot2-2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
+<pre class="r"><code>high_impact_stats_tb_long &lt;-
+  high_impact_stats %&gt;%
+  select(
+    iso3, country, five_regions, year,
+    tb_new_cases_number, tb_deaths_number
+  ) %&gt;%
+  gather(indicator, number, starts_with(&quot;tb_&quot;))
+
+ggplot(
+  data = high_impact_stats_tb_long,
+  mapping = aes()
+) +
+  geom_...() +
+  facet_...(...) +
+  scale_y_continuous(limits = c(0, NA))</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<p><img src="ggplot2-2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

@@ -112,8 +112,6 @@ How could the authors of the [2016 WHO TB report](http://www.who.int/tb/publicat
 
 Recreate the following plots by filling in the dots in the corresponding code snippets. Use the `high_impact_stats` dataset from the `gfdata` package. What is the purpose of the predefined `scale_...()` and `theme()` calls?
 
-### Plot 1
-
 ```r
 library(gfdata)
 ggplot(
@@ -172,6 +170,42 @@ ggplot(data = high_impact_stats, aes(x = year)) +
     mapping = aes(y = people_living_with_hiv_aids_number),
     color = "green"
   ) +
+  facet_wrap(~country, scales = "free_y", ncol = 3) +
+  scale_y_continuous(limits = c(0, NA))
+```
+
+```r
+high_impact_stats_tb_long <-
+  high_impact_stats %>%
+  select(
+    iso3, country, five_regions, year,
+    tb_new_cases_number, tb_deaths_number
+  ) %>%
+  gather(indicator, number, starts_with("tb_"))
+
+ggplot(
+  data = high_impact_stats_tb_long,
+  mapping = aes()
+) +
+  geom_...() +
+  facet_...(...) +
+  scale_y_continuous(limits = c(0, NA))
+```
+
+```{r echo = FALSE, fig.height=8}
+high_impact_stats_tb_long <-
+  high_impact_stats %>%
+  select(
+    iso3, country, five_regions, year,
+    tb_new_cases_number, tb_deaths_number
+  ) %>%
+  gather(indicator, number, starts_with("tb_"))
+
+ggplot(
+  high_impact_stats_tb_long,
+  aes(x = year, y = number, color = indicator)
+) +
+  geom_line() +
   facet_wrap(~country, scales = "free_y", ncol = 3) +
   scale_y_continuous(limits = c(0, NA))
 ```
