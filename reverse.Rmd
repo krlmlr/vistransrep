@@ -1,0 +1,48 @@
+---
+title: "Reverse-engineering, practice"
+author: "Kirill Müller"
+date: "October 18, 2017"
+output: html_document
+output_dir: docs
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Reverse-engineering, practice
+
+```r
+library(gfdata)
+ggplot(
+  data = high_impact_stats,
+  mapping = aes(
+    x = ordered(year),
+    y = tb_treatment_coverage_percent
+  )
+) +
+  geom_boxplot() +
+  scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
+
+
+```r
+library(gfdata)
+ggplot(data = high_impact_stats, aes(x = year)) +
+  geom_ribbon(
+    mapping = aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = "grey"
+  ) +
+  geom_line(
+    mapping = aes(y = people_living_with_hiv_aids_number),
+    color = "green"
+  ) +
+  facet_wrap(~country, scales = "free_y", ncol = 3) +
+  scale_y_continuous(limits = c(0, NA))
+```

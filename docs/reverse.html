@@ -13,7 +13,7 @@
 
 <meta name="date" content="2017-10-18" />
 
-<title>ggplot2 exercises part 2</title>
+<title>Reverse-engineering, practice</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -202,206 +202,41 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">ggplot2 exercises part 2</h1>
+<h1 class="title toc-ignore">Reverse-engineering, practice</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>October 18, 2017</em></h4>
 
 </div>
 
 
-<div id="reverse-engineering-theory" class="section level2">
-<h2>Reverse-engineering, theory</h2>
-<p>How could the authors of the <a href="http://www.who.int/tb/publications/global_report/en/">2016 WHO TB report</a> have created the following plots? Assume that each plot is based on one or several suitably crafted dataset(s) that have been transformed in advance to support this particular plot. Answer the following questions for each plot:</p>
-<ol style="list-style-type: decimal">
-<li>What layers (geoms) are used?</li>
-<li>Which variables are mapped to which aesthetics?</li>
-<li>Can you identify manual aesthetics (i.e., aesthetics that are unchanged for all observations?)</li>
-<li>What statistical transformations, if any, have been applied?</li>
-<li>What positional adjustments, if any, have been applied?</li>
-<li>If an image contains more than one plot, explain the mechanism.</li>
-<li>What does each observation in the plotting dataset represent?</li>
-<li>Do you notice details about the plot which you can’t explain yet?</li>
-</ol>
-<div id="plot-1" class="section level3">
-<h3>Plot 1</h3>
-<div class="figure">
-<img src="ggplots/01.png" alt="Plot 1" />
-<p class="caption">Plot 1</p>
-</div>
-</div>
-<div id="plot-2" class="section level3">
-<h3>Plot 2</h3>
-<div class="figure">
-<img src="ggplots/02.png" alt="Plot 2" />
-<p class="caption">Plot 2</p>
-</div>
-</div>
-<div id="plot-3" class="section level3">
-<h3>Plot 3</h3>
-<div class="figure">
-<img src="ggplots/03.png" alt="Plot 3" />
-<p class="caption">Plot 3</p>
-</div>
-</div>
-<div id="plot-4" class="section level3">
-<h3>Plot 4</h3>
-<div class="figure">
-<img src="ggplots/04.png" alt="Plot 4" />
-<p class="caption">Plot 4</p>
-</div>
-</div>
-<div id="plot-5" class="section level3">
-<h3>Plot 5</h3>
-<div class="figure">
-<img src="ggplots/05.png" alt="Plot 5" />
-<p class="caption">Plot 5</p>
-</div>
-</div>
-<div id="plot-6" class="section level3">
-<h3>Plot 6</h3>
-<div class="figure">
-<img src="ggplots/06.png" alt="Plot 6" />
-<p class="caption">Plot 6</p>
-</div>
-</div>
-<div id="plot-7" class="section level3">
-<h3>Plot 7</h3>
-<div class="figure">
-<img src="ggplots/07.png" alt="Plot 7" />
-<p class="caption">Plot 7</p>
-</div>
-</div>
-<div id="plot-8" class="section level3">
-<h3>Plot 8</h3>
-<div class="figure">
-<img src="ggplots/08.png" alt="Plot 8" />
-<p class="caption">Plot 8</p>
-</div>
-</div>
-<div id="plot-9" class="section level3">
-<h3>Plot 9</h3>
-<div class="figure">
-<img src="ggplots/09.png" alt="Plot 9" />
-<p class="caption">Plot 9</p>
-</div>
-</div>
-<div id="plot-10" class="section level3">
-<h3>Plot 10</h3>
-<div class="figure">
-<img src="ggplots/10.png" alt="Plot 10" />
-<p class="caption">Plot 10</p>
-</div>
-</div>
-<div id="plot-11" class="section level3">
-<h3>Plot 11</h3>
-<div class="figure">
-<img src="ggplots/11.png" alt="Plot 11" />
-<p class="caption">Plot 11</p>
-</div>
-</div>
-<div id="plot-12" class="section level3">
-<h3>Plot 12</h3>
-<div class="figure">
-<img src="ggplots/12.png" alt="Plot 12" />
-<p class="caption">Plot 12</p>
-</div>
-</div>
-<div id="plot-13" class="section level3">
-<h3>Plot 13</h3>
-<div class="figure">
-<img src="ggplots/13.png" alt="Plot 13" />
-<p class="caption">Plot 13</p>
-</div>
-</div>
-<div id="plot-14" class="section level3">
-<h3>Plot 14</h3>
-<div class="figure">
-<img src="ggplots/14.png" alt="Plot 14" />
-<p class="caption">Plot 14</p>
-</div>
-</div>
-<div id="plot-15" class="section level3">
-<h3>Plot 15</h3>
-<div class="figure">
-<img src="ggplots/15.png" alt="Plot 15" />
-<p class="caption">Plot 15</p>
-</div>
-</div>
-<div id="plot-16" class="section level3">
-<h3>Plot 16</h3>
-<div class="figure">
-<img src="ggplots/16.png" alt="Plot 16" />
-<p class="caption">Plot 16</p>
-</div>
-</div>
-<div id="plot-17" class="section level3">
-<h3>Plot 17</h3>
-<div class="figure">
-<img src="ggplots/17.png" alt="Plot 17" />
-<p class="caption">Plot 17</p>
-</div>
-</div>
-<div id="plot-18" class="section level3">
-<h3>Plot 18</h3>
-<div class="figure">
-<img src="ggplots/18.png" alt="Plot 18" />
-<p class="caption">Plot 18</p>
-</div>
-</div>
-<div id="plot-19" class="section level3">
-<h3>Plot 19</h3>
-<div class="figure">
-<img src="ggplots/19.png" alt="Plot 19" />
-<p class="caption">Plot 19</p>
-</div>
-</div>
-<div id="plot-20" class="section level3">
-<h3>Plot 20</h3>
-<div class="figure">
-<img src="ggplots/20.png" alt="Plot 20" />
-<p class="caption">Plot 20</p>
-</div>
-</div>
-<div id="plot-21" class="section level3">
-<h3>Plot 21</h3>
-<div class="figure">
-<img src="ggplots/21.png" alt="Plot 21" />
-<p class="caption">Plot 21</p>
-</div>
-</div>
-</div>
 <div id="reverse-engineering-practice" class="section level2">
-<h2><a href="reverse.html">Reverse-engineering, practice</a></h2>
-<p>Recreate the following plots by filling in the dots in the corresponding code snippets. Use the <code>high_impact_stats</code> dataset from the <code>gfdata</code> package. What is the purpose of the predefined <code>scale_...()</code> and <code>theme()</code> calls?</p>
-<div id="plot-1-1" class="section level3">
-<h3>Plot 1</h3>
+<h2>Reverse-engineering, practice</h2>
 <pre class="r"><code>library(gfdata)
 ggplot(
-  data = ...,
+  data = high_impact_stats,
   mapping = aes(
-    x = ordered(...),
-    y = ...
+    x = ordered(year),
+    y = tb_treatment_coverage_percent
   )
 ) +
-  geom_...() +
+  geom_boxplot() +
   scale_y_continuous(labels = scales::percent, limits = c(0, NA)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))</code></pre>
-<pre><code>## Warning: Removed 39 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="ggplot2-2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre class="r"><code>library(gfdata)
-ggplot(...) +
-  geom_...(
-    ...,
+ggplot(data = high_impact_stats, aes(x = year)) +
+  geom_ribbon(
+    mapping = aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
     fill = &quot;grey&quot;
   ) +
   geom_line(
-    ...,
+    mapping = aes(y = people_living_with_hiv_aids_number),
     color = &quot;green&quot;
   ) +
-  facet_wrap(~..., scales = ..., ncol = 3) +
+  facet_wrap(~country, scales = &quot;free_y&quot;, ncol = 3) +
   scale_y_continuous(limits = c(0, NA))</code></pre>
-<p><img src="ggplot2-2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
