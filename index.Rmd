@@ -2,6 +2,6 @@
 title: "Data visualization, reporting, and processing with R"
 ---
 
-This is a collection of exercises, linked with solutions, for the R course I gave on June 1-2 2017.
+This is a collection of exercises, linked with solutions, for the tidyverse course on October 18-20, 2017.
 
 Last updated: `r Sys.time()`
