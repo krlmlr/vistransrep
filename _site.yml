@@ -11,7 +11,7 @@ navbar:
       href: ggplot2-1.html
     - text: "dplyr-1"
       href: dplyr-1.html
-    - text: "rmarkdown"
+    - text: "rmarkdown-1"
       href: rmarkdown-1.html
 output:
   html_document:
