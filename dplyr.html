@@ -13,7 +13,7 @@
 
 <meta name="date" content="2017-10-18" />
 
-<title>dplyr exercises part 1</title>
+<title>dplyr exercises</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -182,13 +182,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ggplot2-1.html">ggplot2-1</a>
+  <a href="ggplot2.html">ggplot2</a>
 </li>
 <li>
-  <a href="dplyr-1.html">dplyr-1</a>
+  <a href="dplyr.html">dplyr</a>
 </li>
 <li>
-  <a href="rmarkdown-1.html">rmarkdown-1</a>
+  <a href="rmarkdown.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -202,7 +202,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">dplyr exercises part 1</h1>
+<h1 class="title toc-ignore">dplyr exercises</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>October 18, 2017</em></h4>
 
@@ -307,6 +307,66 @@ $(document).ready(function () {
 <li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
 <p>Hint: Use <code>geom_raster()</code></p></li>
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
+</ol>
+</div>
+<div id="grouped-mutate" class="section level2">
+<h2>Grouped mutate</h2>
+<ol style="list-style-type: decimal">
+<li><p>Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.</p></li>
+<li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p></li>
+<li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
+</ol>
+</div>
+<div id="spreading-and-gathering" class="section level2">
+<h2><a href="spread-gather.html">Spreading and gathering</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p></li>
+<li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p></li>
+<li><p>Use a bar chart to visualise the data. Which of <code>table1</code> or <code>table2</code> is more suitable for plotting?</p></li>
+<li><p>Use <code>gather()</code> to convert <code>table4a</code> and <code>table4b</code> to <code>table2</code>.</p>
+<p>Hint: Use <code>bind_rows()</code> to combine similar tibbles.</p></li>
+<li><p>Create a scatterplot that shows both highway and city fuel economy from the <code>mpg</code> dataset with two different colors using only one <code>geom_point()</code> call.</p></li>
+<li><p>Find more exercises in Section 12.3.3 of r4ds.</p></li>
+</ol>
+</div>
+<div id="separating-and-uniting" class="section level2">
+<h2><a href="sep-unite.html">Separating and uniting</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p></li>
+<li><p>Convert <code>table2</code> to <code>table3</code>.</p></li>
+<li><p>Use <code>separate()</code> to compute departure and arrival hours and minutes in the <code>flights</code> dataset.</p></li>
+<li><p>Find more exercises in Section 12.4.3 of r4ds.</p></li>
+</ol>
+</div>
+<div id="keys-and-mutating-joins" class="section level2">
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
+<pre><code>presidential %&gt;%
+  mutate(term = end - start) %&gt;%
+  ggplot() +
+  geom_bar(aes(name, term))</code></pre></li>
+<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
+<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
+<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
+</ol>
+</div>
+<div id="filtering-joins" class="section level2">
+<h2>Filtering joins</h2>
+<ol style="list-style-type: decimal">
+<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
+<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
+</ol>
+</div>
+<div id="case-study" class="section level2">
+<h2>Case study</h2>
+<ol style="list-style-type: decimal">
+<li><p>Use your own data to answer a question about it using the tools you have learned in this course.</p>
+<p>Hint: To import, use the “readr” (CSV), “readxl” (Excel), or “haven” (SPSS/SAS/Stata) packages. Use the internet to find out how to import other kinds of data, use <code>as_tibble()</code> right after importing to get consistent printing.</p></li>
+<li><p>Alternatively, create a plot of the total number of tuberculosis cases per year for eight countries of your choice. Can you also plot the share (relative to the overall population of the country)?</p>
+<p>Hint: Use the <code>who</code> dataset.</p></li>
 </ol>
 </div>
 

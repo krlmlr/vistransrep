@@ -13,7 +13,7 @@
 
 <meta name="date" content="2017-10-18" />
 
-<title>R + markdown</title>
+<title>rmarkdown exercises</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -182,13 +182,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ggplot2-1.html">ggplot2-1</a>
+  <a href="ggplot2.html">ggplot2</a>
 </li>
 <li>
-  <a href="dplyr-1.html">dplyr-1</a>
+  <a href="dplyr.html">dplyr</a>
 </li>
 <li>
-  <a href="rmarkdown-1.html">rmarkdown-1</a>
+  <a href="rmarkdown.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -202,79 +202,15 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">R + markdown</h1>
+<h1 class="title toc-ignore">rmarkdown exercises</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>October 18, 2017</em></h4>
 
 </div>
 
 
-<pre><code>---
-title: &quot;Test document&quot;
-author: &quot;Kirill Müller&quot;
-date: &quot;October 17, 2017&quot;
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(tidyverse)
-```
-
-# Introduction
-
-We will be reviewing a dataset of `r nrow(mpg)` cars. The dataset is listed below.
-
-```{r}
-mpg
-```
-
-## Relationship between engine displacement and highway mileage
-
-The plot below should *not* surprise us: The larger the engine, the more energy it consumes per distance driven (in $\frac{\text{J}}{\text{km}}$), the less is the mileage per unit of gasoline (in $\frac{\text{miles}}{\text{gallon}}$).
-
-```{r}
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point()
-```
-
-Possible reasons why people would choose a larger engine include:
-
-- ...
-- ...
-- ...</code></pre>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>We will be reviewing a dataset of 234 cars. The dataset is listed below.</p>
-<pre class="r"><code>mpg</code></pre>
-<pre><code>## # A tibble: 234 x 11
-##    manufac… model   displ  year   cyl trans  drv     cty   hwy fl    class
-##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi     a4       1.80  1999     4 auto(… f        18    29 p     comp…
-##  2 audi     a4       1.80  1999     4 manua… f        21    29 p     comp…
-##  3 audi     a4       2.00  2008     4 manua… f        20    31 p     comp…
-##  4 audi     a4       2.00  2008     4 auto(… f        21    30 p     comp…
-##  5 audi     a4       2.80  1999     6 auto(… f        16    26 p     comp…
-##  6 audi     a4       2.80  1999     6 manua… f        18    26 p     comp…
-##  7 audi     a4       3.10  2008     6 auto(… f        18    27 p     comp…
-##  8 audi     a4 qua…  1.80  1999     4 manua… 4        18    26 p     comp…
-##  9 audi     a4 qua…  1.80  1999     4 auto(… 4        16    25 p     comp…
-## 10 audi     a4 qua…  2.00  2008     4 manua… 4        20    28 p     comp…
-## # ... with 224 more rows</code></pre>
-<div id="relationship-between-engine-displacement-and-highway-mileage" class="section level2">
-<h2>Relationship between engine displacement and highway mileage</h2>
-<p>The plot below should <em>not</em> surprise us: The larger the engine, the more energy it consumes per distance driven (in <span class="math inline">\(\frac{\text{J}}{\text{km}}\)</span>), the less is the mileage per unit of gasoline (in <span class="math inline">\(\frac{\text{miles}}{\text{gallon}}\)</span>).</p>
-<pre class="r"><code>ggplot(mpg, aes(displ, hwy)) +
-  geom_point()</code></pre>
-<p><img src="rmarkdown_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Possible reasons why people would choose a larger engine include:</p>
-<ul>
-<li>…</li>
-<li>…</li>
-<li>…</li>
-</ul>
-</div>
-</div>
+<p><a href="rmarkdown-1.html">Part 1</a>: Essentials</p>
+<p><a href="rmarkdown-2.html">Part 2</a>: Workflow and more formats</p>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
