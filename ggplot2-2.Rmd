@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Reverse-engineering, theory
 
-How could the authors of the [2016 WHO TB report](http://www.who.int/tb/publications/global_report/en/) have created the following plots? Assume that each plot is based on one or several suitably crafted dataset(s) that have been transformed in advance to support this particular plot. Answer the following questions for each plot:
+How could the authors of the [2016 WHO TB report](http://www.who.int/tb/publications/global_report/en/) have created the following plots? Assume that each plot is based on one or several suitably crafted dataset(s), i.e., that the data has been transformed in advance to support this particular plot. Answer the following questions for each plot:
 
 1. What layers (geoms) are used?
 1. Which variables are mapped to which aesthetics?
