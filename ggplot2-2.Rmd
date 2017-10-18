@@ -10,38 +10,100 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-## [Scales](scales.html)
+## Reverse-engineering
 
-1. Choose one or two of your previous plots, and give the scales a proper name.
+How could the authors of the [2016 WHO TB report](http://www.who.int/tb/publications/global_report/en/) have created the following plots? Assume that each plot is based on one or several suitably crafted dataset(s) that have been transformed in advance to support this particular plot. Answer the following questions for each plot:
 
-    Hint: Use one or more `scale_...()` functions.
-
-1. What happens if you call the same `scale_...()` function twice in a plot?
-
-1. Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.
-
-    Hint: Insert a code chunk containing `RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)`
-
-1. Choose an appealing scale for one of your plots that use the "color" or "fill" aesthetics. Apply it with `scale_..._brewer("<name>", palette = "<palette>")`
-
-    Hint: Use `scale_..._distiller()` if you have mapped a continuous variable.
-
-1. Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .
+1. What layers (geoms) are used?
+1. Which variables are mapped to which aesthetics?
+1. Can you identify manual aesthetics (i.e., aesthetics that are unchanged for all observations?)
+1. What statistical transformations, if any, have been applied?
+1. What positional adjustments, if any, have been applied?
+1. If an image contains more than one plot, explain the mechanism.
+1. What does each observation in the plotting dataset represent?
+1. Do you notice details about the plot which you can't explain yet?
 
 
-## [Coordinate systems](coord.html)
+### Plot 1
 
-1. Create a flipped boxplot of fuel economy by transmission type.
+![Plot 1](ggplots/01.png)
 
-1. Plot highway vs. city fuel economy with an additional `geom_abline()` layer.  How do you set a 45° degree for the diagonal line? 
+### Plot 2
 
-1. Try to "estimate" an approximate ratio between the two economy measures by tweaking the `slope` argument to `geom_abline()`.
+![Plot 2](ggplots/02.png)
 
+### Plot 3
 
-## [Theming](theme.html)
+![Plot 3](ggplots/03.png)
 
-1. Choose your favorite among the predefined themes.
+### Plot 4
 
-    Hint: All start with `theme_...()`, but watch out for `theme_set()`.
+![Plot 4](ggplots/04.png)
 
-1. Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
+### Plot 5
+
+![Plot 5](ggplots/05.png)
+
+### Plot 6
+
+![Plot 6](ggplots/06.png)
+
+### Plot 7
+
+![Plot 7](ggplots/07.png)
+
+### Plot 8
+
+![Plot 8](ggplots/08.png)
+
+### Plot 9
+
+![Plot 9](ggplots/09.png)
+
+### Plot 10
+
+![Plot 10](ggplots/10.png)
+
+### Plot 11
+
+![Plot 11](ggplots/11.png)
+
+### Plot 12
+
+![Plot 12](ggplots/12.png)
+
+### Plot 13
+
+![Plot 13](ggplots/13.png)
+
+### Plot 14
+
+![Plot 14](ggplots/14.png)
+
+### Plot 15
+
+![Plot 15](ggplots/15.png)
+
+### Plot 16
+
+![Plot 16](ggplots/16.png)
+
+### Plot 17
+
+![Plot 17](ggplots/17.png)
+
+### Plot 18
+
+![Plot 18](ggplots/18.png)
+
+### Plot 19
+
+![Plot 19](ggplots/19.png)
+
+### Plot 20
+
+![Plot 20](ggplots/20.png)
+
+### Plot 21
+
+![Plot 21](ggplots/21.png)

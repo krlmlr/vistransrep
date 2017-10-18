@@ -1,0 +1,47 @@
+---
+title: "ggplot2 exercises part 3"
+author: "Kirill Müller"
+date: "October 18, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+## [Scales](scales.html)
+
+1. Choose one or two of your previous plots, and give the scales a proper name.
+
+    Hint: Use one or more `scale_...()` functions.
+
+1. What happens if you call the same `scale_...()` function twice in a plot?
+
+1. Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.
+
+    Hint: Insert a code chunk containing `RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)`
+
+1. Choose an appealing scale for one of your plots that use the "color" or "fill" aesthetics. Apply it with `scale_..._brewer("<name>", palette = "<palette>")`
+
+    Hint: Use `scale_..._distiller()` if you have mapped a continuous variable.
+
+1. Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .
+
+
+## [Coordinate systems](coord.html)
+
+1. Create a flipped boxplot of fuel economy by transmission type.
+
+1. Plot highway vs. city fuel economy with an additional `geom_abline()` layer.  How do you set a 45° degree for the diagonal line? 
+
+1. Try to "estimate" an approximate ratio between the two economy measures by tweaking the `slope` argument to `geom_abline()`.
+
+
+## [Theming](theme.html)
+
+1. Choose your favorite among the predefined themes.
+
+    Hint: All start with `theme_...()`, but watch out for `theme_set()`.
+
+1. Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
