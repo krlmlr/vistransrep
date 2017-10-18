@@ -13,7 +13,7 @@
 
 <meta name="date" content="2017-10-18" />
 
-<title>rmarkdown exercises part 1</title>
+<title>ggplot2 exercises part 3</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -202,28 +202,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">rmarkdown exercises part 1</h1>
+<h1 class="title toc-ignore">ggplot2 exercises part 3</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>October 18, 2017</em></h4>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2><a href="rmarkdown-start.html">R + markdown</a></h2>
+<div id="scales" class="section level2">
+<h2><a href="scales.html">Scales</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Choose “File → New File → R Markdown…”. In the dialog, choose a document title and adapt the author name if necessary.</p></li>
-<li><p>Choose “File → Knit document”, or press Ctrl + Shift + K, or hit the “Knit” button at the top of the text pane.</p></li>
-<li><p>Run all chunks in the document via Ctrl + Alt + R or “Code → Run region → Run All” or via the “Run” popup at the top of the text pane.</p></li>
-<li><p>Run a single chunk by moving the caret in the text pane into the chunk and pressing Ctrl + Shift + Enter.</p></li>
-<li><p>Navigate chunks and headers by choosing from the popup at the bottom or from the document outline (you may need to hit the “Show document outline” button at the top right, or press Ctrl + Shift + O).</p></li>
-<li><p>Clear the entire document except the “YAML header” (the first few lines that start and end with <code>---</code>) and the setup chunk.</p></li>
-<li><p>In this chunk, load the tidyverse package. Knit the resulting document. Does the result surprise you?</p></li>
-<li><p>Insert a chunk via “Code → Insert chunk”, Ctrl + Alt + I, or the “Insert” popup at the top of the text pane.</p></li>
-<li><p>In this new chunk, show the <code>mpg</code> dataset.</p></li>
-<li><p>In another new chunk, show a simple plot of the <code>mpg</code> dataset.</p></li>
-<li><p>Add a descriptive text, use Markdown formatting (headers, emphasis, links, …) and perhaps try an equation in LaTeX notation.</p></li>
-<li><p>In this descriptive text, add a value computed from the data, e.g. <code>nrow(mtcars)</code>, as inline code.</p></li>
+<li><p>Choose one or two of your previous plots, and give the scales a proper name.</p>
+<p>Hint: Use one or more <code>scale_...()</code> functions.</p></li>
+<li><p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p></li>
+<li><p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
+<p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p></li>
+<li><p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
+<p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p></li>
+<li><p>Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, … .</p></li>
+</ol>
+</div>
+<div id="coordinate-systems" class="section level2">
+<h2><a href="coord.html">Coordinate systems</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a flipped boxplot of fuel economy by transmission type.</p></li>
+<li><p>Plot highway vs. city fuel economy with an additional <code>geom_abline()</code> layer. How do you set a 45° degree for the diagonal line?</p></li>
+<li><p>Try to “estimate” an approximate ratio between the two economy measures by tweaking the <code>slope</code> argument to <code>geom_abline()</code>.</p></li>
+</ol>
+</div>
+<div id="theming" class="section level2">
+<h2><a href="theme.html">Theming</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Choose your favorite among the predefined themes.</p>
+<p>Hint: All start with <code>theme_...()</code>, but watch out for <code>theme_set()</code>.</p></li>
+<li><p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a color or fill legend. What happens if you then apply <code>theme_bw()</code>? Why?</p></li>
 </ol>
 </div>
 

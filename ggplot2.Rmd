@@ -1,5 +1,5 @@
 ---
-title: "rmarkdown exercises"
+title: "ggplot2 exercises"
 author: "Kirill Müller"
 date: "October 18, 2017"
 output: html_document
@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-[Part 1](rmarkdown-1.html): Essentials
+[Part 1](ggplot2-1.html): Essentials
 
-[Part 2](rmarkdown-2.html): Workflow and more formats
+[Part 2](ggplot2-2.html): Reverse-engineering
+
+[Part 3](ggplot2-3.html): More options and  tweaks

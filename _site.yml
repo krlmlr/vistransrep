@@ -7,12 +7,12 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "ggplot2-1"
-      href: ggplot2-1.html
-    - text: "dplyr-1"
-      href: dplyr-1.html
-    - text: "rmarkdown-1"
-      href: rmarkdown-1.html
+    - text: "ggplot2"
+      href: ggplot2.html
+    - text: "dplyr"
+      href: dplyr.html
+    - text: "rmarkdown"
+      href: rmarkdown.html
 output:
   html_document:
     theme: cosmo

@@ -13,7 +13,7 @@
 
 <meta name="date" content="2017-10-18" />
 
-<title>dplyr exercises part 2</title>
+<title>R + markdown</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -182,13 +182,13 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="ggplot2-1.html">ggplot2-1</a>
+  <a href="ggplot2.html">ggplot2</a>
 </li>
 <li>
-  <a href="dplyr-1.html">dplyr-1</a>
+  <a href="dplyr.html">dplyr</a>
 </li>
 <li>
-  <a href="rmarkdown-1.html">rmarkdown-1</a>
+  <a href="rmarkdown.html">rmarkdown</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -202,71 +202,78 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">dplyr exercises part 2</h1>
+<h1 class="title toc-ignore">R + markdown</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 <h4 class="date"><em>October 18, 2017</em></h4>
 
 </div>
 
 
-<div id="grouped-mutate" class="section level2">
-<h2>Grouped mutate</h2>
-<ol style="list-style-type: decimal">
-<li><p>Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.</p></li>
-<li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p></li>
-<li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
-</ol>
+<pre><code>---
+title: &quot;Test document&quot;
+author: &quot;Kirill Müller&quot;
+date: &quot;October 17, 2017&quot;
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+# Introduction
+
+We will be reviewing a dataset of `r nrow(mpg)` cars. The dataset is listed below.
+
+```{r}
+mpg
+```
+
+## Relationship between engine displacement and highway mileage
+
+The plot below should *not* surprise us: The larger the engine, the more energy it consumes per distance driven (in $\frac{\text{J}}{\text{km}}$), the less is the mileage per unit of gasoline (in $\frac{\text{miles}}{\text{gallon}}$).
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point()
+```
+
+Possible reasons why people would choose a larger engine include:
+
+- ...
+- ...
+- ...</code></pre>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>We will be reviewing a dataset of 234 cars. The dataset is listed below.</p>
+<pre class="r"><code>mpg</code></pre>
+<pre><code>## # A tibble: 234 x 11
+##    manufac… model   displ  year   cyl trans  drv     cty   hwy fl    class
+##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi     a4       1.80  1999     4 auto(… f        18    29 p     comp…
+##  2 audi     a4       1.80  1999     4 manua… f        21    29 p     comp…
+##  3 audi     a4       2.00  2008     4 manua… f        20    31 p     comp…
+##  4 audi     a4       2.00  2008     4 auto(… f        21    30 p     comp…
+##  5 audi     a4       2.80  1999     6 auto(… f        16    26 p     comp…
+##  6 audi     a4       2.80  1999     6 manua… f        18    26 p     comp…
+##  7 audi     a4       3.10  2008     6 auto(… f        18    27 p     comp…
+##  8 audi     a4 qua…  1.80  1999     4 manua… 4        18    26 p     comp…
+##  9 audi     a4 qua…  1.80  1999     4 auto(… 4        16    25 p     comp…
+## 10 audi     a4 qua…  2.00  2008     4 manua… 4        20    28 p     comp…
+## # ... with 224 more rows</code></pre>
+<div id="relationship-between-engine-displacement-and-highway-mileage" class="section level2">
+<h2>Relationship between engine displacement and highway mileage</h2>
+<p>The plot below should <em>not</em> surprise us: The larger the engine, the more energy it consumes per distance driven (in <span class="math inline">\(\frac{\text{J}}{\text{km}}\)</span>), the less is the mileage per unit of gasoline (in <span class="math inline">\(\frac{\text{miles}}{\text{gallon}}\)</span>).</p>
+<pre class="r"><code>ggplot(mpg, aes(displ, hwy)) +
+  geom_point()</code></pre>
+<p><img src="rmarkdown-start_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Possible reasons why people would choose a larger engine include:</p>
+<ul>
+<li>…</li>
+<li>…</li>
+<li>…</li>
+</ul>
 </div>
-<div id="spreading-and-gathering" class="section level2">
-<h2><a href="spread-gather.html">Spreading and gathering</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p></li>
-<li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p></li>
-<li><p>Use a bar chart to visualise the data. Which of <code>table1</code> or <code>table2</code> is more suitable for plotting?</p></li>
-<li><p>Use <code>gather()</code> to convert <code>table4a</code> and <code>table4b</code> to <code>table2</code>.</p>
-<p>Hint: Use <code>bind_rows()</code> to combine similar tibbles.</p></li>
-<li><p>Create a scatterplot that shows both highway and city fuel economy from the <code>mpg</code> dataset with two different colors using only one <code>geom_point()</code> call.</p></li>
-<li><p>Find more exercises in Section 12.3.3 of r4ds.</p></li>
-</ol>
-</div>
-<div id="separating-and-uniting" class="section level2">
-<h2><a href="sep-unite.html">Separating and uniting</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p></li>
-<li><p>Convert <code>table2</code> to <code>table3</code>.</p></li>
-<li><p>Use <code>separate()</code> to compute departure and arrival hours and minutes in the <code>flights</code> dataset.</p></li>
-<li><p>Find more exercises in Section 12.4.3 of r4ds.</p></li>
-</ol>
-</div>
-<div id="keys-and-mutating-joins" class="section level2">
-<h2><a href="joins.html">Keys and mutating joins</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
-<pre><code>presidential %&gt;%
-  mutate(term = end - start) %&gt;%
-  ggplot() +
-  geom_bar(aes(name, term))</code></pre></li>
-<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
-<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
-<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
-<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
-<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
-</ol>
-</div>
-<div id="filtering-joins" class="section level2">
-<h2>Filtering joins</h2>
-<ol style="list-style-type: decimal">
-<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
-<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
-</ol>
-</div>
-<div id="case-study" class="section level2">
-<h2>Case study</h2>
-<ol style="list-style-type: decimal">
-<li><p>Use your own data to answer a question about it using the tools you have learned in this course.</p>
-<p>Hint: To import, use the “readr” (CSV), “readxl” (Excel), or “haven” (SPSS/SAS/Stata) packages. Use the internet to find out how to import other kinds of data, use <code>as_tibble()</code> right after importing to get consistent printing.</p></li>
-<li><p>Alternatively, create a plot of the total number of tuberculosis cases per year for eight countries of your choice. Can you also plot the share (relative to the overall population of the country)?</p></li>
-</ol>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

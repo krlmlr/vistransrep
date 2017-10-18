@@ -1,0 +1,67 @@
+---
+title: "R + markdown"
+author: "Kirill Müller"
+date: "October 18, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r echo = FALSE, results = "asis"}
+text <- '``````\n---
+title: "Test document"
+author: "Kirill Müller"
+date: "October 17, 2017"
+output: html_document\n---
+\n```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)\n```
+
+# Introduction
+
+We will be reviewing a dataset of `r nrow(mpg)` cars. The dataset is listed below.
+\n```{r}
+mpg\n```
+
+## Relationship between engine displacement and highway mileage
+
+The plot below should *not* surprise us: The larger the engine, the more energy it consumes per distance driven (in $\\frac{\\text{J}}{\\text{km}}$), the less is the mileage per unit of gasoline (in $\\frac{\\text{miles}}{\\text{gallon}}$).
+\n```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point()\n```
+
+Possible reasons why people would choose a larger engine include:
+
+- ...
+- ...
+- ...\n``````'
+
+knitr::asis_output(text)
+```
+
+
+# Introduction
+
+We will be reviewing a dataset of `r nrow(mpg)` cars. The dataset is listed below.
+
+```{r}
+mpg
+```
+
+## Relationship between engine displacement and highway mileage
+
+The plot below should *not* surprise us: The larger the engine, the more energy it consumes per distance driven (in $\frac{\text{J}}{\text{km}}$), the less is the mileage per unit of gasoline (in $\frac{\text{miles}}{\text{gallon}}$).
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point()
+```
+
+Possible reasons why people would choose a larger engine include:
+
+- ...
+- ...
+- ...
