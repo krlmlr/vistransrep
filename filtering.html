@@ -187,7 +187,7 @@ $(document).ready(function () {
   <a href="dplyr-1.html">dplyr-1</a>
 </li>
 <li>
-  <a href="rmarkdown-1.html">rmarkdown</a>
+  <a href="rmarkdown-1.html">rmarkdown-1</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -238,20 +238,20 @@ $(document).ready(function () {
     month == lubridate::month(Sys.Date()),
     day == lubridate::day(Sys.Date())
   )</code></pre>
-<pre><code>## # A tibble: 995 x 19
+<pre><code>## # A tibble: 993 x 19
 ##     year month   day dep_t… sched_… dep_d… arr_… sched… arr_d… carr… flig…
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
-##  1  2013    10    17    453     500 - 7.00   629    648 -19.0  US     1843
-##  2  2013    10    17    541     545 - 4.00   827    855 -28.0  AA     2243
-##  3  2013    10    17    541     545 - 4.00   906    933 -27.0  B6     1403
-##  4  2013    10    17    542     545 - 3.00   827    827   0    UA     1714
-##  5  2013    10    17    548     550 - 2.00   906    932 -26.0  B6      939
-##  6  2013    10    17    549     600 -11.0    709    716 - 7.00 EV     5716
-##  7  2013    10    17    553     600 - 7.00   813    829 -16.0  EV     4137
-##  8  2013    10    17    553     600 - 7.00   828    840 -12.0  B6       27
-##  9  2013    10    17    553     600 - 7.00   821    829 - 8.00 DL      563
-## 10  2013    10    17    554     600 - 6.00   654    701 - 7.00 US     2134
-## # ... with 985 more rows, and 8 more variables: tailnum &lt;chr&gt;,
+##  1  2013    10    18      9    2359  10.0    348    350 - 2.00 B6      745
+##  2  2013    10    18    451     500 - 9.00   645    648 - 3.00 US     1843
+##  3  2013    10    18    509     517 - 8.00   753    757 - 4.00 UA      252
+##  4  2013    10    18    541     545 - 4.00   853    827  26.0  UA     1714
+##  5  2013    10    18    543     545 - 2.00   904    933 -29.0  B6     1403
+##  6  2013    10    18    545     545   0      850    855 - 5.00 AA     2243
+##  7  2013    10    18    545     550 - 5.00   910    932 -22.0  B6      939
+##  8  2013    10    18    550     600 -10.0    648    701 -13.0  US     2134
+##  9  2013    10    18    550     600 -10.0    653    659 - 6.00 US     2167
+## 10  2013    10    18    551     600 - 9.00   703    711 - 8.00 EV     4533
+## # ... with 983 more rows, and 8 more variables: tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p>Can we use arguments?</p>
@@ -262,20 +262,20 @@ flights %&gt;%
     month == month_,
     day == day_
   )</code></pre>
-<pre><code>## # A tibble: 995 x 19
+<pre><code>## # A tibble: 993 x 19
 ##     year month   day dep_t… sched_… dep_d… arr_… sched… arr_d… carr… flig…
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
-##  1  2013    10    17    453     500 - 7.00   629    648 -19.0  US     1843
-##  2  2013    10    17    541     545 - 4.00   827    855 -28.0  AA     2243
-##  3  2013    10    17    541     545 - 4.00   906    933 -27.0  B6     1403
-##  4  2013    10    17    542     545 - 3.00   827    827   0    UA     1714
-##  5  2013    10    17    548     550 - 2.00   906    932 -26.0  B6      939
-##  6  2013    10    17    549     600 -11.0    709    716 - 7.00 EV     5716
-##  7  2013    10    17    553     600 - 7.00   813    829 -16.0  EV     4137
-##  8  2013    10    17    553     600 - 7.00   828    840 -12.0  B6       27
-##  9  2013    10    17    553     600 - 7.00   821    829 - 8.00 DL      563
-## 10  2013    10    17    554     600 - 6.00   654    701 - 7.00 US     2134
-## # ... with 985 more rows, and 8 more variables: tailnum &lt;chr&gt;,
+##  1  2013    10    18      9    2359  10.0    348    350 - 2.00 B6      745
+##  2  2013    10    18    451     500 - 9.00   645    648 - 3.00 US     1843
+##  3  2013    10    18    509     517 - 8.00   753    757 - 4.00 UA      252
+##  4  2013    10    18    541     545 - 4.00   853    827  26.0  UA     1714
+##  5  2013    10    18    543     545 - 2.00   904    933 -29.0  B6     1403
+##  6  2013    10    18    545     545   0      850    855 - 5.00 AA     2243
+##  7  2013    10    18    545     550 - 5.00   910    932 -22.0  B6      939
+##  8  2013    10    18    550     600 -10.0    648    701 -13.0  US     2134
+##  9  2013    10    18    550     600 -10.0    653    659 - 6.00 US     2167
+## 10  2013    10    18    551     600 - 9.00   703    711 - 8.00 EV     4533
+## # ... with 983 more rows, and 8 more variables: tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
