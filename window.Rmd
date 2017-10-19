@@ -1,0 +1,48 @@
+---
+title: "Window functions"
+author: "Kirill Müller"
+date: "October 19, 2017"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+```
+
+## Busiest month
+
+```{r}
+flights %>%
+  group_by(carrier, month) %>%
+  summarize(distance = sum(distance)) %>%
+  mutate(total_distance = sum(distance)) %>%
+  ungroup() %>%
+  mutate(month_share = distance / total_distance) %>%
+  arrange(-total_distance) %>%
+  ggplot(aes(factor(month), carrier, fill = month_share)) +
+  geom_tile() +
+  scale_fill_continuous(trans = "log10")
+```
+
+
+## Ground time
+
+```{r}
+flights %>%
+  mutate_at(
+    vars(dep_min = dep_time, arr_min = arr_time),
+    funs(. %/% 100 + . %% 100 * 60)
+  ) %>%
+  group_by(tailnum) %>%
+  mutate(ground_min = dep_min - lag(arr_min)) %>%
+  ungroup() %>%
+  filter(ground_min >= 0) %>%
+  group_by(carrier, tailnum) %>%
+  mutate(total_ground_min = sum(ground_min, na.rm = TRUE)) %>%
+  ungroup() %>%
+  ggplot(aes(x = carrier, y = total_ground_min)) +
+  geom_boxplot()
+```

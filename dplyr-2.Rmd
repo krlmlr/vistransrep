@@ -10,15 +10,6 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-## Grouped mutate
-
-1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
-
-1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
-
-1. Find more exercises in Section 5.7.1 of r4ds.
-
-
 ## [Spreading and gathering](spread-gather.html)
 
 1. Use `spread()` to convert `table2` to `table1`. What is the meaning of the `key` and `value` arguments?
