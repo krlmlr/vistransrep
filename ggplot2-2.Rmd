@@ -19,7 +19,7 @@ How could the authors of the [2016 WHO TB report](http://www.who.int/tb/publicat
 1. Can you identify manual aesthetics (i.e., aesthetics that are unchanged for all observations?)
 1. What statistical transformations, if any, have been applied?
 1. What positional adjustments, if any, have been applied?
-1. If an image contains more than one plot, explain the mechanism.
+1. If an image contains more than one graph, explain the mechanism.
 1. What does each observation in the plotting dataset represent?
 1. Do you notice details about the plot which you can't explain yet?
 
