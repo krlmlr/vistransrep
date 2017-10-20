@@ -73,27 +73,26 @@ library(tidyverse)
 
     Hint: Use the `gfdata` package.
 
-```{r echo=FALSE, cache = TRUE}
-library(gfdata)
-all_stats %>% 
-  filter(five_regions == "High Impact Asia") %>% 
-  ggplot(aes(x = year, y = hiv_new_infections_number)) +
-  geom_line() +
-  facet_wrap(~country, scales = "free_y")
-
-all_stats %>%
-  filter(five_regions == "High Impact Asia") %>%
-  ggplot(aes(x = year, y = tb_new_cases_number)) +
-  geom_line() +
-  facet_wrap(~country, scales = "free_y")
-
-all_stats %>%
-  filter(five_regions == "High Impact Asia") %>%
-  ggplot(aes(x = year, y = malaria_new_cases_number)) +
-  geom_line() +
-  facet_wrap(~country, scales = "free_y")
-```
-
+    ```{r echo=FALSE, cache = TRUE}
+    library(gfdata)
+    all_stats %>% 
+      filter(five_regions == "High Impact Asia") %>% 
+      ggplot(aes(x = year, y = hiv_new_infections_number)) +
+      geom_line() +
+      facet_wrap(~country, scales = "free_y")
+    
+    all_stats %>%
+      filter(five_regions == "High Impact Asia") %>%
+      ggplot(aes(x = year, y = tb_new_cases_number)) +
+      geom_line() +
+      facet_wrap(~country, scales = "free_y")
+    
+    all_stats %>%
+      filter(five_regions == "High Impact Asia") %>%
+      ggplot(aes(x = year, y = malaria_new_cases_number)) +
+      geom_line() +
+      facet_wrap(~country, scales = "free_y")
+    ```
 
 1. Create a single plot that shows time trends of new HIV, new TB, and new malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one country and one disease.
 
