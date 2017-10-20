@@ -1,7 +1,7 @@
 ---
 title: "Summarize by multiple variables"
 author: "Kirill Müller"
-date: "June 2, 2017"
+date: "October 19, 2017"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ flights %>%
   group_by(origin, dest, carrier) %>%
   summarize(n_flights = n()) %>%
   summarize(n_distinct_carriers = n()) %>%
-  ungroup %>% 
+  ungroup() %>% 
   arrange(desc(n_distinct_carriers))
 ```
 
@@ -28,8 +28,8 @@ Much shorter:
 ```{r}
 flights %>%
   count(origin, dest, carrier) %>%
-  count() %>% 
-  ungroup %>% 
+  count(origin, dest) %>% 
+  ungroup() %>% 
   arrange(desc(nn))
 ```
 
@@ -39,7 +39,7 @@ flights %>%
 flights %>% 
   group_by(carrier, month) %>% 
   summarize(share_of_cancelled = mean(is.na(dep_time))) %>%
-  ungroup %>%
+  ungroup() %>%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
 ```

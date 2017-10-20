@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-10-19" />
 
 <title>Summarize by multiple variables</title>
 
@@ -203,7 +204,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Summarize by multiple variables</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
-<h4 class="date"><em>June 2, 2017</em></h4>
+<h4 class="date"><em>October 19, 2017</em></h4>
 
 </div>
 
@@ -214,7 +215,7 @@ $(document).ready(function () {
   group_by(origin, dest, carrier) %&gt;%
   summarize(n_flights = n()) %&gt;%
   summarize(n_distinct_carriers = n()) %&gt;%
-  ungroup %&gt;% 
+  ungroup() %&gt;% 
   arrange(desc(n_distinct_carriers))</code></pre>
 <pre><code>## # A tibble: 224 x 3
 ##    origin dest  n_distinct_carriers
@@ -233,20 +234,30 @@ $(document).ready(function () {
 <p>Much shorter:</p>
 <pre class="r"><code>flights %&gt;%
   count(origin, dest, carrier) %&gt;%
-  count() %&gt;% 
-  ungroup %&gt;% 
+  count(origin, dest) %&gt;% 
+  ungroup() %&gt;% 
   arrange(desc(nn))</code></pre>
-<pre><code>## # A tibble: 1 x 1
-##      nn
-##   &lt;int&gt;
-## 1   439</code></pre>
+<pre><code>## # A tibble: 224 x 3
+##    origin dest     nn
+##    &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
+##  1 EWR    DTW       5
+##  2 EWR    MSP       5
+##  3 JFK    LAX       5
+##  4 JFK    SFO       5
+##  5 JFK    TPA       5
+##  6 LGA    ATL       5
+##  7 LGA    CLE       5
+##  8 LGA    CLT       5
+##  9 EWR    ATL       4
+## 10 JFK    AUS       4
+## # ... with 214 more rows</code></pre>
 </div>
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
 <pre class="r"><code>flights %&gt;% 
   group_by(carrier, month) %&gt;% 
   summarize(share_of_cancelled = mean(is.na(dep_time))) %&gt;%
-  ungroup %&gt;%
+  ungroup() %&gt;%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
 <p><img src="summarize-mult_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>

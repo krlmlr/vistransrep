@@ -1,7 +1,7 @@
 ---
 title: "Summarize"
 author: "Kirill Müller"
-date: "June 2, 2017"
+date: "October 19, 2017"
 output: html_document
 ---
 
@@ -62,7 +62,7 @@ total_airtime_by_carrier <-
   flights %>% 
     group_by(carrier) %>% 
     summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>% 
-    ungroup
+    ungroup()
 
 total_airtime_by_carrier
 ```
@@ -83,7 +83,7 @@ carrier_arranged_by_mean_distance <-
   flights %>%
   group_by(carrier) %>% 
   summarize(mean_distance = mean(distance)) %>% 
-  ungroup %>%
+  ungroup() %>%
   arrange(desc(mean_distance))
 
 carrier_arranged_by_mean_distance
@@ -129,7 +129,7 @@ flights %>%
 flights %>%
   group_by(carrier) %>% 
   summarize(short_distance_ratio = mean(distance < 300)) %>% 
-  ungroup %>%
+  ungroup() %>%
   arrange(desc(short_distance_ratio)) %>%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
