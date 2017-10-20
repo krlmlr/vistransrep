@@ -151,6 +151,10 @@ library(tidyverse)
     - Malaria mortality rate = number of malaria deaths `malaria_deaths_number` divided by population at malaria risk `population_at_malaria_risk` multiplied by 1000
 
 
+1. Create a single plot that shows aggregated time trends of mortality or incidence rates for HIV, TB, and malaria cases for all regions. Each panel should show the data for one region and one disease.
+
+    Hint: You need to sum the numerators across relevant countries and divide it by sum of the denominators across the same set of countries.
+
     ```{r echo=FALSE, cache = TRUE, fig.height = 8}
     library(gfdata)
     all_stats_grouped_inc_mort_long <-
@@ -197,10 +201,6 @@ library(tidyverse)
       geom_line() +
       facet_grid(country~disease, scales = "free")
     ```
-
-1. Create a single plot that shows aggregated time trends of mortality or incidence rates for HIV, TB, and malaria cases for all regions. Each panel should show the data for one region and one disease.
-
-    Hint: You need to sum the numerators across relevant countries and divide it by sum of the denominators across the same set of countries.
 
 
 
