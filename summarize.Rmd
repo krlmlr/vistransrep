@@ -41,7 +41,17 @@ flights %>%
 flights %>%
   summarize(
     mean(arr_delay, na.rm = TRUE),
-    mean(dep_delay, na.rm = TRUE)
+    mean(dep_delay, na.rm = TRUE),
+    sd(arr_delay, na.rm = TRUE),
+    sd(dep_delay, na.rm = TRUE)
+  )
+```
+
+```{r}
+flights %>%
+  summarize_at(
+    vars(arr_delay, dep_delay),
+    funs(mean(., na.rm = TRUE), sd(., na.rm = TRUE))
   )
 ```
 

@@ -239,12 +239,23 @@ $(document).ready(function () {
 <pre class="r"><code>flights %&gt;%
   summarize(
     mean(arr_delay, na.rm = TRUE),
-    mean(dep_delay, na.rm = TRUE)
+    mean(dep_delay, na.rm = TRUE),
+    sd(arr_delay, na.rm = TRUE),
+    sd(dep_delay, na.rm = TRUE)
   )</code></pre>
-<pre><code>## # A tibble: 1 x 2
-##   `mean(arr_delay, na.rm = TRUE)` `mean(dep_delay, na.rm = TRUE)`
-##                             &lt;dbl&gt;                           &lt;dbl&gt;
-## 1                            6.90                            12.6</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##   `mean(arr_delay, na.rm = TRUE)` `mean(dep_del… `sd(arr_del… `sd(dep_del…
+##                             &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1                            6.90           12.6         44.6         40.2</code></pre>
+<pre class="r"><code>flights %&gt;%
+  summarize_at(
+    vars(arr_delay, dep_delay),
+    funs(mean(., na.rm = TRUE), sd(., na.rm = TRUE))
+  )</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##   arr_delay_mean dep_delay_mean arr_delay_sd dep_delay_sd
+##            &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+## 1           6.90           12.6         44.6         40.2</code></pre>
 <pre class="r"><code>flights %&gt;%
   group_by(origin) %&gt;%
   summarize(
@@ -292,7 +303,7 @@ total_airtime_by_carrier</code></pre>
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()</code></pre>
-<p><img src="summarize_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="summarize_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="carriers-for-long-distance-routes" class="section level2">
 <h2>Carriers for long-distance routes</h2>
@@ -326,7 +337,7 @@ carrier_arranged_by_mean_distance</code></pre>
 <pre class="r"><code>carrier_arranged_by_mean_distance %&gt;% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))</code></pre>
-<p><img src="summarize_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="summarize_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="worst-plane" class="section level2">
 <h2>Worst plane</h2>
@@ -397,7 +408,7 @@ carrier_arranged_by_mean_distance</code></pre>
   arrange(desc(short_distance_ratio)) %&gt;%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
-<p><img src="summarize_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="summarize_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
