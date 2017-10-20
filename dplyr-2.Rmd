@@ -112,6 +112,10 @@ library(tidyverse)
         into = c("disease", "indicator"),
         extra = "merge"
       ) %>%
+      mutate(disease = recode(
+        disease,
+        "tb" = "TB", "malaria" = "Malaria", "hiv" = "HIV"
+      )) %>% 
       mutate(disease = forcats::fct_inorder(disease)) %>% 
       spread(indicator, count) %>% 
       filter(five_regions == "High Impact Asia") %>% 
