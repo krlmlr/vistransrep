@@ -153,25 +153,29 @@ library(tidyverse)
 
     ```{r echo=FALSE, cache = TRUE, fig.height = 8}
     library(gfdata)
-    all_stats_inc_mort_long <-
+    all_stats_grouped_inc_mort_long <-
       all_stats %>%
       rename(hiv_new_cases_number = hiv_new_infections_number) %>%
       rename(hiv_deaths_number = aids_deaths_number) %>%
       group_by(five_regions, country) %>%
-      mutate(
-        hiv_incidence = hiv_new_cases_number / lag(population_excluding_plwha) * 100,
-        hiv_mortality = hiv_deaths_number / population_all_ages * 100,
-        tb_incidence = tb_new_cases_number / population_all_ages * 100000,
-        tb_mortality = tb_deaths_number / population_all_ages * 100000,
-        malaria_incidence = malaria_new_cases_number / population_at_malaria_risk * 1000,
-        malaria_mortality = malaria_deaths_number / population_at_malaria_risk * 1000
+      mutate(lag_population_excluding_plwha = lag(population_excluding_plwha) * 100) %>%
+      group_by(five_regions, year) %>%
+      summarize(
+        hiv_incidence = sum(hiv_new_cases_number, na.rm = TRUE) / sum(lag_population_excluding_plwha, na.rm = TRUE),
+        hiv_mortality = sum(hiv_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100,
+        tb_incidence = sum(tb_new_cases_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
+        tb_mortality = sum(tb_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
+        malaria_incidence = sum(malaria_new_cases_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000,
+        malaria_mortality = sum(malaria_deaths_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000
       ) %>%
+      ungroup() %>% 
       select(
-        five_regions, country, year,
+        five_regions, year,
         ends_with("_incidence"),
         ends_with("_mortality")
       ) %>%
-      gather(indicator, count, -five_regions, -country, -year) %>%
+      gather(indicator, count, -five_regions, -year) %>%
+      filter(is.finite(count)) %>%
       separate(
         indicator,
         into = c("disease", "indicator"),
@@ -185,7 +189,7 @@ library(tidyverse)
       spread(indicator, count)
     ```
 
-    ```{r echo=FALSE, cache = TRUE}
+    ```{r echo=FALSE, cache = TRUE, fig.height = 8}
     library(gfdata)
     all_stats_inc_mort_long %>% 
       filter(five_regions == "High Impact Asia") %>% 
