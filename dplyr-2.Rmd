@@ -150,9 +150,55 @@ library(tidyverse)
     - Malaria incidence rate = number of new malaria cases `malaria_new_cases_number` divided by population at malaria risk `population_at_malaria_risk` multiplied by 1000
     - Malaria mortality rate = number of malaria deaths `malaria_deaths_number` divided by population at malaria risk `population_at_malaria_risk` multiplied by 1000
 
+
+    ```{r echo=FALSE, cache = TRUE, fig.height = 8}
+    library(gfdata)
+    all_stats_inc_mort_long <-
+      all_stats %>%
+      rename(hiv_new_cases_number = hiv_new_infections_number) %>%
+      rename(hiv_deaths_number = aids_deaths_number) %>%
+      group_by(five_regions, country) %>%
+      mutate(
+        hiv_incidence = hiv_new_cases_number / lag(population_excluding_plwha) * 100,
+        hiv_mortality = hiv_deaths_number / population_all_ages * 100,
+        tb_incidence = tb_new_cases_number / population_all_ages * 100000,
+        tb_mortality = tb_deaths_number / population_all_ages * 100000,
+        malaria_incidence = malaria_new_cases_number / population_at_malaria_risk * 1000,
+        malaria_mortality = malaria_deaths_number / population_at_malaria_risk * 1000
+      ) %>%
+      select(
+        five_regions, country, year,
+        ends_with("_incidence"),
+        ends_with("_mortality")
+      ) %>%
+      gather(indicator, count, -five_regions, -country, -year) %>%
+      separate(
+        indicator,
+        into = c("disease", "indicator"),
+        extra = "merge"
+      ) %>%
+      mutate(disease = recode(
+        disease,
+        "tb" = "TB", "malaria" = "Malaria", "hiv" = "HIV"
+      )) %>%
+      mutate(disease = forcats::fct_inorder(disease)) %>%
+      spread(indicator, count)
+    ```
+
+    ```{r echo=FALSE, cache = TRUE}
+    library(gfdata)
+    all_stats_inc_mort_long %>% 
+      filter(five_regions == "High Impact Asia") %>% 
+      ggplot(aes(x = year, y = mortality)) +
+      geom_line() +
+      facet_grid(country~disease, scales = "free")
+    ```
+
 1. Create a single plot that shows aggregated time trends of mortality or incidence rates for HIV, TB, and malaria cases for all regions. Each panel should show the data for one region and one disease.
 
     Hint: You need to sum the numerators across relevant countries and divide it by sum of the denominators across the same set of countries.
+
+
 
 1. Create a single plot that shows time trends of mortality or incidence rates for HIV, TB, and malaria cases for all countries in all high-impact regions, compared against the year 2000 baseline. Each panel should show the data for one region.
 
