@@ -59,6 +59,8 @@ all_stats_new_cases_long <-
   )) %>% 
   mutate(disease = forcats::fct_inorder(disease)) %>% 
   spread(indicator, count)
+
+all_stats_new_cases_long
 ```
 
 ```{r cache = TRUE, fig.height = 8}
@@ -76,7 +78,7 @@ library(gfdata)
 all_stats_new_cases_long %>% 
   group_by(five_regions, year, disease) %>% 
   summarize(new_cases_number = sum(new_cases_number, na.rm = TRUE)) %>% 
-  ungroup %>% 
+  ungroup() %>% 
   ggplot(aes(x = year, y = new_cases_number)) +
   geom_line() +
   facet_grid(five_regions~disease, scales = "free")
@@ -92,7 +94,7 @@ all_stats_inc_mort_long <-
   rename(hiv_deaths_number = aids_deaths_number) %>%
   group_by(five_regions, country) %>%
   mutate(lag_population_excluding_plwha = lag(population_excluding_plwha) * 100) %>%
-  ungroup %>%
+  ungroup() %>%
   transmute(
     five_regions, country, year,
     nominator_hiv_incidence = hiv_new_cases_number * 100,
@@ -127,6 +129,8 @@ all_stats_inc_mort_long <-
   mutate(disease = forcats::fct_inorder(disease)) %>%
   spread(nom_denom, value) %>%
   filter(nominator > 0 & denominator > 0)
+
+all_stats_inc_mort_long
 ```
 
 ```{r cache = TRUE, fig.height = 8}
@@ -167,4 +171,127 @@ all_stats_inc_mort_long %>%
     ncol = 3,
     labeller = labeller(.multi_line = FALSE)
   )
+```
+
+## Assignment 6
+
+
+```{r cache = TRUE, fig.height = 8}
+all_stats_inc_mort_long %>%
+  group_by(five_regions, disease, indicator, year) %>%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %>%
+  mutate(rate_change = rate / first(rate)) %>%
+  select(-rate) %>%
+  ungroup() %>%
+  spread(indicator, rate_change) %>%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  facet_grid(five_regions ~ disease)
+```
+
+
+## Assignment 7
+
+```{r fig.height = 8}
+all_stats %>%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %>%
+  filter(grepl("^High Impact ", five_regions)) %>%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = "grey"
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = "green"
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~country, scales = "free_y")
+```
+
+
+## Assignment 8
+
+```{r fig.height = 8}
+all_stats %>%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %>%
+  group_by(five_regions, year) %>%
+  summarize_at(
+    vars(starts_with("people_living_with_hiv_aids_")),
+    funs(sum(., na.rm = TRUE))
+  ) %>%
+  ungroup() %>%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = "grey"
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = "green"
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~five_regions, scales = "free_y")
+```
+
+
+
+## Assignment 9
+
+```{r}
+library(gfdata)
+eligibility <-
+  all_stats %>%
+  select(
+    five_regions, country, year,
+    ends_with("_eligible")
+  ) %>%
+  gather(disease, eligible, -five_regions, -country, -year) %>%
+  separate(disease, into = c("disease"), extra = "drop")
+
+deaths <-
+  all_stats %>%
+  select(
+    five_regions, country, year,
+    hiv_deaths_number = aids_deaths_number,
+    ends_with("_deaths_number")
+  ) %>%
+  gather(disease, deaths_number, -five_regions, -country, -year) %>%
+  separate(disease, into = c("disease"), extra = "drop")
+
+eligibility %>%
+  left_join(deaths, by = c("five_regions", "country", "year", "disease")) %>%
+  group_by(year, disease, eligible) %>%
+  summarize(deaths_number = sum(deaths_number, na.rm = TRUE)) %>%
+  mutate(deaths_share = deaths_number / sum(deaths_number, na.rm = TRUE)) %>%
+  select(-deaths_number) %>%
+  ungroup() %>%
+  filter(eligible != "Yes") %>%
+  filter(year <= 2015) %>%
+  ggplot(aes(disease, deaths_share, fill = eligible)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  facet_wrap(~year)
 ```
