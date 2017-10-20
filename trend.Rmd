@@ -82,33 +82,39 @@ all_stats_new_cases_long %>%
   facet_grid(five_regions~disease, scales = "free")
 ```
 
-## Assignment 5
+## Assignment 4
 
-```{r cache = TRUE, fig.height = 8}
+```{r}
 library(gfdata)
-all_stats_grouped_inc_mort_long <-
+all_stats_inc_mort_long <-
   all_stats %>%
   rename(hiv_new_cases_number = hiv_new_infections_number) %>%
   rename(hiv_deaths_number = aids_deaths_number) %>%
   group_by(five_regions, country) %>%
   mutate(lag_population_excluding_plwha = lag(population_excluding_plwha) * 100) %>%
-  group_by(five_regions, year) %>%
-  summarize(
-    hiv_incidence = sum(hiv_new_cases_number, na.rm = TRUE) / sum(lag_population_excluding_plwha, na.rm = TRUE),
-    hiv_mortality = sum(hiv_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100,
-    tb_incidence = sum(tb_new_cases_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
-    tb_mortality = sum(tb_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
-    malaria_incidence = sum(malaria_new_cases_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000,
-    malaria_mortality = sum(malaria_deaths_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000
+  ungroup %>%
+  transmute(
+    five_regions, country, year,
+    nominator_hiv_incidence = hiv_new_cases_number * 100,
+    denominator_hiv_incidence = lag_population_excluding_plwha,
+    nominator_hiv_mortality = hiv_deaths_number * 100,
+    denominator_hiv_mortality = population_all_ages,
+    nominator_tb_incidence = tb_new_cases_number * 100000,
+    denominator_tb_incidence = population_all_ages,
+    nominator_tb_mortality = tb_deaths_number * 100000,
+    denominator_tb_mortality = population_all_ages,
+    nominator_malaria_incidence = malaria_new_cases_number * 1000,
+    denominator_malaria_incidence = population_at_malaria_risk,
+    nominator_malaria_mortality = malaria_deaths_number * 1000,
+    denominator_malaria_mortality = population_at_malaria_risk
   ) %>%
-  ungroup() %>% 
-  select(
-    five_regions, year,
-    ends_with("_incidence"),
-    ends_with("_mortality")
+  gather(indicator, value, -five_regions, -country, -year) %>%
+  separate(
+    indicator,
+    into = c("nom_denom", "indicator"),
+    extra = "merge"
   ) %>%
-  gather(indicator, count, -five_regions, -year) %>%
-  filter(is.finite(count)) %>%
+  mutate(nom_denom = forcats::fct_inorder(nom_denom)) %>%
   separate(
     indicator,
     into = c("disease", "indicator"),
@@ -117,15 +123,48 @@ all_stats_grouped_inc_mort_long <-
   mutate(disease = recode(
     disease,
     "tb" = "TB", "malaria" = "Malaria", "hiv" = "HIV"
-  )) %>%
+  )) %>% 
   mutate(disease = forcats::fct_inorder(disease)) %>%
-  spread(indicator, count)
+  spread(nom_denom, value) %>%
+  filter(nominator > 0 & denominator > 0)
 ```
 
 ```{r cache = TRUE, fig.height = 8}
-library(gfdata)
-all_stats_grouped_inc_mort_long %>% 
+all_stats_inc_mort_long %>%
+  filter(five_regions == "High Impact Asia") %>%
+  filter(indicator == "mortality") %>%
+  transmute(
+    country, year, disease, indicator,
+    rate = nominator / denominator
+  ) %>%
+  spread(indicator, rate) %>%
   ggplot(aes(x = year, y = mortality)) +
   geom_line() +
-  facet_grid(five_regions~disease, scales = "free")
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~country + disease,
+    scales = "free",
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )
+```
+
+## Assignment 5
+
+```{r cache = TRUE, fig.height = 8}
+all_stats_inc_mort_long %>%
+  group_by(five_regions, disease, indicator, year) %>%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %>%
+  spread(indicator, rate) %>%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~five_regions + disease,
+    scales = "free",
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )
 ```
