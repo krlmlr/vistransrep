@@ -22,7 +22,7 @@ library(tidyverse)
 
     Hint: Use `bind_rows()` to combine similar tibbles.
 
-1. Create a scatterplot that shows both highway and city fuel economy from the `mpg` dataset with two different colors using only one `geom_point()` call.
+1. Create a scatterplot from the `mpg` dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one `geom_point()` call.
 
 1. Find more exercises in Section 12.3.3 of r4ds.
 
@@ -65,6 +65,47 @@ library(tidyverse)
 1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
 
 1. Find more exercises in Section 13.5.1 of r4ds.
+
+
+## Time trends
+
+1. Create plots for time trends of new HIV, new TB, and new malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one country.
+
+    Hint: Use the `gfdata` package.
+
+1. Create a single plot that shows time trends of new HIV, new TB, and new malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one country and one disease.
+
+    Hint: You need to reorganize your data. Use `rename()` to bring the columns into a consistent format, and a combination of `spread()`, `gather()`, and `separate(..., into = c("disease", "indicator"), extra = "merge")` to extract the disease from the rest of the column name.
+
+1. Create a single plot that shows aggregated time trends of new HIV, new TB, and new malaria cases for all regions, composed of the sum of all cases from each country in a reagion. Each panel should show the data for one region and one disease. At which stage in the data processing do you implement the aggregation?
+
+1. Create a single plot that shows time trends of mortality or incidence rates for HIV, TB, and malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one region and one disease.
+
+    Hint: you need to create the following new variables first. Use a consistent naming scheme.
+        - HIV incidence rate = number of new HIV infections `hiv_new_infections_number` divided by uninfected population in the previous year (t-1) `population_excluding_plwha` multiplied by 100
+        - HIV mortality rate = number of AIDS deaths `aids_deaths_number` divided by total population `population_all_ages` multiplied by 100
+        - TB incidence rate = number of new TB cases `tb_new_cases_number` divided by total population `population_all_ages` multiplied by 100,000
+        - TB mortality rate = number of TB deaths `tb_deaths_number` divided by total population `population_all_ages` multiplied by 100,000
+        - Malaria incidence rate = number of new malaria cases `malaria_new_cases_number` divided by population at malaria risk `population_at_malaria_risk` multiplied by 1000
+        - Malaria mortality rate = number of malaria deaths `malaria_deaths_number` divided by population at malaria risk `population_at_malaria_risk` multiplied by 1000
+
+1. Create a single plot that shows aggregated time trends of mortality or incidence rates for HIV, TB, and malaria cases for all regions. Each panel should show the data for one region and one disease.
+
+    Hint: You need to sum the numerators across relevant countries and divide it by sum of the denominators across the same set of countries.
+
+1. Create a single plot that shows time trends of mortality or incidence rates for HIV, TB, and malaria cases for all countries in all high-impact regions, compared against the year 2000 baseline. Each panel should show the data for one region.
+
+    Hint: Use `first()` with a grouped `mutate()`.
+
+1. Create a single plot that shows time trends of the number of people living with HIV/AIDS in need for ART (`people_living_with_hiv_aids_number` and the corresponding `upper` and `lower` uncertainty ranges) for all countries in all high-impact regions. Each panel should show the data for one country.
+
+1. Create a single plot that shows time trends of the number of people living with HIV/AIDS in need for ART aggregated over all countries in a region. Each panel should show the data for one region.
+
+1. Create a stack bar graph with three bars, each bar represents one disease and the indicator should be number of deaths for each disease in 2015. The stacks should be expressed as percent and three categories of eligibility. This shows across Global Fund supported countries for three diseases what share of deaths is not covered in each disease due to not being eligible.
+
+1. Load data from sheets 1 to 9 in the Excel file and bring them into a tidy format.
+
+    Hint: The path to the Excel file on the RStudio server is `"/data/r-course/courswork_data_tgf.xlsx"`. Before reading the file, create a link to the `"/data/r-course"` directory using `file.symlink()`. Use `readxl::read_excel()` and look at the documentation of the `sheet` and `range` arguments to that function. How do you specify column names?
 
 
 ## Case study
