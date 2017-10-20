@@ -73,11 +73,23 @@ library(tidyverse)
 
     Hint: Use the `gfdata` package.
 
-```{r echo=FALSE}
+```{r echo=FALSE, cache = TRUE}
 library(gfdata)
 all_stats %>% 
   filter(five_regions == "High Impact Asia") %>% 
   ggplot(aes(x = year, y = hiv_new_infections_number)) +
+  geom_line() +
+  facet_wrap(~country, scales = "free_y")
+
+all_stats %>%
+  filter(five_regions == "High Impact Asia") %>%
+  ggplot(aes(x = year, y = tb_new_cases_number)) +
+  geom_line() +
+  facet_wrap(~country, scales = "free_y")
+
+all_stats %>%
+  filter(five_regions == "High Impact Asia") %>%
+  ggplot(aes(x = year, y = malaria_new_cases_number)) +
   geom_line() +
   facet_wrap(~country, scales = "free_y")
 ```
