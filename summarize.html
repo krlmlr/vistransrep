@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-10-19" />
 
 <title>Summarize</title>
 
@@ -203,7 +204,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Summarize</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
-<h4 class="date"><em>June 2, 2017</em></h4>
+<h4 class="date"><em>October 19, 2017</em></h4>
 
 </div>
 
@@ -263,7 +264,7 @@ $(document).ready(function () {
   flights %&gt;% 
     group_by(carrier) %&gt;% 
     summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %&gt;% 
-    ungroup
+    ungroup()
 
 total_airtime_by_carrier</code></pre>
 <pre><code>## # A tibble: 16 x 2
@@ -299,7 +300,7 @@ total_airtime_by_carrier</code></pre>
   flights %&gt;%
   group_by(carrier) %&gt;% 
   summarize(mean_distance = mean(distance)) %&gt;% 
-  ungroup %&gt;%
+  ungroup() %&gt;%
   arrange(desc(mean_distance))
 
 carrier_arranged_by_mean_distance</code></pre>
@@ -392,7 +393,7 @@ carrier_arranged_by_mean_distance</code></pre>
 <pre class="r"><code>flights %&gt;%
   group_by(carrier) %&gt;% 
   summarize(short_distance_ratio = mean(distance &lt; 300)) %&gt;% 
-  ungroup %&gt;%
+  ungroup() %&gt;%
   arrange(desc(short_distance_ratio)) %&gt;%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
