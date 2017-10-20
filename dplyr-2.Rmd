@@ -67,7 +67,7 @@ library(tidyverse)
 1. Find more exercises in Section 13.5.1 of r4ds.
 
 
-## Time trends
+## [Time trends](trend.html)
 
 1. Create plots for time trends of new HIV, new TB, and new malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one country.
 
@@ -195,11 +195,10 @@ library(tidyverse)
 
     ```{r echo=FALSE, cache = TRUE, fig.height = 8}
     library(gfdata)
-    all_stats_inc_mort_long %>% 
-      filter(five_regions == "High Impact Asia") %>% 
+    all_stats_grouped_inc_mort_long %>% 
       ggplot(aes(x = year, y = mortality)) +
       geom_line() +
-      facet_grid(country~disease, scales = "free")
+      facet_grid(five_regions~disease, scales = "free")
     ```
 
 
