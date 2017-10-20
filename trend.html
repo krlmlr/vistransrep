@@ -254,7 +254,23 @@ all_stats_new_cases_long &lt;-
     &quot;tb&quot; = &quot;TB&quot;, &quot;malaria&quot; = &quot;Malaria&quot;, &quot;hiv&quot; = &quot;HIV&quot;
   )) %&gt;% 
   mutate(disease = forcats::fct_inorder(disease)) %&gt;% 
-  spread(indicator, count)</code></pre>
+  spread(indicator, count)
+
+all_stats_new_cases_long</code></pre>
+<pre><code>## # A tibble: 6,477 x 5
+##    five_regions           country  year disease new_cases_number
+##  * &lt;chr&gt;                  &lt;chr&gt;   &lt;dbl&gt; &lt;fctr&gt;             &lt;dbl&gt;
+##  1 Africa and Middle East Algeria  2000 HIV               595   
+##  2 Africa and Middle East Algeria  2000 TB              23000   
+##  3 Africa and Middle East Algeria  2000 Malaria            41.2 
+##  4 Africa and Middle East Algeria  2001 HIV               650   
+##  5 Africa and Middle East Algeria  2001 TB              23000   
+##  6 Africa and Middle East Algeria  2001 Malaria             9.41
+##  7 Africa and Middle East Algeria  2002 HIV               705   
+##  8 Africa and Middle East Algeria  2002 TB              24000   
+##  9 Africa and Middle East Algeria  2002 Malaria             9.41
+## 10 Africa and Middle East Algeria  2003 HIV               762   
+## # ... with 6,467 more rows</code></pre>
 <pre class="r"><code>all_stats_new_cases_long %&gt;% 
   filter(five_regions == &quot;High Impact Asia&quot;) %&gt;% 
   ggplot(aes(x = year, y = new_cases_number)) +
@@ -269,38 +285,44 @@ all_stats_new_cases_long &lt;-
 all_stats_new_cases_long %&gt;% 
   group_by(five_regions, year, disease) %&gt;% 
   summarize(new_cases_number = sum(new_cases_number, na.rm = TRUE)) %&gt;% 
-  ungroup %&gt;% 
+  ungroup() %&gt;% 
   ggplot(aes(x = year, y = new_cases_number)) +
   geom_line() +
   facet_grid(five_regions~disease, scales = &quot;free&quot;)</code></pre>
 <p><img src="trend_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div id="assignment-5" class="section level2">
-<h2>Assignment 5</h2>
+<div id="assignment-4" class="section level2">
+<h2>Assignment 4</h2>
 <pre class="r"><code>library(gfdata)
-all_stats_grouped_inc_mort_long &lt;-
+all_stats_inc_mort_long &lt;-
   all_stats %&gt;%
   rename(hiv_new_cases_number = hiv_new_infections_number) %&gt;%
   rename(hiv_deaths_number = aids_deaths_number) %&gt;%
   group_by(five_regions, country) %&gt;%
   mutate(lag_population_excluding_plwha = lag(population_excluding_plwha) * 100) %&gt;%
-  group_by(five_regions, year) %&gt;%
-  summarize(
-    hiv_incidence = sum(hiv_new_cases_number, na.rm = TRUE) / sum(lag_population_excluding_plwha, na.rm = TRUE),
-    hiv_mortality = sum(hiv_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100,
-    tb_incidence = sum(tb_new_cases_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
-    tb_mortality = sum(tb_deaths_number, na.rm = TRUE) / sum(population_all_ages, na.rm = TRUE) * 100000,
-    malaria_incidence = sum(malaria_new_cases_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000,
-    malaria_mortality = sum(malaria_deaths_number, na.rm = TRUE) / sum(population_at_malaria_risk, na.rm = TRUE) * 1000
+  ungroup() %&gt;%
+  transmute(
+    five_regions, country, year,
+    nominator_hiv_incidence = hiv_new_cases_number * 100,
+    denominator_hiv_incidence = lag_population_excluding_plwha,
+    nominator_hiv_mortality = hiv_deaths_number * 100,
+    denominator_hiv_mortality = population_all_ages,
+    nominator_tb_incidence = tb_new_cases_number * 100000,
+    denominator_tb_incidence = population_all_ages,
+    nominator_tb_mortality = tb_deaths_number * 100000,
+    denominator_tb_mortality = population_all_ages,
+    nominator_malaria_incidence = malaria_new_cases_number * 1000,
+    denominator_malaria_incidence = population_at_malaria_risk,
+    nominator_malaria_mortality = malaria_deaths_number * 1000,
+    denominator_malaria_mortality = population_at_malaria_risk
   ) %&gt;%
-  ungroup() %&gt;% 
-  select(
-    five_regions, year,
-    ends_with(&quot;_incidence&quot;),
-    ends_with(&quot;_mortality&quot;)
+  gather(indicator, value, -five_regions, -country, -year) %&gt;%
+  separate(
+    indicator,
+    into = c(&quot;nom_denom&quot;, &quot;indicator&quot;),
+    extra = &quot;merge&quot;
   ) %&gt;%
-  gather(indicator, count, -five_regions, -year) %&gt;%
-  filter(is.finite(count)) %&gt;%
+  mutate(nom_denom = forcats::fct_inorder(nom_denom)) %&gt;%
   separate(
     indicator,
     into = c(&quot;disease&quot;, &quot;indicator&quot;),
@@ -309,15 +331,177 @@ all_stats_grouped_inc_mort_long &lt;-
   mutate(disease = recode(
     disease,
     &quot;tb&quot; = &quot;TB&quot;, &quot;malaria&quot; = &quot;Malaria&quot;, &quot;hiv&quot; = &quot;HIV&quot;
-  )) %&gt;%
+  )) %&gt;% 
   mutate(disease = forcats::fct_inorder(disease)) %&gt;%
-  spread(indicator, count)</code></pre>
-<pre class="r"><code>library(gfdata)
-all_stats_grouped_inc_mort_long %&gt;% 
+  spread(nom_denom, value) %&gt;%
+  filter(nominator &gt; 0 &amp; denominator &gt; 0)
+
+all_stats_inc_mort_long</code></pre>
+<pre><code>## # A tibble: 10,162 x 7
+##    five_regions           country  year disease indicator nominat… denomi…
+##    &lt;chr&gt;                  &lt;chr&gt;   &lt;dbl&gt; &lt;fctr&gt;  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Africa and Middle East Algeria  2000 HIV     mortality   1.85e⁴  3.12e⁷
+##  2 Africa and Middle East Algeria  2000 TB      incidence   2.30e⁹  3.12e⁷
+##  3 Africa and Middle East Algeria  2000 TB      mortality   2.50e⁸  3.12e⁷
+##  4 Africa and Middle East Algeria  2000 Malaria incidence   4.12e⁴  1.09e⁶
+##  5 Africa and Middle East Algeria  2000 Malaria mortality   2.07e³  1.09e⁶
+##  6 Africa and Middle East Algeria  2001 HIV     incidence   6.50e⁴  3.12e⁹
+##  7 Africa and Middle East Algeria  2001 HIV     mortality   2.06e⁴  3.16e⁷
+##  8 Africa and Middle East Algeria  2001 TB      incidence   2.30e⁹  3.16e⁷
+##  9 Africa and Middle East Algeria  2001 TB      mortality   2.50e⁸  3.16e⁷
+## 10 Africa and Middle East Algeria  2001 Malaria incidence   9.41e³  1.11e⁶
+## # ... with 10,152 more rows</code></pre>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;%
+  filter(indicator == &quot;mortality&quot;) %&gt;%
+  transmute(
+    country, year, disease, indicator,
+    rate = nominator / denominator
+  ) %&gt;%
+  spread(indicator, rate) %&gt;%
   ggplot(aes(x = year, y = mortality)) +
   geom_line() +
-  facet_grid(five_regions~disease, scales = &quot;free&quot;)</code></pre>
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~country + disease,
+    scales = &quot;free&quot;,
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )</code></pre>
 <p><img src="trend_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="assignment-5" class="section level2">
+<h2>Assignment 5</h2>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  group_by(five_regions, disease, indicator, year) %&gt;%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %&gt;%
+  spread(indicator, rate) %&gt;%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~five_regions + disease,
+    scales = &quot;free&quot;,
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="assignment-6" class="section level2">
+<h2>Assignment 6</h2>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  group_by(five_regions, disease, indicator, year) %&gt;%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %&gt;%
+  mutate(rate_change = rate / first(rate)) %&gt;%
+  select(-rate) %&gt;%
+  ungroup() %&gt;%
+  spread(indicator, rate_change) %&gt;%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  facet_grid(five_regions ~ disease)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="assignment-7" class="section level2">
+<h2>Assignment 7</h2>
+<pre class="r"><code>all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %&gt;%
+  filter(grepl(&quot;^High Impact &quot;, five_regions)) %&gt;%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = &quot;grey&quot;
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = &quot;green&quot;
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="assignment-8" class="section level2">
+<h2>Assignment 8</h2>
+<pre class="r"><code>all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %&gt;%
+  group_by(five_regions, year) %&gt;%
+  summarize_at(
+    vars(starts_with(&quot;people_living_with_hiv_aids_&quot;)),
+    funs(sum(., na.rm = TRUE))
+  ) %&gt;%
+  ungroup() %&gt;%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = &quot;grey&quot;
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = &quot;green&quot;
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~five_regions, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="assignment-9" class="section level2">
+<h2>Assignment 9</h2>
+<pre class="r"><code>library(gfdata)
+eligibility &lt;-
+  all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    ends_with(&quot;_eligible&quot;)
+  ) %&gt;%
+  gather(disease, eligible, -five_regions, -country, -year) %&gt;%
+  separate(disease, into = c(&quot;disease&quot;), extra = &quot;drop&quot;)
+
+deaths &lt;-
+  all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    hiv_deaths_number = aids_deaths_number,
+    ends_with(&quot;_deaths_number&quot;)
+  ) %&gt;%
+  gather(disease, deaths_number, -five_regions, -country, -year) %&gt;%
+  separate(disease, into = c(&quot;disease&quot;), extra = &quot;drop&quot;)
+
+eligibility %&gt;%
+  left_join(deaths, by = c(&quot;five_regions&quot;, &quot;country&quot;, &quot;year&quot;, &quot;disease&quot;)) %&gt;%
+  group_by(year, disease, eligible) %&gt;%
+  summarize(deaths_number = sum(deaths_number, na.rm = TRUE)) %&gt;%
+  mutate(deaths_share = deaths_number / sum(deaths_number, na.rm = TRUE)) %&gt;%
+  select(-deaths_number) %&gt;%
+  ungroup() %&gt;%
+  filter(eligible != &quot;Yes&quot;) %&gt;%
+  filter(year &lt;= 2015) %&gt;%
+  ggplot(aes(disease, deaths_share, fill = eligible)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  facet_wrap(~year)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
