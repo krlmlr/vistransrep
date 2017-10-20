@@ -100,7 +100,8 @@ library(tidyverse)
 
     ```{r echo=FALSE, cache = TRUE, fig.height = 8}
     library(gfdata)
-    all_stats %>%
+    all_stats_new_cases_long <- 
+      all_stats %>%
       rename(hiv_new_cases_number = hiv_new_infections_number) %>%
       select(
         five_regions, country, year,
@@ -117,7 +118,9 @@ library(tidyverse)
         "tb" = "TB", "malaria" = "Malaria", "hiv" = "HIV"
       )) %>% 
       mutate(disease = forcats::fct_inorder(disease)) %>% 
-      spread(indicator, count) %>% 
+      spread(indicator, count)
+    
+    all_stats_new_cases_long %>% 
       filter(five_regions == "High Impact Asia") %>% 
       ggplot(aes(x = year, y = new_cases_number)) +
       geom_line() +
@@ -125,6 +128,17 @@ library(tidyverse)
     ```
 
 1. Create a single plot that shows aggregated time trends of new HIV, new TB, and new malaria cases for all regions, composed of the sum of all cases from each country in a reagion. Each panel should show the data for one region and one disease. At which stage in the data processing do you implement the aggregation?
+
+    ```{r echo=FALSE, cache = TRUE}
+    library(gfdata)
+    all_stats_new_cases_long %>% 
+      group_by(five_regions, year, disease) %>% 
+      summarize(new_cases_number = sum(new_cases_number, na.rm = TRUE)) %>% 
+      ungroup %>% 
+      ggplot(aes(x = year, y = new_cases_number)) +
+      geom_line() +
+      facet_grid(five_regions~disease, scales = "free")
+    ```
 
 1. Create a single plot that shows time trends of mortality or incidence rates for HIV, TB, and malaria cases for all countries of a high-impact region of your choice. Each panel should show the data for one region and one disease.
 
