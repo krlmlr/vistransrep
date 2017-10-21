@@ -1,0 +1,278 @@
+---
+title: "Data visualisation, reporting, and processing with R"
+subtitle: "Introduction"
+author: "Kirill Müller"
+date: "2017-10-18"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(cache = TRUE)
+library(tidyverse)
+```
+
+background-image: url(images/datasaurus-dozen.gif)
+class: center
+
+# The Datasaurus Dozen (2017)
+
+.footnote[
+**Source**: Justin Matejka, George Fitzmaurice: Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing, ACM SIGCHI Conference on Human Factors in Computing Systems
+]
+
+---
+
+class: center
+
+# Anscombe's Quartet (1973)
+
+```{r plot-anscombe, echo = FALSE}
+tidy_anscombe <-
+  anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs") %>%
+  gather(key, value, -obs) %>%
+  transmute(
+    obs,
+    axis = substr(key, 1, 1),
+    example = substr(key, 2, 2),
+    value
+  ) %>%
+  spread(axis, value)
+
+lm_params <- function(x, y) {
+  lm(y~x)$coefficients %>%
+    setNames(c("intercept", "slope")) %>%
+    as.list %>%
+    as_tibble %>% 
+    list
+}
+
+tidy_anscombe_sum <-
+  tidy_anscombe %>%
+  group_by(example) %>%
+  summarise(
+    mean(x), mean(y),
+    var(x), var(y),
+    cor = cor(x, y),
+    lm_params(x, y)
+  ) %>%
+  ungroup %>%
+  unnest
+
+ggplot(tidy_anscombe, aes(x, y)) +
+  geom_point() +
+  geom_hline(aes(yintercept = `mean(y)`), tidy_anscombe_sum, color = "red") +
+  geom_vline(aes(xintercept = `mean(x)`), tidy_anscombe_sum, color = "red") +
+  geom_abline(aes(slope = slope, intercept = intercept), tidy_anscombe_sum, color = "red") +
+  facet_wrap(~example, labeller = "label_both")
+```
+
+---
+
+class: center
+
+# Anscombe's Quartet (1973)
+
+```{r data-anscombe, echo = FALSE, results = 'markup'}
+DT::datatable(anscombe, list(paging = FALSE, searching = FALSE, info = FALSE))
+```
+
+???
+
+Discuss with neighbors:
+
+What would you (need to) do in your favorite software (Excel, SPSS, SAS, ...) to 
+
+1. generate these four plots from this dataset?
+
+2. verify that the summary statistics are identical for the four underlying datasets?
+
+---
+
+# Tidy data
+
+> “Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham
+
+## Definition
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+
+???
+
+Source: R4DS
+
+---
+
+```{r}
+anscombe
+```
+
+---
+
+```{r}
+anscombe %>%
+  as_tibble()
+```
+
+---
+
+```{r}
+anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs")
+```
+
+---
+
+```{r}
+anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs") %>%
+  gather(key, value, -obs)
+```
+
+---
+
+```{r}
+anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs") %>%
+  gather(key, value, -obs) %>%
+  separate(key, into = c("axis", "example"), sep = 1)
+```
+
+---
+
+```{r}
+anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs") %>%
+  gather(key, value, -obs) %>%
+  separate(key, into = c("axis", "example"), sep = 1) %>%
+  spread(axis, value)
+```
+
+---
+
+```{r}
+tidy_anscombe <-
+  anscombe %>%
+  as_tibble() %>%
+  rowid_to_column("obs") %>%
+  gather(key, value, -obs) %>%
+  separate(key, into = c("axis", "example"), sep = 1) %>%
+  spread(axis, value)
+
+tidy_anscombe
+```
+
+---
+
+```{r}
+tidy_anscombe %>%
+  group_by(example) %>%
+  summarise(
+    mean(x), mean(y),
+    var(x), var(y),
+    cor(x, y)
+  ) %>%
+  ungroup()
+```
+
+---
+
+```{r}
+tidy_anscombe_sum <-
+  tidy_anscombe %>%
+  group_by(example) %>%
+  summarise(
+    mean(x), mean(y),
+    var(x), var(y),
+    cor(x, y)
+  ) %>%
+  ungroup()
+
+tidy_anscombe_sum
+```
+
+---
+
+```{r fig.height=6, fig.width=6}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  facet_wrap(~example, labeller = "label_both")
+```
+
+???
+
+No loop, no iteration
+
+---
+
+```{r fig.height=6, fig.width=6}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  geom_hline(
+    mapping = aes(yintercept = `mean(y)`),
+    data = tidy_anscombe_sum, color = "red"
+  ) +
+  facet_wrap(~example, labeller = "label_both")
+```
+
+---
+
+```{r fig.height=6, fig.width=6}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  stat_smooth(mapping = aes(x = x, y = y), method = "lm") +
+  facet_wrap(~example, labeller = "label_both")
+```
+
+---
+
+Source code for the previous slide:
+
+```{r echo = FALSE, results = 'asis'}
+knitr::asis_output('`````\n```{r fig.height = 6, fig.width = 6}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  stat_smooth(mapping = aes(x = x, y = y), method = "lm") +
+  facet_wrap(~example, labeller = "label_both")
+```\n`````')
+```
+
+---
+
+Source code for same slide for showing results only:
+
+```{r echo = FALSE, results = 'asis'}
+knitr::asis_output('`````\n```{r fig.height = 6, fig.width = 6, echo = FALSE}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  stat_smooth(mapping = aes(x = x, y = y), method = "lm") +
+  facet_wrap(~example, labeller = "label_both")
+```\n`````')
+```
+
+---
+
+```{r fig.height = 6, fig.width = 6, echo = FALSE}
+ggplot(data = tidy_anscombe) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  stat_smooth(mapping = aes(x = x, y = y), method = "lm") +
+  facet_wrap(~example, labeller = "label_both")
+```
+
+---
+
+class: inverse

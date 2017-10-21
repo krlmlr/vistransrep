@@ -1,0 +1,188 @@
+---
+title: "Data visualisation, reporting, and processing with R"
+subtitle: "Closing remarks"
+author: "Kirill Müller"
+date: "2017-10-20"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(tidyverse)
+```
+
+# EDA
+
+Understand your data
+
+- Generate questions
+
+- Search for answers
+
+- Rinse and repeat
+
+---
+
+# Important questions
+
+- Variation
+
+- Covariation
+
+???
+
+Tabular data
+
+- Distribution
+- Typica values
+- Unusual values, outliers
+- Missing values
+
+---
+
+# Discrete variables
+
+.pull-left[
+```{r fig.height=3.5, fig.width=3.5}
+ggplot(data = mpg) +
+  geom_bar(
+    mapping = aes(x = class)
+  )
+```
+]
+
+.pull-right[
+```{r}
+mpg %>% 
+  count(class)
+```
+]
+
+---
+
+# Continuous variables
+
+.pull-left[
+```{r fig.width=3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = displ),
+    binwidth = 0.05
+  )
+```
+]
+
+.pull-right[
+```{r fig.width=3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ)
+  )
+```
+]
+
+---
+
+# Categorical vs. continuous variables
+
+```{r fig.height=3.5}
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ, y = ..scaled.., color = class),
+  )
+```
+
+---
+
+# Categorical vs. continuous variables
+
+```{r fig.height=3.5}
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(x = class, y = displ),
+  )
+```
+
+---
+
+# Categorical variables
+
+.pull-left[
+```{r fig.width = 3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_bin2d(
+    mapping = aes(x = drv, y = class),
+  )
+```
+]
+
+.pull-right[
+```{r}
+mpg %>% 
+  count(drv, class)
+```
+]
+
+---
+
+# Continuous variables
+
+```{r  fig.height=3.5}
+ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = hwy, y = cty),
+    alpha = 0.3
+  )
+```
+
+---
+
+class: inverse
+
+???
+
+---
+
+# Joins
+
+r4ds, chapter 13
+
+```{r}
+library(nycflights13)
+flights %>%
+  select(year, month, day, carrier) %>%
+  left_join(airlines)
+```
+
+---
+
+# Nested data frames
+
+r4ds, chapter 25
+
+```{r}
+flights %>%
+  nest(-month) %>% 
+  arrange(month)
+```
+
+---
+
+# Pointers
+
+Symbolic link to data directory:
+- Linux and OS X: `file.symlink()`
+- Windows: `Sys.junction()`
+
+R markdown: http://rmarkdown.rstudio.com/gallery.html
+
+Literature:
+
+- Quick-R [http://www.statmethods.net](http://www.statmethods.net)
+- Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
