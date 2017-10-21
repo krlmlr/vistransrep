@@ -256,9 +256,9 @@ all_stats_inc_mort_long %>%
   select(-rate) %>%
   ungroup() %>%
   spread(indicator, rate_change) %>%
-  ggplot(aes(x = year, y = mortality)) +
+  ggplot(aes(x = year, y = mortality, color = disease)) +
   geom_line() +
-  facet_grid(five_regions ~ disease)
+  facet_wrap(~ five_regions)
 ```
 
 
@@ -293,7 +293,7 @@ all_stats %>%
 
 1. Create a single plot that shows time trends of the number of people living with HIV/AIDS in need for ART aggregated over all countries in a region. Each panel should show the data for one region.
 
-```{r echo = FALSE, fig.height = 8}
+```{r echo = FALSE}
 all_stats %>%
   select(
     five_regions, country, year,
