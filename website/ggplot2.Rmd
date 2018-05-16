@@ -10,8 +10,10 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
+[Interactive tutorial](krlmlr-shiny-zhr.westeurope.cloudapp.azure.com/ggplot2)
+
 [Part 1](ggplot2-1.html): Essentials
 
 [Part 2](ggplot2-2.html): Reverse-engineering
 
-[Part 3](ggplot2-3.html): More options and  tweaks
+[Part 3](ggplot2-3.html): More options and tweaks

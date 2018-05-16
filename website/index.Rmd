@@ -4,6 +4,16 @@ title: "Data visualization, reporting, and processing with R"
 
 This is the course website for the zhRcourses workshop on May 17-18, 2018.
 
+## Resources
+
+- rstudio.cloud server: https://rstudio.cloud/project/37016
+    - Sign up, or log in with Google or GitHub
+    - Click the "Save a private copy" link next to the **TEMPORARY** label in red in the header
+    - All necessary packages are preinstalled
+
+- Main menu in header
+
+
 
 
 Last updated: `r Sys.time()`
