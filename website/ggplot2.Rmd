@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-[Interactive tutorial](krlmlr-shiny-zhr.westeurope.cloudapp.azure.com/ggplot2)
+[Interactive tutorial](http://krlmlr-shiny-zhr.westeurope.cloudapp.azure.com/ggplot2)
 
 [Part 1](ggplot2-1.html): Essentials
 
