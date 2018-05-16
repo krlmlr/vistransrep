@@ -1,24 +1,24 @@
-name: "my-website"
-output_dir: "../docs"
+name: my-website
+output_dir: ../docs
 include:
-  - ".nojekyll"
-  - "images"
-exclude: "DESCRIPTION"
+- .nojekyll
+- images
+exclude: DESCRIPTION
 navbar:
-  title: "Data visualization, reporting, and processing with R"
+  title: Data visualization, reporting, and processing with R
   left:
-    - text: "Home"
-      href: index.html
-    - text: "intro"
-      href: intro.html
-    - text: "ggplot2"
-      href: ggplot2.html
-    - text: "dplyr"
-      href: dplyr.html
-    - text: "rmarkdown"
-      href: rmarkdown.html
-    - text: "outro"
-      href: outro.html
+  - text: Home
+    href: index.html
+  - text: intro
+    href: intro.html
+  - text: ggplot2
+    href: ggplot2.html
+  - text: dplyr
+    href: dplyr.html
+  - text: rmarkdown
+    href: rmarkdown.html
+  - text: outro
+    href: outro.html
 output:
   html_document:
     theme: cosmo
@@ -26,3 +26,6 @@ output:
     include:
       after_body: footer.html
     css: styles.css
+    lib_dir: site_libs
+    self_contained: no
+
