@@ -6,6 +6,7 @@
 /*.html
 *.pdf
 /.Rprofile.local
-/*_files/
+/website/*_files/
 /*.log
 *_cache/
+libs/
