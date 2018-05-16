@@ -2,6 +2,8 @@
 title: "Data visualization, reporting, and processing with R"
 ---
 
-This is a collection of exercises, linked with solutions, for the tidyverse course on October 18-20, 2017.
+This is the course website for the zhRcourses workshop on May 17-18, 2018.
+
+
 
 Last updated: `r Sys.time()`
