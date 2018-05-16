@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Busiest month

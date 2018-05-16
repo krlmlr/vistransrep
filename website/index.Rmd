@@ -11,9 +11,9 @@ This is the course website for the zhRcourses workshop on May 17-18, 2018.
     - Click the "Save a private copy" link next to the **TEMPORARY** label in red in the header
     - All necessary packages are preinstalled
 
-- Main menu in header
+- Main menu in header of this website
 
-
-
+- GitHub repository: https://github.com/krlmlr/vistransrep
+    - Live code: https://github.com/krlmlr/vistransrep/live
 
 Last updated: `r Sys.time()`
