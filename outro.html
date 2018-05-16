@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data visualisation, reporting, and processing with R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kirill Müller" />
+    <meta name="date" content="2017-10-20" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data visualisation, reporting, and processing with R
+## Closing remarks
+### Kirill Müller
+### 2017-10-20
+
+---
+
+
+
+
+# EDA
+
+Understand your data
+
+- Generate questions
+
+- Search for answers
+
+- Rinse and repeat
+
+---
+
+# Important questions
+
+- Variation
+
+- Covariation
+
+???
+
+Tabular data
+
+- Distribution
+- Typica values
+- Unusual values, outliers
+- Missing values
+
+---
+
+# Discrete variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_bar(
+    mapping = aes(x = class)
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(class)
+```
+
+```
+## # A tibble: 7 x 2
+##   class          n
+##   &lt;chr&gt;      &lt;int&gt;
+## 1 2seater        5
+## 2 compact       47
+## 3 midsize       41
+## 4 minivan       11
+## 5 pickup        33
+## 6 subcompact    35
+## 7 suv           62
+```
+]
+
+---
+
+# Continuous variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = displ),
+    binwidth = 0.05
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ)
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ, y = ..scaled.., color = class),
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(x = class, y = displ),
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_bin2d(
+    mapping = aes(x = drv, y = class),
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(drv, class)
+```
+
+```
+## # A tibble: 12 x 3
+##    drv   class          n
+##    &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
+##  1 4     compact       12
+##  2 4     midsize        3
+##  3 4     pickup        33
+##  4 4     subcompact     4
+##  5 4     suv           51
+##  6 f     compact       35
+##  7 f     midsize       38
+##  8 f     minivan       11
+##  9 f     subcompact    22
+## 10 r     2seater        5
+## 11 r     subcompact     9
+## 12 r     suv           11
+```
+]
+
+---
+
+# Continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = hwy, y = cty),
+    alpha = 0.3
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+???
+
+---
+
+# Joins
+
+r4ds, chapter 13
+
+
+```r
+library(nycflights13)
+flights %&gt;%
+  select(year, month, day, carrier) %&gt;%
+  left_join(airlines)
+```
+
+```
+## Joining, by = "carrier"
+```
+
+```
+## # A tibble: 336,776 x 5
+##     year month   day carrier name                    
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;                   
+##  1  2013     1     1 UA      United Air Lines Inc.   
+##  2  2013     1     1 UA      United Air Lines Inc.   
+##  3  2013     1     1 AA      American Airlines Inc.  
+##  4  2013     1     1 B6      JetBlue Airways         
+##  5  2013     1     1 DL      Delta Air Lines Inc.    
+##  6  2013     1     1 UA      United Air Lines Inc.   
+##  7  2013     1     1 B6      JetBlue Airways         
+##  8  2013     1     1 EV      ExpressJet Airlines Inc.
+##  9  2013     1     1 B6      JetBlue Airways         
+## 10  2013     1     1 AA      American Airlines Inc.  
+## # ... with 336,766 more rows
+```
+
+---
+
+# Nested data frames
+
+r4ds, chapter 25
+
+
+```r
+flights %&gt;%
+  nest(-month) %&gt;% 
+  arrange(month)
+```
+
+```
+## # A tibble: 12 x 2
+##    month data                  
+##    &lt;int&gt; &lt;list&gt;                
+##  1     1 &lt;tibble [27,004 × 18]&gt;
+##  2     2 &lt;tibble [24,951 × 18]&gt;
+##  3     3 &lt;tibble [28,834 × 18]&gt;
+##  4     4 &lt;tibble [28,330 × 18]&gt;
+##  5     5 &lt;tibble [28,796 × 18]&gt;
+##  6     6 &lt;tibble [28,243 × 18]&gt;
+##  7     7 &lt;tibble [29,425 × 18]&gt;
+##  8     8 &lt;tibble [29,327 × 18]&gt;
+##  9     9 &lt;tibble [27,574 × 18]&gt;
+## 10    10 &lt;tibble [28,889 × 18]&gt;
+## 11    11 &lt;tibble [27,268 × 18]&gt;
+## 12    12 &lt;tibble [28,135 × 18]&gt;
+```
+
+---
+
+# Pointers
+
+Symbolic link to data directory:
+- Linux and OS X: `file.symlink()`
+- Windows: `Sys.junction()`
+
+R markdown: http://rmarkdown.rstudio.com/gallery.html
+
+Literature:
+
+- Quick-R [http://www.statmethods.net](http://www.statmethods.net)
+- Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

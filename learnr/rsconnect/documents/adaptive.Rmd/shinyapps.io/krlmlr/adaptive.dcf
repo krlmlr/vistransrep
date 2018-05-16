@@ -1,0 +1,13 @@
+name: adaptive
+title: adaptive
+username:
+account: krlmlr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 340280
+bundleId: 1365728
+url: https://krlmlr.shinyapps.io/adaptive/
+when: 1525908937.82145
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: adaptive.html|adaptive.R|exercises-11.html|exercises-11.Rmd

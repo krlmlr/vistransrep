@@ -1,0 +1,13 @@
+name: Adaptive-learnr
+title: Adaptive-learnr
+username:
+account: krlmlr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 340284
+bundleId: 1365687
+url: https://krlmlr.shinyapps.io/Adaptive-learnr/
+when: 1525907360.52835
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: adaptive.html|adaptive.R|exercises-11.html|exercises-11.Rmd
