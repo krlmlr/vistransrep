@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Kirill Müller" />
+
+<meta name="date" content="2017-10-20" />
+
+<title>Trend data</title>
+
+<script src="site_libs/jquery/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<script src="site_libs/navigation/tabsets.js"></script>
+<link href="site_libs/highlightjs/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
+  <a href="ggplot2.html">ggplot2</a>
+</li>
+<li>
+  <a href="dplyr.html">dplyr</a>
+</li>
+<li>
+  <a href="rmarkdown.html">rmarkdown</a>
+</li>
+<li>
+  <a href="outro.html">outro</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Trend data</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>October 20, 2017</em></h4>
+
+</div>
+
+
+<div id="assignment-1" class="section level2">
+<h2>Assignment 1</h2>
+<pre class="r"><code>library(gfdata)
+all_stats %&gt;% 
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;% 
+  ggplot(aes(x = year, y = hiv_new_infections_number)) +
+  geom_line() +
+  facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>all_stats %&gt;%
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;%
+  ggplot(aes(x = year, y = tb_new_cases_number)) +
+  geom_line() +
+  facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre class="r"><code>all_stats %&gt;%
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;%
+  ggplot(aes(x = year, y = malaria_new_cases_number)) +
+  geom_line() +
+  facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+</div>
+<div id="assignment-2" class="section level2">
+<h2>Assignment 2</h2>
+<pre class="r"><code>library(gfdata)
+all_stats_new_cases_long &lt;- 
+  all_stats %&gt;%
+  rename(hiv_new_cases_number = hiv_new_infections_number) %&gt;%
+  select(
+    five_regions, country, year,
+    ends_with(&quot;_new_cases_number&quot;)
+  ) %&gt;% 
+  gather(indicator, count, -five_regions, -country, -year) %&gt;% 
+  separate(
+    indicator,
+    into = c(&quot;disease&quot;, &quot;indicator&quot;),
+    extra = &quot;merge&quot;
+  ) %&gt;%
+  mutate(disease = recode(
+    disease,
+    &quot;tb&quot; = &quot;TB&quot;, &quot;malaria&quot; = &quot;Malaria&quot;, &quot;hiv&quot; = &quot;HIV&quot;
+  )) %&gt;% 
+  mutate(disease = forcats::fct_inorder(disease)) %&gt;% 
+  spread(indicator, count)
+
+all_stats_new_cases_long</code></pre>
+<pre><code>## # A tibble: 6,477 x 5
+##    five_regions           country  year disease new_cases_number
+##  * &lt;chr&gt;                  &lt;chr&gt;   &lt;dbl&gt; &lt;fctr&gt;             &lt;dbl&gt;
+##  1 Africa and Middle East Algeria  2000 HIV               595   
+##  2 Africa and Middle East Algeria  2000 TB              23000   
+##  3 Africa and Middle East Algeria  2000 Malaria            41.2 
+##  4 Africa and Middle East Algeria  2001 HIV               650   
+##  5 Africa and Middle East Algeria  2001 TB              23000   
+##  6 Africa and Middle East Algeria  2001 Malaria             9.41
+##  7 Africa and Middle East Algeria  2002 HIV               705   
+##  8 Africa and Middle East Algeria  2002 TB              24000   
+##  9 Africa and Middle East Algeria  2002 Malaria             9.41
+## 10 Africa and Middle East Algeria  2003 HIV               762   
+## # ... with 6,467 more rows</code></pre>
+<pre class="r"><code>all_stats_new_cases_long %&gt;% 
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;% 
+  ggplot(aes(x = year, y = new_cases_number)) +
+  geom_line() +
+  facet_grid(country~disease, scales = &quot;free&quot;)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="assignment-3" class="section level2">
+<h2>Assignment 3</h2>
+<pre class="r"><code>library(gfdata)
+all_stats_new_cases_long %&gt;% 
+  group_by(five_regions, year, disease) %&gt;% 
+  summarize(new_cases_number = sum(new_cases_number, na.rm = TRUE)) %&gt;% 
+  ungroup() %&gt;% 
+  ggplot(aes(x = year, y = new_cases_number)) +
+  geom_line() +
+  facet_grid(five_regions~disease, scales = &quot;free&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="assignment-4" class="section level2">
+<h2>Assignment 4</h2>
+<pre class="r"><code>library(gfdata)
+all_stats_inc_mort_long &lt;-
+  all_stats %&gt;%
+  rename(hiv_new_cases_number = hiv_new_infections_number) %&gt;%
+  rename(hiv_deaths_number = aids_deaths_number) %&gt;%
+  group_by(five_regions, country) %&gt;%
+  mutate(lag_population_excluding_plwha = lag(population_excluding_plwha) * 100) %&gt;%
+  ungroup() %&gt;%
+  transmute(
+    five_regions, country, year,
+    nominator_hiv_incidence = hiv_new_cases_number * 100,
+    denominator_hiv_incidence = lag_population_excluding_plwha,
+    nominator_hiv_mortality = hiv_deaths_number * 100,
+    denominator_hiv_mortality = population_all_ages,
+    nominator_tb_incidence = tb_new_cases_number * 100000,
+    denominator_tb_incidence = population_all_ages,
+    nominator_tb_mortality = tb_deaths_number * 100000,
+    denominator_tb_mortality = population_all_ages,
+    nominator_malaria_incidence = malaria_new_cases_number * 1000,
+    denominator_malaria_incidence = population_at_malaria_risk,
+    nominator_malaria_mortality = malaria_deaths_number * 1000,
+    denominator_malaria_mortality = population_at_malaria_risk
+  ) %&gt;%
+  gather(indicator, value, -five_regions, -country, -year) %&gt;%
+  separate(
+    indicator,
+    into = c(&quot;nom_denom&quot;, &quot;indicator&quot;),
+    extra = &quot;merge&quot;
+  ) %&gt;%
+  mutate(nom_denom = forcats::fct_inorder(nom_denom)) %&gt;%
+  separate(
+    indicator,
+    into = c(&quot;disease&quot;, &quot;indicator&quot;),
+    extra = &quot;merge&quot;
+  ) %&gt;%
+  mutate(disease = recode(
+    disease,
+    &quot;tb&quot; = &quot;TB&quot;, &quot;malaria&quot; = &quot;Malaria&quot;, &quot;hiv&quot; = &quot;HIV&quot;
+  )) %&gt;% 
+  mutate(disease = forcats::fct_inorder(disease)) %&gt;%
+  spread(nom_denom, value) %&gt;%
+  filter(nominator &gt; 0 &amp; denominator &gt; 0)
+
+all_stats_inc_mort_long</code></pre>
+<pre><code>## # A tibble: 10,162 x 7
+##    five_regions           country  year disease indicator nominat… denomi…
+##    &lt;chr&gt;                  &lt;chr&gt;   &lt;dbl&gt; &lt;fctr&gt;  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Africa and Middle East Algeria  2000 HIV     mortality   1.85e⁴  3.12e⁷
+##  2 Africa and Middle East Algeria  2000 TB      incidence   2.30e⁹  3.12e⁷
+##  3 Africa and Middle East Algeria  2000 TB      mortality   2.50e⁸  3.12e⁷
+##  4 Africa and Middle East Algeria  2000 Malaria incidence   4.12e⁴  1.09e⁶
+##  5 Africa and Middle East Algeria  2000 Malaria mortality   2.07e³  1.09e⁶
+##  6 Africa and Middle East Algeria  2001 HIV     incidence   6.50e⁴  3.12e⁹
+##  7 Africa and Middle East Algeria  2001 HIV     mortality   2.06e⁴  3.16e⁷
+##  8 Africa and Middle East Algeria  2001 TB      incidence   2.30e⁹  3.16e⁷
+##  9 Africa and Middle East Algeria  2001 TB      mortality   2.50e⁸  3.16e⁷
+## 10 Africa and Middle East Algeria  2001 Malaria incidence   9.41e³  1.11e⁶
+## # ... with 10,152 more rows</code></pre>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  filter(five_regions == &quot;High Impact Asia&quot;) %&gt;%
+  filter(indicator == &quot;mortality&quot;) %&gt;%
+  transmute(
+    country, year, disease, indicator,
+    rate = nominator / denominator
+  ) %&gt;%
+  spread(indicator, rate) %&gt;%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~country + disease,
+    scales = &quot;free&quot;,
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="assignment-5" class="section level2">
+<h2>Assignment 5</h2>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  group_by(five_regions, disease, indicator, year) %&gt;%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %&gt;%
+  spread(indicator, rate) %&gt;%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(
+    ~five_regions + disease,
+    scales = &quot;free&quot;,
+    ncol = 3,
+    labeller = labeller(.multi_line = FALSE)
+  )</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="assignment-6" class="section level2">
+<h2>Assignment 6</h2>
+<pre class="r"><code>all_stats_inc_mort_long %&gt;%
+  group_by(five_regions, disease, indicator, year) %&gt;%
+  summarise(
+    rate = sum(nominator) / sum(denominator)
+  ) %&gt;%
+  mutate(rate_change = rate / first(rate)) %&gt;%
+  select(-rate) %&gt;%
+  ungroup() %&gt;%
+  spread(indicator, rate_change) %&gt;%
+  ggplot(aes(x = year, y = mortality)) +
+  geom_line() +
+  facet_grid(five_regions ~ disease)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="assignment-7" class="section level2">
+<h2>Assignment 7</h2>
+<pre class="r"><code>all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %&gt;%
+  filter(grepl(&quot;^High Impact &quot;, five_regions)) %&gt;%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = &quot;grey&quot;
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = &quot;green&quot;
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~country, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="assignment-8" class="section level2">
+<h2>Assignment 8</h2>
+<pre class="r"><code>all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    people_living_with_hiv_aids_number,
+    people_living_with_hiv_aids_lower_number,
+    people_living_with_hiv_aids_higher_number
+  ) %&gt;%
+  group_by(five_regions, year) %&gt;%
+  summarize_at(
+    vars(starts_with(&quot;people_living_with_hiv_aids_&quot;)),
+    funs(sum(., na.rm = TRUE))
+  ) %&gt;%
+  ungroup() %&gt;%
+  ggplot(aes(x = year)) +
+  geom_ribbon(
+    aes(
+      ymin = people_living_with_hiv_aids_lower_number,
+      ymax = people_living_with_hiv_aids_higher_number
+    ),
+    fill = &quot;grey&quot;
+  ) +
+  geom_line(
+    aes(
+      y = people_living_with_hiv_aids_number
+    ),
+    color = &quot;green&quot;
+  ) +
+  scale_y_continuous(limits = c(0, NA)) +
+  facet_wrap(~five_regions, scales = &quot;free_y&quot;)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="assignment-9" class="section level2">
+<h2>Assignment 9</h2>
+<pre class="r"><code>library(gfdata)
+eligibility &lt;-
+  all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    ends_with(&quot;_eligible&quot;)
+  ) %&gt;%
+  gather(disease, eligible, -five_regions, -country, -year) %&gt;%
+  separate(disease, into = c(&quot;disease&quot;), extra = &quot;drop&quot;)
+
+deaths &lt;-
+  all_stats %&gt;%
+  select(
+    five_regions, country, year,
+    hiv_deaths_number = aids_deaths_number,
+    ends_with(&quot;_deaths_number&quot;)
+  ) %&gt;%
+  gather(disease, deaths_number, -five_regions, -country, -year) %&gt;%
+  separate(disease, into = c(&quot;disease&quot;), extra = &quot;drop&quot;)
+
+eligibility %&gt;%
+  left_join(deaths, by = c(&quot;five_regions&quot;, &quot;country&quot;, &quot;year&quot;, &quot;disease&quot;)) %&gt;%
+  group_by(year, disease, eligible) %&gt;%
+  summarize(deaths_number = sum(deaths_number, na.rm = TRUE)) %&gt;%
+  mutate(deaths_share = deaths_number / sum(deaths_number, na.rm = TRUE)) %&gt;%
+  select(-deaths_number) %&gt;%
+  ungroup() %&gt;%
+  filter(eligible != &quot;Yes&quot;) %&gt;%
+  filter(year &lt;= 2015) %&gt;%
+  ggplot(aes(disease, deaths_share, fill = eligible)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  facet_wrap(~year)</code></pre>
+<p><img src="trend_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+
+<p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

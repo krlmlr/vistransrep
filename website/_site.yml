@@ -3,6 +3,7 @@ output_dir: ../docs
 include:
 - .nojekyll
 - images
+- 2017-10
 exclude: DESCRIPTION
 navbar:
   title: Data visualization, reporting, and processing with R
