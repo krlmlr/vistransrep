@@ -14,6 +14,6 @@ This is the course website for the zhRcourses workshop on May 17-18, 2018.
 - Main menu in header of this website
 
 - GitHub repository: https://github.com/krlmlr/vistransrep
-    - Live code: https://github.com/krlmlr/vistransrep/live
+    - Live code: https://github.com/krlmlr/vistransrep/tree/master/live
 
 Last updated: `r Sys.time()`
