@@ -1,7 +1,6 @@
 ---
 title: "ggplot2 exercises"
 author: "Kirill Müller"
-date: "October 18, 2017"
 output: html_document
 ---
 

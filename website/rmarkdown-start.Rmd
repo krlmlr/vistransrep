@@ -1,7 +1,6 @@
 ---
 title: "R + markdown"
 author: "Kirill Müller"
-date: "October 18, 2017"
 output: html_document
 ---
 
@@ -14,7 +13,6 @@ library(tidyverse)
 text <- '``````\n---
 title: "Test document"
 author: "Kirill Müller"
-date: "October 17, 2017"
 output: html_document\n---
 \n```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

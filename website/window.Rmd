@@ -1,7 +1,6 @@
 ---
 title: "Window functions"
 author: "Kirill Müller"
-date: "October 19, 2017"
 output: html_document
 ---
 
