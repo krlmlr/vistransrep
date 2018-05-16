@@ -76,13 +76,19 @@ Explain what happens when you run the following two examples:
 
 Look up the help for the following objects and functions:
 
-- `diamonds`
+- `mpg`
 - `geom_boxplot()`
 - `near()`
 - `%%` (use backticks or quotes)
 
 ```{r help, exercise = TRUE}
-?diamonds
+?mpg
+```
+
+```{r help-hint}
+# You can also use the following syntax:
+help(mpg)
+help("mpg")
 ```
 
 Run the example for `near()` by pasting it into the code window below:
