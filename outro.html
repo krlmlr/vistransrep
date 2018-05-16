@@ -1,261 +1,79 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <title>Data visualisation, reporting, and processing with R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kirill Müller" />
+    <meta name="date" content="2017-10-20" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+# Data visualisation, reporting, and processing with R
+## Closing remarks
+### Kirill Müller
+### 2017-10-20
 
-<head>
-
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-<meta name="author" content="Kirill Müller" />
-
-<meta name="date" content="2017-10-20" />
-
-<title>Data visualisation, reporting, and processing with R</title>
-
-<script src="site_libs/jquery/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap/css/cosmo.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap/shim/respond.min.js"></script>
-<script src="site_libs/navigation/tabsets.js"></script>
-<link href="site_libs/highlightjs/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs/highlight.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-<link rel="stylesheet" href="styles.css" type="text/css" />
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-</style>
-
-
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-
-<div class="container-fluid main-container">
-
-<!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
+---
 
 
 
 
+# EDA
 
+Understand your data
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="intro.html">intro</a>
-</li>
-<li>
-  <a href="ggplot2.html">ggplot2</a>
-</li>
-<li>
-  <a href="dplyr.html">dplyr</a>
-</li>
-<li>
-  <a href="rmarkdown.html">rmarkdown</a>
-</li>
-<li>
-  <a href="outro.html">outro</a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+- Generate questions
 
-<div class="fluid-row" id="header">
+- Search for answers
 
+- Rinse and repeat
 
+---
 
-<h1 class="title toc-ignore">Data visualisation, reporting, and processing with R</h1>
-<h3 class="subtitle"><em>Closing remarks</em></h3>
-<h4 class="author"><em>Kirill Müller</em></h4>
-<h4 class="date"><em>2017-10-20</em></h4>
+# Important questions
 
-</div>
+- Variation
 
+- Covariation
 
-<div id="eda" class="section level1">
-<h1>EDA</h1>
-<p>Understand your data</p>
-<ul>
-<li><p>Generate questions</p></li>
-<li><p>Search for answers</p></li>
-<li><p>Rinse and repeat</p></li>
-</ul>
-<hr />
-</div>
-<div id="important-questions" class="section level1">
-<h1>Important questions</h1>
-<ul>
-<li><p>Variation</p></li>
-<li><p>Covariation</p></li>
-</ul>
-<p>???</p>
-<p>Tabular data</p>
-<ul>
-<li>Distribution</li>
-<li>Typica values</li>
-<li>Unusual values, outliers</li>
-<li>Missing values</li>
-</ul>
-<hr />
-</div>
-<div id="discrete-variables" class="section level1">
-<h1>Discrete variables</h1>
-<p>.pull-left[</p>
-<pre class="r"><code>ggplot(data = mpg) +
+???
+
+Tabular data
+
+- Distribution
+- Typica values
+- Unusual values, outliers
+- Missing values
+
+---
+
+# Discrete variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
   geom_bar(
     mapping = aes(x = class)
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-1-1.png" width="336" /> ]</p>
-<p>.pull-right[</p>
-<pre class="r"><code>mpg %&gt;% 
-  count(class)</code></pre>
-<pre><code>## # A tibble: 7 x 2
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(class)
+```
+
+```
+## # A tibble: 7 x 2
 ##   class          n
 ##   &lt;chr&gt;      &lt;int&gt;
 ## 1 2seater        5
@@ -264,57 +82,92 @@ $(document).ready(function () {
 ## 4 minivan       11
 ## 5 pickup        33
 ## 6 subcompact    35
-## 7 suv           62</code></pre>
-<p>]</p>
-<hr />
-</div>
-<div id="continuous-variables" class="section level1">
-<h1>Continuous variables</h1>
-<p>.pull-left[</p>
-<pre class="r"><code>ggplot(data = mpg) +
+## 7 suv           62
+```
+]
+
+---
+
+# Continuous variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = displ),
     binwidth = 0.05
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-3-1.png" width="336" /> ]</p>
-<p>.pull-right[</p>
-<pre class="r"><code>ggplot(data = mpg) +
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+ggplot(data = mpg) +
   geom_density(
     mapping = aes(x = displ)
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-4-1.png" width="336" /> ]</p>
-<hr />
-</div>
-<div id="categorical-vs.continuous-variables" class="section level1">
-<h1>Categorical vs. continuous variables</h1>
-<pre class="r"><code>ggplot(data = mpg) +
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
   geom_density(
     mapping = aes(x = displ, y = ..scaled.., color = class),
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<hr />
-</div>
-<div id="categorical-vs.continuous-variables-1" class="section level1">
-<h1>Categorical vs. continuous variables</h1>
-<pre class="r"><code>ggplot(data = mpg) +
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
   geom_boxplot(
     mapping = aes(x = class, y = displ),
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<hr />
-</div>
-<div id="categorical-variables" class="section level1">
-<h1>Categorical variables</h1>
-<p>.pull-left[</p>
-<pre class="r"><code>ggplot(data = mpg) +
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
   geom_bin2d(
     mapping = aes(x = drv, y = class),
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-7-1.png" width="336" /> ]</p>
-<p>.pull-right[</p>
-<pre class="r"><code>mpg %&gt;% 
-  count(drv, class)</code></pre>
-<pre><code>## # A tibble: 12 x 3
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(drv, class)
+```
+
+```
+## # A tibble: 12 x 3
 ##    drv   class          n
 ##    &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
 ##  1 4     compact       12
@@ -328,32 +181,51 @@ $(document).ready(function () {
 ##  9 f     subcompact    22
 ## 10 r     2seater        5
 ## 11 r     subcompact     9
-## 12 r     suv           11</code></pre>
-<p>]</p>
-<hr />
-</div>
-<div id="continuous-variables-1" class="section level1">
-<h1>Continuous variables</h1>
-<pre class="r"><code>ggplot(data = mpg) +
+## 12 r     suv           11
+```
+]
+
+---
+
+# Continuous variables
+
+
+```r
+ggplot(data = mpg) +
   geom_jitter(
     mapping = aes(x = hwy, y = cty),
     alpha = 0.3
-  )</code></pre>
-<p><img src="outro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<hr />
-<p>class: inverse</p>
-<p>???</p>
-<hr />
-</div>
-<div id="joins" class="section level1">
-<h1>Joins</h1>
-<p>r4ds, chapter 13</p>
-<pre class="r"><code>library(nycflights13)
+  )
+```
+
+![](outro_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+???
+
+---
+
+# Joins
+
+r4ds, chapter 13
+
+
+```r
+library(nycflights13)
 flights %&gt;%
   select(year, month, day, carrier) %&gt;%
-  left_join(airlines)</code></pre>
-<pre><code>## Joining, by = &quot;carrier&quot;</code></pre>
-<pre><code>## # A tibble: 336,776 x 5
+  left_join(airlines)
+```
+
+```
+## Joining, by = "carrier"
+```
+
+```
+## # A tibble: 336,776 x 5
 ##     year month   day carrier name                    
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;                   
 ##  1  2013     1     1 UA      United Air Lines Inc.   
@@ -366,16 +238,24 @@ flights %&gt;%
 ##  8  2013     1     1 EV      ExpressJet Airlines Inc.
 ##  9  2013     1     1 B6      JetBlue Airways         
 ## 10  2013     1     1 AA      American Airlines Inc.  
-## # ... with 336,766 more rows</code></pre>
-<hr />
-</div>
-<div id="nested-data-frames" class="section level1">
-<h1>Nested data frames</h1>
-<p>r4ds, chapter 25</p>
-<pre class="r"><code>flights %&gt;%
+## # ... with 336,766 more rows
+```
+
+---
+
+# Nested data frames
+
+r4ds, chapter 25
+
+
+```r
+flights %&gt;%
   nest(-month) %&gt;% 
-  arrange(month)</code></pre>
-<pre><code>## # A tibble: 12 x 2
+  arrange(month)
+```
+
+```
+## # A tibble: 12 x 2
 ##    month data                  
 ##    &lt;int&gt; &lt;list&gt;                
 ##  1     1 &lt;tibble [27,004 × 18]&gt;
@@ -389,48 +269,57 @@ flights %&gt;%
 ##  9     9 &lt;tibble [27,574 × 18]&gt;
 ## 10    10 &lt;tibble [28,889 × 18]&gt;
 ## 11    11 &lt;tibble [27,268 × 18]&gt;
-## 12    12 &lt;tibble [28,135 × 18]&gt;</code></pre>
-<hr />
-</div>
-<div id="pointers" class="section level1">
-<h1>Pointers</h1>
-<p>Symbolic link to data directory: - Linux and OS X: <code>file.symlink()</code> - Windows: <code>Sys.junction()</code></p>
-<p>R markdown: <a href="http://rmarkdown.rstudio.com/gallery.html" class="uri">http://rmarkdown.rstudio.com/gallery.html</a></p>
-<p>Literature:</p>
-<ul>
-<li>Quick-R <a href="http://www.statmethods.net" class="uri">http://www.statmethods.net</a></li>
-<li>Advanced R <a href="http://adv-r.had.co.nz" class="uri">http://adv-r.had.co.nz</a></li>
-</ul>
-</div>
+## 12    12 &lt;tibble [28,135 × 18]&gt;
+```
 
-<p>Copyright &copy; 2017 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+---
 
+# Pointers
 
+Symbolic link to data directory:
+- Linux and OS X: `file.symlink()`
+- Windows: `Sys.junction()`
 
-</div>
+R markdown: http://rmarkdown.rstudio.com/gallery.html
 
-<script>
+Literature:
 
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
+- Quick-R [http://www.statmethods.net](http://www.statmethods.net)
+- Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
 });
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
-
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
 </script>
-
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
 </script>
-
-</body>
+  </body>
 </html>
