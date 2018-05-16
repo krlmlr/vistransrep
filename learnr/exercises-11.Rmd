@@ -32,7 +32,7 @@ library(tidyverse)
 
 Try it out!
 
-```{r hello-world, exercise=TRUE}
+```{r hello-world,  exercise = TRUE, exercise.lines = 8}
 print("Hello, world!")
 ```
 
