@@ -29,7 +29,7 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Find all flights that departed in the three winter months.
 
     ```r
-    filter(flights, dep_time ___ c(___)))
+    filter(flights, month ___ c(___)))
     ```
 
 1. Are there any flights where departure time is later than arrival time? What does this mean?
@@ -168,7 +168,7 @@ knitr::opts_chunk$set(cache = TRUE)
     Hint: Use `geom_bin2d()`.
     
     ```r
-        flights %>% 
+    flights %>% 
       filter(___) %>%
       ggplot(___) +
         ___()
@@ -182,15 +182,57 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Find three ways to select the first five variables from the `flights` dataset.
 
+    ```r
+    flights %>% 
+      select(___, ___, ________)
+
+    flights %>% 
+      select(___:___)
+
+    flights %>% 
+      select(___:___)
+    ```
+
+
 1. Find three ways to exclude the date of the flight.
+
+    ```r
+    flights %>% 
+      select(___, ___, ______________________)
+
+    flights %>% 
+      select(-___, -___, -___)
+
+    flights %>% 
+      select(-___:-___)
+    ```
 
 1. Select all variables related to departure.
 
+    ```r
+    flights %>% 
+      select(___, ___, _______)
+
+    flights %>% 
+      select(starts_with("___"))
+    ```
+
 1. Move the variables related to scheduled time to the end of the table.
 
-1. Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?
+    ```r
+    flights %>% 
+      select(-___, -___, _______, everything(), ___, ___)
+    ```
 
-    Hint: Use `geom_density2d()`
+1. Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.
+
+    ```r
+    flights %>%
+      select(`___` = ___, `___` = ___, ___) %>%
+      filter(___) %>%
+      ggplot(aes(x = `___`, y = `___`)) +
+      geom_density2d()
+    ```
 
 1. Find more exercises in Section 5.4.1 of r4ds.
 
@@ -201,13 +243,45 @@ knitr::opts_chunk$set(cache = TRUE)
 
     Hint: Use `head()` to restrict your result to one row only.
 
+    ```r
+    flights %>% 
+      arrange(___) %>%
+      head(1)
+    ```
+
 1. Which flights had the heaviest delays? Can you use the `tail()` verb to obtain this information?
 
+    ```r
+    flights %>% 
+      arrange(___) %>%
+      tail(1)
+
+    flights %>% 
+      arrange(desc(___)) %>%
+      ___(1)
+    ```
+
 1. On what day did the flight with the longest airtime take place?
+
+    ```r
+    flights %>% 
+      arrange(___ - ___) %>%
+      tail(1)
+    ```
 
 1. Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
 
     Hint: RStudio has shortcuts for swapping the current line with the next or previous line.
+
+    ```r
+    flights %>%
+      filter(___) %>%
+      arrange(___)
+
+    flights %>%
+      arrange(___) %>%
+      filter(___)
+    ```
 
 1. Which flights were best in recovering from delay in the air?
 
