@@ -16,6 +16,8 @@ This is the course website for the zhRcourses workshop on May 17-18, 2018.
 - GitHub repository: https://github.com/krlmlr/vistransrep
     - Live code: https://github.com/krlmlr/vistransrep/tree/master/live
 
+- Main reference: [*R for data science* (r4ds)](http://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham
+
 - Workshop description: http://www.zhrcourses.uzh.ch/de/programm/data-processing.html
 
 Last updated: `r Sys.time()`
