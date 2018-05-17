@@ -230,7 +230,7 @@ $(document).ready(function () {
 <li><p>Find all flights that departed between 8:00 AM and 10:00 PM.</p>
 <pre class="r"><code>filter(flights, between(dep_time, ___, ___))</code></pre></li>
 <li><p>Find all flights that departed in the three winter months.</p>
-<pre class="r"><code>filter(flights, dep_time ___ c(___)))</code></pre></li>
+<pre class="r"><code>filter(flights, month ___ c(___)))</code></pre></li>
 <li><p>Are there any flights where departure time is later than arrival time? What does this mean?</p>
 <pre class="r"><code>filter(flights, ___)</code></pre></li>
 <li><p>Find all flights that departed today four years ago.</p>
@@ -313,7 +313,7 @@ flights %&gt;%
   ___</code></pre></li>
 <li><p>Plot a heat map for all relations with an air time shorter than one hour.</p>
 <p>Hint: Use <code>geom_bin2d()</code>.</p>
-<pre class="r"><code>    flights %&gt;% 
+<pre class="r"><code>flights %&gt;% 
   filter(___) %&gt;%
   ggplot(___) +
     ___()</code></pre></li>
@@ -323,12 +323,39 @@ flights %&gt;%
 <div id="select-and-rename" class="section level2">
 <h2><a href="select-rename.html">Select and rename</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p></li>
-<li><p>Find three ways to exclude the date of the flight.</p></li>
-<li><p>Select all variables related to departure.</p></li>
-<li><p>Move the variables related to scheduled time to the end of the table.</p></li>
-<li><p>Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?</p>
-<p>Hint: Use <code>geom_density2d()</code></p></li>
+<li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ________)
+
+flights %&gt;% 
+  select(___:___)
+
+flights %&gt;% 
+  select(___:___)</code></pre></li>
+<li><p>Find three ways to exclude the date of the flight.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ______________________)
+
+flights %&gt;% 
+  select(-___, -___, -___)
+
+flights %&gt;% 
+  select(-___:-___)</code></pre></li>
+<li><p>Select all variables related to departure.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, _______)
+
+flights %&gt;% 
+  select(starts_with(&quot;___&quot;))</code></pre></li>
+<li><p>Move the variables related to scheduled time to the end of the table.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(-___, -___, _______, everything(), ___, ___)</code></pre></li>
+<li><p>Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.</p>
+<pre class="r"><code>flights %&gt;%
+  select(`___` = ___, `___` = ___, ___) %&gt;%
+  filter(___) %&gt;%
+  ggplot(aes(x = `___`, y = `___`)) +
+  geom_density2d()</code></pre></li>
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
@@ -336,11 +363,31 @@ flights %&gt;%
 <h2><a href="arrange.html">Arrange</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>On what day did the flight with the shortest airtime take place?</p>
-<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p></li>
-<li><p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p></li>
-<li><p>On what day did the flight with the longest airtime take place?</p></li>
+<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  head(1)</code></pre></li>
+<li><p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  tail(1)
+
+flights %&gt;% 
+  arrange(desc(___)) %&gt;%
+  ___(1)</code></pre></li>
+<li><p>On what day did the flight with the longest airtime take place?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___ - ___) %&gt;%
+  tail(1)</code></pre></li>
 <li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
-<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p></li>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre></li>
 <li><p>Which flights were best in recovering from delay in the air?</p></li>
 <li><p>Find more exercises in Section 5.3.1 of r4ds.</p></li>
 </ol>
