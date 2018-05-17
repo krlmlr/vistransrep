@@ -225,8 +225,8 @@ ggplot(
 
 - Always returns rows from left *and* right data frame
 - Difference: behavior on mismatch
-    - **Inner**: Only matching rows
-    - **Left**: All rows from left, remove rows from right
+    - `inner_join()`: Only matching rows
+    - `left_join()`: All rows from left, remove rows from right
     - **Right**: All rows from right, remove rows from left
     - **Full**: All rows from both
 

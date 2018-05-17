@@ -42,13 +42,15 @@ table2 %>%
 ```
 
 
-## Hours and minutes
+## Counting relations
 
 ```{r}
-## Use a numeric value for sep
-
 flights %>%
-  separate(dep_time, into = c("dep_hour", "dep_minute"), sep = -3, convert = TRUE) %>%
-  separate(arr_time, into = c("arr_hour", "arr_minute"), sep = -3, convert = TRUE) %>% 
-  select(starts_with("dep_"), starts_with("arr_"))
+  unite(
+    relation,
+    origin, dest,
+    sep = " -> "
+  ) %>%
+  count(relation)
 ```
+

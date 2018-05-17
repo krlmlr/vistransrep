@@ -296,28 +296,60 @@ $(document).ready(function () {
 <h2>Plot table-x</h2>
 <p>For showing one measurement:</p>
 <pre class="r"><code>table1 %&gt;%
-  ggplot() +
-  geom_col(
-    aes(country, population, fill = factor(year)),
-    position = &quot;dodge&quot;
-  )</code></pre>
+  ggplot(aes(country, population, fill = factor(year))) +
+  geom_col(position = &quot;dodge&quot;)</code></pre>
 <p><img src="spread-gather_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>For showing both measurements:</p>
+<p>For mapping measurement type to an aesthetic:</p>
 <pre class="r"><code>table2 %&gt;%
-  ggplot() +
-  geom_col(aes(country, count, fill = type)) +
+  ggplot(aes(country, count, fill = type)) +
+  geom_col() +
   facet_wrap(~year)</code></pre>
 <p><img src="spread-gather_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>For mapping both measurements to two aesthetics:</p>
+<pre class="r"><code>table1 %&gt;%
+  ggplot(aes(population, cases, color = country)) +
+  geom_point() +
+  facet_wrap(~year)</code></pre>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Can also use <code>table1</code> to show only one measurement:</p>
 <pre class="r"><code>table2 %&gt;%
   filter(type == &quot;cases&quot;) %&gt;%
   ggplot() +
   geom_col(aes(country, count, fill = type)) +
   facet_wrap(~year)</code></pre>
-<p><img src="spread-gather_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="binding" class="section level2">
 <h2>Binding</h2>
+<pre class="r"><code>cases_tbl &lt;-
+  table4a %&gt;%
+  gather(year, count, -country) %&gt;%
+  mutate(type = &quot;cases&quot;)
+
+population_tbl &lt;-
+  table4b %&gt;% 
+  gather(year, count, -country) %&gt;%
+  mutate(type = &quot;population&quot;)
+
+bind_rows(cases_tbl, population_tbl) %&gt;%
+  select(country, year, everything()) %&gt;% 
+  arrange(country, year, type)</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##    country     year       count type      
+##    &lt;chr&gt;       &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;     
+##  1 Afghanistan 1999         745 cases     
+##  2 Afghanistan 1999    19987071 population
+##  3 Afghanistan 2000        2666 cases     
+##  4 Afghanistan 2000    20595360 population
+##  5 Brazil      1999       37737 cases     
+##  6 Brazil      1999   172006362 population
+##  7 Brazil      2000       80488 cases     
+##  8 Brazil      2000   174504898 population
+##  9 China       1999      212258 cases     
+## 10 China       1999  1272915272 population
+## 11 China       2000      213766 cases     
+## 12 China       2000  1280428583 population</code></pre>
+<p>With just one call to <code>gather()</code>:</p>
 <pre class="r"><code>cases_tbl &lt;-
   table4a %&gt;%
   mutate(type = &quot;cases&quot;)
@@ -353,7 +385,7 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
   gather(cty_hwy, value, hwy, cty) %&gt;%
   ggplot() +
   geom_jitter(aes(displ, value, color = cty_hwy))</code></pre>
-<p><img src="spread-gather_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

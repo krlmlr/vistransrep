@@ -49,19 +49,25 @@ For showing one measurement:
 
 ```{r}
 table1 %>%
-  ggplot() +
-  geom_col(
-    aes(country, population, fill = factor(year)),
-    position = "dodge"
-  )
+  ggplot(aes(country, population, fill = factor(year))) +
+  geom_col(position = "dodge")
 ```
 
-For showing both measurements:
+For mapping measurement type to an aesthetic:
 
 ```{r}
 table2 %>%
-  ggplot() +
-  geom_col(aes(country, count, fill = type)) +
+  ggplot(aes(country, count, fill = type)) +
+  geom_col() +
+  facet_wrap(~year)
+```
+
+For mapping both measurements to two aesthetics:
+
+```{r}
+table1 %>%
+  ggplot(aes(population, cases, color = country)) +
+  geom_point() +
   facet_wrap(~year)
 ```
 
@@ -76,6 +82,24 @@ table2 %>%
 ```
 
 ## Binding
+
+```{r}
+cases_tbl <-
+  table4a %>%
+  gather(year, count, -country) %>%
+  mutate(type = "cases")
+
+population_tbl <-
+  table4b %>% 
+  gather(year, count, -country) %>%
+  mutate(type = "population")
+
+bind_rows(cases_tbl, population_tbl) %>%
+  select(country, year, everything()) %>% 
+  arrange(country, year, type)
+```
+
+With just one call to `gather()`:
 
 ```{r}
 cases_tbl <-
