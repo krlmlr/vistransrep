@@ -65,7 +65,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Add code to load the tidyverse package on the first line. Save the script.
 
-1. Copy some expressions and plots you have run before from the history to your script. Save the script.
+1. Copy some expressions and plots you have run before from the interactive tutorial to your script. Save the script.
 
 1. Use Ctrl + Enter to source a single expression from the script.
 
@@ -73,10 +73,8 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Restart the R session (via Ctrl + Shift + F10 or via "Session → Restart R"). Source the entire script.
 
+    Hint: The keyboard shortcut may not work in your browser.
+
 1. Choose "File → Knit document" to render the entire output to a single document.
 
 1. Everything after `#` is a comment. Add a regular comment and one prefixed with `#'` (hash apostroph). Knit the document. Can you see the difference?
-
-1. Assign a plot to a variable by changing `ggplot(...` to `variable <- ggplot(...`, choose a meaningful name. Knit the document. What changes?
-
-1. In a separate line, write `print(variable)` (or simply `variable`), using the name you have chosen above.
