@@ -72,6 +72,23 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.
 
 
+## [Select and rename](select-rename.html)
+
+1. Find three ways to select the first five variables from the `flights` dataset.
+
+1. Find three ways to exclude the date of the flight.
+
+1. Select all variables related to departure.
+
+1. Move the variables related to scheduled time to the end of the table.
+
+1. Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?
+
+    Hint: Use `geom_density2d()`
+
+1. Find more exercises in Section 5.4.1 of r4ds.
+
+
 ## [Arrange](arrange.html)
 
 1. On what day did the flight with the shortest airtime take place?
@@ -89,23 +106,6 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Which flights were best in recovering from delay in the air?
 
 1. Find more exercises in Section 5.3.1 of r4ds.
-
-
-## [Select and rename](select-rename.html)
-
-1. Find three ways to select the first five variables from the `flights` dataset.
-
-1. Find three ways to exclude the date of the flight.
-
-1. Select all variables related to departure.
-
-1. Move the variables related to scheduled time to the end of the table.
-
-1. Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?
-
-    Hint: Use `geom_density2d()`
-
-1. Find more exercises in Section 5.4.1 of r4ds.
 
 
 ## [Mutate](mutate.html)
@@ -158,3 +158,32 @@ knitr::opts_chunk$set(cache = TRUE)
     Hint: Use `lag()` or `lead()`.
 
 1. Find more exercises in Section 5.7.1 of r4ds.
+
+
+## [Keys and mutating joins](joins.html)
+
+1. Do you see a problem in the `presidential` dataset? Can you see how does this affect the following bar plot without actually running the code?
+
+    ```
+    presidential %>%
+      mutate(term = end - start) %>%
+      ggplot() +
+      geom_bar(aes(name, term))
+    ```
+
+1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
+
+    Hint: Use `count()` to support your hypothesis.
+
+1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
+
+    Hint: Use `by = c("dest" = "faa")`.
+
+1. Find more exercises in Section 13.4.6 of r4ds.
+
+
+## Filtering joins
+
+1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
+
+1. Find more exercises in Section 13.5.1 of r4ds.

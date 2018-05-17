@@ -266,6 +266,18 @@ $(document).ready(function () {
 <li><p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p></li>
 </ol>
 </div>
+<div id="select-and-rename" class="section level2">
+<h2><a href="select-rename.html">Select and rename</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p></li>
+<li><p>Find three ways to exclude the date of the flight.</p></li>
+<li><p>Select all variables related to departure.</p></li>
+<li><p>Move the variables related to scheduled time to the end of the table.</p></li>
+<li><p>Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?</p>
+<p>Hint: Use <code>geom_density2d()</code></p></li>
+<li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
+</ol>
+</div>
 <div id="arrange" class="section level2">
 <h2><a href="arrange.html">Arrange</a></h2>
 <ol style="list-style-type: decimal">
@@ -277,18 +289,6 @@ $(document).ready(function () {
 <p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p></li>
 <li><p>Which flights were best in recovering from delay in the air?</p></li>
 <li><p>Find more exercises in Section 5.3.1 of r4ds.</p></li>
-</ol>
-</div>
-<div id="select-and-rename" class="section level2">
-<h2><a href="select-rename.html">Select and rename</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p></li>
-<li><p>Find three ways to exclude the date of the flight.</p></li>
-<li><p>Select all variables related to departure.</p></li>
-<li><p>Move the variables related to scheduled time to the end of the table.</p></li>
-<li><p>Create a contour plot of departure and arrival time. Use two different techniques to set pretty axis labels. Then, restrict the plot to all flights that arrive before 5:00 AM. How do you fix the aspect ratio of the plot?</p>
-<p>Hint: Use <code>geom_density2d()</code></p></li>
-<li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
 <div id="mutate" class="section level2">
@@ -329,6 +329,28 @@ $(document).ready(function () {
 <li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p>
 <p>Hint: Use <code>lag()</code> or <code>lead()</code>.</p></li>
 <li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
+</ol>
+</div>
+<div id="keys-and-mutating-joins" class="section level2">
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
+<pre><code>presidential %&gt;%
+  mutate(term = end - start) %&gt;%
+  ggplot() +
+  geom_bar(aes(name, term))</code></pre></li>
+<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
+<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
+<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
+</ol>
+</div>
+<div id="filtering-joins" class="section level2">
+<h2>Filtering joins</h2>
+<ol style="list-style-type: decimal">
+<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
+<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
 </ol>
 </div>
 
