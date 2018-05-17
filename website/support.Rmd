@@ -1,0 +1,196 @@
+---
+title: "Data visualisation, reporting, and processing with R"
+subtitle: "Supporting slides"
+author: "Kirill Müller"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(cache = TRUE)
+library(tidyverse)
+```
+
+class: center
+
+# Survey results
+
+## Purpose of R: Interactive work, automation
+
+## Some previous experience with R
+
+## SPSS and Excel
+
+## Varying programming experience, e.g. VB/VBA, Python
+
+## Some experience with shell/command line
+
+---
+
+# Aesthetics
+
+- `x`, `y`
+- `shape`
+- `size`
+- `alpha`
+- `text`
+- `color` vs. `fill`
+- `group`
+
+Placed inside `aes()`: Map to variable, show legend
+
+Placed outside `aes()`: Change for all points, no legend
+
+---
+
+# Data transformation
+
+## One table
+
+- `filter()`
+- `select()` / `rename()`
+- `arrange()`
+- `mutate()` / `transmute()`
+- `summarise()`
+
+## Grouped operations
+
+## Joins
+
+---
+
+# Filter criteria
+
+- Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+    ```r
+    month == 3              # careful: two =
+    month >= 10
+    carrier != "UA"         # careful: <> doesn't work
+    arr_time < dep_time
+    ```
+- `near()`
+    ```r
+    near(sin(pi), 0)
+    ```
+- `between()`, `%in%`
+    ```r
+    between(hour, 8, 12)
+    month %in% c(12, 1, 2)
+    ```
+
+---
+
+# Combining filter criteria
+
+- Operators: `&`, `|`, `!`
+    ```r
+    (month == 5) & between(day, 17, 18)
+    (month == 3) | (month == 4)
+    !between(month, 3, 6)
+    ```
+- Missing values
+    ```r
+    is.na(arr_time)
+    is.na(NA + 3)
+    is.na(!NA)
+    is.na(0)
+    ```
+
+---
+
+# Selection helpers
+
+## By name
+
+- `. %>% select(var1, var2)`
+- `. %>% select(var1, everything())`
+- `. %>% select(ends_with("delay"))`
+
+## Range
+
+- `. %>% select(var1:var2)`
+- `. %>% select(-var1:-var2)`
+
+## By position
+
+- `. %>% select(1:5)`
+
+---
+
+# Sorting data
+
+- `NA` sorts last
+- Use `desc()` to reverse sorting order
+
+---
+
+# Mutation functions
+
+- Arithmetic: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`
+    ```r
+    dep_delay - arr_delay
+    dep_time %/% 100
+    dep_time %% 100
+    dep_delay - mean(dep_delay)   # See next slide
+    ```
+- Real functions, see `?base::Math` and `?dplyr::lead`:
+    - Rounding: `floor()`, `ceiling()`, `round()`
+    - Sign: `abs()`, `sign()`
+    - Transform: `sqrt()`, `log()`, `log2()`, `exp()`
+    - Trigonometric: `sin()` etc.
+    - Cumulative: `cumsum()` etc.
+    - Lead and lag: `lead()`, `lag()`
+    
+- Recoding: `recode()`
+
+- All filtering functions to return `logical`
+
+---
+
+# Aggregate functions
+
+## Statistics
+
+- `sum()`, `prod()`
+    - `na.rm = TRUE`
+- `mean()`, `median()`
+- `sd()`, `IQR()`, `mad()`
+- `min()`, `quantile(0.75)`, `max()`
+- `sum()` and `mean()` for `logical` variables:
+    ```r
+    mean(is.na(arr_time))
+    ```
+
+## Ranking
+
+- `n()`
+- `first()`, `last()`, `nth()`
+- `row_number()`, `min_rank()`, `ntile()`
+
+---
+
+# Joins
+
+- For each combination of join variables in the left data frame, find corresponding rows in the right data frame
+
+## Mutating join
+
+- Always returns rows from left *and* right data frame
+- Difference: behavior on mismatch
+    - **Inner**: Only matching
+    - **Left**: All rows from left, remove rows from right
+    - **Right**: All rows from right, remove rows from left
+    - **Full**: All rows from both
+
+## Filtering join
+
+- Only return rows from left data frame
+- Difference: Returned set
+    - **Semi**: Keep matching rows
+    - **Anti**: Remove matching rows

@@ -22,6 +22,8 @@ navbar:
     href: rmarkdown.html
   - text: outro
     href: outro.html
+  - text: support
+    href: support.html
 output:
   html_document:
     theme: cosmo
