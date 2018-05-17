@@ -292,9 +292,35 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
 
+    ```r
+    flights %>%
+      mutate(speed = ___) %>%
+      ggplot(aes(___)) +
+      _____
+
+    flights %>%
+      ggplot(aes(___)) +
+      _____
+    ```
+
 1. Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.
 
-1. Visualize the deviation from the average departure delay for the three airports of New York City. Consider using a violin plot.
+    ```r
+    flights %>%
+      mutate(on_time = if_else(___ < 0, "On time", "delayed")) %>%
+      ggplot(aes(___)) +
+      _____
+    ```
+
+1. Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.
+
+    ```r
+    flights %>%
+      mutate(dep_delay_dev = ___ - mean(___)) %>%
+      ggplot(aes(___)) +
+      _____ +
+      _____
+    ```
 
 1. Find more exercises in Section 5.5.2 of r4ds.
 

@@ -395,9 +395,26 @@ flights %&gt;%
 <div id="mutate" class="section level2">
 <h2><a href="mutate.html">Mutate</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p></li>
-<li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p></li>
-<li><p>Visualize the deviation from the average departure delay for the three airports of New York City. Consider using a violin plot.</p></li>
+<li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(speed = ___) %&gt;%
+  ggplot(aes(___)) +
+  _____
+
+flights %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre></li>
+<li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(on_time = if_else(___ &lt; 0, &quot;On time&quot;, &quot;delayed&quot;)) %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre></li>
+<li><p>Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(dep_delay_dev = ___ - mean(___)) %&gt;%
+  ggplot(aes(___)) +
+  _____ +
+  _____</code></pre></li>
 <li><p>Find more exercises in Section 5.5.2 of r4ds.</p></li>
 </ol>
 </div>
