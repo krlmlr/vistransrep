@@ -15,23 +15,75 @@ knitr::opts_chunk$set(cache = TRUE)
 1. View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
 
     Hint: You need to load the `nycflights13` package.
-
-1. Find all flights that departed today four years ago.
+    
+    ```r
+    View(___)
+    ```
 
 1. Find all flights that departed between 8:00 AM and 10:00 PM.
 
+    ```r
+    filter(flights, between(dep_time, ___, ___))
+    ```
+
 1. Find all flights that departed in the three winter months.
 
+    ```r
+    filter(flights, dep_time ___ c(___)))
+    ```
+
 1. Are there any flights where departure time is later than arrival time? What does this mean?
+
+    ```r
+    filter(flights, ___)
+    ```
+
+1. Find all flights that departed today four years ago.
+
+    ```r
+    filter(flights, dep_time ___, dep_time ___)
+    ```
 
 1. Find more exercises in item 1 of Section 5.2.4 of r4ds.
 
 
 ## [Assignment, the pipe](pipe.html)
 
-1. View all flights that arrived after 10:00 PM. Use a combined filter, an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
+1. View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
+
+    ```r
+    flights_after_10 <- filter(flights, ___)
+    View(flights_after_10)
+    ```
+
+    ```r
+    View(filter(flights, ___))
+    ```
+
+    ```r
+    flights %>%
+      filter(___) %>%
+      View()
+    ```
 
 1. Extend the four solutions to view all `"UA"` flights that arrived after 10:00 PM.
+
+    ```r
+    flights_after_10 <- filter(flights, ___)
+    ua_flights_after_10 <- ...
+    View(___)
+    ```
+
+    ```r
+    View(filter(filter(flights, ___)))
+    ```
+
+    ```r
+    flights %>%
+      filter(___) %>%
+      filter(___) %>%
+      View()
+    ```
 
 1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM.
 
