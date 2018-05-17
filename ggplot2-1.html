@@ -218,54 +218,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="rstudio-walkthrough" class="section level2">
-<h2><a href="walkthrough.html">RStudio walkthrough</a></h2>
-<ol style="list-style-type: decimal">
-<li>Evaluate a few arithmetic expressions in the console. Do operator precendence rules hold?
-<ul>
-<li>Also try the modulo operator <code>%%</code>, the integer division <code>%/%</code>, and functions such as <code>floor()</code>, <code>sin()</code>, <code>max()</code>.</li>
-</ul></li>
-<li>Practice:
-<ul>
-<li>repeating and searching expressions in the history,</li>
-<li>aborting and restarting the entry of an expression</li>
-</ul></li>
-<li><p>What happens if you type <code>5 + &lt;enter&gt; 3 &lt;enter&gt;</code>? Is the result different from <code>5 &lt;enter&gt; + 3 &lt;enter&gt;</code>? Why?</p></li>
-<li>Practice:
-<ul>
-<li>restarting the R session</li>
-<li>other shortcuts from the RStudio cheat sheet</li>
-</ul></li>
-</ol>
-</div>
-<div id="setup" class="section level2">
-<h2>Setup</h2>
-<ol style="list-style-type: decimal">
-<li><p>Choose “File → New Project… → New Directory → New Project” from the menu.</p></li>
-<li><p>Type a name for your new directory, and choose a directory on your local or network drive.</p></li>
-<li><p>OK.</p></li>
-<li><p>Close and reopen RStudio. Double-check that the project is still active.</p></li>
-<li><p>Type and run <code>getwd()</code> in the console, double-check that the output matches the path to your newly created directory.</p></li>
-<li><p>Choose “Tools → Global Options…” from the menu, and there uncheck the fourth checkbox (“Restore .RData into workspace on startup”) and select “Never” in the combobox below (“Save workspace to .RData on exit”).</p></li>
-</ol>
-</div>
-<div id="getting-help" class="section level2">
-<h2>Getting help</h2>
-<ol style="list-style-type: decimal">
-<li>Look up the help for the following objects and functions:
-<ul>
-<li><code>diamonds</code></li>
-<li><code>geom_boxplot()</code></li>
-<li><code>near()</code></li>
-</ul>
-<p>Hint: Make sure you have loaded the <code>tidyverse</code> package with <code>library(tidyverse)</code>.</p></li>
-<li><p>Copy-paste the example for <code>near()</code> in your console.</p></li>
-<li><p>Run the example for <code>geom_boxplot()</code>.</p>
-<p>Hint: Look up in the help what <code>example()</code> does.</p></li>
-<li><p>Find the example for <code>geom_boxplot()</code> on <a href="http://ggplot2.tidyverse.org" class="uri">http://ggplot2.tidyverse.org</a>. Do you have a preference for either?</p></li>
-<li><p>The <code>example()</code> function is part of base R, can you find it on <a href="https://rdocumentation.org" class="uri">https://rdocumentation.org</a>? Can you find the other functions you looked up earlier in this example?</p></li>
-</ol>
-</div>
 <div id="scatterplots" class="section level2">
 <h2><a href="scatter.html">Scatterplots</a></h2>
 <ol style="list-style-type: decimal">
@@ -280,22 +232,6 @@ $(document).ready(function () {
 <li><p>Find more examples in Section 3.2.4 of the “R for data science” book (<a href="http://r4ds.had.co.nz" class="uri">http://r4ds.had.co.nz</a>).</p></li>
 </ol>
 </div>
-<div id="scripts" class="section level2">
-<h2>Scripts</h2>
-<ol style="list-style-type: decimal">
-<li><p>Choose “File → New file → R script” to create a new script.</p></li>
-<li><p>Save it, pick a file name. The extension <code>.R</code> will be added automatically.</p></li>
-<li><p>Add code to load the tidyverse package on the first line. Save the script.</p></li>
-<li><p>Copy some expressions and plots you have run before from the history to your script. Save the script.</p></li>
-<li><p>Use Ctrl + Enter to source a single expression from the script.</p></li>
-<li><p>Use Ctrl + Shift + Enter to source the entire script.</p></li>
-<li><p>Restart the R session (via Ctrl + Shift + F10 or via “Session → Restart R”). Source the entire script.</p></li>
-<li><p>Choose “File → Knit document” to render the entire output to a single document.</p></li>
-<li><p>Everything after <code>#</code> is a comment. Add a regular comment and one prefixed with <code>#'</code> (hash apostroph). Knit the document. Can you see the difference?</p></li>
-<li><p>Assign a plot to a variable by changing <code>ggplot(...</code> to <code>variable &lt;- ggplot(...</code>, choose a meaningful name. Knit the document. What changes?</p></li>
-<li><p>In a separate line, write <code>print(variable)</code> (or simply <code>variable</code>), using the name you have chosen above.</p></li>
-</ol>
-</div>
 <div id="scatterplots-with-three-or-more-variables" class="section level2">
 <h2><a href="scatter3.html">Scatterplots with three or more variables</a></h2>
 <ol style="list-style-type: decimal">
@@ -303,7 +239,7 @@ $(document).ready(function () {
 <li><p>Experiment with the “color”, “shape”, “size”, and “alpha” aesthetics. Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don’t? Expand on the more surprising examples in the previous exercises.</p>
 <p>Hint: Use <code>factor(year)</code> to convert continuous variables with a limited set of values to categorical variables.</p></li>
 <li><p>Can you change both color and shape at the same time? What about the other aesthetics?</p></li>
-<li><p>What happens if you map the same variable to more than one aesthetics?</p></li>
+<li><p>What happens if you map the same variable to more than one aesthetic?</p></li>
 <li><p>Find more exercises in Section 3.3.1 of r4ds.</p></li>
 </ol>
 </div>
