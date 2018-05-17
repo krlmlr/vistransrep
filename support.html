@@ -52,6 +52,25 @@ Placed outside `aes()`: Change for all points, no legend
 
 ---
 
+# Graphing template
+
+```r
+ggplot(
+  data = .DATA.,
+  aes(x = ..., y = ..., ...)
+) +
+  .GEOM.(
+    data = .DATA.,
+    aes(x = ..., y = ..., ...),
+    .AES. = .const.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...)
+```
+
+---
+
 # Data transformation
 
 ## One table
