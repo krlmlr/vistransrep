@@ -268,10 +268,28 @@ View(___)</code></pre>
 <div id="logical-operators-na" class="section level2">
 <h2><a href="logical.html">Logical operators, NA</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p></li>
-<li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p></li>
-<li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p></li>
-<li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p></li>
+<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___, ___) %&gt;%
+  filter(___)
+
+flights %&gt;%
+  filter(_____)</code></pre></li>
+<li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ | ___)</code></pre></li>
+<li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(!___)
+
+flights %&gt;%
+  filter(!(___) ___ !(___))</code></pre></li>
+<li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(___) ___)
+
+flights %&gt;%
+  filter(is.na(___) ___)</code></pre></li>
 <li><p>Find more exercises in item 4 of Section 5.2.4 of r4ds.</p></li>
 </ol>
 </div>

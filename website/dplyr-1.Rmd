@@ -102,11 +102,41 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Find all flights that departed today four years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
 
+    ```r
+    flights %>%
+      filter(___, ___) %>%
+      filter(___)
+      
+    flights %>%
+      filter(_____)
+    ```  
+
 1. Find all flights that departed before 6:00 AM or after 10:00 PM.
+
+    ```r
+    flights %>%
+      filter(___ | ___)
+    ```
 
 1. Find all flights not flown by either `"UA"` or `"WN"`. Can you think of three different solutions? Which appeals more to you?
 
+    ```r
+    flights %>%
+      filter(!___)
+
+    flights %>%
+      filter(!(___) ___ !(___))
+    ```
+
 1. Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?
+
+    ```r
+    flights %>%
+      filter(is.na(___) ___)
+
+    flights %>%
+      filter(is.na(___) ___)
+    ```
 
 1. Find more exercises in item 4 of Section 5.2.4 of r4ds.
 
