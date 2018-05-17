@@ -41,6 +41,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. What happens if you type `5 + <enter> 3 <enter>`? Is the result different from `5 <enter> + 3 <enter>`? Why?
 
+1. View the `mpg` dataset in the viewer pane:
+
+    ```r
+    View(mpg)
+    ```
+
 1. Practice:
     - restarting the R session
     - other shortcuts from the RStudio cheat sheet
