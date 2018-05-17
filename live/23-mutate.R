@@ -62,3 +62,7 @@ flights %>%
     dep_delay,
     time_lost = arr_delay - dep_delay
   )
+
+flights %>%
+  mutate(is_delayed = arr_delay < 0) %>%
+  select(arr_delay, is_delayed)
