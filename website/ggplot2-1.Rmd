@@ -10,55 +10,6 @@ library(tidyverse)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-## [RStudio walkthrough](walkthrough.html)
-
-1. Evaluate a few arithmetic expressions in the console. Do operator precendence rules hold?
-    - Also try the modulo operator `%%`, the integer division `%/%`, and functions such as `floor()`, `sin()`, `max()`.
-
-1. Practice:
-    - repeating and searching expressions in the history,
-    - aborting and restarting the entry of an expression
-
-1. What happens if you type `5 + <enter> 3 <enter>`? Is the result different from `5 <enter> + 3 <enter>`? Why?
-
-1. Practice:
-    - restarting the R session
-    - other shortcuts from the RStudio cheat sheet
-
-## Setup
-
-1. Choose "File → New Project... → New Directory → New Project" from the menu.
-
-1. Type a name for your new directory, and choose a directory on your local or network drive.
-
-1. OK.
-
-1. Close and reopen RStudio. Double-check that the project is still active.
-
-1. Type and run `getwd()` in the console, double-check that the output matches the path to your newly created directory.
-
-1. Choose "Tools → Global Options..." from the menu, and there uncheck the fourth checkbox ("Restore .RData into workspace on startup") and select "Never" in the combobox below ("Save workspace to .RData on exit").
-
-## Getting help
-
-1. Look up the help for the following objects and functions:
-    - `diamonds`
-    - `geom_boxplot()`
-    - `near()`
-
-    Hint: Make sure you have loaded the `tidyverse` package with `library(tidyverse)`.
-
-1. Copy-paste the example for `near()` in your console.
-
-1. Run the example for `geom_boxplot()`.
-
-    Hint: Look up in the help what `example()` does.
-
-1. Find the example for `geom_boxplot()` on http://ggplot2.tidyverse.org. Do you have a preference for either?
-
-5. The `example()` function is part of base R, can you find it on https://rdocumentation.org? Can you find the other functions you looked up earlier in this example?
-
-
 ## [Scatterplots](scatter.html)
 
 1. Print the `mpg` dataset to your console.
@@ -81,31 +32,6 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).
 
 
-## Scripts
-
-1. Choose "File → New file → R script" to create a new script.
-
-1. Save it, pick a file name. The extension `.R` will be added automatically.
-
-1. Add code to load the tidyverse package on the first line. Save the script.
-
-1. Copy some expressions and plots you have run before from the history to your script. Save the script.
-
-1. Use Ctrl + Enter to source a single expression from the script.
-
-1. Use Ctrl + Shift + Enter to source the entire script.
-
-1. Restart the R session (via Ctrl + Shift + F10 or via "Session → Restart R"). Source the entire script.
-
-1. Choose "File → Knit document" to render the entire output to a single document.
-
-1. Everything after `#` is a comment. Add a regular comment and one prefixed with `#'` (hash apostroph). Knit the document. Can you see the difference?
-
-1. Assign a plot to a variable by changing `ggplot(...` to `variable <- ggplot(...`, choose a meaningful name. Knit the document. What changes?
-
-1. In a separate line, write `print(variable)` (or simply `variable`), using the name you have chosen above.
-
-
 ## [Scatterplots with three or more variables](scatter3.html)
 
 1. In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
@@ -116,7 +42,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Can you change both color and shape at the same time? What about the other aesthetics?
 
-1. What happens if you map the same variable to more than one aesthetics?
+1. What happens if you map the same variable to more than one aesthetic?
 
 1. Find more exercises in Section 3.3.1 of r4ds.
 
