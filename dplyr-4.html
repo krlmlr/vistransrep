@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kirill Müller" />
 
 
-<title>Data visualization, reporting, and processing with R</title>
+<title>dplyr exercises part 2</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -214,30 +215,21 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Data visualization, reporting, and processing with R</h1>
+<h1 class="title toc-ignore">dplyr exercises part 2</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
 
 </div>
 
 
-<p>This is the course website for the zhRcourses workshop on May 17-18, 2018.</p>
-<div id="resources" class="section level2">
-<h2>Resources</h2>
-<ul>
-<li>rstudio.cloud server: <a href="https://rstudio.cloud/project/37016" class="uri">https://rstudio.cloud/project/37016</a>
-<ul>
-<li>Sign up, or log in with Google or GitHub</li>
-<li>Click the “Save a private copy” link next to the <strong>TEMPORARY</strong> label in red in the header</li>
-<li>All necessary packages are preinstalled</li>
-</ul></li>
-<li><p>Main menu in header of this website</p></li>
-<li>GitHub repository: <a href="https://github.com/krlmlr/vistransrep" class="uri">https://github.com/krlmlr/vistransrep</a>
-<ul>
-<li>Live code: <a href="https://github.com/krlmlr/vistransrep/tree/master/live" class="uri">https://github.com/krlmlr/vistransrep/tree/master/live</a></li>
-</ul></li>
-<li><p>Main reference: <a href="http://r4ds.had.co.nz/"><em>R for data science</em> (r4ds)</a> by Garrett Grolemund and Hadley Wickham</p></li>
-<li><p>Workshop description: <a href="http://www.zhrcourses.uzh.ch/de/programm/data-processing.html" class="uri">http://www.zhrcourses.uzh.ch/de/programm/data-processing.html</a></p></li>
-</ul>
-<p>Last updated: 2018-05-17 23:40:31</p>
+<div id="grouped-mutate" class="section level2">
+<h2><a href="window.html">Grouped mutate</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.</p>
+<p>Hint: Compute the share of yearly miles flown of each airline in each month.</p></li>
+<li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p>
+<p>Hint: Use <code>lag()</code> or <code>lead()</code>.</p></li>
+<li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
+</ol>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

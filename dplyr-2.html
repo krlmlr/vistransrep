@@ -242,6 +242,28 @@ $(document).ready(function () {
 <li><p>Find more exercises in Section 12.4.3 of r4ds.</p></li>
 </ol>
 </div>
+<div id="keys-and-mutating-joins" class="section level2">
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
+<pre><code>presidential %&gt;%
+  mutate(term = end - start) %&gt;%
+  ggplot() +
+  geom_bar(aes(name, term))</code></pre></li>
+<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
+<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
+<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
+</ol>
+</div>
+<div id="filtering-joins" class="section level2">
+<h2>Filtering joins</h2>
+<ol style="list-style-type: decimal">
+<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
+<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
+</ol>
+</div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 

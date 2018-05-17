@@ -421,54 +421,102 @@ flights %&gt;%
 <div id="summarize" class="section level2">
 <h2><a href="summarize.html">Summarize</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p></li>
-<li><p>Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.</p>
-<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p></li>
-<li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p></li>
-<li><p>Which plane had the most failed departure attempts?</p></li>
-<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p></li>
+<li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p>
+<pre class="r"><code>flights %&gt;%
+  summarize(mean(___, na.rm = ___))
+
+flights %&gt;%
+  group_by() %&gt;%
+  summarize(___)
+
+flights %&gt;%
+  count(___) %&gt;%
+  arrange(___)</code></pre></li>
+<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.</p>
+<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
+<pre class="r"><code>total_airtime_by_carrier &lt;-
+  flights %&gt;%
+  group_by(___) %&gt;%
+  summarize(acc_air_time = sum(_____))
+
+total_airtime_by_carrier %&gt;%
+  arrange(acc_air_time) %&gt;%
+  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+  ggplot(aes(___)) +
+    geom_bar()</code></pre></li>
+<li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p>
+<pre class="r"><code>total_miles_by_carrier &lt;-
+  _____ %&gt;%
+  _____ %&gt;%
+  _____
+
+total_miles_by_carrier %&gt;%
+  arrange(_____) %&gt;%
+  mutate(_____) %&gt;%
+  ggplot(aes(___)) +
+    geom_bar()</code></pre></li>
+<li><p>Which plane had the most failed departure attempts? Can you find a solution without <code>filter()</code>?</p>
+<p>Hint: Use the idiom <code>sum(___)</code> to count the rows where a predicate is true.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(dep_time)) %&gt;%
+  group_by(tailnum) %&gt;%
+  _____ %&gt;%
+  _____ %&gt;%
+  head(1)
+
+flights %&gt;%
+  group_by(tailnum) %&gt;%
+  _____ %&gt;%
+  _____ %&gt;%
+  head(1)</code></pre></li>
+<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.</p>
+<p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(carrier) %&gt;%
+  _____ %&gt;%
+  ggplot(aes(___)) +
+    geom_col()</code></pre></li>
 <li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
 <div id="summarize-with-multiple-variables" class="section level2">
 <h2><a href="summarize-mult.html">Summarize with multiple variables</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Which destination airport is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, and one using <code>count()</code>. Which is more elegant?</p></li>
+<li><p>Which relation is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, one using <code>count()</code>, and one using <code>tally()</code>. Which is more elegant?</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___, ___, airline) %&gt;%
+  summarize(n = n()) %&gt;%
+  summarize(n_airlines = ___) %&gt;%
+  ungroup() %&gt;%
+  arrange(___) %&gt;%
+  head(1)
+
+flights %&gt;%
+  count(_____) %&gt;%
+  count(_____) %&gt;%
+  _____ %&gt;%
+  _____
+
+flights %&gt;%
+  group_by(_____) %&gt;%
+  tally() %&gt;%
+  tally(wt = NULL) %&gt;%
+  _____ %&gt;%
+  _____</code></pre></li>
 <li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
-<p>Hint: Use <code>geom_raster()</code></p></li>
-<li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
-</ol>
-</div>
-<div id="grouped-mutate" class="section level2">
-<h2><a href="window.html">Grouped mutate</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.</p>
-<p>Hint: Compute the share of yearly miles flown of each airline in each month.</p></li>
-<li><p>Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.</p>
-<p>Hint: Use <code>lag()</code> or <code>lead()</code>.</p></li>
-<li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
-</ol>
-</div>
-<div id="keys-and-mutating-joins" class="section level2">
-<h2><a href="joins.html">Keys and mutating joins</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Do you see a problem in the <code>presidential</code> dataset? Can you see how does this affect the following bar plot without actually running the code?</p>
-<pre><code>presidential %&gt;%
-  mutate(term = end - start) %&gt;%
+<pre class="r"><code>flights %&gt;% 
+  group_by(_____) %&gt;% 
+  summarize(share_of_cancelled = _____) %&gt;%
+  ungroup() %&gt;%
   ggplot() +
-  geom_bar(aes(name, term))</code></pre></li>
-<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
-<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
-<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
-<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
-<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
-</ol>
-</div>
-<div id="filtering-joins" class="section level2">
-<h2>Filtering joins</h2>
-<ol style="list-style-type: decimal">
-<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
-<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
+  geom_raster(
+    aes(
+      x = ___,
+      y = factor(month),
+      fill = ___
+    )
+  )</code></pre></li>
+<li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
 
