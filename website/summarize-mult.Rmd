@@ -33,6 +33,17 @@ flights %>%
   arrange(desc(nn))
 ```
 
+Alternatively:
+
+```{r}
+flights %>%
+  group_by(origin, dest, carrier) %>%
+  tally() %>%
+  tally(wt = NULL) %>%
+  ungroup() %>%
+  arrange(desc(nn))
+```
+
 ## Cancelled flights per month per airline
 
 ```{r}

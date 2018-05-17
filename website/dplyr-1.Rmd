@@ -329,67 +329,127 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
 
-1. Which carriers had the longest accumulated air time? Plot a bar chart with a suitable unit for the total time.
+    ```r
+    flights %>%
+      summarize(mean(___, na.rm = ___))
+
+    flights %>%
+      group_by() %>%
+      summarize(___)
+
+    flights %>%
+      count(___) %>%
+      arrange(___)
+    ```
+
+1. Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.
 
     Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
 
+    ```r
+    total_airtime_by_carrier <-
+      flights %>%
+      group_by(___) %>%
+      summarize(acc_air_time = sum(_____))
+      
+    total_airtime_by_carrier %>%
+      arrange(acc_air_time) %>%
+      mutate(carrier = forcats::fct_inorder(carrier)) %>%
+      ggplot(aes(___)) +
+        geom_bar()
+    ```
+    
 1. Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.
 
-1. Which plane had the most failed departure attempts?
+    ```r
+    total_miles_by_carrier <-
+      _____ %>%
+      _____ %>%
+      _____
 
-1. Compute the ratio of short-distance routes (less than 300 miles) for each airline.
+    total_miles_by_carrier %>%
+      arrange(_____) %>%
+      mutate(_____) %>%
+      ggplot(aes(___)) +
+        geom_bar()
+    ```
+
+1. Which plane had the most failed departure attempts? Can you find a solution without `filter()`?
+
+    Hint: Use the idiom `sum(___)` to count the rows where a predicate is true.
+
+    ```r
+    flights %>%
+      filter(is.na(dep_time)) %>%
+      group_by(tailnum) %>%
+      _____ %>%
+      _____ %>%
+      head(1)
+
+    flights %>%
+      group_by(tailnum) %>%
+      _____ %>%
+      _____ %>%
+      head(1)
+    ```
+
+1. Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.
+
+    Hint: Use the idiom `mean(___)` to compute the share of rows where a predicate is true.
+
+    ```r
+    flights %>%
+      group_by(carrier) %>%
+      _____ %>%
+      ggplot(aes(___)) +
+        geom_col()
+    ```
 
 1. Find more exercises in item 1 of Section 5.6.7 of r4ds.
 
 
 ## [Summarize with multiple variables](summarize-mult.html)
 
-1. Which destination airport is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, and one using `count()`. Which is more elegant?
+1. Which relation is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, one using `count()`, and one using `tally()`. Which is more elegant?
+
+    ```r
+    flights %>%
+      group_by(___, ___, airline) %>%
+      summarize(n = n()) %>%
+      summarize(n_airlines = ___) %>%
+      ungroup() %>%
+      arrange(___) %>%
+      head(1)
+
+    flights %>%
+      count(_____) %>%
+      count(_____) %>%
+      _____ %>%
+      _____
+
+    flights %>%
+      group_by(_____) %>%
+      tally() %>%
+      tally(wt = NULL) %>%
+      _____ %>%
+      _____
+    ```
 
 1. Create a heat map for the share of cancelled flights per month per airline.
 
-    Hint: Use `geom_raster()`
+    ```r
+    flights %>% 
+      group_by(_____) %>% 
+      summarize(share_of_cancelled = _____) %>%
+      ungroup() %>%
+      ggplot() +
+      geom_raster(
+        aes(
+          x = ___,
+          y = factor(month),
+          fill = ___
+        )
+      )
+    ```
 
 1. Find more exercises in Section 5.6.7 of r4ds.
-
-
-## [Grouped mutate](window.html)
-
-1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
-
-    Hint: Compute the share of yearly miles flown of each airline in each month.
-
-1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
-
-    Hint: Use `lag()` or `lead()`.
-
-1. Find more exercises in Section 5.7.1 of r4ds.
-
-
-## [Keys and mutating joins](joins.html)
-
-1. Do you see a problem in the `presidential` dataset? Can you see how does this affect the following bar plot without actually running the code?
-
-    ```
-    presidential %>%
-      mutate(term = end - start) %>%
-      ggplot() +
-      geom_bar(aes(name, term))
-    ```
-
-1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
-
-    Hint: Use `count()` to support your hypothesis.
-
-1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
-
-    Hint: Use `by = c("dest" = "faa")`.
-
-1. Find more exercises in Section 13.4.6 of r4ds.
-
-
-## Filtering joins
-
-1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
-
-1. Find more exercises in Section 13.5.1 of r4ds.

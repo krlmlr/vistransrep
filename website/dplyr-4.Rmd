@@ -1,0 +1,25 @@
+---
+title: "dplyr exercises part 2"
+author: "Kirill Müller"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+
+
+## [Grouped mutate](window.html)
+
+1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
+
+    Hint: Compute the share of yearly miles flown of each airline in each month.
+
+1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
+
+    Hint: Use `lag()` or `lead()`.
+
+1. Find more exercises in Section 5.7.1 of r4ds.

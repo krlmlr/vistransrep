@@ -51,7 +51,7 @@ Placed outside `aes()`: Change for all points, no legend
 
 # Graphing template
 
-```r
+```{r eval = FALSE}
 ggplot(
   data = .DATA.,
   aes(x = ..., y = ..., ...)
@@ -59,7 +59,7 @@ ggplot(
   .GEOM.(
     data = .DATA.,
     aes(x = ..., y = ..., ...),
-    .AES. = .const.,
+    .AES. = .CONST.,
     position = .POSITION.
   ) +
   .STAT.(...) +
@@ -170,6 +170,8 @@ ggplot(
 
 - All filtering functions to return `logical`
 
+- Ranking: `row_number()`, `min_rank()`, `ntile()`
+
 ---
 
 # Aggregate functions
@@ -190,7 +192,28 @@ ggplot(
 
 - `n()`
 - `first()`, `last()`, `nth()`
-- `row_number()`, `min_rank()`, `ntile()`
+
+---
+
+# Graphing template, with transformation
+
+```{r eval = FALSE}
+.DATA. %>%
+  ... %>%
+  ggplot(
+    aes(x = ..., y = ..., ...)
+  ) +
+  .GEOM.(
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...) +
+  .SCALE.(...) +
+  .COORD.(...) +
+  .THEME.(...)
+```
 
 ---
 
@@ -202,7 +225,7 @@ ggplot(
 
 - Always returns rows from left *and* right data frame
 - Difference: behavior on mismatch
-    - **Inner**: Only matching
+    - **Inner**: Only matching rows
     - **Left**: All rows from left, remove rows from right
     - **Right**: All rows from right, remove rows from left
     - **Full**: All rows from both

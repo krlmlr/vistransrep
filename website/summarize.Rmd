@@ -64,6 +64,12 @@ flights %>%
   )
 ```
 
+```{r}
+flights %>%
+  count(origin) %>%
+  arrange(desc(n))
+```
+
 
 ## Air time by carrier
 

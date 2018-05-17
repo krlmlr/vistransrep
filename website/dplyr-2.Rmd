@@ -36,3 +36,32 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Use `separate()` to compute departure and arrival hours and minutes in the `flights` dataset.
 
 1. Find more exercises in Section 12.4.3 of r4ds.
+
+
+## [Keys and mutating joins](joins.html)
+
+1. Do you see a problem in the `presidential` dataset? Can you see how does this affect the following bar plot without actually running the code?
+
+    ```
+    presidential %>%
+      mutate(term = end - start) %>%
+      ggplot() +
+      geom_bar(aes(name, term))
+    ```
+
+1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
+
+    Hint: Use `count()` to support your hypothesis.
+
+1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
+
+    Hint: Use `by = c("dest" = "faa")`.
+
+1. Find more exercises in Section 13.4.6 of r4ds.
+
+
+## Filtering joins
+
+1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
+
+1. Find more exercises in Section 13.5.1 of r4ds.
