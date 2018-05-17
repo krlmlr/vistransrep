@@ -275,28 +275,29 @@ $(document).ready(function () {
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
 </div>
-<div id="hours-and-minutes" class="section level2">
-<h2>Hours and minutes</h2>
-<pre class="r"><code>## Use a numeric value for sep
-
-flights %&gt;%
-  separate(dep_time, into = c(&quot;dep_hour&quot;, &quot;dep_minute&quot;), sep = -3, convert = TRUE) %&gt;%
-  separate(arr_time, into = c(&quot;arr_hour&quot;, &quot;arr_minute&quot;), sep = -3, convert = TRUE) %&gt;% 
-  select(starts_with(&quot;dep_&quot;), starts_with(&quot;arr_&quot;))</code></pre>
-<pre><code>## # A tibble: 336,776 x 6
-##    dep_hour dep_minute dep_delay arr_hour arr_minute arr_delay
-##       &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;
-##  1       NA        517         2       NA        830        11
-##  2       NA        533         4       NA        850        20
-##  3       NA        542         2       NA        923        33
-##  4       NA        544        -1        1          4       -18
-##  5       NA        554        -6       NA        812       -25
-##  6       NA        554        -4       NA        740        12
-##  7       NA        555        -5       NA        913        19
-##  8       NA        557        -3       NA        709       -14
-##  9       NA        557        -3       NA        838        -8
-## 10       NA        558        -2       NA        753         8
-## # ... with 336,766 more rows</code></pre>
+<div id="counting-relations" class="section level2">
+<h2>Counting relations</h2>
+<pre class="r"><code>flights %&gt;%
+  unite(
+    relation,
+    origin, dest,
+    sep = &quot; -&gt; &quot;
+  ) %&gt;%
+  count(relation)</code></pre>
+<pre><code>## # A tibble: 224 x 2
+##    relation       n
+##    &lt;chr&gt;      &lt;int&gt;
+##  1 EWR -&gt; ALB   439
+##  2 EWR -&gt; ANC     8
+##  3 EWR -&gt; ATL  5022
+##  4 EWR -&gt; AUS   968
+##  5 EWR -&gt; AVL   265
+##  6 EWR -&gt; BDL   443
+##  7 EWR -&gt; BNA  2336
+##  8 EWR -&gt; BOS  5327
+##  9 EWR -&gt; BQN   297
+## 10 EWR -&gt; BTV   931
+## # ... with 214 more rows</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
