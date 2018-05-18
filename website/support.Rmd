@@ -221,15 +221,21 @@ ggplot(
 
 - For each combination of join variables in the left data frame, find corresponding rows in the right data frame
     - Default: Join by matching variable names
+    
+.pull-left[
 
 ## Mutating join
 
 - Always returns rows from left *and* right data frame
 - Difference: behavior on mismatch
-    - `inner_join()`: Only matching rows
-    - `left_join()`: All rows from left, remove rows from right
-    - `right_join()`: All rows from right, remove rows from left
-    - `full_join()`: All rows from both
+    - `inner_join()`: Keep only matching rows
+    - `left_join()`: Keep all rows from left
+    - `right_join()`: Keep all rows from right
+    - `full_join()`: Keep all rows
+
+]
+
+.pull-right[
 
 ## Filtering join
 
@@ -237,3 +243,5 @@ ggplot(
 - Difference: Returned set
     - `semi_join()`: Keep matching rows
     - `anti_join()`: Remove matching rows
+
+]
