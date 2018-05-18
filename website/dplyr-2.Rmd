@@ -139,7 +139,27 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
 
     Hint: Use `by = c("dest" = "faa")`.
+    
+    ```r
+    flights %>% 
+      filter(distance < 300) %>%
+      count(dest, carrier) %>%
+      left_join(airlines) %>%
+      left_join(airports, by = c(___))
 
+    # The name of the `name` variable isn't very useful,
+    # need to rename it before plotting
+    flights %>% 
+      filter(distance < 300) %>%
+      count(dest, carrier) %>%
+      left_join(_____) %>%
+      rename(___) %>%
+      left_join(_____) %>%
+      rename(___) %>% 
+      ggplot() +
+      geom_raster(aes(___))
+    ```
+    
 1. Find more exercises in Section 13.4.6 of r4ds.
 
 
@@ -147,4 +167,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
 
+    ```r
+    airports %>%
+      semi_join(flights, by = c(_____))
+    
+    airports %>%
+      anti_join(flights, by = c(_____))
+    ```
+    
 1. Find more exercises in Section 13.5.1 of r4ds.

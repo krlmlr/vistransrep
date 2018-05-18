@@ -316,14 +316,36 @@ airlines %&gt;%
   count(_____) %&gt;%
   _____</code></pre></li>
 <li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
-<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(airlines) %&gt;%
+  left_join(airports, by = c(___))
+
+# The name of the `name` variable isn&#39;t very useful,
+# need to rename it before plotting
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(_____) %&gt;%
+  rename(___) %&gt;%
+  left_join(_____) %&gt;%
+  rename(___) %&gt;% 
+  ggplot() +
+  geom_raster(aes(___))</code></pre></li>
 <li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
 </ol>
 </div>
 <div id="filtering-joins" class="section level2">
 <h2>Filtering joins</h2>
 <ol style="list-style-type: decimal">
-<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p></li>
+<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p>
+<pre class="r"><code>airports %&gt;%
+  semi_join(flights, by = c(_____))
+
+airports %&gt;%
+  anti_join(flights, by = c(_____))</code></pre></li>
 <li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
 </ol>
 </div>
