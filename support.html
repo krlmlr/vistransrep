@@ -225,22 +225,23 @@ ggplot(
 # Joins
 
 - For each combination of join variables in the left data frame, find corresponding rows in the right data frame
+    - Default: Join by matching variable names
 
 ## Mutating join
 
 - Always returns rows from left *and* right data frame
 - Difference: behavior on mismatch
-    - **Inner**: Only matching rows
-    - **Left**: All rows from left, remove rows from right
-    - **Right**: All rows from right, remove rows from left
-    - **Full**: All rows from both
+    - `inner_join()`: Only matching rows
+    - `left_join()`: All rows from left, remove rows from right
+    - `right_join()`: All rows from right, remove rows from left
+    - `full_join()`: All rows from both
 
 ## Filtering join
 
 - Only return rows from left data frame
 - Difference: Returned set
-    - **Semi**: Keep matching rows
-    - **Anti**: Remove matching rows
+    - `semi_join()`: Keep matching rows
+    - `anti_join()`: Remove matching rows
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

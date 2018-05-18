@@ -224,8 +224,8 @@ $(document).ready(function () {
 <div id="rmarkdown-workflow" class="section level2">
 <h2><a href="https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example">RMarkdown workflow</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>In your project, create two directories: <code>R</code> and <code>reports</code></p></li>
-<li><p>Create a script <code>prepare.R</code> in the <code>R</code> directory</p></li>
+<li><p>In your project, create two directories: <code>scripts</code> and <code>reports</code></p></li>
+<li><p>Create a script <code>prepare.R</code> in the <code>scripts</code> directory</p></li>
 <li><p>Create an RMarkdown document from template, save it as <code>final.Rmd</code> in the <code>reports</code> directory.</p></li>
 <li><p>Add code to <code>prepare.R</code> to transform the <code>flights</code> data in some way. (Use subsetting, add new variables, or compute a summary. Anything works.) Assign the result to a global variable using <code>&lt;-</code>. Save this variable to a file using the <code>saveRDS()</code> function.</p>
 <p>Hint: Use <code>library(here)</code> and <code>here()</code> to control where the file is saved.</p></li>
@@ -238,10 +238,8 @@ $(document).ready(function () {
 <div id="slides-and-reports" class="section level2">
 <h2>Slides and reports</h2>
 <ol style="list-style-type: decimal">
-<li><p>Install the “xaringan”, “rticles”, and “bookdown” packages.</p>
-<p>Hint: Use <code>install.packages()</code>.</p></li>
-<li><p>Choose File / New File / R Markdown… from the RStudio menu, in the dialog select “Ninja presentation” to create an example slide deck.</p></li>
-<li><p>What templates were installed with “rticles”?</p></li>
+<li><p>Choose File / New File / R Markdown… from the RStudio menu. In the dialog, select “From template” in the pane on the left-hand side and then “Ninja presentation” to create an example slide deck. Knit it.</p></li>
+<li><p>What templates are available from the “rticles” package? Are any of them useful for your work?</p></li>
 <li><p>Navigate to <a href="https://github.com/rstudio/bookdown-demo" class="uri">https://github.com/rstudio/bookdown-demo</a> (or search for “bookdown demo” in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the <code>README.md</code> file.</p></li>
 </ol>
 </div>
