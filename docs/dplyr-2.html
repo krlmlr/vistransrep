@@ -304,7 +304,14 @@ bind_rows(_____) %&gt;%
 <h2><a href="joins.html">Keys and mutating joins</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
-<p>Hint: Use <code>count()</code> to support your hypothesis.</p></li>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p>
+<pre class="r"><code>flights %&gt;%
+  count(carrier) %&gt;%
+  count(n)
+
+airlines %&gt;%
+  count(_____) %&gt;%
+  _____</code></pre></li>
 <li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
 <p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p></li>
 <li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>

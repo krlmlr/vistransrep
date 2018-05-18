@@ -11,9 +11,9 @@ library(tidyverse)
 
 ## [RMarkdown workflow](https://github.com/krlmlr/vistransrep/tree/master/rmarkdown-example)
 
-1. In your project, create two directories: `R` and `reports`
+1. In your project, create two directories: `scripts` and `reports`
 
-1. Create a script `prepare.R` in the `R` directory
+1. Create a script `prepare.R` in the `scripts` directory
 
 1. Create an RMarkdown document from template, save it as `final.Rmd` in the `reports` directory.
 
@@ -32,12 +32,8 @@ library(tidyverse)
 
 ## Slides and reports
 
-1. Install the "xaringan", "rticles", and "bookdown" packages.
+1. Choose File / New File / R Markdown... from the RStudio menu. In the dialog, select "From template" in the pane on the left-hand side and then "Ninja presentation" to create an example slide deck. Knit it.
 
-    Hint: Use `install.packages()`.
-
-1. Choose File / New File / R Markdown... from the RStudio menu, in the dialog select "Ninja presentation" to create an example slide deck.
-
-1. What templates were installed with "rticles"?
+1. What templates are available from the "rticles" package? Are any of them useful for your work?
 
 1. Navigate to https://github.com/rstudio/bookdown-demo (or search for "bookdown demo" in a search engine). Extract the demo to a directory of your choice, and follow the instructions in the `README.md` file.

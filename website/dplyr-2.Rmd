@@ -125,6 +125,16 @@ knitr::opts_chunk$set(cache = TRUE)
 1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
 
     Hint: Use `count()` to support your hypothesis.
+    
+    ```r
+    flights %>%
+      count(carrier) %>%
+      count(n)
+
+    airlines %>%
+      count(_____) %>%
+      _____
+    ```
 
 1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
 
