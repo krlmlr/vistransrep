@@ -150,6 +150,14 @@ class: inverse
 
 ---
 
+# Transformation not covered
+
+- Grouped `mutate()` and `filter()`, see r4ds 5.7.1
+- Scoped functions, see `?scoped`
+- `complete()` and `fill()`
+
+---
+
 # Joins
 
 r4ds, chapter 13
@@ -172,6 +180,36 @@ flights %>%
   nest(-month) %>% 
   arrange(month)
 ```
+
+---
+
+# Visualizations not covered
+
+## Position adjustments
+
+jitter, dodge, stack, nudge
+
+## Scales
+
+labeling, color, range
+
+## Coordinate systems
+
+flipping, aspect ratio, polar
+
+## Theming
+
+tweaking plots, standard appearance
+
+---
+
+# Extension for ggplot2
+
+- Useful `ggplot2` extensions, https://www.ggplot2-exts.org/gallery/
+    - ggstance
+    - ggrepel
+    - gganimate
+    - GGally
 
 ---
 
