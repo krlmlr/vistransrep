@@ -15,5 +15,6 @@ rx <- rex(
   zero_or_more(any),
   end
 )
+rx
 
 substitutes("abcdef(x)op", rx, "\\1")
