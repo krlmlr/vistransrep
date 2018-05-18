@@ -18,6 +18,8 @@ navbar:
     href: rstudio.html
   - text: dplyr
     href: dplyr.html
+  - text: import
+    href: import.html
   - text: rmarkdown
     href: rmarkdown.html
   - text: outro

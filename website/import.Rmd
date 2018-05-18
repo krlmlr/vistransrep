@@ -1,0 +1,31 @@
+---
+title: "rstudio exercises"
+author: "Kirill Müller"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+## Import example file
+
+1. Download the `.csv` files from https://github.com/krlmlr/vistransrep/tree/master/data. Use RStudio's import assistant to import the data with the likely most suitable settings. Copy the code that the import assistent generates to a script.
+
+1. Import one of your own datasets with RStudio's import assistant (if possible) or with a helper package (example: the *pxR* package reads the PC-Axis format).
+
+    ```r
+    install.packages("pxR")
+    library(pxR)
+    ?read.px
+    ```
+
+1. Install the *rio* package, explore its capabilities.
+
+    ```r
+    install.packages("rio")
+    library(rio)
+    ?import
+    ```
