@@ -1,7 +1,11 @@
+
+```{r }
 library(tidyverse)
+```
 
-#' Running text
+Running text
 
+```{r }
 example1 <- read_delim(
   "data/example1.csv",
   ";"
@@ -15,3 +19,5 @@ example2 <- read_delim(
 )
 example2
 View(example2)
+```
+
