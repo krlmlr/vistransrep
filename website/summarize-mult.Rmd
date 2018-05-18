@@ -12,7 +12,7 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-## Distinct airlines per destination
+## Distinct airlines per relation
 
 ```{r}
 flights %>%

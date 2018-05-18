@@ -221,8 +221,8 @@ $(document).ready(function () {
 </div>
 
 
-<div id="distinct-airlines-per-destination" class="section level2">
-<h2>Distinct airlines per destination</h2>
+<div id="distinct-airlines-per-relation" class="section level2">
+<h2>Distinct airlines per relation</h2>
 <pre class="r"><code>flights %&gt;%
   group_by(origin, dest, carrier) %&gt;%
   summarize(n_flights = n()) %&gt;%
