@@ -1,5 +1,5 @@
 ---
-title: "rstudio exercises"
+title: "import exercises"
 author: "Kirill Müller"
 output: html_document
 ---
