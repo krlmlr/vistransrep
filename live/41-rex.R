@@ -18,3 +18,4 @@ rx <- rex(
 rx
 
 substitutes("abcdef(x)op", rx, "\\1")
+substitutes("abcde234234f(12x34)sadfgop", rx, "\\1")
