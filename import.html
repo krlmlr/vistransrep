@@ -12,7 +12,7 @@
 <meta name="author" content="Kirill Müller" />
 
 
-<title>ggplot2 exercises part 3</title>
+<title>rstudio exercises</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -218,39 +218,24 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">ggplot2 exercises part 3</h1>
+<h1 class="title toc-ignore">rstudio exercises</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 
 </div>
 
 
-<div id="scales" class="section level2">
-<h2><a href="scales.html">Scales</a></h2>
+<div id="import-example-file" class="section level2">
+<h2>Import example file</h2>
 <ol style="list-style-type: decimal">
-<li><p>Choose one or two of your previous plots, and give the scales a proper name.</p>
-<p>Hint: Use one or more <code>scale_...()</code> functions.</p></li>
-<li><p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p></li>
-<li><p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
-<p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p></li>
-<li><p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
-<p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p></li>
-<li><p>Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, … .</p></li>
-</ol>
-</div>
-<div id="coordinate-systems" class="section level2">
-<h2><a href="coord.html">Coordinate systems</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Create a flipped boxplot of fuel economy by transmission type.</p></li>
-<li><p>Plot highway vs. city fuel economy with an additional <code>geom_abline()</code> layer. How do you set a 45° degree for the diagonal line?</p></li>
-<li><p>Try to “estimate” an approximate ratio between the two economy measures by tweaking the <code>slope</code> argument to <code>geom_abline()</code>.</p></li>
-</ol>
-</div>
-<div id="theming" class="section level2">
-<h2><a href="theme.html">Theming</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Choose your favorite among the predefined themes.</p>
-<p>Hint: All start with <code>theme_...()</code>, but watch out for <code>theme_set()</code>.</p></li>
-<li><p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a color or fill legend. What happens if you then apply <code>theme_bw()</code>? Why?</p></li>
+<li><p>Download the <code>.csv</code> files from <a href="https://github.com/krlmlr/vistransrep/tree/master/data" class="uri">https://github.com/krlmlr/vistransrep/tree/master/data</a>. Use RStudio’s import assistant to import the data with the likely most suitable settings. Copy the code that the import assistent generates to a script.</p></li>
+<li><p>Import one of your own datasets with RStudio’s import assistant (if possible) or with a helper package (example: the <em>pxR</em> package reads the PC-Axis format).</p>
+<pre class="r"><code>install.packages(&quot;pxR&quot;)
+library(pxR)
+?read.px</code></pre></li>
+<li><p>Install the <em>rio</em> package, explore its capabilities.</p>
+<pre class="r"><code>install.packages(&quot;rio&quot;)
+library(rio)
+?import</code></pre></li>
 </ol>
 </div>
 
