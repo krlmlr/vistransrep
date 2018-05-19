@@ -83,11 +83,6 @@ knitr::opts_chunk$set(cache = TRUE)
 
     Hint: The solution to this exercise is *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
 
-1. Find more exercises in Section 3.6.1 of r4ds.
-
-
-## [Statistical transformations](stat.html)
-
 1. Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the `mpg` dataset contains. Which aesthetic mappings do you need to specify? 
 
     Hint: Find the relevant geom by typing `geom_` on the console or in your script file.
@@ -102,7 +97,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
 
-1. Find more exercises in Section 3.7.1 of r4ds.
+1. Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.
 
 
 ## [Position adjustments](position.html)
