@@ -61,6 +61,15 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. What values are valid for `color`, `alpha`, `shape` and `size`?
 
+1. Find how to update the default point color for all scatterplots in the help for `update_geom_defaults()`. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).
+
+1. Find how to update the default point color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
+
+    ```r
+    ggplot(_____) +
+      _____ +
+      theme(___)
+    ```
 
 ## [Other point geoms](geoms.html)
 
