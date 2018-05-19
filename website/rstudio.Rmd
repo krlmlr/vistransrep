@@ -7,80 +7,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-knitr::opts_chunk$set(cache = TRUE)
 ```
 
-## Setup
+[Part 1](rstudio-1.html): Essentials
 
-1. Choose "File → New Project... → New Directory → New Project" from the menu.
-
-1. Type a name for your new directory, and choose a directory on your local or network drive.
-
-1. OK.
-
-1. Close and reopen RStudio. Double-check that the project is still active.
-
-1. Type and run `getwd()` in the console, double-check that the output matches the path to your newly created directory.
-
-1. Choose "Tools → Global Options..." from the menu.
-    - In the dialog, uncheck the fourth checkbox ("Restore .RData into workspace on startup") and select "Never" in the combobox below ("Save workspace to .RData on exit").
-    - Select "Code" in the list on the left
-    - Optionally: Uncheck the third checkbox ("Insert matching parens/quotes")
-    - Select "Saving" in the list on the top
-    - Check the two check boxes ("Ensure that source files end with newline", "Strip trailing horizontal whitespace when saving")
-
-
-## [RStudio walkthrough](walkthrough.html)
-
-1. Evaluate a few arithmetic expressions in the console. Do operator precendence rules hold?
-    - Also try the modulo operator `%%`, the integer division `%/%`, and functions such as `floor()`, `sin()`, `max()`.
-
-1. Practice:
-    - repeating and searching expressions in the history,
-    - aborting and restarting the entry of an expression
-
-1. What happens if you type `5 + <enter> 3 <enter>`? Is the result different from `5 <enter> + 3 <enter>`? Why?
-
-1. View the `mpg` dataset in the viewer pane:
-
-    ```r
-    View(mpg)
-    ```
-
-1. Practice:
-    - restarting the R session
-    - other shortcuts from the RStudio cheat sheet
-
-## Getting help
-
-1. Look up the help for the following objects and functions:
-    - `diamonds`
-    - `geom_boxplot()`
-    - `near()`
-
-    Hint: Make sure you have loaded the `tidyverse` package with `library(tidyverse)`.
-    
-    Hint: You can now also use the F1 key.
-
-
-## Scripts
-
-1. Choose "File → New file → R script" to create a new script.
-
-1. Save it, pick a file name. The extension `.R` will be added automatically.
-
-1. Add code to load the tidyverse package on the first line. Save the script.
-
-1. Copy some expressions and plots you have run before from the interactive tutorial to your script. Save the script.
-
-1. Use Ctrl + Enter to source a single expression from the script.
-
-1. Use Ctrl + Shift + Enter to source the entire script.
-
-1. Restart the R session (via Ctrl + Shift + F10 or via "Session → Restart R"). Source the entire script.
-
-    Hint: The keyboard shortcut may not work in your browser.
-
-1. Choose "File → Knit document" to render the entire output to a single document.
-
-1. Everything after `#` is a comment. Add a regular comment and one prefixed with `#'` (hash apostroph). Knit the document. Can you see the difference?
+[Part 2](rstudio-2.html): Get the most out of the RStudio IDE

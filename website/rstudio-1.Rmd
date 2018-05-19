@@ -1,0 +1,67 @@
+---
+title: "rstudio exercises"
+author: "Kirill Müller"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+## Setup
+
+1. Extract the `.zip` file to your disk.
+
+1. Locate and open the file `R-workshop.Rproj`.
+
+1. Open the file `01-hello.R` in the `scripts` directory. Run it line by line by positioning the blinking cursor (caret) in the first line and pressing Ctrl + Enter (on the Mac: Cmd + Enter). Also, run it completely (press Ctrl + Shift + Enter, on the Mac: Cmd + Shift + Enter).
+
+1. Open the file `02-calc.R`. Run it line by line.
+
+1. Practice the "clean slate": Activate the console (Ctrl + 2, on the Mac Cmd + 2), press Esc twice, click the broom in the upper right corner of the console (or press Ctrl + L, also on the Mac). Make sure that the console shows a single blue `>` only.
+
+1. Open the file `03-incomplete.R` in the `scripts` directory. Run it completely (click the "Source" button, or press Ctrl + Shift + Enter). Can you see the problem?
+
+    Hint: Apply the "clean slate" practiced before.
+
+1. From a "clean slate", run the first line in `03-incomplete.R`. How do you return to a state where R accepts your commands again?
+
+1. Edit the file so that it can be run completely.
+
+1. Open the file `04-error.R` in the `scripts` directory. Run the first line of the script. Can you interpret the error?
+
+    Hint: Apply the "clean slate" practiced before.
+
+1. Open the file `05-multiline.R`. Position the blinking cursor (caret) on the second line of the script, press Ctrl + Enter (on the Mac, Cmd + Enter). Can you give an interpretation for the observed behavior?
+
+1. Open the file `06-premature.R`. Run it line by line or completely. Can you give an interpretation for the observed behavior?
+
+## Getting help
+
+1. Open and run the script `07-help.R`.
+
+1. Look up the help for the following objects and functions:
+    - `mpg`
+    - `geom_boxplot()`
+    - `near()`
+    
+    Hint: Position the caret on the name you want to look up the help for, and press F1.
+
+1. Look up the help for the `%/%` operator.
+    
+    Hint: Type `help("%/%")` in your script and run the line with Ctrl + Enter (on the Mac, Cmd + Enter)
+
+1. Visit https://rdrr.io or https://rdocumentation.org, search for functions and objects from this exercise.
+
+1. Use the search term `geom_boxplot site:tidyverse.org` in a search engine.
+
+
+## Scripts
+
+1. Choose "File → New file → R script" to create a new script.
+
+1. Save it in the `scripts` directory, pick a file name (recommended: `08-new`). The extension `.R` will be added automatically.
+
+1. Add code to load the tidyverse package on the first line. Save the script.
