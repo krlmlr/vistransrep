@@ -186,10 +186,10 @@ $(document).ready(function () {
   <a href="intro.html">intro</a>
 </li>
 <li>
-  <a href="ggplot2.html">ggplot2</a>
+  <a href="rstudio.html">rstudio</a>
 </li>
 <li>
-  <a href="rstudio.html">rstudio</a>
+  <a href="ggplot2.html">ggplot2</a>
 </li>
 <li>
   <a href="dplyr.html">dplyr</a>
@@ -393,16 +393,16 @@ carrier_arranged_by_mean_distance</code></pre>
 <pre><code>## # A tibble: 4,044 x 2
 ##    tailnum not_departed
 ##    &lt;chr&gt;          &lt;int&gt;
-##  1 D942DN             0
-##  2 N0EGMQ            17
-##  3 N10156             7
-##  4 N102UW             0
-##  5 N103US             0
-##  6 N104UW             0
-##  7 N10575            17
-##  8 N105UW             0
-##  9 N107US             0
-## 10 N108UW             0
+##  1 &lt;NA&gt;            2512
+##  2 D942DN             0
+##  3 N0EGMQ            17
+##  4 N10156             7
+##  5 N102UW             0
+##  6 N103US             0
+##  7 N104UW             0
+##  8 N10575            17
+##  9 N105UW             0
+## 10 N107US             0
 ## # ... with 4,034 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
