@@ -28,6 +28,8 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?
 
     Hint: Use the formula `235 / hwy` to convert from miles per gallon.
+    
+1. How can you reduce overplotting? Use your favorite search engine to find out.
 
 1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).
 
