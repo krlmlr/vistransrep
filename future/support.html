@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data visualisation, reporting, and processing with R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kirill Müller" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data visualisation, reporting, and processing with R
+## Supporting slides
+### Kirill Müller
+
+---
+
+
+
+
+class: center
+
+# Survey results
+
+## Purpose of R: Interactive work, automation
+
+## Some previous experience with R
+
+## SPSS and Excel
+
+## Varying programming experience, e.g. VB/VBA, Python
+
+## Some experience with shell/command line
+
+---
+
+# Aesthetics
+
+- `x`, `y`
+- `shape`
+- `size`
+- `alpha`
+- `text`
+- `color` vs. `fill`
+- `group`
+
+Placed inside `aes()`: Map to variable, show legend
+
+Placed outside `aes()`: Change for all points, no legend
+
+---
+
+# Graphing template
+
+
+```r
+ggplot(
+  data = .DATA.,
+  aes(x = ..., y = ..., ...)
+) +
+  .GEOM.(
+    data = .DATA.,
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...)
+```
+
+---
+
+# Data transformation
+
+## One table
+
+- `filter()`
+- `select()` / `rename()`
+- `arrange()`
+- `mutate()` / `transmute()`
+- `summarise()`
+
+## Grouped operations
+
+## Joins
+
+---
+
+# Filter criteria
+
+- Operators: `==`, `!=`, `&lt;`, `&gt;`, `&lt;=`, `&gt;=`
+    ```r
+    month == 3              # careful: two =
+    month &gt;= 10
+    carrier != "UA"         # careful: &lt;&gt; doesn't work
+    arr_time &lt; dep_time
+    ```
+- `near()`
+    ```r
+    near(sin(pi), 0)
+    ```
+- `between()`, `%in%`
+    ```r
+    between(hour, 8, 12)
+    month %in% c(12, 1, 2)
+    ```
+
+---
+
+# Combining filter criteria
+
+- Operators: `&amp;`, `|`, `!`
+    ```r
+    (month == 5) &amp; between(day, 17, 18)
+    (month == 3) | (month == 4)
+    !between(month, 3, 6)
+    ```
+- Missing values
+    ```r
+    is.na(arr_time)
+    is.na(NA + 3)
+    is.na(!NA)
+    is.na(0)
+    ```
+
+---
+
+# Selection helpers
+
+## By name
+
+- `. %&gt;% select(var1, var2)`
+- `. %&gt;% select(var1, everything())`
+- `. %&gt;% select(ends_with("delay"))`
+
+## Range
+
+- `. %&gt;% select(var1:var2)`
+- `. %&gt;% select(-var1:-var2)`
+
+## By position
+
+- `. %&gt;% select(1:5)`
+
+---
+
+# Sorting data
+
+- `NA` sorts last
+- Use `desc()` to reverse sorting order
+
+---
+
+# Mutation functions
+
+- Arithmetic: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`
+    ```r
+    dep_delay - arr_delay
+    dep_time %/% 100
+    dep_time %% 100
+    dep_delay - mean(dep_delay)   # See next slide
+    ```
+- Real functions, see `?base::Math` and `?dplyr::lead`:
+    - Rounding: `floor()`, `ceiling()`, `round()`
+    - Sign: `abs()`, `sign()`
+    - Transform: `sqrt()`, `log()`, `log2()`, `exp()`
+    - Trigonometric: `sin()` etc.
+    - Cumulative: `cumsum()` etc.
+    - Lead and lag: `lead()`, `lag()`
+    
+- Recoding: `recode()`
+
+- All filtering functions to return `logical`
+
+- Ranking: `row_number()`, `min_rank()`, `ntile()`
+
+---
+
+# Aggregate functions
+
+## Statistics
+
+- `sum()`, `prod()`
+    - `na.rm = TRUE`
+- `mean()`, `median()`
+- `sd()`, `IQR()`, `mad()`
+- `min()`, `quantile(0.75)`, `max()`
+- `sum()` and `mean()` for `logical` variables:
+    ```r
+    mean(is.na(arr_time))
+    ```
+
+## Ranking
+
+- `n()`
+- `first()`, `last()`, `nth()`
+
+---
+
+# Graphing template, with transformation
+
+
+```r
+.DATA. %&gt;%
+  ... %&gt;%
+  ggplot(
+    aes(x = ..., y = ..., ...)
+  ) +
+  .GEOM.(
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...) +
+  .SCALE.(...) +
+  .COORD.(...) +
+  .THEME.(...)
+```
+
+---
+
+# Joins
+
+- For each combination of join variables in the left data frame, find corresponding rows in the right data frame
+    - Default: Join by matching variable names
+    
+.pull-left[
+
+## Mutating join
+
+- Always returns rows from left *and* right data frame
+- Difference: behavior on mismatch
+    - `inner_join()`: Keep only matching rows
+    - `left_join()`: Keep all rows from left
+    - `right_join()`: Keep all rows from right
+    - `full_join()`: Keep all rows
+
+]
+
+.pull-right[
+
+## Filtering join
+
+- Only return rows from left data frame
+- Difference: Returned set
+    - `semi_join()`: Keep matching rows
+    - `anti_join()`: Remove matching rows
+
+]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
