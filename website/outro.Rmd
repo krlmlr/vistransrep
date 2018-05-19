@@ -185,6 +185,8 @@ flights %>%
 
 # Visualizations not covered
 
+.pull-left[
+
 ## Position adjustments
 
 jitter, dodge, stack, nudge
@@ -193,6 +195,10 @@ jitter, dodge, stack, nudge
 
 labeling, color, range
 
+]
+
+.pull-right[
+
 ## Coordinate systems
 
 flipping, aspect ratio, polar
@@ -200,6 +206,8 @@ flipping, aspect ratio, polar
 ## Theming
 
 tweaking plots, standard appearance
+
+]
 
 ---
 
