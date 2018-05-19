@@ -231,14 +231,49 @@ $(document).ready(function () {
 <p>Hint: You need to load the <code>nycflights13</code> package.</p>
 <pre class="r"><code>View(___)</code></pre></li>
 <li><p>Find all flights that departed between 8:00 AM and 10:00 PM.</p>
-<pre class="r"><code>filter(flights, between(dep_time, ___, ___))</code></pre></li>
+<pre class="r"><code>flights %&gt;%
+  filter(between(dep_time, ___, ___))</code></pre></li>
 <li><p>Find all flights that departed in the three winter months.</p>
-<pre class="r"><code>filter(flights, month ___ c(___)))</code></pre></li>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___ c(___)))</code></pre></li>
 <li><p>Are there any flights where departure time is later than arrival time? What does this mean?</p>
-<pre class="r"><code>filter(flights, ___)</code></pre></li>
+<pre class="r"><code>flights %&gt;%
+  filter(_____)</code></pre></li>
 <li><p>Find all flights that departed today four years ago.</p>
-<pre class="r"><code>filter(flights, dep_time ___, dep_time ___)</code></pre></li>
-<li><p>Find more exercises in item 1 of Section 5.2.4 of r4ds.</p></li>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___, day ___)</code></pre></li>
+</ol>
+</div>
+<div id="arrange" class="section level2">
+<h2><a href="arrange.html">Arrange</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>On what day did the flight with the shortest airtime take place?</p>
+<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  head(1)</code></pre></li>
+<li><p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  tail(1)
+
+flights %&gt;% 
+  arrange(desc(___)) %&gt;%
+  ___(1)</code></pre></li>
+<li><p>On what day did the flight with the longest airtime take place?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___ - ___) %&gt;%
+  tail(1)</code></pre></li>
+<li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre></li>
+<li><p>Which flights were best in recovering from delay in the air?</p></li>
 </ol>
 </div>
 <div id="assignment-the-pipe" class="section level2">
@@ -264,36 +299,8 @@ View(___)</code></pre>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
-<p>Hint: Consult the <code>airports</code> dataset.</p></li>
-<li><p>Apply more restrictions to the four solutions.</p></li>
-</ol>
-</div>
-<div id="logical-operators-na" class="section level2">
-<h2><a href="logical.html">Logical operators, NA</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
-<pre class="r"><code>flights %&gt;%
-  filter(___, ___) %&gt;%
-  filter(___)
-
-flights %&gt;%
-  filter(_____)</code></pre></li>
-<li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p>
-<pre class="r"><code>flights %&gt;%
-  filter(___ | ___)</code></pre></li>
-<li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
-<pre class="r"><code>flights %&gt;%
-  filter(!___)
-
-flights %&gt;%
-  filter(!(___) ___ !(___))</code></pre></li>
-<li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
-<pre class="r"><code>flights %&gt;%
-  filter(is.na(___) ___)
-
-flights %&gt;%
-  filter(is.na(___) ___)</code></pre></li>
-<li><p>Find more exercises in item 4 of Section 5.2.4 of r4ds.</p></li>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>grepl(&quot;^Honolulu&quot;, name)</code> .</p></li>
+<li><p>Sort the result by <code>distance</code>.</p></li>
 </ol>
 </div>
 <div id="filtering-and-plotting" class="section level2">
@@ -321,6 +328,39 @@ flights %&gt;%
   ggplot(___) +
     ___()</code></pre></li>
 <li><p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p></li>
+<li><p>Look at the “Details” section in the help page for <code>|</code> with <code>help(&quot;|&quot;)</code> to understand predicate logic in R. (We need element-wise comparisons.)</p></li>
+<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___, ___) %&gt;%
+  filter(___)
+
+flights %&gt;%
+  filter(_____)</code></pre></li>
+<li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ | ___)</code></pre></li>
+<li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(!___)
+
+flights %&gt;%
+  filter(!(___) ___ !(___))</code></pre></li>
+<li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(___) ___)
+
+flights %&gt;%
+  filter(is.na(___) ___)</code></pre></li>
+<li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre></li>
+<li><p>Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.</p></li>
 </ol>
 </div>
 <div id="select-and-rename" class="section level2">
@@ -360,39 +400,6 @@ flights %&gt;%
   ggplot(aes(x = `___`, y = `___`)) +
   geom_density2d()</code></pre></li>
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
-</ol>
-</div>
-<div id="arrange" class="section level2">
-<h2><a href="arrange.html">Arrange</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>On what day did the flight with the shortest airtime take place?</p>
-<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p>
-<pre class="r"><code>flights %&gt;% 
-  arrange(___) %&gt;%
-  head(1)</code></pre></li>
-<li><p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p>
-<pre class="r"><code>flights %&gt;% 
-  arrange(___) %&gt;%
-  tail(1)
-
-flights %&gt;% 
-  arrange(desc(___)) %&gt;%
-  ___(1)</code></pre></li>
-<li><p>On what day did the flight with the longest airtime take place?</p>
-<pre class="r"><code>flights %&gt;% 
-  arrange(___ - ___) %&gt;%
-  tail(1)</code></pre></li>
-<li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
-<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
-<pre class="r"><code>flights %&gt;%
-  filter(___) %&gt;%
-  arrange(___)
-
-flights %&gt;%
-  arrange(___) %&gt;%
-  filter(___)</code></pre></li>
-<li><p>Which flights were best in recovering from delay in the air?</p></li>
-<li><p>Find more exercises in Section 5.3.1 of r4ds.</p></li>
 </ol>
 </div>
 <div id="mutate" class="section level2">

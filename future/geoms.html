@@ -354,7 +354,7 @@ $(document).ready(function () {
     binwidth = 1
   )</code></pre>
 <p><img src="geoms_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>However, some bars are hidden. This happens less if we use color instead:</p>
+<p>However, the bars are stacked, and difficult to compare to each other:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy, color = drv),
