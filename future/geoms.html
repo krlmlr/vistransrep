@@ -289,6 +289,132 @@ $(document).ready(function () {
 <p><img src="geoms_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>We need better data transformation tools to reformat the data for plotting it in a more natural way.</p>
 </div>
+<div id="cars-by-drivetrain" class="section level2">
+<h2>Cars by drivetrain</h2>
+<p>I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
+<p>We need only the “x” aesthetic, “y” is computed automatically. <code>drv</code> is the relevant variable.</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_bar(aes(x = drv))</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="explicit-count" class="section level2">
+<h2>Explicit count</h2>
+<p>The output is the same:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.</p>
+</div>
+<div id="proportions" class="section level2">
+<h2>Proportions</h2>
+<p>Plotting overall proportions changes the y scale:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Omitting <code>group</code> will plot proportions per drivetrain in each column, which are 1 by default:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy" class="section level2">
+<h2>Fuel economy</h2>
+<p>We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>The bin width should be set explicitly to avoid the warning:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    fill = NA,
+    color = &quot;blue&quot;,
+    binwidth = 1
+  ) +
+  geom_freqpoly(
+    mapping = aes(x = hwy),
+    binwidth = 1,
+    size = 2
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy-by-drivetrain" class="section level2">
+<h2>Fuel economy by drivetrain</h2>
+<p>We can set the “fill” aesthetic:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, fill = drv),
+    binwidth = 1
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>However, some bars are hidden. This happens less if we use color instead:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy, color = drv),
+    fill = NA,
+    binwidth = 1
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>The frequency polygon offers a much clearer display of the same data:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_freqpoly(
+    mapping = aes(x = hwy, color = drv),
+    binwidth = 1
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="fuel-economy-per-drivetrain-a-history-of-failed-attempts" class="section level2">
+<h2>Fuel economy per drivetrain (a history of failed attempts)</h2>
+<p>Can I just copy and adapt the code from the last solution?</p>
+<pre class="r"><code>ggplot(mpg, aes(hwy, color = drv)) +
+  geom_histogram(fill = NA, color = &quot;black&quot;, size = 0.2, binwidth = 2) +
+  geom_freqpoly(color = &quot;red&quot;, binwidth = 2)</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Nope. Something’s wrong here. Maybe if I follow the template?</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    fill = NA,
+    color = &quot;black&quot;,
+    size = 0.2
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>I can’t use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.</p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  ) +
+  geom_freqpoly(
+    aes(hwy, color = drv, group = drv),
+    binwidth = 2
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_histogram(
+    aes(hwy, color = drv),
+    binwidth = 2,
+    size = 0.2,
+    fill = NA
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(mpg) +
+  geom_freqpoly(
+    aes(hwy, color = drv),
+    binwidth = 2
+  )</code></pre>
+<p><img src="geoms_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
