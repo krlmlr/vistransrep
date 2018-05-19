@@ -150,11 +150,16 @@ class: inverse
 
 ---
 
-# Transformation not covered
+# More transformation
 
 - Grouped `mutate()` and `filter()`, see r4ds 5.7.1
 - Scoped functions, see `?scoped`
 - `complete()` and `fill()`
+
+## Same syntax for working with databases
+
+- *dbplyr* package
+- Transformation operations are translated to SQL
 
 ---
 
