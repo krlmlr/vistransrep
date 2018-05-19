@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
+
+View <- function(x) print(x)
 ```
 
 ## All flights on this day x years ago
@@ -77,4 +79,209 @@ flights %>%
 ```{r}
 flights %>% 
   filter(dep_time > arr_time)
+```
+
+## Flight with shortest airtime
+
+```{r}
+flights %>% 
+  arrange(air_time) %>%
+  head(1)
+```
+
+
+## Flight with heaviest delay
+
+```{r}
+flights %>% 
+  arrange(arr_delay) %>%
+  tail(1)
+```
+
+Why doesn't this give the result we're looking for? Can we use a filter?
+
+```{r}
+flights %>% 
+  filter(!is.na(arr_delay)) %>%
+  arrange(arr_delay) %>%
+  tail(1)
+```
+
+Or the pattern below?
+
+```{r}
+flights %>% 
+  arrange(!is.na(arr_delay), arr_delay) %>%
+  tail(1)
+```
+
+Usually it's easiest to sort in descending order:
+
+```{r}
+flights %>% 
+  arrange(-arr_delay) %>%
+  head(1)
+```
+
+```{r}
+flights %>% 
+  arrange(desc(arr_delay)) %>%
+  head(1)
+```
+
+
+## Flight with longest airtime
+
+```{r}
+flights %>% 
+  arrange(desc(air_time)) %>%
+  head(1)
+```
+
+
+## UA flights with lowest delay
+
+If we filter first, fewer observations need to be sorted.
+
+```{r}
+flights %>% 
+  filter(carrier == "UA") %>%
+  arrange(arr_delay)
+```
+
+
+```{r}
+flights %>% 
+  arrange(arr_delay) %>%
+  filter(carrier == "UA")
+```
+
+
+## Recovering delay
+
+```{r}
+flights %>% 
+  arrange(dep_delay - arr_delay)
+```
+
+## Intermediate variables
+
+Naming is hard!
+
+```{r}
+early_flights <- filter(flights, dep_time >= 600)
+early_late_flights <-
+  filter(early_flights, arr_time >= 2200)
+early_late_ua_flights <-
+  filter(early_late_flights, carrier == "UA")
+early_late_late_ua_flights <-
+  filter(early_late_ua_flights, arr_delay > 120)
+early_late_late_ua_flights_not_honolulu <-
+  filter(early_late_late_ua_flights, dest != "HNL")
+early_late_late_ua_flights_not_honolulu_sorted <-
+  arrange(
+    early_late_late_ua_flights_not_honolulu,
+    distance
+  )
+View(early_late_late_ua_flights_not_honolulu_sorted)
+```
+
+## Nested expressions
+
+Difficult to read.
+
+```{r}
+View(
+  arrange(
+    filter(
+      filter(
+        filter(
+          filter(
+            filter(
+              flights,
+              dep_time <= 600
+            ),
+            arr_time >= 2200
+          ),
+          carrier == "UA"
+        ),
+        arr_delay > 120
+      ),
+      dest != "HNL"
+    ),
+    distance
+  )
+)
+```
+
+## Pipe
+
+```{r}
+flights %>% 
+  filter(dep_time <= 600) %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL") %>%
+  arrange(distance) %>%
+  View()
+```
+
+The original data is never updated! You still need to assign the result of a pipe to a variable:
+
+```{r}
+late_late_ua_flights_not_honolulu <-
+  flights %>% 
+  filter(dep_time <= 600) %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL") %>%
+  arrange(distance)
+```
+
+## Histogram of air time of all flights
+
+```{r}
+flights %>% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )
+```
+
+
+```{r}
+flights %>%
+  filter(dest != "HNL") %>%
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )
+```
+
+
+```{r}
+flights %>%
+  filter(dest != "HNL") %>%
+  filter(between(air_time, 400, 500)) %>% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 10
+  )
+```
+
+## All very close relations
+
+```{r}
+flights %>%
+  filter(air_time < 60) %>% 
+  ggplot() +
+  geom_bin2d(aes(origin, dest))
 ```

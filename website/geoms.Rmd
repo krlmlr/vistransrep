@@ -183,7 +183,7 @@ ggplot(data = mpg) +
   )
 ```
 
-However, some bars are hidden. This happens less if we use color instead:
+However, the bars are stacked, and difficult to compare to each other:
 
 ```{r echo=TRUE}
 ggplot(data = mpg) +
