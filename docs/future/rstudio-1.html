@@ -12,7 +12,7 @@
 <meta name="author" content="Kirill Müller" />
 
 
-<title>Summarize by multiple variables</title>
+<title>rstudio exercises</title>
 
 <script src="site_libs/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -218,85 +218,54 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Summarize by multiple variables</h1>
+<h1 class="title toc-ignore">rstudio exercises</h1>
 <h4 class="author"><em>Kirill Müller</em></h4>
 
 </div>
 
 
-<div id="distinct-airlines-per-relation" class="section level2">
-<h2>Distinct airlines per relation</h2>
-<pre class="r"><code>flights %&gt;%
-  group_by(origin, dest, carrier) %&gt;%
-  summarize(n_flights = n()) %&gt;%
-  summarize(n_distinct_carriers = n()) %&gt;%
-  ungroup() %&gt;% 
-  arrange(desc(n_distinct_carriers))</code></pre>
-<pre><code>## # A tibble: 224 x 3
-##    origin dest  n_distinct_carriers
-##    &lt;chr&gt;  &lt;chr&gt;               &lt;int&gt;
-##  1 EWR    DTW                     5
-##  2 EWR    MSP                     5
-##  3 JFK    LAX                     5
-##  4 JFK    SFO                     5
-##  5 JFK    TPA                     5
-##  6 LGA    ATL                     5
-##  7 LGA    CLE                     5
-##  8 LGA    CLT                     5
-##  9 EWR    ATL                     4
-## 10 JFK    AUS                     4
-## # ... with 214 more rows</code></pre>
-<p>Much shorter:</p>
-<pre class="r"><code>flights %&gt;%
-  count(origin, dest, carrier) %&gt;%
-  count(origin, dest) %&gt;% 
-  ungroup() %&gt;% 
-  arrange(desc(nn))</code></pre>
-<pre><code>## # A tibble: 224 x 3
-##    origin dest     nn
-##    &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
-##  1 EWR    DTW       5
-##  2 EWR    MSP       5
-##  3 JFK    LAX       5
-##  4 JFK    SFO       5
-##  5 JFK    TPA       5
-##  6 LGA    ATL       5
-##  7 LGA    CLE       5
-##  8 LGA    CLT       5
-##  9 EWR    ATL       4
-## 10 JFK    AUS       4
-## # ... with 214 more rows</code></pre>
-<p>Alternatively:</p>
-<pre class="r"><code>flights %&gt;%
-  group_by(origin, dest, carrier) %&gt;%
-  tally() %&gt;%
-  tally(wt = NULL) %&gt;%
-  ungroup() %&gt;%
-  arrange(desc(nn))</code></pre>
-<pre><code>## # A tibble: 224 x 3
-##    origin dest     nn
-##    &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
-##  1 EWR    DTW       5
-##  2 EWR    MSP       5
-##  3 JFK    LAX       5
-##  4 JFK    SFO       5
-##  5 JFK    TPA       5
-##  6 LGA    ATL       5
-##  7 LGA    CLE       5
-##  8 LGA    CLT       5
-##  9 EWR    ATL       4
-## 10 JFK    AUS       4
-## # ... with 214 more rows</code></pre>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<ol style="list-style-type: decimal">
+<li><p>Extract the <code>.zip</code> file to your disk.</p></li>
+<li><p>Locate and open the file <code>R-workshop.Rproj</code>.</p></li>
+<li><p>Open the file <code>01-hello.R</code> in the <code>scripts</code> directory. Run it line by line by positioning the blinking cursor (caret) in the first line and pressing Ctrl + Enter (on the Mac: Cmd + Enter). Also, run it completely (press Ctrl + Shift + Enter, on the Mac: Cmd + Shift + Enter).</p></li>
+<li><p>Open the file <code>02-calc.R</code>. Run it line by line.</p></li>
+<li><p>Practice the “clean slate”: Activate the console (Ctrl + 2, on the Mac Cmd + 2), press Esc twice, click the broom in the upper right corner of the console (or press Ctrl + L, also on the Mac). Make sure that the console shows a single blue <code>&gt;</code> only.</p></li>
+<li><p>Open the file <code>03-incomplete.R</code> in the <code>scripts</code> directory. Run it completely (click the “Source” button, or press Ctrl + Shift + Enter). Can you see the problem?</p>
+<p>Hint: Apply the “clean slate” practiced before.</p></li>
+<li><p>From a “clean slate”, run the first line in <code>03-incomplete.R</code>. How do you return to a state where R accepts your commands again?</p></li>
+<li><p>Edit the file so that it can be run completely.</p></li>
+<li><p>Open the file <code>04-error.R</code> in the <code>scripts</code> directory. Run the first line of the script. Can you interpret the error?</p>
+<p>Hint: Apply the “clean slate” practiced before.</p></li>
+<li><p>Open the file <code>05-multiline.R</code>. Position the blinking cursor (caret) on the second line of the script, press Ctrl + Enter (on the Mac, Cmd + Enter). Can you give an interpretation for the observed behavior?</p></li>
+<li><p>Open the file <code>06-premature.R</code>. Run it line by line or completely. Can you give an interpretation for the observed behavior?</p></li>
+</ol>
 </div>
-<div id="cancelled-flights-per-month-per-airline" class="section level2">
-<h2>Cancelled flights per month per airline</h2>
-<pre class="r"><code>flights %&gt;% 
-  group_by(carrier, month) %&gt;% 
-  summarize(share_of_cancelled = mean(is.na(dep_time))) %&gt;%
-  ungroup() %&gt;%
-  ggplot() +
-  geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
-<p><img src="summarize-mult_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div id="getting-help" class="section level2">
+<h2>Getting help</h2>
+<ol style="list-style-type: decimal">
+<li><p>Open and run the script <code>07-help.R</code>.</p></li>
+<li>Look up the help for the following objects and functions:
+<ul>
+<li><code>mpg</code></li>
+<li><code>geom_boxplot()</code></li>
+<li><code>near()</code></li>
+</ul>
+<p>Hint: Position the caret on the name you want to look up the help for, and press F1.</p></li>
+<li><p>Look up the help for the <code>%/%</code> operator.</p>
+<p>Hint: Type <code>help(&quot;%/%&quot;)</code> in your script and run the line with Ctrl + Enter (on the Mac, Cmd + Enter)</p></li>
+<li><p>Visit <a href="https://rdrr.io" class="uri">https://rdrr.io</a> or <a href="https://rdocumentation.org" class="uri">https://rdocumentation.org</a>, search for functions and objects from this exercise.</p></li>
+<li><p>Use the search term <code>geom_boxplot site:tidyverse.org</code> in a search engine.</p></li>
+</ol>
+</div>
+<div id="scripts" class="section level2">
+<h2>Scripts</h2>
+<ol style="list-style-type: decimal">
+<li><p>Choose “File → New file → R script” to create a new script.</p></li>
+<li><p>Save it in the <code>scripts</code> directory, pick a file name (recommended: <code>08-new</code>). The extension <code>.R</code> will be added automatically.</p></li>
+<li><p>Add code to load the tidyverse package on the first line. Save the script.</p></li>
+</ol>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

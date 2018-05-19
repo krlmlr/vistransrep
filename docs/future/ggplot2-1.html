@@ -186,10 +186,10 @@ $(document).ready(function () {
   <a href="intro.html">intro</a>
 </li>
 <li>
-  <a href="ggplot2.html">ggplot2</a>
+  <a href="rstudio.html">rstudio</a>
 </li>
 <li>
-  <a href="rstudio.html">rstudio</a>
+  <a href="ggplot2.html">ggplot2</a>
 </li>
 <li>
   <a href="dplyr.html">dplyr</a>
@@ -235,6 +235,7 @@ $(document).ready(function () {
 <p>Share particularly interesting or boring examples you might encounter. Did you find anything surprising?</p></li>
 <li><p>Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?</p>
 <p>Hint: Use the formula <code>235 / hwy</code> to convert from miles per gallon.</p></li>
+<li><p>How can you reduce overplotting? Use your favorite search engine to find out.</p></li>
 <li><p>Find more examples in Section 3.2.4 of the “R for data science” book (<a href="http://r4ds.had.co.nz" class="uri">http://r4ds.had.co.nz</a>).</p></li>
 </ol>
 </div>
@@ -257,6 +258,11 @@ $(document).ready(function () {
 <li><p>What happens if you assign a variable, e.g. <code>year</code>, to an aesthetic <em>outside</em> the <code>aes()</code> call?</p></li>
 <li><p>What happens if you assign a constant, e.g. <code>3</code>, to the “size” aesthetic <em>inside</em> the <code>aes()</code> call?</p></li>
 <li><p>What values are valid for <code>color</code>, <code>alpha</code>, <code>shape</code> and <code>size</code>?</p></li>
+<li><p>Find how to update the default point color for all scatterplots in the help for <code>update_geom_defaults()</code>. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).</p></li>
+<li><p>Find how to update the default point color for all label texts in the help for <code>theme()</code>. How to set or update the theme for all subsequent plots?</p>
+<pre class="r"><code>ggplot(_____) +
+  _____ +
+  theme(___)</code></pre></li>
 </ol>
 </div>
 <div id="other-point-geoms" class="section level2">
