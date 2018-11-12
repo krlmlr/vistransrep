@@ -43,6 +43,10 @@ class: center
 2. Each observation must have its own row.
 3. Each value must have its own cell.
 
+![](https://r4ds.had.co.nz/images/tidy-1.png)
+
+Source: Grolemund and Wickham, R for data science
+
 ???
 
 Source: R4DS
