@@ -170,6 +170,29 @@ Source: R4DS
 
 ---
 
+background-image: url(images/left-join.gif)
+
+---
+
+background-image: url(images/inner-join.gif)
+
+---
+
+background-image: url(images/full-join.gif)
+
+---
+
+background-image: url(images/right-join.gif)
+
+---
+
+background-image: url(images/semi-join.gif)
+
+---
+
+background-image: url(images/anti-join.gif)
+
+---
 
 # Joins
 
@@ -197,5 +220,31 @@ Source: R4DS
 - Difference: Returned set
     - `semi_join()`: Keep matching rows
     - `anti_join()`: Remove matching rows
+
+]
+
+---
+
+background-image: url(images/tidyr-spread-gather.gif)
+
+---
+
+# Spread and gather
+
+.pull-left[
+
+## spread: long to wide
+
+- Take new column names from key column
+- Distribute values across new column names
+
+]
+
+.pull-right[
+
+## gather: wide to long
+
+- Create new key column with column names
+- Fill existing data into new column
 
 ]
