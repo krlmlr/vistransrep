@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-02" />
 
 <title>Select and rename</title>
 
@@ -91,6 +92,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -394,7 +398,7 @@ flights %&gt;%
 <pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
 ## will replace the existing scale.</code></pre>
 <pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="select-rename_files/figure-html/select-rename-9-1.png" width="672" /></p>
 <pre class="r"><code>## Renaming in the data
 
 flights %&gt;% 
@@ -403,14 +407,14 @@ flights %&gt;%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
 <pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="select-rename_files/figure-html/select-rename-10-1.png" width="672" /></p>
 <pre class="r"><code>flights %&gt;% 
   filter(arr_time &lt; 500) %&gt;%
   rename(`Departure time` = dep_time) %&gt;%
   rename(`Arrival time` = arr_time) %&gt;%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
-<p><img src="select-rename_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="select-rename_files/figure-html/select-rename-11-1.png" width="672" /></p>
 <pre class="r"><code>## Use coord_fixed() for fixing axes
 flights %&gt;% 
   filter(arr_time &lt; 500) %&gt;%
@@ -419,7 +423,7 @@ flights %&gt;%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`)) +
   coord_fixed()</code></pre>
-<p><img src="select-rename_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="select-rename_files/figure-html/select-rename-12-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

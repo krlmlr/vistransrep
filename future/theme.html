@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-01" />
 
 <title>Theming</title>
 
@@ -91,6 +92,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -234,14 +238,14 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="theme_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="theme_files/figure-html/theme-1-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   theme_minimal() +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="theme_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<p><img src="theme_files/figure-html/theme-1-2.png" width="672" /></p>
 </div>
 <div id="legend-at-bottom" class="section level2">
 <h2>Legend at bottom</h2>
@@ -252,7 +256,7 @@ $(document).ready(function () {
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;) +
   theme(legend.position = &quot;bottom&quot;)</code></pre>
-<p><img src="theme_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="theme_files/figure-html/theme-2-1.png" width="672" /></p>
 <p><code>theme_bw()</code> overwrites everything, including the legend position:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -261,7 +265,7 @@ $(document).ready(function () {
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;) +
   theme(legend.position = &quot;bottom&quot;) +
   theme_bw()</code></pre>
-<p><img src="theme_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="theme_files/figure-html/theme-3-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

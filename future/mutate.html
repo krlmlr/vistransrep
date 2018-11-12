@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-02" />
 
 <title>Mutate</title>
 
@@ -91,6 +92,9 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -235,13 +239,13 @@ $(document).ready(function () {
     na.rm = TRUE,
     binwidth = 20
   )</code></pre>
-<p><img src="mutate_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="mutate_files/figure-html/mutate-1-1.png" width="672" /></p>
 <pre class="r"><code>flights %&gt;% 
   ggplot() +
   geom_histogram(aes(distance / air_time))</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 9430 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="mutate_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="mutate_files/figure-html/mutate-2-1.png" width="672" /></p>
 </div>
 <div id="speed-distributions" class="section level2">
 <h2>Speed distributions</h2>
@@ -254,7 +258,7 @@ $(document).ready(function () {
     na.rm = TRUE,
     binwidth = 20
   )</code></pre>
-<p><img src="mutate_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="mutate_files/figure-html/mutate-3-1.png" width="672" /></p>
 <pre class="r"><code>flights %&gt;%
   mutate(mph_speed = distance / air_time * 60) %&gt;%
   mutate(Delayed = arr_delay &gt; 0) %&gt;%
@@ -265,7 +269,7 @@ $(document).ready(function () {
     binwidth = 20
   ) +
   facet_wrap(~Delayed, ncol = 1)</code></pre>
-<p><img src="mutate_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="mutate_files/figure-html/mutate-4-1.png" width="672" /></p>
 </div>
 <div id="deviation-from-average-departure-delay" class="section level2">
 <h2>Deviation from average departure delay</h2>
@@ -273,7 +277,7 @@ $(document).ready(function () {
   mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %&gt;%
   ggplot() +
   geom_violin(aes(x = origin, y = dev), na.rm = TRUE)</code></pre>
-<p><img src="mutate_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="mutate_files/figure-html/mutate-5-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
