@@ -17,21 +17,6 @@ knitr::opts_chunk$set(cache = TRUE)
 library(tidyverse)
 ```
 
-class: center
-
-# Survey results
-
-## Purpose of R: Interactive work, automation
-
-## Some previous experience with R
-
-## SPSS and Excel
-
-## Varying programming experience, e.g. VB/VBA, Python
-
-## Some experience with shell/command line
-
----
 
 # Tidy data
 
@@ -50,41 +35,6 @@ Source: Grolemund and Wickham, R for data science
 ???
 
 Source: R4DS
-
----
-
-# Aesthetics
-
-- `x`, `y`
-- `shape`
-- `size`
-- `alpha`
-- `text`
-- `color` vs. `fill`
-- `group`
-
-Placed inside `aes()`: Map to variable, show legend
-
-Placed outside `aes()`: Change for all points, no legend
-
----
-
-# Graphing template
-
-```{r support-1, eval = FALSE}
-ggplot(
-  data = .DATA.,
-  aes(x = ..., y = ..., ...)
-) +
-  .GEOM.(
-    data = .DATA.,
-    aes(x = ..., y = ..., ...),
-    .AES. = .CONST.,
-    position = .POSITION.
-  ) +
-  .STAT.(...) +
-  .FACET.(...)
-```
 
 ---
 
@@ -215,27 +165,6 @@ ggplot(
 
 ---
 
-# Graphing template, with transformation
-
-```{r support-2, eval = FALSE}
-.DATA. %>%
-  ... %>%
-  ggplot(
-    aes(x = ..., y = ..., ...)
-  ) +
-  .GEOM.(
-    aes(x = ..., y = ..., ...),
-    .AES. = .CONST.,
-    position = .POSITION.
-  ) +
-  .STAT.(...) +
-  .FACET.(...) +
-  .SCALE.(...) +
-  .COORD.(...) +
-  .THEME.(...)
-```
-
----
 
 # Joins
 
