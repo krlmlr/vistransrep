@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="author" content="Kirill Müller" />
     <meta name="date" content="2017-10-20" />
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="site_libs/remark-css/default.css" rel="stylesheet" />
+    <link href="site_libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -62,7 +62,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-1-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -100,7 +100,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-3-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -112,7 +112,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-4-1.png)&lt;!-- --&gt;
 ]
 
 ---
@@ -127,7 +127,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-5-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -141,7 +141,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-6-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -156,7 +156,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-7-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -198,7 +198,7 @@ ggplot(data = mpg) +
   )
 ```
 
-![](outro_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+![](outro_files/figure-html/outro-9-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -354,19 +354,30 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
