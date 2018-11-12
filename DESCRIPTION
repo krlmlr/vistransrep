@@ -1,4 +1,5 @@
 Package: vistransrep
 Imports:
+    DT,
     nycflights13,
     tidyverse
