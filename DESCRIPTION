@@ -2,4 +2,5 @@ Package: vistransrep
 Imports:
     DT,
     nycflights13,
-    tidyverse
+    tidyverse,
+    xaringan
