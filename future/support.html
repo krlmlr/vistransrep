@@ -20,21 +20,6 @@ class: center, middle, inverse, title-slide
 
 
 
-class: center
-
-# Survey results
-
-## Purpose of R: Interactive work, automation
-
-## Some previous experience with R
-
-## SPSS and Excel
-
-## Varying programming experience, e.g. VB/VBA, Python
-
-## Some experience with shell/command line
-
----
 
 # Tidy data
 
@@ -56,42 +41,6 @@ Source: R4DS
 
 ---
 
-# Aesthetics
-
-- `x`, `y`
-- `shape`
-- `size`
-- `alpha`
-- `text`
-- `color` vs. `fill`
-- `group`
-
-Placed inside `aes()`: Map to variable, show legend
-
-Placed outside `aes()`: Change for all points, no legend
-
----
-
-# Graphing template
-
-
-```r
-ggplot(
-  data = .DATA.,
-  aes(x = ..., y = ..., ...)
-) +
-  .GEOM.(
-    data = .DATA.,
-    aes(x = ..., y = ..., ...),
-    .AES. = .CONST.,
-    position = .POSITION.
-  ) +
-  .STAT.(...) +
-  .FACET.(...)
-```
-
----
-
 # Data transformation
 
 ## One table
@@ -104,7 +53,11 @@ ggplot(
 
 ## Grouped operations
 
+- `group_by()`
+
 ## Joins
+
+- `xxx_join()`
 
 ---
 
@@ -198,7 +151,7 @@ ggplot(
 
 ---
 
-# Aggregate functions
+# Aggregation functions
 
 ## Statistics
 
@@ -216,29 +169,31 @@ ggplot(
 
 - `n()`
 - `first()`, `last()`, `nth()`
+- `row_number()`, `ntile()`, `min_rank()`
 
 ---
 
-# Graphing template, with transformation
+background-image: url(images/left-join.gif)
 
+---
 
-```r
-.DATA. %&gt;%
-  ... %&gt;%
-  ggplot(
-    aes(x = ..., y = ..., ...)
-  ) +
-  .GEOM.(
-    aes(x = ..., y = ..., ...),
-    .AES. = .CONST.,
-    position = .POSITION.
-  ) +
-  .STAT.(...) +
-  .FACET.(...) +
-  .SCALE.(...) +
-  .COORD.(...) +
-  .THEME.(...)
-```
+background-image: url(images/inner-join.gif)
+
+---
+
+background-image: url(images/full-join.gif)
+
+---
+
+background-image: url(images/right-join.gif)
+
+---
+
+background-image: url(images/semi-join.gif)
+
+---
+
+background-image: url(images/anti-join.gif)
 
 ---
 
@@ -268,6 +223,32 @@ ggplot(
 - Difference: Returned set
     - `semi_join()`: Keep matching rows
     - `anti_join()`: Remove matching rows
+
+]
+
+---
+
+background-image: url(images/tidyr-spread-gather.gif)
+
+---
+
+# Spread and gather
+
+.pull-left[
+
+## spread: long to wide
+
+- Take new column names from key column
+- Distribute values across new column names
+
+]
+
+.pull-right[
+
+## gather: wide to long
+
+- Create new key column with column names
+- Fill existing data into new column
 
 ]
     </textarea>
