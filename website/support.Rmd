@@ -50,7 +50,11 @@ Source: R4DS
 
 ## Grouped operations
 
+- `group_by()`
+
 ## Joins
+
+- `xxx_join()`
 
 ---
 
@@ -144,7 +148,7 @@ Source: R4DS
 
 ---
 
-# Aggregate functions
+# Aggregation functions
 
 ## Statistics
 
@@ -162,6 +166,7 @@ Source: R4DS
 
 - `n()`
 - `first()`, `last()`, `nth()`
+- `row_number()`, `ntile()`, `min_rank()`
 
 ---
 
