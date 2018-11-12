@@ -15,13 +15,13 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Counting distinct observations
 
-```{r}
+```{r joins-1}
 airlines %>%
   count(carrier) %>% 
   filter(n > 1)
 ```
 
-```{r}
+```{r joins-2}
 airports %>%
   count(faa) %>%
   filter(n > 1)
@@ -30,7 +30,7 @@ airports %>%
 
 ## Heat map: destination by airline
 
-```{r}
+```{r joins-3}
 flights %>% 
   filter(distance < 300) %>%
   count(dest, carrier) %>%

@@ -18,7 +18,7 @@ View <- function(x) print(x)
 
 Be careful with the equality operator `==`:
 
-```{r, error = TRUE}
+```{r filtering-1, error = TRUE}
 flights %>% 
   filter(month = 6, day = 2)
 
@@ -28,7 +28,7 @@ flights %>%
 
 Can we make a dynamic query?
 
-```{r}
+```{r filtering-2}
 flights %>% 
   filter(
     month == lubridate::month(Sys.Date()),
@@ -38,7 +38,7 @@ flights %>%
 
 Can we use arguments?
 
-```{r}
+```{r filtering-3}
 month_ <- lubridate::month(Sys.Date())
 day_ <- lubridate::day(Sys.Date())
 flights %>% 
@@ -51,24 +51,24 @@ flights %>%
 
 ## All flights between 8:00 AM and 10:00 AM
 
-```{r}
+```{r filtering-4}
 flights %>% 
   filter(dep_time >= 800, dep_time <= 2200)
 ```
 
-```{r}
+```{r filtering-5}
 flights %>% 
   filter(between(dep_time, 800, 2200))
 ```
 
 ## Flights in winter months
 
-```{r}
+```{r filtering-6}
 flights %>%
   filter(month %in% c(12, 1, 2))
 ```
 
-```{r}
+```{r filtering-7}
 winter_months <- c(12, 1, 2)
 flights %>%
   filter(month %in% winter_months)
@@ -76,14 +76,14 @@ flights %>%
 
 ## Departure time later than arrival time
 
-```{r}
+```{r filtering-8}
 flights %>% 
   filter(dep_time > arr_time)
 ```
 
 ## Flight with shortest airtime
 
-```{r}
+```{r filtering-9}
 flights %>% 
   arrange(air_time) %>%
   head(1)
@@ -92,7 +92,7 @@ flights %>%
 
 ## Flight with heaviest delay
 
-```{r}
+```{r filtering-10}
 flights %>% 
   arrange(arr_delay) %>%
   tail(1)
@@ -100,7 +100,7 @@ flights %>%
 
 Why doesn't this give the result we're looking for? Can we use a filter?
 
-```{r}
+```{r filtering-11}
 flights %>% 
   filter(!is.na(arr_delay)) %>%
   arrange(arr_delay) %>%
@@ -109,7 +109,7 @@ flights %>%
 
 Or the pattern below?
 
-```{r}
+```{r filtering-12}
 flights %>% 
   arrange(!is.na(arr_delay), arr_delay) %>%
   tail(1)
@@ -117,13 +117,13 @@ flights %>%
 
 Usually it's easiest to sort in descending order:
 
-```{r}
+```{r filtering-13}
 flights %>% 
   arrange(-arr_delay) %>%
   head(1)
 ```
 
-```{r}
+```{r filtering-14}
 flights %>% 
   arrange(desc(arr_delay)) %>%
   head(1)
@@ -132,7 +132,7 @@ flights %>%
 
 ## Flight with longest airtime
 
-```{r}
+```{r filtering-15}
 flights %>% 
   arrange(desc(air_time)) %>%
   head(1)
@@ -143,14 +143,14 @@ flights %>%
 
 If we filter first, fewer observations need to be sorted.
 
-```{r}
+```{r filtering-16}
 flights %>% 
   filter(carrier == "UA") %>%
   arrange(arr_delay)
 ```
 
 
-```{r}
+```{r filtering-17}
 flights %>% 
   arrange(arr_delay) %>%
   filter(carrier == "UA")
@@ -159,7 +159,7 @@ flights %>%
 
 ## Recovering delay
 
-```{r}
+```{r filtering-18}
 flights %>% 
   arrange(dep_delay - arr_delay)
 ```
@@ -168,7 +168,7 @@ flights %>%
 
 Naming is hard!
 
-```{r}
+```{r filtering-19}
 early_flights <- filter(flights, dep_time >= 600)
 early_late_flights <-
   filter(early_flights, arr_time >= 2200)
@@ -190,7 +190,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)
 
 Difficult to read.
 
-```{r}
+```{r filtering-20}
 View(
   arrange(
     filter(
@@ -216,7 +216,7 @@ View(
 
 ## Pipe
 
-```{r}
+```{r filtering-21}
 flights %>% 
   filter(dep_time <= 600) %>% 
   filter(arr_time >= 2200) %>% 
@@ -229,7 +229,7 @@ flights %>%
 
 The original data is never updated! You still need to assign the result of a pipe to a variable:
 
-```{r}
+```{r filtering-22}
 late_late_ua_flights_not_honolulu <-
   flights %>% 
   filter(dep_time <= 600) %>% 
@@ -242,7 +242,7 @@ late_late_ua_flights_not_honolulu <-
 
 ## Histogram of air time of all flights
 
-```{r}
+```{r filtering-23}
 flights %>% 
   ggplot() +
   geom_histogram(
@@ -253,7 +253,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r filtering-24}
 flights %>%
   filter(dest != "HNL") %>%
   ggplot() +
@@ -265,7 +265,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r filtering-25}
 flights %>%
   filter(dest != "HNL") %>%
   filter(between(air_time, 400, 500)) %>% 
@@ -279,7 +279,7 @@ flights %>%
 
 ## All very close relations
 
-```{r}
+```{r filtering-26}
 flights %>%
   filter(air_time < 60) %>% 
   ggplot() +

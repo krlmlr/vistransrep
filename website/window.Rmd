@@ -14,7 +14,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Busiest month
 
-```{r}
+```{r window-1}
 flights %>%
   group_by(carrier, month) %>%
   summarize(distance = sum(distance)) %>%
@@ -30,7 +30,7 @@ flights %>%
 
 ## Ground time
 
-```{r}
+```{r window-2}
 flights %>%
   mutate_at(
     vars(dep_min = dep_time, arr_min = arr_time),

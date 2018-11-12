@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Blue transparent points
 
-```{r echo=TRUE}
+```{r manual-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -29,7 +29,7 @@ Some appear darker due to overplotting.
 
 Fails with an error:
 
-```{r echo=TRUE, error=TRUE}
+```{r manual-2, echo=TRUE, error=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -39,7 +39,7 @@ ggplot(data = mpg) +
 
 The error message is fairly confusing in some cases:
 
-```{r echo=TRUE, error=TRUE}
+```{r manual-3, echo=TRUE, error=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -52,7 +52,7 @@ ggplot(data = mpg) +
 
 This works, but creates a useless legend and may give unexpected results:
 
-```{r echo=TRUE}
+```{r manual-4, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy, color = "red")

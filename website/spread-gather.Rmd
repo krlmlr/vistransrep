@@ -15,19 +15,19 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## table2 to table1
 
-```{r}
+```{r spread-gather-1}
 table2 %>% 
   spread(type, count)
 ```
 
 ## table1 to table2
 
-```{r}
+```{r spread-gather-2}
 table1 %>% 
   gather(type, count, cases, population)
 ```
 
-```{r}
+```{r spread-gather-3}
 table2 %>% 
   gather(type, count, -country, -year)
 ```
@@ -36,7 +36,7 @@ Are the two calls symmetrical?
 
 No, we need to arrange this result:
 
-```{r}
+```{r spread-gather-4}
 table1 %>% 
   gather(type, count, -country, -year) %>% 
   arrange(country, year, type)
@@ -47,7 +47,7 @@ table1 %>%
 
 For showing one measurement:
 
-```{r}
+```{r spread-gather-5}
 table1 %>%
   ggplot(aes(country, population, fill = factor(year))) +
   geom_col(position = "dodge")
@@ -55,7 +55,7 @@ table1 %>%
 
 For mapping measurement type to an aesthetic:
 
-```{r}
+```{r spread-gather-6}
 table2 %>%
   ggplot(aes(country, count, fill = type)) +
   geom_col() +
@@ -64,7 +64,7 @@ table2 %>%
 
 For mapping both measurements to two aesthetics:
 
-```{r}
+```{r spread-gather-7}
 table1 %>%
   ggplot(aes(population, cases, color = country)) +
   geom_point() +
@@ -73,7 +73,7 @@ table1 %>%
 
 Can also use `table1` to show only one measurement:
 
-```{r}
+```{r spread-gather-8}
 table2 %>%
   filter(type == "cases") %>%
   ggplot() +
@@ -83,7 +83,7 @@ table2 %>%
 
 ## Binding
 
-```{r}
+```{r spread-gather-9}
 cases_tbl <-
   table4a %>%
   gather(year, count, -country) %>%
@@ -101,7 +101,7 @@ bind_rows(cases_tbl, population_tbl) %>%
 
 With just one call to `gather()`:
 
-```{r}
+```{r spread-gather-10}
 cases_tbl <-
   table4a %>%
   mutate(type = "cases")
@@ -118,7 +118,7 @@ bind_rows(cases_tbl, population_tbl) %>%
 
 ## Economies
 
-```{r}
+```{r spread-gather-11}
 mpg %>%
   select(displ, hwy, cty) %>%
   gather(cty_hwy, value, hwy, cty) %>%

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Distinct airlines per relation
 
-```{r}
+```{r summarize-mult-1}
 flights %>%
   group_by(origin, dest, carrier) %>%
   summarize(n_flights = n()) %>%
@@ -25,7 +25,7 @@ flights %>%
 
 Much shorter:
 
-```{r}
+```{r summarize-mult-2}
 flights %>%
   count(origin, dest, carrier) %>%
   count(origin, dest) %>% 
@@ -35,7 +35,7 @@ flights %>%
 
 Alternatively:
 
-```{r}
+```{r summarize-mult-3}
 flights %>%
   group_by(origin, dest, carrier) %>%
   tally() %>%
@@ -46,7 +46,7 @@ flights %>%
 
 ## Cancelled flights per month per airline
 
-```{r}
+```{r summarize-mult-4}
 flights %>% 
   group_by(carrier, month) %>% 
   summarize(share_of_cancelled = mean(is.na(dep_time))) %>%

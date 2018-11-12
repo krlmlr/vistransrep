@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-```{r echo = FALSE, results = "asis"}
+```{r rmarkdown-start-1, echo = FALSE, results = "asis"}
 text <- '``````\n---
 title: "Test document"
 author: "Kirill Müller"
@@ -45,7 +45,7 @@ knitr::asis_output(text)
 
 We will be reviewing a dataset of `r nrow(mpg)` cars. The dataset is listed below.
 
-```{r}
+```{r rmarkdown-start-2}
 mpg
 ```
 
@@ -53,7 +53,7 @@ mpg
 
 The plot below should *not* surprise us: The larger the engine, the more energy it consumes per distance driven (in $\frac{\text{J}}{\text{km}}$), the less is the mileage per unit of gasoline (in $\frac{\text{miles}}{\text{gallon}}$).
 
-```{r}
+```{r rmarkdown-start-3}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point()
 ```

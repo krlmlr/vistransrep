@@ -16,7 +16,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 For presentations, `theme_bw()` or `theme_minimal()` look useful:
 
-```{r echo=TRUE}
+```{r theme-1, echo=TRUE}
 ggplot(data = mpg) +
   theme_bw() +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -35,7 +35,7 @@ ggplot(data = mpg) +
 
 ## Legend at bottom
 
-```{r echo=TRUE}
+```{r theme-2, echo=TRUE}
 ggplot(data = mpg) +
   theme_bw() +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -47,7 +47,7 @@ ggplot(data = mpg) +
 
 `theme_bw()` overwrites everything, including the legend position:
 
-```{r echo=TRUE}
+```{r theme-3, echo=TRUE}
 ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
   scale_x_continuous(name = "Displacement") +

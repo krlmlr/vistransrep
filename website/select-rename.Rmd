@@ -14,17 +14,17 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Select first five variables
 
-```{r}
+```{r select-rename-1}
 flights %>%
   select(year, month, day, dep_time, sched_dep_time)
 ```
 
-```{r}
+```{r select-rename-2}
 flights %>%
   select(year:sched_dep_time)
 ```
 
-```{r}
+```{r select-rename-3}
 ## Numeric indexes work, too
 
 flights %>%
@@ -34,17 +34,17 @@ flights %>%
 
 ## Exclude the date
 
-```{r}
+```{r select-rename-4}
 flights %>%
   select(-year, -month, -day)
 ```
 
-```{r}
+```{r select-rename-5}
 flights %>%
   select(-year:-day)
 ```
 
-```{r}
+```{r select-rename-6}
 ## Numeric indexes work, too
 
 flights %>%
@@ -53,7 +53,7 @@ flights %>%
 
 ## Departure variables
 
-```{r}
+```{r select-rename-7}
 ## contains()
 
 flights %>% 
@@ -63,7 +63,7 @@ flights %>%
 
 ## Move departure variables to end
 
-```{r}
+```{r select-rename-8}
 ## everything()
 
 flights %>%
@@ -72,7 +72,7 @@ flights %>%
 
 ## Contour plot
 
-```{r}
+```{r select-rename-9}
 ## Overriding label names
 
 flights %>% 
@@ -83,7 +83,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r select-rename-10}
 ## Renaming in the data
 
 flights %>% 
@@ -94,7 +94,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r select-rename-11}
 flights %>% 
   filter(arr_time < 500) %>%
   rename(`Departure time` = dep_time) %>%
@@ -103,7 +103,7 @@ flights %>%
   geom_density2d(aes(`Departure time`, `Arrival time`))
 ```
 
-```{r}
+```{r select-rename-12}
 ## Use coord_fixed() for fixing axes
 flights %>% 
   filter(arr_time < 500) %>%

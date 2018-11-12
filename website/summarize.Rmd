@@ -27,17 +27,17 @@ Don't forget `na.rm = TRUE` if needed!
 
 ## Mean arrival and dep delay
 
-```{r}
+```{r summarize-1}
 flights %>%
   summarize(mean(arr_delay, na.rm = TRUE))
 ```
 
-```{r}
+```{r summarize-2}
 flights %>%
   summarize(mean(dep_delay, na.rm = TRUE))
 ```
 
-```{r}
+```{r summarize-3}
 flights %>%
   summarize(
     mean(arr_delay, na.rm = TRUE),
@@ -47,7 +47,7 @@ flights %>%
   )
 ```
 
-```{r}
+```{r summarize-4}
 flights %>%
   summarize_at(
     vars(arr_delay, dep_delay),
@@ -55,7 +55,7 @@ flights %>%
   )
 ```
 
-```{r}
+```{r summarize-5}
 flights %>%
   group_by(origin) %>%
   summarize(
@@ -64,7 +64,7 @@ flights %>%
   )
 ```
 
-```{r}
+```{r summarize-6}
 flights %>%
   count(origin) %>%
   arrange(desc(n))
@@ -73,7 +73,7 @@ flights %>%
 
 ## Air time by carrier
 
-```{r}
+```{r summarize-7}
 total_airtime_by_carrier <-
   flights %>% 
     group_by(carrier) %>% 
@@ -83,7 +83,7 @@ total_airtime_by_carrier <-
 total_airtime_by_carrier
 ```
 
-```{r}
+```{r summarize-8}
 total_airtime_by_carrier %>% 
   arrange(acc_air_time) %>%
   mutate(carrier = forcats::fct_inorder(carrier)) %>%
@@ -94,7 +94,7 @@ total_airtime_by_carrier %>%
 
 ## Carriers for long-distance routes
 
-```{r}
+```{r summarize-9}
 carrier_arranged_by_mean_distance <-
   flights %>%
   group_by(carrier) %>% 
@@ -105,7 +105,7 @@ carrier_arranged_by_mean_distance <-
 carrier_arranged_by_mean_distance
 ```
 
-```{r}
+```{r summarize-10}
 carrier_arranged_by_mean_distance %>% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))
@@ -114,7 +114,7 @@ carrier_arranged_by_mean_distance %>%
 
 ## Worst plane
 
-```{r}
+```{r summarize-11}
 flights %>% 
   filter(is.na(dep_time)) %>%
   group_by(tailnum) %>% 
@@ -124,14 +124,14 @@ flights %>%
   arrange(desc(not_departed))
 ```
 
-```{r}
+```{r summarize-12}
 flights %>% 
   group_by(tailnum) %>% 
   summarize(not_departed = sum(is.na(dep_time))) %>% 
   ungroup()
 ```
 
-```{r}
+```{r summarize-13}
 flights %>% 
   filter(is.na(dep_time)) %>%
   count(tailnum) %>%
@@ -141,7 +141,7 @@ flights %>%
 
 ## Short-distance routes per airline
 
-```{r}
+```{r summarize-14}
 flights %>%
   group_by(carrier) %>% 
   summarize(short_distance_ratio = mean(distance < 300)) %>% 

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 `method` uses a different model to fit the data:
 
-```{r echo=TRUE}
+```{r geoms-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), method = "lm")
@@ -23,7 +23,7 @@ ggplot(data = mpg) +
 
 `se = FALSE` turns off the confidence band:
 
-```{r echo=TRUE}
+```{r geoms-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)
@@ -34,7 +34,7 @@ ggplot(data = mpg) +
 
 Plots marginal distributions of the data close to the axes.
 
-```{r echo=TRUE}
+```{r geoms-3, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_rug(mapping = aes(x = displ, y = hwy))
@@ -42,7 +42,7 @@ ggplot(data = mpg) +
 
 To reduce overplotting, the "alpha" aesthetic can be set independently for each geom to a constant value:
 
-```{r echo=TRUE}
+```{r geoms-4, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -53,7 +53,7 @@ ggplot(data = mpg) +
   )
 ```
 
-```{r echo=TRUE}
+```{r geoms-5, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy)
@@ -69,13 +69,13 @@ ggplot(data = mpg) +
 
 The geoms are painted in order of appearance:
 
-```{r echo=TRUE}
+```{r geoms-6, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
 
-```{r echo=TRUE}
+```{r geoms-7, echo=TRUE}
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -86,7 +86,7 @@ ggplot(data = mpg) +
 
 We *could* add two layers, each with a different color. But this still doesn't give us a legend.
 
-```{r echo=TRUE}
+```{r geoms-8, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color = "red") +
   geom_point(mapping = aes(x = displ, y = cty), color = "blue")
@@ -100,7 +100,7 @@ I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is fo
 
 We need only the "x" aesthetic, "y" is computed automatically. `drv` is the relevant variable.
 
-```{r}
+```{r geoms-9}
 ggplot(mpg) +
   geom_bar(aes(x = drv))
 ```
@@ -109,7 +109,7 @@ ggplot(mpg) +
 
 The output is the same:
 
-```{r echo=TRUE}
+```{r geoms-10, echo=TRUE}
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..count..))
 ```
@@ -121,14 +121,14 @@ By default, `geom_bar()` plots the computed "count" aesthetic, which is by conve
 
 Plotting overall proportions changes the y scale:
 
-```{r echo=TRUE}
+```{r geoms-11, echo=TRUE}
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))
 ```
 
 Omitting `group` will plot proportions per drivetrain in each column, which are 1 by default:
 
-```{r echo=TRUE}
+```{r geoms-12, echo=TRUE}
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))
 ```
@@ -138,14 +138,14 @@ ggplot(data = mpg) +
 
 We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
-```{r echo=TRUE}
+```{r geoms-13, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))
 ```
 
 The bin width should be set explicitly to avoid the warning:
 
-```{r echo=TRUE}
+```{r geoms-14, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy),
@@ -155,7 +155,7 @@ ggplot(data = mpg) +
 
 The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.
 
-```{r echo=TRUE}
+```{r geoms-15, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy),
@@ -175,7 +175,7 @@ ggplot(data = mpg) +
 
 We can set the "fill" aesthetic:
 
-```{r echo=TRUE}
+```{r geoms-16, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy, fill = drv),
@@ -185,7 +185,7 @@ ggplot(data = mpg) +
 
 However, the bars are stacked, and difficult to compare to each other:
 
-```{r echo=TRUE}
+```{r geoms-17, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy, color = drv),
@@ -196,7 +196,7 @@ ggplot(data = mpg) +
 
 The frequency polygon offers a much clearer display of the same data:
 
-```{r echo=TRUE}
+```{r geoms-18, echo=TRUE}
 ggplot(data = mpg) +
   geom_freqpoly(
     mapping = aes(x = hwy, color = drv),
@@ -208,7 +208,7 @@ ggplot(data = mpg) +
 
 Can I just copy and adapt the code from the last solution?
 
-```{r}
+```{r geoms-19}
 ggplot(mpg, aes(hwy, color = drv)) +
   geom_histogram(fill = NA, color = "black", size = 0.2, binwidth = 2) +
   geom_freqpoly(color = "red", binwidth = 2)
@@ -216,7 +216,7 @@ ggplot(mpg, aes(hwy, color = drv)) +
 
 Nope. Something's wrong here. Maybe if I follow the template?
 
-```{r}
+```{r geoms-20}
 ggplot(mpg) +
   geom_histogram(
     aes(hwy, color = drv),
@@ -230,7 +230,7 @@ ggplot(mpg) +
 I can't use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.
 
 
-```{r}
+```{r geoms-21}
 ggplot(mpg) +
   geom_histogram(
     aes(hwy, color = drv, group = drv),
@@ -246,7 +246,7 @@ ggplot(mpg) +
 
 
 
-```{r}
+```{r geoms-22}
 ggplot(mpg) +
   geom_histogram(
     aes(hwy, color = drv),
@@ -257,7 +257,7 @@ ggplot(mpg) +
 ```
 
 
-```{r}
+```{r geoms-23}
 ggplot(mpg) +
   geom_freqpoly(
     aes(hwy, color = drv),

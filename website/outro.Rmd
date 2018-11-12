@@ -50,7 +50,7 @@ Tabular data
 # Discrete variables
 
 .pull-left[
-```{r fig.height=3.5, fig.width=3.5}
+```{r outro-1, fig.height=3.5, fig.width=3.5}
 ggplot(data = mpg) +
   geom_bar(
     mapping = aes(x = class)
@@ -59,7 +59,7 @@ ggplot(data = mpg) +
 ]
 
 .pull-right[
-```{r}
+```{r outro-2}
 mpg %>% 
   count(class)
 ```
@@ -70,7 +70,7 @@ mpg %>%
 # Continuous variables
 
 .pull-left[
-```{r fig.width=3.5, fig.height=3.5}
+```{r outro-3, fig.width=3.5, fig.height=3.5}
 ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = displ),
@@ -80,7 +80,7 @@ ggplot(data = mpg) +
 ]
 
 .pull-right[
-```{r fig.width=3.5, fig.height=3.5}
+```{r outro-4, fig.width=3.5, fig.height=3.5}
 ggplot(data = mpg) +
   geom_density(
     mapping = aes(x = displ)
@@ -92,7 +92,7 @@ ggplot(data = mpg) +
 
 # Categorical vs. continuous variables
 
-```{r fig.height=3.5}
+```{r outro-5, fig.height=3.5}
 ggplot(data = mpg) +
   geom_density(
     mapping = aes(x = displ, y = ..scaled.., color = class),
@@ -103,7 +103,7 @@ ggplot(data = mpg) +
 
 # Categorical vs. continuous variables
 
-```{r fig.height=3.5}
+```{r outro-6, fig.height=3.5}
 ggplot(data = mpg) +
   geom_boxplot(
     mapping = aes(x = class, y = displ),
@@ -115,7 +115,7 @@ ggplot(data = mpg) +
 # Categorical variables
 
 .pull-left[
-```{r fig.width = 3.5, fig.height=3.5}
+```{r outro-7, fig.width = 3.5, fig.height=3.5}
 ggplot(data = mpg) +
   geom_bin2d(
     mapping = aes(x = drv, y = class),
@@ -124,7 +124,7 @@ ggplot(data = mpg) +
 ]
 
 .pull-right[
-```{r}
+```{r outro-8}
 mpg %>% 
   count(drv, class)
 ```
@@ -134,7 +134,7 @@ mpg %>%
 
 # Continuous variables
 
-```{r  fig.height=3.5}
+```{r outro-9,  fig.height=3.5}
 ggplot(data = mpg) +
   geom_jitter(
     mapping = aes(x = hwy, y = cty),
@@ -167,7 +167,7 @@ class: inverse
 
 r4ds, chapter 13
 
-```{r}
+```{r outro-10}
 library(nycflights13)
 flights %>%
   select(year, month, day, carrier) %>%
@@ -180,7 +180,7 @@ flights %>%
 
 r4ds, chapter 25
 
-```{r}
+```{r outro-11}
 flights %>%
   nest(-month) %>% 
   arrange(month)

@@ -67,7 +67,7 @@ Placed outside `aes()`: Change for all points, no legend
 
 # Graphing template
 
-```{r eval = FALSE}
+```{r support-1, eval = FALSE}
 ggplot(
   data = .DATA.,
   aes(x = ..., y = ..., ...)
@@ -213,7 +213,7 @@ ggplot(
 
 # Graphing template, with transformation
 
-```{r eval = FALSE}
+```{r support-2, eval = FALSE}
 .DATA. %>%
   ... %>%
   ggplot(

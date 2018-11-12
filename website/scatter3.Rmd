@@ -15,22 +15,22 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Simply insert `color = <var>` in the `aes()` call, where `<var>` is a variable in the `mpg` dataset:
 
-```{r echo=TRUE}
+```{r scatter3-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
 
-```{r echo=TRUE}
+```{r scatter3-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = cyl))
 ```
 
-```{r echo=TRUE}
+```{r scatter3-3, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = trans))
 ```
 
-```{r echo=TRUE}
+```{r scatter3-4, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))
 ```
@@ -49,28 +49,28 @@ ggplot(data = mpg) +
 
 The `factor()` function helps:
 
-```{r}
+```{r scatter3-5}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = factor(cyl)))
 ```
 
 On the other hand, a continuous variable is fine for the "size" aesthetic...
 
-```{r}
+```{r scatter3-6}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = cyl))
 ```
 
 ...which isn't recommended (but still works) for a categorical variable:
 
-```{r}
+```{r scatter3-7}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = factor(cyl)))
 ```
 
 The "alpha" aesthetic controls transparency, and accepts both kinds of variable:
 
-```{r}
+```{r scatter3-8}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, alpha = cyl))
 
@@ -83,7 +83,7 @@ ggplot(data = mpg) +
 
 You can change any number of properties of a geom at your discretion, this is one of **ggplot2**'s strenghts.
 
-```{r}
+```{r scatter3-9}
 ggplot(data = mpg) +
   geom_point(mapping = aes(
     x = displ,
@@ -102,7 +102,7 @@ A legend is added automatically.  It may not be as useful to change all properti
 
 There are no restrictions on how many times a variable is mapped in any given plot:
 
-```{r}
+```{r scatter3-10}
 ggplot(data = mpg) +
   geom_point(mapping = aes(
     x = displ,

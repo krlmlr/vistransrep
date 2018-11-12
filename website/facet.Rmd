@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 We can split the simple scatterplot over two facets, one per year:
 
-```{r echo=TRUE}
+```{r facet-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~year)
@@ -23,7 +23,7 @@ ggplot(data = mpg) +
 
 The smoothing layer seems to confirm a slight improvement, especially for engines with a displacement of three or more liters:
 
-```{r echo=TRUE}
+```{r facet-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
@@ -32,7 +32,7 @@ ggplot(data = mpg) +
 
 We can also look at each car class in parallel.
 
-```{r echo=TRUE}
+```{r facet-3, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(year~class)
@@ -40,7 +40,7 @@ ggplot(data = mpg) +
 
 But too many facets may be not as helpful, we can also use color:
 
-```{r echo=TRUE}
+```{r facet-4, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy, color = factor(year))
@@ -57,7 +57,7 @@ ggplot(data = mpg) +
 
 This is useful if the value does not speak for itself:
 
-```{r echo=TRUE}
+```{r facet-5, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~cyl, labeller = "label_both")
@@ -68,7 +68,7 @@ ggplot(data = mpg) +
 
 Via the `scales` argument, zooms in to the range of the corresponding scale(s).
 
-```{r echo=TRUE}
+```{r facet-6, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(
@@ -78,7 +78,7 @@ ggplot(data = mpg) +
   )
 ```
 
-```{r echo=TRUE}
+```{r facet-7, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(
@@ -88,7 +88,7 @@ ggplot(data = mpg) +
   )
 ```
 
-```{r echo=TRUE}
+```{r facet-8, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(

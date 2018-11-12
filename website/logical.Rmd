@@ -15,12 +15,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Today's flights, flown by "US"
 
-```{r}
+```{r logical-1}
 flights %>%
   filter((month == 6) & (day == 2) & (carrier == "US"))
 ```
 
-```{r}
+```{r logical-2}
 flights %>%
   filter(month == 6, day == 2, carrier == "US")
 ```
@@ -28,7 +28,7 @@ flights %>%
 
 ## Inconvenient flights
 
-```{r}
+```{r logical-3}
 ## Logical OR: |
 
 flights %>% 
@@ -38,7 +38,7 @@ flights %>%
 ## Flown by other airline than UA or WN
 
 
-```{r}
+```{r logical-4}
 ## Logical NOT and OR: ! |
 
 flights %>% 
@@ -46,7 +46,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r logical-5}
 ## Logical NOT and %in%
 
 flights %>% 
@@ -54,7 +54,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r logical-6}
 ## Logical AND: &
 
 flights %>%
@@ -62,7 +62,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r logical-7}
 flights %>% 
   filter(carrier != "UA") %>% 
   filter(carrier != "WN")
@@ -70,28 +70,28 @@ flights %>%
 
 ## Missing departure or arrival time
 
-```{r}
+```{r logical-8}
 ## is.na()
 
 flights %>% 
   filter(is.na(dep_time))
 ```
 
-```{r}
+```{r logical-9}
 ## is.na()
 
 flights %>% 
   filter(is.na(arr_time))
 ```
 
-```{r}
+```{r logical-10}
 ## is.na()
 
 flights %>% 
   filter(is.na(dep_time) | is.na(arr_time))
 ```
 
-```{r}
+```{r logical-11}
 ## is.na()
 
 flights %>% 

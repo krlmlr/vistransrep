@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Show mpg on console
 
-```{r}
+```{r scatter-1}
 mpg
 ```
 
@@ -31,29 +31,29 @@ View(mpg)
 
 ## Scatterplots
 
-```{r echo=TRUE}
+```{r scatter-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
 More examples:
 
-```{r}
+```{r scatter-3}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = cyl, y = drv))
 ```
 
-```{r}
+```{r scatter-4}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = year, y = cyl))
 ```
 
-```{r}
+```{r scatter-5}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = manufacturer))
 ```
 
-```{r}
+```{r scatter-6}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = cty, y = hwy))
 ```
@@ -61,7 +61,7 @@ ggplot(data = mpg) +
 
 ## Convert units
 
-```{r echo=TRUE}
+```{r scatter-7, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = 235 / hwy))
 ```

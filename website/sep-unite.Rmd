@@ -15,12 +15,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## table3
 
-```{r}
+```{r sep-unite-1}
 table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 ```
 
-```{r}
+```{r sep-unite-2}
 table3 %>%
   separate(
     rate,
@@ -35,7 +35,7 @@ table3 %>%
 
 ## To table3
 
-```{r}
+```{r sep-unite-3}
 table2 %>%
   spread(type, count) %>% 
   unite(rate, cases, population, sep = "/")
@@ -44,7 +44,7 @@ table2 %>%
 
 ## Counting relations
 
-```{r}
+```{r sep-unite-4}
 flights %>%
   unite(
     relation,

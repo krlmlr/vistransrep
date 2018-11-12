@@ -16,7 +16,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Speed as miles per hour
 
-```{r}
+```{r mutate-1}
 flights %>%
   mutate(mph_speed = distance / air_time * 60) %>%
   ggplot() +
@@ -28,7 +28,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r mutate-2}
 flights %>% 
   ggplot() +
   geom_histogram(aes(distance / air_time))
@@ -36,7 +36,7 @@ flights %>%
 
 ## Speed distributions
 
-```{r}
+```{r mutate-3}
 flights %>%
   mutate(mph_speed = distance / air_time * 60) %>%
   mutate(Delayed = arr_delay > 0) %>%
@@ -49,7 +49,7 @@ flights %>%
 ```
 
 
-```{r}
+```{r mutate-4}
 flights %>%
   mutate(mph_speed = distance / air_time * 60) %>%
   mutate(Delayed = arr_delay > 0) %>%
@@ -64,7 +64,7 @@ flights %>%
 
 ## Deviation from average departure delay
 
-```{r}
+```{r mutate-5}
 flights %>% 
   mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %>%
   ggplot() +
