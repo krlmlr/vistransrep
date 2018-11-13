@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data visualisation, reporting, and processing with R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Kirill Müller" />
+    <meta name="date" content="2017-10-20" />
+    <link href="site_libs/remark-css/default.css" rel="stylesheet" />
+    <link href="site_libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data visualisation, reporting, and processing with R
+## Closing remarks
+### Kirill Müller
+### 2017-10-20
+
+---
+
+
+
+
+
+# More transformations
+
+- Grouped `mutate()` and `filter()`, see r4ds 5.7.1
+- Scoped functions, see `?scoped`
+- `complete()` and `fill()`
+- `extract()`
+
+## Same syntax for working with databases
+
+- *dbplyr* package
+- Transformation operations are translated to SQL
+
+---
+
+# Nested data frames
+
+r4ds, chapter 25
+
+
+```r
+flights %&gt;%
+  nest(-month) %&gt;% 
+  arrange(month)
+```
+
+```
+## # A tibble: 12 x 2
+##    month data                  
+##    &lt;int&gt; &lt;list&gt;                
+##  1     1 &lt;tibble [27,004 × 18]&gt;
+##  2     2 &lt;tibble [24,951 × 18]&gt;
+##  3     3 &lt;tibble [28,834 × 18]&gt;
+##  4     4 &lt;tibble [28,330 × 18]&gt;
+##  5     5 &lt;tibble [28,796 × 18]&gt;
+##  6     6 &lt;tibble [28,243 × 18]&gt;
+##  7     7 &lt;tibble [29,425 × 18]&gt;
+##  8     8 &lt;tibble [29,327 × 18]&gt;
+##  9     9 &lt;tibble [27,574 × 18]&gt;
+## 10    10 &lt;tibble [28,889 × 18]&gt;
+## 11    11 &lt;tibble [27,268 × 18]&gt;
+## 12    12 &lt;tibble [28,135 × 18]&gt;
+```
+
+---
+
+# Pointers
+
+Symbolic link to data directory:
+- Linux and OS X: `file.symlink()`
+- Windows: `Sys.junction()`
+
+R markdown: http://rmarkdown.rstudio.com/gallery.html
+
+Literature:
+
+- Quick-R [http://www.statmethods.net](http://www.statmethods.net)
+- Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+- Packages suggested by RStudio [https://github.com/rstudio/RStartHere](https://github.com/rstudio/RStartHere)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
