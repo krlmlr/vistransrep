@@ -345,7 +345,7 @@ knitr::opts_chunk$set(cache = TRUE)
       summarize(mean(___, na.rm = ___))
 
     flights %>%
-      group_by() %>%
+      group_by(___) %>%
       summarize(___)
 
     flights %>%

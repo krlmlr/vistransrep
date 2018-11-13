@@ -49,7 +49,7 @@ flights %>%
 ```
 
 
-## All flights between 8:00 AM and 10:00 AM
+## All flights between 8:00 AM and 10:00 PM
 
 ```{r filtering-4}
 flights %>% 
