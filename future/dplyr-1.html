@@ -424,29 +424,17 @@ flights %&gt;%
 flights %&gt;%
   count(___) %&gt;%
   arrange(___)</code></pre></li>
-<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.</p>
-<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
-<pre class="r"><code>total_airtime_by_carrier &lt;-
-  flights %&gt;%
+<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights?</p>
+<pre class="r"><code>flights %&gt;%
   group_by(___) %&gt;%
-  summarize(acc_air_time = sum(_____))
-
-total_airtime_by_carrier %&gt;%
-  arrange(acc_air_time) %&gt;%
-  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
-  ggplot(aes(___)) +
-    geom_bar()</code></pre></li>
-<li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p>
-<pre class="r"><code>total_miles_by_carrier &lt;-
+  summarize(acc_air_time = sum(_____)) %&gt;% 
+  ungroup()</code></pre></li>
+<li><p>Which carriers specialize on long-distance routes?</p>
+<pre class="r"><code>flights
   _____ %&gt;%
   _____ %&gt;%
-  _____
-
-total_miles_by_carrier %&gt;%
-  arrange(_____) %&gt;%
-  mutate(_____) %&gt;%
-  ggplot(aes(___)) +
-    geom_bar()</code></pre></li>
+  _____ %&gt;%
+  arrange(___)</code></pre></li>
 <li><p>Which plane had the most failed departure attempts? Can you find a solution without <code>filter()</code>?</p>
 <p>Hint: Use the idiom <code>sum(___)</code> to count the rows where a predicate is true.</p>
 <pre class="r"><code>flights %&gt;%
@@ -454,20 +442,22 @@ total_miles_by_carrier %&gt;%
   group_by(tailnum) %&gt;%
   _____ %&gt;%
   _____ %&gt;%
+  filter(!is.na(tailnum)) %&gt;%
+  arrange(desc(___)) %&gt;% 
   head(1)
 
 flights %&gt;%
   group_by(tailnum) %&gt;%
   _____ %&gt;%
   _____ %&gt;%
+  arrange(_____) %&gt;%
   head(1)</code></pre></li>
-<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.</p>
+<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p>
 <p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
 <pre class="r"><code>flights %&gt;%
   group_by(carrier) %&gt;%
-  _____ %&gt;%
-  ggplot(aes(___)) +
-    geom_col()</code></pre></li>
+  _____ %&gt;% 
+  ungroup()</code></pre></li>
 <li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
@@ -495,19 +485,11 @@ flights %&gt;%
   tally(wt = NULL) %&gt;%
   _____ %&gt;%
   _____</code></pre></li>
-<li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
+<li><p>Compute the share of cancelled flights per month per airline.</p>
 <pre class="r"><code>flights %&gt;% 
   group_by(_____) %&gt;% 
   summarize(share_of_cancelled = _____) %&gt;%
-  ungroup() %&gt;%
-  ggplot() +
-  geom_raster(
-    aes(
-      x = ___,
-      y = factor(month),
-      fill = ___
-    )
-  )</code></pre></li>
+  ungroup()</code></pre></li>
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>

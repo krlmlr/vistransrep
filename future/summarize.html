@@ -306,13 +306,10 @@ $(document).ready(function () {
 </div>
 <div id="air-time-by-carrier" class="section level2">
 <h2>Air time by carrier</h2>
-<pre class="r"><code>total_airtime_by_carrier &lt;-
-  flights %&gt;% 
-    group_by(carrier) %&gt;% 
-    summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %&gt;% 
-    ungroup()
-
-total_airtime_by_carrier</code></pre>
+<pre class="r"><code>flights %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %&gt;% 
+  ungroup()</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier acc_air_time
 ##    &lt;chr&gt;          &lt;dbl&gt;
@@ -332,24 +329,14 @@ total_airtime_by_carrier</code></pre>
 ## 14 VX           1724104
 ## 15 WN           1780402
 ## 16 YV             35763</code></pre>
-<pre class="r"><code>total_airtime_by_carrier %&gt;% 
-  arrange(acc_air_time) %&gt;%
-  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
-  ggplot() +
-  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
-  coord_flip()</code></pre>
-<p><img src="summarize_files/figure-html/summarize-8-1.png" width="672" /></p>
 </div>
 <div id="carriers-for-long-distance-routes" class="section level2">
 <h2>Carriers for long-distance routes</h2>
-<pre class="r"><code>carrier_arranged_by_mean_distance &lt;-
-  flights %&gt;%
+<pre class="r"><code>flights %&gt;%
   group_by(carrier) %&gt;% 
   summarize(mean_distance = mean(distance)) %&gt;% 
   ungroup() %&gt;%
-  arrange(desc(mean_distance))
-
-carrier_arranged_by_mean_distance</code></pre>
+  arrange(desc(mean_distance))</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier mean_distance
 ##    &lt;chr&gt;           &lt;dbl&gt;
@@ -369,10 +356,6 @@ carrier_arranged_by_mean_distance</code></pre>
 ## 14 9E               530.
 ## 15 OO               501.
 ## 16 YV               375.</code></pre>
-<pre class="r"><code>carrier_arranged_by_mean_distance %&gt;% 
-  ggplot() +
-  geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))</code></pre>
-<p><img src="summarize_files/figure-html/summarize-10-1.png" width="672" /></p>
 </div>
 <div id="worst-plane" class="section level2">
 <h2>Worst plane</h2>
@@ -417,8 +400,7 @@ carrier_arranged_by_mean_distance</code></pre>
 ## # ... with 4,034 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
-  count(tailnum) %&gt;%
-  arrange(desc(n))</code></pre>
+  count(tailnum, sort = TRUE)</code></pre>
 <pre><code>## # A tibble: 1,450 x 2
 ##    tailnum     n
 ##    &lt;chr&gt;   &lt;int&gt;
@@ -440,10 +422,26 @@ carrier_arranged_by_mean_distance</code></pre>
   group_by(carrier) %&gt;% 
   summarize(short_distance_ratio = mean(distance &lt; 300)) %&gt;% 
   ungroup() %&gt;%
-  arrange(desc(short_distance_ratio)) %&gt;%
-  ggplot() +
-  geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
-<p><img src="summarize_files/figure-html/summarize-14-1.png" width="672" /></p>
+  arrange(desc(short_distance_ratio))</code></pre>
+<pre><code>## # A tibble: 16 x 2
+##    carrier short_distance_ratio
+##    &lt;chr&gt;                  &lt;dbl&gt;
+##  1 YV                    0.531 
+##  2 US                    0.469 
+##  3 9E                    0.313 
+##  4 EV                    0.288 
+##  5 B6                    0.198 
+##  6 MQ                    0.111 
+##  7 UA                    0.0572
+##  8 AA                    0.0445
+##  9 OO                    0.0312
+## 10 DL                    0.0252
+## 11 WN                    0.0169
+## 12 AS                    0     
+## 13 F9                    0     
+## 14 FL                    0     
+## 15 HA                    0     
+## 16 VX                    0</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
