@@ -229,11 +229,21 @@ $(document).ready(function () {
   mutate(total_distance = sum(distance)) %&gt;%
   ungroup() %&gt;%
   mutate(month_share = distance / total_distance) %&gt;%
-  arrange(-total_distance) %&gt;%
-  ggplot(aes(factor(month), carrier, fill = month_share)) +
-  geom_tile() +
-  scale_fill_continuous(trans = &quot;log10&quot;)</code></pre>
-<p><img src="window_files/figure-html/window-1-1.png" width="672" /></p>
+  arrange(-total_distance)</code></pre>
+<pre><code>## # A tibble: 185 x 5
+##    carrier month distance total_distance month_share
+##    &lt;chr&gt;   &lt;int&gt;    &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;
+##  1 UA          1  6777189       89705524      0.0755
+##  2 UA          2  6239683       89705524      0.0696
+##  3 UA          3  7235740       89705524      0.0807
+##  4 UA          4  7580735       89705524      0.0845
+##  5 UA          5  7714391       89705524      0.0860
+##  6 UA          6  7833622       89705524      0.0873
+##  7 UA          7  8008887       89705524      0.0893
+##  8 UA          8  8162260       89705524      0.0910
+##  9 UA          9  7360730       89705524      0.0821
+## 10 UA         10  7734657       89705524      0.0862
+## # ... with 175 more rows</code></pre>
 </div>
 <div id="ground-time" class="section level2">
 <h2>Ground time</h2>
@@ -248,10 +258,25 @@ $(document).ready(function () {
   filter(ground_min &gt;= 0) %&gt;%
   group_by(carrier, tailnum) %&gt;%
   mutate(total_ground_min = sum(ground_min, na.rm = TRUE)) %&gt;%
-  ungroup() %&gt;%
-  ggplot(aes(x = carrier, y = total_ground_min)) +
-  geom_boxplot()</code></pre>
-<p><img src="window_files/figure-html/window-2-1.png" width="672" /></p>
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 170,997 x 23
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1     1154           1200        -6     1253
+##  2  2013     1     1     1155           1200        -5     1312
+##  3  2013     1     1     1246           1225        21     1424
+##  4  2013     1     1     1255           1200        55     1451
+##  5  2013     1     1     1257           1258        -1     1601
+##  6  2013     1     1     1257           1300        -3     1454
+##  7  2013     1     1     1339           1345        -6     1642
+##  8  2013     1     1     1342           1320        22     1617
+##  9  2013     1     1     1350           1329        21     1504
+## 10  2013     1     1     1355           1356        -1     1646
+## # ... with 170,987 more rows, and 16 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_min &lt;dbl&gt;, arr_min &lt;dbl&gt;,
+## #   ground_min &lt;dbl&gt;, total_ground_min &lt;dbl&gt;</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
