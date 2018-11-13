@@ -147,10 +147,11 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Sort the result by `distance`.
 
 
+## [Combining filters](filter-combine.html)
 
 1. Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
 
-1. Find all flights that departed today four years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
+1. Find all flights that departed today x years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
 
     ```r
     flights %>%
@@ -172,20 +173,26 @@ knitr::opts_chunk$set(cache = TRUE)
 
     ```r
     flights %>%
-      filter(!___)
+      filter(___ ___ ___)
 
     flights %>%
       filter(!(___) ___ !(___))
+
+    flights %>%
+      filter(!(_____))
     ```
 
 1. Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?
 
     ```r
     flights %>%
-      filter(is.na(___) ___)
+      filter(is.na(___))
 
     flights %>%
-      filter(is.na(___) ___)
+      filter(___(___) ___ _____)
+
+    flights %>%
+      filter(_____ ___ !_____)
     ```
 
 1. Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
