@@ -18,10 +18,10 @@ library(tidyverse)
 ```
 
 background-image: url(images/data-science-explore.png)
-background-size: 50%
+background-size: 75%
 class: bottom
 
-Source: Grolemund and Wickham, R for data science
+#### Source: Grolemund and Wickham, R for data science
 
 ---
 
