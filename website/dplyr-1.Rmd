@@ -416,7 +416,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Putting it all together: Preparing a time series for plotting
 
-```{r dplyr-1-1}
+```{r dplyr-1-1, echo = TRUE}
 flights %>%
   mutate(date = lubridate::make_date(year, month, day)) %>%
   group_by(origin, date) %>% 
@@ -427,7 +427,7 @@ flights %>%
   tsbox::ts_ggplot()
 ```
 
-```{r dplyr-1-2}
+```{r dplyr-1-2, echo = TRUE}
 flights %>%
   mutate(date = lubridate::make_date(year, month, day)) %>%
   group_by(date) %>% 
