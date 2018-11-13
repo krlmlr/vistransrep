@@ -98,6 +98,19 @@ Source: R4DS
 
 ---
 
+# Filter criteria for strings
+
+- Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+- Searching for pattern:
+    ```r
+    library(stringr)
+    
+    str_detect(tailnum, "^[^N]")
+    str_detect(carrier, fixed("A"))
+    ```
+
+---
+
 # Combining filter criteria
 
 - Operators: `&`, `|`, `!`
@@ -164,6 +177,17 @@ Source: R4DS
 - All filtering functions to return `logical`
 
 - Ranking: `row_number()`, `min_rank()`, `ntile()`
+
+---
+
+# Mutation function for strings
+
+- Replacing by pattern:
+    ```r
+    library(stringr)
+    
+    str_replace(origin, "GA", "XX")
+    ```
 
 ---
 
