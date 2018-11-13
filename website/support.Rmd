@@ -18,6 +18,7 @@ library(tidyverse)
 ```
 
 background-image: url(images/data-science-explore.png)
+background-size: cover
 class: bottom
 
 Source: Grolemund and Wickham, R for data science
