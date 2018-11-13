@@ -22,7 +22,7 @@ flights %>%
   filter(carrier == "US")
   
 flights %>%
-  filter(day == 13 & month == 11 & carrier == "U")
+  filter(day == 13 & month == 11 & carrier == "US")
 ```
 
 
