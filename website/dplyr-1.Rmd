@@ -412,3 +412,29 @@ knitr::opts_chunk$set(cache = TRUE)
     ```
 
 1. Find more exercises in Section 5.6.7 of r4ds.
+
+## Putting it all together: Preparing a time series for plotting
+
+```{r}
+flights %>%
+  mutate(date = lubridate::make_date(year, month, day)) %>%
+  group_by(origin, date) %>% 
+  summarize(
+    dep_delay = median(dep_delay, na.rm = TRUE)
+  ) %>% 
+  ungroup() %>%
+  tsbox::ts_ggplot()
+```
+
+```{r}
+flights %>%
+  mutate(date = lubridate::make_date(year, month, day)) %>%
+  group_by(date) %>% 
+  summarize(
+    dep_delay = median(dep_delay, na.rm = TRUE),
+    arr_delay = median(arr_delay, na.rm = TRUE),
+  ) %>% 
+  ungroup() %>%
+  tsbox::ts_long() %>%
+  tsbox::ts_ggplot()
+```
