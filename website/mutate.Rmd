@@ -44,7 +44,7 @@ flights %>%
 ```{r}
 flights %>%
   mutate(
-    date_hour = as.Date(time_hour),
+    date_hour = as.Date(time_hour, tz = "EST"),
     date_ymd = lubridate::make_date(year, month, day)
   ) %>% 
   filter(date_hour != date_ymd)

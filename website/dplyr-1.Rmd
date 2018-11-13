@@ -289,12 +289,12 @@ knitr::opts_chunk$set(cache = TRUE)
       )
     ```
 
-1. Create two new variables `date_hour` and `date_ymd`, using `as.Date()` or `lubridate::make_date()`, respectively. Are the two values the same for all observations?
+1. Create two new variables `date_hour` and `date_ymd`, using `as.Date()` or `lubridate::make_date()`, respectively. Are the two values the same for all observations? What happens if we omit the `tz` argument to `as.Date()`?
 
     ```r
     flights %>%
       mutate(
-        ___ = as.Date(___),
+        ___ = as.Date(___, tz = "EST"),
         ___ = lubridate::make_date(_____)
       ) %>% 
       filter(___)
