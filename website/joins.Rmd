@@ -28,17 +28,45 @@ airports %>%
 ```
 
 
-## Heat map: destination by airline
+## Destination by airline
 
 ```{r joins-3}
 flights %>% 
   filter(distance < 300) %>%
-  count(dest, carrier) %>%
+  left_join(airlines, by = "carrier") %>%
+  left_join(airports, by = c("dest" = "faa"))
+```
+
+## Destination by airline, wide form
+
+```{r joins-4}
+flights %>% 
+  filter(distance < 300) %>%
   left_join(airlines, by = "carrier") %>%
   rename(carrier_name = name) %>%
-  left_join(airports, by = c("dest" = "faa")) %>%
-  rename(airport_name = name) %>% 
-  ggplot() +
-  geom_raster(aes(airport_name, carrier_name, fill = n)) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+  left_join(airports, by = c("dest" = "faa")) %>% 
+  rename(airport_name = name) %>%
+  count(carrier_name, airport_name) %>%
+  spread(carrier_name, n)
+```
+
+
+## Destination by airline, economic join
+
+```{r joins-5}
+airline_names <-
+  airlines %>%
+  rename(carrier_name = name)
+
+dest_airport_names <-
+  airports %>%
+  select(dest = faa, airport_name = name)
+
+flights %>% 
+  filter(distance < 300) %>%
+  count(carrier, dest) %>% 
+  left_join(airline_names, by = "carrier") %>%
+  select(-carrier) %>% 
+  left_join(dest_airport_names, by = "dest") %>% 
+  select(-dest)
 ```
