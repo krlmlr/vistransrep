@@ -361,7 +361,7 @@ flights %&gt;%
 <pre class="r"><code>## everything()
 
 flights %&gt;%
-  select(-contains(&quot;dep_&quot;), everything())</code></pre>
+  select(-contains(&quot;dep_&quot;), everything(), contains(&quot;dep_&quot;))</code></pre>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day arr_time sched_arr_time arr_delay carrier flight
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;int&gt;
@@ -379,45 +379,6 @@ flights %&gt;%
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;,
 ## #   dep_delay &lt;dbl&gt;</code></pre>
-</div>
-<div id="contour-plot" class="section level2">
-<h2>Contour plot</h2>
-<pre class="r"><code>## Overriding label names
-
-flights %&gt;% 
-  ggplot() +
-  geom_density2d(aes(dep_time, arr_time)) +
-  scale_x_continuous(name = &quot;Departure time&quot;) +
-  scale_x_continuous(name = &quot;Arrival time&quot;)</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
-## will replace the existing scale.</code></pre>
-<pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-9-1.png" width="672" /></p>
-<pre class="r"><code>## Renaming in the data
-
-flights %&gt;% 
-  rename(`Departure time` = dep_time) %&gt;%
-  rename(`Arrival time` = arr_time) %&gt;%
-  ggplot() +
-  geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
-<pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-10-1.png" width="672" /></p>
-<pre class="r"><code>flights %&gt;% 
-  filter(arr_time &lt; 500) %&gt;%
-  rename(`Departure time` = dep_time) %&gt;%
-  rename(`Arrival time` = arr_time) %&gt;%
-  ggplot() +
-  geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-11-1.png" width="672" /></p>
-<pre class="r"><code>## Use coord_fixed() for fixing axes
-flights %&gt;% 
-  filter(arr_time &lt; 500) %&gt;%
-  rename(`Departure time` = dep_time) %&gt;%
-  rename(`Arrival time` = arr_time) %&gt;%
-  ggplot() +
-  geom_density2d(aes(`Departure time`, `Arrival time`)) +
-  coord_fixed()</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-12-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
