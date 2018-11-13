@@ -258,51 +258,46 @@ knitr::opts_chunk$set(cache = TRUE)
       select(-___, -___, _______, everything(), ___, ___)
     ```
 
-1. Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.
-
-    ```r
-    flights %>%
-      select(`___` = ___, `___` = ___, ___) %>%
-      filter(___) %>%
-      ggplot(aes(x = `___`, y = `___`)) +
-      geom_density2d()
-    ```
-
 1. Find more exercises in Section 5.4.1 of r4ds.
 
 
 ## [Mutate](mutate.html)
 
-1. Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
+1. Store the speed for each flight as miles per hour in a new variable.
+
+    ```r
+    flights %>% 
+      mutate(miles_per_hour = air_time ___ distance ___ ___)
+    ```
+    
+1. Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?
+
+    ```r
+    flights %>% 
+      mutate(miles_per_minute = _____) %>% 
+      mutate(miles_per_hour = _____) %>% 
+      select(_____)
+    ```
+    
+1. Create a new logical variable that indicates if the flight arrived on time. Convert it to a useful text, e.g. for later plotting.
 
     ```r
     flights %>%
-      mutate(speed = ___) %>%
-      ggplot(aes(___)) +
-      _____
-
-    flights %>%
-      ggplot(aes(___)) +
-      _____
+      mutate(
+        on_time = (___ <= 0),
+        on_time_desc = if_else(___, "On time", ___)
+      )
     ```
 
-1. Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.
+1. Create two new variables `date_hour` and `date_ymd`, using `as.Date()` or `lubridate::make_date()`, respectively. Are the two values the same for all observations?
 
     ```r
     flights %>%
-      mutate(on_time = if_else(___ < 0, "On time", "delayed")) %>%
-      ggplot(aes(___)) +
-      _____
-    ```
-
-1. Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.
-
-    ```r
-    flights %>%
-      mutate(dep_delay_dev = ___ - mean(___)) %>%
-      ggplot(aes(___)) +
-      _____ +
-      _____
+      mutate(
+        ___ = as.Date(___),
+        ___ = lubridate::make_date(_____)
+      ) %>% 
+      filter(___)
     ```
 
 1. Find more exercises in Section 5.5.2 of r4ds.
