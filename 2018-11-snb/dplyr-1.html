@@ -489,8 +489,26 @@ flights %&gt;%
 </div>
 <div id="putting-it-all-together-preparing-a-time-series-for-plotting" class="section level2">
 <h2>Putting it all together: Preparing a time series for plotting</h2>
+<pre class="r"><code>flights %&gt;%
+  mutate(date = lubridate::make_date(year, month, day)) %&gt;%
+  group_by(origin, date) %&gt;% 
+  summarize(
+    dep_delay = median(dep_delay, na.rm = TRUE)
+  ) %&gt;% 
+  ungroup() %&gt;%
+  tsbox::ts_ggplot()</code></pre>
 <pre><code>## [time]: &#39;date&#39; [value]: &#39;dep_delay&#39;</code></pre>
 <p><img src="dplyr-1_files/figure-html/dplyr-1-1-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  mutate(date = lubridate::make_date(year, month, day)) %&gt;%
+  group_by(date) %&gt;% 
+  summarize(
+    dep_delay = median(dep_delay, na.rm = TRUE),
+    arr_delay = median(arr_delay, na.rm = TRUE),
+  ) %&gt;% 
+  ungroup() %&gt;%
+  tsbox::ts_long() %&gt;%
+  tsbox::ts_ggplot()</code></pre>
 <pre><code>## [time]: &#39;date&#39; 
 ## [time]: &#39;date&#39;</code></pre>
 <p><img src="dplyr-1_files/figure-html/dplyr-1-2-1.png" width="672" /></p>
