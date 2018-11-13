@@ -296,10 +296,21 @@ $(document).ready(function () {
 <pre class="r"><code>flights %&gt;% 
   group_by(carrier, month) %&gt;% 
   summarize(share_of_cancelled = mean(is.na(dep_time))) %&gt;%
-  ungroup() %&gt;%
-  ggplot() +
-  geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
-<p><img src="summarize-mult_files/figure-html/summarize-mult-4-1.png" width="672" /></p>
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 185 x 3
+##    carrier month share_of_cancelled
+##    &lt;chr&gt;   &lt;int&gt;              &lt;dbl&gt;
+##  1 9E          1             0.0477
+##  2 9E          2             0.0727
+##  3 9E          3             0.0695
+##  4 9E          4             0.0688
+##  5 9E          5             0.0506
+##  6 9E          6             0.112 
+##  7 9E          7             0.0870
+##  8 9E          8             0.0536
+##  9 9E          9             0.0409
+## 10 9E         10             0.0185
+## # ... with 175 more rows</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
