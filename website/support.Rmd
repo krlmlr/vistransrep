@@ -17,6 +17,14 @@ knitr::opts_chunk$set(cache = TRUE)
 library(tidyverse)
 ```
 
+background-image: url(images/data-science-explore.png)
+class: bottom
+
+Source: Grolemund and Wickham, R for data science
+
+---
+
+
 # Other important RStudio shortcuts
 
 - **Focus source/console**: Ctrl + 1 / Ctrl + 2
