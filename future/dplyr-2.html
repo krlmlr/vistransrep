@@ -186,9 +186,6 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="intro.html">intro</a>
-</li>
-<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -309,34 +306,52 @@ bind_rows(_____) %&gt;%
 <div id="keys-and-mutating-joins" class="section level2">
 <h2><a href="joins.html">Keys and mutating joins</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>How are the <code>flights</code>, <code>carriers</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<li><p>How are the <code>flights</code>, <code>airlines</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
 <p>Hint: Use <code>count()</code> to support your hypothesis.</p>
 <pre class="r"><code>flights %&gt;%
   count(carrier) %&gt;%
-  count(n)
+  filter(n &gt; 1)
 
 airlines %&gt;%
-  count(_____) %&gt;%
+  count(___) %&gt;%
+  filter(___)
+
+airports %&gt;%
+  _____ %&gt;%
   _____</code></pre></li>
-<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<li><p>Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.</p>
 <p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
-  count(dest, carrier) %&gt;%
   left_join(airlines) %&gt;%
-  left_join(airports, by = c(___))
-
-# The name of the `name` variable isn&#39;t very useful,
-# need to rename it before plotting
+  left_join(airports, by = c(&quot;___&quot; = &quot;___&quot;))</code></pre></li>
+<li><p>Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use <code>spread()</code> or <code>gather()</code>? How do you replace the <code>NA</code> values with zeros?</p>
+<pre class="r"><code># The name of the `name` variable isn&#39;t very useful,
+# need to rename it
 flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
-  count(dest, carrier) %&gt;%
   left_join(_____) %&gt;%
-  rename(___) %&gt;%
+  rename(carrier_name = ___) %&gt;%
   left_join(_____) %&gt;%
-  rename(___) %&gt;% 
-  ggplot() +
-  geom_raster(aes(___))</code></pre></li>
+  rename(_____) %&gt;%
+  count(_____) %&gt;%
+  _____(_____)</code></pre></li>
+<li><p>Change the code from the last example to use <code>count()</code> right after <code>filter()</code>. What additional steps do you need?</p>
+<pre class="r"><code>airline_names &lt;-
+  airlines %&gt;%
+  _____()
+
+dest_airport_names &lt;-
+  _____ %&gt;%
+  _____()
+
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(_____) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;%
+  select(-___) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;% 
+  _____(_____)</code></pre></li>
 <li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
 </ol>
 </div>

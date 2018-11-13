@@ -186,9 +186,6 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="intro.html">intro</a>
-</li>
-<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -400,10 +397,10 @@ flights %&gt;%
     on_time = (___ &lt;= 0),
     on_time_desc = if_else(___, &quot;On time&quot;, ___)
   )</code></pre></li>
-<li><p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations?</p>
+<li><p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations? What happens if we omit the <code>tz</code> argument to <code>as.Date()</code>?</p>
 <pre class="r"><code>flights %&gt;%
   mutate(
-    ___ = as.Date(___),
+    ___ = as.Date(___, tz = &quot;EST&quot;),
     ___ = lubridate::make_date(_____)
   ) %&gt;% 
   filter(___)</code></pre></li>
@@ -492,6 +489,14 @@ flights %&gt;%
   ungroup()</code></pre></li>
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
 </ol>
+</div>
+<div id="putting-it-all-together-preparing-a-time-series-for-plotting" class="section level2">
+<h2>Putting it all together: Preparing a time series for plotting</h2>
+<pre><code>## [time]: &#39;date&#39; [value]: &#39;dep_delay&#39;</code></pre>
+<p><img src="dplyr-1_files/figure-html/dplyr-1-1-1.png" width="672" /></p>
+<pre><code>## [time]: &#39;date&#39; 
+## [time]: &#39;date&#39;</code></pre>
+<p><img src="dplyr-1_files/figure-html/dplyr-1-2-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
