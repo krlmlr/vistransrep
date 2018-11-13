@@ -77,7 +77,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
     ```r
     flights %>% 
-      arrange(___(___ - ___)) %>%
+      arrange(___(___)) %>%
       head(1)
     ```
 
