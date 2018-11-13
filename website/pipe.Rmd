@@ -1,0 +1,92 @@
+---
+title: "Filtering"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
+
+View <- function(x) print(x)
+```
+
+
+## Intermediate variables
+
+Naming is hard!
+
+```{r filtering-19}
+early_flights <- filter(flights, dep_time >= 600)
+early_late_flights <-
+  filter(early_flights, arr_time >= 2200)
+early_late_ua_flights <-
+  filter(early_late_flights, carrier == "UA")
+early_late_late_ua_flights <-
+  filter(early_late_ua_flights, arr_delay > 120)
+early_late_late_ua_flights_not_honolulu <-
+  filter(early_late_late_ua_flights, dest != "HNL")
+early_late_late_ua_flights_not_honolulu_sorted <-
+  arrange(
+    early_late_late_ua_flights_not_honolulu,
+    distance
+  )
+View(early_late_late_ua_flights_not_honolulu_sorted)
+```
+
+## Nested expressions
+
+Difficult to read.
+
+```{r filtering-20}
+View(
+  arrange(
+    filter(
+      filter(
+        filter(
+          filter(
+            filter(
+              flights,
+              dep_time <= 600
+            ),
+            arr_time >= 2200
+          ),
+          carrier == "UA"
+        ),
+        arr_delay > 120
+      ),
+      dest != "HNL"
+    ),
+    distance
+  )
+)
+```
+
+## Pipe
+
+```{r filtering-21}
+flights %>% 
+  filter(dep_time <= 600) %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL") %>%
+  arrange(distance) %>%
+  View()
+```
+
+The original data is never updated! You still need to assign the result of a pipe to a variable:
+
+```{r filtering-22}
+late_late_ua_flights_not_honolulu <-
+  flights %>% 
+  filter(dep_time <= 600) %>% 
+  filter(arr_time >= 2200) %>% 
+  filter(carrier == "UA") %>% 
+  filter(arr_delay > 120) %>% 
+  filter(dest != "HNL") %>%
+  arrange(distance)
+```
