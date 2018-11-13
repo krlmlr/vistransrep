@@ -47,11 +47,18 @@ flights %>%
 
 # Pointers
 
+Working directory hell:
+- https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+
 Symbolic link to data directory:
 - Linux and OS X: `file.symlink()`
 - Windows: `Sys.junction()`
 
 R markdown: http://rmarkdown.rstudio.com/gallery.html
+
+---
+
+# Pointers 2
 
 Literature:
 
