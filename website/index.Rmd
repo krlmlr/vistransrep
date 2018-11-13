@@ -6,7 +6,7 @@ This is the website for the _tidyverse_ workshop on Nov 13, 2018.
 
 ## Resources
 
-- This page: https://bit.ly/zhrvrp18
+- This page: https://bit.ly/2zNpvN0
 
 - Main menu in header of this website
 
