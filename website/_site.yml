@@ -1,5 +1,5 @@
 name: my-website
-output_dir: ../docs/future
+output_dir: ../docs/2018-11-snb
 include:
 - .nojekyll
 - images
