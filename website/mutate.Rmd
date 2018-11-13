@@ -30,7 +30,7 @@ flights %>%
 
 ## On time status
 
-```{r}
+```{r mutate-1-bis}
 flights %>%
   mutate(
     on_time = (arr_delay <= 0),
@@ -41,7 +41,7 @@ flights %>%
 
 ## Date
 
-```{r}
+```{r mutate-2}
 flights %>%
   mutate(
     date_hour = as.Date(time_hour, tz = "EST"),

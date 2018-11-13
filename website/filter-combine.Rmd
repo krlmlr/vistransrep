@@ -16,7 +16,7 @@ View <- function(x) print(x)
 
 ## Flights on the same date as today
 
-```{r}
+```{r filter-combine-1}
 flights %>%
   filter(day == 13, month == 11) %>%
   filter(carrier == "US")
@@ -28,7 +28,7 @@ flights %>%
 
 ## Red eye flights
 
-```{r}
+```{r filter-combine-2}
 flights %>%
   filter(dep_time < 600 | dep_time > 2200)
 ```
@@ -36,7 +36,7 @@ flights %>%
 
 ## Flights not by UA or WN
 
-```{r}
+```{r filter-combine-3}
 flights %>%
   filter(carrier != "UA" & carrier != "WN")
 
@@ -49,7 +49,7 @@ flights %>%
 
 ## Missing data
 
-```{r}
+```{r filter-combine-4}
 flights %>%
   filter(is.na(arr_time))
 
@@ -64,7 +64,7 @@ flights %>%
 
 Arranging a smaller subset needs less work.
 
-```{r}
+```{r filter-combine-5}
 system.time(
   flights %>%
     arrange(arr_delay) %>% 
