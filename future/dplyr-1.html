@@ -265,8 +265,8 @@ flights %&gt;%
   ___(1)</code></pre></li>
 <li><p>On what day did the flight with the longest airtime take place?</p>
 <pre class="r"><code>flights %&gt;% 
-  arrange(___ - ___) %&gt;%
-  tail(1)</code></pre></li>
+  arrange(___(___ - ___)) %&gt;%
+  head(1)</code></pre></li>
 <li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
 <p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
 <pre class="r"><code>flights %&gt;%
@@ -302,37 +302,15 @@ View(___)</code></pre>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
-<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>grepl(&quot;^Honolulu&quot;, name)</code> .</p></li>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p></li>
 <li><p>Sort the result by <code>distance</code>.</p></li>
 </ol>
 </div>
-<div id="filtering-and-plotting" class="section level2">
-<h2><a href="filter-plot.html">Filtering and plotting</a></h2>
+<div id="combining-filters" class="section level2">
+<h2><a href="filter-combine.html">Combining filters</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.</p>
-<p>Hint: Start with <code>flights %&gt;% ggplot() + ...</code></p>
-<pre class="r"><code>flights %&gt;% 
-  ggplot(___) +
-    ___()
-
-flights %&gt;% 
-  filter(___) %&gt;%
-  ggplot(___) +
-    ___()
-
-flights %&gt;% 
-  filter(___) %&gt;%
-  filter(___) %&gt;%
-  ___</code></pre></li>
-<li><p>Plot a heat map for all relations with an air time shorter than one hour.</p>
-<p>Hint: Use <code>geom_bin2d()</code>.</p>
-<pre class="r"><code>flights %&gt;% 
-  filter(___) %&gt;%
-  ggplot(___) +
-    ___()</code></pre></li>
-<li><p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p></li>
 <li><p>Look at the “Details” section in the help page for <code>|</code> with <code>help(&quot;|&quot;)</code> to understand predicate logic in R. (We need element-wise comparisons.)</p></li>
-<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<li><p>Find all flights that departed today x years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
 <pre class="r"><code>flights %&gt;%
   filter(___, ___) %&gt;%
   filter(___)
@@ -344,16 +322,22 @@ flights %&gt;%
   filter(___ | ___)</code></pre></li>
 <li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
 <pre class="r"><code>flights %&gt;%
-  filter(!___)
+  filter(___ ___ ___)
 
 flights %&gt;%
-  filter(!(___) ___ !(___))</code></pre></li>
+  filter(!(___) ___ !(___))
+
+flights %&gt;%
+  filter(!(_____))</code></pre></li>
 <li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
 <pre class="r"><code>flights %&gt;%
-  filter(is.na(___) ___)
+  filter(is.na(___))
 
 flights %&gt;%
-  filter(is.na(___) ___)</code></pre></li>
+  filter(___(___) ___ _____)
+
+flights %&gt;%
+  filter(_____ ___ !_____)</code></pre></li>
 <li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
 <p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
 <pre class="r"><code>flights %&gt;%
@@ -439,7 +423,7 @@ flights %&gt;%
   summarize(mean(___, na.rm = ___))
 
 flights %&gt;%
-  group_by() %&gt;%
+  group_by(___) %&gt;%
   summarize(___)
 
 flights %&gt;%
