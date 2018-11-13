@@ -295,6 +295,14 @@ $(document).ready(function () {
 ## 1 EWR    120835
 ## 2 JFK    111279
 ## 3 LGA    104662</code></pre>
+<pre class="r"><code>flights %&gt;%
+  count(origin, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   origin      n
+##   &lt;chr&gt;   &lt;int&gt;
+## 1 EWR    120835
+## 2 JFK    111279
+## 3 LGA    104662</code></pre>
 </div>
 <div id="air-time-by-carrier" class="section level2">
 <h2>Air time by carrier</h2>

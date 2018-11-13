@@ -20,6 +20,14 @@ class: center, middle, inverse, title-slide
 
 
 
+background-image: url(images/data-science-explore.png)
+class: bottom
+
+Source: Grolemund and Wickham, R for data science
+
+---
+
+
 # Other important RStudio shortcuts
 
 - **Focus source/console**: Ctrl + 1 / Ctrl + 2
@@ -93,6 +101,19 @@ Source: R4DS
 
 ---
 
+# Filter criteria for strings
+
+- Operators: `==`, `!=`, `&lt;`, `&gt;`, `&lt;=`, `&gt;=`
+- Searching for pattern:
+    ```r
+    library(stringr)
+    
+    str_detect(tailnum, "^[^N]")
+    str_detect(carrier, fixed("A"))
+    ```
+
+---
+
 # Combining filter criteria
 
 - Operators: `&amp;`, `|`, `!`
@@ -159,6 +180,17 @@ Source: R4DS
 - All filtering functions to return `logical`
 
 - Ranking: `row_number()`, `min_rank()`, `ntile()`
+
+---
+
+# Mutation function for strings
+
+- Replacing by pattern:
+    ```r
+    library(stringr)
+    
+    str_replace(origin, "GA", "XX")
+    ```
 
 ---
 
