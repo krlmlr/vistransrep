@@ -11,8 +11,6 @@ navbar:
     href: index.html
   - text: rstudio
     href: rstudio.html
-  - text: ggplot2
-    href: ggplot2.html
   - text: dplyr
     href: dplyr.html
   - text: import
