@@ -320,36 +320,23 @@ knitr::opts_chunk$set(cache = TRUE)
       arrange(___)
     ```
 
-1. Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.
-
-    Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
+1. Which carriers had the longest accumulated air time, excluding cancelled flights?
 
     ```r
-    total_airtime_by_carrier <-
-      flights %>%
+    flights %>%
       group_by(___) %>%
-      summarize(acc_air_time = sum(_____))
-      
-    total_airtime_by_carrier %>%
-      arrange(acc_air_time) %>%
-      mutate(carrier = forcats::fct_inorder(carrier)) %>%
-      ggplot(aes(___)) +
-        geom_bar()
+      summarize(acc_air_time = sum(_____)) %>% 
+      ungroup()
     ```
     
-1. Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.
+1. Which carriers specialize on long-distance routes?
 
     ```r
-    total_miles_by_carrier <-
+    flights
       _____ %>%
       _____ %>%
-      _____
-
-    total_miles_by_carrier %>%
-      arrange(_____) %>%
-      mutate(_____) %>%
-      ggplot(aes(___)) +
-        geom_bar()
+      _____ %>%
+      arrange(___)
     ```
 
 1. Which plane had the most failed departure attempts? Can you find a solution without `filter()`?
@@ -362,25 +349,27 @@ knitr::opts_chunk$set(cache = TRUE)
       group_by(tailnum) %>%
       _____ %>%
       _____ %>%
+      filter(!is.na(tailnum)) %>%
+      arrange(desc(___)) %>% 
       head(1)
 
     flights %>%
       group_by(tailnum) %>%
       _____ %>%
       _____ %>%
+      arrange(_____) %>%
       head(1)
     ```
 
-1. Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.
+1. Compute the ratio of short-distance routes (less than 300 miles) for each airline.
 
     Hint: Use the idiom `mean(___)` to compute the share of rows where a predicate is true.
 
     ```r
     flights %>%
       group_by(carrier) %>%
-      _____ %>%
-      ggplot(aes(___)) +
-        geom_col()
+      _____ %>% 
+      ungroup()
     ```
 
 1. Find more exercises in item 1 of Section 5.6.7 of r4ds.
@@ -413,21 +402,13 @@ knitr::opts_chunk$set(cache = TRUE)
       _____
     ```
 
-1. Create a heat map for the share of cancelled flights per month per airline.
+1. Compute the share of cancelled flights per month per airline.
 
     ```r
     flights %>% 
       group_by(_____) %>% 
       summarize(share_of_cancelled = _____) %>%
-      ungroup() %>%
-      ggplot() +
-      geom_raster(
-        aes(
-          x = ___,
-          y = factor(month),
-          fill = ___
-        )
-      )
+      ungroup()
     ```
 
 1. Find more exercises in Section 5.6.7 of r4ds.
