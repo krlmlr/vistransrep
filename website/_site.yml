@@ -9,8 +9,6 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: intro
-    href: intro.html
   - text: rstudio
     href: rstudio.html
   - text: ggplot2
