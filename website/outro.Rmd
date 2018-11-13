@@ -57,3 +57,4 @@ Literature:
 
 - Quick-R [http://www.statmethods.net](http://www.statmethods.net)
 - Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+- Packages suggested by RStudio [https://github.com/rstudio/RStartHere](https://github.com/rstudio/RStartHere)
