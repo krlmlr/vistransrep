@@ -76,8 +76,8 @@ knitr::opts_chunk$set(cache = TRUE)
 
     ```r
     flights %>% 
-      arrange(___ - ___) %>%
-      tail(1)
+      arrange(___(___ - ___)) %>%
+      head(1)
     ```
 
 1. Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
@@ -142,7 +142,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
 
-    Hint: Consult the `airports` dataset, use a filter with the predicate `grepl("^Honolulu", name)` .
+    Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::str_detect(name, "^Honolulu")` .
 
 1. Sort the result by `distance`.
 
