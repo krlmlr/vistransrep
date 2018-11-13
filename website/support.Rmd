@@ -177,7 +177,6 @@ Source: R4DS
 
 - `n()`
 - `first()`, `last()`, `nth()`
-- `row_number()`, `ntile()`, `min_rank()`
 
 ---
 
