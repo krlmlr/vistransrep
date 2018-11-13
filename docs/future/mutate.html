@@ -187,9 +187,6 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="intro.html">intro</a>
-</li>
-<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -301,27 +298,17 @@ $(document).ready(function () {
 <h2>Date</h2>
 <pre class="r"><code>flights %&gt;%
   mutate(
-    date_hour = as.Date(time_hour),
+    date_hour = as.Date(time_hour, tz = &quot;EST&quot;),
     date_ymd = lubridate::make_date(year, month, day)
   ) %&gt;% 
   filter(date_hour != date_ymd)</code></pre>
-<pre><code>## # A tibble: 38,444 x 21
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1     1849           1900       -11     2131
-##  2  2013     1     1     1850           1900       -10     2007
-##  3  2013     1     1     1853           1900        -7     2004
-##  4  2013     1     1     1858           1900        -2     2034
-##  5  2013     1     1     1859           1900        -1     2012
-##  6  2013     1     1     1859           1900        -1     2151
-##  7  2013     1     1     1904           1905        -1     2139
-##  8  2013     1     1     1904           1905        -1     2157
-##  9  2013     1     1     1905           1900         5     2311
-## 10  2013     1     1     1906           1915        -9     2211
-## # ... with 38,434 more rows, and 14 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, date_hour &lt;date&gt;, date_ymd &lt;date&gt;</code></pre>
+<pre><code>## # A tibble: 0 x 21
+## # ... with 21 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
+## #   date_hour &lt;date&gt;, date_ymd &lt;date&gt;</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
