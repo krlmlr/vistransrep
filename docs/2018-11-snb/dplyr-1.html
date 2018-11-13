@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Kirill Müller" />
+
+
+<title>dplyr exercises part 1</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="rstudio.html">rstudio</a>
+</li>
+<li>
+  <a href="dplyr.html">dplyr</a>
+</li>
+<li>
+  <a href="import.html">import</a>
+</li>
+<li>
+  <a href="rmarkdown.html">rmarkdown</a>
+</li>
+<li>
+  <a href="outro.html">outro</a>
+</li>
+<li>
+  <a href="support.html">support</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">dplyr exercises part 1</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+
+</div>
+
+
+<div id="filtering" class="section level2">
+<h2><a href="filtering.html">Filtering</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>View the <code>flights</code> dataset in RStudio’s data pane. Look up the meaning of the variables in the help.</p>
+<p>Hint: You need to load the <code>nycflights13</code> package.</p>
+<pre class="r"><code>View(___)</code></pre></li>
+<li><p>Find all flights that departed between 8:00 AM and 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(between(dep_time, ___, ___))</code></pre></li>
+<li><p>Find all flights that departed in the three winter months.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___ c(___)))</code></pre></li>
+<li><p>Are there any flights where departure time is later than arrival time? What does this mean?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(_____)</code></pre></li>
+<li><p>Find all flights that departed today four years ago.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___, day ___)</code></pre></li>
+</ol>
+</div>
+<div id="arrange" class="section level2">
+<h2><a href="arrange.html">Arrange</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>On what day did the flight with the shortest airtime take place?</p>
+<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  head(1)</code></pre></li>
+<li><p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  tail(1)
+
+flights %&gt;% 
+  arrange(desc(___)) %&gt;%
+  ___(1)</code></pre></li>
+<li><p>On what day did the flight with the longest airtime take place?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___(___ - ___)) %&gt;%
+  head(1)</code></pre></li>
+<li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre></li>
+<li><p>Which flights were best in recovering from delay in the air?</p></li>
+</ol>
+</div>
+<div id="assignment-the-pipe" class="section level2">
+<h2><a href="pipe.html">Assignment, the pipe</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p>
+<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
+View(flights_after_10)</code></pre>
+<pre class="r"><code>View(filter(flights, ___))</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  View()</code></pre></li>
+<li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p>
+<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
+ua_flights_after_10 &lt;- ...
+View(___)</code></pre>
+<pre class="r"><code>View(filter(filter(flights, ___)))</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  filter(___) %&gt;%
+  View()</code></pre></li>
+<li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM.</p></li>
+<li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p></li>
+<li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p></li>
+<li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p></li>
+<li><p>Sort the result by <code>distance</code>.</p></li>
+</ol>
+</div>
+<div id="combining-filters" class="section level2">
+<h2><a href="filter-combine.html">Combining filters</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Look at the “Details” section in the help page for <code>|</code> with <code>help(&quot;|&quot;)</code> to understand predicate logic in R. (We need element-wise comparisons.)</p></li>
+<li><p>Find all flights that departed today x years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___, ___) %&gt;%
+  filter(___)
+
+flights %&gt;%
+  filter(_____)</code></pre></li>
+<li><p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ | ___)</code></pre></li>
+<li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ ___ ___)
+
+flights %&gt;%
+  filter(!(___) ___ !(___))
+
+flights %&gt;%
+  filter(!(_____))</code></pre></li>
+<li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(___))
+
+flights %&gt;%
+  filter(___(___) ___ _____)
+
+flights %&gt;%
+  filter(_____ ___ !_____)</code></pre></li>
+<li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre></li>
+<li><p>Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.</p></li>
+</ol>
+</div>
+<div id="select-and-rename" class="section level2">
+<h2><a href="select-rename.html">Select and rename</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ________)
+
+flights %&gt;% 
+  select(___:___)
+
+flights %&gt;% 
+  select(___:___)</code></pre></li>
+<li><p>Find three ways to exclude the date of the flight.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ______________________)
+
+flights %&gt;% 
+  select(-___, -___, -___)
+
+flights %&gt;% 
+  select(-___:-___)</code></pre></li>
+<li><p>Select all variables related to departure.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, _______)
+
+flights %&gt;% 
+  select(starts_with(&quot;___&quot;))</code></pre></li>
+<li><p>Move the variables related to scheduled time to the end of the table.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(-___, -___, _______, everything(), ___, ___)</code></pre></li>
+<li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
+</ol>
+</div>
+<div id="mutate" class="section level2">
+<h2><a href="mutate.html">Mutate</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Store the speed for each flight as miles per hour in a new variable.</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_hour = air_time ___ distance ___ ___)</code></pre></li>
+<li><p>Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_minute = _____) %&gt;% 
+  mutate(miles_per_hour = _____) %&gt;% 
+  select(_____)</code></pre></li>
+<li><p>Create a new logical variable that indicates if the flight arrived on time. Convert it to a useful text, e.g. for later plotting.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(
+    on_time = (___ &lt;= 0),
+    on_time_desc = if_else(___, &quot;On time&quot;, ___)
+  )</code></pre></li>
+<li><p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations? What happens if we omit the <code>tz</code> argument to <code>as.Date()</code>?</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(
+    ___ = as.Date(___, tz = &quot;EST&quot;),
+    ___ = lubridate::make_date(_____)
+  ) %&gt;% 
+  filter(___)</code></pre></li>
+<li><p>Find more exercises in Section 5.5.2 of r4ds.</p></li>
+</ol>
+</div>
+<div id="summarize" class="section level2">
+<h2><a href="summarize.html">Summarize</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p>
+<pre class="r"><code>flights %&gt;%
+  summarize(mean(___, na.rm = ___))
+
+flights %&gt;%
+  group_by(___) %&gt;%
+  summarize(___)
+
+flights %&gt;%
+  count(___) %&gt;%
+  arrange(___)</code></pre></li>
+<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights?</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___) %&gt;%
+  summarize(acc_air_time = sum(_____)) %&gt;% 
+  ungroup()</code></pre></li>
+<li><p>Which carriers specialize on long-distance routes?</p>
+<pre class="r"><code>flights
+  _____ %&gt;%
+  _____ %&gt;%
+  _____ %&gt;%
+  arrange(___)</code></pre></li>
+<li><p>Which plane had the most failed departure attempts? Can you find a solution without <code>filter()</code>?</p>
+<p>Hint: Use the idiom <code>sum(___)</code> to count the rows where a predicate is true.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(dep_time)) %&gt;%
+  group_by(tailnum) %&gt;%
+  _____ %&gt;%
+  _____ %&gt;%
+  filter(!is.na(tailnum)) %&gt;%
+  arrange(desc(___)) %&gt;% 
+  head(1)
+
+flights %&gt;%
+  group_by(tailnum) %&gt;%
+  _____ %&gt;%
+  _____ %&gt;%
+  arrange(_____) %&gt;%
+  head(1)</code></pre></li>
+<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p>
+<p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(carrier) %&gt;%
+  _____ %&gt;% 
+  ungroup()</code></pre></li>
+<li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
+</ol>
+</div>
+<div id="summarize-with-multiple-variables" class="section level2">
+<h2><a href="summarize-mult.html">Summarize with multiple variables</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Which relation is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, one using <code>count()</code>, and one using <code>tally()</code>. Which is more elegant?</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___, ___, airline) %&gt;%
+  summarize(n = n()) %&gt;%
+  summarize(n_airlines = ___) %&gt;%
+  ungroup() %&gt;%
+  arrange(___) %&gt;%
+  head(1)
+
+flights %&gt;%
+  count(_____) %&gt;%
+  count(_____) %&gt;%
+  _____ %&gt;%
+  _____
+
+flights %&gt;%
+  group_by(_____) %&gt;%
+  tally() %&gt;%
+  tally(wt = NULL) %&gt;%
+  _____ %&gt;%
+  _____</code></pre></li>
+<li><p>Compute the share of cancelled flights per month per airline.</p>
+<pre class="r"><code>flights %&gt;% 
+  group_by(_____) %&gt;% 
+  summarize(share_of_cancelled = _____) %&gt;%
+  ungroup()</code></pre></li>
+<li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
+</ol>
+</div>
+<div id="putting-it-all-together-preparing-a-time-series-for-plotting" class="section level2">
+<h2>Putting it all together: Preparing a time series for plotting</h2>
+<pre><code>## [time]: &#39;date&#39; [value]: &#39;dep_delay&#39;</code></pre>
+<p><img src="dplyr-1_files/figure-html/dplyr-1-1-1.png" width="672" /></p>
+<pre><code>## [time]: &#39;date&#39; 
+## [time]: &#39;date&#39;</code></pre>
+<p><img src="dplyr-1_files/figure-html/dplyr-1-2-1.png" width="672" /></p>
+</div>
+
+<p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
