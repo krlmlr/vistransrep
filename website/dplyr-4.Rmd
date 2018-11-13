@@ -14,11 +14,11 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Grouped mutate](window.html)
 
-1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
+1. Which month is busiest in terms of miles flown?
 
     Hint: Compute the share of yearly miles flown of each airline in each month.
 
-1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
+1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers.
 
     Hint: Use `lag()` or `lead()`.
 
