@@ -380,38 +380,33 @@ flights %&gt;%
 <li><p>Move the variables related to scheduled time to the end of the table.</p>
 <pre class="r"><code>flights %&gt;% 
   select(-___, -___, _______, everything(), ___, ___)</code></pre></li>
-<li><p>Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.</p>
-<pre class="r"><code>flights %&gt;%
-  select(`___` = ___, `___` = ___, ___) %&gt;%
-  filter(___) %&gt;%
-  ggplot(aes(x = `___`, y = `___`)) +
-  geom_density2d()</code></pre></li>
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
 <div id="mutate" class="section level2">
 <h2><a href="mutate.html">Mutate</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p>
+<li><p>Store the speed for each flight as miles per hour in a new variable.</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_hour = air_time ___ distance ___ ___)</code></pre></li>
+<li><p>Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_minute = _____) %&gt;% 
+  mutate(miles_per_hour = _____) %&gt;% 
+  select(_____)</code></pre></li>
+<li><p>Create a new logical variable that indicates if the flight arrived on time. Convert it to a useful text, e.g. for later plotting.</p>
 <pre class="r"><code>flights %&gt;%
-  mutate(speed = ___) %&gt;%
-  ggplot(aes(___)) +
-  _____
-
-flights %&gt;%
-  ggplot(aes(___)) +
-  _____</code></pre></li>
-<li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p>
+  mutate(
+    on_time = (___ &lt;= 0),
+    on_time_desc = if_else(___, &quot;On time&quot;, ___)
+  )</code></pre></li>
+<li><p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations?</p>
 <pre class="r"><code>flights %&gt;%
-  mutate(on_time = if_else(___ &lt; 0, &quot;On time&quot;, &quot;delayed&quot;)) %&gt;%
-  ggplot(aes(___)) +
-  _____</code></pre></li>
-<li><p>Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.</p>
-<pre class="r"><code>flights %&gt;%
-  mutate(dep_delay_dev = ___ - mean(___)) %&gt;%
-  ggplot(aes(___)) +
-  _____ +
-  _____</code></pre></li>
+  mutate(
+    ___ = as.Date(___),
+    ___ = lubridate::make_date(_____)
+  ) %&gt;% 
+  filter(___)</code></pre></li>
 <li><p>Find more exercises in Section 5.5.2 of r4ds.</p></li>
 </ol>
 </div>

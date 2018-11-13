@@ -252,13 +252,24 @@ $(document).ready(function () {
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <pre class="r"><code>flights %&gt;%
-  filter(day == 13 &amp; month == 11 &amp; carrier == &quot;U&quot;)</code></pre>
-<pre><code>## # A tibble: 0 x 19
-## # ... with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
-## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
-## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
-## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+  filter(day == 13 &amp; month == 11 &amp; carrier == &quot;US&quot;)</code></pre>
+<pre><code>## # A tibble: 66 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013    11    13      458            500        -2      632
+##  2  2013    11    13      551            600        -9      638
+##  3  2013    11    13      553            600        -7      650
+##  4  2013    11    13      606            615        -9      741
+##  5  2013    11    13      607            615        -8      758
+##  6  2013    11    13      622            630        -8      818
+##  7  2013    11    13      625            630        -5      824
+##  8  2013    11    13      626            630        -4      915
+##  9  2013    11    13      631            600        31      739
+## 10  2013    11    13      653            700        -7      753
+## # ... with 56 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
 <div id="red-eye-flights" class="section level2">
 <h2>Red eye flights</h2>
@@ -411,14 +422,14 @@ $(document).ready(function () {
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.206   0.019   0.225</code></pre>
+##   0.216   0.008   0.223</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.043   0.005   0.047</code></pre>
+##   0.039   0.008   0.047</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
