@@ -42,7 +42,7 @@ Looks like the cars with large displacement are two-seaters with rear drivetrain
 
 The following won't work, because `cyl` is stored as a continuous variable:
 
-```r
+```{r scatter3-5-bad, error = TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = cyl))
 ```

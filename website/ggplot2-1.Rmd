@@ -16,6 +16,10 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?
 
+    ```r
+    View(___)
+    ```
+
 1. Create a few scatterplots using the following template (here with `hwy` versus `displ`):
 
     ```{r echo=TRUE, eval=FALSE}
@@ -28,9 +32,19 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?
 
     Hint: Use the formula `235 / hwy` to convert from miles per gallon.
+
+    ```r    
+    ggplot(data = ___) +
+      geom_point(mapping = aes(x = displ, y = ___))
+    ```
     
 1. How can you reduce overplotting? Use your favorite search engine to find out.
 
+    ```r    
+    ggplot(data = ___) +
+      geom____(_____)
+    ```
+    
 1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).
 
 
@@ -38,14 +52,34 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
 
+    ```r
+    ggplot(_____) +
+      geom_point(mapping = aes(x = ___, y = ___, color = ___))
+    ```
+    
 1. Experiment with the "color", "shape", "size", and "alpha" aesthetics.  Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don't? Expand on the more surprising examples in the previous exercises.
 
     Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
 
+    ```r
+    ggplot(_____) +
+      geom_point(mapping = aes(x = ___, y = ___, ___ = ___))
+    ```
+    
 1. Can you change both color and shape at the same time? What about the other aesthetics?
 
+    ```r
+    ggplot(_____) +
+      geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))
+    ```
+    
 1. What happens if you map the same variable to more than one aesthetic?
 
+    ```r
+    ggplot(_____) +
+      geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))
+    ```
+    
 1. Find more exercises in Section 3.3.1 of r4ds.
 
 
@@ -55,12 +89,44 @@ knitr::opts_chunk$set(cache = TRUE)
 
     Hint: Use quotes `"` for the color.
 
+    ```r    
+    ggplot(_____) +
+      geom_point(
+        mapping = aes(_____),
+        alpha = ___,
+        color = "___"
+      )
+    ```
+    
 1. What happens if you assign a variable, e.g. `year`, to an aesthetic *outside* the `aes()` call?
 
+    ```r    
+    ggplot(_____) +
+      geom_point(
+        mapping = aes(_____),
+        color = year
+      )
+    ```
+    
 1. What happens if you assign a constant, e.g. `3`, to the "size" aesthetic *inside* the `aes()` call?
 
+    ```r    
+    ggplot(_____) +
+      geom_point(
+        mapping = aes(_____, size = 3)
+      )
+    ```
+    
 1. What values are valid for `color`, `alpha`, `shape` and `size`?
 
+    ```r    
+    ggplot(_____) +
+      geom_point(
+        mapping = aes(_____),
+        ___ = ___
+      )
+    ```
+    
 1. Find how to update the default point color for all scatterplots in the help for `update_geom_defaults()`. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).
 
 1. Find how to update the default point color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
@@ -73,9 +139,30 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Other point geoms](geoms.html)
 
-1. What do the arguments `se` and `method` to `geom_smooth()` change?
+1. Try `geom_smooth()`. What do the arguments `se` and `method` to `geom_smooth()` change?
 
+    ```r    
+    ggplot(data = mpg) +
+      geom_smooth(
+        mapping = aes(x = displ, y = hwy),
+        se = ___,
+        method = ___
+      )
+    ```
+    
 1. What does `geom_rug()` do? Try to reduce overplotting with transparency or by adding `position = "jitter"`. How do you reduce overplotting for the points layer?
+
+    ```r    
+    ggplot(data = mpg) +
+      geom_point(
+        mapping = aes(x = displ, y = hwy),
+        ___ = ___
+      ) +
+      geom_rug(
+        mapping = aes(x = displ, y = hwy),
+        ___ = ___
+      )
+    ```
 
 1. How does the order of the `geom_...()` calls affect the display?
 
