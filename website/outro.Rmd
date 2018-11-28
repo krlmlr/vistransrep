@@ -2,7 +2,7 @@
 title: "Data visualisation, reporting, and processing with R"
 subtitle: "Closing remarks"
 author: "Kirill Müller"
-date: "2017-10-20"
+date: "2018-11-29"
 output:
   xaringan::moon_reader:
     lib_dir: libs
