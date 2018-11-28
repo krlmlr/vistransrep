@@ -92,9 +92,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -184,6 +181,9 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="intro.html">intro</a>
 </li>
 <li>
   <a href="rstudio.html">rstudio</a>
@@ -292,21 +292,16 @@ $(document).ready(function () {
 ## 1 EWR    120835
 ## 2 JFK    111279
 ## 3 LGA    104662</code></pre>
-<pre class="r"><code>flights %&gt;%
-  count(origin, sort = TRUE)</code></pre>
-<pre><code>## # A tibble: 3 x 2
-##   origin      n
-##   &lt;chr&gt;   &lt;int&gt;
-## 1 EWR    120835
-## 2 JFK    111279
-## 3 LGA    104662</code></pre>
 </div>
 <div id="air-time-by-carrier" class="section level2">
 <h2>Air time by carrier</h2>
-<pre class="r"><code>flights %&gt;% 
-  group_by(carrier) %&gt;% 
-  summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %&gt;% 
-  ungroup()</code></pre>
+<pre class="r"><code>total_airtime_by_carrier &lt;-
+  flights %&gt;% 
+    group_by(carrier) %&gt;% 
+    summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %&gt;% 
+    ungroup()
+
+total_airtime_by_carrier</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier acc_air_time
 ##    &lt;chr&gt;          &lt;dbl&gt;
@@ -326,14 +321,24 @@ $(document).ready(function () {
 ## 14 VX           1724104
 ## 15 WN           1780402
 ## 16 YV             35763</code></pre>
+<pre class="r"><code>total_airtime_by_carrier %&gt;% 
+  arrange(acc_air_time) %&gt;%
+  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+  ggplot() +
+  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
+  coord_flip()</code></pre>
+<p><img src="summarize_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="carriers-for-long-distance-routes" class="section level2">
 <h2>Carriers for long-distance routes</h2>
-<pre class="r"><code>flights %&gt;%
+<pre class="r"><code>carrier_arranged_by_mean_distance &lt;-
+  flights %&gt;%
   group_by(carrier) %&gt;% 
   summarize(mean_distance = mean(distance)) %&gt;% 
   ungroup() %&gt;%
-  arrange(desc(mean_distance))</code></pre>
+  arrange(desc(mean_distance))
+
+carrier_arranged_by_mean_distance</code></pre>
 <pre><code>## # A tibble: 16 x 2
 ##    carrier mean_distance
 ##    &lt;chr&gt;           &lt;dbl&gt;
@@ -353,6 +358,10 @@ $(document).ready(function () {
 ## 14 9E               530.
 ## 15 OO               501.
 ## 16 YV               375.</code></pre>
+<pre class="r"><code>carrier_arranged_by_mean_distance %&gt;% 
+  ggplot() +
+  geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))</code></pre>
+<p><img src="summarize_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 </div>
 <div id="worst-plane" class="section level2">
 <h2>Worst plane</h2>
@@ -384,20 +393,21 @@ $(document).ready(function () {
 <pre><code>## # A tibble: 4,044 x 2
 ##    tailnum not_departed
 ##    &lt;chr&gt;          &lt;int&gt;
-##  1 D942DN             0
-##  2 N0EGMQ            17
-##  3 N10156             7
-##  4 N102UW             0
-##  5 N103US             0
-##  6 N104UW             0
-##  7 N10575            17
-##  8 N105UW             0
-##  9 N107US             0
-## 10 N108UW             0
+##  1 &lt;NA&gt;            2512
+##  2 D942DN             0
+##  3 N0EGMQ            17
+##  4 N10156             7
+##  5 N102UW             0
+##  6 N103US             0
+##  7 N104UW             0
+##  8 N10575            17
+##  9 N105UW             0
+## 10 N107US             0
 ## # ... with 4,034 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
-  count(tailnum, sort = TRUE)</code></pre>
+  count(tailnum) %&gt;%
+  arrange(desc(n))</code></pre>
 <pre><code>## # A tibble: 1,450 x 2
 ##    tailnum     n
 ##    &lt;chr&gt;   &lt;int&gt;
@@ -419,26 +429,10 @@ $(document).ready(function () {
   group_by(carrier) %&gt;% 
   summarize(short_distance_ratio = mean(distance &lt; 300)) %&gt;% 
   ungroup() %&gt;%
-  arrange(desc(short_distance_ratio))</code></pre>
-<pre><code>## # A tibble: 16 x 2
-##    carrier short_distance_ratio
-##    &lt;chr&gt;                  &lt;dbl&gt;
-##  1 YV                    0.531 
-##  2 US                    0.469 
-##  3 9E                    0.313 
-##  4 EV                    0.288 
-##  5 B6                    0.198 
-##  6 MQ                    0.111 
-##  7 UA                    0.0572
-##  8 AA                    0.0445
-##  9 OO                    0.0312
-## 10 DL                    0.0252
-## 11 WN                    0.0169
-## 12 AS                    0     
-## 13 F9                    0     
-## 14 FL                    0     
-## 15 HA                    0     
-## 16 VX                    0</code></pre>
+  arrange(desc(short_distance_ratio)) %&gt;%
+  ggplot() +
+  geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
+<p><img src="summarize_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

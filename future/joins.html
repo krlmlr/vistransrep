@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-02" />
 
 <title>Joins</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -239,99 +238,19 @@ $(document).ready(function () {
 <pre><code>## # A tibble: 0 x 2
 ## # ... with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
 </div>
-<div id="destination-by-airline" class="section level2">
-<h2>Destination by airline</h2>
+<div id="heat-map-destination-by-airline" class="section level2">
+<h2>Heat map: destination by airline</h2>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
-  left_join(airlines, by = &quot;carrier&quot;) %&gt;%
-  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;))</code></pre>
-<pre><code>## # A tibble: 51,287 x 27
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      557            600        -3      709
-##  2  2013     1     1      559            559         0      702
-##  3  2013     1     1      629            630        -1      721
-##  4  2013     1     1      632            608        24      740
-##  5  2013     1     1      639            640        -1      739
-##  6  2013     1     1      732            735        -3      857
-##  7  2013     1     1      733            736        -3      854
-##  8  2013     1     1      801            805        -4      900
-##  9  2013     1     1      803            810        -7      903
-## 10  2013     1     1      820            830       -10      940
-## # ... with 51,277 more rows, and 20 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;,
-## #   lon &lt;dbl&gt;, alt &lt;int&gt;, tz &lt;dbl&gt;, dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
-</div>
-<div id="destination-by-airline-wide-form" class="section level2">
-<h2>Destination by airline, wide form</h2>
-<pre class="r"><code>flights %&gt;% 
-  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
   rename(carrier_name = name) %&gt;%
-  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;% 
-  rename(airport_name = name) %&gt;%
-  count(carrier_name, airport_name) %&gt;%
-  spread(carrier_name, n)</code></pre>
-<pre><code>## # A tibble: 19 x 12
-##    airport_name `American Airli… `Delta Air Line… `Endeavor Air I…
-##    &lt;chr&gt;                   &lt;int&gt;            &lt;int&gt;            &lt;int&gt;
-##  1 Albany Intl                NA               NA               NA
-##  2 Baltimore W…               NA               NA              856
-##  3 Bradley Intl               NA               NA               NA
-##  4 Buffalo Nia…               NA                3               54
-##  5 Burlington …               NA               NA                2
-##  6 General Edw…             1455              972              914
-##  7 Greater Roc…               NA               NA              281
-##  8 La Guardia                 NA               NA               NA
-##  9 Manchester …               NA               NA               11
-## 10 &quot;Martha\\\\…               NA               NA               71
-## 11 Nantucket M…               NA               NA               NA
-## 12 Norfolk Intl               NA               NA              402
-## 13 Philadelphi…               NA                2              940
-## 14 Portland In…               NA              235               NA
-## 15 Richmond In…               NA               NA              340
-## 16 Ronald Reag…               NA                2             1074
-## 17 Syracuse Ha…               NA               NA              170
-## 18 Theodore Fr…               NA               NA               NA
-## 19 Washington …               NA               NA              664
-## # ... with 8 more variables: `Envoy Air` &lt;int&gt;, `ExpressJet Airlines
-## #   Inc.` &lt;int&gt;, `JetBlue Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;,
-## #   `SkyWest Airlines Inc.` &lt;int&gt;, `Southwest Airlines Co.` &lt;int&gt;, `United
-## #   Air Lines Inc.` &lt;int&gt;, `US Airways Inc.` &lt;int&gt;</code></pre>
-</div>
-<div id="destination-by-airline-economic-join" class="section level2">
-<h2>Destination by airline, economic join</h2>
-<pre class="r"><code>airline_names &lt;-
-  airlines %&gt;%
-  rename(carrier_name = name)
-
-dest_airport_names &lt;-
-  airports %&gt;%
-  select(dest = faa, airport_name = name)
-
-flights %&gt;% 
-  filter(distance &lt; 300) %&gt;%
-  count(carrier, dest) %&gt;% 
-  left_join(airline_names, by = &quot;carrier&quot;) %&gt;%
-  select(-carrier) %&gt;% 
-  left_join(dest_airport_names, by = &quot;dest&quot;) %&gt;% 
-  select(-dest)</code></pre>
-<pre><code>## # A tibble: 58 x 3
-##        n carrier_name      airport_name                      
-##    &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;                             
-##  1   914 Endeavor Air Inc. General Edward Lawrence Logan Intl
-##  2     2 Endeavor Air Inc. Burlington Intl                   
-##  3    54 Endeavor Air Inc. Buffalo Niagara Intl              
-##  4   856 Endeavor Air Inc. Baltimore Washington Intl         
-##  5  1074 Endeavor Air Inc. Ronald Reagan Washington Natl     
-##  6   664 Endeavor Air Inc. Washington Dulles Intl            
-##  7    11 Endeavor Air Inc. Manchester Regional Airport       
-##  8    71 Endeavor Air Inc. &quot;Martha\\\\&#39;s Vineyard&quot;           
-##  9   402 Endeavor Air Inc. Norfolk Intl                      
-## 10   940 Endeavor Air Inc. Philadelphia Intl                 
-## # ... with 48 more rows</code></pre>
+  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;%
+  rename(airport_name = name) %&gt;% 
+  ggplot() +
+  geom_raster(aes(airport_name, carrier_name, fill = n)) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))</code></pre>
+<p><img src="joins_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

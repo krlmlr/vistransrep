@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-01" />
 
 <title>Facets</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -232,19 +231,19 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~year)</code></pre>
-<p><img src="facet_files/figure-html/facet-1-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>The smoothing layer seems to confirm a slight improvement, especially for engines with a displacement of three or more liters:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~year)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="facet_files/figure-html/facet-2-1.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="facet_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>We can also look at each car class in parallel.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_grid(year~class)</code></pre>
-<p><img src="facet_files/figure-html/facet-3-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>But too many facets may be not as helpful, we can also use color:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
@@ -255,7 +254,7 @@ $(document).ready(function () {
     method = &quot;lm&quot;
   ) +
   facet_wrap(~class)</code></pre>
-<p><img src="facet_files/figure-html/facet-4-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="labeling-the-facets" class="section level2">
 <h2>Labeling the facets</h2>
@@ -263,7 +262,7 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~cyl, labeller = &quot;label_both&quot;)</code></pre>
-<p><img src="facet_files/figure-html/facet-5-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="different-scales" class="section level2">
 <h2>Different scales</h2>
@@ -275,7 +274,7 @@ $(document).ready(function () {
     labeller = &quot;label_both&quot;,
     scales = &quot;free_x&quot;
   )</code></pre>
-<p><img src="facet_files/figure-html/facet-6-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(
@@ -283,7 +282,7 @@ $(document).ready(function () {
     labeller = &quot;label_both&quot;,
     scales = &quot;free_y&quot;
   )</code></pre>
-<p><img src="facet_files/figure-html/facet-7-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(
@@ -291,7 +290,7 @@ $(document).ready(function () {
     labeller = &quot;label_both&quot;,
     scales = &quot;free&quot;
   )</code></pre>
-<p><img src="facet_files/figure-html/facet-8-1.png" width="672" /></p>
+<p><img src="facet_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

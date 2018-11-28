@@ -92,9 +92,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -186,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -262,25 +262,25 @@ Possible reasons why people would choose a larger engine include:
 <p>We will be reviewing a dataset of 234 cars. The dataset is listed below.</p>
 <pre class="r"><code>mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model displ  year   cyl trans drv     cty   hwy fl    cla…
-##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;ch&gt;
-##  1 audi         a4      1.8  1999     4 auto… f        18    29 p     com…
-##  2 audi         a4      1.8  1999     4 manu… f        21    29 p     com…
-##  3 audi         a4      2    2008     4 manu… f        20    31 p     com…
-##  4 audi         a4      2    2008     4 auto… f        21    30 p     com…
-##  5 audi         a4      2.8  1999     6 auto… f        16    26 p     com…
-##  6 audi         a4      2.8  1999     6 manu… f        18    26 p     com…
-##  7 audi         a4      3.1  2008     6 auto… f        18    27 p     com…
-##  8 audi         a4 q…   1.8  1999     4 manu… 4        18    26 p     com…
-##  9 audi         a4 q…   1.8  1999     4 auto… 4        16    25 p     com…
-## 10 audi         a4 q…   2    2008     4 manu… 4        20    28 p     com…
-## # ... with 224 more rows</code></pre>
+##    manufacturer model    displ  year   cyl trans   drv     cty   hwy fl   
+##    &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;
+##  1 audi         a4         1.8  1999     4 auto(l… f        18    29 p    
+##  2 audi         a4         1.8  1999     4 manual… f        21    29 p    
+##  3 audi         a4         2    2008     4 manual… f        20    31 p    
+##  4 audi         a4         2    2008     4 auto(a… f        21    30 p    
+##  5 audi         a4         2.8  1999     6 auto(l… f        16    26 p    
+##  6 audi         a4         2.8  1999     6 manual… f        18    26 p    
+##  7 audi         a4         3.1  2008     6 auto(a… f        18    27 p    
+##  8 audi         a4 quat…   1.8  1999     4 manual… 4        18    26 p    
+##  9 audi         a4 quat…   1.8  1999     4 auto(l… 4        16    25 p    
+## 10 audi         a4 quat…   2    2008     4 manual… 4        20    28 p    
+## # ... with 224 more rows, and 1 more variable: class &lt;chr&gt;</code></pre>
 <div id="relationship-between-engine-displacement-and-highway-mileage" class="section level2">
 <h2>Relationship between engine displacement and highway mileage</h2>
 <p>The plot below should <em>not</em> surprise us: The larger the engine, the more energy it consumes per distance driven (in <span class="math inline">\(\frac{\text{J}}{\text{km}}\)</span>), the less is the mileage per unit of gasoline (in <span class="math inline">\(\frac{\text{miles}}{\text{gallon}}\)</span>).</p>
 <pre class="r"><code>ggplot(mpg, aes(displ, hwy)) +
   geom_point()</code></pre>
-<p><img src="rmarkdown-start_files/figure-html/rmarkdown-start-3-1.png" width="672" /></p>
+<p><img src="rmarkdown-start_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Possible reasons why people would choose a larger engine include:</p>
 <ul>
 <li>…</li>

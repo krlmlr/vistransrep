@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-02" />
 
 <title>Spreading and gathering</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -185,6 +181,9 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="intro.html">intro</a>
 </li>
 <li>
   <a href="rstudio.html">rstudio</a>
@@ -302,26 +301,26 @@ $(document).ready(function () {
 <pre class="r"><code>table1 %&gt;%
   ggplot(aes(country, population, fill = factor(year))) +
   geom_col(position = &quot;dodge&quot;)</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-5-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>For mapping measurement type to an aesthetic:</p>
 <pre class="r"><code>table2 %&gt;%
   ggplot(aes(country, count, fill = type)) +
   geom_col() +
   facet_wrap(~year)</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-6-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>For mapping both measurements to two aesthetics:</p>
 <pre class="r"><code>table1 %&gt;%
   ggplot(aes(population, cases, color = country)) +
   geom_point() +
   facet_wrap(~year)</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-7-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Can also use <code>table1</code> to show only one measurement:</p>
 <pre class="r"><code>table2 %&gt;%
   filter(type == &quot;cases&quot;) %&gt;%
   ggplot() +
   geom_col(aes(country, count, fill = type)) +
   facet_wrap(~year)</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-8-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="binding" class="section level2">
 <h2>Binding</h2>
@@ -389,7 +388,7 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
   gather(cty_hwy, value, hwy, cty) %&gt;%
   ggplot() +
   geom_jitter(aes(displ, value, color = cty_hwy))</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-11-1.png" width="672" /></p>
+<p><img src="spread-gather_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

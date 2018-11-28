@@ -4,8 +4,8 @@
     <title>Data visualisation, reporting, and processing with R</title>
     <meta charset="utf-8">
     <meta name="author" content="Kirill Müller" />
-    <link href="site_libs/remark-css/default.css" rel="stylesheet" />
-    <link href="site_libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -20,24 +20,19 @@ class: center, middle, inverse, title-slide
 
 
 
-background-image: url(images/data-science-explore.png)
-background-size: cover
-class: bottom
+class: center
 
-Source: Grolemund and Wickham, R for data science
+# Survey results
 
----
+## Purpose of R: Interactive work, automation
 
+## Some previous experience with R
 
-# Other important RStudio shortcuts
+## SPSS and Excel
 
-- **Focus source/console**: Ctrl + 1 / Ctrl + 2
-- **Filter command history**: Start typing, then Ctrl + Cursor up
-- **Search command history**: Ctrl + R, then type
-- **Source with echo**: Ctrl + Shift + Enter
-- **Move lines up/down**: Alt + Cursor up/down
-- **Indent/outdent**: Tab / Shift + Tab
-- **Find in all files**: Ctrl + Shift + F
+## Varying programming experience, e.g. VB/VBA, Python
+
+## Some experience with shell/command line
 
 ---
 
@@ -51,13 +46,45 @@ Source: Grolemund and Wickham, R for data science
 2. Each observation must have its own row.
 3. Each value must have its own cell.
 
-![](https://r4ds.had.co.nz/images/tidy-1.png)
-
-Source: Grolemund and Wickham, R for data science
-
 ???
 
 Source: R4DS
+
+---
+
+# Aesthetics
+
+- `x`, `y`
+- `shape`
+- `size`
+- `alpha`
+- `text`
+- `color` vs. `fill`
+- `group`
+
+Placed inside `aes()`: Map to variable, show legend
+
+Placed outside `aes()`: Change for all points, no legend
+
+---
+
+# Graphing template
+
+
+```r
+ggplot(
+  data = .DATA.,
+  aes(x = ..., y = ..., ...)
+) +
+  .GEOM.(
+    data = .DATA.,
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...)
+```
 
 ---
 
@@ -73,11 +100,7 @@ Source: R4DS
 
 ## Grouped operations
 
-- `group_by()`
-
 ## Joins
-
-- `xxx_join()`
 
 ---
 
@@ -98,19 +121,6 @@ Source: R4DS
     ```r
     between(hour, 8, 12)
     month %in% c(12, 1, 2)
-    ```
-
----
-
-# Filter criteria for strings
-
-- Operators: `==`, `!=`, `&lt;`, `&gt;`, `&lt;=`, `&gt;=`
-- Searching for pattern:
-    ```r
-    library(stringr)
-    
-    str_detect(tailnum, "^[^N]")
-    str_detect(carrier, fixed("A"))
     ```
 
 ---
@@ -176,26 +186,15 @@ Source: R4DS
     - Cumulative: `cumsum()` etc.
     - Lead and lag: `lead()`, `lag()`
     
-- Recoding: `if_else()`, `case_when()`, `recode()`
+- Recoding: `recode()`
 
-- All filtering functions for a new `logical` column
+- All filtering functions to return `logical`
 
 - Ranking: `row_number()`, `min_rank()`, `ntile()`
 
 ---
 
-# Mutation function for strings
-
-- Replacing by pattern:
-    ```r
-    library(stringr)
-    
-    str_replace(origin, "GA", "XX")
-    ```
-
----
-
-# Aggregation functions
+# Aggregate functions
 
 ## Statistics
 
@@ -216,47 +215,26 @@ Source: R4DS
 
 ---
 
-background-image: url(images/left-join.gif)
+# Graphing template, with transformation
 
----
 
-class: inverse
-
----
-
-background-image: url(images/inner-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/full-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/right-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/semi-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/anti-join.gif)
+```r
+.DATA. %&gt;%
+  ... %&gt;%
+  ggplot(
+    aes(x = ..., y = ..., ...)
+  ) +
+  .GEOM.(
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...) +
+  .SCALE.(...) +
+  .COORD.(...) +
+  .THEME.(...)
+```
 
 ---
 
@@ -288,32 +266,6 @@ background-image: url(images/anti-join.gif)
     - `anti_join()`: Remove matching rows
 
 ]
-
----
-
-background-image: url(images/tidyr-spread-gather.gif)
-
----
-
-# Spread and gather
-
-.pull-left[
-
-## spread: long to wide
-
-- Take new column names from key column
-- Distribute values across new column names
-
-]
-
-.pull-right[
-
-## gather: wide to long
-
-- Create new key column with column names
-- Fill existing data into new column
-
-]
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
@@ -331,30 +283,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);

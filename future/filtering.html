@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-02" />
 
 <title>Filtering</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -257,20 +256,20 @@ $(document).ready(function () {
     month == lubridate::month(Sys.Date()),
     day == lubridate::day(Sys.Date())
   )</code></pre>
-<pre><code>## # A tibble: 976 x 19
+<pre><code>## # A tibble: 911 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013    11    13        1           2359         2      442
-##  2  2013    11    13      458            500        -2      632
-##  3  2013    11    13      538            545        -7      809
-##  4  2013    11    13      544            515        29      817
-##  5  2013    11    13      549            600       -11      831
-##  6  2013    11    13      551            600        -9      638
-##  7  2013    11    13      551            600        -9      729
-##  8  2013    11    13      552            600        -8      717
-##  9  2013    11    13      552            600        -8      805
-## 10  2013    11    13      553            600        -7      806
-## # ... with 966 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013     5    19        2           2359         3      338
+##  2  2013     5    19        3           2040       203      111
+##  3  2013     5    19       15           2159       136       57
+##  4  2013     5    19       20           2050       210      152
+##  5  2013     5    19       37           2359        38      407
+##  6  2013     5    19       44           2225       139      148
+##  7  2013     5    19       45           2359        46      421
+##  8  2013     5    19      241           2000       401      355
+##  9  2013     5    19      456            500        -4      629
+## 10  2013     5    19      514            515        -1      738
+## # ... with 901 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
@@ -282,26 +281,26 @@ flights %&gt;%
     month == month_,
     day == day_
   )</code></pre>
-<pre><code>## # A tibble: 976 x 19
+<pre><code>## # A tibble: 911 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013    11    13        1           2359         2      442
-##  2  2013    11    13      458            500        -2      632
-##  3  2013    11    13      538            545        -7      809
-##  4  2013    11    13      544            515        29      817
-##  5  2013    11    13      549            600       -11      831
-##  6  2013    11    13      551            600        -9      638
-##  7  2013    11    13      551            600        -9      729
-##  8  2013    11    13      552            600        -8      717
-##  9  2013    11    13      552            600        -8      805
-## 10  2013    11    13      553            600        -7      806
-## # ... with 966 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013     5    19        2           2359         3      338
+##  2  2013     5    19        3           2040       203      111
+##  3  2013     5    19       15           2159       136       57
+##  4  2013     5    19       20           2050       210      152
+##  5  2013     5    19       37           2359        38      407
+##  6  2013     5    19       44           2225       139      148
+##  7  2013     5    19       45           2359        46      421
+##  8  2013     5    19      241           2000       401      355
+##  9  2013     5    19      456            500        -4      629
+## 10  2013     5    19      514            515        -1      738
+## # ... with 901 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
-<div id="all-flights-between-800-am-and-1000-pm" class="section level2">
-<h2>All flights between 8:00 AM and 10:00 PM</h2>
+<div id="all-flights-between-800-am-and-1000-am" class="section level2">
+<h2>All flights between 8:00 AM and 10:00 AM</h2>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &gt;= 800, dep_time &lt;= 2200)</code></pre>
 <pre><code>## # A tibble: 267,608 x 19
@@ -560,6 +559,137 @@ flights %&gt;%
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="intermediate-variables" class="section level2">
+<h2>Intermediate variables</h2>
+<p>Naming is hard!</p>
+<pre class="r"><code>early_flights &lt;- filter(flights, dep_time &gt;= 600)
+early_late_flights &lt;-
+  filter(early_flights, arr_time &gt;= 2200)
+early_late_ua_flights &lt;-
+  filter(early_late_flights, carrier == &quot;UA&quot;)
+early_late_late_ua_flights &lt;-
+  filter(early_late_ua_flights, arr_delay &gt; 120)
+early_late_late_ua_flights_not_honolulu &lt;-
+  filter(early_late_late_ua_flights, dest != &quot;HNL&quot;)
+early_late_late_ua_flights_not_honolulu_sorted &lt;-
+  arrange(
+    early_late_late_ua_flights_not_honolulu,
+    distance
+  )
+View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
+<pre><code>## # A tibble: 330 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013    10     7     2108           1710       238     2217
+##  2  2013    12    17     2122           1714       248     2248
+##  3  2013     3     7     2046           1905       101     2231
+##  4  2013     3     7     2124           1550       334     2304
+##  5  2013     3    19     2251           2030       141     2355
+##  6  2013     5     3     2058           1555       303     2203
+##  7  2013     5    19     2201           2000       121     2337
+##  8  2013     5    21     2103           1730       213     2231
+##  9  2013     6    10     2056           1800       176     2205
+## 10  2013     6    24     2049           1800       169     2219
+## # ... with 320 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="nested-expressions" class="section level2">
+<h2>Nested expressions</h2>
+<p>Difficult to read.</p>
+<pre class="r"><code>View(
+  arrange(
+    filter(
+      filter(
+        filter(
+          filter(
+            filter(
+              flights,
+              dep_time &lt;= 600
+            ),
+            arr_time &gt;= 2200
+          ),
+          carrier == &quot;UA&quot;
+        ),
+        arr_delay &gt; 120
+      ),
+      dest != &quot;HNL&quot;
+    ),
+    distance
+  )
+)</code></pre>
+<pre><code>## # A tibble: 0 x 19
+## # ... with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="pipe" class="section level2">
+<h2>Pipe</h2>
+<pre class="r"><code>flights %&gt;% 
+  filter(dep_time &lt;= 600) %&gt;% 
+  filter(arr_time &gt;= 2200) %&gt;% 
+  filter(carrier == &quot;UA&quot;) %&gt;% 
+  filter(arr_delay &gt; 120) %&gt;% 
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  arrange(distance) %&gt;%
+  View()</code></pre>
+<pre><code>## # A tibble: 0 x 19
+## # ... with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>The original data is never updated! You still need to assign the result of a pipe to a variable:</p>
+<pre class="r"><code>late_late_ua_flights_not_honolulu &lt;-
+  flights %&gt;% 
+  filter(dep_time &lt;= 600) %&gt;% 
+  filter(arr_time &gt;= 2200) %&gt;% 
+  filter(carrier == &quot;UA&quot;) %&gt;% 
+  filter(arr_delay &gt; 120) %&gt;% 
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  arrange(distance)</code></pre>
+</div>
+<div id="histogram-of-air-time-of-all-flights" class="section level2">
+<h2>Histogram of air time of all flights</h2>
+<pre class="r"><code>flights %&gt;% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )</code></pre>
+<p><img src="filtering_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 15
+  )</code></pre>
+<p><img src="filtering_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code>flights %&gt;%
+  filter(dest != &quot;HNL&quot;) %&gt;%
+  filter(between(air_time, 400, 500)) %&gt;% 
+  ggplot() +
+  geom_histogram(
+    aes(x = air_time),
+    na.rm = TRUE,
+    binwidth = 10
+  )</code></pre>
+<p><img src="filtering_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="all-very-close-relations" class="section level2">
+<h2>All very close relations</h2>
+<pre class="r"><code>flights %&gt;%
+  filter(air_time &lt; 60) %&gt;% 
+  ggplot() +
+  geom_bin2d(aes(origin, dest))</code></pre>
+<p><img src="filtering_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
