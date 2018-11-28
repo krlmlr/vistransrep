@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-02" />
 
 <title>Joins</title>
 
@@ -234,12 +235,12 @@ $(document).ready(function () {
   count(carrier) %&gt;% 
   filter(n &gt; 1)</code></pre>
 <pre><code>## # A tibble: 0 x 2
-## # … with 2 variables: carrier &lt;chr&gt;, n &lt;int&gt;</code></pre>
+## # ... with 2 variables: carrier &lt;chr&gt;, n &lt;int&gt;</code></pre>
 <pre class="r"><code>airports %&gt;%
   count(faa) %&gt;%
   filter(n &gt; 1)</code></pre>
 <pre><code>## # A tibble: 0 x 2
-## # … with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
+## # ... with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
 </div>
 <div id="destination-by-airline" class="section level2">
 <h2>Destination by airline</h2>
@@ -260,7 +261,7 @@ $(document).ready(function () {
 ##  8  2013     1     1      801            805        -4      900
 ##  9  2013     1     1      803            810        -7      903
 ## 10  2013     1     1      820            830       -10      940
-## # … with 51,277 more rows, and 20 more variables: sched_arr_time &lt;int&gt;,
+## # ... with 51,277 more rows, and 20 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;,
@@ -298,7 +299,7 @@ $(document).ready(function () {
 ## 17 Syracuse Ha…               NA               NA              170
 ## 18 Theodore Fr…               NA               NA               NA
 ## 19 Washington …               NA               NA              664
-## # … with 8 more variables: `Envoy Air` &lt;int&gt;, `ExpressJet Airlines
+## # ... with 8 more variables: `Envoy Air` &lt;int&gt;, `ExpressJet Airlines
 ## #   Inc.` &lt;int&gt;, `JetBlue Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;,
 ## #   `SkyWest Airlines Inc.` &lt;int&gt;, `Southwest Airlines Co.` &lt;int&gt;, `United
 ## #   Air Lines Inc.` &lt;int&gt;, `US Airways Inc.` &lt;int&gt;</code></pre>
@@ -336,7 +337,7 @@ verbose_destinations_by_carrier</code></pre>
 ##  8    71 Endeavor Air Inc. &quot;Martha\\\\&#39;s Vineyard&quot;           
 ##  9   402 Endeavor Air Inc. Norfolk Intl                      
 ## 10   940 Endeavor Air Inc. Philadelphia Intl                 
-## # … with 48 more rows</code></pre>
+## # ... with 48 more rows</code></pre>
 </div>
 <div id="heat-map" class="section level2">
 <h2>Heat map</h2>

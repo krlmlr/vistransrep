@@ -248,7 +248,7 @@ $(document).ready(function () {
 ##  8 LGA    CLT                     5
 ##  9 EWR    ATL                     4
 ## 10 JFK    AUS                     4
-## # … with 214 more rows</code></pre>
+## # ... with 214 more rows</code></pre>
 <p>Much shorter:</p>
 <pre class="r"><code>flights %&gt;%
   count(origin, dest, carrier) %&gt;%
@@ -268,7 +268,7 @@ $(document).ready(function () {
 ##  8 LGA    CLT       5
 ##  9 EWR    ATL       4
 ## 10 JFK    AUS       4
-## # … with 214 more rows</code></pre>
+## # ... with 214 more rows</code></pre>
 <p>Alternatively:</p>
 <pre class="r"><code>flights %&gt;%
   group_by(origin, dest, carrier) %&gt;%
@@ -289,7 +289,7 @@ $(document).ready(function () {
 ##  8 LGA    CLT       5
 ##  9 EWR    ATL       4
 ## 10 JFK    AUS       4
-## # … with 214 more rows</code></pre>
+## # ... with 214 more rows</code></pre>
 </div>
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
@@ -313,7 +313,7 @@ cancelled_flights</code></pre>
 ##  8 9E          8             0.0536
 ##  9 9E          9             0.0409
 ## 10 9E         10             0.0185
-## # … with 175 more rows</code></pre>
+## # ... with 175 more rows</code></pre>
 <pre class="r"><code>cancelled_flights %&gt;%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
