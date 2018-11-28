@@ -1,6 +1,7 @@
 Package: vistransrep
 Imports:
     DT,
+    ggpubr,
     nycflights13,
     tidyverse,
     xaringan
