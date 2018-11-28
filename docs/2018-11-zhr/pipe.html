@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-02" />
 
 <title>The pipe</title>
 
@@ -259,7 +260,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 ##  8  2013     5    21     2103           1730       213     2231
 ##  9  2013     6    10     2056           1800       176     2205
 ## 10  2013     6    24     2049           1800       169     2219
-## # … with 320 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## # ... with 320 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
@@ -289,8 +290,8 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
   )
 )</code></pre>
 <pre><code>## # A tibble: 0 x 19
-## # … with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,
-## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## # ... with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
 ## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
@@ -306,8 +307,8 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
   arrange(distance) %&gt;%
   View()</code></pre>
 <pre><code>## # A tibble: 0 x 19
-## # … with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,
-## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## # ... with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;,
+## #   dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
 ## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>

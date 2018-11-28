@@ -11,6 +11,7 @@
 
 <meta name="author" content="Kirill Müller" />
 
+<meta name="date" content="2017-06-02" />
 
 <title>Select and rename</title>
 
@@ -245,7 +246,7 @@ $(document).ready(function () {
 ##  8  2013     1     1      557            600
 ##  9  2013     1     1      557            600
 ## 10  2013     1     1      558            600
-## # … with 336,766 more rows</code></pre>
+## # ... with 336,766 more rows</code></pre>
 <pre class="r"><code>flights %&gt;%
   select(year:sched_dep_time)</code></pre>
 <pre><code>## # A tibble: 336,776 x 5
@@ -261,7 +262,7 @@ $(document).ready(function () {
 ##  8  2013     1     1      557            600
 ##  9  2013     1     1      557            600
 ## 10  2013     1     1      558            600
-## # … with 336,766 more rows</code></pre>
+## # ... with 336,766 more rows</code></pre>
 <pre class="r"><code>## Numeric indexes work, too
 
 flights %&gt;%
@@ -279,7 +280,7 @@ flights %&gt;%
 ##  8  2013     1     1      557            600
 ##  9  2013     1     1      557            600
 ## 10  2013     1     1      558            600
-## # … with 336,766 more rows</code></pre>
+## # ... with 336,766 more rows</code></pre>
 </div>
 <div id="exclude-the-date" class="section level2">
 <h2>Exclude the date</h2>
@@ -298,7 +299,7 @@ flights %&gt;%
 ##  8      557            600        -3      709            723       -14
 ##  9      557            600        -3      838            846        -8
 ## 10      558            600        -2      753            745         8
-## # … with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
+## # ... with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <pre class="r"><code>flights %&gt;%
@@ -316,7 +317,7 @@ flights %&gt;%
 ##  8      557            600        -3      709            723       -14
 ##  9      557            600        -3      838            846        -8
 ## 10      558            600        -2      753            745         8
-## # … with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
+## # ... with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <pre class="r"><code>## Numeric indexes work, too
@@ -336,7 +337,7 @@ flights %&gt;%
 ##  8      557            600        -3      709            723       -14
 ##  9      557            600        -3      838            846        -8
 ## 10      558            600        -2      753            745         8
-## # … with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
+## # ... with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
@@ -359,7 +360,7 @@ flights %&gt;%
 ##  8      557            600        -3
 ##  9      557            600        -3
 ## 10      558            600        -2
-## # … with 336,766 more rows</code></pre>
+## # ... with 336,766 more rows</code></pre>
 </div>
 <div id="move-departure-variables-to-end" class="section level2">
 <h2>Move departure variables to end</h2>
@@ -380,7 +381,7 @@ flights %&gt;%
 ##  8  2013     1     1      709            723       -14 EV        5708
 ##  9  2013     1     1      838            846        -8 B6          79
 ## 10  2013     1     1      753            745         8 AA         301
-## # … with 336,766 more rows, and 11 more variables: tailnum &lt;chr&gt;,
+## # ... with 336,766 more rows, and 11 more variables: tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;,
 ## #   dep_delay &lt;dbl&gt;</code></pre>

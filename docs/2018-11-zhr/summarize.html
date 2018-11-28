@@ -262,9 +262,9 @@ $(document).ready(function () {
     sd(dep_delay, na.rm = TRUE)
   )</code></pre>
 <pre><code>## # A tibble: 1 x 4
-##   `mean(arr_delay, … `mean(dep_delay, … `sd(arr_delay, n… `sd(dep_delay, n…
-##                &lt;dbl&gt;              &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
-## 1               6.90               12.6              44.6              40.2</code></pre>
+##   `mean(arr_delay, … `mean(dep_delay,… `sd(arr_delay, n… `sd(dep_delay, n…
+##                &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
+## 1               6.90              12.6              44.6              40.2</code></pre>
 <pre class="r"><code>flights %&gt;%
   summarize_at(
     vars(arr_delay, dep_delay),
@@ -396,7 +396,7 @@ carrier_arranged_by_mean_distance</code></pre>
 ##  8 N735MQ            24
 ##  9 N11535            23
 ## 10 N11565            23
-## # … with 1,439 more rows</code></pre>
+## # ... with 1,439 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   group_by(tailnum) %&gt;% 
   summarize(not_departed = sum(is.na(dep_time))) %&gt;% 
@@ -414,7 +414,7 @@ carrier_arranged_by_mean_distance</code></pre>
 ##  8 N105UW             0
 ##  9 N107US             0
 ## 10 N108UW             0
-## # … with 4,034 more rows</code></pre>
+## # ... with 4,034 more rows</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
   count(tailnum, sort = TRUE)</code></pre>
@@ -431,7 +431,7 @@ carrier_arranged_by_mean_distance</code></pre>
 ##  8 N14573     24
 ##  9 N735MQ     24
 ## 10 N11535     23
-## # … with 1,440 more rows</code></pre>
+## # ... with 1,440 more rows</code></pre>
 </div>
 <div id="short-distance-routes-per-airline" class="section level2">
 <h2>Short-distance routes per airline</h2>

@@ -252,7 +252,7 @@ monthly_shares</code></pre>
 ##  8 UA          8  8162260       89705524      0.0910
 ##  9 UA          9  7360730       89705524      0.0821
 ## 10 UA         10  7734657       89705524      0.0862
-## # … with 175 more rows</code></pre>
+## # ... with 175 more rows</code></pre>
 <pre class="r"><code>monthly_shares %&gt;% 
   ggplot(aes(factor(month), carrier, fill = month_share)) +
   geom_tile() +
