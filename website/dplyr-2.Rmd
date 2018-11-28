@@ -10,210 +10,219 @@ library(tidyverse)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-## [Spreading and gathering](spread-gather.html)
 
-1. Use `spread()` to convert `table2` to `table1`. What is the meaning of the `key` and `value` arguments?
+
+## [Summarize](summarize.html)
+
+1. Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
 
     ```r
-    table2 %>%
-      spread(_____)
+    flights %>%
+      summarize(mean(___, na.rm = ___))
+
+    flights %>%
+      group_by(___) %>%
+      summarize(___)
+
+    flights %>%
+      count(___) %>%
+      arrange(___)
     ```
 
-1. Use `gather()` to convert `table1` to `table2`. Try an inclusive and an exclusive selection. Do you need an extra transformation to make the result fully identical? Can you reuse `key` and `value` from the previous result?
+1. Which carriers had the longest accumulated air time, excluding cancelled flights?
 
     ```r
-    table1 %>%
-      gather(_____, ___:___)
-
-    table1 %>%
-      gather(_____, -___:-___)
+    flights %>%
+      group_by(___) %>%
+      summarize(acc_air_time = sum(_____)) %>% 
+      ungroup()
     ```
+    
+1. Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.
 
-1. Visualize the data: plot cases, population, and both. Which of `table1` or `table2` is more suitable in which case?
-
-    ```r
-    ___ %>%
-      ggplot(aes(___)) +
-      geom_col()
-
-    ___ %>%
-      ggplot(aes(___)) +
-      geom_col() +
-      facet_grid(___ ~ ___, scales = "free")
-
-    ___ %>%
-      ggplot(aes(___, ___)) +
-      geom_point()
-    ```
-
-1. Use `gather()` to convert `table4a` and `table4b` to `table2`. Can you do the same with just one `gather()` call?
-
-    Hint: Use `bind_rows()` to combine similar tibbles.
+    Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
 
     ```r
-    cases_tbl <-
-      table4a %>%
-      gather(_____) %>%
-      mutate(type = "cases")
-
-    population_tbl <-
-      table4a %>%
-      gather(_____) %>%
-      mutate(___)
+    total_airtime_by_carrier <-
+      _____
       
-    bind_rows(_____) %>%
+    total_airtime_by_carrier %>%
+      arrange(acc_air_time) %>%
+      mutate(carrier = forcats::fct_inorder(carrier)) %>%
+      ggplot(aes(___)) +
+        geom_col()
+    ```
+    
+1. Which carriers specialize on long-distance routes?
+
+    ```r
+    flights
+      _____ %>%
+      _____ %>%
+      _____ %>%
+      arrange(___)
+    ```
+
+1. Plot a bar chart of median distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
+
+    ```r
+    median_miles_by_carrier <-
+      _____ %>%
+      _____ %>%
+      _____
+
+    median_miles_by_carrier %>%
+      arrange(_____) %>%
+      mutate(_____) %>%
+      ggplot(aes(___)) +
+        geom____()
+    ```
+
+1. Which plane had the most failed departure attempts? Can you find a solution without `filter()`?
+
+    Hint: Use the idiom `sum(___)` to count the rows where a predicate is true.
+
+    ```r
+    flights %>%
+      filter(is.na(dep_time)) %>%
+      group_by(tailnum) %>%
+      _____ %>%
+      _____ %>%
+      filter(!is.na(tailnum)) %>%
+      arrange(desc(___)) %>% 
+      head(1)
+
+    # Alternative without filter():
+    flights %>%
+      group_by(tailnum) %>%
+      _____ %>%
+      _____ %>%
+      arrange(_____) %>%
+      head(1)
+    ```
+
+1. Compute the ratio of short-distance routes (less than 300 miles) for each airline.
+
+    Hint: Use the idiom `mean(___)` to compute the share of rows where a predicate is true.
+
+    ```r
+    flights %>%
+      group_by(carrier) %>%
+      _____ %>% 
+      ungroup()
+    ```
+
+1. Plot a bar chart of the ratio of short-distance routes.
+
+    ```r
+    short_distance_route_ratio <-
+      _____
+
+    short_distance_route_ratio %>%
+      ggplot(aes(___)) +
+        geom_col()
+    ```
+
+1. Find more exercises in item 1 of Section 5.6.7 of r4ds.
+
+
+## [Summarize with multiple variables](summarize-mult.html)
+
+1. Which relation is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, one using `count()`, and one using `tally()`. Which is more elegant?
+
+    ```r
+    flights %>%
+      group_by(___, ___, airline) %>%
+      summarize(n = n()) %>%
+      summarize(n_airlines = ___) %>%
+      ungroup() %>%
+      arrange(___) %>%
+      head(1)
+
+    flights %>%
+      count(_____) %>%
+      count(_____) %>%
+      _____ %>%
+      _____
+
+    flights %>%
+      group_by(_____) %>%
+      tally() %>%
+      tally(wt = NULL) %>%
       _____ %>%
       _____
     ```
 
-1. Create a scatterplot from the `mpg` dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one `geom_point()` call.
+1. Compute the share of cancelled flights per month per airline.
 
     ```r
-    mpg %>%
-      _____ %>%
-      ggplot(aes(x = displ, y = ___)) +
-      geom_point()
+    flights %>% 
+      group_by(_____) %>% 
+      summarize(share_of_cancelled = _____) %>%
+      ungroup()
     ```
 
-1. Find more exercises in Section 12.3.3 of r4ds.
-
-
-## [Separating and uniting](sep-unite.html)
-
-1. Convert `table3` to `table1` and `table2`.
+1. Create a heat map of cancelled flights.
 
     ```r
-    table3 %>%
-      separate(
-        ___,
-        into = c("___", "___"),
-        convert = TRUE
-      ) %>%
-      _____ %>%
+    cancelled_flights <-
       _____
-    ```
 
-1. Convert `table2` to `table3`.
-
-    ```r
-    table2 %>%
-      _____ %>%
-      unite(
-        ___,
-        ___, ___,
-        sep = "/"
+    cancelled_flights %>% 
+      ggplot() +
+      geom_raster(
+        aes(
+          x = ___,
+          y = factor(month),
+          fill = ___
+        )
       )
     ```
 
-1. Count the flights for each relation in the `flights` dataset, using just one grouping variable.
+1. Find more exercises in Section 5.6.7 of r4ds.
+
+
+## [Grouped mutate](window.html)
+
+1. Which month is busiest in terms of miles flown, over all carriers?
 
     ```r
     flights %>%
-      unite(
-        relation,
-        ___, ___,
-        sep = " -> "
-      ) %>%
-      count(___)
+      group_by(___) %>%
+      mutate(total_distance = sum(___)) %>%
+      mutate(month_share = ___ / ___) %>% 
+      arrange(desc(month_share)) %>%
+      slice(1)
     ```
 
-1. Find more exercises in Section 12.4.3 of r4ds.
+1. Visualize with a bar chart.
 
+1. Which month is busiest in terms of miles flown, per carrier?
 
-## [Keys and mutating joins](joins.html)
+    Hint: Compute the share of yearly miles flown of each airline in each month.
 
-1. How are the `flights`, `airlines`, and `airports` datasets connected? Which are primary, which are foreign keys?
-
-    Hint: Use `count()` to support your hypothesis.
-    
     ```r
     flights %>%
-      count(carrier) %>%
-      filter(n > 1)
+      group_by(___, ___) %>%
+      summarize(total_distance_by_carrier = sum(distance)) %>%
+      mutate(total_distance = sum(___)) %>%
+      ungroup() %>%
+      mutate(month_share_by_carrier = ___ / ___) %>% 
+      arrange(month_share_by_carrier) %>% 
+      group_by(___) %>%
+      slice(1)
+    ```
+    
+1. Draw a heat map of miles flown per month per airline to see if this pattern holds across all airlines.
 
-    airlines %>%
-      count(___) %>%
-      filter(___)
-
-    airports %>%
-      _____ %>%
+    ```r
+    monthly_shares <-
       _____
+    
+    monthly_shares %>%
+      ggplot(aes(factor(month), ___, fill = ___)) +
+      geom_tile() +
+      scale_fill_continuous(trans = "log10")
     ```
 
-1. Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.
-
-    Hint: Use `by = c("dest" = "faa")`.
-    
-    ```r
-    flights %>% 
-      filter(distance < 300) %>%
-      count(dest, carrier) %>%
-      left_join(airlines) %>%
-      left_join(airports, by = c("___" = "___"))
-    ```
-
-1. Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use `spread()` or `gather()`? How do you replace the `NA` values with zeros?
-    
-    ```r
-    # The name of the `name` variable isn't very useful,
-    # need to rename it
-    flights %>% 
-      filter(distance < 300) %>%
-      count(dest, carrier) %>%
-      left_join(_____) %>%
-      rename(carrier_name = ___) %>%
-      left_join(_____) %>%
-      rename(_____) %>%
-      count(_____) %>%
-      _____(_____)
-    ```
-
-1. Change the code from the last example to use `count()` right after `filter()`. What additional steps do you need?
-    
-    ```r
-    airline_names <-
-      airlines %>%
-      _____()
-    
-    dest_airport_names <-
-      _____ %>%
-      _____()
-    
-    flights %>% 
-      filter(distance < 300) %>%
-      count(_____) %>% 
-      left_join(_____, by = "___") %>%
-      select(-___) %>% 
-      left_join(_____, by = "___") %>% 
-      _____(_____)
-    ```
-    
-1. Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use `geom_raster()` or `geom_bin2d()`?
-
-    Hint: Use `by = c("dest" = "faa")`.
-    
-    ```r
-    short_distance_destinations <-
-      _____
-
-    short_distance_destinations %>% 
-      ggplot() +
-      geom____(aes(___))
-    ```
-    
-1. Find more exercises in Section 13.4.6 of r4ds.
-
-
-## Filtering joins
-
-1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
-
-    ```r
-    airports %>%
-      semi_join(flights, by = c(_____))
-    
-    airports %>%
-      anti_join(flights, by = c(_____))
-    ```
-    
-1. Find more exercises in Section 13.5.1 of r4ds.
+1. Find more exercises in Section 5.7.1 of r4ds.

@@ -12,6 +12,6 @@ library(tidyverse)
 
 [Part 1](dplyr-1.html): Essentials
 
-[Part 1a](dplyr-4.html): Window functions
+[Part 2](dplyr-2.html): Window functions
 
-[Part 2](dplyr-2.html): Tidy and relational data
+[Part 3](dplyr-3.html): Tidy and relational data
