@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-01" />
 
 <title>Scales</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -241,7 +240,7 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_discrete(name = &quot;Year&quot;)</code></pre>
-<p><img src="scales_files/figure-html/scales-1-1.png" width="672" /></p>
+<p><img src="scales_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.</p>
 </div>
 <div id="changing-scales-twice" class="section level2">
@@ -253,12 +252,12 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;Displacement&quot;)</code></pre>
 <pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
 ## will replace the existing scale.</code></pre>
-<p><img src="scales_files/figure-html/scales-2-1.png" width="672" /></p>
+<p><img src="scales_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="colorbrewer-scales" class="section level2">
 <h2>ColorBrewer scales</h2>
 <pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
-<p><img src="scales_files/figure-html/scales-3-1.png" width="672" /></p>
+<p><img src="scales_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="a-better-scale-for-car-class" class="section level2">
 <h2>A better scale for car class</h2>
@@ -267,7 +266,7 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="scales_files/figure-html/scales-4-1.png" width="672" /></p>
+<p><img src="scales_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

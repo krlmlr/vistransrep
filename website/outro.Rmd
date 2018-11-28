@@ -18,18 +18,161 @@ library(tidyverse)
 set.seed(20180516)
 ```
 
+# EDA
 
-# More transformations
+Understand your data
+
+- Generate questions
+
+- Search for answers
+
+- Rinse and repeat
+
+---
+
+# Important questions
+
+- Variation
+
+- Covariation
+
+???
+
+Tabular data
+
+- Distribution
+- Typica values
+- Unusual values, outliers
+- Missing values
+
+---
+
+# Discrete variables
+
+.pull-left[
+```{r outro-1, fig.height=3.5, fig.width=3.5}
+ggplot(data = mpg) +
+  geom_bar(
+    mapping = aes(x = class)
+  )
+```
+]
+
+.pull-right[
+```{r outro-2}
+mpg %>% 
+  count(class)
+```
+]
+
+---
+
+# Continuous variables
+
+.pull-left[
+```{r outro-3, fig.width=3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = displ),
+    binwidth = 0.05
+  )
+```
+]
+
+.pull-right[
+```{r outro-4, fig.width=3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ)
+  )
+```
+]
+
+---
+
+# Categorical vs. continuous variables
+
+```{r outro-5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ, y = ..scaled.., color = class),
+  )
+```
+
+---
+
+# Categorical vs. continuous variables
+
+```{r outro-6, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(x = class, y = displ),
+  )
+```
+
+---
+
+# Categorical variables
+
+.pull-left[
+```{r outro-7, fig.width = 3.5, fig.height=3.5}
+ggplot(data = mpg) +
+  geom_bin2d(
+    mapping = aes(x = drv, y = class),
+  )
+```
+]
+
+.pull-right[
+```{r outro-8}
+mpg %>% 
+  count(drv, class)
+```
+]
+
+---
+
+# Continuous variables
+
+```{r outro-9,  fig.height=3.5}
+ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = hwy, y = cty),
+    alpha = 0.3
+  )
+```
+
+---
+
+class: inverse
+
+???
+
+---
+
+# More transformation
 
 - Grouped `mutate()` and `filter()`, see r4ds 5.7.1
 - Scoped functions, see `?scoped`
 - `complete()` and `fill()`
-- `extract()`
 
 ## Same syntax for working with databases
 
 - *dbplyr* package
 - Transformation operations are translated to SQL
+
+---
+
+# Joins
+
+r4ds, chapter 13
+
+```{r outro-10}
+library(nycflights13)
+flights %>%
+  select(year, month, day, carrier) %>%
+  left_join(airlines)
+```
 
 ---
 
@@ -45,10 +188,45 @@ flights %>%
 
 ---
 
-# Pointers
+# Visualizations not covered
 
-Working directory hell:
-- https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+.pull-left[
+
+## Position adjustments
+
+jitter, dodge, stack, nudge
+
+## Scales
+
+labeling, color, range
+
+]
+
+.pull-right[
+
+## Coordinate systems
+
+flipping, aspect ratio, polar
+
+## Theming
+
+tweaking plots, standard appearance
+
+]
+
+---
+
+# Extension for ggplot2
+
+- Useful `ggplot2` extensions, https://www.ggplot2-exts.org/gallery/
+    - ggstance
+    - ggrepel
+    - gganimate
+    - GGally
+
+---
+
+# Pointers
 
 Symbolic link to data directory:
 - Linux and OS X: `file.symlink()`
@@ -56,12 +234,7 @@ Symbolic link to data directory:
 
 R markdown: http://rmarkdown.rstudio.com/gallery.html
 
----
-
-# Pointers 2
-
 Literature:
 
 - Quick-R [http://www.statmethods.net](http://www.statmethods.net)
 - Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
-- Packages suggested by RStudio [https://github.com/rstudio/RStartHere](https://github.com/rstudio/RStartHere)

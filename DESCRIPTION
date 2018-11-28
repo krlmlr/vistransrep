@@ -3,5 +3,4 @@ Imports:
     DT,
     nycflights13,
     tidyverse,
-    tsbox,
     xaringan

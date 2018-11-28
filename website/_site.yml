@@ -1,5 +1,5 @@
 name: my-website
-output_dir: ../docs/2018-11-snb
+output_dir: ../docs/future
 include:
 - .nojekyll
 - images
@@ -9,8 +9,12 @@ navbar:
   left:
   - text: Home
     href: index.html
+  - text: intro
+    href: intro.html
   - text: rstudio
     href: rstudio.html
+  - text: ggplot2
+    href: ggplot2.html
   - text: dplyr
     href: dplyr.html
   - text: import

@@ -29,6 +29,23 @@ knitr::opts_chunk$set(cache = TRUE)
       gather(_____, -___:-___)
     ```
 
+1. Visualize the data: plot cases, population, and both. Which of `table1` or `table2` is more suitable in which case?
+
+    ```r
+    ___ %>%
+      ggplot(aes(___)) +
+      geom_col()
+
+    ___ %>%
+      ggplot(aes(___)) +
+      geom_col() +
+      facet_grid(___ ~ ___, scales = "free")
+
+    ___ %>%
+      ggplot(aes(___, ___)) +
+      geom_point()
+    ```
+
 1. Use `gather()` to convert `table4a` and `table4b` to `table2`. Can you do the same with just one `gather()` call?
 
     Hint: Use `bind_rows()` to combine similar tibbles.
@@ -47,6 +64,15 @@ knitr::opts_chunk$set(cache = TRUE)
     bind_rows(_____) %>%
       _____ %>%
       _____
+    ```
+
+1. Create a scatterplot from the `mpg` dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one `geom_point()` call.
+
+    ```r
+    mpg %>%
+      _____ %>%
+      ggplot(aes(x = displ, y = ___)) +
+      geom_point()
     ```
 
 1. Find more exercises in Section 12.3.3 of r4ds.
@@ -96,68 +122,42 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Keys and mutating joins](joins.html)
 
-1. How are the `flights`, `airlines`, and `airports` datasets connected? Which are primary, which are foreign keys?
+1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
 
     Hint: Use `count()` to support your hypothesis.
     
     ```r
     flights %>%
       count(carrier) %>%
-      filter(n > 1)
+      count(n)
 
     airlines %>%
-      count(___) %>%
-      filter(___)
-
-    airports %>%
-      _____ %>%
+      count(_____) %>%
       _____
     ```
 
-1. Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.
+1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
 
     Hint: Use `by = c("dest" = "faa")`.
     
     ```r
     flights %>% 
       filter(distance < 300) %>%
+      count(dest, carrier) %>%
       left_join(airlines) %>%
-      left_join(airports, by = c("___" = "___"))
-    ```
+      left_join(airports, by = c(___))
 
-1. Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use `spread()` or `gather()`? How do you replace the `NA` values with zeros?
-    
-    ```r
     # The name of the `name` variable isn't very useful,
-    # need to rename it
+    # need to rename it before plotting
     flights %>% 
       filter(distance < 300) %>%
+      count(dest, carrier) %>%
       left_join(_____) %>%
-      rename(carrier_name = ___) %>%
+      rename(___) %>%
       left_join(_____) %>%
-      rename(_____) %>%
-      count(_____) %>%
-      _____(_____)
-    ```
-
-1. Change the code from the last example to use `count()` right after `filter()`. What additional steps do you need?
-    
-    ```r
-    airline_names <-
-      airlines %>%
-      _____()
-    
-    dest_airport_names <-
-      _____ %>%
-      _____()
-    
-    flights %>% 
-      filter(distance < 300) %>%
-      count(_____) %>% 
-      left_join(_____, by = "___") %>%
-      select(-___) %>% 
-      left_join(_____, by = "___") %>% 
-      _____(_____)
+      rename(___) %>% 
+      ggplot() +
+      geom_raster(aes(___))
     ```
     
 1. Find more exercises in Section 13.4.6 of r4ds.

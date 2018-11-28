@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-01" />
 
 <title>Coordinate systems</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -231,20 +230,20 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = trans, y = hwy)) +
   coord_flip()</code></pre>
-<p><img src="coord_files/figure-html/coord-1-1.png" width="672" /></p>
+<p><img src="coord_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="compare-highway-and-city" class="section level2">
 <h2>Compare highway and city</h2>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = cty, y = hwy)) +
   geom_abline(color = &quot;red&quot;)</code></pre>
-<p><img src="coord_files/figure-html/coord-2-1.png" width="672" /></p>
+<p><img src="coord_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>The <code>coord_fixed()</code> calls fixes the aspect ratio, and also the angle of the red line with slope 1:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = cty, y = hwy)) +
   geom_abline(color = &quot;red&quot;) +
   coord_fixed()</code></pre>
-<p><img src="coord_files/figure-html/coord-3-1.png" width="672" /></p>
+<p><img src="coord_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="tweaking-the-slope" class="section level2">
 <h2>Tweaking the slope</h2>
@@ -253,7 +252,7 @@ $(document).ready(function () {
   geom_jitter(mapping = aes(x = cty, y = hwy)) +
   geom_abline(slope = 40 / 30, color = &quot;red&quot;) +
   coord_fixed()</code></pre>
-<p><img src="coord_files/figure-html/coord-4-1.png" width="672" /></p>
+<p><img src="coord_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

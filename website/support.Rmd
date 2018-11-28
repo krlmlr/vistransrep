@@ -17,24 +17,19 @@ knitr::opts_chunk$set(cache = TRUE)
 library(tidyverse)
 ```
 
-background-image: url(images/data-science-explore.png)
-background-size: 75%
-class: bottom
+class: center
 
-#### Source: Grolemund and Wickham, R for data science
+# Survey results
 
----
+## Purpose of R: Interactive work, automation
 
+## Some previous experience with R
 
-# Other important RStudio shortcuts
+## SPSS and Excel
 
-- **Focus source/console**: Ctrl + 1 / Ctrl + 2
-- **Filter command history**: Start typing, then Ctrl + Cursor up
-- **Search command history**: Ctrl + R, then type
-- **Source with echo**: Ctrl + Shift + Enter
-- **Move lines up/down**: Alt + Cursor up/down
-- **Indent/outdent**: Tab / Shift + Tab
-- **Find in all files**: Ctrl + Shift + F
+## Varying programming experience, e.g. VB/VBA, Python
+
+## Some experience with shell/command line
 
 ---
 
@@ -48,13 +43,44 @@ class: bottom
 2. Each observation must have its own row.
 3. Each value must have its own cell.
 
-![](https://r4ds.had.co.nz/images/tidy-1.png)
-
-Source: Grolemund and Wickham, R for data science
-
 ???
 
 Source: R4DS
+
+---
+
+# Aesthetics
+
+- `x`, `y`
+- `shape`
+- `size`
+- `alpha`
+- `text`
+- `color` vs. `fill`
+- `group`
+
+Placed inside `aes()`: Map to variable, show legend
+
+Placed outside `aes()`: Change for all points, no legend
+
+---
+
+# Graphing template
+
+```{r support-1, eval = FALSE}
+ggplot(
+  data = .DATA.,
+  aes(x = ..., y = ..., ...)
+) +
+  .GEOM.(
+    data = .DATA.,
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...)
+```
 
 ---
 
@@ -70,11 +96,7 @@ Source: R4DS
 
 ## Grouped operations
 
-- `group_by()`
-
 ## Joins
-
-- `xxx_join()`
 
 ---
 
@@ -95,19 +117,6 @@ Source: R4DS
     ```r
     between(hour, 8, 12)
     month %in% c(12, 1, 2)
-    ```
-
----
-
-# Filter criteria for strings
-
-- Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
-- Searching for pattern:
-    ```r
-    library(stringr)
-    
-    str_detect(tailnum, "^[^N]")
-    str_detect(carrier, fixed("A"))
     ```
 
 ---
@@ -173,26 +182,15 @@ Source: R4DS
     - Cumulative: `cumsum()` etc.
     - Lead and lag: `lead()`, `lag()`
     
-- Recoding: `if_else()`, `case_when()`, `recode()`
+- Recoding: `recode()`
 
-- All filtering functions for a new `logical` column
+- All filtering functions to return `logical`
 
 - Ranking: `row_number()`, `min_rank()`, `ntile()`
 
 ---
 
-# Mutation function for strings
-
-- Replacing by pattern:
-    ```r
-    library(stringr)
-    
-    str_replace(origin, "GA", "XX")
-    ```
-
----
-
-# Aggregation functions
+# Aggregate functions
 
 ## Statistics
 
@@ -213,47 +211,25 @@ Source: R4DS
 
 ---
 
-background-image: url(images/left-join.gif)
+# Graphing template, with transformation
 
----
-
-class: inverse
-
----
-
-background-image: url(images/inner-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/full-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/right-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/semi-join.gif)
-
----
-
-class: inverse
-
----
-
-background-image: url(images/anti-join.gif)
+```{r support-2, eval = FALSE}
+.DATA. %>%
+  ... %>%
+  ggplot(
+    aes(x = ..., y = ..., ...)
+  ) +
+  .GEOM.(
+    aes(x = ..., y = ..., ...),
+    .AES. = .CONST.,
+    position = .POSITION.
+  ) +
+  .STAT.(...) +
+  .FACET.(...) +
+  .SCALE.(...) +
+  .COORD.(...) +
+  .THEME.(...)
+```
 
 ---
 
@@ -283,31 +259,5 @@ background-image: url(images/anti-join.gif)
 - Difference: Returned set
     - `semi_join()`: Keep matching rows
     - `anti_join()`: Remove matching rows
-
-]
-
----
-
-background-image: url(images/tidyr-spread-gather.gif)
-
----
-
-# Spread and gather
-
-.pull-left[
-
-## spread: long to wide
-
-- Take new column names from key column
-- Distribute values across new column names
-
-]
-
-.pull-right[
-
-## gather: wide to long
-
-- Create new key column with column names
-- Fill existing data into new column
 
 ]

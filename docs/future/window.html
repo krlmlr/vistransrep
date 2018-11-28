@@ -92,9 +92,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -186,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -236,7 +236,7 @@ $(document).ready(function () {
   ggplot(aes(factor(month), carrier, fill = month_share)) +
   geom_tile() +
   scale_fill_continuous(trans = &quot;log10&quot;)</code></pre>
-<p><img src="window_files/figure-html/window-1-1.png" width="672" /></p>
+<p><img src="window_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="ground-time" class="section level2">
 <h2>Ground time</h2>
@@ -254,7 +254,7 @@ $(document).ready(function () {
   ungroup() %&gt;%
   ggplot(aes(x = carrier, y = total_ground_min)) +
   geom_boxplot()</code></pre>
-<p><img src="window_files/figure-html/window-2-1.png" width="672" /></p>
+<p><img src="window_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

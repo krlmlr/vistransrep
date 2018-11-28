@@ -21,7 +21,10 @@ flights %>%
   mutate(total_distance = sum(distance)) %>%
   ungroup() %>%
   mutate(month_share = distance / total_distance) %>%
-  arrange(-total_distance)
+  arrange(-total_distance) %>%
+  ggplot(aes(factor(month), carrier, fill = month_share)) +
+  geom_tile() +
+  scale_fill_continuous(trans = "log10")
 ```
 
 
@@ -39,5 +42,7 @@ flights %>%
   filter(ground_min >= 0) %>%
   group_by(carrier, tailnum) %>%
   mutate(total_ground_min = sum(ground_min, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  ggplot(aes(x = carrier, y = total_ground_min)) +
+  geom_boxplot()
 ```

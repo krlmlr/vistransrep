@@ -12,8 +12,6 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Setup
 
-1. Download the `.zip` file for the test project from https://github.com/krlmlr/vistransrep-proj, green button "Clone or download".
-
 1. Extract the `.zip` file to your disk.
 
 1. Locate and open the file `R-workshop.Rproj`.

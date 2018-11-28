@@ -92,9 +92,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -186,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -262,8 +262,8 @@ flights %&gt;%
   ___(1)</code></pre></li>
 <li><p>On what day did the flight with the longest airtime take place?</p>
 <pre class="r"><code>flights %&gt;% 
-  arrange(___(___ - ___)) %&gt;%
-  head(1)</code></pre></li>
+  arrange(___ - ___) %&gt;%
+  tail(1)</code></pre></li>
 <li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
 <p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
 <pre class="r"><code>flights %&gt;%
@@ -299,15 +299,37 @@ View(___)</code></pre>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p></li>
 <li><p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
-<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p></li>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>grepl(&quot;^Honolulu&quot;, name)</code> .</p></li>
 <li><p>Sort the result by <code>distance</code>.</p></li>
 </ol>
 </div>
-<div id="combining-filters" class="section level2">
-<h2><a href="filter-combine.html">Combining filters</a></h2>
+<div id="filtering-and-plotting" class="section level2">
+<h2><a href="filter-plot.html">Filtering and plotting</a></h2>
 <ol style="list-style-type: decimal">
+<li><p>Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.</p>
+<p>Hint: Start with <code>flights %&gt;% ggplot() + ...</code></p>
+<pre class="r"><code>flights %&gt;% 
+  ggplot(___) +
+    ___()
+
+flights %&gt;% 
+  filter(___) %&gt;%
+  ggplot(___) +
+    ___()
+
+flights %&gt;% 
+  filter(___) %&gt;%
+  filter(___) %&gt;%
+  ___</code></pre></li>
+<li><p>Plot a heat map for all relations with an air time shorter than one hour.</p>
+<p>Hint: Use <code>geom_bin2d()</code>.</p>
+<pre class="r"><code>flights %&gt;% 
+  filter(___) %&gt;%
+  ggplot(___) +
+    ___()</code></pre></li>
+<li><p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p></li>
 <li><p>Look at the “Details” section in the help page for <code>|</code> with <code>help(&quot;|&quot;)</code> to understand predicate logic in R. (We need element-wise comparisons.)</p></li>
-<li><p>Find all flights that departed today x years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<li><p>Find all flights that departed today four years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
 <pre class="r"><code>flights %&gt;%
   filter(___, ___) %&gt;%
   filter(___)
@@ -319,22 +341,16 @@ flights %&gt;%
   filter(___ | ___)</code></pre></li>
 <li><p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
 <pre class="r"><code>flights %&gt;%
-  filter(___ ___ ___)
+  filter(!___)
 
 flights %&gt;%
-  filter(!(___) ___ !(___))
-
-flights %&gt;%
-  filter(!(_____))</code></pre></li>
+  filter(!(___) ___ !(___))</code></pre></li>
 <li><p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
 <pre class="r"><code>flights %&gt;%
-  filter(is.na(___))
+  filter(is.na(___) ___)
 
 flights %&gt;%
-  filter(___(___) ___ _____)
-
-flights %&gt;%
-  filter(_____ ___ !_____)</code></pre></li>
+  filter(is.na(___) ___)</code></pre></li>
 <li><p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
 <p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
 <pre class="r"><code>flights %&gt;%
@@ -377,33 +393,38 @@ flights %&gt;%
 <li><p>Move the variables related to scheduled time to the end of the table.</p>
 <pre class="r"><code>flights %&gt;% 
   select(-___, -___, _______, everything(), ___, ___)</code></pre></li>
+<li><p>Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.</p>
+<pre class="r"><code>flights %&gt;%
+  select(`___` = ___, `___` = ___, ___) %&gt;%
+  filter(___) %&gt;%
+  ggplot(aes(x = `___`, y = `___`)) +
+  geom_density2d()</code></pre></li>
 <li><p>Find more exercises in Section 5.4.1 of r4ds.</p></li>
 </ol>
 </div>
 <div id="mutate" class="section level2">
 <h2><a href="mutate.html">Mutate</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Store the speed for each flight as miles per hour in a new variable.</p>
-<pre class="r"><code>flights %&gt;% 
-  mutate(miles_per_hour = air_time ___ distance ___ ___)</code></pre></li>
-<li><p>Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?</p>
-<pre class="r"><code>flights %&gt;% 
-  mutate(miles_per_minute = _____) %&gt;% 
-  mutate(miles_per_hour = _____) %&gt;% 
-  select(_____)</code></pre></li>
-<li><p>Create a new logical variable that indicates if the flight arrived on time. Convert it to a useful text, e.g. for later plotting.</p>
+<li><p>Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p>
 <pre class="r"><code>flights %&gt;%
-  mutate(
-    on_time = (___ &lt;= 0),
-    on_time_desc = if_else(___, &quot;On time&quot;, ___)
-  )</code></pre></li>
-<li><p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations? What happens if we omit the <code>tz</code> argument to <code>as.Date()</code>?</p>
+  mutate(speed = ___) %&gt;%
+  ggplot(aes(___)) +
+  _____
+
+flights %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre></li>
+<li><p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.</p>
 <pre class="r"><code>flights %&gt;%
-  mutate(
-    ___ = as.Date(___, tz = &quot;EST&quot;),
-    ___ = lubridate::make_date(_____)
-  ) %&gt;% 
-  filter(___)</code></pre></li>
+  mutate(on_time = if_else(___ &lt; 0, &quot;On time&quot;, &quot;delayed&quot;)) %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre></li>
+<li><p>Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(dep_delay_dev = ___ - mean(___)) %&gt;%
+  ggplot(aes(___)) +
+  _____ +
+  _____</code></pre></li>
 <li><p>Find more exercises in Section 5.5.2 of r4ds.</p></li>
 </ol>
 </div>
@@ -415,23 +436,35 @@ flights %&gt;%
   summarize(mean(___, na.rm = ___))
 
 flights %&gt;%
-  group_by(___) %&gt;%
+  group_by() %&gt;%
   summarize(___)
 
 flights %&gt;%
   count(___) %&gt;%
   arrange(___)</code></pre></li>
-<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights?</p>
-<pre class="r"><code>flights %&gt;%
+<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.</p>
+<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
+<pre class="r"><code>total_airtime_by_carrier &lt;-
+  flights %&gt;%
   group_by(___) %&gt;%
-  summarize(acc_air_time = sum(_____)) %&gt;% 
-  ungroup()</code></pre></li>
-<li><p>Which carriers specialize on long-distance routes?</p>
-<pre class="r"><code>flights
+  summarize(acc_air_time = sum(_____))
+
+total_airtime_by_carrier %&gt;%
+  arrange(acc_air_time) %&gt;%
+  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+  ggplot(aes(___)) +
+    geom_bar()</code></pre></li>
+<li><p>Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.</p>
+<pre class="r"><code>total_miles_by_carrier &lt;-
   _____ %&gt;%
   _____ %&gt;%
-  _____ %&gt;%
-  arrange(___)</code></pre></li>
+  _____
+
+total_miles_by_carrier %&gt;%
+  arrange(_____) %&gt;%
+  mutate(_____) %&gt;%
+  ggplot(aes(___)) +
+    geom_bar()</code></pre></li>
 <li><p>Which plane had the most failed departure attempts? Can you find a solution without <code>filter()</code>?</p>
 <p>Hint: Use the idiom <code>sum(___)</code> to count the rows where a predicate is true.</p>
 <pre class="r"><code>flights %&gt;%
@@ -439,22 +472,20 @@ flights %&gt;%
   group_by(tailnum) %&gt;%
   _____ %&gt;%
   _____ %&gt;%
-  filter(!is.na(tailnum)) %&gt;%
-  arrange(desc(___)) %&gt;% 
   head(1)
 
 flights %&gt;%
   group_by(tailnum) %&gt;%
   _____ %&gt;%
   _____ %&gt;%
-  arrange(_____) %&gt;%
   head(1)</code></pre></li>
-<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p>
+<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.</p>
 <p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
 <pre class="r"><code>flights %&gt;%
   group_by(carrier) %&gt;%
-  _____ %&gt;% 
-  ungroup()</code></pre></li>
+  _____ %&gt;%
+  ggplot(aes(___)) +
+    geom_col()</code></pre></li>
 <li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
 </ol>
 </div>
@@ -482,21 +513,21 @@ flights %&gt;%
   tally(wt = NULL) %&gt;%
   _____ %&gt;%
   _____</code></pre></li>
-<li><p>Compute the share of cancelled flights per month per airline.</p>
+<li><p>Create a heat map for the share of cancelled flights per month per airline.</p>
 <pre class="r"><code>flights %&gt;% 
   group_by(_____) %&gt;% 
   summarize(share_of_cancelled = _____) %&gt;%
-  ungroup()</code></pre></li>
+  ungroup() %&gt;%
+  ggplot() +
+  geom_raster(
+    aes(
+      x = ___,
+      y = factor(month),
+      fill = ___
+    )
+  )</code></pre></li>
 <li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
 </ol>
-</div>
-<div id="putting-it-all-together-preparing-a-time-series-for-plotting" class="section level2">
-<h2>Putting it all together: Preparing a time series for plotting</h2>
-<pre><code>## [time]: &#39;date&#39; [value]: &#39;dep_delay&#39;</code></pre>
-<p><img src="dplyr-1_files/figure-html/dplyr-1-1-1.png" width="672" /></p>
-<pre><code>## [time]: &#39;date&#39; 
-## [time]: &#39;date&#39;</code></pre>
-<p><img src="dplyr-1_files/figure-html/dplyr-1-2-1.png" width="672" /></p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

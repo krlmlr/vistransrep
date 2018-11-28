@@ -50,3 +50,5 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Everything after `#` is a comment. Add a regular comment and one prefixed with `#'` (hash apostroph). Knit the document. Can you see the difference?
 
 1. View the `mpg` dataset with `View(mpg)`. Experiment with the data viewer.
+
+1. 

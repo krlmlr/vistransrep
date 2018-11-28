@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-01" />
 
 <title>Position adjustments</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -231,32 +230,32 @@ $(document).ready(function () {
 <p>Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = trans))</code></pre>
-<p><img src="position_files/figure-html/position-1-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Visual inspection reveals that it’s four gears for automatic, and five gears for manual transmission.</p>
 </div>
 <div id="discriminate-by-car-class" class="section level2">
 <h2>Discriminate by car class</h2>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))</code></pre>
-<p><img src="position_files/figure-html/position-2-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with <code>position = &quot;dodge&quot;</code>, the different width of the bars indicates the number of different subgroups for each car class:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(
     aes(x = class, fill = trans), 
     position = &quot;dodge&quot;
   )</code></pre>
-<p><img src="position_files/figure-html/position-3-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
 <p>I’m using liters per 100 km as measure for fuel economy here.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = drv, y = 235 / hwy))</code></pre>
-<p><img src="position_files/figure-html/position-4-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Forward drivetrains seem much more economical. Does the number of cylinders play a role? I’ll try the “fill” aesthetic:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = drv, y = 235 / hwy, fill = cyl))</code></pre>
-<p><img src="position_files/figure-html/position-5-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>No dice. Do I also need <code>group =</code> ?</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(
@@ -267,7 +266,8 @@ $(document).ready(function () {
       group = cyl
     )
   )</code></pre>
-<p><img src="position_files/figure-html/position-6-1.png" width="672" /></p>
+<pre><code>## Warning: position_dodge requires non-overlapping x intervals</code></pre>
+<p><img src="position_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>The legend reveals that <code>cyl</code> is a continuous variable. I’ll use its categorical equivalent, because the range is very limited.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(
@@ -277,7 +277,7 @@ $(document).ready(function () {
       fill = factor(cyl)
     )
   )</code></pre>
-<p><img src="position_files/figure-html/position-7-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>The default <code>position</code> setting looks good, let’s try <code>&quot;identity&quot;</code>:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(
@@ -288,7 +288,7 @@ $(document).ready(function () {
     ),
     position = &quot;identity&quot;
   )</code></pre>
-<p><img src="position_files/figure-html/position-8-1.png" width="672" /></p>
+<p><img src="position_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Doesn’t look useful.</p>
 </div>
 

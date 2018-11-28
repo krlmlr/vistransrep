@@ -11,7 +11,6 @@
 
 <meta name="author" content="Kirill Müller" />
 
-<meta name="date" content="2017-06-01" />
 
 <title>Scatterplots with three variables</title>
 
@@ -92,9 +91,6 @@ img {
 }
 .tabbed-pane {
   padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
 }
 button.code-folding-btn:focus {
   outline: none;
@@ -187,6 +183,9 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
+  <a href="intro.html">intro</a>
+</li>
+<li>
   <a href="rstudio.html">rstudio</a>
 </li>
 <li>
@@ -231,16 +230,16 @@ $(document).ready(function () {
 <p>Simply insert <code>color = &lt;var&gt;</code> in the <code>aes()</code> call, where <code>&lt;var&gt;</code> is a variable in the <code>mpg</code> dataset:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-1-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = cyl))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-2-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = trans))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-3-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-4-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Looks like the cars with large displacement are two-seaters with rear drivetrain.</p>
 </div>
 <div id="map-to-other-aesthetics" class="section level2">
@@ -251,24 +250,23 @@ $(document).ready(function () {
 <p>The <code>factor()</code> function helps:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = factor(cyl)))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-5-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>On the other hand, a continuous variable is fine for the “size” aesthetic…</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = cyl))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-6-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>…which isn’t recommended (but still works) for a categorical variable:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = factor(cyl)))</code></pre>
 <pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-7-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>The “alpha” aesthetic controls transparency, and accepts both kinds of variable:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, alpha = cyl))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-8-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, alpha = factor(cyl)))</code></pre>
-<pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-8-2.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 </div>
 <div id="change-more-than-one-aesthetic" class="section level2">
 <h2>Change more than one aesthetic</h2>
@@ -282,8 +280,7 @@ $(document).ready(function () {
     shape = drv,
     alpha = fl
   ))</code></pre>
-<pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-9-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>A legend is added automatically. It may not be as useful to change all properties at the same time, but it’s very easy to assign a variable to a different aesthetic, or use another variable for that aesthetic.</p>
 </div>
 <div id="map-a-variable-to-more-than-one-aesthetic" class="section level2">
@@ -297,7 +294,7 @@ $(document).ready(function () {
     size = displ,
     alpha = displ
   ))</code></pre>
-<p><img src="scatter3_files/figure-html/scatter3-10-1.png" width="672" /></p>
+<p><img src="scatter3_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Mapping the same variable to two aesthetics is sometimes useful to further emphasize this variable.</p>
 </div>
 
