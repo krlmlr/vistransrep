@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Kirill Müller" />
+
+<meta name="date" content="2017-06-02" />
+
+<title>Joins</title>
+
+<script src="site_libs/jquery/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<script src="site_libs/navigation/tabsets.js"></script>
+<link href="site_libs/highlightjs/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="rstudio.html">rstudio</a>
+</li>
+<li>
+  <a href="dplyr.html">dplyr</a>
+</li>
+<li>
+  <a href="import.html">import</a>
+</li>
+<li>
+  <a href="rmarkdown.html">rmarkdown</a>
+</li>
+<li>
+  <a href="outro.html">outro</a>
+</li>
+<li>
+  <a href="support.html">support</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Joins</h1>
+<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
+
+</div>
+
+
+<div id="counting-distinct-observations" class="section level2">
+<h2>Counting distinct observations</h2>
+<pre class="r"><code>airlines %&gt;%
+  count(carrier) %&gt;% 
+  filter(n &gt; 1)</code></pre>
+<pre><code>## # A tibble: 0 x 2
+## # ... with 2 variables: carrier &lt;chr&gt;, n &lt;int&gt;</code></pre>
+<pre class="r"><code>airports %&gt;%
+  count(faa) %&gt;%
+  filter(n &gt; 1)</code></pre>
+<pre><code>## # A tibble: 0 x 2
+## # ... with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
+</div>
+<div id="destination-by-airline" class="section level2">
+<h2>Destination by airline</h2>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  left_join(airlines, by = &quot;carrier&quot;) %&gt;%
+  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;))</code></pre>
+<pre><code>## # A tibble: 51,287 x 27
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1      557            600        -3      709
+##  2  2013     1     1      559            559         0      702
+##  3  2013     1     1      629            630        -1      721
+##  4  2013     1     1      632            608        24      740
+##  5  2013     1     1      639            640        -1      739
+##  6  2013     1     1      732            735        -3      857
+##  7  2013     1     1      733            736        -3      854
+##  8  2013     1     1      801            805        -4      900
+##  9  2013     1     1      803            810        -7      903
+## 10  2013     1     1      820            830       -10      940
+## # ... with 51,277 more rows, and 20 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;,
+## #   lon &lt;dbl&gt;, alt &lt;int&gt;, tz &lt;dbl&gt;, dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
+</div>
+<div id="destination-by-airline-wide-form" class="section level2">
+<h2>Destination by airline, wide form</h2>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  left_join(airlines, by = &quot;carrier&quot;) %&gt;%
+  rename(carrier_name = name) %&gt;%
+  left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;% 
+  rename(airport_name = name) %&gt;%
+  count(carrier_name, airport_name) %&gt;%
+  spread(carrier_name, n)</code></pre>
+<pre><code>## # A tibble: 19 x 12
+##    airport_name `American Airli… `Delta Air Line… `Endeavor Air I…
+##    &lt;chr&gt;                   &lt;int&gt;            &lt;int&gt;            &lt;int&gt;
+##  1 Albany Intl                NA               NA               NA
+##  2 Baltimore W…               NA               NA              856
+##  3 Bradley Intl               NA               NA               NA
+##  4 Buffalo Nia…               NA                3               54
+##  5 Burlington …               NA               NA                2
+##  6 General Edw…             1455              972              914
+##  7 Greater Roc…               NA               NA              281
+##  8 La Guardia                 NA               NA               NA
+##  9 Manchester …               NA               NA               11
+## 10 &quot;Martha\\\\…               NA               NA               71
+## 11 Nantucket M…               NA               NA               NA
+## 12 Norfolk Intl               NA               NA              402
+## 13 Philadelphi…               NA                2              940
+## 14 Portland In…               NA              235               NA
+## 15 Richmond In…               NA               NA              340
+## 16 Ronald Reag…               NA                2             1074
+## 17 Syracuse Ha…               NA               NA              170
+## 18 Theodore Fr…               NA               NA               NA
+## 19 Washington …               NA               NA              664
+## # ... with 8 more variables: `Envoy Air` &lt;int&gt;, `ExpressJet Airlines
+## #   Inc.` &lt;int&gt;, `JetBlue Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;,
+## #   `SkyWest Airlines Inc.` &lt;int&gt;, `Southwest Airlines Co.` &lt;int&gt;, `United
+## #   Air Lines Inc.` &lt;int&gt;, `US Airways Inc.` &lt;int&gt;</code></pre>
+</div>
+<div id="destination-by-airline-economic-join" class="section level2">
+<h2>Destination by airline, economic join</h2>
+<pre class="r"><code>airline_names &lt;-
+  airlines %&gt;%
+  rename(carrier_name = name)
+
+dest_airport_names &lt;-
+  airports %&gt;%
+  select(dest = faa, airport_name = name)
+
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(carrier, dest) %&gt;% 
+  left_join(airline_names, by = &quot;carrier&quot;) %&gt;%
+  select(-carrier) %&gt;% 
+  left_join(dest_airport_names, by = &quot;dest&quot;) %&gt;% 
+  select(-dest)</code></pre>
+<pre><code>## # A tibble: 58 x 3
+##        n carrier_name      airport_name                      
+##    &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;                             
+##  1   914 Endeavor Air Inc. General Edward Lawrence Logan Intl
+##  2     2 Endeavor Air Inc. Burlington Intl                   
+##  3    54 Endeavor Air Inc. Buffalo Niagara Intl              
+##  4   856 Endeavor Air Inc. Baltimore Washington Intl         
+##  5  1074 Endeavor Air Inc. Ronald Reagan Washington Natl     
+##  6   664 Endeavor Air Inc. Washington Dulles Intl            
+##  7    11 Endeavor Air Inc. Manchester Regional Airport       
+##  8    71 Endeavor Air Inc. &quot;Martha\\\\&#39;s Vineyard&quot;           
+##  9   402 Endeavor Air Inc. Norfolk Intl                      
+## 10   940 Endeavor Air Inc. Philadelphia Intl                 
+## # ... with 48 more rows</code></pre>
+</div>
+
+<p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
