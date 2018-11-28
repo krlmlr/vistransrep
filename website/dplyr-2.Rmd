@@ -122,21 +122,25 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Keys and mutating joins](joins.html)
 
-1. How are the `flights`, `carriers`, and `airports` datasets connected? Which are primary, which are foreign keys?
+1. How are the `flights`, `airlines`, and `airports` datasets connected? Which are primary, which are foreign keys?
 
     Hint: Use `count()` to support your hypothesis.
     
     ```r
     flights %>%
       count(carrier) %>%
-      count(n)
+      filter(n > 1)
 
     airlines %>%
-      count(_____) %>%
+      count(___) %>%
+      filter(___)
+
+    airports %>%
+      _____ %>%
       _____
     ```
 
-1. Plot a heat map of destination by airline for all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. Does the result change if you use a full join? Do you use `geom_raster()` or `geom_bin2d()`?
+1. Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.
 
     Hint: Use `by = c("dest" = "faa")`.
     
@@ -145,19 +149,56 @@ knitr::opts_chunk$set(cache = TRUE)
       filter(distance < 300) %>%
       count(dest, carrier) %>%
       left_join(airlines) %>%
-      left_join(airports, by = c(___))
+      left_join(airports, by = c("___" = "___"))
+    ```
 
+1. Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use `spread()` or `gather()`? How do you replace the `NA` values with zeros?
+    
+    ```r
     # The name of the `name` variable isn't very useful,
-    # need to rename it before plotting
+    # need to rename it
     flights %>% 
       filter(distance < 300) %>%
       count(dest, carrier) %>%
       left_join(_____) %>%
-      rename(___) %>%
+      rename(carrier_name = ___) %>%
       left_join(_____) %>%
-      rename(___) %>% 
+      rename(_____) %>%
+      count(_____) %>%
+      _____(_____)
+    ```
+
+1. Change the code from the last example to use `count()` right after `filter()`. What additional steps do you need?
+    
+    ```r
+    airline_names <-
+      airlines %>%
+      _____()
+    
+    dest_airport_names <-
+      _____ %>%
+      _____()
+    
+    flights %>% 
+      filter(distance < 300) %>%
+      count(_____) %>% 
+      left_join(_____, by = "___") %>%
+      select(-___) %>% 
+      left_join(_____, by = "___") %>% 
+      _____(_____)
+    ```
+    
+1. Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use `geom_raster()` or `geom_bin2d()`?
+
+    Hint: Use `by = c("dest" = "faa")`.
+    
+    ```r
+    short_distance_destinations <-
+      _____
+
+    short_distance_destinations %>% 
       ggplot() +
-      geom_raster(aes(___))
+      geom____(aes(___))
     ```
     
 1. Find more exercises in Section 13.4.6 of r4ds.

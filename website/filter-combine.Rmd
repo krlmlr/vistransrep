@@ -1,0 +1,79 @@
+---
+title: "Filtering"
+author: "Kirill Müller"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
+
+View <- function(x) print(x)
+```
+
+## Flights on the same date as today
+
+```{r filter-combine-1}
+flights %>%
+  filter(day == 13, month == 11) %>%
+  filter(carrier == "US")
+  
+flights %>%
+  filter(day == 13 & month == 11 & carrier == "US")
+```
+
+
+## Red eye flights
+
+```{r filter-combine-2}
+flights %>%
+  filter(dep_time < 600 | dep_time > 2200)
+```
+
+
+## Flights not by UA or WN
+
+```{r filter-combine-3}
+flights %>%
+  filter(carrier != "UA" & carrier != "WN")
+
+flights %>%
+  filter(!(carrier == "UA" | carrier == "WN"))
+
+flights %>%
+  filter(!(carrier %in% c("UA", "WN")))
+```
+
+## Missing data
+
+```{r filter-combine-4}
+flights %>%
+  filter(is.na(arr_time))
+
+flights %>%
+  filter(is.na(arr_time) & is.na(dep_time))
+
+flights %>%
+  filter(is.na(arr_time) & !is.na(dep_time))
+```
+
+## Commutativity
+
+Arranging a smaller subset needs less work.
+
+```{r filter-combine-5}
+system.time(
+  flights %>%
+    arrange(arr_delay) %>% 
+    filter(carrier == "UA")
+)
+
+system.time(
+  flights %>%
+    filter(carrier == "UA") %>%
+    arrange(arr_delay)
+)
+```

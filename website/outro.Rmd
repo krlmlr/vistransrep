@@ -150,11 +150,12 @@ class: inverse
 
 ---
 
-# More transformation
+# More transformations
 
 - Grouped `mutate()` and `filter()`, see r4ds 5.7.1
 - Scoped functions, see `?scoped`
 - `complete()` and `fill()`
+- `extract()`
 
 ## Same syntax for working with databases
 
@@ -228,13 +229,21 @@ tweaking plots, standard appearance
 
 # Pointers
 
+Working directory hell:
+- https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+
 Symbolic link to data directory:
 - Linux and OS X: `file.symlink()`
 - Windows: `Sys.junction()`
 
 R markdown: http://rmarkdown.rstudio.com/gallery.html
 
+---
+
+# Pointers 2
+
 Literature:
 
 - Quick-R [http://www.statmethods.net](http://www.statmethods.net)
 - Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+- Packages suggested by RStudio [https://github.com/rstudio/RStartHere](https://github.com/rstudio/RStartHere)

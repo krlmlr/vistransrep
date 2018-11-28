@@ -47,10 +47,18 @@ flights %>%
 ## Cancelled flights per month per airline
 
 ```{r summarize-mult-4}
-flights %>% 
+cancelled_flights <-
+  flights %>% 
   group_by(carrier, month) %>% 
   summarize(share_of_cancelled = mean(is.na(dep_time))) %>%
-  ungroup() %>%
+  ungroup()
+
+cancelled_flights
+```
+
+
+```{r summarize-mult-5}
+cancelled_flights %>%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
 ```

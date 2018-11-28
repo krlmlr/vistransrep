@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
+library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
@@ -77,7 +78,7 @@ knitr::opts_chunk$set(cache = TRUE)
     ```r
     flights %>% 
       arrange(___ - ___) %>%
-      tail(1)
+      head(1)
     ```
 
 1. Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
@@ -142,7 +143,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
 
-    Hint: Consult the `airports` dataset, use a filter with the predicate `grepl("^Honolulu", name)` .
+    Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::str_detect(name, "^Honolulu")` .
 
 1. Sort the result by `distance`.
 
@@ -183,9 +184,11 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.
 
+## [Combining filters](filter-combine.html)
+
 1. Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
 
-1. Find all flights that departed today four years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
+1. Find all flights that departed today x years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
 
     ```r
     flights %>%
@@ -207,20 +210,26 @@ knitr::opts_chunk$set(cache = TRUE)
 
     ```r
     flights %>%
-      filter(!___)
+      filter(___ ___ ___)
 
     flights %>%
       filter(!(___) ___ !(___))
+
+    flights %>%
+      filter(!(_____))
     ```
 
 1. Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?
 
     ```r
     flights %>%
-      filter(is.na(___) ___)
+      filter(is.na(___))
 
     flights %>%
-      filter(is.na(___) ___)
+      filter(___(___) ___ _____)
+
+    flights %>%
+      filter(_____ ___ !_____)
     ```
 
 1. Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
@@ -301,26 +310,91 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Mutate](mutate.html)
 
-1. Store the speed for each flight as miles per hour in a new variable. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
+1. Store the speed for each flight as miles per hour in a new variable.
 
     ```r
-    flights %>%
-      mutate(speed = ___) %>%
+    flights %>% 
+      mutate(miles_per_hour = air_time ___ distance ___ ___) %>%
+      ggplot(aes(___)) +
+      _____
+    ```
+    
+1. Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?
+
+    ```r
+    flights %>% 
+      mutate(miles_per_minute = _____) %>% 
+      mutate(miles_per_hour = _____) %>% 
+      select(_____)
+    ```
+    
+1. Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
+
+    ```r
+    flights %>% 
+      ______ %>%
       ggplot(aes(___)) +
       _____
 
+    # Alternative:
     flights %>%
       ggplot(aes(___)) +
       _____
     ```
 
-1. Can you detect a difference in the speed distributions of on-time vs. delayed flights? Create a new variable that displays nicely in the legend or in the facet.
+1. Create a new logical variable that indicates if the flight arrived on time.
 
     ```r
     flights %>%
-      mutate(on_time = if_else(___ < 0, "On time", "delayed")) %>%
+      mutate(on_time = (___ <= 0))
+    ```
+
+1. Visualize the aggregated on-time status per airline with a useful text.
+
+    ```r
+    flights %>%
+      flights %>%
+      mutate(
+        on_time = _____,
+        on_time_desc = if_else(___, "On time", ___)
+      ) %>%
       ggplot(aes(___)) +
+      geom_bar()
+    ```
+
+1. Can you detect a difference in the speed distributions of on-time vs. delayed flights? Ose color of faceting.
+
+    ```r
+    speed_and_on_time_info <-
       _____
+
+    speed_and_on_time_info %>%
+      ggplot() +
+      geom_freqpoly(
+        aes(x = ___, y = ..density.., color = ___),
+        na.rm = TRUE,
+        binwidth = 20
+      )
+
+    speed_and_on_time_info %>%
+      ggplot() +
+      geom_histogram(
+        aes(x = ___),
+        na.rm = TRUE,
+        binwidth = 20
+      ) +
+      facet_wrap(~___, ncol = 1)
+    ```
+
+1. Create two new variables `date_hour` and `date_ymd`, using `as.Date()` or `lubridate::make_date()`, respectively. Are the two values the same for all observations? What happens if we omit the `tz` argument to `as.Date()`?
+
+    ```r
+    flights %>%
+      mutate(
+        ___ = as.Date(___, tz = "EST"),
+        ___ = lubridate::make_date(_____)
+      ) %>% 
+      filter(___)
     ```
 
 1. Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.
@@ -345,7 +419,7 @@ knitr::opts_chunk$set(cache = TRUE)
       summarize(mean(___, na.rm = ___))
 
     flights %>%
-      group_by() %>%
+      group_by(___) %>%
       summarize(___)
 
     flights %>%
@@ -353,36 +427,53 @@ knitr::opts_chunk$set(cache = TRUE)
       arrange(___)
     ```
 
-1. Which carriers had the longest accumulated air time, excluding cancelled flights? Plot a bar chart with a suitable unit for the total time.
+1. Which carriers had the longest accumulated air time, excluding cancelled flights?
+
+    ```r
+    flights %>%
+      group_by(___) %>%
+      summarize(acc_air_time = sum(_____)) %>% 
+      ungroup()
+    ```
+    
+1. Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.
 
     Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
 
     ```r
     total_airtime_by_carrier <-
-      flights %>%
-      group_by(___) %>%
-      summarize(acc_air_time = sum(_____))
+      _____
       
     total_airtime_by_carrier %>%
       arrange(acc_air_time) %>%
       mutate(carrier = forcats::fct_inorder(carrier)) %>%
       ggplot(aes(___)) +
-        geom_bar()
+        geom_col()
     ```
     
-1. Which carriers specialize on long-distance routes? Plot a bar chart similar to the previous exercise.
+1. Which carriers specialize on long-distance routes?
 
     ```r
-    total_miles_by_carrier <-
+    flights
+      _____ %>%
+      _____ %>%
+      _____ %>%
+      arrange(___)
+    ```
+
+1. Plot a bar chart of median distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
+
+    ```r
+    median_miles_by_carrier <-
       _____ %>%
       _____ %>%
       _____
 
-    total_miles_by_carrier %>%
+    median_miles_by_carrier %>%
       arrange(_____) %>%
       mutate(_____) %>%
       ggplot(aes(___)) +
-        geom_bar()
+        geom____()
     ```
 
 1. Which plane had the most failed departure attempts? Can you find a solution without `filter()`?
@@ -395,23 +486,37 @@ knitr::opts_chunk$set(cache = TRUE)
       group_by(tailnum) %>%
       _____ %>%
       _____ %>%
+      filter(!is.na(tailnum)) %>%
+      arrange(desc(___)) %>% 
       head(1)
 
+    # Alternative without filter():
     flights %>%
       group_by(tailnum) %>%
       _____ %>%
       _____ %>%
+      arrange(_____) %>%
       head(1)
     ```
 
-1. Compute the ratio of short-distance routes (less than 300 miles) for each airline. Plot a bar chart.
+1. Compute the ratio of short-distance routes (less than 300 miles) for each airline.
 
     Hint: Use the idiom `mean(___)` to compute the share of rows where a predicate is true.
 
     ```r
     flights %>%
       group_by(carrier) %>%
-      _____ %>%
+      _____ %>% 
+      ungroup()
+    ```
+
+1. Plot a bar chart of the ratio of short-distance routes.
+
+    ```r
+    short_distance_route_ratio <-
+      _____
+
+    short_distance_route_ratio %>%
       ggplot(aes(___)) +
         geom_col()
     ```
@@ -446,13 +551,22 @@ knitr::opts_chunk$set(cache = TRUE)
       _____
     ```
 
-1. Create a heat map for the share of cancelled flights per month per airline.
+1. Compute the share of cancelled flights per month per airline.
 
     ```r
     flights %>% 
       group_by(_____) %>% 
       summarize(share_of_cancelled = _____) %>%
-      ungroup() %>%
+      ungroup()
+    ```
+
+1. Create a heat map of cancelled flights.
+
+    ```r
+    cancelled_flights <-
+      _____
+
+    cancelled_flights %>% 
       ggplot() +
       geom_raster(
         aes(

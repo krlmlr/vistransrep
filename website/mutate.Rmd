@@ -18,48 +18,102 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ```{r mutate-1}
 flights %>%
-  mutate(mph_speed = distance / air_time * 60) %>%
+  mutate(miles_per_hour = distance / air_time * 60)
+```
+
+```{r mutate-1-1}
+flights %>%
+  mutate(miles_per_minute = distance / air_time) %>% 
+  mutate(miles_per_hour = miles_per_minute * 60) %>% 
+  select(-miles_per_minute)
+```
+
+```{r mutate-1-2}
+flights %>%
+  mutate(miles_per_hour = distance / air_time * 60) %>%
   ggplot() +
   geom_histogram(
-    aes(mph_speed),
+    aes(miles_per_hour),
     na.rm = TRUE,
     binwidth = 20
   )
 ```
 
 
-```{r mutate-2}
+```{r mutate-1-3}
 flights %>% 
   ggplot() +
   geom_histogram(aes(distance / air_time))
 ```
 
-## Speed distributions
+## On time status
 
-```{r mutate-3}
+```{r mutate-1-bis}
 flights %>%
-  mutate(mph_speed = distance / air_time * 60) %>%
-  mutate(Delayed = arr_delay > 0) %>%
-  ggplot() +
-  geom_freqpoly(
-    aes(x = mph_speed, y = ..density.., color = Delayed),
-    na.rm = TRUE,
-    binwidth = 20
+  mutate(
+    on_time = (arr_delay <= 0),
+    on_time_desc = if_else(on_time, "On time", "Delayed")
   )
 ```
 
 
-```{r mutate-4}
+```{r mutate-1-bis-1}
 flights %>%
-  mutate(mph_speed = distance / air_time * 60) %>%
-  mutate(Delayed = arr_delay > 0) %>%
-  filter(!is.na(Delayed)) %>%
+  mutate(
+    on_time = (arr_delay <= 0),
+    on_time_desc = if_else(on_time, "On time", "Delayed")
+  ) %>%
+  ggplot(aes(x = carrier, fill = on_time_desc)) +
+  geom_bar()
+```
+
+
+
+## Speed distributions
+
+```{r mutate-3}
+speed_and_on_time_info <-
+  flights %>%
+  mutate(
+    miles_per_minute = distance / air_time,
+    miles_per_hour = miles_per_minute * 60
+  ) %>% 
+  select(-miles_per_minute) %>% 
+  mutate(
+    on_time = (arr_delay <= 0),
+    on_time_desc = if_else(on_time, "On time", "Delayed")
+  ) %>% 
+  select(-on_time)
+
+speed_and_on_time_info %>% 
+  ggplot() +
+  geom_freqpoly(
+    aes(x = miles_per_hour, y = ..density.., color = on_time_desc),
+    na.rm = TRUE,
+    binwidth = 20
+  )
+
+speed_and_on_time_info %>% 
+  filter(!is.na(on_time_desc)) %>% 
   ggplot() +
   geom_histogram(
-    aes(x = mph_speed),
+    aes(x = miles_per_hour),
+    na.rm = TRUE,
     binwidth = 20
   ) +
-  facet_wrap(~Delayed, ncol = 1)
+  facet_wrap(~on_time_desc, ncol = 1)
+```
+
+
+## Date
+
+```{r mutate-2}
+flights %>%
+  mutate(
+    date_hour = as.Date(time_hour, tz = "EST"),
+    date_ymd = lubridate::make_date(year, month, day)
+  ) %>% 
+  filter(date_hour != date_ymd)
 ```
 
 ## Deviation from average departure delay

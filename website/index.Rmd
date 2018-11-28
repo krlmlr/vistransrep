@@ -2,24 +2,24 @@
 title: "Data visualization, reporting, and processing with R"
 ---
 
-This is the website for the **XXX** workshop on **Sep YY**, 2018.
+This is the website for the _tidyverse_ workshop on Nov 29-30, 2018.
 
 ## Resources
 
-- This page: https://bit.ly/zhrvrp18
+- This page: https://bit.ly/zhrvrp18-2
 
-- rstudio.cloud server: https://rstudio.cloud/project/37553
+- rstudio.cloud server: https://rstudio.cloud/project/147066
     - Sign up, or log in with Google or GitHub
     - Click the "Save a private copy" link next to the **TEMPORARY** label in red in the header
     - All necessary packages are preinstalled
 
 - Main menu in header of this website
 
-- GitHub repository: https://github.com/krlmlr/vistransrep-proj
-    - Live code: https://github.com/krlmlr/vistransrep-proj/tree/XXX/live
+- GitHub repository: https://github.com/krlmlr/vistransrep-proj/tree/2018-12-zhr
+    - Live code: https://github.com/krlmlr/vistransrep-proj/tree/2018-12-zhr/live
 
 - Main reference: [*R for data science* (r4ds)](http://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham
 
-- Workshop description: http://www.zhrcourses.uzh.ch/de/programm/data-processing.html
+- Workshop description: https://www.zhrcourses.uzh.ch/de/programm/data-processing0.html
 
 Last updated: `r Sys.time()`

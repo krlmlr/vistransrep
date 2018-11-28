@@ -1,5 +1,5 @@
 ---
-title: "dplyr exercises part 2"
+title: "dplyr exercises part 1a"
 author: "Kirill Müller"
 output: html_document
 ---
@@ -14,12 +14,45 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## [Grouped mutate](window.html)
 
-1. Which month is busiest in terms of miles flown? Draw a heat map to see if this pattern holds across all airlines.
+1. Which month is busiest in terms of miles flown, over all carriers?
+
+    ```r
+    flights %>%
+      group_by(___) %>%
+      mutate(total_distance = sum(___)) %>%
+      mutate(month_share = ___ / ___) %>% 
+      arrange(desc(month_share)) %>%
+      slice(1)
+    ```
+
+1. Visualize with a bar chart.
+
+1. Which month is busiest in terms of miles flown, per carrier?
 
     Hint: Compute the share of yearly miles flown of each airline in each month.
 
-1. Compute the ground time for each airplane on any given day. Make sure that you add only positive numbers. Visualize the distribution of ground times by airline.
+    ```r
+    flights %>%
+      group_by(___, ___) %>%
+      summarize(total_distance_by_carrier = sum(distance)) %>%
+      mutate(total_distance = sum(___)) %>%
+      ungroup() %>%
+      mutate(month_share_by_carrier = ___ / ___) %>% 
+      arrange(month_share_by_carrier) %>% 
+      group_by(___) %>%
+      slice(1)
+    ```
+    
+1. Draw a heat map of miles flown per month per airline to see if this pattern holds across all airlines.
 
-    Hint: Use `lag()` or `lead()`.
+    ```r
+    monthly_shares <-
+      _____
+    
+    monthly_shares %>%
+      ggplot(aes(factor(month), ___, fill = ___)) +
+      geom_tile() +
+      scale_fill_continuous(trans = "log10")
+    ```
 
 1. Find more exercises in Section 5.7.1 of r4ds.

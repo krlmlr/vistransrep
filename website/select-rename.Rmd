@@ -67,7 +67,7 @@ flights %>%
 ## everything()
 
 flights %>%
-  select(-contains("dep_"), everything())
+  select(-contains("dep_"), everything(), contains("dep_"))
 ```
 
 ## Contour plot

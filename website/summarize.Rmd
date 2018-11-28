@@ -70,6 +70,11 @@ flights %>%
   arrange(desc(n))
 ```
 
+```{r summarize-6-1}
+flights %>%
+  count(origin, sort = TRUE)
+```
+
 
 ## Air time by carrier
 
@@ -134,19 +139,23 @@ flights %>%
 ```{r summarize-13}
 flights %>% 
   filter(is.na(dep_time)) %>%
-  count(tailnum) %>%
-  arrange(desc(n))
+  count(tailnum, sort = TRUE)
 ```
 
 
 ## Short-distance routes per airline
 
 ```{r summarize-14}
-flights %>%
+short_distance_route_ratio <-
+  flights %>%
   group_by(carrier) %>% 
   summarize(short_distance_ratio = mean(distance < 300)) %>% 
   ungroup() %>%
-  arrange(desc(short_distance_ratio)) %>%
+  arrange(desc(short_distance_ratio))
+
+short_distance_route_ratio
+
+short_distance_route_ratio %>%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
 ```

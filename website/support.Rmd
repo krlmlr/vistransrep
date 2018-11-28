@@ -33,6 +33,27 @@ class: center
 
 ---
 
+background-image: url(images/data-science-explore.png)
+background-size: 75%
+class: bottom
+
+#### Source: Grolemund and Wickham, R for data science
+
+---
+
+
+# Other important RStudio shortcuts
+
+- **Focus source/console**: Ctrl + 1 / Ctrl + 2
+- **Filter command history**: Start typing, then Ctrl + Cursor up
+- **Search command history**: Ctrl + R, then type
+- **Source with echo**: Ctrl + Shift + Enter
+- **Move lines up/down**: Alt + Cursor up/down
+- **Indent/outdent**: Tab / Shift + Tab
+- **Find in all files**: Ctrl + Shift + F
+
+---
+
 # Tidy data
 
 > “Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham
@@ -42,6 +63,10 @@ class: center
 1. Each variable must have its own column.
 2. Each observation must have its own row.
 3. Each value must have its own cell.
+
+![](https://r4ds.had.co.nz/images/tidy-1.png)
+
+Source: Grolemund and Wickham, R for data science
 
 ???
 
@@ -96,7 +121,11 @@ ggplot(
 
 ## Grouped operations
 
+- `group_by()`
+
 ## Joins
+
+- `xxx_join()`
 
 ---
 
@@ -117,6 +146,19 @@ ggplot(
     ```r
     between(hour, 8, 12)
     month %in% c(12, 1, 2)
+    ```
+
+---
+
+# Filter criteria for strings
+
+- Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+- Searching for pattern:
+    ```r
+    library(stringr)
+    
+    str_detect(tailnum, "^[^N]")
+    str_detect(carrier, fixed("A"))
     ```
 
 ---
@@ -182,15 +224,26 @@ ggplot(
     - Cumulative: `cumsum()` etc.
     - Lead and lag: `lead()`, `lag()`
     
-- Recoding: `recode()`
+- Recoding: `if_else()`, `case_when()`, `recode()`
 
-- All filtering functions to return `logical`
+- All filtering functions for a new `logical` column
 
 - Ranking: `row_number()`, `min_rank()`, `ntile()`
 
 ---
 
-# Aggregate functions
+# Mutation function for strings
+
+- Replacing by pattern:
+    ```r
+    library(stringr)
+    
+    str_replace(origin, "GA", "XX")
+    ```
+
+---
+
+# Aggregation functions
 
 ## Statistics
 
@@ -233,6 +286,50 @@ ggplot(
 
 ---
 
+background-image: url(images/left-join.gif)
+
+---
+
+class: inverse
+
+---
+
+background-image: url(images/inner-join.gif)
+
+---
+
+class: inverse
+
+---
+
+background-image: url(images/full-join.gif)
+
+---
+
+class: inverse
+
+---
+
+background-image: url(images/right-join.gif)
+
+---
+
+class: inverse
+
+---
+
+background-image: url(images/semi-join.gif)
+
+---
+
+class: inverse
+
+---
+
+background-image: url(images/anti-join.gif)
+
+---
+
 # Joins
 
 - For each combination of join variables in the left data frame, find corresponding rows in the right data frame
@@ -259,5 +356,31 @@ ggplot(
 - Difference: Returned set
     - `semi_join()`: Keep matching rows
     - `anti_join()`: Remove matching rows
+
+]
+
+---
+
+background-image: url(images/tidyr-spread-gather.gif)
+
+---
+
+# Spread and gather
+
+.pull-left[
+
+## spread: long to wide
+
+- Take new column names from key column
+- Distribute values across new column names
+
+]
+
+.pull-right[
+
+## gather: wide to long
+
+- Create new key column with column names
+- Fill existing data into new column
 
 ]

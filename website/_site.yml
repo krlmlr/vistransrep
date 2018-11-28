@@ -1,5 +1,5 @@
 name: my-website
-output_dir: ../docs/future
+output_dir: ../docs
 include:
 - .nojekyll
 - images
@@ -34,4 +34,3 @@ output:
     css: styles.css
     lib_dir: site_libs
     self_contained: no
-
