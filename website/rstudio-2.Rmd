@@ -37,7 +37,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Scripts
 
-1. Restart the R session (via "Session → Restart R" or via via Ctrl + Shift + F10, on the Mac: Cmd + Shift + F10).
+1. Restart the R session (via "Session → Restart R" or via Ctrl + Shift + F10, on the Mac: Cmd + Shift + F10).
 
     Hint: The keyboard shortcut may not work in rstudio.cloud.
 
