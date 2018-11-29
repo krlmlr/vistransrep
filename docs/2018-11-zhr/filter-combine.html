@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Kirill Müller" />
+<meta name="author" content="Kirill Müller, cynkra GmbH" />
 
 <meta name="date" content="2017-06-02" />
 
@@ -223,7 +223,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Filtering</h1>
-<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="author"><em>Kirill Müller, cynkra GmbH</em></h4>
 <h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
@@ -422,14 +422,14 @@ $(document).ready(function () {
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.205   0.032   0.238</code></pre>
+##   0.270   0.036   0.306</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.046   0.004   0.049</code></pre>
+##   0.060   0.012   0.071</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

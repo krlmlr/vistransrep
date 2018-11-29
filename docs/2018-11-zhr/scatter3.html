@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Kirill Müller" />
+<meta name="author" content="Kirill Müller, cynkra GmbH" />
 
 <meta name="date" content="2017-06-01" />
 
@@ -223,7 +223,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Scatterplots with three variables</h1>
-<h4 class="author"><em>Kirill Müller</em></h4>
+<h4 class="author"><em>Kirill Müller, cynkra GmbH</em></h4>
 <h4 class="date"><em>June 1, 2017</em></h4>
 
 </div>
@@ -251,6 +251,8 @@ $(document).ready(function () {
 <p>The following won’t work, because <code>cyl</code> is stored as a continuous variable:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = cyl))</code></pre>
+<pre><code>## Error: A continuous variable can not be mapped to shape</code></pre>
+<p><img src="scatter3_files/figure-html/scatter3-5-bad-1.png" width="672" /></p>
 <p>The <code>factor()</code> function helps:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = factor(cyl)))</code></pre>
