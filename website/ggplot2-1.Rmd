@@ -1,6 +1,6 @@
 ---
 title: "ggplot2 exercises part 1"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 

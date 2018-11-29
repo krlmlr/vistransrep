@@ -1,6 +1,6 @@
 ---
 title: "rmarkdown exercises part 2"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 

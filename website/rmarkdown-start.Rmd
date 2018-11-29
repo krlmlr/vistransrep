@@ -1,6 +1,6 @@
 ---
 title: "R + markdown"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 
@@ -12,7 +12,7 @@ library(tidyverse)
 ```{r rmarkdown-start-1, echo = FALSE, results = "asis"}
 text <- '``````\n---
 title: "Test document"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output: html_document\n---
 \n```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)

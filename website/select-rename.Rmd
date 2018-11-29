@@ -1,6 +1,6 @@
 ---
 title: "Select and rename"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 date: "June 2, 2017"
 output: html_document
 ---

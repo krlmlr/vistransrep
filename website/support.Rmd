@@ -1,7 +1,7 @@
 ---
 title: "Data visualisation, reporting, and processing with R"
 subtitle: "Supporting slides"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output:
   xaringan::moon_reader:
     lib_dir: libs

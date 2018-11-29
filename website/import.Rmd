@@ -1,6 +1,6 @@
 ---
 title: "import exercises"
-author: "Kirill Müller"
+author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 
