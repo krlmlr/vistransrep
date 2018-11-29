@@ -321,15 +321,35 @@ $(document).ready(function () {
     mapping = aes(x = displ, y = hwy),
     ___ = ___
   )</code></pre></li>
-<li><p>How does the order of the <code>geom_...()</code> calls affect the display?</p></li>
+<li><p>How does the order of the <code>geom_...()</code> calls affect the display?</p>
+<pre><code>ggplot(data = ___, mapping = aes(_____)) +
+  geom_point() +
+  geom_smooth()</code></pre>
+<pre><code>ggplot(data = ___, mapping = aes(_____)) +
+  geom_smooth() +
+  geom_point()</code></pre></li>
 <li><p>Can you plot both highway and city economy in one plot?</p>
-<p>Hint: The solution to this exercise is <em>not</em> the recommended way of doing this in ggplot2. We’ll find a better way in a subsequent exercise.</p></li>
+<p>Hint: The solution to this exercise is <em>not</em> the recommended way of doing this in ggplot2. We’ll find a better way in a subsequent exercise.</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = _____, color = &quot;___&quot;) +
+  geom_point(mapping = _____, color = &quot;___&quot;)</code></pre></li>
 <li><p>Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the <code>mpg</code> dataset contains. Which aesthetic mappings do you need to specify?</p>
-<p>Hint: Find the relevant geom by typing <code>geom_</code> on the console or in your script file.</p></li>
-<li><p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p></li>
+<p>Hint: Find the relevant geom by typing <code>geom_</code> on the console or in your script file.</p>
+<pre><code>ggplot(_____, aes(_____)) +
+  geom_bar()</code></pre></li>
+<li><p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p>
+<pre><code>ggplot(_____, aes(_____, y = ..count..)) +
+  geom_bar()</code></pre></li>
 <li><p>What happens if you instead use <code>y = ..prop.., group = 1</code> in the <code>aes()</code> call? What happens if you omit <code>group = 1</code>? Why?</p>
-<p>Hint: The section “Computed variables” to <code>geom_bar()</code> offers a brief explanation.</p></li>
-<li><p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p></li>
+<p>Hint: The section “Computed variables” to <code>geom_bar()</code> offers a brief explanation.</p>
+<pre><code>ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
+  geom_bar()</code></pre></li>
+<li><p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = hwy)) +
+  geom_____()</code></pre></li>
+<li><p>How do you remove the warning in the previous example?</p>
+<pre><code>ggplot(_____) +
+  geom_____(binwidth = ___)</code></pre></li>
 <li><p>Visualize the distribution of fuel economy in the dataset per drivetrain. Do you prefer a histogram or a frequency polygon?</p></li>
 <li><p>Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.</p></li>
 </ol>
@@ -337,8 +357,12 @@ $(document).ready(function () {
 <div id="position-adjustments" class="section level2">
 <h2><a href="position.html">Position adjustments</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>What’s the most prevalent number of gears for manual or automatic transmissions?</p></li>
-<li><p>Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?</p></li>
+<li><p>What’s the most prevalent number of gears for manual or automatic transmissions?</p>
+<pre><code>ggplot(data = mpg, aes(x = trans)) +
+  geom_bar()</code></pre></li>
+<li><p>Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = class, _____)) +
+  geom_bar(position = &quot;___&quot;)</code></pre></li>
 <li><p>Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?</p>
 <p>Hint: Use <code>factor()</code> as necessary.</p></li>
 <li><p>Find more exercises in Section 3.8.1 of r4ds.</p></li>
@@ -347,7 +371,14 @@ $(document).ready(function () {
 <div id="faceting" class="section level2">
 <h2><a href="facet.html">Faceting</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with <code>facet_wrap()</code>, <code>facet_grid()</code>, aesthetic mappings, and smoothing layers.</p></li>
+<li><p>Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with <code>facet_wrap()</code>, <code>facet_grid()</code>, aesthetic mappings, and smoothing layers.</p>
+<pre><code>ggplot(_____) +
+  geom_point() +
+  facet_wrap(~___)</code></pre>
+<pre><code>ggplot(_____) +
+  geom_point() +
+  geom_smooth() + 
+  facet_grid(___ ~ ___)</code></pre></li>
 <li><p>What changes if you add the argument <code>labeller = &quot;label_both&quot;</code> to the <code>facet_wrap()</code> call?</p></li>
 <li><p>Is it possible to use a different x and y scale for each facet? How?</p></li>
 <li><p>Experiment with other arguments to <code>facet_wrap()</code> and <code>facet_grid()</code>.</p></li>
