@@ -42,7 +42,7 @@ knitr::opts_chunk$set(cache = TRUE)
       filter(_____)
     ```
 
-1. Find all flights that departed today four years ago.
+1. Find all flights that departed today `r lubridate::year(Sys.Date()) - 2013` years ago.
 
     ```r
     flights %>%
