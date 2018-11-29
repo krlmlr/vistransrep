@@ -34,6 +34,7 @@ class: center
 ---
 
 background-image: url(images/learn-r.png)
+background-size: 80%
 
 ---
 
