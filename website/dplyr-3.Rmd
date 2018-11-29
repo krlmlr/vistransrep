@@ -1,5 +1,5 @@
 ---
-title: "dplyr exercises part 2"
+title: "dplyr exercises part 3"
 author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
