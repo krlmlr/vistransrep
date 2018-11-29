@@ -33,12 +33,6 @@ class: center
 
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(cache = TRUE)
-library(tidyverse)
-```
-
 background-image: url(images/learn-r.png)
 
 ---
