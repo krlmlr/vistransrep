@@ -157,10 +157,31 @@ class: inverse
 - `complete()` and `fill()`
 - `extract()`
 
-## Same syntax for working with databases
+---
+
+# Same syntax for working with databases
 
 - *dbplyr* package
 - Transformation operations are translated to SQL
+
+```{r outro-10-1}
+library(dbplyr) #<<
+remote_data <- memdb_frame(a = 1:2, b = 3:4)
+remote_data
+
+remote_data %>%
+  mutate(c = a + b)
+```
+
+---
+
+# Same syntax for working with databases
+
+```{r outro-10-2}
+remote_data %>%
+  mutate(c = a + b) %>% 
+  sql_render()
+```
 
 ---
 
