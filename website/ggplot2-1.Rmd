@@ -166,21 +166,66 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. How does the order of the `geom_...()` calls affect the display?
 
+    ```
+    ggplot(data = ___, mapping = aes(_____)) +
+      geom_point() +
+      geom_smooth()
+    ```
+    
+    ```
+    ggplot(data = ___, mapping = aes(_____)) +
+      geom_smooth() +
+      geom_point()
+    ```
+
 1. Can you plot both highway and city economy in one plot?
 
     Hint: The solution to this exercise is *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
+
+    ```
+    ggplot(_____) +
+      geom_point(mapping = _____, color = "___") +
+      geom_point(mapping = _____, color = "___")
+    ```
 
 1. Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the `mpg` dataset contains. Which aesthetic mappings do you need to specify? 
 
     Hint: Find the relevant geom by typing `geom_` on the console or in your script file.
 
+    ```    
+    ggplot(_____, aes(_____)) +
+      geom_bar()
+    ```
+
 1. Does the appearance of the plot change when you add `y = ..count..` to the `aes()` call? Why/why not?
+
+    ```    
+    ggplot(_____, aes(_____, y = ..count..)) +
+      geom_bar()
+    ```
 
 1. What happens if you instead use `y = ..prop.., group = 1` in the `aes()` call? What happens if you omit `group = 1`? Why?
 
     Hint: The section "Computed variables" to `geom_bar()` offers a brief explanation.
 
+    ```
+    ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
+      geom_bar()
+    ```
+
 1. Visualize the overall distribution of fuel economy in the dataset with a histogram.  Compare this with a frequency polygon, use a second layer if you like.
+
+    ```
+    ggplot(data = mpg, mapping = aes(x = hwy)) +
+      geom_____()
+    ```
+
+1. How do you remove the warning in the previous example?
+    
+    ```
+    ggplot(_____) +
+      geom_____(binwidth = ___)
+    ```
 
 1. Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
 
@@ -191,8 +236,18 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. What's the most prevalent number of gears for manual or automatic transmissions?
 
+    ```
+    ggplot(data = mpg, aes(x = trans)) +
+      geom_bar()
+    ```
+
 1. Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?
 
+    ```
+    ggplot(data = mpg, mapping = aes(x = class, _____)) +
+      geom_bar(position = "___")
+    ```
+    
 1. Draw a boxplot of highway fuel economy versus drivetrain.  Is fuel economy also affected by the number of cylinders?
 
     Hint: Use `factor()` as necessary.
@@ -203,6 +258,19 @@ knitr::opts_chunk$set(cache = TRUE)
 ## [Faceting](facet.html)
 
 1. Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with `facet_wrap()`, `facet_grid()`, aesthetic mappings, and smoothing layers.
+
+    ```
+    ggplot(_____) +
+      geom_point() +
+      facet_wrap(~___)
+    ```
+
+    ```
+    ggplot(_____) +
+      geom_point() +
+      geom_smooth() + 
+      facet_grid(___ ~ ___)
+    ```
 
 1. What changes if you add the argument `labeller = "label_both"` to the `facet_wrap()` call?
 
