@@ -204,7 +204,7 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Find more exercises in Section 13.4.6 of r4ds.
 
 
-## Filtering joins
+## [Filtering joins](filter-joins.html)
 
 1. Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
 

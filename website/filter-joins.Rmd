@@ -1,0 +1,28 @@
+---
+title: "Filtering joins"
+author: "Kirill Müller, cynkra GmbH"
+date: "June 2, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+
+## Airports accessed
+
+```{r filter-joins-1}
+airports %>%
+  semi_join(flights, by = c("dest" = "faa"))
+```
+
+## Airports not flown to
+
+```{r filter-joins-2}
+airports %>%
+  anti_join(flights, by = c("dest" = "faa"))
+```
