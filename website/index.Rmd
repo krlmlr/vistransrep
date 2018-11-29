@@ -6,7 +6,7 @@ This is the website for the _tidyverse_ workshop on Nov 29-30, 2018.
 
 ## Resources
 
-- This page: http://bit.ly/2Rierik
+- This page: https://bit.ly/2Rierik
 
 - rstudio.cloud server: https://rstudio.cloud/project/147066
     - Sign up, or log in with Google or GitHub
