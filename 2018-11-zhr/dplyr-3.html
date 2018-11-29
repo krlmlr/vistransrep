@@ -227,162 +227,157 @@ $(document).ready(function () {
 </div>
 
 
-<div id="summarize" class="section level2">
-<h2><a href="summarize.html">Summarize</a></h2>
+<div id="spreading-and-gathering" class="section level2">
+<h2><a href="spread-gather.html">Spreading and gathering</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City’s busiest airport?</p>
-<pre class="r"><code>flights %&gt;%
-  summarize(mean(___, na.rm = ___))
+<li><p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p>
+<pre class="r"><code>table2 %&gt;%
+  spread(_____)</code></pre></li>
+<li><p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Try an inclusive and an exclusive selection. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p>
+<pre class="r"><code>table1 %&gt;%
+  gather(_____, ___:___)
 
-flights %&gt;%
-  group_by(___) %&gt;%
-  summarize(___)
-
-flights %&gt;%
-  count(___) %&gt;%
-  arrange(___)</code></pre></li>
-<li><p>Which carriers had the longest accumulated air time, excluding cancelled flights?</p>
-<pre class="r"><code>flights %&gt;%
-  group_by(___) %&gt;%
-  summarize(acc_air_time = sum(_____)) %&gt;% 
-  ungroup()</code></pre></li>
-<li><p>Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.</p>
-<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
-<pre class="r"><code>total_airtime_by_carrier &lt;-
-  _____
-
-total_airtime_by_carrier %&gt;%
-  arrange(acc_air_time) %&gt;%
-  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+table1 %&gt;%
+  gather(_____, -___:-___)</code></pre></li>
+<li><p>Visualize the data: plot cases, population, and both. Which of <code>table1</code> or <code>table2</code> is more suitable in which case?</p>
+<pre class="r"><code>___ %&gt;%
   ggplot(aes(___)) +
-    geom_col()</code></pre></li>
-<li><p>Which carriers specialize on long-distance routes?</p>
-<pre class="r"><code>flights
-  _____ %&gt;%
-  _____ %&gt;%
-  _____ %&gt;%
-  arrange(___)</code></pre></li>
-<li><p>Plot a bar chart of median distance per flight. Do you use <code>geom_bar()</code> or <code>geom_col()</code>? Why?</p>
-<pre class="r"><code>median_miles_by_carrier &lt;-
-  _____ %&gt;%
-  _____ %&gt;%
-  _____
+  geom_col()
 
-median_miles_by_carrier %&gt;%
-  arrange(_____) %&gt;%
-  mutate(_____) %&gt;%
+___ %&gt;%
   ggplot(aes(___)) +
-    geom____()</code></pre></li>
-<li><p>Which plane had the most failed departure attempts? Can you find a solution without <code>filter()</code>?</p>
-<p>Hint: Use the idiom <code>sum(___)</code> to count the rows where a predicate is true.</p>
-<pre class="r"><code>flights %&gt;%
-  filter(is.na(dep_time)) %&gt;%
-  group_by(tailnum) %&gt;%
-  _____ %&gt;%
-  _____ %&gt;%
-  filter(!is.na(tailnum)) %&gt;%
-  arrange(desc(___)) %&gt;% 
-  head(1)
+  geom_col() +
+  facet_grid(___ ~ ___, scales = &quot;free&quot;)
 
-# Alternative without filter():
-flights %&gt;%
-  group_by(tailnum) %&gt;%
-  _____ %&gt;%
-  _____ %&gt;%
-  arrange(_____) %&gt;%
-  head(1)</code></pre></li>
-<li><p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p>
-<p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
-<pre class="r"><code>flights %&gt;%
-  group_by(carrier) %&gt;%
-  _____ %&gt;% 
-  ungroup()</code></pre></li>
-<li><p>Plot a bar chart of the ratio of short-distance routes.</p>
-<pre class="r"><code>short_distance_route_ratio &lt;-
-  _____
+___ %&gt;%
+  ggplot(aes(___, ___)) +
+  geom_point()</code></pre></li>
+<li><p>Use <code>gather()</code> to convert <code>table4a</code> and <code>table4b</code> to <code>table2</code>. Can you do the same with just one <code>gather()</code> call?</p>
+<p>Hint: Use <code>bind_rows()</code> to combine similar tibbles.</p>
+<pre class="r"><code>cases_tbl &lt;-
+  table4a %&gt;%
+  gather(_____) %&gt;%
+  mutate(type = &quot;cases&quot;)
 
-short_distance_route_ratio %&gt;%
-  ggplot(aes(___)) +
-    geom_col()</code></pre></li>
-<li><p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p></li>
-</ol>
-</div>
-<div id="summarize-with-multiple-variables" class="section level2">
-<h2><a href="summarize-mult.html">Summarize with multiple variables</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Which relation is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, one using <code>count()</code>, and one using <code>tally()</code>. Which is more elegant?</p>
-<pre class="r"><code>flights %&gt;%
-  group_by(___, ___, airline) %&gt;%
-  summarize(n = n()) %&gt;%
-  summarize(n_airlines = ___) %&gt;%
-  ungroup() %&gt;%
-  arrange(___) %&gt;%
-  head(1)
+population_tbl &lt;-
+  table4a %&gt;%
+  gather(_____) %&gt;%
+  mutate(___)
 
-flights %&gt;%
-  count(_____) %&gt;%
-  count(_____) %&gt;%
-  _____ %&gt;%
-  _____
-
-flights %&gt;%
-  group_by(_____) %&gt;%
-  tally() %&gt;%
-  tally(wt = NULL) %&gt;%
+bind_rows(_____) %&gt;%
   _____ %&gt;%
   _____</code></pre></li>
-<li><p>Compute the share of cancelled flights per month per airline.</p>
-<pre class="r"><code>flights %&gt;% 
-  group_by(_____) %&gt;% 
-  summarize(share_of_cancelled = _____) %&gt;%
-  ungroup()</code></pre></li>
-<li><p>Create a heat map of cancelled flights.</p>
-<pre class="r"><code>cancelled_flights &lt;-
-  _____
-
-cancelled_flights %&gt;% 
-  ggplot() +
-  geom_raster(
-    aes(
-      x = ___,
-      y = factor(month),
-      fill = ___
-    )
-  )</code></pre></li>
-<li><p>Find more exercises in Section 5.6.7 of r4ds.</p></li>
+<li><p>Create a scatterplot from the <code>mpg</code> dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one <code>geom_point()</code> call.</p>
+<pre class="r"><code>mpg %&gt;%
+  _____ %&gt;%
+  ggplot(aes(x = displ, y = ___)) +
+  geom_point()</code></pre></li>
+<li><p>Find more exercises in Section 12.3.3 of r4ds.</p></li>
 </ol>
 </div>
-<div id="grouped-mutate" class="section level2">
-<h2><a href="window.html">Grouped mutate</a></h2>
+<div id="separating-and-uniting" class="section level2">
+<h2><a href="sep-unite.html">Separating and uniting</a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Which month is busiest in terms of miles flown, over all carriers?</p>
+<li><p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p>
+<pre class="r"><code>table3 %&gt;%
+  separate(
+    ___,
+    into = c(&quot;___&quot;, &quot;___&quot;),
+    convert = TRUE
+  ) %&gt;%
+  _____ %&gt;%
+  _____</code></pre></li>
+<li><p>Convert <code>table2</code> to <code>table3</code>.</p>
+<pre class="r"><code>table2 %&gt;%
+  _____ %&gt;%
+  unite(
+    ___,
+    ___, ___,
+    sep = &quot;/&quot;
+  )</code></pre></li>
+<li><p>Count the flights for each relation in the <code>flights</code> dataset, using just one grouping variable.</p>
 <pre class="r"><code>flights %&gt;%
-  group_by(___) %&gt;%
-  mutate(total_distance = sum(___)) %&gt;%
-  mutate(month_share = ___ / ___) %&gt;% 
-  arrange(desc(month_share)) %&gt;%
-  slice(1)</code></pre></li>
-<li><p>Visualize with a bar chart.</p></li>
-<li><p>Which month is busiest in terms of miles flown, per carrier?</p>
-<p>Hint: Compute the share of yearly miles flown of each airline in each month.</p>
+  unite(
+    relation,
+    ___, ___,
+    sep = &quot; -&gt; &quot;
+  ) %&gt;%
+  count(___)</code></pre></li>
+<li><p>Find more exercises in Section 12.4.3 of r4ds.</p></li>
+</ol>
+</div>
+<div id="keys-and-mutating-joins" class="section level2">
+<h2><a href="joins.html">Keys and mutating joins</a></h2>
+<ol style="list-style-type: decimal">
+<li><p>How are the <code>flights</code>, <code>airlines</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p>
 <pre class="r"><code>flights %&gt;%
-  group_by(___, ___) %&gt;%
-  summarize(total_distance_by_carrier = sum(distance)) %&gt;%
-  mutate(total_distance = sum(___)) %&gt;%
-  ungroup() %&gt;%
-  mutate(month_share_by_carrier = ___ / ___) %&gt;% 
-  arrange(month_share_by_carrier) %&gt;% 
-  group_by(___) %&gt;%
-  slice(1)</code></pre></li>
-<li><p>Draw a heat map of miles flown per month per airline to see if this pattern holds across all airlines.</p>
-<pre class="r"><code>monthly_shares &lt;-
+  count(carrier) %&gt;%
+  filter(n &gt; 1)
+
+airlines %&gt;%
+  count(___) %&gt;%
+  filter(___)
+
+airports %&gt;%
+  _____ %&gt;%
+  _____</code></pre></li>
+<li><p>Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(airlines) %&gt;%
+  left_join(airports, by = c(&quot;___&quot; = &quot;___&quot;))</code></pre></li>
+<li><p>Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use <code>spread()</code> or <code>gather()</code>? How do you replace the <code>NA</code> values with zeros?</p>
+<pre class="r"><code># The name of the `name` variable isn&#39;t very useful,
+# need to rename it
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(_____) %&gt;%
+  rename(carrier_name = ___) %&gt;%
+  left_join(_____) %&gt;%
+  rename(_____) %&gt;%
+  count(_____) %&gt;%
+  _____(_____)</code></pre></li>
+<li><p>Change the code from the last example to use <code>count()</code> right after <code>filter()</code>. What additional steps do you need?</p>
+<pre class="r"><code>airline_names &lt;-
+  airlines %&gt;%
+  _____()
+
+dest_airport_names &lt;-
+  _____ %&gt;%
+  _____()
+
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(_____) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;%
+  select(-___) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;% 
+  _____(_____)</code></pre></li>
+<li><p>Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
+<pre class="r"><code>short_distance_destinations &lt;-
   _____
 
-monthly_shares %&gt;%
-  ggplot(aes(factor(month), ___, fill = ___)) +
-  geom_tile() +
-  scale_fill_continuous(trans = &quot;log10&quot;)</code></pre></li>
-<li><p>Find more exercises in Section 5.7.1 of r4ds.</p></li>
+short_distance_destinations %&gt;% 
+  ggplot() +
+  geom____(aes(___))</code></pre></li>
+<li><p>Find more exercises in Section 13.4.6 of r4ds.</p></li>
+</ol>
+</div>
+<div id="filtering-joins" class="section level2">
+<h2>Filtering joins</h2>
+<ol style="list-style-type: decimal">
+<li><p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p>
+<pre class="r"><code>airports %&gt;%
+  semi_join(flights, by = c(_____))
+
+airports %&gt;%
+  anti_join(flights, by = c(_____))</code></pre></li>
+<li><p>Find more exercises in Section 13.5.1 of r4ds.</p></li>
 </ol>
 </div>
 
