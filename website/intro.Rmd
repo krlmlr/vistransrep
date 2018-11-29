@@ -12,24 +12,6 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(cache = TRUE)
-library(tidyverse)
-```
-
-background-image: url(images/learn-r.png)
-
----
-
-background-image: url(images/data-science-explore.png)
-background-size: 75%
-class: bottom
-
-#### Source: Grolemund and Wickham, R for data science
-
----
-
 background-image: url(images/datasaurus-dozen.gif)
 class: center
 
