@@ -11,8 +11,9 @@
 
 <meta name="author" content="Kirill Müller, cynkra GmbH" />
 
+<meta name="date" content="2017-06-02" />
 
-<title>ggplot2 exercises part 3</title>
+<title>Filtering joins</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -221,84 +222,50 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">ggplot2 exercises part 3</h1>
+<h1 class="title toc-ignore">Filtering joins</h1>
 <h4 class="author"><em>Kirill Müller, cynkra GmbH</em></h4>
+<h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
 
 
-<div id="scales" class="section level2">
-<h2><a href="scales.html">Scales</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Choose one or two of your previous plots, and give the scales a proper name.</p>
-<p>Hint: Use one or more <code>scale_...()</code> functions.</p></li>
-<li><p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p></li>
-<li><p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
-<p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p></li>
-<li><p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
-<p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p></li>
-<li><p>Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, … .</p></li>
-</ol>
+<div id="airports-accessed" class="section level2">
+<h2>Airports accessed</h2>
+<pre class="r"><code>airports %&gt;%
+  semi_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
+<pre><code>## # A tibble: 101 x 8
+##    faa   name                     lat    lon   alt    tz dst   tzone      
+##    &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      
+##  1 ABQ   Albuquerque Internati…  35.0 -107.   5355    -7 A     America/De…
+##  2 ACK   Nantucket Mem           41.3  -70.1    48    -5 A     America/Ne…
+##  3 ALB   Albany Intl             42.7  -73.8   285    -5 A     America/Ne…
+##  4 ANC   Ted Stevens Anchorage…  61.2 -150.    152    -9 A     America/An…
+##  5 ATL   Hartsfield Jackson At…  33.6  -84.4  1026    -5 A     America/Ne…
+##  6 AUS   Austin Bergstrom Intl   30.2  -97.7   542    -6 A     America/Ch…
+##  7 AVL   Asheville Regional Ai…  35.4  -82.5  2165    -5 A     America/Ne…
+##  8 BDL   Bradley Intl            41.9  -72.7   173    -5 A     America/Ne…
+##  9 BGR   Bangor Intl             44.8  -68.8   192    -5 A     America/Ne…
+## 10 BHM   Birmingham Intl         33.6  -86.8   644    -6 A     America/Ch…
+## # ... with 91 more rows</code></pre>
 </div>
-<div id="coordinate-systems" class="section level2">
-<h2><a href="coord.html">Coordinate systems</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Create a flipped boxplot of fuel economy by transmission type.</p></li>
-<li><p>Plot highway vs. city fuel economy with an additional <code>geom_abline()</code> layer. How do you set a 45° degree for the diagonal line?</p></li>
-<li><p>Try to “estimate” an approximate ratio between the two economy measures by tweaking the <code>slope</code> argument to <code>geom_abline()</code>.</p></li>
-</ol>
-</div>
-<div id="theming" class="section level2">
-<h2><a href="theme.html">Theming</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Choose your favorite among the predefined themes.</p>
-<p>Hint: All start with <code>theme_...()</code>, but watch out for <code>theme_set()</code>.</p></li>
-<li><p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a color or fill legend. What happens if you then apply <code>theme_bw()</code>? Why?</p></li>
-</ol>
-</div>
-<div id="plotly" class="section level2">
-<h2><a href="plotly.html">plotly</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Convert one of the scatterplots you generated previously using the following pattern:</p>
-<pre><code>p &lt;-
-  data %&gt;% 
-  ___ %&gt;%
-  ggplot(aes(___)) +
-    geom_point()
-
-plotly::ggplotly(p)</code></pre></li>
-<li><p>Experiment with the plotly controls on the top right.</p></li>
-<li><p>Add extra aesthetics to the scatterplot. Hover with the mouse over the points:</p>
-<pre><code>p &lt;-
-  data %&gt;% 
-  ___ %&gt;%
-  ggplot(aes(___, extra1 = manufacturer, extra2 = model)) +
-    geom_point()
-
-plotly::ggplotly(p)</code></pre></li>
-<li><p>Convert a bar plot or a histogram to plotly. How does this affect the tooltip?</p></li>
-<li><p>See <a href="https://plotly-book.cpsievert.me/linking-views-without-shiny.html" class="uri">https://plotly-book.cpsievert.me/linking-views-without-shiny.html</a> for examples of linking two plots, or linking plots with other widgets. This requires the <em>crosstalk</em> package:</p>
-<pre><code>install.packages(&quot;crosstalk&quot;)</code></pre></li>
-</ol>
-</div>
-<div id="leaflet" class="section level2">
-<h2><a href="leaflet.html">leaflet</a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Show the <code>quakes</code> data, or a subset, on a map:</p>
-<pre><code>library(leaflet)
-quakes %&gt;% 
-  ___ %&gt;% 
-  leaflet() %&gt;% 
-  addTiles() %&gt;% 
-  addCircles()</code></pre></li>
-<li><p>Add a popup to the tiles. Click on one of the circles</p>
-<p>Hint: Use <code>str_c()</code> or <code>paste0()</code> to concatenate text and data.</p>
-<pre><code>library(leaflet)
-___ %&gt;% 
-  addCircles()</code></pre></li>
-<li><p>Explore further options in <code>?addTiles</code>.</p></li>
-<li><p>See section 4.2.3 in <a href="https://plotly-book.cpsievert.me/linking-views-without-shiny.html" class="uri">https://plotly-book.cpsievert.me/linking-views-without-shiny.html</a> for linking a map to a plot.</p></li>
-</ol>
+<div id="airports-not-flown-to" class="section level2">
+<h2>Airports not flown to</h2>
+<pre class="r"><code>airports %&gt;%
+  anti_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
+<pre><code>## # A tibble: 1,357 x 8
+##    faa   name                   lat    lon   alt    tz dst   tzone        
+##    &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        
+##  1 04G   Lansdowne Airport     41.1  -80.6  1044    -5 A     America/New_…
+##  2 06A   Moton Field Municip…  32.5  -85.7   264    -6 A     America/Chic…
+##  3 06C   Schaumburg Regional   42.0  -88.1   801    -6 A     America/Chic…
+##  4 06N   Randall Airport       41.4  -74.4   523    -5 A     America/New_…
+##  5 09J   Jekyll Island Airpo…  31.1  -81.4    11    -5 A     America/New_…
+##  6 0A9   Elizabethton Munici…  36.4  -82.2  1593    -5 A     America/New_…
+##  7 0G6   Williams County Air…  41.5  -84.5   730    -5 A     America/New_…
+##  8 0G7   Finger Lakes Region…  42.9  -76.8   492    -5 A     America/New_…
+##  9 0P2   Shoestring Aviation…  39.8  -76.6  1000    -5 U     America/New_…
+## 10 0S9   Jefferson County In…  48.1 -123.    108    -8 A     America/Los_…
+## # ... with 1,347 more rows</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
