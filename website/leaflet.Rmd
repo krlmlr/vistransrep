@@ -1,0 +1,36 @@
+---
+title: "Interactive maps"
+author: "Kirill Müller, cynkra GmbH"
+date: "November 30, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+
+## A simple map
+
+```{r leaflet-1}
+library(leaflet)
+quakes %>% 
+  head(50) %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircles()
+```
+
+## A map with a tooltip
+
+```{r leaflet-2}
+library(leaflet)
+quakes %>% 
+  head(50) %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircles(popup = ~str_c("Magnitude: ", mag))
+```

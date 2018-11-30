@@ -3,6 +3,7 @@ Imports:
     dbplyr,
     DT,
     ggpubr,
+    leaflet,
     nycflights13,
     plotly,
     tidyverse,
