@@ -1,0 +1,49 @@
+---
+title: "Interactive plots"
+author: "Kirill Müller, cynkra GmbH"
+date: "November 30, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(nycflights13)
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+
+## Interactive scatterplot
+
+```{r plotly-1}
+p <-
+  mpg %>% 
+  ggplot(aes(x = displ, y = hwy, color = drv)) +
+    geom_jitter() +
+    geom_smooth()
+
+plotly::ggplotly(p)
+```
+
+
+## More expressive tooltip
+
+```{r plotly-2}
+p <-
+  mpg %>% 
+  ggplot(aes(x = displ, y = hwy, extra1 = manufacturer, extra2 = model)) +
+    geom_jitter()
+
+plotly::ggplotly(p)
+```
+
+## Barplot
+
+```{r plotly-3}
+p <-
+  mpg %>% 
+  ggplot(aes(x = drv)) +
+    geom_bar()
+
+plotly::ggplotly(p)
+```

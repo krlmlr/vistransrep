@@ -4,5 +4,6 @@ Imports:
     DT,
     ggpubr,
     nycflights13,
+    plotly,
     tidyverse,
     xaringan

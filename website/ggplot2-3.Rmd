@@ -45,3 +45,36 @@ knitr::opts_chunk$set(cache = TRUE)
     Hint: All start with `theme_...()`, but watch out for `theme_set()`.
 
 1. Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
+
+
+## plotly
+
+1. Convert one of the scatterplots you generated previously using the following pattern:
+
+    ```
+    p <-
+      data %>% 
+      ___ %>%
+      ggplot(aes(___)) +
+        geom_point()
+    
+    plotly::ggplotly(p)
+    ```
+
+1. Experiment with the plotly controls on the top right.
+
+1. Add extra aesthetics to the scatterplot. Hover with the mouse over the points:
+
+    ```
+    p <-
+      data %>% 
+      ___ %>%
+      ggplot(aes(___, extra1 = manufacturer, extra2 = model)) +
+        geom_point()
+    
+    plotly::ggplotly(p)
+    ```
+
+1. Convert a bar plot or a histogram to plotly. How does this affect the tooltip?
+
+1. See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets.
