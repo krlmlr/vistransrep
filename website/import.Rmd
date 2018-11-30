@@ -12,7 +12,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Import example file
 
-1. Download the `.csv` files from https://github.com/krlmlr/vistransrep/tree/master/data. 
+1. Open the `.csv` files in your project directory, or download them from https://github.com/krlmlr/vistransrep-proj/tree/master/data. 
 
     Hint: Use the "Raw" button to get access to the raw data, then save the file to your local disk.
 
