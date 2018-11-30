@@ -47,7 +47,7 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
 
 
-## plotly
+## [plotly](plotly.html)
 
 1. Convert one of the scatterplots you generated previously using the following pattern:
 
@@ -77,4 +77,35 @@ knitr::opts_chunk$set(cache = TRUE)
 
 1. Convert a bar plot or a histogram to plotly. How does this affect the tooltip?
 
-1. See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets.
+1. See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets. This requires the _crosstalk_ package:
+
+    ```
+    install.packages("crosstalk")
+    ```
+
+## [leaflet](leaflet.html)
+
+1. Show the `quakes` data, or a subset, on a map:
+
+    ```
+    library(leaflet)
+    quakes %>% 
+      ___ %>% 
+      leaflet() %>% 
+      addTiles() %>% 
+      addCircles()
+    ```
+
+1. Add a popup to the tiles. Click on one of the circles
+
+    Hint: Use `str_c()` or `paste0()` to concatenate text and data.
+    
+    ```
+    library(leaflet)
+    ___ %>% 
+      addCircles()
+    ```
+    
+1. Explore further options in `?addTiles`.
+
+1. See section 4.2.3 in https://plotly-book.cpsievert.me/linking-views-without-shiny.html for linking a map to a plot.
