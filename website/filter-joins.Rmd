@@ -17,12 +17,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ```{r filter-joins-1}
 airports %>%
-  semi_join(flights, by = c("dest" = "faa"))
+  semi_join(flights, by = c("faa" = "dest"))
 ```
 
 ## Airports not flown to
 
 ```{r filter-joins-2}
 airports %>%
-  anti_join(flights, by = c("dest" = "faa"))
+  anti_join(flights, by = c("faa" = "dest"))
 ```
