@@ -220,6 +220,7 @@ class: inverse
 - *dbplyr* package
 - Transformation operations are translated to SQL
 
+
 ---
 
 # Joins
@@ -228,7 +229,6 @@ r4ds, chapter 13
 
 
 ```r
-library(nycflights13)
 flights %&gt;%
   select(year, month, day, carrier) %&gt;%
   left_join(airlines)
