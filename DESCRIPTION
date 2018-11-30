@@ -6,5 +6,6 @@ Imports:
     leaflet,
     nycflights13,
     plotly,
+    RSQLite,
     tidyverse,
     xaringan
