@@ -15,6 +15,19 @@ knitr::opts_chunk$set(cache = TRUE)
 1. Choose one or two of your previous plots, and give the scales a proper name.
 
     Hint: Use one or more `scale_...()` functions.
+    
+    ```
+    ggplot(
+      data = mpg,
+      mapping = aes(x = displ, y = hwy, color = factor(year))
+    ) +
+      geom_point() +
+      geom_smooth(method = "lm") +
+      facet_wrap(~class) +
+      scale_x_continuous(name = "___") +
+      scale_y_continuous(name = "___") +
+      scale_color_discrete(name = "___")
+    ```
 
 1. What happens if you call the same `scale_...()` function twice in a plot?
 
