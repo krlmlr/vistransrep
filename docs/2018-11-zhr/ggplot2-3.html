@@ -231,7 +231,17 @@ $(document).ready(function () {
 <h2><a href="scales.html">Scales</a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Choose one or two of your previous plots, and give the scales a proper name.</p>
-<p>Hint: Use one or more <code>scale_...()</code> functions.</p></li>
+<p>Hint: Use one or more <code>scale_...()</code> functions.</p>
+<pre><code>ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = factor(year))
+) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;) +
+  facet_wrap(~class) +
+  scale_x_continuous(name = &quot;___&quot;) +
+  scale_y_continuous(name = &quot;___&quot;) +
+  scale_color_discrete(name = &quot;___&quot;)</code></pre></li>
 <li><p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p></li>
 <li><p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
 <p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p></li>
