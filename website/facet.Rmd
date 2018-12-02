@@ -117,9 +117,10 @@ ggplot(data = mpg) +
   )
 ```
 
-## More
+##
 
 Experiment with other arguments to `facet_wrap()` and `facet_grid()`.
 
-Find more exercises in Section 3.5.1 of r4ds.
+##
 
+Find more exercises in Section 3.5.1 of r4ds.
