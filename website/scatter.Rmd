@@ -23,9 +23,9 @@ mpg
 
 View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?
 
-    ```
-    View(___)
-    ```
+```
+View(___)
+```
 
 ```r
 View(mpg)
@@ -40,12 +40,12 @@ View(mpg)
 
 Create a few scatterplots using the following template (here with `hwy` versus `displ`):
 
-    ```{r echo=TRUE, eval=FALSE}
-    ggplot(data = mpg) +
-      geom_point(mapping = aes(x = displ, y = hwy))
-    ```
+```{r echo=TRUE, eval=FALSE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
     
-    Share particularly interesting or boring examples you might encounter.  Did you find anything surprising?
+Share particularly interesting or boring examples you might encounter.  Did you find anything surprising?
 
 ```{r scatter-2, echo=TRUE}
 ggplot(data = mpg) +
@@ -78,12 +78,12 @@ ggplot(data = mpg) +
 
 Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?
 
-    Hint: Use the formula `235 / hwy` to convert from miles per gallon.
+Hint: Use the formula `235 / hwy` to convert from miles per gallon.
 
-    ```
-    ggplot(data = ___) +
-      geom_point(mapping = aes(x = displ, y = ___))
-    ```
+```
+ggplot(data = ___) +
+  geom_point(mapping = aes(x = displ, y = ___))
+```
 
 ```{r scatter-7, echo=TRUE}
 ggplot(data = mpg) +
@@ -94,9 +94,9 @@ ggplot(data = mpg) +
 
 How can you reduce overplotting? Use your favorite search engine to find out.
 
-    ```    
-    ggplot(data = ___) +
-      geom____(_____)
-    ```
+```    
+ggplot(data = ___) +
+  geom____(_____)
+```
     
 Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).
