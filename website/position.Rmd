@@ -13,6 +13,13 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Gears
 
+What's the most prevalent number of gears for manual or automatic transmissions?
+
+```
+ggplot(data = mpg, aes(x = trans)) +
+  geom_bar()
+```
+
 Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:
 
 ```{r position-1, echo=TRUE}
@@ -23,6 +30,13 @@ ggplot(data = mpg) +
 Visual inspection reveals that it's four gears for automatic, and five gears for manual transmission.
 
 ## Discriminate by car class
+
+Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?
+
+```
+ggplot(data = mpg, mapping = aes(x = class, _____)) +
+  geom_bar(position = "___")
+```
 
 ```{r position-2, echo=TRUE}
 ggplot(data = mpg) +
@@ -97,3 +111,11 @@ ggplot(data = mpg) +
 ```
 
 Doesn't look useful.
+
+Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?
+
+Hint: Use `factor()` as necessary.
+
+## More
+
+Find more exercises in Section 3.8.1 of r4ds.
