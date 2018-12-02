@@ -42,14 +42,6 @@ ggplot(data = mpg) +
 
 ## The rug
 
-Plots marginal distributions of the data close to the axes.
-
-```{r geoms-3, echo=TRUE}
-ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy)) +
-  geom_rug(mapping = aes(x = displ, y = hwy))
-```
-
 What does `geom_rug()` do? Try to reduce overplotting with transparency or by adding `position = "jitter"`. How do you reduce overplotting for the points layer?
 
 ```    
@@ -62,6 +54,14 @@ ggplot(data = mpg) +
     mapping = aes(x = displ, y = hwy),
     ___ = ___
   )
+```
+
+Plots marginal distributions of the data close to the axes.
+
+```{r geoms-3, echo=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_rug(mapping = aes(x = displ, y = hwy))
 ```
 
 To reduce overplotting, the "alpha" aesthetic can be set independently for each geom to a constant value:
@@ -344,6 +344,8 @@ ggplot(mpg) +
   )
 ```
 
-Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+## More
 
-Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.
+# Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+
+# Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.
