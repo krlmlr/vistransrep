@@ -112,6 +112,8 @@ ggplot(data = mpg) +
 
 Doesn't look useful.
 
+##
+
 Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?
 
 Hint: Use `factor()` as necessary.
