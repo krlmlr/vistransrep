@@ -10,44 +10,6 @@ library(tidyverse)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-## [Scatterplots](scatter.html)
-
-1. Print the `mpg` dataset to your console.
-
-1. View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?
-
-    ```
-    View(___)
-    ```
-
-1. Create a few scatterplots using the following template (here with `hwy` versus `displ`):
-
-    ```{r echo=TRUE, eval=FALSE}
-    ggplot(data = mpg) +
-      geom_point(mapping = aes(x = displ, y = hwy))
-    ```
-    
-    Share particularly interesting or boring examples you might encounter.  Did you find anything surprising?
-
-1. Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?
-
-    Hint: Use the formula `235 / hwy` to convert from miles per gallon.
-
-    ```
-    ggplot(data = ___) +
-      geom_point(mapping = aes(x = displ, y = ___))
-    ```
-    
-1. How can you reduce overplotting? Use your favorite search engine to find out.
-
-    ```    
-    ggplot(data = ___) +
-      geom____(_____)
-    ```
-    
-1. Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).
-
-
 ## [Scatterplots with three or more variables](scatter3.html)
 
 1. In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
