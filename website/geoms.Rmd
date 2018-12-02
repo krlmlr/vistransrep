@@ -344,8 +344,10 @@ ggplot(mpg) +
   )
 ```
 
-## More
+## 
 
-# Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
 
-# Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.
+##
+
+Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.
