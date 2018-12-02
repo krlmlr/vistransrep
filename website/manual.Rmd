@@ -120,11 +120,13 @@ ggplot(_____) +
 
 - "size": positive numbers
 
-## More
+##
 
-# Find how to update the default point color for all scatterplots in the help for `update_geom_defaults()`. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).
+Find how to update the default point color for all scatterplots in the help for `update_geom_defaults()`. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).
 
-# Find how to update the default point color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
+##
+
+Find how to update the default point color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
 
 ```
 ggplot(_____) +
