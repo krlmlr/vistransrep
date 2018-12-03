@@ -12,8 +12,20 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-
 ## table3
+
+Convert `table3` to `table1` and `table2`.
+
+```r
+table3 %>%
+  separate(
+    ___,
+    into = c("___", "___"),
+    convert = TRUE
+  ) %>%
+  _____ %>%
+  _____
+```
 
 ```{r sep-unite-1}
 table3 %>%
@@ -32,8 +44,19 @@ table3 %>%
   arrange(country, year, type)
 ```
 
-
 ## To table3
+
+Convert `table2` to `table3`.
+
+```r
+table2 %>%
+  _____ %>%
+  unite(
+    ___,
+    ___, ___,
+    sep = "/"
+  )
+```
 
 ```{r sep-unite-3}
 table2 %>%
@@ -41,8 +64,19 @@ table2 %>%
   unite(rate, cases, population, sep = "/")
 ```
 
-
 ## Counting relations
+
+Count the flights for each relation in the `flights` dataset, using just one grouping variable.
+
+```r
+flights %>%
+  unite(
+    relation,
+    ___, ___,
+    sep = " -> "
+  ) %>%
+  count(___)
+```
 
 ```{r sep-unite-4}
 flights %>%
@@ -54,3 +88,6 @@ flights %>%
   count(relation)
 ```
 
+##
+
+Find more exercises in Section 12.4.3 of r4ds.

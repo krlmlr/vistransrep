@@ -12,8 +12,25 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-
 ## Counting distinct observations
+
+How are the `flights`, `airlines`, and `airports` datasets connected? Which are primary, which are foreign keys?
+
+Hint: Use `count()` to support your hypothesis.
+    
+```r
+flights %>%
+  count(carrier) %>%
+  filter(n > 1)
+
+airlines %>%
+  count(___) %>%
+  filter(___)
+
+airports %>%
+  _____ %>%
+  _____
+```
 
 ```{r joins-1}
 airlines %>%
@@ -27,8 +44,19 @@ airports %>%
   filter(n > 1)
 ```
 
-
 ## Destination by airline
+
+Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.
+
+Hint: Use `by = c("dest" = "faa")`.
+    
+```r
+flights %>% 
+  filter(distance < 300) %>%
+  count(dest, carrier) %>%
+  left_join(airlines) %>%
+  left_join(airports, by = c("___" = "___"))
+```
 
 ```{r joins-3}
 flights %>% 
@@ -38,6 +66,22 @@ flights %>%
 ```
 
 ## Destination by airline, wide form
+
+Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use `spread()` or `gather()`? How do you replace the `NA` values with zeros?
+    
+```r
+# The name of the `name` variable isn't very useful,
+# need to rename it
+flights %>% 
+  filter(distance < 300) %>%
+  count(dest, carrier) %>%
+  left_join(_____) %>%
+  rename(carrier_name = ___) %>%
+  left_join(_____) %>%
+  rename(_____) %>%
+  count(_____) %>%
+  _____(_____)
+```
 
 ```{r joins-4}
 flights %>% 
@@ -50,8 +94,27 @@ flights %>%
   spread(carrier_name, n)
 ```
 
-
 ## Destination by airline, economic join
+
+Change the code from the last example to use `count()` right after `filter()`. What additional steps do you need?
+    
+```r
+airline_names <-
+  airlines %>%
+  _____()
+
+dest_airport_names <-
+  _____ %>%
+  _____()
+
+flights %>% 
+  filter(distance < 300) %>%
+  count(_____) %>% 
+  left_join(_____, by = "___") %>%
+  select(-___) %>% 
+  left_join(_____, by = "___") %>% 
+  _____(_____)
+```
 
 ```{r joins-5}
 airline_names <-
@@ -74,8 +137,20 @@ verbose_destinations_by_carrier <-
 verbose_destinations_by_carrier
 ```
 
-
 ## Heat map
+
+Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use `geom_raster()` or `geom_bin2d()`?
+
+Hint: Use `by = c("dest" = "faa")`.
+    
+```r
+short_distance_destinations <-
+  _____
+
+short_distance_destinations %>% 
+  ggplot() +
+  geom____(aes(___))
+```
 
 ```{r joins-6}
 verbose_destinations_by_carrier %>%
@@ -84,3 +159,7 @@ verbose_destinations_by_carrier %>%
   ggpubr::rotate_x_text()
   # theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
+
+##
+
+Find more exercises in Section 13.4.6 of r4ds.
