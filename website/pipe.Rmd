@@ -14,8 +14,24 @@ knitr::opts_chunk$set(cache = TRUE)
 View <- function(x) print(x)
 ```
 
-
 ## Intermediate variables
+
+View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
+
+```r
+flights_after_10 <- filter(flights, ___)
+View(flights_after_10)
+```
+
+```r
+View(filter(flights, ___))
+```
+
+```r
+flights %>%
+  filter(___) %>%
+  View()
+```
 
 Naming is hard!
 
@@ -67,6 +83,25 @@ View(
 
 ## Pipe
 
+Extend the four solutions to view all `"UA"` flights that arrived after 10:00 PM.
+
+```r
+flights_after_10 <- filter(flights, ___)
+ua_flights_after_10 <- ...
+View(___)
+```
+
+```r
+View(filter(filter(flights, ___)))
+```
+
+```r
+flights %>%
+  filter(___) %>%
+  filter(___) %>%
+  View()
+```
+
 ```{r filtering-21}
 flights %>% 
   filter(dep_time <= 600) %>% 
@@ -90,3 +125,25 @@ late_late_ua_flights_not_honolulu <-
   filter(dest != "HNL") %>%
   arrange(distance)
 ```
+
+##
+
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM.
+
+##
+
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.
+
+##
+
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports.
+
+##
+
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
+
+Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::str_detect(name, "^Honolulu")` .
+
+##
+
+Sort the result by `distance`.

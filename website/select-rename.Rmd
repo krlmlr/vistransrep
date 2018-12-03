@@ -14,6 +14,19 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Select first five variables
 
+Find three ways to select the first five variables from the `flights` dataset.
+
+```r
+flights %>% 
+  select(___, ___, ________)
+
+flights %>% 
+  select(___:___)
+
+flights %>% 
+  select(___:___)
+```
+
 ```{r select-rename-1}
 flights %>%
   select(year, month, day, dep_time, sched_dep_time)
@@ -31,8 +44,20 @@ flights %>%
   select(1:5)
 ```
 
-
 ## Exclude the date
+
+Find three ways to exclude the date of the flight.
+
+```r
+flights %>% 
+  select(___, ___, ______________________)
+
+flights %>% 
+  select(-___, -___, -___)
+
+flights %>% 
+  select(-___:-___)
+```
 
 ```{r select-rename-4}
 flights %>%
@@ -53,6 +78,16 @@ flights %>%
 
 ## Departure variables
 
+Select all variables related to departure.
+
+```r
+flights %>% 
+  select(___, ___, _______)
+
+flights %>% 
+  select(starts_with("___"))
+```
+
 ```{r select-rename-7}
 ## contains()
 
@@ -60,8 +95,14 @@ flights %>%
   select(contains("dep_"))
 ```
 
-
 ## Move departure variables to end
+
+Move the variables related to scheduled time to the end of the table.
+
+```r
+flights %>% 
+  select(-___, -___, _______, everything(), ___, ___)
+```
 
 ```{r select-rename-8}
 ## everything()
@@ -71,6 +112,16 @@ flights %>%
 ```
 
 ## Contour plot
+
+Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.
+
+```r
+flights %>%
+  select(`___` = ___, `___` = ___, ___) %>%
+  filter(___) %>%
+  ggplot(aes(x = `___`, y = `___`)) +
+  geom_density2d()
+```
 
 ```{r select-rename-9}
 ## Overriding label names
@@ -82,7 +133,6 @@ flights %>%
   scale_x_continuous(name = "Arrival time")
 ```
 
-
 ```{r select-rename-10}
 ## Renaming in the data
 
@@ -92,7 +142,6 @@ flights %>%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`))
 ```
-
 
 ```{r select-rename-11}
 flights %>% 
@@ -113,3 +162,7 @@ flights %>%
   geom_density2d(aes(`Departure time`, `Arrival time`)) +
   coord_fixed()
 ```
+
+##
+
+Find more exercises in Section 5.4.1 of r4ds.

@@ -14,7 +14,22 @@ knitr::opts_chunk$set(cache = TRUE)
 View <- function(x) print(x)
 ```
 
+View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
+
+Hint: You need to load the `nycflights13` package.
+    
+```r
+View(___)
+```
+
 ## All flights on this day x years ago
+
+Find all flights that departed today `r lubridate::year(Sys.Date()) - 2013` years ago.
+
+```r
+flights %>%
+  filter(month ___, day ___)
+```
 
 Be careful with the equality operator `==`:
 
@@ -48,8 +63,14 @@ flights %>%
   )
 ```
 
-
 ## All flights between 8:00 AM and 10:00 PM
+
+Find all flights that departed between 8:00 AM and 10:00 PM.
+
+```r
+flights %>%
+  filter(between(dep_time, ___, ___))
+```
 
 ```{r filtering-4}
 flights %>% 
@@ -62,6 +83,13 @@ flights %>%
 ```
 
 ## Flights in winter months
+
+Find all flights that departed in the three winter months.
+
+```r
+flights %>%
+  filter(month ___ c(___)))
+```
 
 ```{r filtering-6}
 flights %>%
@@ -76,6 +104,13 @@ flights %>%
 
 ## Departure time later than arrival time
 
+Are there any flights where departure time is later than arrival time? What does this mean?
+
+```r
+flights %>%
+  filter(_____)
+```
+
 ```{r filtering-8}
 flights %>% 
   filter(dep_time > arr_time)
@@ -83,14 +118,35 @@ flights %>%
 
 ## Flight with shortest airtime
 
+On what day did the flight with the shortest airtime take place?
+
+Hint: Use `head()` to restrict your result to one row only.
+
+```r
+flights %>% 
+  arrange(___) %>%
+  head(1)
+```
+
 ```{r filtering-9}
 flights %>% 
   arrange(air_time) %>%
   head(1)
 ```
 
-
 ## Flight with heaviest delay
+
+Which flights had the heaviest delays? Can you use the `tail()` verb to obtain this information?
+
+```r
+flights %>% 
+  arrange(___) %>%
+  tail(1)
+
+flights %>% 
+  arrange(desc(___)) %>%
+  ___(1)
+```
 
 ```{r filtering-10}
 flights %>% 
@@ -129,8 +185,15 @@ flights %>%
   head(1)
 ```
 
-
 ## Flight with longest airtime
+
+On what day did the flight with the longest airtime take place?
+
+```r
+flights %>% 
+  arrange(___ - ___) %>%
+  head(1)
+```
 
 ```{r filtering-15}
 flights %>% 
@@ -138,8 +201,21 @@ flights %>%
   head(1)
 ```
 
-
 ## UA flights with lowest delay
+
+Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
+
+Hint: RStudio has shortcuts for swapping the current line with the next or previous line.
+
+```r
+flights %>%
+  filter(___) %>%
+  arrange(___)
+
+flights %>%
+  arrange(___) %>%
+  filter(___)
+```
 
 If we filter first, fewer observations need to be sorted.
 
@@ -156,8 +232,9 @@ flights %>%
   filter(carrier == "UA")
 ```
 
-
 ## Recovering delay
+
+Which flights were best in recovering from delay in the air?
 
 ```{r filtering-18}
 flights %>% 
