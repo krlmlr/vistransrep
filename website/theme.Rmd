@@ -14,6 +14,10 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Favorite theme
 
+Choose your favorite among the predefined themes.
+
+Hint: All start with `theme_...()`, but watch out for `theme_set()`.
+
 For presentations, `theme_bw()` or `theme_minimal()` look useful:
 
 ```{r theme-1, echo=TRUE}
@@ -32,8 +36,9 @@ ggplot(data = mpg) +
   scale_color_brewer(name = "Car class", palette = "Set2")
 ```
 
-
 ## Legend at bottom
+
+Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
 
 ```{r theme-2, echo=TRUE}
 ggplot(data = mpg) +

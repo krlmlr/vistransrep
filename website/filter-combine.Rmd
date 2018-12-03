@@ -16,6 +16,17 @@ View <- function(x) print(x)
 
 ## Flights on the same date as today
 
+Find all flights that departed today x years ago, flown by `"US"`. Two simple solutions exist, which appeals most to you?
+
+```r
+flights %>%
+  filter(___, ___) %>%
+  filter(___)
+  
+flights %>%
+  filter(_____)
+```  
+
 ```{r filter-combine-1}
 flights %>%
   filter(day == 13, month == 11) %>%
@@ -25,16 +36,34 @@ flights %>%
   filter(day == 13 & month == 11 & carrier == "US")
 ```
 
-
 ## Red eye flights
+
+Find all flights that departed before 6:00 AM or after 10:00 PM.
+
+```r
+flights %>%
+  filter(___ | ___)
+```
 
 ```{r filter-combine-2}
 flights %>%
   filter(dep_time < 600 | dep_time > 2200)
 ```
 
-
 ## Flights not by UA or WN
+
+Find all flights not flown by either `"UA"` or `"WN"`. Can you think of three different solutions? Which appeals more to you?
+
+```r
+flights %>%
+  filter(___ ___ ___)
+
+flights %>%
+  filter(!(___) ___ !(___))
+
+flights %>%
+  filter(!(_____))
+```
 
 ```{r filter-combine-3}
 flights %>%
@@ -49,6 +78,19 @@ flights %>%
 
 ## Missing data
 
+Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?
+
+```r
+flights %>%
+  filter(is.na(___))
+
+flights %>%
+  filter(___(___) ___ _____)
+
+flights %>%
+  filter(_____ ___ !_____)
+```
+
 ```{r filter-combine-4}
 flights %>%
   filter(is.na(arr_time))
@@ -61,6 +103,20 @@ flights %>%
 ```
 
 ## Commutativity
+
+Find two equivalent ways to select the six `"UA"` flights with the lowest delay. Which is faster? Why?
+
+Hint: RStudio has shortcuts for swapping the current line with the next or previous line.
+
+```r
+flights %>%
+  filter(___) %>%
+  arrange(___)
+
+flights %>%
+  arrange(___) %>%
+  filter(___)
+```
 
 Arranging a smaller subset needs less work.
 
@@ -77,3 +133,11 @@ system.time(
     arrange(arr_delay)
 )
 ```
+
+##
+
+Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
+
+##
+
+Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.

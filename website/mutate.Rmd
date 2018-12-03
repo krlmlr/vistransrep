@@ -5,7 +5,6 @@ date: "June 2, 2017"
 output: html_document
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -13,12 +12,29 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-
 ## Speed as miles per hour
 
+Store the speed for each flight as miles per hour in a new variable.
+
+```r
+flights %>% 
+  mutate(miles_per_hour = air_time ___ distance ___ ___) %>%
+  ggplot(aes(___)) +
+  _____
+```
+ 
 ```{r mutate-1}
 flights %>%
   mutate(miles_per_hour = distance / air_time * 60)
+```
+
+Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?
+
+```r
+flights %>% 
+  mutate(miles_per_minute = _____) %>% 
+  mutate(miles_per_hour = _____) %>% 
+  select(_____)
 ```
 
 ```{r mutate-1-1}
@@ -27,6 +43,21 @@ flights %>%
   mutate(miles_per_hour = miles_per_minute * 60) %>% 
   select(-miles_per_minute)
 ```
+
+Visualize the speed distribution as a histogram. Would this visualization work without involving `mutate()`?
+
+```r
+flights %>% 
+  ______ %>%
+  ggplot(aes(___)) +
+  _____
+
+# Alternative:
+flights %>%
+  ggplot(aes(___)) +
+  _____
+```
+
 
 ```{r mutate-1-2}
 flights %>%
@@ -39,7 +70,6 @@ flights %>%
   )
 ```
 
-
 ```{r mutate-1-3}
 flights %>% 
   ggplot() +
@@ -47,6 +77,13 @@ flights %>%
 ```
 
 ## On time status
+
+Create a new logical variable that indicates if the flight arrived on time.
+
+```r
+flights %>%
+  mutate(on_time = (___ <= 0))
+```
 
 ```{r mutate-1-bis}
 flights %>%
@@ -56,6 +93,18 @@ flights %>%
   )
 ```
 
+Visualize the aggregated on-time status per airline with a useful text.
+
+```r
+flights %>%
+  flights %>%
+  mutate(
+    on_time = _____,
+    on_time_desc = if_else(___, "On time", ___)
+  ) %>%
+  ggplot(aes(___)) +
+  geom_bar()
+```
 
 ```{r mutate-1-bis-1}
 flights %>%
@@ -67,9 +116,31 @@ flights %>%
   geom_bar()
 ```
 
-
-
 ## Speed distributions
+
+Can you detect a difference in the speed distributions of on-time vs. delayed flights? Ose color of faceting.
+
+```r
+speed_and_on_time_info <-
+  _____
+
+speed_and_on_time_info %>%
+  ggplot() +
+  geom_freqpoly(
+    aes(x = ___, y = ..density.., color = ___),
+    na.rm = TRUE,
+    binwidth = 20
+  )
+
+speed_and_on_time_info %>%
+  ggplot() +
+  geom_histogram(
+    aes(x = ___),
+    na.rm = TRUE,
+    binwidth = 20
+  ) +
+  facet_wrap(~___, ncol = 1)
+```
 
 ```{r mutate-3}
 speed_and_on_time_info <-
@@ -104,8 +175,18 @@ speed_and_on_time_info %>%
   facet_wrap(~on_time_desc, ncol = 1)
 ```
 
-
 ## Date
+
+Create two new variables `date_hour` and `date_ymd`, using `as.Date()` or `lubridate::make_date()`, respectively. Are the two values the same for all observations? What happens if we omit the `tz` argument to `as.Date()`?
+
+```r
+flights %>%
+  mutate(
+    ___ = as.Date(___, tz = "EST"),
+    ___ = lubridate::make_date(_____)
+  ) %>% 
+  filter(___)
+```
 
 ```{r mutate-2}
 flights %>%
@@ -118,9 +199,23 @@ flights %>%
 
 ## Deviation from average departure delay
 
+Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.
+
+```r
+flights %>%
+  mutate(dep_delay_dev = ___ - mean(___)) %>%
+  ggplot(aes(___)) +
+  _____ +
+  _____
+```
+
 ```{r mutate-5}
 flights %>% 
   mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %>%
   ggplot() +
   geom_violin(aes(x = origin, y = dev), na.rm = TRUE)
 ```
+
+##
+
+Find more exercises in Section 5.5.2 of r4ds.

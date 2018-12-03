@@ -13,6 +13,21 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Improvement over time?
 
+Has fuel economy changed considerably between 1999 and 2008? Perhaps there is a difference if you also consider the car class? Experiment with `facet_wrap()`, `facet_grid()`, aesthetic mappings, and smoothing layers.
+
+```
+ggplot(_____) +
+  geom_point() +
+  facet_wrap(~___)
+```
+
+```
+ggplot(_____) +
+  geom_point() +
+  geom_smooth() + 
+  facet_grid(___ ~ ___)
+```
+
 We can split the simple scatterplot over two facets, one per year:
 
 ```{r facet-1, echo=TRUE}
@@ -55,6 +70,8 @@ ggplot(data = mpg) +
 
 ## Labeling the facets
 
+What changes if you add the argument `labeller = "label_both"` to the `facet_wrap()` call?
+
 This is useful if the value does not speak for itself:
 
 ```{r facet-5, echo=TRUE}
@@ -65,6 +82,8 @@ ggplot(data = mpg) +
 
 
 ## Different scales
+
+Is it possible to use a different x and y scale for each facet? How?
 
 Via the `scales` argument, zooms in to the range of the corresponding scale(s).
 
@@ -97,3 +116,11 @@ ggplot(data = mpg) +
     scales = "free"
   )
 ```
+
+##
+
+Experiment with other arguments to `facet_wrap()` and `facet_grid()`.
+
+##
+
+Find more exercises in Section 3.5.1 of r4ds.

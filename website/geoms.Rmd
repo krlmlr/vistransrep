@@ -13,6 +13,17 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Arguments to `geom_smooth()`
 
+Try `geom_smooth()`. What do the arguments `se` and `method` to `geom_smooth()` change?
+
+```    
+ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy),
+    se = ___,
+    method = ___
+  )
+```
+
 `method` uses a different model to fit the data:
 
 ```{r geoms-1, echo=TRUE}
@@ -29,8 +40,21 @@ ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)
 ```
 
-
 ## The rug
+
+What does `geom_rug()` do? Try to reduce overplotting with transparency or by adding `position = "jitter"`. How do you reduce overplotting for the points layer?
+
+```    
+ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy),
+    ___ = ___
+  ) +
+  geom_rug(
+    mapping = aes(x = displ, y = hwy),
+    ___ = ___
+  )
+```
 
 Plots marginal distributions of the data close to the axes.
 
@@ -64,8 +88,21 @@ ggplot(data = mpg) +
   )
 ```
 
-
 ## Order of `geom_...()` calls
+
+How does the order of the `geom_...()` calls affect the display?
+
+```
+ggplot(data = ___, mapping = aes(_____)) +
+  geom_point() +
+  geom_smooth()
+```
+    
+```
+ggplot(data = ___, mapping = aes(_____)) +
+  geom_smooth() +
+  geom_point()
+```
 
 The geoms are painted in order of appearance:
 
@@ -81,8 +118,17 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
-
 ## Compare highway and city
+
+Can you plot both highway and city economy in one plot?
+
+Hint: The solution to this exercise is *not* the recommended way of doing this in ggplot2.  We'll find a better way in a subsequent exercise.
+
+```
+ggplot(_____) +
+  geom_point(mapping = _____, color = "___") +
+  geom_point(mapping = _____, color = "___")
+```
 
 We *could* add two layers, each with a different color. But this still doesn't give us a legend.
 
@@ -96,6 +142,15 @@ We need better data transformation tools to reformat the data for plotting it in
 
 ## Cars by drivetrain
 
+Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the `mpg` dataset contains. Which aesthetic mappings do you need to specify? 
+
+Hint: Find the relevant geom by typing `geom_` on the console or in your script file.
+
+```    
+ggplot(_____, aes(_____)) +
+  geom_bar()
+```
+
 I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
 
 We need only the "x" aesthetic, "y" is computed automatically. `drv` is the relevant variable.
@@ -106,6 +161,13 @@ ggplot(mpg) +
 ```
 
 ## Explicit count
+
+Does the appearance of the plot change when you add `y = ..count..` to the `aes()` call? Why/why not?
+
+```    
+ggplot(_____, aes(_____, y = ..count..)) +
+  geom_bar()
+```
 
 The output is the same:
 
@@ -118,6 +180,15 @@ By default, `geom_bar()` plots the computed "count" aesthetic, which is by conve
 
 
 ## Proportions
+
+What happens if you instead use `y = ..prop.., group = 1` in the `aes()` call? What happens if you omit `group = 1`? Why?
+
+Hint: The section "Computed variables" to `geom_bar()` offers a brief explanation.
+
+```
+ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
+  geom_bar()
+```
 
 Plotting overall proportions changes the y scale:
 
@@ -133,14 +204,27 @@ ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))
 ```
 
-
 ## Fuel economy
+
+Visualize the overall distribution of fuel economy in the dataset with a histogram.  Compare this with a frequency polygon, use a second layer if you like.
+
+```
+ggplot(data = mpg, mapping = aes(x = hwy)) +
+  geom_____()
+```
 
 We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
 ```{r geoms-13, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))
+```
+
+How do you remove the warning in the previous example?
+    
+```
+ggplot(_____) +
+  geom_____(binwidth = ___)
 ```
 
 The bin width should be set explicitly to avoid the warning:
@@ -169,7 +253,6 @@ ggplot(data = mpg) +
     size = 2
   )
 ```
-
 
 ## Fuel economy by drivetrain
 
@@ -229,7 +312,6 @@ ggplot(mpg) +
 
 I can't use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.
 
-
 ```{r geoms-21}
 ggplot(mpg) +
   geom_histogram(
@@ -244,8 +326,6 @@ ggplot(mpg) +
   )
 ```
 
-
-
 ```{r geoms-22}
 ggplot(mpg) +
   geom_histogram(
@@ -256,7 +336,6 @@ ggplot(mpg) +
   )
 ```
 
-
 ```{r geoms-23}
 ggplot(mpg) +
   geom_freqpoly(
@@ -264,3 +343,11 @@ ggplot(mpg) +
     binwidth = 2
   )
 ```
+
+## 
+
+Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+
+##
+
+Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.

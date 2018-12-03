@@ -14,6 +14,26 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Histogram of air time of all flights
 
+Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.
+
+Hint: Start with `flights %>% ggplot() + ...`
+
+```r
+flights %>% 
+  ggplot(___) +
+    ___()
+
+flights %>% 
+  filter(___) %>%
+  ggplot(___) +
+    ___()
+
+flights %>% 
+  filter(___) %>%
+  filter(___) %>%
+  ___
+```
+
 ```{r filtering-23}
 flights %>%
   ggplot() +
@@ -23,7 +43,6 @@ flights %>%
     binwidth = 15
   )
 ```
-
 
 ```{r filtering-24}
 flights %>%
@@ -35,7 +54,6 @@ flights %>%
     binwidth = 15
   )
 ```
-
 
 ```{r filtering-25}
 flights %>%
@@ -51,9 +69,24 @@ flights %>%
 
 ## All very close relations
 
+Plot a heat map for all relations with an air time shorter than one hour.
+
+Hint: Use `geom_bin2d()`.
+
+```r
+flights %>% 
+  filter(___) %>%
+  ggplot(___) +
+    ___()
+```
+
 ```{r filtering-26}
 flights %>%
   filter(air_time < 60) %>%
   ggplot() +
   geom_bin2d(aes(origin, dest))
 ```
+
+##
+
+Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.

@@ -4,7 +4,6 @@ author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -13,6 +12,22 @@ knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Busiest month
+
+Which month is busiest in terms of miles flown, per carrier?
+
+Hint: Compute the share of yearly miles flown of each airline in each month.
+
+```r
+flights %>%
+  group_by(___, ___) %>%
+  summarize(total_distance_by_carrier = sum(distance)) %>%
+  mutate(total_distance = sum(___)) %>%
+  ungroup() %>%
+  mutate(month_share_by_carrier = ___ / ___) %>% 
+  arrange(month_share_by_carrier) %>% 
+  group_by(___) %>%
+  slice(1)
+```
 
 ```{r window-1}
 monthly_shares <-
@@ -27,9 +42,44 @@ monthly_shares <-
 monthly_shares
 ```
 
+## Heat map of miles flown
+
+Draw a heat map of miles flown per month per airline to see if this pattern holds across all airlines.
+
+```r
+monthly_shares <-
+  _____
+
+monthly_shares %>%
+  ggplot(aes(factor(month), ___, fill = ___)) +
+  geom_tile() +
+  scale_fill_continuous(trans = "log10")
+```
+
 ```{r window-1-a}
 monthly_shares %>% 
   ggplot(aes(factor(month), carrier, fill = month_share)) +
   geom_tile() +
   scale_fill_continuous(trans = "log10")
 ```
+
+##
+
+Which month is busiest in terms of miles flown, over all carriers?
+
+```r
+flights %>%
+  group_by(___) %>%
+  mutate(total_distance = sum(___)) %>%
+  mutate(month_share = ___ / ___) %>% 
+  arrange(desc(month_share)) %>%
+  slice(1)
+```
+
+##
+
+Visualize with a bar chart.
+
+##
+
+Find more exercises in Section 5.7.1 of r4ds.

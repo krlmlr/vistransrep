@@ -12,8 +12,19 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
-
 ## Interactive scatterplot
+
+Convert one of the scatterplots you generated previously using the following pattern:
+
+```
+p <-
+  data %>% 
+  ___ %>%
+  ggplot(aes(___)) +
+    geom_point()
+  
+plotly::ggplotly(p)
+```
 
 ```{r plotly-1}
 p <-
@@ -25,8 +36,21 @@ p <-
 plotly::ggplotly(p)
 ```
 
-
 ## More expressive tooltip
+
+Experiment with the plotly controls on the top right.
+
+Add extra aesthetics to the scatterplot. Hover with the mouse over the points:
+
+```
+p <-
+  data %>% 
+  ___ %>%
+  ggplot(aes(___, extra1 = manufacturer, extra2 = model)) +
+    geom_point()
+  
+plotly::ggplotly(p)
+```
 
 ```{r plotly-2}
 p <-
@@ -39,6 +63,8 @@ plotly::ggplotly(p)
 
 ## Barplot
 
+Convert a bar plot or a histogram to plotly. How does this affect the tooltip?
+
 ```{r plotly-3}
 p <-
   mpg %>% 
@@ -46,4 +72,11 @@ p <-
     geom_bar()
 
 plotly::ggplotly(p)
+```
+##
+
+See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets. This requires the _crosstalk_ package:
+
+```
+install.packages("crosstalk")
 ```
