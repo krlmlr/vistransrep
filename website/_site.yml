@@ -1,5 +1,5 @@
 name: my-website
-output_dir: ../docs/2018-11-zhr
+output_dir: ../docs/2018-12-zhr
 include:
 - .nojekyll
 - images
