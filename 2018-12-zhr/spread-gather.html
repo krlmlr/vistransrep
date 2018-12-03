@@ -231,6 +231,9 @@ $(document).ready(function () {
 
 <div id="table2-to-table1" class="section level2">
 <h2>table2 to table1</h2>
+<p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p>
+<pre class="r"><code>table2 %&gt;%
+  spread(_____)</code></pre>
 <pre class="r"><code>table2 %&gt;% 
   spread(type, count)</code></pre>
 <pre><code>## # A tibble: 6 x 4
@@ -245,6 +248,12 @@ $(document).ready(function () {
 </div>
 <div id="table1-to-table2" class="section level2">
 <h2>table1 to table2</h2>
+<p>Use <code>gather()</code> to convert <code>table1</code> to <code>table2</code>. Try an inclusive and an exclusive selection. Do you need an extra transformation to make the result fully identical? Can you reuse <code>key</code> and <code>value</code> from the previous result?</p>
+<pre class="r"><code>table1 %&gt;%
+  gather(_____, ___:___)
+
+table1 %&gt;%
+  gather(_____, -___:-___)</code></pre>
 <pre class="r"><code>table1 %&gt;% 
   gather(type, count, cases, population)</code></pre>
 <pre><code>## # A tibble: 12 x 4
@@ -301,6 +310,19 @@ $(document).ready(function () {
 </div>
 <div id="plot-table-x" class="section level2">
 <h2>Plot table-x</h2>
+<p>Visualize the data: plot cases, population, and both. Which of <code>table1</code> or <code>table2</code> is more suitable in which case?</p>
+<pre class="r"><code>___ %&gt;%
+  ggplot(aes(___)) +
+  geom_col()
+
+___ %&gt;%
+  ggplot(aes(___)) +
+  geom_col() +
+  facet_grid(___ ~ ___, scales = &quot;free&quot;)
+
+___ %&gt;%
+  ggplot(aes(___, ___)) +
+  geom_point()</code></pre>
 <p>For showing one measurement:</p>
 <pre class="r"><code>table1 %&gt;%
   ggplot(aes(country, population, fill = factor(year))) +
@@ -328,6 +350,21 @@ $(document).ready(function () {
 </div>
 <div id="binding" class="section level2">
 <h2>Binding</h2>
+<p>Use <code>gather()</code> to convert <code>table4a</code> and <code>table4b</code> to <code>table2</code>. Can you do the same with just one <code>gather()</code> call?</p>
+<p>Hint: Use <code>bind_rows()</code> to combine similar tibbles.</p>
+<pre class="r"><code>cases_tbl &lt;-
+  table4a %&gt;%
+  gather(_____) %&gt;%
+  mutate(type = &quot;cases&quot;)
+
+population_tbl &lt;-
+  table4a %&gt;%
+  gather(_____) %&gt;%
+  mutate(___)
+  
+bind_rows(_____) %&gt;%
+  _____ %&gt;%
+  _____</code></pre>
 <pre class="r"><code>cases_tbl &lt;-
   table4a %&gt;%
   gather(year, count, -country) %&gt;%
@@ -387,12 +424,21 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
 </div>
 <div id="economies" class="section level2">
 <h2>Economies</h2>
+<p>Create a scatterplot from the <code>mpg</code> dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one <code>geom_point()</code> call.</p>
+<pre class="r"><code>mpg %&gt;%
+  _____ %&gt;%
+  ggplot(aes(x = displ, y = ___)) +
+  geom_point()</code></pre>
 <pre class="r"><code>mpg %&gt;%
   select(displ, hwy, cty) %&gt;%
   gather(cty_hwy, value, hwy, cty) %&gt;%
   ggplot() +
   geom_jitter(aes(displ, value, color = cty_hwy))</code></pre>
 <p><img src="spread-gather_files/figure-html/spread-gather-11-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 12.3.3 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

@@ -262,6 +262,15 @@ Possible reasons why people would choose a larger engine include:
 - ...</code></pre>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
+<p>Choose “File → New File → R Markdown…”. In the dialog, choose a document title and adapt the author name if necessary.</p>
+<p>Choose “File → Knit document”, or press Ctrl + Shift + K, or hit the “Knit” button at the top of the text pane.</p>
+<p>Run all chunks in the document via Ctrl + Alt + R or “Code → Run region → Run All” or via the “Run” popup at the top of the text pane.</p>
+<p>Run a single chunk by moving the caret in the text pane into the chunk and pressing Ctrl + Shift + Enter.</p>
+<p>Navigate chunks and headers by choosing from the popup at the bottom or from the document outline (you may need to hit the “Show document outline” button at the top right, or press Ctrl + Shift + O).</p>
+<p>Clear the entire document except the “YAML header” (the first few lines that start and end with <code>---</code>) and the setup chunk.</p>
+<p>In this chunk, load the tidyverse package. Knit the resulting document. Does the result surprise you?</p>
+<p>Insert a chunk via “Code → Insert chunk”, Ctrl + Alt + I, or the “Insert” popup at the top of the text pane.</p>
+<p>In this new chunk, show the <code>mpg</code> dataset.</p>
 <p>We will be reviewing a dataset of 234 cars. The dataset is listed below.</p>
 <pre class="r"><code>mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
@@ -280,6 +289,9 @@ Possible reasons why people would choose a larger engine include:
 ## # ... with 224 more rows</code></pre>
 <div id="relationship-between-engine-displacement-and-highway-mileage" class="section level2">
 <h2>Relationship between engine displacement and highway mileage</h2>
+<p>In another new chunk, show a simple plot of the <code>mpg</code> dataset.</p>
+<p>Add a descriptive text, use Markdown formatting (headers, emphasis, links, …) and perhaps try an equation in LaTeX notation.</p>
+<p>In this descriptive text, add a value computed from the data, e.g. <code>nrow(mtcars)</code>, as inline code.</p>
 <p>The plot below should <em>not</em> surprise us: The larger the engine, the more energy it consumes per distance driven (in <span class="math inline">\(\frac{\text{J}}{\text{km}}\)</span>), the less is the mileage per unit of gasoline (in <span class="math inline">\(\frac{\text{miles}}{\text{gallon}}\)</span>).</p>
 <pre class="r"><code>ggplot(mpg, aes(displ, hwy)) +
   geom_point()</code></pre>

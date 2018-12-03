@@ -231,6 +231,13 @@ $(document).ready(function () {
 
 <div id="arguments-to-geom_smooth" class="section level2">
 <h2>Arguments to <code>geom_smooth()</code></h2>
+<p>Try <code>geom_smooth()</code>. What do the arguments <code>se</code> and <code>method</code> to <code>geom_smooth()</code> change?</p>
+<pre><code>ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy),
+    se = ___,
+    method = ___
+  )</code></pre>
 <p><code>method</code> uses a different model to fit the data:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
@@ -245,6 +252,16 @@ $(document).ready(function () {
 </div>
 <div id="the-rug" class="section level2">
 <h2>The rug</h2>
+<p>What does <code>geom_rug()</code> do? Try to reduce overplotting with transparency or by adding <code>position = &quot;jitter&quot;</code>. How do you reduce overplotting for the points layer?</p>
+<pre><code>ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = hwy),
+    ___ = ___
+  ) +
+  geom_rug(
+    mapping = aes(x = displ, y = hwy),
+    ___ = ___
+  )</code></pre>
 <p>Plots marginal distributions of the data close to the axes.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
@@ -272,6 +289,13 @@ $(document).ready(function () {
 </div>
 <div id="order-of-geom_...-calls" class="section level2">
 <h2>Order of <code>geom_...()</code> calls</h2>
+<p>How does the order of the <code>geom_...()</code> calls affect the display?</p>
+<pre><code>ggplot(data = ___, mapping = aes(_____)) +
+  geom_point() +
+  geom_smooth()</code></pre>
+<pre><code>ggplot(data = ___, mapping = aes(_____)) +
+  geom_smooth() +
+  geom_point()</code></pre>
 <p>The geoms are painted in order of appearance:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
@@ -286,6 +310,11 @@ $(document).ready(function () {
 </div>
 <div id="compare-highway-and-city" class="section level2">
 <h2>Compare highway and city</h2>
+<p>Can you plot both highway and city economy in one plot?</p>
+<p>Hint: The solution to this exercise is <em>not</em> the recommended way of doing this in ggplot2. We’ll find a better way in a subsequent exercise.</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = _____, color = &quot;___&quot;) +
+  geom_point(mapping = _____, color = &quot;___&quot;)</code></pre>
 <p>We <em>could</em> add two layers, each with a different color. But this still doesn’t give us a legend.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color = &quot;red&quot;) +
@@ -295,6 +324,10 @@ $(document).ready(function () {
 </div>
 <div id="cars-by-drivetrain" class="section level2">
 <h2>Cars by drivetrain</h2>
+<p>Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the <code>mpg</code> dataset contains. Which aesthetic mappings do you need to specify?</p>
+<p>Hint: Find the relevant geom by typing <code>geom_</code> on the console or in your script file.</p>
+<pre><code>ggplot(_____, aes(_____)) +
+  geom_bar()</code></pre>
 <p>I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
 <p>We need only the “x” aesthetic, “y” is computed automatically. <code>drv</code> is the relevant variable.</p>
 <pre class="r"><code>ggplot(mpg) +
@@ -303,6 +336,9 @@ $(document).ready(function () {
 </div>
 <div id="explicit-count" class="section level2">
 <h2>Explicit count</h2>
+<p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p>
+<pre><code>ggplot(_____, aes(_____, y = ..count..)) +
+  geom_bar()</code></pre>
 <p>The output is the same:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
@@ -311,6 +347,10 @@ $(document).ready(function () {
 </div>
 <div id="proportions" class="section level2">
 <h2>Proportions</h2>
+<p>What happens if you instead use <code>y = ..prop.., group = 1</code> in the <code>aes()</code> call? What happens if you omit <code>group = 1</code>? Why?</p>
+<p>Hint: The section “Computed variables” to <code>geom_bar()</code> offers a brief explanation.</p>
+<pre><code>ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
+  geom_bar()</code></pre>
 <p>Plotting overall proportions changes the y scale:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
@@ -322,11 +362,17 @@ $(document).ready(function () {
 </div>
 <div id="fuel-economy" class="section level2">
 <h2>Fuel economy</h2>
+<p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = hwy)) +
+  geom_____()</code></pre>
 <p>We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="geoms_files/figure-html/geoms-13-1.png" width="672" /></p>
+<p>How do you remove the warning in the previous example?</p>
+<pre><code>ggplot(_____) +
+  geom_____(binwidth = ___)</code></pre>
 <p>The bin width should be set explicitly to avoid the warning:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(
@@ -418,6 +464,14 @@ $(document).ready(function () {
     binwidth = 2
   )</code></pre>
 <p><img src="geoms_files/figure-html/geoms-23-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Visualize the distribution of fuel economy in the dataset per drivetrain. Do you prefer a histogram or a frequency polygon?</p>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<p>Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

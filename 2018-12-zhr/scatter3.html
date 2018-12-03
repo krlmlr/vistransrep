@@ -231,6 +231,9 @@ $(document).ready(function () {
 
 <div id="map-to-the-color-aesthetic" class="section level2">
 <h2>Map to the color aesthetic</h2>
+<p>In the <code>hwy</code> vs. <code>displ</code> plot, map an additional variable to the “color” aesthetic. Which cars consume more fuel than expected by the general trend?</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = aes(x = ___, y = ___, color = ___))</code></pre>
 <p>Simply insert <code>color = &lt;var&gt;</code> in the <code>aes()</code> call, where <code>&lt;var&gt;</code> is a variable in the <code>mpg</code> dataset:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
@@ -244,6 +247,10 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = drv))</code></pre>
 <p><img src="scatter3_files/figure-html/scatter3-4-1.png" width="672" /></p>
+<p>Experiment with the “color”, “shape”, “size”, and “alpha” aesthetics. Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don’t? Expand on the more surprising examples in the previous exercises.</p>
+<p>Hint: Use <code>factor(year)</code> to convert continuous variables with a limited set of values to categorical variables.</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = aes(x = ___, y = ___, ___ = ___))</code></pre>
 <p>Looks like the cars with large displacement are two-seaters with rear drivetrain.</p>
 </div>
 <div id="map-to-other-aesthetics" class="section level2">
@@ -277,6 +284,9 @@ $(document).ready(function () {
 </div>
 <div id="change-more-than-one-aesthetic" class="section level2">
 <h2>Change more than one aesthetic</h2>
+<p>Can you change both color and shape at the same time? What about the other aesthetics?</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))</code></pre>
 <p>You can change any number of properties of a geom at your discretion, this is one of <strong>ggplot2</strong>’s strenghts.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(
@@ -293,6 +303,9 @@ $(document).ready(function () {
 </div>
 <div id="map-a-variable-to-more-than-one-aesthetic" class="section level2">
 <h2>Map a variable to more than one aesthetic</h2>
+<p>What happens if you map the same variable to more than one aesthetic?</p>
+<pre><code>ggplot(_____) +
+  geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))</code></pre>
 <p>There are no restrictions on how many times a variable is mapped in any given plot:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(
@@ -303,7 +316,11 @@ $(document).ready(function () {
     alpha = displ
   ))</code></pre>
 <p><img src="scatter3_files/figure-html/scatter3-10-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
 <p>Mapping the same variable to two aesthetics is sometimes useful to further emphasize this variable.</p>
+<p>Find more exercises in Section 3.3.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

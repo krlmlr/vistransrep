@@ -230,6 +230,21 @@ $(document).ready(function () {
 
 <div id="histogram-of-air-time-of-all-flights" class="section level2">
 <h2>Histogram of air time of all flights</h2>
+<p>Plot a histogram of the air time of all flights. Exclude Honolulu International Airport in Hawaii to get rid of the peak at the right-hand side. Zoom into the flights that have an air time between 400 and 500 minutes.</p>
+<p>Hint: Start with <code>flights %&gt;% ggplot() + ...</code></p>
+<pre class="r"><code>flights %&gt;% 
+  ggplot(___) +
+    ___()
+
+flights %&gt;% 
+  filter(___) %&gt;%
+  ggplot(___) +
+    ___()
+
+flights %&gt;% 
+  filter(___) %&gt;%
+  filter(___) %&gt;%
+  ___</code></pre>
 <pre class="r"><code>flights %&gt;%
   ggplot() +
   geom_histogram(
@@ -260,11 +275,21 @@ $(document).ready(function () {
 </div>
 <div id="all-very-close-relations" class="section level2">
 <h2>All very close relations</h2>
+<p>Plot a heat map for all relations with an air time shorter than one hour.</p>
+<p>Hint: Use <code>geom_bin2d()</code>.</p>
+<pre class="r"><code>flights %&gt;% 
+  filter(___) %&gt;%
+  ggplot(___) +
+    ___()</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(air_time &lt; 60) %&gt;%
   ggplot() +
   geom_bin2d(aes(origin, dest))</code></pre>
 <p><img src="filter-plot_files/figure-html/filtering-26-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Think of other plots of the <code>flights</code> data that would not work if applied on the full dataset but are useful when applying a filter beforehand.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

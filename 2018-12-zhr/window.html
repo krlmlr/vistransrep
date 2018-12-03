@@ -229,6 +229,17 @@ $(document).ready(function () {
 
 <div id="busiest-month" class="section level2">
 <h2>Busiest month</h2>
+<p>Which month is busiest in terms of miles flown, per carrier?</p>
+<p>Hint: Compute the share of yearly miles flown of each airline in each month.</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___, ___) %&gt;%
+  summarize(total_distance_by_carrier = sum(distance)) %&gt;%
+  mutate(total_distance = sum(___)) %&gt;%
+  ungroup() %&gt;%
+  mutate(month_share_by_carrier = ___ / ___) %&gt;% 
+  arrange(month_share_by_carrier) %&gt;% 
+  group_by(___) %&gt;%
+  slice(1)</code></pre>
 <pre class="r"><code>monthly_shares &lt;-
   flights %&gt;%
   group_by(carrier, month) %&gt;%
@@ -253,11 +264,40 @@ monthly_shares</code></pre>
 ##  9 UA          9  7360730       89705524      0.0821
 ## 10 UA         10  7734657       89705524      0.0862
 ## # ... with 175 more rows</code></pre>
+</div>
+<div id="heat-map-of-miles-flown" class="section level2">
+<h2>Heat map of miles flown</h2>
+<p>Draw a heat map of miles flown per month per airline to see if this pattern holds across all airlines.</p>
+<pre class="r"><code>monthly_shares &lt;-
+  _____
+
+monthly_shares %&gt;%
+  ggplot(aes(factor(month), ___, fill = ___)) +
+  geom_tile() +
+  scale_fill_continuous(trans = &quot;log10&quot;)</code></pre>
 <pre class="r"><code>monthly_shares %&gt;% 
   ggplot(aes(factor(month), carrier, fill = month_share)) +
   geom_tile() +
   scale_fill_continuous(trans = &quot;log10&quot;)</code></pre>
 <p><img src="window_files/figure-html/window-1-a-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Which month is busiest in terms of miles flown, over all carriers?</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___) %&gt;%
+  mutate(total_distance = sum(___)) %&gt;%
+  mutate(month_share = ___ / ___) %&gt;% 
+  arrange(desc(month_share)) %&gt;%
+  slice(1)</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<p>Visualize with a bar chart.</p>
+</div>
+<div id="section-2" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 5.7.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

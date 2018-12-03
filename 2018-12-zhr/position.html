@@ -231,6 +231,9 @@ $(document).ready(function () {
 
 <div id="gears" class="section level2">
 <h2>Gears</h2>
+<p>What’s the most prevalent number of gears for manual or automatic transmissions?</p>
+<pre><code>ggplot(data = mpg, aes(x = trans)) +
+  geom_bar()</code></pre>
 <p>Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = trans))</code></pre>
@@ -239,6 +242,9 @@ $(document).ready(function () {
 </div>
 <div id="discriminate-by-car-class" class="section level2">
 <h2>Discriminate by car class</h2>
+<p>Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = class, _____)) +
+  geom_bar(position = &quot;___&quot;)</code></pre>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))</code></pre>
 <p><img src="position_files/figure-html/position-2-1.png" width="672" /></p>
@@ -293,6 +299,15 @@ $(document).ready(function () {
   )</code></pre>
 <p><img src="position_files/figure-html/position-8-1.png" width="672" /></p>
 <p>Doesn’t look useful.</p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?</p>
+<p>Hint: Use <code>factor()</code> as necessary.</p>
+</div>
+<div id="more" class="section level2">
+<h2>More</h2>
+<p>Find more exercises in Section 3.8.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

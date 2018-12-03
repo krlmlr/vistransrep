@@ -229,6 +229,27 @@ $(document).ready(function () {
 
 <div id="distinct-airlines-per-relation" class="section level2">
 <h2>Distinct airlines per relation</h2>
+<p>Which relation is serviced by the largest number of distinct airlines? Find a solution using <code>summarize()</code>, one using <code>count()</code>, and one using <code>tally()</code>. Which is more elegant?</p>
+<pre class="r"><code>flights %&gt;%
+  group_by(___, ___, airline) %&gt;%
+  summarize(n = n()) %&gt;%
+  summarize(n_airlines = ___) %&gt;%
+  ungroup() %&gt;%
+  arrange(___) %&gt;%
+  head(1)
+
+flights %&gt;%
+  count(_____) %&gt;%
+  count(_____) %&gt;%
+  _____ %&gt;%
+  _____
+
+flights %&gt;%
+  group_by(_____) %&gt;%
+  tally() %&gt;%
+  tally(wt = NULL) %&gt;%
+  _____ %&gt;%
+  _____</code></pre>
 <pre class="r"><code>flights %&gt;%
   group_by(origin, dest, carrier) %&gt;%
   summarize(n_flights = n()) %&gt;%
@@ -293,6 +314,11 @@ $(document).ready(function () {
 </div>
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
+<p>Compute the share of cancelled flights per month per airline.</p>
+<pre class="r"><code>flights %&gt;% 
+  group_by(_____) %&gt;% 
+  summarize(share_of_cancelled = _____) %&gt;%
+  ungroup()</code></pre>
 <pre class="r"><code>cancelled_flights &lt;-
   flights %&gt;% 
   group_by(carrier, month) %&gt;% 
@@ -314,10 +340,30 @@ cancelled_flights</code></pre>
 ##  9 9E          9             0.0409
 ## 10 9E         10             0.0185
 ## # ... with 175 more rows</code></pre>
+</div>
+<div id="heat-map-of-cancelled-flights" class="section level2">
+<h2>Heat map of cancelled flights</h2>
+<p>Create a heat map of cancelled flights.</p>
+<pre class="r"><code>cancelled_flights &lt;-
+  _____
+
+cancelled_flights %&gt;% 
+  ggplot() +
+  geom_raster(
+    aes(
+      x = ___,
+      y = factor(month),
+      fill = ___
+    )
+  )</code></pre>
 <pre class="r"><code>cancelled_flights %&gt;%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
 <p><img src="summarize-mult_files/figure-html/summarize-mult-5-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 5.6.7 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

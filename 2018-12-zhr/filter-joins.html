@@ -231,6 +231,12 @@ $(document).ready(function () {
 
 <div id="airports-accessed" class="section level2">
 <h2>Airports accessed</h2>
+<p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p>
+<pre class="r"><code>airports %&gt;%
+  semi_join(flights, by = c(_____))
+
+airports %&gt;%
+  anti_join(flights, by = c(_____))</code></pre>
 <pre class="r"><code>airports %&gt;%
   semi_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 101 x 8
@@ -266,6 +272,10 @@ $(document).ready(function () {
 ##  9 0P2   Shoestring Aviation…  39.8  -76.6  1000    -5 U     America/New_…
 ## 10 0S9   Jefferson County In…  48.1 -123.    108    -8 A     America/Los_…
 ## # ... with 1,347 more rows</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 13.5.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
