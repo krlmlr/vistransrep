@@ -4,7 +4,6 @@ author: "Kirill Müller, cynkra GmbH"
 output: html_document
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
@@ -13,6 +12,31 @@ knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Distinct airlines per relation
+
+Which relation is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, one using `count()`, and one using `tally()`. Which is more elegant?
+
+```r
+flights %>%
+  group_by(___, ___, airline) %>%
+  summarize(n = n()) %>%
+  summarize(n_airlines = ___) %>%
+  ungroup() %>%
+  arrange(___) %>%
+  head(1)
+
+flights %>%
+  count(_____) %>%
+  count(_____) %>%
+  _____ %>%
+  _____
+
+flights %>%
+  group_by(_____) %>%
+  tally() %>%
+  tally(wt = NULL) %>%
+  _____ %>%
+  _____
+```
 
 ```{r summarize-mult-1}
 flights %>%
@@ -46,6 +70,15 @@ flights %>%
 
 ## Cancelled flights per month per airline
 
+Compute the share of cancelled flights per month per airline.
+
+```r
+flights %>% 
+  group_by(_____) %>% 
+  summarize(share_of_cancelled = _____) %>%
+  ungroup()
+```
+
 ```{r summarize-mult-4}
 cancelled_flights <-
   flights %>% 
@@ -56,9 +89,31 @@ cancelled_flights <-
 cancelled_flights
 ```
 
+## Heat map of cancelled flights
+
+Create a heat map of cancelled flights.
+
+```r
+cancelled_flights <-
+  _____
+
+cancelled_flights %>% 
+  ggplot() +
+  geom_raster(
+    aes(
+      x = ___,
+      y = factor(month),
+      fill = ___
+    )
+  )
+```
 
 ```{r summarize-mult-5}
 cancelled_flights %>%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
 ```
+
+##
+
+Find more exercises in Section 5.6.7 of r4ds.

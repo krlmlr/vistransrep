@@ -24,8 +24,22 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Don't forget `na.rm = TRUE` if needed!
 
-
 ## Mean arrival and dep delay
+
+Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
+
+```r
+flights %>%
+  summarize(mean(___, na.rm = ___))
+
+flights %>%
+  group_by(___) %>%
+  summarize(___)
+
+flights %>%
+  count(___) %>%
+  arrange(___)
+```
 
 ```{r summarize-1}
 flights %>%
@@ -75,8 +89,16 @@ flights %>%
   count(origin, sort = TRUE)
 ```
 
-
 ## Air time by carrier
+
+Which carriers had the longest accumulated air time, excluding cancelled flights?
+
+```r
+flights %>%
+  group_by(___) %>%
+  summarize(acc_air_time = sum(_____)) %>% 
+  ungroup()
+```
 
 ```{r summarize-7}
 total_airtime_by_carrier <-
@@ -86,6 +108,21 @@ total_airtime_by_carrier <-
     ungroup()
 
 total_airtime_by_carrier
+```
+
+Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.
+
+Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
+
+```r
+total_airtime_by_carrier <-
+  _____
+  
+total_airtime_by_carrier %>%
+  arrange(acc_air_time) %>%
+  mutate(carrier = forcats::fct_inorder(carrier)) %>%
+  ggplot(aes(___)) +
+    geom_col()
 ```
 
 ```{r summarize-8}
@@ -99,6 +136,16 @@ total_airtime_by_carrier %>%
 
 ## Carriers for long-distance routes
 
+Which carriers specialize on long-distance routes?
+
+```r
+flights
+  _____ %>%
+  _____ %>%
+  _____ %>%
+  arrange(___)
+```
+
 ```{r summarize-9}
 carrier_arranged_by_mean_distance <-
   flights %>%
@@ -110,14 +157,51 @@ carrier_arranged_by_mean_distance <-
 carrier_arranged_by_mean_distance
 ```
 
+Plot a bar chart of median distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
+
+```r
+median_miles_by_carrier <-
+  _____ %>%
+  _____ %>%
+  _____
+
+median_miles_by_carrier %>%
+  arrange(_____) %>%
+  mutate(_____) %>%
+  ggplot(aes(___)) +
+    geom____()
+```
+
 ```{r summarize-10}
 carrier_arranged_by_mean_distance %>% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))
 ```
 
-
 ## Worst plane
+
+Which plane had the most failed departure attempts? Can you find a solution without `filter()`?
+
+Hint: Use the idiom `sum(___)` to count the rows where a predicate is true.
+
+```r
+flights %>%
+  filter(is.na(dep_time)) %>%
+  group_by(tailnum) %>%
+  _____ %>%
+  _____ %>%
+  filter(!is.na(tailnum)) %>%
+  arrange(desc(___)) %>% 
+  head(1)
+
+# Alternative without filter():
+flights %>%
+  group_by(tailnum) %>%
+  _____ %>%
+  _____ %>%
+  arrange(_____) %>%
+  head(1)
+```
 
 ```{r summarize-11}
 flights %>% 
@@ -127,6 +211,17 @@ flights %>%
   ungroup() %>% 
   filter(!is.na(tailnum)) %>%
   arrange(desc(not_departed))
+```
+
+Compute the ratio of short-distance routes (less than 300 miles) for each airline.
+
+Hint: Use the idiom `mean(___)` to compute the share of rows where a predicate is true.
+
+```r
+flights %>%
+  group_by(carrier) %>%
+  _____ %>% 
+  ungroup()
 ```
 
 ```{r summarize-12}
@@ -142,8 +237,18 @@ flights %>%
   count(tailnum, sort = TRUE)
 ```
 
-
 ## Short-distance routes per airline
+
+Plot a bar chart of the ratio of short-distance routes.
+
+```r
+short_distance_route_ratio <-
+  _____
+
+short_distance_route_ratio %>%
+  ggplot(aes(___)) +
+    geom_col()
+```
 
 ```{r summarize-14}
 short_distance_route_ratio <-
@@ -159,3 +264,7 @@ short_distance_route_ratio %>%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
 ```
+
+##
+
+Find more exercises in item 1 of Section 5.6.7 of r4ds.
