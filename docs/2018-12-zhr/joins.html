@@ -231,6 +231,19 @@ $(document).ready(function () {
 
 <div id="counting-distinct-observations" class="section level2">
 <h2>Counting distinct observations</h2>
+<p>How are the <code>flights</code>, <code>airlines</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
+<p>Hint: Use <code>count()</code> to support your hypothesis.</p>
+<pre class="r"><code>flights %&gt;%
+  count(carrier) %&gt;%
+  filter(n &gt; 1)
+
+airlines %&gt;%
+  count(___) %&gt;%
+  filter(___)
+
+airports %&gt;%
+  _____ %&gt;%
+  _____</code></pre>
 <pre class="r"><code>airlines %&gt;%
   count(carrier) %&gt;% 
   filter(n &gt; 1)</code></pre>
@@ -244,6 +257,13 @@ $(document).ready(function () {
 </div>
 <div id="destination-by-airline" class="section level2">
 <h2>Destination by airline</h2>
+<p>Compute a list of all flights shorter than 300 miles. Use explicit names for the carriers and the destinations. How do you turn off the joining messages? Describe the column names in the result.</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
+<pre class="r"><code>flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(airlines) %&gt;%
+  left_join(airports, by = c(&quot;___&quot; = &quot;___&quot;))</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
@@ -269,6 +289,18 @@ $(document).ready(function () {
 </div>
 <div id="destination-by-airline-wide-form" class="section level2">
 <h2>Destination by airline, wide form</h2>
+<p>Count the number of observations per airline per destination, and convert to wide form using nice labels for better use of screen space. Do you use <code>spread()</code> or <code>gather()</code>? How do you replace the <code>NA</code> values with zeros?</p>
+<pre class="r"><code># The name of the `name` variable isn&#39;t very useful,
+# need to rename it
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(dest, carrier) %&gt;%
+  left_join(_____) %&gt;%
+  rename(carrier_name = ___) %&gt;%
+  left_join(_____) %&gt;%
+  rename(_____) %&gt;%
+  count(_____) %&gt;%
+  _____(_____)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
@@ -306,6 +338,22 @@ $(document).ready(function () {
 </div>
 <div id="destination-by-airline-economic-join" class="section level2">
 <h2>Destination by airline, economic join</h2>
+<p>Change the code from the last example to use <code>count()</code> right after <code>filter()</code>. What additional steps do you need?</p>
+<pre class="r"><code>airline_names &lt;-
+  airlines %&gt;%
+  _____()
+
+dest_airport_names &lt;-
+  _____ %&gt;%
+  _____()
+
+flights %&gt;% 
+  filter(distance &lt; 300) %&gt;%
+  count(_____) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;%
+  select(-___) %&gt;% 
+  left_join(_____, by = &quot;___&quot;) %&gt;% 
+  _____(_____)</code></pre>
 <pre class="r"><code>airline_names &lt;-
   airlines %&gt;%
   rename(carrier_name = name)
@@ -341,12 +389,24 @@ verbose_destinations_by_carrier</code></pre>
 </div>
 <div id="heat-map" class="section level2">
 <h2>Heat map</h2>
+<p>Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
+<p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
+<pre class="r"><code>short_distance_destinations &lt;-
+  _____
+
+short_distance_destinations %&gt;% 
+  ggplot() +
+  geom____(aes(___))</code></pre>
 <pre class="r"><code>verbose_destinations_by_carrier %&gt;%
   ggplot() +
   geom_raster(aes(airport_name, carrier_name, fill = n)) +
   ggpubr::rotate_x_text()</code></pre>
 <p><img src="joins_files/figure-html/joins-6-1.png" width="672" /></p>
 <pre class="r"><code>  # theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 13.4.6 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

@@ -231,6 +231,11 @@ $(document).ready(function () {
 
 <div id="speed-as-miles-per-hour" class="section level2">
 <h2>Speed as miles per hour</h2>
+<p>Store the speed for each flight as miles per hour in a new variable.</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_hour = air_time ___ distance ___ ___) %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_hour = distance / air_time * 60)</code></pre>
 <pre><code>## # A tibble: 336,776 x 20
@@ -250,6 +255,11 @@ $(document).ready(function () {
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, miles_per_hour &lt;dbl&gt;</code></pre>
+<p>Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?</p>
+<pre class="r"><code>flights %&gt;% 
+  mutate(miles_per_minute = _____) %&gt;% 
+  mutate(miles_per_hour = _____) %&gt;% 
+  select(_____)</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_minute = distance / air_time) %&gt;% 
   mutate(miles_per_hour = miles_per_minute * 60) %&gt;% 
@@ -271,6 +281,16 @@ $(document).ready(function () {
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, miles_per_hour &lt;dbl&gt;</code></pre>
+<p>Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p>
+<pre class="r"><code>flights %&gt;% 
+  ______ %&gt;%
+  ggplot(aes(___)) +
+  _____
+
+# Alternative:
+flights %&gt;%
+  ggplot(aes(___)) +
+  _____</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_hour = distance / air_time * 60) %&gt;%
   ggplot() +
@@ -289,6 +309,9 @@ $(document).ready(function () {
 </div>
 <div id="on-time-status" class="section level2">
 <h2>On time status</h2>
+<p>Create a new logical variable that indicates if the flight arrived on time.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(on_time = (___ &lt;= 0))</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(
     on_time = (arr_delay &lt;= 0),
@@ -311,6 +334,15 @@ $(document).ready(function () {
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, on_time &lt;lgl&gt;, on_time_desc &lt;chr&gt;</code></pre>
+<p>Visualize the aggregated on-time status per airline with a useful text.</p>
+<pre class="r"><code>flights %&gt;%
+  flights %&gt;%
+  mutate(
+    on_time = _____,
+    on_time_desc = if_else(___, &quot;On time&quot;, ___)
+  ) %&gt;%
+  ggplot(aes(___)) +
+  geom_bar()</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(
     on_time = (arr_delay &lt;= 0),
@@ -322,6 +354,26 @@ $(document).ready(function () {
 </div>
 <div id="speed-distributions" class="section level2">
 <h2>Speed distributions</h2>
+<p>Can you detect a difference in the speed distributions of on-time vs. delayed flights? Ose color of faceting.</p>
+<pre class="r"><code>speed_and_on_time_info &lt;-
+  _____
+
+speed_and_on_time_info %&gt;%
+  ggplot() +
+  geom_freqpoly(
+    aes(x = ___, y = ..density.., color = ___),
+    na.rm = TRUE,
+    binwidth = 20
+  )
+
+speed_and_on_time_info %&gt;%
+  ggplot() +
+  geom_histogram(
+    aes(x = ___),
+    na.rm = TRUE,
+    binwidth = 20
+  ) +
+  facet_wrap(~___, ncol = 1)</code></pre>
 <pre class="r"><code>speed_and_on_time_info &lt;-
   flights %&gt;%
   mutate(
@@ -356,6 +408,13 @@ speed_and_on_time_info %&gt;%
 </div>
 <div id="date" class="section level2">
 <h2>Date</h2>
+<p>Create two new variables <code>date_hour</code> and <code>date_ymd</code>, using <code>as.Date()</code> or <code>lubridate::make_date()</code>, respectively. Are the two values the same for all observations? What happens if we omit the <code>tz</code> argument to <code>as.Date()</code>?</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(
+    ___ = as.Date(___, tz = &quot;EST&quot;),
+    ___ = lubridate::make_date(_____)
+  ) %&gt;% 
+  filter(___)</code></pre>
 <pre class="r"><code>flights %&gt;%
   mutate(
     date_hour = as.Date(time_hour, tz = &quot;EST&quot;),
@@ -372,11 +431,21 @@ speed_and_on_time_info %&gt;%
 </div>
 <div id="deviation-from-average-departure-delay" class="section level2">
 <h2>Deviation from average departure delay</h2>
+<p>Visualize the deviation from the overall average departure delay for the three airports of New York City. Consider using a violin plot.</p>
+<pre class="r"><code>flights %&gt;%
+  mutate(dep_delay_dev = ___ - mean(___)) %&gt;%
+  ggplot(aes(___)) +
+  _____ +
+  _____</code></pre>
 <pre class="r"><code>flights %&gt;% 
   mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %&gt;%
   ggplot() +
   geom_violin(aes(x = origin, y = dev), na.rm = TRUE)</code></pre>
 <p><img src="mutate_files/figure-html/mutate-5-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 5.5.2 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

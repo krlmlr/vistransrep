@@ -231,6 +231,13 @@ $(document).ready(function () {
 
 <div id="flights-on-the-same-date-as-today" class="section level2">
 <h2>Flights on the same date as today</h2>
+<p>Find all flights that departed today x years ago, flown by <code>&quot;US&quot;</code>. Two simple solutions exist, which appeals most to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___, ___) %&gt;%
+  filter(___)
+  
+flights %&gt;%
+  filter(_____)</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(day == 13, month == 11) %&gt;%
   filter(carrier == &quot;US&quot;)</code></pre>
@@ -273,6 +280,9 @@ $(document).ready(function () {
 </div>
 <div id="red-eye-flights" class="section level2">
 <h2>Red eye flights</h2>
+<p>Find all flights that departed before 6:00 AM or after 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ | ___)</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(dep_time &lt; 600 | dep_time &gt; 2200)</code></pre>
 <pre><code>## # A tibble: 16,753 x 19
@@ -295,6 +305,15 @@ $(document).ready(function () {
 </div>
 <div id="flights-not-by-ua-or-wn" class="section level2">
 <h2>Flights not by UA or WN</h2>
+<p>Find all flights not flown by either <code>&quot;UA&quot;</code> or <code>&quot;WN&quot;</code>. Can you think of three different solutions? Which appeals more to you?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___ ___ ___)
+
+flights %&gt;%
+  filter(!(___) ___ !(___))
+
+flights %&gt;%
+  filter(!(_____))</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(carrier != &quot;UA&quot; &amp; carrier != &quot;WN&quot;)</code></pre>
 <pre><code>## # A tibble: 265,836 x 19
@@ -355,6 +374,15 @@ $(document).ready(function () {
 </div>
 <div id="missing-data" class="section level2">
 <h2>Missing data</h2>
+<p>Which flights have a missing departure or arrival time? Which have both missing? Can the number of flights that have a missing arrival but not departure time correspond to lost or crashed flights?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(is.na(___))
+
+flights %&gt;%
+  filter(___(___) ___ _____)
+
+flights %&gt;%
+  filter(_____ ___ !_____)</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(is.na(arr_time))</code></pre>
 <pre><code>## # A tibble: 8,713 x 19
@@ -415,6 +443,15 @@ $(document).ready(function () {
 </div>
 <div id="commutativity" class="section level2">
 <h2>Commutativity</h2>
+<p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre>
 <p>Arranging a smaller subset needs less work.</p>
 <pre class="r"><code>system.time(
   flights %&gt;%
@@ -422,14 +459,22 @@ $(document).ready(function () {
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.223   0.008   0.231</code></pre>
+##   0.208   0.020   0.229</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.040   0.008   0.048</code></pre>
+##   0.036   0.012   0.048</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Look at the “Details” section in the help page for <code>|</code> with <code>help(&quot;|&quot;)</code> to understand predicate logic in R. (We need element-wise comparisons.)</p>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<p>Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

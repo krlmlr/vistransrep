@@ -231,6 +231,14 @@ $(document).ready(function () {
 
 <div id="blue-transparent-points" class="section level2">
 <h2>Blue transparent points</h2>
+<p>Plot <code>hwy</code> vs. <code>displ</code> with approx. 1/3 opacity for each point, in blue.</p>
+<p>Hint: Use quotes <code>&quot;</code> for the color.</p>
+<pre><code>ggplot(_____) +
+  geom_point(
+    mapping = aes(_____),
+    alpha = ___,
+    color = &quot;___&quot;
+  )</code></pre>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -242,6 +250,12 @@ $(document).ready(function () {
 </div>
 <div id="assigning-variable-outside-aes" class="section level2">
 <h2>Assigning variable outside <code>aes()</code></h2>
+<p>What happens if you assign a variable, e.g. <code>year</code>, to an aesthetic <em>outside</em> the <code>aes()</code> call?</p>
+<pre><code>ggplot(_____) +
+  geom_point(
+    mapping = aes(_____),
+    color = year
+  )</code></pre>
 <p>Fails with an error:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
@@ -260,6 +274,11 @@ $(document).ready(function () {
 </div>
 <div id="assigning-constant-inside-aes" class="section level2">
 <h2>Assigning constant inside <code>aes()</code></h2>
+<p>What happens if you assign a constant, e.g. <code>3</code>, to the “size” aesthetic <em>inside</em> the <code>aes()</code> call?</p>
+<pre><code>ggplot(_____) +
+  geom_point(
+    mapping = aes(_____, size = 3)
+  )</code></pre>
 <p>This works, but creates a useless legend and may give unexpected results:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
@@ -279,12 +298,29 @@ $(document).ready(function () {
 </div>
 <div id="valid-values-for-manual-aesthetics" class="section level2">
 <h2>Valid values for manual aesthetics</h2>
+<p>What values are valid for <code>color</code>, <code>alpha</code>, <code>shape</code> and <code>size</code>?</p>
+<pre><code>ggplot(_____) +
+  geom_point(
+    mapping = aes(_____),
+    ___ = ___
+  )</code></pre>
 <ul>
 <li><p>“color”: basic colors, numbers</p></li>
 <li><p>“alpha”: numbers between 0 and 1</p></li>
 <li><p>“shape”: integers from 0 to 25, negative integers seem to display a letter</p></li>
 <li><p>“size”: positive numbers</p></li>
 </ul>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find how to update the default point color for all scatterplots in the help for <code>update_geom_defaults()</code>. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).</p>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<p>Find how to update the default point color for all label texts in the help for <code>theme()</code>. How to set or update the theme for all subsequent plots?</p>
+<pre><code>ggplot(_____) +
+  _____ +
+  theme(___)</code></pre>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

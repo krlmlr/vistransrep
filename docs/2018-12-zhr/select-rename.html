@@ -231,6 +231,15 @@ $(document).ready(function () {
 
 <div id="select-first-five-variables" class="section level2">
 <h2>Select first five variables</h2>
+<p>Find three ways to select the first five variables from the <code>flights</code> dataset.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ________)
+
+flights %&gt;% 
+  select(___:___)
+
+flights %&gt;% 
+  select(___:___)</code></pre>
 <pre class="r"><code>flights %&gt;%
   select(year, month, day, dep_time, sched_dep_time)</code></pre>
 <pre><code>## # A tibble: 336,776 x 5
@@ -284,6 +293,15 @@ flights %&gt;%
 </div>
 <div id="exclude-the-date" class="section level2">
 <h2>Exclude the date</h2>
+<p>Find three ways to exclude the date of the flight.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, ______________________)
+
+flights %&gt;% 
+  select(-___, -___, -___)
+
+flights %&gt;% 
+  select(-___:-___)</code></pre>
 <pre class="r"><code>flights %&gt;%
   select(-year, -month, -day)</code></pre>
 <pre><code>## # A tibble: 336,776 x 16
@@ -343,6 +361,12 @@ flights %&gt;%
 </div>
 <div id="departure-variables" class="section level2">
 <h2>Departure variables</h2>
+<p>Select all variables related to departure.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(___, ___, _______)
+
+flights %&gt;% 
+  select(starts_with(&quot;___&quot;))</code></pre>
 <pre class="r"><code>## contains()
 
 flights %&gt;% 
@@ -364,6 +388,9 @@ flights %&gt;%
 </div>
 <div id="move-departure-variables-to-end" class="section level2">
 <h2>Move departure variables to end</h2>
+<p>Move the variables related to scheduled time to the end of the table.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(-___, -___, _______, everything(), ___, ___)</code></pre>
 <pre class="r"><code>## everything()
 
 flights %&gt;%
@@ -388,6 +415,12 @@ flights %&gt;%
 </div>
 <div id="contour-plot" class="section level2">
 <h2>Contour plot</h2>
+<p>Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.</p>
+<pre class="r"><code>flights %&gt;%
+  select(`___` = ___, `___` = ___, ___) %&gt;%
+  filter(___) %&gt;%
+  ggplot(aes(x = `___`, y = `___`)) +
+  geom_density2d()</code></pre>
 <pre class="r"><code>## Overriding label names
 
 flights %&gt;% 
@@ -424,6 +457,10 @@ flights %&gt;%
   geom_density2d(aes(`Departure time`, `Arrival time`)) +
   coord_fixed()</code></pre>
 <p><img src="select-rename_files/figure-html/select-rename-12-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 5.4.1 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

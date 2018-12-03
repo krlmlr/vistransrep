@@ -231,6 +231,13 @@ $(document).ready(function () {
 
 <div id="intermediate-variables" class="section level2">
 <h2>Intermediate variables</h2>
+<p>View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p>
+<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
+View(flights_after_10)</code></pre>
+<pre class="r"><code>View(filter(flights, ___))</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  View()</code></pre>
 <p>Naming is hard!</p>
 <pre class="r"><code>early_flights &lt;- filter(flights, dep_time &gt;= 600)
 early_late_flights &lt;-
@@ -298,6 +305,15 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 </div>
 <div id="pipe" class="section level2">
 <h2>Pipe</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p>
+<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
+ua_flights_after_10 &lt;- ...
+View(___)</code></pre>
+<pre class="r"><code>View(filter(filter(flights, ___)))</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  filter(___) %&gt;%
+  View()</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
@@ -321,6 +337,27 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
   filter(arr_delay &gt; 120) %&gt;% 
   filter(dest != &quot;HNL&quot;) %&gt;%
   arrange(distance)</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM.</p>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p>
+</div>
+<div id="section-2" class="section level2">
+<h2></h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p>
+</div>
+<div id="section-3" class="section level2">
+<h2></h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p>
+</div>
+<div id="section-4" class="section level2">
+<h2></h2>
+<p>Sort the result by <code>distance</code>.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

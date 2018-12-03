@@ -231,6 +231,18 @@ $(document).ready(function () {
 
 <div id="naming-scales" class="section level2">
 <h2>Naming scales</h2>
+<p>Choose one or two of your previous plots, and give the scales a proper name.</p>
+<p>Hint: Use one or more <code>scale_...()</code> functions.</p>
+<pre><code>ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = factor(year))
+) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;) +
+  facet_wrap(~class) +
+  scale_x_continuous(name = &quot;___&quot;) +
+  scale_y_continuous(name = &quot;___&quot;) +
+  scale_color_discrete(name = &quot;___&quot;)</code></pre>
 <p>Reusing a plot from the previous exercise:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
@@ -249,6 +261,7 @@ $(document).ready(function () {
 </div>
 <div id="changing-scales-twice" class="section level2">
 <h2>Changing scales twice</h2>
+<p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p>
 <p>A warning occurs:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
@@ -260,17 +273,25 @@ $(document).ready(function () {
 </div>
 <div id="colorbrewer-scales" class="section level2">
 <h2>ColorBrewer scales</h2>
+<p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
+<p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p>
 <pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
 <p><img src="scales_files/figure-html/scales-3-1.png" width="672" /></p>
 </div>
 <div id="a-better-scale-for-car-class" class="section level2">
 <h2>A better scale for car class</h2>
+<p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
+<p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
 <p><img src="scales_files/figure-html/scales-4-1.png" width="672" /></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, … .</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

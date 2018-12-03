@@ -231,6 +231,15 @@ $(document).ready(function () {
 
 <div id="table3" class="section level2">
 <h2>table3</h2>
+<p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p>
+<pre class="r"><code>table3 %&gt;%
+  separate(
+    ___,
+    into = c(&quot;___&quot;, &quot;___&quot;),
+    convert = TRUE
+  ) %&gt;%
+  _____ %&gt;%
+  _____</code></pre>
 <pre class="r"><code>table3 %&gt;%
   separate(rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
 <pre><code>## # A tibble: 6 x 4
@@ -269,6 +278,14 @@ $(document).ready(function () {
 </div>
 <div id="to-table3" class="section level2">
 <h2>To table3</h2>
+<p>Convert <code>table2</code> to <code>table3</code>.</p>
+<pre class="r"><code>table2 %&gt;%
+  _____ %&gt;%
+  unite(
+    ___,
+    ___, ___,
+    sep = &quot;/&quot;
+  )</code></pre>
 <pre class="r"><code>table2 %&gt;%
   spread(type, count) %&gt;% 
   unite(rate, cases, population, sep = &quot;/&quot;)</code></pre>
@@ -284,6 +301,14 @@ $(document).ready(function () {
 </div>
 <div id="counting-relations" class="section level2">
 <h2>Counting relations</h2>
+<p>Count the flights for each relation in the <code>flights</code> dataset, using just one grouping variable.</p>
+<pre class="r"><code>flights %&gt;%
+  unite(
+    relation,
+    ___, ___,
+    sep = &quot; -&gt; &quot;
+  ) %&gt;%
+  count(___)</code></pre>
 <pre class="r"><code>flights %&gt;%
   unite(
     relation,
@@ -305,6 +330,10 @@ $(document).ready(function () {
 ##  9 EWR -&gt; BQN   297
 ## 10 EWR -&gt; BTV   931
 ## # ... with 214 more rows</code></pre>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Find more exercises in Section 12.4.3 of r4ds.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>

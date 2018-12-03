@@ -229,8 +229,14 @@ $(document).ready(function () {
 </div>
 
 
+<p>View the <code>flights</code> dataset in RStudio’s data pane. Look up the meaning of the variables in the help.</p>
+<p>Hint: You need to load the <code>nycflights13</code> package.</p>
+<pre class="r"><code>View(___)</code></pre>
 <div id="all-flights-on-this-day-x-years-ago" class="section level2">
 <h2>All flights on this day x years ago</h2>
+<p>Find all flights that departed today 5 years ago.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___, day ___)</code></pre>
 <p>Be careful with the equality operator <code>==</code>:</p>
 <pre class="r"><code>flights %&gt;% 
   filter(month = 6, day = 2)</code></pre>
@@ -305,6 +311,9 @@ flights %&gt;%
 </div>
 <div id="all-flights-between-800-am-and-1000-pm" class="section level2">
 <h2>All flights between 8:00 AM and 10:00 PM</h2>
+<p>Find all flights that departed between 8:00 AM and 10:00 PM.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(between(dep_time, ___, ___))</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &gt;= 800, dep_time &lt;= 2200)</code></pre>
 <pre><code>## # A tibble: 267,608 x 19
@@ -346,6 +355,9 @@ flights %&gt;%
 </div>
 <div id="flights-in-winter-months" class="section level2">
 <h2>Flights in winter months</h2>
+<p>Find all flights that departed in the three winter months.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(month ___ c(___)))</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(month %in% c(12, 1, 2))</code></pre>
 <pre><code>## # A tibble: 80,090 x 19
@@ -388,6 +400,9 @@ flights %&gt;%
 </div>
 <div id="departure-time-later-than-arrival-time" class="section level2">
 <h2>Departure time later than arrival time</h2>
+<p>Are there any flights where departure time is later than arrival time? What does this mean?</p>
+<pre class="r"><code>flights %&gt;%
+  filter(_____)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &gt; arr_time)</code></pre>
 <pre><code>## # A tibble: 10,633 x 19
@@ -410,6 +425,11 @@ flights %&gt;%
 </div>
 <div id="flight-with-shortest-airtime" class="section level2">
 <h2>Flight with shortest airtime</h2>
+<p>On what day did the flight with the shortest airtime take place?</p>
+<p>Hint: Use <code>head()</code> to restrict your result to one row only.</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  head(1)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   arrange(air_time) %&gt;%
   head(1)</code></pre>
@@ -424,6 +444,14 @@ flights %&gt;%
 </div>
 <div id="flight-with-heaviest-delay" class="section level2">
 <h2>Flight with heaviest delay</h2>
+<p>Which flights had the heaviest delays? Can you use the <code>tail()</code> verb to obtain this information?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___) %&gt;%
+  tail(1)
+
+flights %&gt;% 
+  arrange(desc(___)) %&gt;%
+  ___(1)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   arrange(arr_delay) %&gt;%
   tail(1)</code></pre>
@@ -486,6 +514,10 @@ flights %&gt;%
 </div>
 <div id="flight-with-longest-airtime" class="section level2">
 <h2>Flight with longest airtime</h2>
+<p>On what day did the flight with the longest airtime take place?</p>
+<pre class="r"><code>flights %&gt;% 
+  arrange(___ - ___) %&gt;%
+  head(1)</code></pre>
 <pre class="r"><code>flights %&gt;% 
   arrange(desc(air_time)) %&gt;%
   head(1)</code></pre>
@@ -500,6 +532,15 @@ flights %&gt;%
 </div>
 <div id="ua-flights-with-lowest-delay" class="section level2">
 <h2>UA flights with lowest delay</h2>
+<p>Find two equivalent ways to select the six <code>&quot;UA&quot;</code> flights with the lowest delay. Which is faster? Why?</p>
+<p>Hint: RStudio has shortcuts for swapping the current line with the next or previous line.</p>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  arrange(___)
+
+flights %&gt;%
+  arrange(___) %&gt;%
+  filter(___)</code></pre>
 <p>If we filter first, fewer observations need to be sorted.</p>
 <pre class="r"><code>flights %&gt;% 
   filter(carrier == &quot;UA&quot;) %&gt;%
@@ -544,6 +585,7 @@ flights %&gt;%
 </div>
 <div id="recovering-delay" class="section level2">
 <h2>Recovering delay</h2>
+<p>Which flights were best in recovering from delay in the air?</p>
 <pre class="r"><code>flights %&gt;% 
   arrange(dep_delay - arr_delay)</code></pre>
 <pre><code>## # A tibble: 336,776 x 19

@@ -231,6 +231,7 @@ $(document).ready(function () {
 
 <div id="flipped-boxplot" class="section level2">
 <h2>Flipped boxplot</h2>
+<p>Create a flipped boxplot of fuel economy by transmission type.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = trans, y = hwy)) +
   coord_flip()</code></pre>
@@ -238,6 +239,7 @@ $(document).ready(function () {
 </div>
 <div id="compare-highway-and-city" class="section level2">
 <h2>Compare highway and city</h2>
+<p>Plot highway vs. city fuel economy with an additional <code>geom_abline()</code> layer. How do you set a 45° degree for the diagonal line?</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = cty, y = hwy)) +
   geom_abline(color = &quot;red&quot;)</code></pre>
@@ -251,6 +253,7 @@ $(document).ready(function () {
 </div>
 <div id="tweaking-the-slope" class="section level2">
 <h2>Tweaking the slope</h2>
+<p>Try to “estimate” an approximate ratio between the two economy measures by tweaking the <code>slope</code> argument to <code>geom_abline()</code>.</p>
 <p>Guessing 40 / 30 from the previous plot:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = cty, y = hwy)) +

@@ -231,6 +231,7 @@ $(document).ready(function () {
 
 <div id="show-mpg-on-console" class="section level2">
 <h2>Show mpg on console</h2>
+<p>Print the <code>mpg</code> dataset to your console.</p>
 <pre class="r"><code>mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
 ##    manufacturer model displ  year   cyl trans drv     cty   hwy fl    cla…
@@ -249,6 +250,8 @@ $(document).ready(function () {
 </div>
 <div id="rstudios-view-pane" class="section level2">
 <h2>RStudio’s view pane</h2>
+<p>View <code>mpg</code> in RStudio’s dataset pane (via <code>View()</code>). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?</p>
+<pre><code>View(___)</code></pre>
 <pre class="r"><code>View(mpg)</code></pre>
 <ul>
 <li>Filtering works by clicking on the “Filter” button, then entering a text (for text columns) or restricting the range of values (for numeric columns).</li>
@@ -259,6 +262,10 @@ $(document).ready(function () {
 </div>
 <div id="scatterplots" class="section level2">
 <h2>Scatterplots</h2>
+<p>Create a few scatterplots using the following template (here with <code>hwy</code> versus <code>displ</code>):</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
+<p>Share particularly interesting or boring examples you might encounter. Did you find anything surprising?</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
 <p><img src="scatter_files/figure-html/scatter-2-1.png" width="672" /></p>
@@ -278,9 +285,20 @@ $(document).ready(function () {
 </div>
 <div id="convert-units" class="section level2">
 <h2>Convert units</h2>
+<p>Can you plot highway fuel economy given as liters per 100 kilometers against engine displacement?</p>
+<p>Hint: Use the formula <code>235 / hwy</code> to convert from miles per gallon.</p>
+<pre><code>ggplot(data = ___) +
+  geom_point(mapping = aes(x = displ, y = ___))</code></pre>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = 235 / hwy))</code></pre>
 <p><img src="scatter_files/figure-html/scatter-7-1.png" width="672" /></p>
+</div>
+<div id="more-examples" class="section level2">
+<h2>More Examples</h2>
+<p>How can you reduce overplotting? Use your favorite search engine to find out.</p>
+<pre><code>ggplot(data = ___) +
+  geom____(_____)</code></pre>
+<p>Find more examples in Section 3.2.4 of the “R for data science” book (<a href="http://r4ds.had.co.nz" class="uri">http://r4ds.had.co.nz</a>).</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
