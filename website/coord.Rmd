@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = TRUE)
 Create a flipped boxplot of fuel economy by transmission type.
 
 <details>
-<summary>Solution:</summary>
+<summary>&#x25BA; Solution:</summary>
 ```{r coord-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = trans, y = hwy)) +
@@ -30,7 +30,7 @@ ggplot(data = mpg) +
 Plot highway vs. city fuel economy with an additional `geom_abline()` layer.  How do you set a 45° degree for the diagonal line? 
 
 <details>
-<summary>Solution:</summary>
+<summary>&#x25BA; Solution:</summary>
 ```{r coord-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = cty, y = hwy)) +
@@ -53,7 +53,7 @@ ggplot(data = mpg) +
 Try to "estimate" an approximate ratio between the two economy measures by tweaking the `slope` argument to `geom_abline()`.
 
 <details>
-<summary>Solution:</summary>
+<summary>&#x25BA; Solution:</summary>
 Guessing 40 / 30 from the previous plot:
 
 ```{r coord-4, echo=TRUE}
