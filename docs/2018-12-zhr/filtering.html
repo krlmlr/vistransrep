@@ -266,20 +266,20 @@ $(document).ready(function () {
     month == lubridate::month(Sys.Date()),
     day == lubridate::day(Sys.Date())
   )</code></pre>
-<pre><code>## # A tibble: 958 x 19
+<pre><code>## # A tibble: 973 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013    12     4      457            500        -3      645
-##  2  2013    12     4      513            515        -2      806
-##  3  2013    12     4      536            545        -9      826
-##  4  2013    12     4      537            540        -3      821
-##  5  2013    12     4      547            550        -3     1029
-##  6  2013    12     4      552            600        -8      802
-##  7  2013    12     4      552            600        -8      648
-##  8  2013    12     4      553            600        -7     1005
-##  9  2013    12     4      553            600        -7      652
-## 10  2013    12     4      554            600        -6      805
-## # ... with 948 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013    12     3      457            500        -3      643
+##  2  2013    12     3      524            515         9      805
+##  3  2013    12     3      541            540         1      833
+##  4  2013    12     3      547            550        -3     1032
+##  5  2013    12     3      548            600       -12      652
+##  6  2013    12     3      550            600       -10      720
+##  7  2013    12     3      551            600        -9      745
+##  8  2013    12     3      551            545         6      828
+##  9  2013    12     3      552            600        -8      734
+## 10  2013    12     3      552            600        -8      648
+## # ... with 963 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
@@ -291,20 +291,20 @@ flights %&gt;%
     month == month_,
     day == day_
   )</code></pre>
-<pre><code>## # A tibble: 958 x 19
+<pre><code>## # A tibble: 973 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013    12     4      457            500        -3      645
-##  2  2013    12     4      513            515        -2      806
-##  3  2013    12     4      536            545        -9      826
-##  4  2013    12     4      537            540        -3      821
-##  5  2013    12     4      547            550        -3     1029
-##  6  2013    12     4      552            600        -8      802
-##  7  2013    12     4      552            600        -8      648
-##  8  2013    12     4      553            600        -7     1005
-##  9  2013    12     4      553            600        -7      652
-## 10  2013    12     4      554            600        -6      805
-## # ... with 948 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013    12     3      457            500        -3      643
+##  2  2013    12     3      524            515         9      805
+##  3  2013    12     3      541            540         1      833
+##  4  2013    12     3      547            550        -3     1032
+##  5  2013    12     3      548            600       -12      652
+##  6  2013    12     3      550            600       -10      720
+##  7  2013    12     3      551            600        -9      745
+##  8  2013    12     3      551            545         6      828
+##  9  2013    12     3      552            600        -8      734
+## 10  2013    12     3      552            600        -8      648
+## # ... with 963 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
