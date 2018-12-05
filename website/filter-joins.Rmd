@@ -24,6 +24,8 @@ airports %>%
   anti_join(flights, by = c(_____))
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r filter-joins-1}
@@ -33,6 +35,8 @@ airports %>%
 </details>
 
 ## Airports not flown to
+
+TODO
 
 Which airports did not have direct connections in 2013?
 
