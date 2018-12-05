@@ -163,6 +163,8 @@ ggplot(_____, aes(_____)) +
   geom_bar()
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
@@ -184,6 +186,8 @@ ggplot(_____, aes(_____, y = ..count..)) +
   geom_bar()
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 The output is the same:
@@ -195,7 +199,6 @@ ggplot(data = mpg) +
 
 By default, `geom_bar()` plots the computed "count" aesthetic, which is by convention written with two surrounding dots.
 </details>
-
 
 ## Proportions
 
@@ -227,12 +230,14 @@ ggplot(data = mpg) +
 
 ## Fuel economy
 
-Visualize the overall distribution of fuel economy in the dataset with a histogram.  Compare this with a frequency polygon, use a second layer if you like.
+Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.
 
 ```
 ggplot(data = mpg, mapping = aes(x = hwy)) +
   geom_____()
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
@@ -287,6 +292,8 @@ ggplot(data = mpg) +
 
 Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 We can set the "fill" aesthetic:
@@ -323,6 +330,8 @@ ggplot(data = mpg) +
 ### A history of failed attempts
 
 Can I just copy and adapt the code from the last solution?
+
+TODO
 
 ```{r geoms-19}
 ggplot(mpg, aes(hwy, color = drv)) +
