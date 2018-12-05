@@ -238,7 +238,8 @@ View(flights_after_10)</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(___) %&gt;%
   View()</code></pre>
-<p>Naming is hard!</p>
+<details>
+<p><summary>► Solution:</summary> Naming is hard!</p>
 <pre class="r"><code>early_flights &lt;- filter(flights, dep_time &gt;= 600)
 early_late_flights &lt;-
   filter(early_flights, arr_time &gt;= 2200)
@@ -302,6 +303,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 ## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</details>
 </div>
 <div id="pipe" class="section level2">
 <h2>Pipe</h2>
@@ -314,6 +316,8 @@ View(___)</code></pre>
   filter(___) %&gt;%
   filter(___) %&gt;%
   View()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
@@ -337,26 +341,27 @@ View(___)</code></pre>
   filter(arr_delay &gt; 120) %&gt;% 
   filter(dest != &quot;HNL&quot;) %&gt;%
   arrange(distance)</code></pre>
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="ad-infinitum-1" class="section level2">
+<h2>Ad infinitum, 1</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM.</p>
 </div>
-<div id="section-1" class="section level2">
-<h2></h2>
+<div id="ad-infinitum-2" class="section level2">
+<h2>Ad infinitum, 2</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p>
 </div>
-<div id="section-2" class="section level2">
-<h2></h2>
+<div id="ad-infinitum-3" class="section level2">
+<h2>Ad infinitum, 3</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p>
 </div>
-<div id="section-3" class="section level2">
-<h2></h2>
+<div id="ad-infinitum-4" class="section level2">
+<h2>Ad infinitum, 4</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
 <p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p>
 </div>
-<div id="section-4" class="section level2">
-<h2></h2>
+<div id="ad-infinitum-5" class="section level2">
+<h2>Ad infinitum, 5</h2>
 <p>Sort the result by <code>distance</code>.</p>
 </div>
 

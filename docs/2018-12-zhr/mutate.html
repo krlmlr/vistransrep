@@ -236,6 +236,8 @@ $(document).ready(function () {
   mutate(miles_per_hour = air_time ___ distance ___ ___) %&gt;%
   ggplot(aes(___)) +
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_hour = distance / air_time * 60)</code></pre>
 <pre><code>## # A tibble: 336,776 x 20
@@ -255,11 +257,17 @@ $(document).ready(function () {
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, miles_per_hour &lt;dbl&gt;</code></pre>
+</details>
+</div>
+<div id="speed-as-miles-per-minute" class="section level2">
+<h2>Speed as miles per minute</h2>
 <p>Can you use an intermediate variable to clarify the intent? How do you remove the intermediate variable?</p>
 <pre class="r"><code>flights %&gt;% 
   mutate(miles_per_minute = _____) %&gt;% 
   mutate(miles_per_hour = _____) %&gt;% 
   select(_____)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_minute = distance / air_time) %&gt;% 
   mutate(miles_per_hour = miles_per_minute * 60) %&gt;% 
@@ -281,6 +289,10 @@ $(document).ready(function () {
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, miles_per_hour &lt;dbl&gt;</code></pre>
+</details>
+</div>
+<div id="speed-visualized" class="section level2">
+<h2>Speed, visualized</h2>
 <p>Visualize the speed distribution as a histogram. Would this visualization work without involving <code>mutate()</code>?</p>
 <pre class="r"><code>flights %&gt;% 
   ______ %&gt;%
@@ -291,6 +303,8 @@ $(document).ready(function () {
 flights %&gt;%
   ggplot(aes(___)) +
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(miles_per_hour = distance / air_time * 60) %&gt;%
   ggplot() +
@@ -299,7 +313,8 @@ flights %&gt;%
     na.rm = TRUE,
     binwidth = 20
   )</code></pre>
-<p><img src="mutate_files/figure-html/mutate-1-2-1.png" width="672" /></p>
+<img src="mutate_files/figure-html/mutate-1-2-1.png" width="672" />
+</details>
 <pre class="r"><code>flights %&gt;% 
   ggplot() +
   geom_histogram(aes(distance / air_time))</code></pre>
@@ -311,13 +326,14 @@ flights %&gt;%
 <h2>On time status</h2>
 <p>Create a new logical variable that indicates if the flight arrived on time.</p>
 <pre class="r"><code>flights %&gt;%
-  mutate(on_time = (___ &lt;= 0))</code></pre>
+  mutate(on_time = (_____))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(
-    on_time = (arr_delay &lt;= 0),
-    on_time_desc = if_else(on_time, &quot;On time&quot;, &quot;Delayed&quot;)
+    on_time = (arr_delay &lt;= 0)
   )</code></pre>
-<pre><code>## # A tibble: 336,776 x 21
+<pre><code>## # A tibble: 336,776 x 20
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
 ##  1  2013     1     1      517            515         2      830
@@ -330,10 +346,14 @@ flights %&gt;%
 ##  8  2013     1     1      557            600        -3      709
 ##  9  2013     1     1      557            600        -3      838
 ## 10  2013     1     1      558            600        -2      753
-## # ... with 336,766 more rows, and 14 more variables: sched_arr_time &lt;int&gt;,
+## # ... with 336,766 more rows, and 13 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, on_time &lt;lgl&gt;, on_time_desc &lt;chr&gt;</code></pre>
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, on_time &lt;lgl&gt;</code></pre>
+</details>
+</div>
+<div id="on-time-status-visualized" class="section level2">
+<h2>On time status, visualized</h2>
 <p>Visualize the aggregated on-time status per airline with a useful text.</p>
 <pre class="r"><code>flights %&gt;%
   flights %&gt;%
@@ -343,6 +363,8 @@ flights %&gt;%
   ) %&gt;%
   ggplot(aes(___)) +
   geom_bar()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(
     on_time = (arr_delay &lt;= 0),
@@ -350,7 +372,8 @@ flights %&gt;%
   ) %&gt;%
   ggplot(aes(x = carrier, fill = on_time_desc)) +
   geom_bar()</code></pre>
-<p><img src="mutate_files/figure-html/mutate-1-bis-1-1.png" width="672" /></p>
+<img src="mutate_files/figure-html/mutate-1-bis-1-1.png" width="672" />
+</details>
 </div>
 <div id="speed-distributions" class="section level2">
 <h2>Speed distributions</h2>
@@ -374,6 +397,8 @@ speed_and_on_time_info %&gt;%
     binwidth = 20
   ) +
   facet_wrap(~___, ncol = 1)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>speed_and_on_time_info &lt;-
   flights %&gt;%
   mutate(
@@ -404,7 +429,8 @@ speed_and_on_time_info %&gt;%
     binwidth = 20
   ) +
   facet_wrap(~on_time_desc, ncol = 1)</code></pre>
-<p><img src="mutate_files/figure-html/mutate-3-2.png" width="672" /></p>
+<img src="mutate_files/figure-html/mutate-3-2.png" width="672" />
+</details>
 </div>
 <div id="date" class="section level2">
 <h2>Date</h2>
@@ -415,6 +441,8 @@ speed_and_on_time_info %&gt;%
     ___ = lubridate::make_date(_____)
   ) %&gt;% 
   filter(___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   mutate(
     date_hour = as.Date(time_hour, tz = &quot;EST&quot;),
@@ -428,6 +456,7 @@ speed_and_on_time_info %&gt;%
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
 ## #   date_hour &lt;date&gt;, date_ymd &lt;date&gt;</code></pre>
+</details>
 </div>
 <div id="deviation-from-average-departure-delay" class="section level2">
 <h2>Deviation from average departure delay</h2>
@@ -437,14 +466,17 @@ speed_and_on_time_info %&gt;%
   ggplot(aes(___)) +
   _____ +
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   mutate(dev = dep_delay - mean(dep_delay, na.rm = TRUE)) %&gt;%
   ggplot() +
   geom_violin(aes(x = origin, y = dev), na.rm = TRUE)</code></pre>
-<p><img src="mutate_files/figure-html/mutate-5-1.png" width="672" /></p>
+<img src="mutate_files/figure-html/mutate-5-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 5.5.2 of r4ds.</p>
 </div>
 

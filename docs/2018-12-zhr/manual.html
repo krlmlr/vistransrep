@@ -239,6 +239,8 @@ $(document).ready(function () {
     alpha = ___,
     color = &quot;___&quot;
   )</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -246,7 +248,8 @@ $(document).ready(function () {
     color = &quot;blue&quot;
   )</code></pre>
 <p><img src="manual_files/figure-html/manual-1-1.png" width="672" /></p>
-<p>Some appear darker due to overplotting.</p>
+Some appear darker due to overplotting.
+</details>
 </div>
 <div id="assigning-variable-outside-aes" class="section level2">
 <h2>Assigning variable outside <code>aes()</code></h2>
@@ -256,7 +259,8 @@ $(document).ready(function () {
     mapping = aes(_____),
     color = year
   )</code></pre>
-<p>Fails with an error:</p>
+<details>
+<p><summary>► Solution:</summary> Fails with an error:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy),
@@ -270,7 +274,8 @@ $(document).ready(function () {
     color = class
   )</code></pre>
 <pre><code>## Error in rep(value[[k]], length.out = n): attempt to replicate an object of type &#39;builtin&#39;</code></pre>
-<p><img src="manual_files/figure-html/manual-3-1.png" width="672" /></p>
+<img src="manual_files/figure-html/manual-3-1.png" width="672" />
+</details>
 </div>
 <div id="assigning-constant-inside-aes" class="section level2">
 <h2>Assigning constant inside <code>aes()</code></h2>
@@ -279,7 +284,8 @@ $(document).ready(function () {
   geom_point(
     mapping = aes(_____, size = 3)
   )</code></pre>
-<p>This works, but creates a useless legend and may give unexpected results:</p>
+<details>
+<p><summary>► Solution:</summary> This works, but creates a useless legend and may give unexpected results:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy, color = &quot;red&quot;)
@@ -294,7 +300,8 @@ $(document).ready(function () {
   geom_point(
     mapping = aes(x = displ, y = hwy, shape = &quot;triangle&quot;)
   )</code></pre>
-<p><img src="manual_files/figure-html/manual-4-3.png" width="672" /></p>
+<img src="manual_files/figure-html/manual-4-3.png" width="672" />
+</details>
 </div>
 <div id="valid-values-for-manual-aesthetics" class="section level2">
 <h2>Valid values for manual aesthetics</h2>
@@ -304,20 +311,22 @@ $(document).ready(function () {
     mapping = aes(_____),
     ___ = ___
   )</code></pre>
+<details>
+<p><summary>► Solution:</summary> - “color”: basic colors, numbers</p>
 <ul>
-<li><p>“color”: basic colors, numbers</p></li>
 <li><p>“alpha”: numbers between 0 and 1</p></li>
 <li><p>“shape”: integers from 0 to 25, negative integers seem to display a letter</p></li>
-<li><p>“size”: positive numbers</p></li>
+<li>“size”: positive numbers</li>
 </ul>
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="default-point-color" class="section level2">
+<h2>Default point color</h2>
 <p>Find how to update the default point color for all scatterplots in the help for <code>update_geom_defaults()</code>. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).</p>
 </div>
-<div id="section-1" class="section level2">
-<h2></h2>
-<p>Find how to update the default point color for all label texts in the help for <code>theme()</code>. How to set or update the theme for all subsequent plots?</p>
+<div id="default-text-color" class="section level2">
+<h2>Default text color</h2>
+<p>Find how to update the default color for all label texts in the help for <code>theme()</code>. How to set or update the theme for all subsequent plots?</p>
 <pre><code>ggplot(_____) +
   _____ +
   theme(___)</code></pre>
