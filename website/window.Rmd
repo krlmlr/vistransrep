@@ -67,7 +67,8 @@ monthly_shares %>%
 <summary>&#x25BA; Solution:</summary>
 ```{r window-1-a}
 monthly_shares %>% 
-  ggplot(aes(factor(month), carrier, fill = month_share)) +
+  filter(carrier != "OO") %>% 
+  ggplot(aes(factor(month), carrier, fill = month_share_by_carrier)) +
   geom_tile() +
   scale_fill_continuous(trans = "log10")
 ```
