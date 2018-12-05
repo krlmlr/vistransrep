@@ -75,6 +75,8 @@ ggplot(data = mpg) +
 
 What changes if you add the argument `labeller = "label_both"` to the `facet_wrap()` call?
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 This is useful if the value does not speak for itself:
@@ -86,10 +88,11 @@ ggplot(data = mpg) +
 ```
 </details>
 
-
 ## Different scales
 
 Is it possible to use a different x and y scale for each facet? How?
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
