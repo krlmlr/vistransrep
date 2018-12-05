@@ -12,6 +12,67 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
+
+## Count flights
+
+How many flights departed in New York City in 2013?
+
+```
+flights %>% 
+  count()
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+```{r count-1}
+flights %>% 
+  count()
+```
+
+This is different to `nrow()`:
+
+```{r count-1}
+flights %>% 
+  nrow()
+```
+</details>
+
+## Count flights per airline
+
+How many flights did each airline fly out of New York City in 2013?
+
+```
+flights %>% 
+  count(___)
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+```{r count-3}
+flights %>% 
+  count(carrier)
+```
+</details>
+
+
+## Sum up distance per airline
+
+What's the total distance flown for all flights originating in New York City in 2013, per airline?
+
+```
+flights %>% 
+  count(___, _____)
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+```{r count-4}
+flights %>% 
+  count(carrier, wt = distance)
+```
+</details>
+
+
 ## Useful summary functions
 
 - `sum()`, `prod()`

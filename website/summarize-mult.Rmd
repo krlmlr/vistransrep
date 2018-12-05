@@ -11,6 +11,24 @@ library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 ```
 
+## Flights per day
+
+How many flights flew out of NYC each day?
+
+```
+flights %>% 
+  count(___, ___, ___)
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+```{r count-5}
+flights %>% 
+  count(year, month, day)
+```
+</details>
+
+
 ## Distinct airlines per relation
 
 Which relation is serviced by the largest number of distinct airlines? Find a solution using `summarize()`, one using `count()`, and one using `tally()`. Which is more elegant?
