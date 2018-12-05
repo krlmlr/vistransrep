@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## A simple map
-
+ 
 Show the `quakes` data, or a subset, on a map:
 
 ```
