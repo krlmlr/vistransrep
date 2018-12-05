@@ -30,6 +30,8 @@ flights %>%
   ungroup()
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r window-1}
