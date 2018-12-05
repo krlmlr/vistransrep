@@ -17,7 +17,7 @@ library(tidyverse)
         
 1. [Manual aesthetics](manual.html)
 
-1. [Other point geoms](geoms.html)
+1. [Other geoms](geoms.html)
    
 1. [Position adjustments](position.html)
 
