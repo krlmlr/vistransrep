@@ -27,8 +27,11 @@ flights %>%
   filter(_____)
 ```  
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filter-combine-1}
 flights %>%
   filter(day == 13, month == 11) %>%
@@ -37,7 +40,10 @@ flights %>%
 flights %>%
   filter(day == 13 & month == 11 & carrier == "US")
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Red eye flights
 
@@ -48,13 +54,19 @@ flights %>%
   filter(___ | ___)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filter-combine-2}
 flights %>%
   filter(dep_time < 600 | dep_time > 2200)
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Flights not by UA or WN
 
@@ -71,8 +83,11 @@ flights %>%
   filter(!(_____))
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filter-combine-3}
 flights %>%
   filter(carrier != "UA" & carrier != "WN")
@@ -100,8 +115,11 @@ flights %>%
   filter(_____ ___ !_____)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filter-combine-4}
 flights %>%
   filter(is.na(arr_time))
@@ -130,8 +148,11 @@ flights %>%
   filter(___)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 Arranging a smaller subset needs less work.
 
 ```{r filter-combine-5}
@@ -147,6 +168,7 @@ system.time(
     arrange(arr_delay)
 )
 ```
+<<<<<<< HEAD
 </details>
 
 ## Understand predicate logic
@@ -154,5 +176,13 @@ system.time(
 Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
 
 ## More exercises
+=======
+
+##
+
+Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
+
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.

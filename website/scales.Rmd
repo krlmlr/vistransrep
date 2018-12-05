@@ -31,8 +31,11 @@ ggplot(
   scale_color_discrete(name = "___")
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 Reusing a plot from the previous exercise:
 
 ```{r scales-1, echo=TRUE}
@@ -51,14 +54,20 @@ ggplot(data = mpg) +
 ```
 
 There exist shortcuts `xlab()` and `ylab()` for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Changing scales twice
 
 What happens if you call the same `scale_...()` function twice in a plot?
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 A warning occurs:
 
 ```{r scales-2, echo=TRUE}
@@ -67,7 +76,10 @@ ggplot(data = mpg) +
   scale_x_continuous(name = "Displacement") +
   scale_x_continuous(name = "Displacement")
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## ColorBrewer scales
 
@@ -75,8 +87,11 @@ Add an overview over all available colorblind friendly Brewer scales to your rma
 
 Hint: Insert a code chunk containing `RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)`
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r scales-3}
 RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)
 ```
@@ -88,8 +103,11 @@ Choose an appealing scale for one of your plots that use the "color" or "fill" a
 
 Hint: Use `scale_..._distiller()` if you have mapped a continuous variable.
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r scales-4, echo=TRUE}
 ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -97,8 +115,13 @@ ggplot(data = mpg) +
   scale_y_continuous(name = "Fuel economy [miles per gallon]") +
   scale_color_brewer(name = "Car class", palette = "Set2")
 ```
+<<<<<<< HEAD
 </details>
 
 ## Practice
+=======
+
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .

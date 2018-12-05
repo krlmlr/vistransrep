@@ -34,8 +34,11 @@ flights %>%
   ___
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filtering-23}
 flights %>%
   ggplot() +
@@ -83,16 +86,24 @@ flights %>%
     ___()
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r filtering-26}
 flights %>%
   filter(air_time < 60) %>%
   ggplot() +
   geom_bin2d(aes(origin, dest))
 ```
+<<<<<<< HEAD
 </details>
 
 ## More plotting after filtering
+=======
+
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.

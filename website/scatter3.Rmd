@@ -20,8 +20,11 @@ ggplot(_____) +
   geom_point(mapping = aes(x = ___, y = ___, color = ___))
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 Simply insert `color = <var>` in the `aes()` call, where `<var>` is a variable in the `mpg` dataset:
 
 ```{r scatter3-1, echo=TRUE}
@@ -45,9 +48,22 @@ ggplot(data = mpg) +
 ```
 </details>
 
+<<<<<<< HEAD
 ## Map to other aesthetics
 
 Experiment with the "color", "shape", "size", and "alpha" aesthetics.  Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don't? Expand on the more surprising examples in the previous exercises.
+=======
+Experiment with the "color", "shape", "size", and "alpha" aesthetics.  Which combinations of attribute class (categorical/continuous) and aesthetics work well, which don't? Expand on the more surprising examples in the previous exercises.
+
+Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
+
+```
+ggplot(_____) +
+  geom_point(mapping = aes(x = ___, y = ___, ___ = ___))
+```
+
+Looks like the cars with large displacement are two-seaters with rear drivetrain.
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Hint: Use `factor(year)` to convert continuous variables with a limited set of values to categorical variables.
 
@@ -97,7 +113,10 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, alpha = factor(cyl)))
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Change more than one aesthetic
 
@@ -108,8 +127,11 @@ ggplot(_____) +
   geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 You can change any number of properties of a geom at your discretion, this is one of **ggplot2**'s strenghts.
 
 ```{r scatter3-9}
@@ -125,7 +147,10 @@ ggplot(data = mpg) +
 ```
 
 A legend is added automatically.  It may not be as useful to change all properties at the same time, but it's very easy to assign a variable to a different aesthetic, or use another variable for that aesthetic.
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Map a variable to more than one aesthetic
 
@@ -136,8 +161,11 @@ ggplot(_____) +
   geom_point(mapping = aes(x = ___, y = ___, ___ = ___, ___ = ___))
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 There are no restrictions on how many times a variable is mapped in any given plot:
 
 ```{r scatter3-10}
@@ -151,9 +179,14 @@ ggplot(data = mpg) +
   ))
 ```
 
+##
+
 Mapping the same variable to two aesthetics is sometimes useful to further emphasize this variable.
+<<<<<<< HEAD
 </details>
 
 ## More exercises
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Find more exercises in Section 3.3.1 of r4ds.

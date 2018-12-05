@@ -18,8 +18,11 @@ Choose your favorite among the predefined themes.
 
 Hint: All start with `theme_...()`, but watch out for `theme_set()`.
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 For presentations, `theme_bw()` or `theme_minimal()` look useful:
 
 ```{r theme-1, echo=TRUE}
@@ -37,14 +40,20 @@ ggplot(data = mpg) +
   scale_y_continuous(name = "Fuel economy [miles per gallon]") +
   scale_color_brewer(name = "Car class", palette = "Set2")
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Legend at bottom
 
 Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r theme-2, echo=TRUE}
 ggplot(data = mpg) +
   theme_bw() +

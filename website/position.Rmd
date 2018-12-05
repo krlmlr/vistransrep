@@ -20,8 +20,11 @@ ggplot(data = mpg, aes(x = trans)) +
   geom_bar()
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:
 
 ```{r position-1, echo=TRUE}
@@ -41,8 +44,11 @@ ggplot(data = mpg, mapping = aes(x = class, _____)) +
   geom_bar(position = "___")
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r position-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))
@@ -133,8 +139,19 @@ ggplot(data = mpg) +
 ```
 
 Doesn't look useful.
+<<<<<<< HEAD
 </details>
 
 ## More exercises
+=======
+
+##
+
+Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?
+
+Hint: Use `factor()` as necessary.
+
+## More
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Find more exercises in Section 3.8.1 of r4ds.

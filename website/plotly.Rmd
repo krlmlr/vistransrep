@@ -26,8 +26,11 @@ p <-
 plotly::ggplotly(p)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r plotly-1}
 p <-
   mpg %>% 
@@ -37,7 +40,10 @@ p <-
 
 plotly::ggplotly(p)
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## More expressive tooltip
 
@@ -55,8 +61,11 @@ p <-
 plotly::ggplotly(p)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r plotly-2}
 p <-
   mpg %>% 
@@ -71,8 +80,11 @@ plotly::ggplotly(p)
 
 Convert a bar plot or a histogram to plotly. How does this affect the tooltip?
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r plotly-3}
 p <-
   mpg %>% 
@@ -81,9 +93,13 @@ p <-
 
 plotly::ggplotly(p)
 ```
+<<<<<<< HEAD
 </details>
 
 ## Crosstalk
+=======
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets. This requires the _crosstalk_ package:
 

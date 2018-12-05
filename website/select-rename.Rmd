@@ -27,8 +27,11 @@ flights %>%
   select(___:___)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r select-rename-1}
 flights %>%
   select(year, month, day, dep_time, sched_dep_time)
@@ -45,7 +48,10 @@ flights %>%
 flights %>%
   select(1:5)
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Exclude the date
 
@@ -62,8 +68,11 @@ flights %>%
   select(-___:-___)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r select-rename-4}
 flights %>%
   select(-year, -month, -day)
@@ -94,15 +103,21 @@ flights %>%
   select(starts_with("___"))
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r select-rename-7}
 ## contains()
 
 flights %>% 
   select(contains("dep_"))
 ```
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 ## Move departure variables to end
 
@@ -113,8 +128,11 @@ flights %>%
   select(-___, -___, _______, everything(), ___, ___)
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r select-rename-8}
 ## everything()
 
@@ -135,8 +153,11 @@ flights %>%
   geom_density2d()
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r select-rename-9}
 ## Overriding label names
 
@@ -176,8 +197,13 @@ flights %>%
   geom_density2d(aes(`Departure time`, `Arrival time`)) +
   coord_fixed()
 ```
+<<<<<<< HEAD
 </details>
 
 ## More exercises
+=======
+
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 Find more exercises in Section 5.4.1 of r4ds.

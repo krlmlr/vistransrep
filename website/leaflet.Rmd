@@ -25,8 +25,11 @@ quakes %>%
   addCircles()
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r leaflet-1}
 library(leaflet)
 quakes %>% 
@@ -49,8 +52,11 @@ ___ %>%
   addCircles()
 ```
 
+<<<<<<< HEAD
 <details>
 <summary>&#x25BA; Solution:</summary>
+=======
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 ```{r leaflet-2}
 library(leaflet)
 quakes %>% 
@@ -59,6 +65,7 @@ quakes %>%
   addTiles() %>% 
   addCircles(popup = ~str_c("Magnitude: ", mag))
 ```
+<<<<<<< HEAD
 </details>
 
 ## Other kinds of layer
@@ -66,5 +73,13 @@ quakes %>%
 Explore further options in `?addTiles`.
 
 ## More exercises
+=======
+
+##
+
+Explore further options in `?addTiles`.
+
+##
+>>>>>>> 0ce8a33a43c4959d6f16c508b69e30907a3dd815
 
 See section 4.2.3 in https://plotly-book.cpsievert.me/linking-views-without-shiny.html for linking a map to a plot.
