@@ -87,6 +87,8 @@ ggplot(_____) +
   )
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 This works, but creates a useless legend and may give unexpected results:
@@ -120,6 +122,8 @@ ggplot(_____) +
     ___ = ___
   )
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
