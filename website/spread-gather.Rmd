@@ -37,7 +37,7 @@ Use `gather()` to convert `table1` to `table2`. Try an inclusive and an exclusiv
 table1 %>%
   gather(_____, ___:___)
 
-table1 %>%
+table2 %>%
   gather(_____, -___:-___)
 ```
 
@@ -95,6 +95,8 @@ table1 %>%
 
 For mapping measurement type to an aesthetic:
 
+TODO
+
 ```{r spread-gather-6}
 table2 %>%
   ggplot(aes(country, count, fill = type)) +
@@ -103,6 +105,8 @@ table2 %>%
 ```
 
 For mapping both measurements to two aesthetics:
+
+TODO
 
 ```{r spread-gather-7}
 table1 %>%
@@ -153,7 +157,7 @@ cases_tbl <-
   mutate(type = "cases")
 
 population_tbl <-
-  table4b %>% 
+  table4a %>% 
   gather(year, count, -country) %>%
   mutate(type = "population")
 
@@ -190,6 +194,8 @@ mpg %>%
   ggplot(aes(x = displ, y = ___)) +
   geom_point()
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
