@@ -10,8 +10,38 @@ library(tidyverse)
 ```
 
 
-[Part 1](dplyr-1.html): Essentials
+## Essentials
 
-[Part 2](dplyr-2.html): Group operations
+1. [Filtering](filtering.html)
 
-[Part 3](dplyr-3.html): Tidy and relational data
+1. [Arrange](arrange.html)
+
+1. [Assignment, the pipe](pipe.html)
+
+1. [Filtering and plotting](filter-plot.html)
+
+1. [Combining filters](filter-combine.html)
+
+1. [Select and rename](select-rename.html)
+
+1. [Mutate](mutate.html)
+
+
+## Group operations
+
+1. [Summarize](summarize.html)
+
+1. [Summarize with multiple variables](summarize-mult.html)
+
+1. [Grouped mutate](window.html)
+
+
+## Tidy and relational data
+
+1. [Spreading and gathering](spread-gather.html)
+
+1. [Separating and uniting](sep-unite.html)
+
+1. [Keys and mutating joins](joins.html)
+
+1. [Filtering joins](filter-joins.html)
