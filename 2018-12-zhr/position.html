@@ -234,17 +234,21 @@ $(document).ready(function () {
 <p>What’s the most prevalent number of gears for manual or automatic transmissions?</p>
 <pre><code>ggplot(data = mpg, aes(x = trans)) +
   geom_bar()</code></pre>
-<p>Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:</p>
+<details>
+<p><summary>► Solution:</summary> Transmission type and number of gears are encoded in the same variable, a simple bar plot helps:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = trans))</code></pre>
 <p><img src="position_files/figure-html/position-1-1.png" width="672" /></p>
-<p>Visual inspection reveals that it’s four gears for automatic, and five gears for manual transmission.</p>
+Visual inspection reveals that it’s four gears for automatic, and five gears for manual transmission.
+</details>
 </div>
 <div id="discriminate-by-car-class" class="section level2">
 <h2>Discriminate by car class</h2>
 <p>Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?</p>
 <pre><code>ggplot(data = mpg, mapping = aes(x = class, _____)) +
   geom_bar(position = &quot;___&quot;)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))</code></pre>
 <p><img src="position_files/figure-html/position-2-1.png" width="672" /></p>
@@ -254,11 +258,15 @@ $(document).ready(function () {
     aes(x = class, fill = trans), 
     position = &quot;dodge&quot;
   )</code></pre>
-<p><img src="position_files/figure-html/position-3-1.png" width="672" /></p>
+<img src="position_files/figure-html/position-3-1.png" width="672" />
+</details>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
-<p>I’m using liters per 100 km as measure for fuel economy here.</p>
+<p>Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?</p>
+<p>Hint: Use <code>factor()</code> as necessary.</p>
+<details>
+<p><summary>► Solution:</summary> I’m using liters per 100 km as measure for fuel economy here.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(mapping = aes(x = drv, y = 235 / hwy))</code></pre>
 <p><img src="position_files/figure-html/position-4-1.png" width="672" /></p>
@@ -298,15 +306,11 @@ $(document).ready(function () {
     position = &quot;identity&quot;
   )</code></pre>
 <p><img src="position_files/figure-html/position-8-1.png" width="672" /></p>
-<p>Doesn’t look useful.</p>
+Doesn’t look useful.
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
-<p>Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?</p>
-<p>Hint: Use <code>factor()</code> as necessary.</p>
-</div>
-<div id="more" class="section level2">
-<h2>More</h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 3.8.1 of r4ds.</p>
 </div>
 
