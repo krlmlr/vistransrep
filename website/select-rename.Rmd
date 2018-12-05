@@ -94,6 +94,8 @@ flights %>%
   select(starts_with("___"))
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r select-rename-7}
@@ -112,6 +114,8 @@ Move the variables related to scheduled time to the end of the table.
 flights %>% 
   select(-___, -___, _______, everything(), ___, ___)
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
@@ -134,6 +138,8 @@ flights %>%
   ggplot(aes(x = `___`, y = `___`)) +
   geom_density2d()
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
