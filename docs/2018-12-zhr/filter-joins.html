@@ -231,12 +231,14 @@ $(document).ready(function () {
 
 <div id="airports-accessed" class="section level2">
 <h2>Airports accessed</h2>
-<p>Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?</p>
+<p>Find the airports that are serviced by at least one flight.</p>
 <pre class="r"><code>airports %&gt;%
   semi_join(flights, by = c(_____))
 
 airports %&gt;%
   anti_join(flights, by = c(_____))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>airports %&gt;%
   semi_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 101 x 8
@@ -253,9 +255,13 @@ airports %&gt;%
 ##  9 BGR   Bangor Intl             44.8  -68.8   192    -5 A     America/Ne…
 ## 10 BHM   Birmingham Intl         33.6  -86.8   644    -6 A     America/Ch…
 ## # ... with 91 more rows</code></pre>
+</details>
 </div>
 <div id="airports-not-flown-to" class="section level2">
 <h2>Airports not flown to</h2>
+<p>Which airports did not have direct connections in 2013?</p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>airports %&gt;%
   anti_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 1,357 x 8
@@ -272,9 +278,10 @@ airports %&gt;%
 ##  9 0P2   Shoestring Aviation…  39.8  -76.6  1000    -5 U     America/New_…
 ## 10 0S9   Jefferson County In…  48.1 -123.    108    -8 A     America/Los_…
 ## # ... with 1,347 more rows</code></pre>
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 13.5.1 of r4ds.</p>
 </div>
 

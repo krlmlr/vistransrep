@@ -238,7 +238,8 @@ $(document).ready(function () {
     se = ___,
     method = ___
   )</code></pre>
-<p><code>method</code> uses a different model to fit the data:</p>
+<details>
+<p><summary>► Solution:</summary> <code>method</code> uses a different model to fit the data:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), method = &quot;lm&quot;)</code></pre>
@@ -248,7 +249,8 @@ $(document).ready(function () {
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="geoms_files/figure-html/geoms-2-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-2-1.png" width="672" />
+</details>
 </div>
 <div id="the-rug" class="section level2">
 <h2>The rug</h2>
@@ -262,7 +264,8 @@ $(document).ready(function () {
     mapping = aes(x = displ, y = hwy),
     ___ = ___
   )</code></pre>
-<p>Plots marginal distributions of the data close to the axes.</p>
+<details>
+<p><summary>► Solution:</summary> Plots marginal distributions of the data close to the axes.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_rug(mapping = aes(x = displ, y = hwy))</code></pre>
@@ -285,7 +288,8 @@ $(document).ready(function () {
     mapping = aes(x = displ, y = hwy),
     alpha = 0.3
   )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-5-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-5-1.png" width="672" />
+</details>
 </div>
 <div id="order-of-geom_...-calls" class="section level2">
 <h2>Order of <code>geom_...()</code> calls</h2>
@@ -296,7 +300,8 @@ $(document).ready(function () {
 <pre><code>ggplot(data = ___, mapping = aes(_____)) +
   geom_smooth() +
   geom_point()</code></pre>
-<p>The geoms are painted in order of appearance:</p>
+<details>
+<p><summary>► Solution:</summary> The geoms are painted in order of appearance:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy))</code></pre>
@@ -306,7 +311,8 @@ $(document).ready(function () {
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<p><img src="geoms_files/figure-html/geoms-7-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-7-1.png" width="672" />
+</details>
 </div>
 <div id="compare-highway-and-city" class="section level2">
 <h2>Compare highway and city</h2>
@@ -315,12 +321,14 @@ $(document).ready(function () {
 <pre><code>ggplot(_____) +
   geom_point(mapping = _____, color = &quot;___&quot;) +
   geom_point(mapping = _____, color = &quot;___&quot;)</code></pre>
-<p>We <em>could</em> add two layers, each with a different color. But this still doesn’t give us a legend.</p>
+<details>
+<p><summary>► Solution:</summary> We <em>could</em> add two layers, each with a different color. But this still doesn’t give us a legend.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), color = &quot;red&quot;) +
   geom_point(mapping = aes(x = displ, y = cty), color = &quot;blue&quot;)</code></pre>
 <p><img src="geoms_files/figure-html/geoms-8-1.png" width="672" /></p>
-<p>We need better data transformation tools to reformat the data for plotting it in a more natural way.</p>
+We need better data transformation tools to reformat the data for plotting it in a more natural way.
+</details>
 </div>
 <div id="cars-by-drivetrain" class="section level2">
 <h2>Cars by drivetrain</h2>
@@ -328,22 +336,26 @@ $(document).ready(function () {
 <p>Hint: Find the relevant geom by typing <code>geom_</code> on the console or in your script file.</p>
 <pre><code>ggplot(_____, aes(_____)) +
   geom_bar()</code></pre>
-<p>I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
+<details>
+<p><summary>► Solution:</summary> I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
 <p>We need only the “x” aesthetic, “y” is computed automatically. <code>drv</code> is the relevant variable.</p>
 <pre class="r"><code>ggplot(mpg) +
   geom_bar(aes(x = drv))</code></pre>
-<p><img src="geoms_files/figure-html/geoms-9-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-9-1.png" width="672" />
+</details>
 </div>
 <div id="explicit-count" class="section level2">
 <h2>Explicit count</h2>
 <p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p>
 <pre><code>ggplot(_____, aes(_____, y = ..count..)) +
   geom_bar()</code></pre>
-<p>The output is the same:</p>
+<details>
+<p><summary>► Solution:</summary> The output is the same:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
 <p><img src="geoms_files/figure-html/geoms-10-1.png" width="672" /></p>
-<p>By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.</p>
+By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.
+</details>
 </div>
 <div id="proportions" class="section level2">
 <h2>Proportions</h2>
@@ -351,35 +363,28 @@ $(document).ready(function () {
 <p>Hint: The section “Computed variables” to <code>geom_bar()</code> offers a brief explanation.</p>
 <pre><code>ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
   geom_bar()</code></pre>
-<p>Plotting overall proportions changes the y scale:</p>
+<details>
+<p><summary>► Solution:</summary> Plotting overall proportions changes the y scale:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
 <p><img src="geoms_files/figure-html/geoms-11-1.png" width="672" /></p>
 <p>Omitting <code>group</code> will plot proportions per drivetrain in each column, which are 1 by default:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
-<p><img src="geoms_files/figure-html/geoms-12-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-12-1.png" width="672" />
+</details>
 </div>
 <div id="fuel-economy" class="section level2">
 <h2>Fuel economy</h2>
 <p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p>
 <pre><code>ggplot(data = mpg, mapping = aes(x = hwy)) +
   geom_____()</code></pre>
-<p>We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
+<details>
+<p><summary>► Solution:</summary> We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="geoms_files/figure-html/geoms-13-1.png" width="672" /></p>
-<p>How do you remove the warning in the previous example?</p>
-<pre><code>ggplot(_____) +
-  geom_____(binwidth = ___)</code></pre>
-<p>The bin width should be set explicitly to avoid the warning:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy),
-    binwidth = 1
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-14-1.png" width="672" /></p>
 <p>The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(
@@ -393,11 +398,29 @@ $(document).ready(function () {
     binwidth = 1,
     size = 2
   )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-15-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-15-1.png" width="672" />
+</details>
+</div>
+<div id="silencing-a-warning" class="section level2">
+<h2>Silencing a warning</h2>
+<p>How do you remove the warning in the previous example?</p>
+<pre><code>ggplot(_____) +
+  geom_____(binwidth = ___)</code></pre>
+<details>
+<p><summary>► Solution:</summary> The bin width should be set explicitly to avoid the warning:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )</code></pre>
+<img src="geoms_files/figure-html/geoms-14-1.png" width="672" />
+</details>
 </div>
 <div id="fuel-economy-by-drivetrain" class="section level2">
 <h2>Fuel economy by drivetrain</h2>
-<p>We can set the “fill” aesthetic:</p>
+<p>Visualize the distribution of fuel economy in the dataset per drivetrain. Do you prefer a histogram or a frequency polygon?</p>
+<details>
+<p><summary>► Solution:</summary> We can set the “fill” aesthetic:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_histogram(
     mapping = aes(x = hwy, fill = drv),
@@ -419,9 +442,8 @@ $(document).ready(function () {
     binwidth = 1
   )</code></pre>
 <p><img src="geoms_files/figure-html/geoms-18-1.png" width="672" /></p>
-</div>
-<div id="fuel-economy-per-drivetrain-a-history-of-failed-attempts" class="section level2">
-<h2>Fuel economy per drivetrain (a history of failed attempts)</h2>
+<div id="a-history-of-failed-attempts" class="section level3">
+<h3>A history of failed attempts</h3>
 <p>Can I just copy and adapt the code from the last solution?</p>
 <pre class="r"><code>ggplot(mpg, aes(hwy, color = drv)) +
   geom_histogram(fill = NA, color = &quot;black&quot;, size = 0.2, binwidth = 2) +
@@ -463,14 +485,12 @@ $(document).ready(function () {
     aes(hwy, color = drv),
     binwidth = 2
   )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-23-1.png" width="672" /></p>
+<img src="geoms_files/figure-html/geoms-23-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
-<p>Visualize the distribution of fuel economy in the dataset per drivetrain. Do you prefer a histogram or a frequency polygon?</p>
 </div>
-<div id="section-1" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.</p>
 </div>
 
