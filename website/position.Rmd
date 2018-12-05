@@ -15,6 +15,8 @@ knitr::opts_chunk$set(cache = TRUE)
 
 What's the most prevalent number of gears for manual or automatic transmissions?
 
+TODO
+
 ```
 ggplot(data = mpg, aes(x = trans)) +
   geom_bar()
@@ -40,6 +42,8 @@ Which aesthetic can you map to further discriminate by car class? Which position
 ggplot(data = mpg, mapping = aes(x = class, _____)) +
   geom_bar(position = "___")
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
@@ -74,6 +78,8 @@ ggplot(data = mpg) +
 Draw a boxplot of highway fuel economy versus drivetrain. Is fuel economy also affected by the number of cylinders?
 
 Hint: Use `factor()` as necessary.
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
