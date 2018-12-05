@@ -9,8 +9,32 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-[Part 1](ggplot2-1.html): Essentials
+## Essentials
 
-[Part 2](ggplot2-2.html): Reverse-engineering
+1. [Scatterplots](scatter.html)
+  
+1. [Scatterplots with three or more variables](scatter3.html)
+        
+1. [Manual aesthetics](manual.html)
 
-[Part 3](ggplot2-3.html): More options and tweaks
+1. [Other point geoms](geoms.html)
+   
+1. [Position adjustments](position.html)
+
+1. [Faceting](facet.html)
+
+## More options and tweaks
+
+1. [Scales](scales.html)
+
+1. [Coordinate systems](coord.html)
+
+1. [Theming](theme.html)
+
+1. [plotly](plotly.html)
+
+1. [leaflet](leaflet.html)
+
+## Learn by example
+
+1. [Reverse engineering](reverse.html)
