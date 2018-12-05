@@ -100,6 +100,8 @@ flights %>%
   ungroup()
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r summarize-mult-4}
@@ -131,6 +133,8 @@ cancelled_flights %>%
     )
   )
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
