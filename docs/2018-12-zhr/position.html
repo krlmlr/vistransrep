@@ -258,7 +258,14 @@ Visual inspection reveals that it’s four gears for automatic, and five gears f
     aes(x = class, fill = trans), 
     position = &quot;dodge&quot;
   )</code></pre>
-<img src="position_files/figure-html/position-3-1.png" width="672" />
+<p><img src="position_files/figure-html/position-3-1.png" width="672" /></p>
+<p>To use uniform width, specify <code>position_dodge(preserve = &quot;single&quot;)</code>:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_bar(
+    aes(x = class, fill = trans), 
+    position = position_dodge(preserve = &quot;single&quot;)
+  )</code></pre>
+<img src="position_files/figure-html/position-3-bis-1.png" width="672" />
 </details>
 </div>
 <div id="boxplot" class="section level2">
