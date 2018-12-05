@@ -16,13 +16,15 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Store the speed for each flight as miles per hour in a new variable.
 
+TODO
+
 ```r
 flights %>% 
   mutate(miles_per_hour = air_time ___ distance ___ ___) %>%
   ggplot(aes(___)) +
   _____
 ```
- 
+  
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r mutate-1}
