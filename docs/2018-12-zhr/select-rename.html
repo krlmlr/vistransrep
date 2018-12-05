@@ -240,6 +240,8 @@ flights %&gt;%
 
 flights %&gt;% 
   select(___:___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   select(year, month, day, dep_time, sched_dep_time)</code></pre>
 <pre><code>## # A tibble: 336,776 x 5
@@ -290,6 +292,7 @@ flights %&gt;%
 ##  9  2013     1     1      557            600
 ## 10  2013     1     1      558            600
 ## # ... with 336,766 more rows</code></pre>
+</details>
 </div>
 <div id="exclude-the-date" class="section level2">
 <h2>Exclude the date</h2>
@@ -302,6 +305,8 @@ flights %&gt;%
 
 flights %&gt;% 
   select(-___:-___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   select(-year, -month, -day)</code></pre>
 <pre><code>## # A tibble: 336,776 x 16
@@ -358,6 +363,7 @@ flights %&gt;%
 ## # ... with 336,766 more rows, and 10 more variables: carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</details>
 </div>
 <div id="departure-variables" class="section level2">
 <h2>Departure variables</h2>
@@ -367,6 +373,8 @@ flights %&gt;%
 
 flights %&gt;% 
   select(starts_with(&quot;___&quot;))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>## contains()
 
 flights %&gt;% 
@@ -385,12 +393,15 @@ flights %&gt;%
 ##  9      557            600        -3
 ## 10      558            600        -2
 ## # ... with 336,766 more rows</code></pre>
+</details>
 </div>
 <div id="move-departure-variables-to-end" class="section level2">
 <h2>Move departure variables to end</h2>
 <p>Move the variables related to scheduled time to the end of the table.</p>
 <pre class="r"><code>flights %&gt;% 
   select(-___, -___, _______, everything(), ___, ___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>## everything()
 
 flights %&gt;%
@@ -412,6 +423,7 @@ flights %&gt;%
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, dep_time &lt;int&gt;, sched_dep_time &lt;int&gt;,
 ## #   dep_delay &lt;dbl&gt;</code></pre>
+</details>
 </div>
 <div id="contour-plot" class="section level2">
 <h2>Contour plot</h2>
@@ -421,6 +433,8 @@ flights %&gt;%
   filter(___) %&gt;%
   ggplot(aes(x = `___`, y = `___`)) +
   geom_density2d()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>## Overriding label names
 
 flights %&gt;% 
@@ -456,10 +470,11 @@ flights %&gt;%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`)) +
   coord_fixed()</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-12-1.png" width="672" /></p>
+<img src="select-rename_files/figure-html/select-rename-12-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 5.4.1 of r4ds.</p>
 </div>
 

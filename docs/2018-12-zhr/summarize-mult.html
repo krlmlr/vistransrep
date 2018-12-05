@@ -250,6 +250,8 @@ flights %&gt;%
   tally(wt = NULL) %&gt;%
   _____ %&gt;%
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   group_by(origin, dest, carrier) %&gt;%
   summarize(n_flights = n()) %&gt;%
@@ -311,6 +313,7 @@ flights %&gt;%
 ##  9 EWR    ATL       4
 ## 10 JFK    AUS       4
 ## # ... with 214 more rows</code></pre>
+</details>
 </div>
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
@@ -319,6 +322,8 @@ flights %&gt;%
   group_by(_____) %&gt;% 
   summarize(share_of_cancelled = _____) %&gt;%
   ungroup()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>cancelled_flights &lt;-
   flights %&gt;% 
   group_by(carrier, month) %&gt;% 
@@ -340,6 +345,7 @@ cancelled_flights</code></pre>
 ##  9 9E          9             0.0409
 ## 10 9E         10             0.0185
 ## # ... with 175 more rows</code></pre>
+</details>
 </div>
 <div id="heat-map-of-cancelled-flights" class="section level2">
 <h2>Heat map of cancelled flights</h2>
@@ -356,13 +362,16 @@ cancelled_flights %&gt;%
       fill = ___
     )
   )</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>cancelled_flights %&gt;%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
-<p><img src="summarize-mult_files/figure-html/summarize-mult-5-1.png" width="672" /></p>
+<img src="summarize-mult_files/figure-html/summarize-mult-5-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 5.6.7 of r4ds.</p>
 </div>
 
