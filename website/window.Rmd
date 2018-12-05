@@ -90,6 +90,6 @@ flights %>%
 
 Visualize with a bar chart.
 
-## More Examples
+## More exercises
 
 Find more exercises in Section 5.7.1 of r4ds.

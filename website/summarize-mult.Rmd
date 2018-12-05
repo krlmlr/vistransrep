@@ -123,6 +123,6 @@ cancelled_flights %>%
 ```
 </details>
 
-## More Examples
+## More exercises
 
 Find more exercises in Section 5.6.7 of r4ds.

@@ -111,6 +111,6 @@ ggplot(data = ___) +
   geom____(_____)
 ```
 
-## More Examples
+## More exercises
 
 Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).

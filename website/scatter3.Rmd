@@ -154,6 +154,6 @@ ggplot(data = mpg) +
 Mapping the same variable to two aesthetics is sometimes useful to further emphasize this variable.
 </details>
 
-## More Examples
+## More exercises
 
 Find more exercises in Section 3.3.1 of r4ds.

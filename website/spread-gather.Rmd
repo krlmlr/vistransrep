@@ -202,6 +202,6 @@ mpg %>%
 ```
 </details>
 
-## More Examples
+## More exercises
 
 Find more exercises in Section 12.3.3 of r4ds.
