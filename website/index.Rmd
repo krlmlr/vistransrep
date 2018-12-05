@@ -25,6 +25,4 @@ This website contains exercises, solutions, and slides for the two-day workshop.
 
 - Main reference: [*R for data science* (r4ds)](http://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham
 
-- Workshop description: https://www.zhrcourses.uzh.ch/de/programm/data-processing0.html
-
 Last updated: `r Sys.time()`
