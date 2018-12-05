@@ -57,6 +57,16 @@ ggplot(data = mpg) +
     position = "dodge"
   )
 ```
+
+To use uniform width, specify `position_dodge(preserve = "single")`:
+
+```{r position-3-bis}
+ggplot(data = mpg) +
+  geom_bar(
+    aes(x = class, fill = trans), 
+    position = position_dodge(preserve = "single")
+  )
+```
 </details>
 
 ## Boxplot
