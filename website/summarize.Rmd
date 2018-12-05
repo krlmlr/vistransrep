@@ -31,7 +31,7 @@ flights %>%
 
 This is different to `nrow()`:
 
-```{r count-1}
+```{r count-2}
 flights %>% 
   nrow()
 ```
