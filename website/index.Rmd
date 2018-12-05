@@ -1,12 +1,17 @@
 ---
-title: "Data visualization, reporting, and processing with R"
+title: "Data visualization, reporting, and processing with R and the tidyverse"
 ---
 
-This is the website for the _tidyverse_ workshop on Nov 29-30, 2018.
+This is the website for the _tidyverse_ workshop at the Jacobs Center on Dec 05-06, 2018.
+
+## About
+
+This website contains exercises, solutions, and slides for the two-day workshop.  The website and the associated resources will remain available after the workshop.
 
 ## Resources
 
-- This page: https://bit.ly/2Rierik
+- This page: http://bit.ly/2Snf3DB
+    - Long URL: https://krlmlr.github.io/vistransrep/2018-12-zhr
 
 - rstudio.cloud server: https://rstudio.cloud/project/147066
     - Sign up, or log in with Google or GitHub
@@ -15,8 +20,8 @@ This is the website for the _tidyverse_ workshop on Nov 29-30, 2018.
 
 - Main menu in header of this website
 
-- GitHub repository: https://github.com/krlmlr/vistransrep-proj/tree/2018-11-zhr
-    - Live code: https://github.com/krlmlr/vistransrep-proj/tree/2018-11-zhr/live
+- GitHub repository: https://github.com/krlmlr/vistransrep-proj/tree/2018-12-zhr
+    - Live code: https://github.com/krlmlr/vistransrep-proj/tree/2018-12-zhr/live
 
 - Main reference: [*R for data science* (r4ds)](http://r4ds.had.co.nz/) by Garrett Grolemund and Hadley Wickham
 
