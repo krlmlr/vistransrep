@@ -14,6 +14,8 @@ knitr::opts_chunk$set(cache = TRUE)
 View <- function(x) print(x)
 ```
 
+## Viewing
+
 View the `flights` dataset in RStudio's data pane. Look up the meaning of the variables in the help.
 
 Hint: You need to load the `nycflights13` package.
@@ -31,6 +33,8 @@ flights %>%
   filter(month ___, day ___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Be careful with the equality operator `==`:
 
 ```{r filtering-1, error = TRUE}
@@ -62,6 +66,7 @@ flights %>%
     day == day_
   )
 ```
+</details>
 
 ## All flights between 8:00 AM and 10:00 PM
 
@@ -72,6 +77,8 @@ flights %>%
   filter(between(dep_time, ___, ___))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-4}
 flights %>% 
   filter(dep_time >= 800, dep_time <= 2200)
@@ -81,6 +88,7 @@ flights %>%
 flights %>% 
   filter(between(dep_time, 800, 2200))
 ```
+</details>
 
 ## Flights in winter months
 
@@ -91,6 +99,8 @@ flights %>%
   filter(month ___ c(___)))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-6}
 flights %>%
   filter(month %in% c(12, 1, 2))
@@ -101,6 +111,7 @@ winter_months <- c(12, 1, 2)
 flights %>%
   filter(month %in% winter_months)
 ```
+</details>
 
 ## Departure time later than arrival time
 
@@ -111,10 +122,13 @@ flights %>%
   filter(_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-8}
 flights %>% 
   filter(dep_time > arr_time)
 ```
+</details>
 
 ## Flight with shortest airtime
 
@@ -128,11 +142,14 @@ flights %>%
   head(1)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-9}
 flights %>% 
   arrange(air_time) %>%
   head(1)
 ```
+</details>
 
 ## Flight with heaviest delay
 
@@ -148,6 +165,8 @@ flights %>%
   ___(1)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-10}
 flights %>% 
   arrange(arr_delay) %>%
@@ -184,6 +203,7 @@ flights %>%
   arrange(desc(arr_delay)) %>%
   head(1)
 ```
+</details>
 
 ## Flight with longest airtime
 
@@ -195,11 +215,14 @@ flights %>%
   head(1)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-15}
 flights %>% 
   arrange(desc(air_time)) %>%
   head(1)
 ```
+</details>
 
 ## UA flights with lowest delay
 
@@ -217,6 +240,8 @@ flights %>%
   filter(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 If we filter first, fewer observations need to be sorted.
 
 ```{r filtering-16}
@@ -231,12 +256,16 @@ flights %>%
   arrange(arr_delay) %>%
   filter(carrier == "UA")
 ```
+</details>
 
 ## Recovering delay
 
 Which flights were best in recovering from delay in the air?
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-18}
 flights %>% 
   arrange(dep_delay - arr_delay)
 ```
+</details>

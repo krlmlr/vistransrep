@@ -32,6 +32,8 @@ airports %>%
   _____
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r joins-1}
 airlines %>%
   count(carrier) %>% 
@@ -43,6 +45,7 @@ airports %>%
   count(faa) %>%
   filter(n > 1)
 ```
+</details>
 
 ## Destination by airline
 
@@ -58,12 +61,15 @@ flights %>%
   left_join(airports, by = c("___" = "___"))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r joins-3}
 flights %>% 
   filter(distance < 300) %>%
   left_join(airlines, by = "carrier") %>%
   left_join(airports, by = c("dest" = "faa"))
 ```
+</details>
 
 ## Destination by airline, wide form
 
@@ -83,6 +89,8 @@ flights %>%
   _____(_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r joins-4}
 flights %>% 
   filter(distance < 300) %>%
@@ -93,6 +101,7 @@ flights %>%
   count(carrier_name, airport_name) %>%
   spread(carrier_name, n)
 ```
+</details>
 
 ## Destination by airline, economic join
 
@@ -116,6 +125,8 @@ flights %>%
   _____(_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r joins-5}
 airline_names <-
   airlines %>%
@@ -136,6 +147,7 @@ verbose_destinations_by_carrier <-
 
 verbose_destinations_by_carrier
 ```
+</details>
 
 ## Heat map
 
@@ -144,14 +156,16 @@ Plot a heat map of destination by airline for all flights shorter than 300 miles
 Hint: Use `by = c("dest" = "faa")`.
     
 ```r
-short_distance_destinations <-
+verbose_destinations_by_carrier <-
   _____
 
-short_distance_destinations %>% 
+verbose_destinations_by_carrier %>% 
   ggplot() +
   geom____(aes(___))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r joins-6}
 verbose_destinations_by_carrier %>%
   ggplot() +
@@ -159,7 +173,8 @@ verbose_destinations_by_carrier %>%
   ggpubr::rotate_x_text()
   # theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
+</details>
 
-##
+## More exercises
 
 Find more exercises in Section 13.4.6 of r4ds.

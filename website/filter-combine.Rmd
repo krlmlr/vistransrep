@@ -27,6 +27,8 @@ flights %>%
   filter(_____)
 ```  
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-combine-1}
 flights %>%
   filter(day == 13, month == 11) %>%
@@ -35,6 +37,7 @@ flights %>%
 flights %>%
   filter(day == 13 & month == 11 & carrier == "US")
 ```
+</details>
 
 ## Red eye flights
 
@@ -45,10 +48,13 @@ flights %>%
   filter(___ | ___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-combine-2}
 flights %>%
   filter(dep_time < 600 | dep_time > 2200)
 ```
+</details>
 
 ## Flights not by UA or WN
 
@@ -65,6 +71,8 @@ flights %>%
   filter(!(_____))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-combine-3}
 flights %>%
   filter(carrier != "UA" & carrier != "WN")
@@ -75,6 +83,7 @@ flights %>%
 flights %>%
   filter(!(carrier %in% c("UA", "WN")))
 ```
+</details>
 
 ## Missing data
 
@@ -91,6 +100,8 @@ flights %>%
   filter(_____ ___ !_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-combine-4}
 flights %>%
   filter(is.na(arr_time))
@@ -101,6 +112,7 @@ flights %>%
 flights %>%
   filter(is.na(arr_time) & !is.na(dep_time))
 ```
+</details>
 
 ## Commutativity
 
@@ -118,6 +130,8 @@ flights %>%
   filter(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Arranging a smaller subset needs less work.
 
 ```{r filter-combine-5}
@@ -133,11 +147,12 @@ system.time(
     arrange(arr_delay)
 )
 ```
+</details>
 
-##
+## Understand predicate logic
 
 Look at the "Details" section in the help page for `|` with `help("|")` to understand predicate logic in R. (We need element-wise comparisons.)
 
-##
+## More exercises
 
 Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.

@@ -28,6 +28,8 @@ ggplot(_____) +
   facet_grid(___ ~ ___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 We can split the simple scatterplot over two facets, one per year:
 
 ```{r facet-1, echo=TRUE}
@@ -66,12 +68,15 @@ ggplot(data = mpg) +
   ) +
   facet_wrap(~class)
 ```
+</details>
 
 
 ## Labeling the facets
 
 What changes if you add the argument `labeller = "label_both"` to the `facet_wrap()` call?
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 This is useful if the value does not speak for itself:
 
 ```{r facet-5, echo=TRUE}
@@ -79,12 +84,15 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~cyl, labeller = "label_both")
 ```
+</details>
 
 
 ## Different scales
 
 Is it possible to use a different x and y scale for each facet? How?
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Via the `scales` argument, zooms in to the range of the corresponding scale(s).
 
 ```{r facet-6, echo=TRUE}
@@ -116,11 +124,12 @@ ggplot(data = mpg) +
     scales = "free"
   )
 ```
+</details>
 
-##
+## Other arguments
 
 Experiment with other arguments to `facet_wrap()` and `facet_grid()`.
 
-##
+## More exercises
 
 Find more exercises in Section 3.5.1 of r4ds.

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Airports accessed
 
-Find the airports that are serviced by at least one flight. Which airports did not have direct connections in 2013?
+Find the airports that are serviced by at least one flight.
 
 ```r
 airports %>%
@@ -24,18 +24,26 @@ airports %>%
   anti_join(flights, by = c(_____))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-joins-1}
 airports %>%
   semi_join(flights, by = c("faa" = "dest"))
 ```
+</details>
 
 ## Airports not flown to
 
+Which airports did not have direct connections in 2013?
+
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filter-joins-2}
 airports %>%
   anti_join(flights, by = c("faa" = "dest"))
 ```
+</details>
 
-##
+## More exercises
 
 Find more exercises in Section 13.5.1 of r4ds.

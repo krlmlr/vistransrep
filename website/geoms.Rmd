@@ -24,6 +24,8 @@ ggplot(data = mpg) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 `method` uses a different model to fit the data:
 
 ```{r geoms-1, echo=TRUE}
@@ -39,6 +41,7 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy), se = FALSE)
 ```
+</details>
 
 ## The rug
 
@@ -56,6 +59,8 @@ ggplot(data = mpg) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Plots marginal distributions of the data close to the axes.
 
 ```{r geoms-3, echo=TRUE}
@@ -87,6 +92,7 @@ ggplot(data = mpg) +
     alpha = 0.3
   )
 ```
+</details>
 
 ## Order of `geom_...()` calls
 
@@ -104,6 +110,8 @@ ggplot(data = ___, mapping = aes(_____)) +
   geom_point()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 The geoms are painted in order of appearance:
 
 ```{r geoms-6, echo=TRUE}
@@ -117,6 +125,7 @@ ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
+</details>
 
 ## Compare highway and city
 
@@ -130,6 +139,8 @@ ggplot(_____) +
   geom_point(mapping = _____, color = "___")
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 We *could* add two layers, each with a different color. But this still doesn't give us a legend.
 
 ```{r geoms-8, echo=TRUE}
@@ -139,6 +150,7 @@ ggplot(data = mpg) +
 ```
 
 We need better data transformation tools to reformat the data for plotting it in a more natural way.
+</details>
 
 ## Cars by drivetrain
 
@@ -151,6 +163,8 @@ ggplot(_____, aes(_____)) +
   geom_bar()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 I tried `geom_histogram()` and `geom_col()`, neither worked. The histogram is for continuous data only, for `geom_col()` I'd need to supply actual counts which I don't have. The `geom_bar()` function computes the counts for me by applying the `"count"` statistical transformation to my data before plotting.
 
 We need only the "x" aesthetic, "y" is computed automatically. `drv` is the relevant variable.
@@ -159,6 +173,7 @@ We need only the "x" aesthetic, "y" is computed automatically. `drv` is the rele
 ggplot(mpg) +
   geom_bar(aes(x = drv))
 ```
+</details>
 
 ## Explicit count
 
@@ -169,6 +184,8 @@ ggplot(_____, aes(_____, y = ..count..)) +
   geom_bar()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 The output is the same:
 
 ```{r geoms-10, echo=TRUE}
@@ -177,6 +194,7 @@ ggplot(data = mpg) +
 ```
 
 By default, `geom_bar()` plots the computed "count" aesthetic, which is by convention written with two surrounding dots.
+</details>
 
 
 ## Proportions
@@ -190,6 +208,8 @@ ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
   geom_bar()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Plotting overall proportions changes the y scale:
 
 ```{r geoms-11, echo=TRUE}
@@ -203,6 +223,7 @@ Omitting `group` will plot proportions per drivetrain in each column, which are 
 ggplot(data = mpg) +
   geom_bar(mapping = aes(x = drv, y = ..prop..))
 ```
+</details>
 
 ## Fuel economy
 
@@ -213,28 +234,13 @@ ggplot(data = mpg, mapping = aes(x = hwy)) +
   geom_____()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 We use a histogram of `hwy`, again only the "x" aesthetic needs to be supplied:
 
 ```{r geoms-13, echo=TRUE}
 ggplot(data = mpg) +
   geom_histogram(mapping = aes(x = hwy))
-```
-
-How do you remove the warning in the previous example?
-    
-```
-ggplot(_____) +
-  geom_____(binwidth = ___)
-```
-
-The bin width should be set explicitly to avoid the warning:
-
-```{r geoms-14, echo=TRUE}
-ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy),
-    binwidth = 1
-  )
 ```
 
 The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.
@@ -253,9 +259,36 @@ ggplot(data = mpg) +
     size = 2
   )
 ```
+</details>
+
+## Silencing a warning
+
+How do you remove the warning in the previous example?
+    
+```
+ggplot(_____) +
+  geom_____(binwidth = ___)
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+The bin width should be set explicitly to avoid the warning:
+
+```{r geoms-14, echo=TRUE}
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = hwy),
+    binwidth = 1
+  )
+```
+</details>
 
 ## Fuel economy by drivetrain
 
+Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+
+<details>
+<summary>&#x25BA; Solution:</summary>
 We can set the "fill" aesthetic:
 
 ```{r geoms-16, echo=TRUE}
@@ -287,7 +320,7 @@ ggplot(data = mpg) +
   )
 ```
 
-## Fuel economy per drivetrain (a history of failed attempts)
+### A history of failed attempts
 
 Can I just copy and adapt the code from the last solution?
 
@@ -343,11 +376,8 @@ ggplot(mpg) +
     binwidth = 2
   )
 ```
+</details>
 
-## 
-
-Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
-
-##
+## More exercises
 
 Find more exercises in Sections 3.6.1 and 3.7.1 of r4ds.

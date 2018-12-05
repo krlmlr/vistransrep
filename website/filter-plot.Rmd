@@ -34,6 +34,8 @@ flights %>%
   ___
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-23}
 flights %>%
   ggplot() +
@@ -66,6 +68,7 @@ flights %>%
     binwidth = 10
   )
 ```
+</details>
 
 ## All very close relations
 
@@ -80,13 +83,16 @@ flights %>%
     ___()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-26}
 flights %>%
   filter(air_time < 60) %>%
   ggplot() +
   geom_bin2d(aes(origin, dest))
 ```
+</details>
 
-##
+## More plotting after filtering
 
 Think of other plots of the `flights` data that would not work if applied on the full dataset but are useful when applying a filter beforehand.
