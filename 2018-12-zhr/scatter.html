@@ -232,6 +232,8 @@ $(document).ready(function () {
 <div id="show-mpg-on-console" class="section level2">
 <h2>Show mpg on console</h2>
 <p>Print the <code>mpg</code> dataset to your console.</p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>mpg</code></pre>
 <pre><code>## # A tibble: 234 x 11
 ##    manufacturer model displ  year   cyl trans drv     cty   hwy fl    cla…
@@ -247,11 +249,14 @@ $(document).ready(function () {
 ##  9 audi         a4 q…   1.8  1999     4 auto… 4        16    25 p     com…
 ## 10 audi         a4 q…   2    2008     4 manu… 4        20    28 p     com…
 ## # ... with 224 more rows</code></pre>
+</details>
 </div>
 <div id="rstudios-view-pane" class="section level2">
 <h2>RStudio’s view pane</h2>
 <p>View <code>mpg</code> in RStudio’s dataset pane (via <code>View()</code>). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?</p>
 <pre><code>View(___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>View(mpg)</code></pre>
 <ul>
 <li>Filtering works by clicking on the “Filter” button, then entering a text (for text columns) or restricting the range of values (for numeric columns).</li>
@@ -259,6 +264,7 @@ $(document).ready(function () {
 <li>The 1999 VW Jetta 1.9 and VW New Beetle 1.9 have the best highway economy, both will drive you 44 miles for each gallon of fuel.</li>
 <li>Note that the view pane currently shows at most 100 columns.</li>
 </ul>
+</details>
 </div>
 <div id="scatterplots" class="section level2">
 <h2>Scatterplots</h2>
@@ -266,6 +272,8 @@ $(document).ready(function () {
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
 <p>Share particularly interesting or boring examples you might encounter. Did you find anything surprising?</p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
 <p><img src="scatter_files/figure-html/scatter-2-1.png" width="672" /></p>
@@ -281,7 +289,8 @@ $(document).ready(function () {
 <p><img src="scatter_files/figure-html/scatter-5-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = cty, y = hwy))</code></pre>
-<p><img src="scatter_files/figure-html/scatter-6-1.png" width="672" /></p>
+<img src="scatter_files/figure-html/scatter-6-1.png" width="672" />
+</details>
 </div>
 <div id="convert-units" class="section level2">
 <h2>Convert units</h2>
@@ -289,15 +298,21 @@ $(document).ready(function () {
 <p>Hint: Use the formula <code>235 / hwy</code> to convert from miles per gallon.</p>
 <pre><code>ggplot(data = ___) +
   geom_point(mapping = aes(x = displ, y = ___))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = 235 / hwy))</code></pre>
-<p><img src="scatter_files/figure-html/scatter-7-1.png" width="672" /></p>
+<img src="scatter_files/figure-html/scatter-7-1.png" width="672" />
+</details>
 </div>
-<div id="more-examples" class="section level2">
-<h2>More Examples</h2>
+<div id="overplotting" class="section level2">
+<h2>Overplotting</h2>
 <p>How can you reduce overplotting? Use your favorite search engine to find out.</p>
 <pre><code>ggplot(data = ___) +
   geom____(_____)</code></pre>
+</div>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more examples in Section 3.2.4 of the “R for data science” book (<a href="http://r4ds.had.co.nz" class="uri">http://r4ds.had.co.nz</a>).</p>
 </div>
 

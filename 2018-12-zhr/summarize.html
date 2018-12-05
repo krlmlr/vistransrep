@@ -253,6 +253,8 @@ flights %&gt;%
 flights %&gt;%
   count(___) %&gt;%
   arrange(___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;%
   summarize(mean(arr_delay, na.rm = TRUE))</code></pre>
 <pre><code>## # A tibble: 1 x 1
@@ -314,6 +316,7 @@ flights %&gt;%
 ## 1 EWR    120835
 ## 2 JFK    111279
 ## 3 LGA    104662</code></pre>
+</details>
 </div>
 <div id="air-time-by-carrier" class="section level2">
 <h2>Air time by carrier</h2>
@@ -322,6 +325,8 @@ flights %&gt;%
   group_by(___) %&gt;%
   summarize(acc_air_time = sum(_____)) %&gt;% 
   ungroup()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>total_airtime_by_carrier &lt;-
   flights %&gt;% 
     group_by(carrier) %&gt;% 
@@ -348,6 +353,10 @@ total_airtime_by_carrier</code></pre>
 ## 14 VX           1724104
 ## 15 WN           1780402
 ## 16 YV             35763</code></pre>
+</details>
+</div>
+<div id="air-time-by-carrier-visualized" class="section level2">
+<h2>Air time by carrier, visualized</h2>
 <p>Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.</p>
 <p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
 <pre class="r"><code>total_airtime_by_carrier &lt;-
@@ -358,13 +367,16 @@ total_airtime_by_carrier %&gt;%
   mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
   ggplot(aes(___)) +
     geom_col()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>total_airtime_by_carrier %&gt;% 
   arrange(acc_air_time) %&gt;%
   mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()</code></pre>
-<p><img src="summarize_files/figure-html/summarize-8-1.png" width="672" /></p>
+<img src="summarize_files/figure-html/summarize-8-1.png" width="672" />
+</details>
 </div>
 <div id="carriers-for-long-distance-routes" class="section level2">
 <h2>Carriers for long-distance routes</h2>
@@ -374,6 +386,8 @@ total_airtime_by_carrier %&gt;%
   _____ %&gt;%
   _____ %&gt;%
   arrange(___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>carrier_arranged_by_mean_distance &lt;-
   flights %&gt;%
   group_by(carrier) %&gt;% 
@@ -401,21 +415,28 @@ carrier_arranged_by_mean_distance</code></pre>
 ## 14 9E               530.
 ## 15 OO               501.
 ## 16 YV               375.</code></pre>
-<p>Plot a bar chart of median distance per flight. Do you use <code>geom_bar()</code> or <code>geom_col()</code>? Why?</p>
-<pre class="r"><code>median_miles_by_carrier &lt;-
+</details>
+</div>
+<div id="mean-distance-visualized" class="section level2">
+<h2>Mean distance, visualized</h2>
+<p>Plot a bar chart of mean distance per flight. Do you use <code>geom_bar()</code> or <code>geom_col()</code>? Why?</p>
+<pre class="r"><code>mean_miles_by_carrier &lt;-
   _____ %&gt;%
   _____ %&gt;%
   _____
 
-median_miles_by_carrier %&gt;%
+mean_miles_by_carrier %&gt;%
   arrange(_____) %&gt;%
   mutate(_____) %&gt;%
   ggplot(aes(___)) +
     geom____()</code></pre>
+<details>
+<p><summary>► Solution:</summary> We need <code>geom_col()</code>, because the data is already aggregated and contains one row per geometry object we’re plotting.</p>
 <pre class="r"><code>carrier_arranged_by_mean_distance %&gt;% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))</code></pre>
-<p><img src="summarize_files/figure-html/summarize-10-1.png" width="672" /></p>
+<img src="summarize_files/figure-html/summarize-10-1.png" width="672" />
+</details>
 </div>
 <div id="worst-plane" class="section level2">
 <h2>Worst plane</h2>
@@ -437,6 +458,8 @@ flights %&gt;%
   _____ %&gt;%
   arrange(_____) %&gt;%
   head(1)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   filter(is.na(dep_time)) %&gt;%
   group_by(tailnum) %&gt;% 
@@ -458,12 +481,18 @@ flights %&gt;%
 ##  9 N11535            23
 ## 10 N11565            23
 ## # ... with 1,439 more rows</code></pre>
+</details>
+</div>
+<div id="short-distance-routes-per-airline-visualized" class="section level2">
+<h2>Short-distance routes per airline, visualized</h2>
 <p>Compute the ratio of short-distance routes (less than 300 miles) for each airline.</p>
 <p>Hint: Use the idiom <code>mean(___)</code> to compute the share of rows where a predicate is true.</p>
 <pre class="r"><code>flights %&gt;%
   group_by(carrier) %&gt;%
   _____ %&gt;% 
   ungroup()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   group_by(tailnum) %&gt;% 
   summarize(not_departed = sum(is.na(dep_time))) %&gt;% 
@@ -499,6 +528,7 @@ flights %&gt;%
 ##  9 N735MQ     24
 ## 10 N11535     23
 ## # ... with 1,440 more rows</code></pre>
+</details>
 </div>
 <div id="short-distance-routes-per-airline" class="section level2">
 <h2>Short-distance routes per airline</h2>
@@ -509,6 +539,8 @@ flights %&gt;%
 short_distance_route_ratio %&gt;%
   ggplot(aes(___)) +
     geom_col()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>short_distance_route_ratio &lt;-
   flights %&gt;%
   group_by(carrier) %&gt;% 
@@ -539,10 +571,11 @@ short_distance_route_ratio</code></pre>
 <pre class="r"><code>short_distance_route_ratio %&gt;%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
-<p><img src="summarize_files/figure-html/summarize-14-1.png" width="672" /></p>
+<img src="summarize_files/figure-html/summarize-14-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in item 1 of Section 5.6.7 of r4ds.</p>
 </div>
 

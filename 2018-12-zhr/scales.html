@@ -243,7 +243,8 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;___&quot;) +
   scale_y_continuous(name = &quot;___&quot;) +
   scale_color_discrete(name = &quot;___&quot;)</code></pre>
-<p>Reusing a plot from the previous exercise:</p>
+<details>
+<p><summary>► Solution:</summary> Reusing a plot from the previous exercise:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
     mapping = aes(x = displ, y = hwy, color = factor(year))
@@ -257,40 +258,49 @@ $(document).ready(function () {
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_discrete(name = &quot;Year&quot;)</code></pre>
 <p><img src="scales_files/figure-html/scales-1-1.png" width="672" /></p>
-<p>There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.</p>
+There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.
+</details>
 </div>
 <div id="changing-scales-twice" class="section level2">
 <h2>Changing scales twice</h2>
 <p>What happens if you call the same <code>scale_...()</code> function twice in a plot?</p>
-<p>A warning occurs:</p>
+<details>
+<p><summary>► Solution:</summary> A warning occurs:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_x_continuous(name = &quot;Displacement&quot;)</code></pre>
 <pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
 ## will replace the existing scale.</code></pre>
-<p><img src="scales_files/figure-html/scales-2-1.png" width="672" /></p>
+<img src="scales_files/figure-html/scales-2-1.png" width="672" />
+</details>
 </div>
 <div id="colorbrewer-scales" class="section level2">
 <h2>ColorBrewer scales</h2>
 <p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
 <p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
-<p><img src="scales_files/figure-html/scales-3-1.png" width="672" /></p>
+<img src="scales_files/figure-html/scales-3-1.png" width="672" />
+</details>
 </div>
 <div id="a-better-scale-for-car-class" class="section level2">
 <h2>A better scale for car class</h2>
 <p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
 <p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="scales_files/figure-html/scales-4-1.png" width="672" /></p>
+<img src="scales_files/figure-html/scales-4-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="practice" class="section level2">
+<h2>Practice</h2>
 <p>Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, … .</p>
 </div>
 

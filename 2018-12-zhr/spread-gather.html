@@ -234,6 +234,8 @@ $(document).ready(function () {
 <p>Use <code>spread()</code> to convert <code>table2</code> to <code>table1</code>. What is the meaning of the <code>key</code> and <code>value</code> arguments?</p>
 <pre class="r"><code>table2 %&gt;%
   spread(_____)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>table2 %&gt;% 
   spread(type, count)</code></pre>
 <pre><code>## # A tibble: 6 x 4
@@ -245,6 +247,7 @@ $(document).ready(function () {
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
+</details>
 </div>
 <div id="table1-to-table2" class="section level2">
 <h2>table1 to table2</h2>
@@ -254,6 +257,8 @@ $(document).ready(function () {
 
 table1 %&gt;%
   gather(_____, -___:-___)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>table1 %&gt;% 
   gather(type, count, cases, population)</code></pre>
 <pre><code>## # A tibble: 12 x 4
@@ -307,6 +312,7 @@ table1 %&gt;%
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
+</details>
 </div>
 <div id="plot-table-x" class="section level2">
 <h2>Plot table-x</h2>
@@ -323,7 +329,8 @@ ___ %&gt;%
 ___ %&gt;%
   ggplot(aes(___, ___)) +
   geom_point()</code></pre>
-<p>For showing one measurement:</p>
+<details>
+<p><summary>► Solution:</summary> For showing one measurement:</p>
 <pre class="r"><code>table1 %&gt;%
   ggplot(aes(country, population, fill = factor(year))) +
   geom_col(position = &quot;dodge&quot;)</code></pre>
@@ -346,7 +353,8 @@ ___ %&gt;%
   ggplot() +
   geom_col(aes(country, count, fill = type)) +
   facet_wrap(~year)</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-8-1.png" width="672" /></p>
+<img src="spread-gather_files/figure-html/spread-gather-8-1.png" width="672" />
+</details>
 </div>
 <div id="binding" class="section level2">
 <h2>Binding</h2>
@@ -365,6 +373,8 @@ population_tbl &lt;-
 bind_rows(_____) %&gt;%
   _____ %&gt;%
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>cases_tbl &lt;-
   table4a %&gt;%
   gather(year, count, -country) %&gt;%
@@ -421,6 +431,7 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
 ## 10 China       1999  population 1272915272
 ## 11 China       2000  cases          213766
 ## 12 China       2000  population 1280428583</code></pre>
+</details>
 </div>
 <div id="economies" class="section level2">
 <h2>Economies</h2>
@@ -429,15 +440,18 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
   _____ %&gt;%
   ggplot(aes(x = displ, y = ___)) +
   geom_point()</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>mpg %&gt;%
   select(displ, hwy, cty) %&gt;%
   gather(cty_hwy, value, hwy, cty) %&gt;%
   ggplot() +
   geom_jitter(aes(displ, value, color = cty_hwy))</code></pre>
-<p><img src="spread-gather_files/figure-html/spread-gather-11-1.png" width="672" /></p>
+<img src="spread-gather_files/figure-html/spread-gather-11-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 12.3.3 of r4ds.</p>
 </div>
 

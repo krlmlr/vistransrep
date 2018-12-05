@@ -233,7 +233,8 @@ $(document).ready(function () {
 <h2>Favorite theme</h2>
 <p>Choose your favorite among the predefined themes.</p>
 <p>Hint: All start with <code>theme_...()</code>, but watch out for <code>theme_set()</code>.</p>
-<p>For presentations, <code>theme_bw()</code> or <code>theme_minimal()</code> look useful:</p>
+<details>
+<p><summary>► Solution:</summary> For presentations, <code>theme_bw()</code> or <code>theme_minimal()</code> look useful:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   theme_bw() +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -247,11 +248,14 @@ $(document).ready(function () {
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
-<p><img src="theme_files/figure-html/theme-1-2.png" width="672" /></p>
+<img src="theme_files/figure-html/theme-1-2.png" width="672" />
+</details>
 </div>
 <div id="legend-at-bottom" class="section level2">
 <h2>Legend at bottom</h2>
 <p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a color or fill legend. What happens if you then apply <code>theme_bw()</code>? Why?</p>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   theme_bw() +
   geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
@@ -268,7 +272,8 @@ $(document).ready(function () {
   scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;) +
   theme(legend.position = &quot;bottom&quot;) +
   theme_bw()</code></pre>
-<p><img src="theme_files/figure-html/theme-3-1.png" width="672" /></p>
+<img src="theme_files/figure-html/theme-3-1.png" width="672" />
+</details>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
