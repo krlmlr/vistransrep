@@ -15,9 +15,12 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Print the `mpg` dataset to your console.
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r scatter-1}
 mpg
 ```
+</details>
 
 ## RStudio's view pane
 
@@ -27,6 +30,8 @@ View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by
 View(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```r
 View(mpg)
 ```
@@ -35,6 +40,7 @@ View(mpg)
 - Arranging works as usual by clicking on a column header. Because the sort operation is stable, you can sort by two variables by first sorting by the *second* variable, then by the *first*.
 - The 1999 VW Jetta 1.9 and VW New Beetle 1.9 have the best highway economy, both will drive you 44 miles for each gallon of fuel.
 - Note that the view pane currently shows at most 100 columns.
+</details>
 
 ## Scatterplots
 
@@ -47,6 +53,8 @@ ggplot(data = mpg) +
     
 Share particularly interesting or boring examples you might encounter.  Did you find anything surprising?
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r scatter-2, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -73,6 +81,7 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = cty, y = hwy))
 ```
+</details>
 
 ## Convert units
 
@@ -85,12 +94,15 @@ ggplot(data = ___) +
   geom_point(mapping = aes(x = displ, y = ___))
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r scatter-7, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = 235 / hwy))
 ```
+</details>
 
-## More Examples
+## Overplotting
 
 How can you reduce overplotting? Use your favorite search engine to find out.
 
@@ -98,5 +110,7 @@ How can you reduce overplotting? Use your favorite search engine to find out.
 ggplot(data = ___) +
   geom____(_____)
 ```
-    
+
+## More Examples
+
 Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).

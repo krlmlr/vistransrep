@@ -41,6 +41,8 @@ flights %>%
   arrange(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-1}
 flights %>%
   summarize(mean(arr_delay, na.rm = TRUE))
@@ -88,6 +90,7 @@ flights %>%
 flights %>%
   count(origin, sort = TRUE)
 ```
+</details>
 
 ## Air time by carrier
 
@@ -100,6 +103,8 @@ flights %>%
   ungroup()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-7}
 total_airtime_by_carrier <-
   flights %>% 
@@ -109,6 +114,9 @@ total_airtime_by_carrier <-
 
 total_airtime_by_carrier
 ```
+</details>
+
+## Air time by carrier, visualized
 
 Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.
 
@@ -125,6 +133,8 @@ total_airtime_by_carrier %>%
     geom_col()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-8}
 total_airtime_by_carrier %>% 
   arrange(acc_air_time) %>%
@@ -133,6 +143,7 @@ total_airtime_by_carrier %>%
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()
 ```
+</details>
 
 ## Carriers for long-distance routes
 
@@ -146,6 +157,8 @@ flights
   arrange(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-9}
 carrier_arranged_by_mean_distance <-
   flights %>%
@@ -156,27 +169,35 @@ carrier_arranged_by_mean_distance <-
 
 carrier_arranged_by_mean_distance
 ```
+</details>
 
-Plot a bar chart of median distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
+## Mean distance, visualized
+
+Plot a bar chart of mean distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
 
 ```r
-median_miles_by_carrier <-
+mean_miles_by_carrier <-
   _____ %>%
   _____ %>%
   _____
 
-median_miles_by_carrier %>%
+mean_miles_by_carrier %>%
   arrange(_____) %>%
   mutate(_____) %>%
   ggplot(aes(___)) +
     geom____()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
+We need `geom_col()`, because the data is already aggregated and contains one row per geometry object we're plotting.
+
 ```{r summarize-10}
 carrier_arranged_by_mean_distance %>% 
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))
 ```
+</details>
 
 ## Worst plane
 
@@ -203,6 +224,8 @@ flights %>%
   head(1)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-11}
 flights %>% 
   filter(is.na(dep_time)) %>%
@@ -212,6 +235,9 @@ flights %>%
   filter(!is.na(tailnum)) %>%
   arrange(desc(not_departed))
 ```
+</details>
+
+## Short-distance routes per airline, visualized
 
 Compute the ratio of short-distance routes (less than 300 miles) for each airline.
 
@@ -224,6 +250,8 @@ flights %>%
   ungroup()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-12}
 flights %>% 
   group_by(tailnum) %>% 
@@ -236,6 +264,7 @@ flights %>%
   filter(is.na(dep_time)) %>%
   count(tailnum, sort = TRUE)
 ```
+</details>
 
 ## Short-distance routes per airline
 
@@ -250,6 +279,8 @@ short_distance_route_ratio %>%
     geom_col()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-14}
 short_distance_route_ratio <-
   flights %>%
@@ -264,7 +295,8 @@ short_distance_route_ratio %>%
   ggplot() +
   geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
 ```
+</details>
 
-##
+## More Examples
 
 Find more exercises in item 1 of Section 5.6.7 of r4ds.

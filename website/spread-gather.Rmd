@@ -21,10 +21,13 @@ table2 %>%
   spread(_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r spread-gather-1}
 table2 %>% 
   spread(type, count)
 ```
+</details>
 
 ## table1 to table2
 
@@ -38,6 +41,8 @@ table1 %>%
   gather(_____, -___:-___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r spread-gather-2}
 table1 %>% 
   gather(type, count, cases, population)
@@ -57,6 +62,7 @@ table1 %>%
   gather(type, count, -country, -year) %>% 
   arrange(country, year, type)
 ```
+</details>
 
 ## Plot table-x
 
@@ -77,6 +83,8 @@ ___ %>%
   geom_point()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 For showing one measurement:
 
 ```{r spread-gather-5}
@@ -112,6 +120,7 @@ table2 %>%
   geom_col(aes(country, count, fill = type)) +
   facet_wrap(~year)
 ```
+</details>
 
 ## Binding
 
@@ -135,6 +144,8 @@ bind_rows(_____) %>%
   _____
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r spread-gather-9}
 cases_tbl <-
   table4a %>%
@@ -167,6 +178,7 @@ bind_rows(cases_tbl, population_tbl) %>%
   select(country, year, everything()) %>% 
   arrange(country, year, type)
 ```
+</details>
 
 ## Economies
 
@@ -179,6 +191,8 @@ mpg %>%
   geom_point()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r spread-gather-11}
 mpg %>%
   select(displ, hwy, cty) %>%
@@ -186,7 +200,8 @@ mpg %>%
   ggplot() +
   geom_jitter(aes(displ, value, color = cty_hwy))
 ```
+</details>
 
-##
+## More Examples
 
 Find more exercises in Section 12.3.3 of r4ds.

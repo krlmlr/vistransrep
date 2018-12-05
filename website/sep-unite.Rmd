@@ -27,6 +27,8 @@ table3 %>%
   _____
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r sep-unite-1}
 table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
@@ -43,6 +45,7 @@ table3 %>%
   gather(type, count, -country, -year) %>%
   arrange(country, year, type)
 ```
+</details>
 
 ## To table3
 
@@ -58,11 +61,14 @@ table2 %>%
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r sep-unite-3}
 table2 %>%
   spread(type, count) %>% 
   unite(rate, cases, population, sep = "/")
 ```
+</details>
 
 ## Counting relations
 
@@ -78,6 +84,8 @@ flights %>%
   count(___)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r sep-unite-4}
 flights %>%
   unite(
@@ -87,7 +95,8 @@ flights %>%
   ) %>%
   count(relation)
 ```
+</details>
 
-##
+## More Examples
 
 Find more exercises in Section 12.4.3 of r4ds.

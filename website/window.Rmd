@@ -26,9 +26,12 @@ flights %>%
   mutate(month_share_by_carrier = ___ / ___) %>% 
   arrange(month_share_by_carrier) %>% 
   group_by(___) %>%
-  slice(1)
+  slice(1) %>%
+  ungroup()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r window-1}
 monthly_shares <-
   flights %>%
@@ -37,10 +40,14 @@ monthly_shares <-
   mutate(total_distance = sum(distance)) %>%
   ungroup() %>%
   mutate(month_share = distance / total_distance) %>%
-  arrange(-total_distance)
+  arrange(month_share_by_carrier) %>% 
+  group_by(carrier) %>%
+  slice(1) %>%
+  ungroup()
 
 monthly_shares
 ```
+</details>
 
 ## Heat map of miles flown
 
@@ -56,14 +63,17 @@ monthly_shares %>%
   scale_fill_continuous(trans = "log10")
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r window-1-a}
 monthly_shares %>% 
   ggplot(aes(factor(month), carrier, fill = month_share)) +
   geom_tile() +
   scale_fill_continuous(trans = "log10")
 ```
+</details>
 
-##
+## Busiest month
 
 Which month is busiest in terms of miles flown, over all carriers?
 
@@ -76,10 +86,10 @@ flights %>%
   slice(1)
 ```
 
-##
+## Busiest month, visualized
 
 Visualize with a bar chart.
 
-##
+## More Examples
 
 Find more exercises in Section 5.7.1 of r4ds.

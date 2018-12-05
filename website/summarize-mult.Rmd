@@ -38,6 +38,8 @@ flights %>%
   _____
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-mult-1}
 flights %>%
   group_by(origin, dest, carrier) %>%
@@ -67,6 +69,7 @@ flights %>%
   ungroup() %>%
   arrange(desc(nn))
 ```
+</details>
 
 ## Cancelled flights per month per airline
 
@@ -79,6 +82,8 @@ flights %>%
   ungroup()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-mult-4}
 cancelled_flights <-
   flights %>% 
@@ -88,6 +93,7 @@ cancelled_flights <-
 
 cancelled_flights
 ```
+</details>
 
 ## Heat map of cancelled flights
 
@@ -108,12 +114,15 @@ cancelled_flights %>%
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r summarize-mult-5}
 cancelled_flights %>%
   ggplot() +
   geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
 ```
+</details>
 
-##
+## More Examples
 
 Find more exercises in Section 5.6.7 of r4ds.
