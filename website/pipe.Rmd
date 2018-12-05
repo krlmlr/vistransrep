@@ -33,6 +33,8 @@ flights %>%
   View()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Naming is hard!
 
 ```{r filtering-19}
@@ -80,6 +82,7 @@ View(
   )
 )
 ```
+</details>
 
 ## Pipe
 
@@ -102,6 +105,8 @@ flights %>%
   View()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r filtering-21}
 flights %>% 
   filter(dep_time <= 600) %>% 
@@ -125,25 +130,26 @@ late_late_ua_flights_not_honolulu <-
   filter(dest != "HNL") %>%
   arrange(distance)
 ```
+</details>
 
-##
+## Ad infinitum, 1
 
 Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM.
 
-##
+## Ad infinitum, 2
 
 Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.
 
-##
+## Ad infinitum, 3
 
 Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports.
 
-##
+## Ad infinitum, 4
 
 Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
 
 Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::str_detect(name, "^Honolulu")` .
 
-##
+## Ad infinitum, 5
 
 Sort the result by `distance`.

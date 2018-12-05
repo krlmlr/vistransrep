@@ -26,6 +26,8 @@ p <-
 plotly::ggplotly(p)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r plotly-1}
 p <-
   mpg %>% 
@@ -35,6 +37,7 @@ p <-
 
 plotly::ggplotly(p)
 ```
+</details>
 
 ## More expressive tooltip
 
@@ -52,6 +55,8 @@ p <-
 plotly::ggplotly(p)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r plotly-2}
 p <-
   mpg %>% 
@@ -60,11 +65,14 @@ p <-
 
 plotly::ggplotly(p)
 ```
+</details>
 
 ## Barplot
 
 Convert a bar plot or a histogram to plotly. How does this affect the tooltip?
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r plotly-3}
 p <-
   mpg %>% 
@@ -73,7 +81,9 @@ p <-
 
 plotly::ggplotly(p)
 ```
-##
+</details>
+
+## Crosstalk
 
 See https://plotly-book.cpsievert.me/linking-views-without-shiny.html for examples of linking two plots, or linking plots with other widgets. This requires the _crosstalk_ package:
 

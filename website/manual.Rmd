@@ -26,6 +26,8 @@ ggplot(_____) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r manual-1, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(
@@ -36,6 +38,7 @@ ggplot(data = mpg) +
 ```
 
 Some appear darker due to overplotting.
+</details>
 
 
 ## Assigning variable outside `aes()`
@@ -50,6 +53,8 @@ ggplot(_____) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 Fails with an error:
 
 ```{r manual-2, echo=TRUE, error=TRUE}
@@ -69,6 +74,7 @@ ggplot(data = mpg) +
     color = class
   )
 ```
+</details>
 
 ## Assigning constant inside `aes()`
 
@@ -81,6 +87,8 @@ ggplot(_____) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 This works, but creates a useless legend and may give unexpected results:
 
 ```{r manual-4, echo=TRUE}
@@ -99,6 +107,7 @@ ggplot(data = mpg) +
     mapping = aes(x = displ, y = hwy, shape = "triangle")
   )
 ```
+</details>
 
 ## Valid values for manual aesthetics
 
@@ -112,6 +121,8 @@ ggplot(_____) +
   )
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 - "color": basic colors, numbers
 
 - "alpha": numbers between 0 and 1
@@ -119,14 +130,15 @@ ggplot(_____) +
 - "shape": integers from 0 to 25, negative integers seem to display a letter
 
 - "size": positive numbers
+</details>
 
-##
+## Default point color
 
 Find how to update the default point color for all scatterplots in the help for `update_geom_defaults()`. Does the setting persist between plots? Is it still active after restarting RStudio (Session → Restart R or Ctrl + Shift + F10, Cmd + Shift + F10 on the Mac).
 
-##
+## Default text color
 
-Find how to update the default point color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
+Find how to update the default color for all label texts in the help for `theme()`. How to set or update the theme for all subsequent plots?
 
 ```
 ggplot(_____) +

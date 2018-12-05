@@ -25,6 +25,8 @@ quakes %>%
   addCircles()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r leaflet-1}
 library(leaflet)
 quakes %>% 
@@ -33,6 +35,7 @@ quakes %>%
   addTiles() %>% 
   addCircles()
 ```
+</details>
 
 ## A map with a tooltip
 
@@ -46,6 +49,8 @@ ___ %>%
   addCircles()
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r leaflet-2}
 library(leaflet)
 quakes %>% 
@@ -54,11 +59,12 @@ quakes %>%
   addTiles() %>% 
   addCircles(popup = ~str_c("Magnitude: ", mag))
 ```
+</details>
 
-##
+## Other kinds of layer
 
 Explore further options in `?addTiles`.
 
-##
+## More exercises
 
 See section 4.2.3 in https://plotly-book.cpsievert.me/linking-views-without-shiny.html for linking a map to a plot.
