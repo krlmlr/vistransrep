@@ -124,6 +124,8 @@ flights %>%
   )
 ```
 
+TODO
+
 ```{r summarize-4}
 flights %>%
   summarize_at(
@@ -156,6 +158,8 @@ flights %>%
 ## Air time by carrier
 
 Which carriers had the longest accumulated air time, excluding cancelled flights?
+
+TODO
 
 ```r
 flights %>%
@@ -218,6 +222,8 @@ flights
   arrange(___)
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r summarize-9}
@@ -248,6 +254,8 @@ mean_miles_by_carrier %>%
   ggplot(aes(___)) +
     geom____()
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
@@ -326,6 +334,8 @@ flights %>%
   count(tailnum, sort = TRUE)
 ```
 </details>
+
+TODO
 
 ## Short-distance routes per airline
 
