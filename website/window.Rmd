@@ -88,7 +88,7 @@ flights %>%
 
 ## Busiest month, visualized
 
-Visualize with a bar chart.
+Visualize the number of flights in the busiest month with a bar chart.
 
 ## More exercises
 
