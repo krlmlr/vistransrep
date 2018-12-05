@@ -229,8 +229,8 @@ $(document).ready(function () {
 </div>
 
 
-<div id="intermediate-variables" class="section level2">
-<h2>Intermediate variables</h2>
+<div id="late-flights" class="section level2">
+<h2>Late flights</h2>
 <p>View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p>
 <pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
 View(flights_after_10)</code></pre>
@@ -238,8 +238,45 @@ View(flights_after_10)</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(___) %&gt;%
   View()</code></pre>
+</div>
+<div id="fly-united" class="section level2">
+<h2>Fly United</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p>
+<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
+ua_flights_after_10 &lt;- ...
+View(___)</code></pre>
+<pre class="r"><code>View(filter(filter(flights, ___), ___))</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(___) %&gt;%
+  filter(___) %&gt;%
+  View()</code></pre>
+</div>
+<div id="ad-infinitum-1" class="section level2">
+<h2>Ad infinitum, 1</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM.</p>
+</div>
+<div id="ad-infinitum-2" class="section level2">
+<h2>Ad infinitum, 2</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p>
+</div>
+<div id="ad-infinitum-3" class="section level2">
+<h2>Ad infinitum, 3</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p>
+</div>
+<div id="ad-infinitum-4" class="section level2">
+<h2>Ad infinitum, 4</h2>
+<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
+<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p>
+</div>
+<div id="ad-infinitum-5" class="section level2">
+<h2>Ad infinitum, 5</h2>
+<p>Sort the result by <code>distance</code>.</p>
+</div>
+<div id="section" class="section level2">
+<h2>…</h2>
 <details>
-<p><summary>► Solution:</summary> Naming is hard!</p>
+<p><summary>► Solution:</summary> ### Intermediate variables</p>
+<p>Naming is hard!</p>
 <pre class="r"><code>early_flights &lt;- filter(flights, dep_time &gt;= 600)
 early_late_flights &lt;-
   filter(early_flights, arr_time &gt;= 2200)
@@ -272,9 +309,8 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-</div>
-<div id="nested-expressions" class="section level2">
-<h2>Nested expressions</h2>
+<div id="nested-expressions" class="section level3">
+<h3>Nested expressions</h3>
 <p>Difficult to read.</p>
 <pre class="r"><code>View(
   arrange(
@@ -303,21 +339,9 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 ## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-</details>
 </div>
-<div id="pipe" class="section level2">
-<h2>Pipe</h2>
-<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p>
-<pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
-ua_flights_after_10 &lt;- ...
-View(___)</code></pre>
-<pre class="r"><code>View(filter(filter(flights, ___)))</code></pre>
-<pre class="r"><code>flights %&gt;%
-  filter(___) %&gt;%
-  filter(___) %&gt;%
-  View()</code></pre>
-<details>
-<p><summary>► Solution:</summary></p>
+<div id="pipe" class="section level3">
+<h3>Pipe</h3>
 <pre class="r"><code>flights %&gt;% 
   filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
@@ -343,26 +367,6 @@ View(___)</code></pre>
   arrange(distance)</code></pre>
 </details>
 </div>
-<div id="ad-infinitum-1" class="section level2">
-<h2>Ad infinitum, 1</h2>
-<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM.</p>
-</div>
-<div id="ad-infinitum-2" class="section level2">
-<h2>Ad infinitum, 2</h2>
-<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.</p>
-</div>
-<div id="ad-infinitum-3" class="section level2">
-<h2>Ad infinitum, 3</h2>
-<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports.</p>
-</div>
-<div id="ad-infinitum-4" class="section level2">
-<h2>Ad infinitum, 4</h2>
-<p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
-<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p>
-</div>
-<div id="ad-infinitum-5" class="section level2">
-<h2>Ad infinitum, 5</h2>
-<p>Sort the result by <code>distance</code>.</p>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
