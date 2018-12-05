@@ -9,6 +9,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-[Part 1](rmarkdown-1.html): Essentials
+## Essentials
 
-[Part 2](rmarkdown-2.html): Workflow and more formats
+1. [R + markdown](rmarkdown-start.html)
+
+2. [Workflow and more formats](rmarkdown-workflow.html)
