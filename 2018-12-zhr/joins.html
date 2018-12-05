@@ -244,6 +244,8 @@ airlines %&gt;%
 airports %&gt;%
   _____ %&gt;%
   _____</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>airlines %&gt;%
   count(carrier) %&gt;% 
   filter(n &gt; 1)</code></pre>
@@ -254,6 +256,7 @@ airports %&gt;%
   filter(n &gt; 1)</code></pre>
 <pre><code>## # A tibble: 0 x 2
 ## # ... with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
+</details>
 </div>
 <div id="destination-by-airline" class="section level2">
 <h2>Destination by airline</h2>
@@ -264,6 +267,8 @@ airports %&gt;%
   count(dest, carrier) %&gt;%
   left_join(airlines) %&gt;%
   left_join(airports, by = c(&quot;___&quot; = &quot;___&quot;))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
@@ -286,6 +291,7 @@ airports %&gt;%
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;,
 ## #   lon &lt;dbl&gt;, alt &lt;int&gt;, tz &lt;dbl&gt;, dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
+</details>
 </div>
 <div id="destination-by-airline-wide-form" class="section level2">
 <h2>Destination by airline, wide form</h2>
@@ -301,6 +307,8 @@ flights %&gt;%
   rename(_____) %&gt;%
   count(_____) %&gt;%
   _____(_____)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
@@ -335,6 +343,7 @@ flights %&gt;%
 ## #   Inc.` &lt;int&gt;, `JetBlue Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;,
 ## #   `SkyWest Airlines Inc.` &lt;int&gt;, `Southwest Airlines Co.` &lt;int&gt;, `United
 ## #   Air Lines Inc.` &lt;int&gt;, `US Airways Inc.` &lt;int&gt;</code></pre>
+</details>
 </div>
 <div id="destination-by-airline-economic-join" class="section level2">
 <h2>Destination by airline, economic join</h2>
@@ -354,6 +363,8 @@ flights %&gt;%
   select(-___) %&gt;% 
   left_join(_____, by = &quot;___&quot;) %&gt;% 
   _____(_____)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>airline_names &lt;-
   airlines %&gt;%
   rename(carrier_name = name)
@@ -386,26 +397,30 @@ verbose_destinations_by_carrier</code></pre>
 ##  9   402 Endeavor Air Inc. Norfolk Intl                      
 ## 10   940 Endeavor Air Inc. Philadelphia Intl                 
 ## # ... with 48 more rows</code></pre>
+</details>
 </div>
 <div id="heat-map" class="section level2">
 <h2>Heat map</h2>
 <p>Plot a heat map of destination by airline for all flights shorter than 300 miles, with explicit names. Do you use <code>geom_raster()</code> or <code>geom_bin2d()</code>?</p>
 <p>Hint: Use <code>by = c(&quot;dest&quot; = &quot;faa&quot;)</code>.</p>
-<pre class="r"><code>short_distance_destinations &lt;-
+<pre class="r"><code>verbose_destinations_by_carrier &lt;-
   _____
 
-short_distance_destinations %&gt;% 
+verbose_destinations_by_carrier %&gt;% 
   ggplot() +
   geom____(aes(___))</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>verbose_destinations_by_carrier %&gt;%
   ggplot() +
   geom_raster(aes(airport_name, carrier_name, fill = n)) +
   ggpubr::rotate_x_text()</code></pre>
 <p><img src="joins_files/figure-html/joins-6-1.png" width="672" /></p>
 <pre class="r"><code>  # theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))</code></pre>
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 13.4.6 of r4ds.</p>
 </div>
 

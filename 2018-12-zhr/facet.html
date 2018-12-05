@@ -239,7 +239,8 @@ $(document).ready(function () {
   geom_point() +
   geom_smooth() + 
   facet_grid(___ ~ ___)</code></pre>
-<p>We can split the simple scatterplot over two facets, one per year:</p>
+<details>
+<p><summary>► Solution:</summary> We can split the simple scatterplot over two facets, one per year:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~year)</code></pre>
@@ -266,21 +267,25 @@ $(document).ready(function () {
     method = &quot;lm&quot;
   ) +
   facet_wrap(~class)</code></pre>
-<p><img src="facet_files/figure-html/facet-4-1.png" width="672" /></p>
+<img src="facet_files/figure-html/facet-4-1.png" width="672" />
+</details>
 </div>
 <div id="labeling-the-facets" class="section level2">
 <h2>Labeling the facets</h2>
 <p>What changes if you add the argument <code>labeller = &quot;label_both&quot;</code> to the <code>facet_wrap()</code> call?</p>
-<p>This is useful if the value does not speak for itself:</p>
+<details>
+<p><summary>► Solution:</summary> This is useful if the value does not speak for itself:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~cyl, labeller = &quot;label_both&quot;)</code></pre>
-<p><img src="facet_files/figure-html/facet-5-1.png" width="672" /></p>
+<img src="facet_files/figure-html/facet-5-1.png" width="672" />
+</details>
 </div>
 <div id="different-scales" class="section level2">
 <h2>Different scales</h2>
 <p>Is it possible to use a different x and y scale for each facet? How?</p>
-<p>Via the <code>scales</code> argument, zooms in to the range of the corresponding scale(s).</p>
+<details>
+<p><summary>► Solution:</summary> Via the <code>scales</code> argument, zooms in to the range of the corresponding scale(s).</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(
@@ -304,14 +309,15 @@ $(document).ready(function () {
     labeller = &quot;label_both&quot;,
     scales = &quot;free&quot;
   )</code></pre>
-<p><img src="facet_files/figure-html/facet-8-1.png" width="672" /></p>
+<img src="facet_files/figure-html/facet-8-1.png" width="672" />
+</details>
 </div>
-<div id="section" class="section level2">
-<h2></h2>
+<div id="other-arguments" class="section level2">
+<h2>Other arguments</h2>
 <p>Experiment with other arguments to <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
 </div>
-<div id="section-1" class="section level2">
-<h2></h2>
+<div id="more-exercises" class="section level2">
+<h2>More exercises</h2>
 <p>Find more exercises in Section 3.5.1 of r4ds.</p>
 </div>
 
