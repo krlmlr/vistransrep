@@ -18,6 +18,8 @@ View <- function(x) print(x)
 
 View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?
 
+TODO
+
 ```r
 flights_after_10 <- filter(flights, ___)
 View(flights_after_10)
@@ -36,6 +38,8 @@ flights %>%
 ## Fly United
 
 Extend the four solutions to view all `"UA"` flights that arrived after 10:00 PM.
+
+TODO
 
 ```r
 flights_after_10 <- filter(flights, ___)
@@ -77,6 +81,8 @@ Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::
 Sort the result by `distance`.
 
 ## ...
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
