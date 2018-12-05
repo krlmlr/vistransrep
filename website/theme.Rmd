@@ -18,6 +18,8 @@ Choose your favorite among the predefined themes.
 
 Hint: All start with `theme_...()`, but watch out for `theme_set()`.
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 For presentations, `theme_bw()` or `theme_minimal()` look useful:
@@ -40,6 +42,8 @@ ggplot(data = mpg) +
 </details>
 
 ## Legend at bottom
+
+TODO
 
 Apply `theme(legend.position = "bottom")` to a plot with a color or fill legend.  What happens if you then apply `theme_bw()`? Why?
 
