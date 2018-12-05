@@ -32,6 +32,8 @@ airports %>%
   _____
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r joins-1}
@@ -61,6 +63,8 @@ flights %>%
   left_join(airports, by = c("___" = "___"))
 ```
 
+TODO
+
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r joins-3}
@@ -88,6 +92,8 @@ flights %>%
   count(_____) %>%
   _____(_____)
 ```
+
+TODO
 
 <details>
 <summary>&#x25BA; Solution:</summary>
