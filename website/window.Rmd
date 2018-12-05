@@ -39,13 +39,13 @@ monthly_shares <-
   summarize(distance = sum(distance)) %>%
   mutate(total_distance = sum(distance)) %>%
   ungroup() %>%
-  mutate(month_share = distance / total_distance) %>%
+  mutate(month_share_by_carrier = distance / total_distance)
+
+monthly_shares %>%
   arrange(month_share_by_carrier) %>% 
   group_by(carrier) %>%
   slice(1) %>%
   ungroup()
-
-monthly_shares
 ```
 </details>
 
