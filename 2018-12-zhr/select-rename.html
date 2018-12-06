@@ -441,9 +441,7 @@ flights %&gt;%
   ggplot() +
   geom_density2d(aes(dep_time, arr_time)) +
   scale_x_continuous(name = &quot;Departure time&quot;) +
-  scale_x_continuous(name = &quot;Arrival time&quot;)</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which
-## will replace the existing scale.</code></pre>
+  scale_y_continuous(name = &quot;Arrival time&quot;)</code></pre>
 <pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
 <p><img src="select-rename_files/figure-html/select-rename-9-1.png" width="672" /></p>
 <pre class="r"><code>## Renaming in the data
