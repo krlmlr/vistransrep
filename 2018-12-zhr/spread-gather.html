@@ -431,7 +431,6 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
 ## 10 China       1999  population 1272915272
 ## 11 China       2000  cases          213766
 ## 12 China       2000  population 1280428583</code></pre>
-</details>
 <p>Shorter, with the <code>.id</code> argument to <code>bind_rows()</code>:</p>
 <pre class="r"><code>bind_rows(cases = table4a, population = table4b, .id = &quot;type&quot;) %&gt;%
   gather(year, count, -country, -type) %&gt;%
