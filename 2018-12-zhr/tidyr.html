@@ -11,9 +11,8 @@
 
 <meta name="author" content="Kirill Müller, cynkra GmbH" />
 
-<meta name="date" content="2017-06-02" />
 
-<title>Separating and uniting</title>
+<title>dplyr exercises</title>
 
 <script src="site_libs/jquery/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -225,127 +224,19 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Separating and uniting</h1>
+<h1 class="title toc-ignore">dplyr exercises</h1>
 <h4 class="author"><em>Kirill Müller, cynkra GmbH</em></h4>
-<h4 class="date"><em>June 2, 2017</em></h4>
 
 </div>
 
 
-<div id="table3" class="section level2">
-<h2>table3</h2>
-<p>Convert <code>table3</code> to <code>table1</code> and <code>table2</code>.</p>
-<pre class="r"><code>table3 %&gt;%
-  separate(
-    ___,
-    into = c(&quot;___&quot;, &quot;___&quot;),
-    convert = TRUE
-  ) %&gt;%
-  _____ %&gt;%
-  _____</code></pre>
-<details>
-<p><summary>► Solution:</summary></p>
-<pre class="r"><code>table3 %&gt;%
-  separate(rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
-<pre><code>## # A tibble: 6 x 4
-##   country      year  cases population
-## * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
-<pre class="r"><code>table3 %&gt;%
-  separate(
-    rate,
-    into = c(&quot;cases&quot;, &quot;population&quot;),
-    sep = &quot;/&quot;,
-    convert = TRUE
-  ) %&gt;%
-  gather(type, count, -country, -year) %&gt;%
-  arrange(country, year, type)</code></pre>
-<pre><code>## # A tibble: 12 x 4
-##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
-</details>
-</div>
-<div id="to-table3" class="section level2">
-<h2>To table3</h2>
-<p>Convert <code>table2</code> to <code>table3</code>.</p>
-<pre class="r"><code>table2 %&gt;%
-  _____ %&gt;%
-  unite(
-    ___,
-    ___, ___,
-    sep = &quot;/&quot;
-  )</code></pre>
-<details>
-<p><summary>► Solution:</summary></p>
-<pre class="r"><code>table2 %&gt;%
-  spread(type, count) %&gt;% 
-  unite(rate, cases, population, sep = &quot;/&quot;)</code></pre>
-<pre><code>## # A tibble: 6 x 3
-##   country      year rate             
-##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
-## 1 Afghanistan  1999 745/19987071     
-## 2 Afghanistan  2000 2666/20595360    
-## 3 Brazil       1999 37737/172006362  
-## 4 Brazil       2000 80488/174504898  
-## 5 China        1999 212258/1272915272
-## 6 China        2000 213766/1280428583</code></pre>
-</details>
-</div>
-<div id="counting-relations" class="section level2">
-<h2>Counting relations</h2>
-<p>Count the flights for each relation in the <code>flights</code> dataset, using just one grouping variable.</p>
-<pre class="r"><code>flights %&gt;%
-  unite(
-    relation,
-    ___, ___,
-    sep = &quot; -&gt; &quot;
-  ) %&gt;%
-  count(___)</code></pre>
-<details>
-<p><summary>► Solution:</summary></p>
-<pre class="r"><code>flights %&gt;%
-  unite(
-    relation,
-    origin, dest,
-    sep = &quot; -&gt; &quot;
-  ) %&gt;%
-  count(relation)</code></pre>
-<pre><code>## # A tibble: 224 x 2
-##    relation       n
-##    &lt;chr&gt;      &lt;int&gt;
-##  1 EWR -&gt; ALB   439
-##  2 EWR -&gt; ANC     8
-##  3 EWR -&gt; ATL  5022
-##  4 EWR -&gt; AUS   968
-##  5 EWR -&gt; AVL   265
-##  6 EWR -&gt; BDL   443
-##  7 EWR -&gt; BNA  2336
-##  8 EWR -&gt; BOS  5327
-##  9 EWR -&gt; BQN   297
-## 10 EWR -&gt; BTV   931
-## # ... with 214 more rows</code></pre>
-</details>
-</div>
-<div id="more-exercises" class="section level2">
-<h2>More exercises</h2>
-<p>Find more exercises in Section 12.4.3 of r4ds.</p>
+<p><img src="https://r4ds.had.co.nz/images/tidy-1.png" /></p>
+<div id="tidy-data" class="section level2">
+<h2>Tidy data</h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="spread-gather.html">Spreading and gathering</a></p></li>
+<li><p><a href="sep-unite.html">Separating and uniting</a></p></li>
+</ol>
 </div>
 
 <p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
