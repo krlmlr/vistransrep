@@ -178,7 +178,6 @@ bind_rows(cases_tbl, population_tbl) %>%
   select(country, year, everything()) %>% 
   arrange(country, year, type)
 ```
-</details>
 
 Shorter, with the `.id` argument to `bind_rows()`:
 
