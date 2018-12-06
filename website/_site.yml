@@ -17,6 +17,8 @@ navbar:
     href: ggplot2.html
   - text: dplyr
     href: dplyr.html
+  - text: tidyr
+    href: tidyr.html
   - text: import
     href: import.html
   - text: rmarkdown

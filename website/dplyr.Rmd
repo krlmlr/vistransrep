@@ -36,11 +36,7 @@ library(tidyverse)
 1. [Grouped mutate](window.html)
 
 
-## Tidy and relational data
-
-1. [Spreading and gathering](spread-gather.html)
-
-1. [Separating and uniting](sep-unite.html)
+## Relational data
 
 1. [Keys and mutating joins](joins.html)
 

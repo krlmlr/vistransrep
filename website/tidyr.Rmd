@@ -1,0 +1,19 @@
+---
+title: "dplyr exercises"
+author: "Kirill Müller, cynkra GmbH"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+
+![](https://r4ds.had.co.nz/images/tidy-1.png)
+
+## Tidy data
+
+1. [Spreading and gathering](spread-gather.html)
+
+1. [Separating and uniting](sep-unite.html)
