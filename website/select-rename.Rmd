@@ -144,7 +144,7 @@ flights %>%
   ggplot() +
   geom_density2d(aes(dep_time, arr_time)) +
   scale_x_continuous(name = "Departure time") +
-  scale_x_continuous(name = "Arrival time")
+  scale_y_continuous(name = "Arrival time")
 ```
 
 ```{r select-rename-10}

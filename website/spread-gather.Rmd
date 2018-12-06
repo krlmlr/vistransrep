@@ -135,7 +135,7 @@ cases_tbl <-
   mutate(type = "cases")
 
 population_tbl <-
-  table4a %>%
+  table4b %>%
   gather(_____) %>%
   mutate(___)
   
