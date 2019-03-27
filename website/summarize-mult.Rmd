@@ -74,7 +74,7 @@ flights %>%
   count(origin, dest, carrier) %>%
   count(origin, dest) %>% 
   ungroup() %>% 
-  arrange(desc(nn))
+  arrange(desc(n))
 ```
 
 Alternatively:
@@ -85,7 +85,7 @@ flights %>%
   tally() %>%
   tally(wt = NULL) %>%
   ungroup() %>%
-  arrange(desc(nn))
+  arrange(desc(n))
 ```
 </details>
 
