@@ -346,19 +346,11 @@ $(document).ready(function () {
 
 <div id="counting-distinct-observations" class="section level2">
 <h2>Counting distinct observations</h2>
-<p>How are the <code>flights</code>, <code>airlines</code>, and <code>airports</code> datasets connected? Which are primary, which are foreign keys?</p>
-<p>Hint: Use <code>count()</code> to support your hypothesis.</p>
-<pre class="r"><code>flights %&gt;%
-  count(carrier) %&gt;%
-  filter(n &gt; 1)
-
-airlines %&gt;%
-  count(___) %&gt;%
-  filter(___)
-
-airports %&gt;%
-  _____ %&gt;%
-  _____</code></pre>
+<p>Which columns in the <code>airlines</code> and <code>airports</code> tables uniquely identify the observations, i.e., are keys in these tables? Verify. How are these tables connected to the <code>flights</code> table?</p>
+<p>```r airlines %&gt;% count(___) %&gt;% filter(n &gt; 1)</p>
+<p>airports %&gt;% _____ %&gt;% _____</p>
+<p>airlines %&gt;% inner_join(___)</p>
+<p>airlines %&gt;% inner_join(___, by = c(“<strong><em>&quot; = &quot;</em></strong>”)) ``</p>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>airlines %&gt;%
@@ -371,6 +363,46 @@ airports %&gt;%
   filter(n &gt; 1)</code></pre>
 <pre><code>## # A tibble: 0 x 2
 ## # … with 2 variables: faa &lt;chr&gt;, n &lt;int&gt;</code></pre>
+<pre class="r"><code>airlines %&gt;%
+  inner_join(flights)</code></pre>
+<pre><code>## Joining, by = &quot;carrier&quot;</code></pre>
+<pre><code>## # A tibble: 336,776 x 20
+##    carrier name   year month   day dep_time sched_dep_time dep_delay
+##    &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
+##  1 9E      Ende…  2013     1     1      810            810         0
+##  2 9E      Ende…  2013     1     1     1451           1500        -9
+##  3 9E      Ende…  2013     1     1     1452           1455        -3
+##  4 9E      Ende…  2013     1     1     1454           1500        -6
+##  5 9E      Ende…  2013     1     1     1507           1515        -8
+##  6 9E      Ende…  2013     1     1     1530           1530         0
+##  7 9E      Ende…  2013     1     1     1546           1540         6
+##  8 9E      Ende…  2013     1     1     1550           1550         0
+##  9 9E      Ende…  2013     1     1     1552           1600        -8
+## 10 9E      Ende…  2013     1     1     1554           1600        -6
+## # … with 336,766 more rows, and 12 more variables: arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>airports %&gt;%
+  inner_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
+<pre><code>## # A tibble: 329,174 x 26
+##    faa   name    lat   lon   alt    tz dst   tzone  year month   day
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     1
+##  2 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     2
+##  3 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     3
+##  4 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     4
+##  5 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     5
+##  6 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     6
+##  7 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     7
+##  8 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     8
+##  9 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     9
+## 10 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10    10
+## # … with 329,164 more rows, and 15 more variables: dep_time &lt;int&gt;,
+## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </details>
 </div>
 <div id="destination-by-airline" class="section level2">
@@ -380,7 +412,7 @@ airports %&gt;%
 <pre class="r"><code>flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
   count(dest, carrier) %&gt;%
-  left_join(airlines) %&gt;%
+  left_join(airlines, _____) %&gt;%
   left_join(airports, by = c(&quot;___&quot; = &quot;___&quot;))</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
@@ -415,7 +447,6 @@ airports %&gt;%
 # need to rename it
 flights %&gt;% 
   filter(distance &lt; 300) %&gt;%
-  count(dest, carrier) %&gt;%
   left_join(_____) %&gt;%
   rename(carrier_name = ___) %&gt;%
   left_join(_____) %&gt;%

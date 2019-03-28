@@ -381,7 +381,7 @@ View(___)</code></pre>
 <div id="ad-infinitum-4" class="section level2">
 <h2>Ad infinitum, 4</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City’s airports but excluding Honolulu International airport.</p>
-<p>Hint: Consult the <code>airports</code> dataset, use a filter with the predicate <code>stringr::str_detect(name, &quot;^Honolulu&quot;)</code> .</p>
+<p>Hint: Use <code>dest != &quot;HNL&quot;</code> as predicate.</p>
 </div>
 <div id="ad-infinitum-5" class="section level2">
 <h2>Ad infinitum, 5</h2>
@@ -392,11 +392,12 @@ View(___)</code></pre>
 <details>
 <p><summary>► Solution:</summary> ### Intermediate variables</p>
 <p>Naming is hard!</p>
-<pre class="r"><code>early_flights &lt;- filter(flights, dep_time &gt;= 600)
-early_late_flights &lt;-
-  filter(early_flights, arr_time &gt;= 2200)
+<pre class="r"><code>late_flights &lt;-
+  filter(flights, arr_time &gt;= 2200)
+late_ua_flights &lt;-
+  filter(late_flights, carrier == &quot;UA&quot;)
 early_late_ua_flights &lt;-
-  filter(early_late_flights, carrier == &quot;UA&quot;)
+  filter(late_ua_flights, dep_time &gt;= 600)
 early_late_late_ua_flights &lt;-
   filter(early_late_ua_flights, arr_delay &gt; 120)
 early_late_late_ua_flights_not_honolulu &lt;-
@@ -435,11 +436,11 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
           filter(
             filter(
               flights,
-              dep_time &lt;= 600
+              arr_time &gt;= 2200
             ),
-            arr_time &gt;= 2200
+            carrier == &quot;UA&quot;
           ),
-          carrier == &quot;UA&quot;
+          dep_time &lt;= 600
         ),
         arr_delay &gt; 120
       ),
@@ -458,9 +459,9 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 <div id="pipe" class="section level3">
 <h3>Pipe</h3>
 <pre class="r"><code>flights %&gt;% 
-  filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
   filter(carrier == &quot;UA&quot;) %&gt;% 
+  filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_delay &gt; 120) %&gt;% 
   filter(dest != &quot;HNL&quot;) %&gt;%
   arrange(distance) %&gt;%
@@ -472,14 +473,40 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 ## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p>The original data is never updated! You still need to assign the result of a pipe to a variable:</p>
+<pre class="r"><code>flights</code></pre>
+<pre><code>## # A tibble: 336,776 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1  2013     1     1      517            515         2      830
+##  2  2013     1     1      533            529         4      850
+##  3  2013     1     1      542            540         2      923
+##  4  2013     1     1      544            545        -1     1004
+##  5  2013     1     1      554            600        -6      812
+##  6  2013     1     1      554            558        -4      740
+##  7  2013     1     1      555            600        -5      913
+##  8  2013     1     1      557            600        -3      709
+##  9  2013     1     1      557            600        -3      838
+## 10  2013     1     1      558            600        -2      753
+## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <pre class="r"><code>late_late_ua_flights_not_honolulu &lt;-
   flights %&gt;% 
-  filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_time &gt;= 2200) %&gt;% 
   filter(carrier == &quot;UA&quot;) %&gt;% 
+  filter(dep_time &lt;= 600) %&gt;% 
   filter(arr_delay &gt; 120) %&gt;% 
   filter(dest != &quot;HNL&quot;) %&gt;%
-  arrange(distance)</code></pre>
+  arrange(distance)
+
+late_late_ua_flights_not_honolulu</code></pre>
+<pre><code>## # A tibble: 0 x 19
+## # … with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,
+## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
+## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </details>
 </div>
 </div>

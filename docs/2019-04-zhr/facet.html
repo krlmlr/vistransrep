@@ -389,7 +389,7 @@ $(document).ready(function () {
 <h2>Labeling the facets</h2>
 <p>What changes if you add the argument <code>labeller = &quot;label_both&quot;</code> to the <code>facet_wrap()</code> call?</p>
 <details>
-<p><summary>► Solution:</summary> This is useful if the value does not speak for itself:</p>
+<p><summary>► Solution:</summary> This is useful if the value itself is not self-explanatory:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~cyl, labeller = &quot;label_both&quot;)</code></pre>

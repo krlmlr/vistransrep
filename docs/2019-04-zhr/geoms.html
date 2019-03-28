@@ -450,7 +450,7 @@ We need better data transformation tools to reformat the data for plotting it in
 <p>Use a bar plot to find out how many cars of each drivetrain (front/rear/4wd) the <code>mpg</code> dataset contains. Which aesthetic mappings do you need to specify?</p>
 <p>Hint: Find the relevant geom by typing <code>geom_</code> on the console or in your script file.</p>
 <pre><code>ggplot(_____, aes(_____)) +
-  geom_bar()</code></pre>
+  geom____()</code></pre>
 <details>
 <p><summary>► Solution:</summary> I tried <code>geom_histogram()</code> and <code>geom_col()</code>, neither worked. The histogram is for continuous data only, for <code>geom_col()</code> I’d need to supply actual counts which I don’t have. The <code>geom_bar()</code> function computes the counts for me by applying the <code>&quot;count&quot;</code> statistical transformation to my data before plotting.</p>
 <p>We need only the “x” aesthetic, “y” is computed automatically. <code>drv</code> is the relevant variable.</p>
@@ -463,7 +463,7 @@ We need better data transformation tools to reformat the data for plotting it in
 <h2>Explicit count</h2>
 <p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p>
 <pre><code>ggplot(_____, aes(_____, y = ..count..)) +
-  geom_bar()</code></pre>
+  geom____()</code></pre>
 <details>
 <p><summary>► Solution:</summary> The output is the same:</p>
 <pre class="r"><code>ggplot(data = mpg) +
@@ -493,7 +493,7 @@ By default, <code>geom_bar()</code> plots the computed “count” aesthetic, wh
 <h2>Fuel economy</h2>
 <p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p>
 <pre><code>ggplot(data = mpg, mapping = aes(x = hwy)) +
-  geom_____()</code></pre>
+  geom____()</code></pre>
 <details>
 <p><summary>► Solution:</summary> We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
 <pre class="r"><code>ggplot(data = mpg) +

@@ -458,10 +458,13 @@ flights %&gt;%
 <div id="cancelled-flights-per-month-per-airline" class="section level2">
 <h2>Cancelled flights per month per airline</h2>
 <p>Compute the share of cancelled flights per month per airline.</p>
-<pre class="r"><code>flights %&gt;% 
+<pre class="r"><code>cancelled_flights &lt;-
+  flights %&gt;% 
   group_by(_____) %&gt;% 
   summarize(share_of_cancelled = _____) %&gt;%
-  ungroup()</code></pre>
+  ungroup()
+
+cancelled_flights</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>cancelled_flights &lt;-
@@ -506,7 +509,13 @@ cancelled_flights %&gt;%
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>cancelled_flights %&gt;%
   ggplot() +
-  geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))</code></pre>
+  geom_raster(
+    aes(
+      x = carrier,
+      y = factor(month),
+      fill = share_of_cancelled
+    )
+  )</code></pre>
 <img src="summarize-mult_files/figure-html/summarize-mult-5-1.png" width="672" />
 </details>
 </div>

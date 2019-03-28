@@ -359,15 +359,23 @@ Visual inspection reveals that it’s four gears for automatic, and five gears f
 </div>
 <div id="discriminate-by-car-class" class="section level2">
 <h2>Discriminate by car class</h2>
-<p>Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?</p>
-<pre><code>ggplot(data = mpg, mapping = aes(x = class, _____)) +
-  geom_bar(position = &quot;___&quot;)</code></pre>
+<p>Use the <code>fill</code> aesthetic to further discriminate by car class. Can you explain why the parts representing transmission types are stacked on top of each other?</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = class, _____))</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))</code></pre>
 <p><img src="position_files/figure-html/position-2-1.png" width="672" /></p>
-<p>SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with <code>position = &quot;dodge&quot;</code>, the different width of the bars indicates the number of different subgroups for each car class:</p>
+The default value for the <code>position</code> argument to <code>geom_bar()</code> is <code>&quot;stack&quot;</code>. This means that related geoms are stacked on top of each other.
+</details>
+</div>
+<div id="show-drivetrain-types-side-by-side" class="section level2">
+<h2>Show drivetrain types side by side</h2>
+<p>Apply a position adjustment to make it easier to detect missing combinations of drivetrain and car class.</p>
+<pre><code>ggplot(data = mpg, mapping = aes(x = class, _____)) +
+  geom_bar(position = &quot;___&quot;)</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_bar(
     aes(x = class, fill = trans), 
@@ -417,7 +425,7 @@ Visual inspection reveals that it’s four gears for automatic, and five gears f
     )
   )</code></pre>
 <p><img src="position_files/figure-html/position-7-1.png" width="672" /></p>
-<p>The default <code>position</code> setting looks good, let’s try <code>&quot;identity&quot;</code>:</p>
+<p>The default <code>position</code> setting looks good, we use <code>position_dodge(preserve = &quot;single&quot;)</code> again for uniform width:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_boxplot(
     mapping = aes(
@@ -425,7 +433,7 @@ Visual inspection reveals that it’s four gears for automatic, and five gears f
       y = 235 / hwy,
       fill = factor(cyl)
     ),
-    position = &quot;identity&quot;
+    position = position_dodge(preserve = &quot;single&quot;)
   )</code></pre>
 <p><img src="position_files/figure-html/position-8-1.png" width="672" /></p>
 Doesn’t look useful.

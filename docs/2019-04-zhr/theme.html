@@ -348,6 +348,9 @@ $(document).ready(function () {
 <h2>Favorite theme</h2>
 <p>Choose your favorite among the predefined themes.</p>
 <p>Hint: All start with <code>theme_...()</code>, but watch out for <code>theme_set()</code>.</p>
+<pre><code>ggplot(___) +
+  theme____() +
+  _______</code></pre>
 <details>
 <p><summary>► Solution:</summary> For presentations, <code>theme_bw()</code> or <code>theme_minimal()</code> look useful:</p>
 <pre class="r"><code>ggplot(data = mpg) +
@@ -368,7 +371,7 @@ $(document).ready(function () {
 </div>
 <div id="legend-at-bottom" class="section level2">
 <h2>Legend at bottom</h2>
-<p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a color or fill legend. What happens if you then apply <code>theme_bw()</code>? Why?</p>
+<p>Apply <code>theme(legend.position = &quot;bottom&quot;)</code> to a plot with a legend (e.g., color, fill, shape, …). What happens if you then apply <code>theme_bw()</code>? Why?</p>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>ggplot(data = mpg) +
