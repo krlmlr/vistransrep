@@ -484,15 +484,10 @@ flights %&gt;%
 <h2>Departure variables</h2>
 <p>Select all variables related to departure.</p>
 <pre class="r"><code>flights %&gt;% 
-  select(___, ___, _______)
-
-flights %&gt;% 
-  select(starts_with(&quot;___&quot;))</code></pre>
+  select(contains(&quot;___&quot;))</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
-<pre class="r"><code>## contains()
-
-flights %&gt;% 
+<pre class="r"><code>flights %&gt;% 
   select(contains(&quot;dep_&quot;))</code></pre>
 <pre><code>## # A tibble: 336,776 x 3
 ##    dep_time sched_dep_time dep_delay
@@ -510,11 +505,39 @@ flights %&gt;%
 ## # … with 336,766 more rows</code></pre>
 </details>
 </div>
+<div id="move-departure-variables-to-front" class="section level2">
+<h2>Move departure variables to front</h2>
+<p>Move the variables related to scheduled time to the front of the table.</p>
+<pre class="r"><code>flights %&gt;% 
+  select(_____, everything())</code></pre>
+<details>
+<p><summary>► Solution:</summary></p>
+<pre class="r"><code>flights %&gt;%
+  select(contains(&quot;dep_&quot;), everything())</code></pre>
+<pre><code>## # A tibble: 336,776 x 19
+##    dep_time sched_dep_time dep_delay  year month   day arr_time
+##       &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;
+##  1      517            515         2  2013     1     1      830
+##  2      533            529         4  2013     1     1      850
+##  3      542            540         2  2013     1     1      923
+##  4      544            545        -1  2013     1     1     1004
+##  5      554            600        -6  2013     1     1      812
+##  6      554            558        -4  2013     1     1      740
+##  7      555            600        -5  2013     1     1      913
+##  8      557            600        -3  2013     1     1      709
+##  9      557            600        -3  2013     1     1      838
+## 10      558            600        -2  2013     1     1      753
+## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
+## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</details>
+</div>
 <div id="move-departure-variables-to-end" class="section level2">
 <h2>Move departure variables to end</h2>
 <p>Move the variables related to scheduled time to the end of the table.</p>
 <pre class="r"><code>flights %&gt;% 
-  select(-___, -___, _______, everything(), ___, ___)</code></pre>
+  select(-_____, everything(), _____)</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>## everything()
@@ -542,39 +565,30 @@ flights %&gt;%
 </div>
 <div id="contour-plot" class="section level2">
 <h2>Contour plot</h2>
-<p>Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.</p>
+<p>Create a contour plot of departure and arrival time. Use pretty names for the columns. Restrict the plot to all flights that arrive before 5:00 AM.</p>
 <pre class="r"><code>flights %&gt;%
-  select(`___` = ___, `___` = ___, ___) %&gt;%
+  select(`Departure time` = ___, `Arrival time` = ___, ___) %&gt;%
   filter(___) %&gt;%
   ggplot(aes(x = `___`, y = `___`)) +
   geom_density2d()</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
-<pre class="r"><code>## Overriding label names
-
-flights %&gt;% 
-  ggplot() +
-  geom_density2d(aes(dep_time, arr_time)) +
-  scale_x_continuous(name = &quot;Departure time&quot;) +
-  scale_y_continuous(name = &quot;Arrival time&quot;)</code></pre>
-<pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-9-1.png" width="672" /></p>
-<pre class="r"><code>## Renaming in the data
-
-flights %&gt;% 
-  rename(`Departure time` = dep_time) %&gt;%
-  rename(`Arrival time` = arr_time) %&gt;%
-  ggplot() +
-  geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
-<pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-10-1.png" width="672" /></p>
 <pre class="r"><code>flights %&gt;% 
   filter(arr_time &lt; 500) %&gt;%
   rename(`Departure time` = dep_time) %&gt;%
   rename(`Arrival time` = arr_time) %&gt;%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`))</code></pre>
-<p><img src="select-rename_files/figure-html/select-rename-11-1.png" width="672" /></p>
+<p><img src="select-rename_files/figure-html/select-rename-10-1.png" width="672" /></p>
+<p>Recent version of ggplot2 started to put backticks around names with spaces if shown in the label. It’s generally better to rename the axis than the variable.</p>
+<pre class="r"><code>flights %&gt;% 
+  ggplot() +
+  geom_density2d(aes(dep_time, arr_time)) +
+  scale_x_continuous(name = &quot;Departure time&quot;) +
+  scale_y_continuous(name = &quot;Arrival time&quot;)</code></pre>
+<pre><code>## Warning: Removed 8713 rows containing non-finite values (stat_density2d).</code></pre>
+<p><img src="select-rename_files/figure-html/select-rename-13-1.png" width="672" /></p>
+<p>In this plot, it’s useful to fix the aspect ratio:</p>
 <pre class="r"><code>## Use coord_fixed() for fixing axes
 flights %&gt;% 
   filter(arr_time &lt; 500) %&gt;%

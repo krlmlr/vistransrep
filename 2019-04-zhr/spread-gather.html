@@ -462,7 +462,7 @@ ___ %&gt;%
   geom_point() +
   facet_wrap(~year)</code></pre>
 <p><img src="spread-gather_files/figure-html/spread-gather-7-1.png" width="672" /></p>
-<p>Can also use <code>table1</code> to show only one measurement:</p>
+<p>Can also use <code>table2</code> to show only one measurement:</p>
 <pre class="r"><code>table2 %&gt;%
   filter(type == &quot;cases&quot;) %&gt;%
   ggplot() +
@@ -570,8 +570,9 @@ bind_rows(cases_tbl, population_tbl) %&gt;%
 </div>
 <div id="economies" class="section level2">
 <h2>Economies</h2>
-<p>Create a scatterplot from the <code>mpg</code> dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one <code>geom_point()</code> call.</p>
+<p>Create a scatterplot from the <code>mpg</code> dataset that shows both highway and city fuel economy against engine displacement. The plot should use colors to discriminate <code>hwy</code> vs. <code>cty</code> and use only one <code>geom_point()</code> call.</p>
 <pre class="r"><code>mpg %&gt;%
+  _____ %&gt;%
   _____ %&gt;%
   ggplot(aes(x = displ, y = ___)) +
   geom_point()</code></pre>

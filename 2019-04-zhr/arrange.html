@@ -519,22 +519,22 @@ flights %&gt;%
 <h2>Recovering delay</h2>
 <p>Which flights were best in recovering from delay in the air?</p>
 <details>
-<p><summary>► Solution:</summary></p>
+<p><summary>► Solution:</summary> Recovering from delay means that the arrival delay is lower than the departure delay, or that arrival minus departure delay is negative. If we arrange by arrival minus departure delay, negative values are sorted first, so they are easier to inspect.</p>
 <pre class="r"><code>flights %&gt;% 
-  arrange(dep_delay - arr_delay)</code></pre>
+  arrange(arr_delay - dep_delay)</code></pre>
 <pre><code>## # A tibble: 336,776 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013    11     1      658            700        -2     1329
-##  2  2013     4    18      558            600        -2     1149
-##  3  2013     8     8     1819           1519       180        5
-##  4  2013     7    10     1916           1900        16      137
-##  5  2013     6    27     1608           1525        43     2045
-##  6  2013     7    22     1606           1615        -9     2056
-##  7  2013     7     1      811            800        11     1344
-##  8  2013     7    10     2011           1520       291     2357
-##  9  2013     7    22     1626           1545        41     2051
-## 10  2013     4    18      655            700        -5     1213
+##  1  2013     6    13     1907           1512       235     2134
+##  2  2013     2    26     1000            900        60     1513
+##  3  2013     2    23     1226            900       206     1746
+##  4  2013     5    13     1917           1900        17     2149
+##  5  2013     2    27      924            900        24     1448
+##  6  2013     7    14     1917           1829        48     2109
+##  7  2013     7    17     2004           1930        34     2224
+##  8  2013    12    27     1719           1648        31     1956
+##  9  2013     5     2     1947           1949        -2     2209
+## 10  2013    11    13     2024           2015         9     2251
 ## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,

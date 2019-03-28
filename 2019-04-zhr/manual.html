@@ -400,22 +400,27 @@ Some appear darker due to overplotting.
     mapping = aes(_____, size = 3)
   )</code></pre>
 <details>
-<p><summary>► Solution:</summary> This works, but creates a useless legend and may give unexpected results:</p>
+<p><summary>► Solution:</summary> This works, but creates a useless legend and may give unexpected results. Same for <code>color</code>, <code>shape</code>, and other aesthetics:</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
-    mapping = aes(x = displ, y = hwy, color = &quot;red&quot;)
+    mapping = aes(x = displ, y = hwy, size = 3)
   )</code></pre>
 <p><img src="manual_files/figure-html/manual-4-1.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
-    mapping = aes(x = displ, y = hwy, color = &quot;blue&quot;)
+    mapping = aes(x = displ, y = hwy, color = &quot;red&quot;)
   )</code></pre>
 <p><img src="manual_files/figure-html/manual-4-2.png" width="672" /></p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point(
+    mapping = aes(x = displ, y = hwy, color = &quot;blue&quot;)
+  )</code></pre>
+<p><img src="manual_files/figure-html/manual-4-3.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(
     mapping = aes(x = displ, y = hwy, shape = &quot;triangle&quot;)
   )</code></pre>
-<img src="manual_files/figure-html/manual-4-3.png" width="672" />
+<img src="manual_files/figure-html/manual-4-4.png" width="672" />
 </details>
 </div>
 <div id="valid-values-for-manual-aesthetics" class="section level2">
@@ -427,11 +432,11 @@ Some appear darker due to overplotting.
     ___ = ___
   )</code></pre>
 <details>
-<p><summary>► Solution:</summary> - “color”: basic colors, numbers</p>
+<p><summary>► Solution:</summary> - <code>color</code>: basic colors, numbers</p>
 <ul>
-<li><p>“alpha”: numbers between 0 and 1</p></li>
-<li><p>“shape”: integers from 0 to 25, negative integers seem to display a letter</p></li>
-<li>“size”: positive numbers</li>
+<li><p><code>alpha</code>: numbers between 0 and 1</p></li>
+<li><p><code>shape</code>: integers from 0 to 25, negative integers seem to display a letter</p></li>
+<li><code>size</code>: positive numbers</li>
 </ul>
 </details>
 </div>

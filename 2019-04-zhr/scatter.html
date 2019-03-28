@@ -425,6 +425,25 @@ $(document).ready(function () {
 <p>How can you reduce overplotting? Use your favorite search engine to find out.</p>
 <pre><code>ggplot(data = ___) +
   geom____(_____)</code></pre>
+<details>
+<p><summary>► Solution:</summary> Jitter and transparency are two options:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = 235 / hwy))</code></pre>
+<p><img src="scatter_files/figure-html/scatter-8-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = 235 / hwy),
+    alpha = 0.3
+  )</code></pre>
+<p><img src="scatter_files/figure-html/scatter-8-2.png" width="672" /></p>
+<p>It’s also possible to combine them:</p>
+<pre class="r"><code>ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = displ, y = 235 / hwy),
+    alpha = 0.3
+  )</code></pre>
+<img src="scatter_files/figure-html/scatter-9-1.png" width="672" />
+</details>
 </div>
 <div id="more-exercises" class="section level2">
 <h2>More exercises</h2>
