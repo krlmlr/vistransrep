@@ -148,8 +148,13 @@ Which flights were best in recovering from delay in the air?
 
 <details>
 <summary>&#x25BA; Solution:</summary>
+Recovering from delay means that the arrival delay is lower than the departure delay,
+or that arrival minus departure delay is negative.
+If we arrange by arrival minus departure delay, negative values are sorted first,
+so they are easier to inspect.
+
 ```{r filtering-18}
 flights %>% 
-  arrange(dep_delay - arr_delay)
+  arrange(arr_delay - dep_delay)
 ```
 </details>

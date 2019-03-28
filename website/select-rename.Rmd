@@ -88,19 +88,32 @@ Select all variables related to departure.
 
 ```r
 flights %>% 
-  select(___, ___, _______)
-
-flights %>% 
-  select(starts_with("___"))
+  select(contains("___"))
 ```
 
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r select-rename-7}
-## contains()
-
 flights %>% 
   select(contains("dep_"))
+```
+</details>
+
+
+## Move departure variables to front
+
+Move the variables related to scheduled time to the front of the table.
+
+```r
+flights %>% 
+  select(_____, everything())
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
+```{r select-rename-7a}
+flights %>%
+  select(contains("dep_"), everything())
 ```
 </details>
 
@@ -110,7 +123,7 @@ Move the variables related to scheduled time to the end of the table.
 
 ```r
 flights %>% 
-  select(-___, -___, _______, everything(), ___, ___)
+  select(-_____, everything(), _____)
 ```
 
 <details>
@@ -125,11 +138,13 @@ flights %>%
 
 ## Contour plot
 
-Create a contour plot of departure and arrival time. Rename the columns to show prettily in the plot. Restrict the plot to all flights that arrive before 5:00 AM.
+Create a contour plot of departure and arrival time.
+Use pretty names for the columns.
+Restrict the plot to all flights that arrive before 5:00 AM.
 
 ```r
 flights %>%
-  select(`___` = ___, `___` = ___, ___) %>%
+  select(`Departure time` = ___, `Arrival time` = ___, ___) %>%
   filter(___) %>%
   ggplot(aes(x = `___`, y = `___`)) +
   geom_density2d()
@@ -137,27 +152,7 @@ flights %>%
 
 <details>
 <summary>&#x25BA; Solution:</summary>
-```{r select-rename-9}
-## Overriding label names
-
-flights %>% 
-  ggplot() +
-  geom_density2d(aes(dep_time, arr_time)) +
-  scale_x_continuous(name = "Departure time") +
-  scale_y_continuous(name = "Arrival time")
-```
-
 ```{r select-rename-10}
-## Renaming in the data
-
-flights %>% 
-  rename(`Departure time` = dep_time) %>%
-  rename(`Arrival time` = arr_time) %>%
-  ggplot() +
-  geom_density2d(aes(`Departure time`, `Arrival time`))
-```
-
-```{r select-rename-11}
 flights %>% 
   filter(arr_time < 500) %>%
   rename(`Departure time` = dep_time) %>%
@@ -165,6 +160,19 @@ flights %>%
   ggplot() +
   geom_density2d(aes(`Departure time`, `Arrival time`))
 ```
+
+Recent version of ggplot2 started to put backticks around names with spaces if shown in the label.
+It's generally better to rename the axis than the variable.
+
+```{r select-rename-13}
+flights %>% 
+  ggplot() +
+  geom_density2d(aes(dep_time, arr_time)) +
+  scale_x_continuous(name = "Departure time") +
+  scale_y_continuous(name = "Arrival time")
+```
+
+In this plot, it's useful to fix the aspect ratio:
 
 ```{r select-rename-12}
 ## Use coord_fixed() for fixing axes

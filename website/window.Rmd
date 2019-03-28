@@ -18,12 +18,15 @@ Which month is busiest in terms of miles flown, per carrier?
 Hint: Compute the share of yearly miles flown of each airline in each month.
 
 ```r
-flights %>%
+monthly_shares <-
+  flights %>%
   group_by(___, ___) %>%
   summarize(total_distance_by_carrier = sum(distance)) %>%
   mutate(total_distance = sum(___)) %>%
   ungroup() %>%
-  mutate(month_share_by_carrier = ___ / ___) %>% 
+  mutate(month_share_by_carrier = ___ / ___)
+
+monthly_shares %>%
   arrange(month_share_by_carrier) %>% 
   group_by(___) %>%
   slice(1) %>%
@@ -36,10 +39,10 @@ flights %>%
 monthly_shares <-
   flights %>%
   group_by(carrier, month) %>%
-  summarize(distance = sum(distance)) %>%
-  mutate(total_distance = sum(distance)) %>%
+  summarize(total_distance_by_carrier = sum(distance)) %>%
+  mutate(total_distance = sum(total_distance_by_carrier)) %>%
   ungroup() %>%
-  mutate(month_share_by_carrier = distance / total_distance)
+  mutate(month_share_by_carrier = total_distance_by_carrier / total_distance)
 
 monthly_shares %>%
   arrange(month_share_by_carrier) %>% 

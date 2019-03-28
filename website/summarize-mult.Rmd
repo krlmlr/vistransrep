@@ -94,10 +94,13 @@ flights %>%
 Compute the share of cancelled flights per month per airline.
 
 ```r
-flights %>% 
+cancelled_flights <-
+  flights %>% 
   group_by(_____) %>% 
   summarize(share_of_cancelled = _____) %>%
   ungroup()
+
+cancelled_flights
 ```
 
 <details>
@@ -137,7 +140,13 @@ cancelled_flights %>%
 ```{r summarize-mult-5}
 cancelled_flights %>%
   ggplot() +
-  geom_raster(aes(x = carrier, y = factor(month), fill = share_of_cancelled))
+  geom_raster(
+    aes(
+      x = carrier,
+      y = factor(month),
+      fill = share_of_cancelled
+    )
+  )
 ```
 </details>
 

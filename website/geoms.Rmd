@@ -160,7 +160,7 @@ Hint: Find the relevant geom by typing `geom_` on the console or in your script 
 
 ```    
 ggplot(_____, aes(_____)) +
-  geom_bar()
+  geom____()
 ```
 
 <details>
@@ -181,7 +181,7 @@ Does the appearance of the plot change when you add `y = ..count..` to the `aes(
 
 ```    
 ggplot(_____, aes(_____, y = ..count..)) +
-  geom_bar()
+  geom____()
 ```
 
 <details>
@@ -227,11 +227,12 @@ ggplot(data = mpg) +
 
 ## Fuel economy
 
-Visualize the overall distribution of fuel economy in the dataset with a histogram.  Compare this with a frequency polygon, use a second layer if you like.
+Visualize the overall distribution of fuel economy in the dataset with a histogram.
+Compare this with a frequency polygon, use a second layer if you like.
 
 ```
 ggplot(data = mpg, mapping = aes(x = hwy)) +
-  geom_____()
+  geom____()
 ```
 
 <details>
@@ -285,7 +286,8 @@ ggplot(data = mpg) +
 
 ## Fuel economy by drivetrain
 
-Visualize the distribution of fuel economy in the dataset per drivetrain.  Do you prefer a histogram or a frequency polygon?
+Visualize the distribution of fuel economy in the dataset per drivetrain.
+Do you prefer a histogram or a frequency polygon?
 
 <details>
 <summary>&#x25BA; Solution:</summary>

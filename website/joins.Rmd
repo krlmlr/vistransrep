@@ -14,23 +14,25 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Counting distinct observations
 
-How are the `flights`, `airlines`, and `airports` datasets connected? Which are primary, which are foreign keys?
-
-Hint: Use `count()` to support your hypothesis.
+Which columns in the `airlines` and `airports` tables uniquely identify the observations, i.e., are keys in these tables?
+Verify.
+How are these tables connected to the `flights` table?
     
 ```r
-flights %>%
-  count(carrier) %>%
-  filter(n > 1)
-
 airlines %>%
   count(___) %>%
-  filter(___)
+  filter(n > 1)
 
 airports %>%
   _____ %>%
   _____
-```
+
+airlines %>%
+  inner_join(___)
+
+airlines %>%
+  inner_join(___, by = c("___" = "___"))
+``
 
 <details>
 <summary>&#x25BA; Solution:</summary>
@@ -38,12 +40,18 @@ airports %>%
 airlines %>%
   count(carrier) %>% 
   filter(n > 1)
-```
 
-```{r joins-2}
 airports %>%
   count(faa) %>%
   filter(n > 1)
+```
+
+```{r joins-2}
+airlines %>%
+  inner_join(flights)
+
+airports %>%
+  inner_join(flights, by = c("faa" = "dest"))
 ```
 </details>
 
@@ -57,7 +65,7 @@ Hint: Use `by = c("dest" = "faa")`.
 flights %>% 
   filter(distance < 300) %>%
   count(dest, carrier) %>%
-  left_join(airlines) %>%
+  left_join(airlines, _____) %>%
   left_join(airports, by = c("___" = "___"))
 ```
 
@@ -80,7 +88,6 @@ Count the number of observations per airline per destination, and convert to wid
 # need to rename it
 flights %>% 
   filter(distance < 300) %>%
-  count(dest, carrier) %>%
   left_join(_____) %>%
   rename(carrier_name = ___) %>%
   left_join(_____) %>%

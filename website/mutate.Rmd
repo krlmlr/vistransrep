@@ -18,9 +18,7 @@ Store the speed for each flight as miles per hour in a new variable.
 
 ```r
 flights %>% 
-  mutate(miles_per_hour = air_time ___ distance ___ ___) %>%
-  ggplot(aes(___)) +
-  _____
+  mutate(miles_per_hour = air_time ___ distance ___ ___)
 ```
  
 <details>

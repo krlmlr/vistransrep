@@ -70,7 +70,7 @@ Extend the four solutions to view all `"UA"` flights that departed before 6:00 A
 
 Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
 
-Hint: Consult the `airports` dataset, use a filter with the predicate `stringr::str_detect(name, "^Honolulu")` .
+Hint: Use `dest != "HNL"` as predicate.
 
 ## Ad infinitum, 5
 
@@ -85,11 +85,12 @@ Sort the result by `distance`.
 Naming is hard!
 
 ```{r filtering-19}
-early_flights <- filter(flights, dep_time >= 600)
-early_late_flights <-
-  filter(early_flights, arr_time >= 2200)
+late_flights <-
+  filter(flights, arr_time >= 2200)
+late_ua_flights <-
+  filter(late_flights, carrier == "UA")
 early_late_ua_flights <-
-  filter(early_late_flights, carrier == "UA")
+  filter(late_ua_flights, dep_time >= 600)
 early_late_late_ua_flights <-
   filter(early_late_ua_flights, arr_delay > 120)
 early_late_late_ua_flights_not_honolulu <-
@@ -115,11 +116,11 @@ View(
           filter(
             filter(
               flights,
-              dep_time <= 600
+              arr_time >= 2200
             ),
-            arr_time >= 2200
+            carrier == "UA"
           ),
-          carrier == "UA"
+          dep_time <= 600
         ),
         arr_delay > 120
       ),
@@ -134,9 +135,9 @@ View(
 
 ```{r filtering-21}
 flights %>% 
-  filter(dep_time <= 600) %>% 
   filter(arr_time >= 2200) %>% 
   filter(carrier == "UA") %>% 
+  filter(dep_time <= 600) %>% 
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL") %>%
   arrange(distance) %>%
@@ -146,13 +147,17 @@ flights %>%
 The original data is never updated! You still need to assign the result of a pipe to a variable:
 
 ```{r filtering-22}
+flights
+
 late_late_ua_flights_not_honolulu <-
   flights %>% 
-  filter(dep_time <= 600) %>% 
   filter(arr_time >= 2200) %>% 
   filter(carrier == "UA") %>% 
+  filter(dep_time <= 600) %>% 
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL") %>%
   arrange(distance)
+
+late_late_ua_flights_not_honolulu
 ```
 </details>

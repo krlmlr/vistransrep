@@ -111,7 +111,7 @@ table1 %>%
   facet_wrap(~year)
 ```
 
-Can also use `table1` to show only one measurement:
+Can also use `table2` to show only one measurement:
 
 ```{r spread-gather-8}
 table2 %>%
@@ -191,10 +191,12 @@ bind_rows(cases = table4a, population = table4b, .id = "type") %>%
 
 ## Economies
 
-Create a scatterplot from the `mpg` dataset that shows both highway and city fuel economy against engine displacement with two different colors using only one `geom_point()` call.
+Create a scatterplot from the `mpg` dataset that shows both highway and city fuel economy against engine displacement.
+The plot should use colors to discriminate `hwy` vs. `cty` and use only one `geom_point()` call.
 
 ```r
 mpg %>%
+  _____ %>%
   _____ %>%
   ggplot(aes(x = displ, y = ___)) +
   geom_point()

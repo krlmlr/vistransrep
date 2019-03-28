@@ -101,4 +101,4 @@ ggplot(data = mpg) +
 
 ## Practice
 
-Practice Markdown: Create sections, subsections, item lists, emphasized and bold text, ... .
+Practice Markdown: Create sections, subsections, item lists, emphasized and bold text.

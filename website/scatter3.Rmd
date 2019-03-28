@@ -13,7 +13,8 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ## Map to the color aesthetic
 
-In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.  Which cars consume more fuel than expected by the general trend?
+In the `hwy` vs. `displ` plot, map an additional variable to the "color" aesthetic.
+Which cars consume more fuel than expected by the general trend?
 
 ```
 ggplot(_____) +
@@ -124,7 +125,8 @@ ggplot(data = mpg) +
   ))
 ```
 
-A legend is added automatically.  It may not be as useful to change all properties at the same time, but it's very easy to assign a variable to a different aesthetic, or use another variable for that aesthetic.
+A legend is added automatically.
+It may not be as useful to change all properties at the same time, but it's very easy to assign a variable to a different aesthetic, or use another variable for that aesthetic.
 </details>
 
 ## Map a variable to more than one aesthetic

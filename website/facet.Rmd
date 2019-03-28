@@ -77,7 +77,7 @@ What changes if you add the argument `labeller = "label_both"` to the `facet_wra
 
 <details>
 <summary>&#x25BA; Solution:</summary>
-This is useful if the value does not speak for itself:
+This is useful if the value itself is not self-explanatory:
 
 ```{r facet-5, echo=TRUE}
 ggplot(data = mpg) +

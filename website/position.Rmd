@@ -34,11 +34,11 @@ Visual inspection reveals that it's four gears for automatic, and five gears for
 
 ## Discriminate by car class
 
-Which aesthetic can you map to further discriminate by car class? Which position adjustment is most useful to detect missing combinations of drivetrain and car class?
+Use the `fill` aesthetic to further discriminate by car class.
+Can you explain why the parts representing transmission types are stacked on top of each other?
 
 ```
-ggplot(data = mpg, mapping = aes(x = class, _____)) +
-  geom_bar(position = "___")
+ggplot(data = mpg, mapping = aes(x = class, _____))
 ```
 
 <details>
@@ -48,8 +48,22 @@ ggplot(data = mpg) +
   geom_bar(mapping = aes(x = class, fill = trans))
 ```
 
-SUVs have automatic mostly, 2-seaters favor six-gear manual, compact and subcompact mostly have five-gear manual transmission. This is much easier to see with `position = "dodge"`, the different width of the bars indicates the number of different subgroups for each car class:
+The default value for the `position` argument to `geom_bar()` is `"stack"`.
+This means that related geoms are stacked on top of each other.
+</details>
 
+
+## Show drivetrain types side by side
+
+Apply a position adjustment to make it easier to detect missing combinations of drivetrain and car class.
+
+```
+ggplot(data = mpg, mapping = aes(x = class, _____)) +
+  geom_bar(position = "___")
+```
+
+<details>
+<summary>&#x25BA; Solution:</summary>
 ```{r position-3}
 ggplot(data = mpg) +
   geom_bar(
@@ -118,7 +132,7 @@ ggplot(data = mpg) +
   )
 ```
 
-The default `position` setting looks good, let's try `"identity"`:
+The default `position` setting looks good, we use `position_dodge(preserve = "single")` again for uniform width:
 
 ```{r position-8}
 ggplot(data = mpg) +
@@ -128,7 +142,7 @@ ggplot(data = mpg) +
       y = 235 / hwy,
       fill = factor(cyl)
     ),
-    position = "identity"
+    position = position_dodge(preserve = "single")
   )
 ```
 

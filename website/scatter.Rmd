@@ -111,6 +111,32 @@ ggplot(data = ___) +
   geom____(_____)
 ```
 
+<details>
+<summary>&#x25BA; Solution:</summary>
+Jitter and transparency are two options:
+
+```{r scatter-8, echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = 235 / hwy))
+
+ggplot(data = mpg) +
+  geom_point(
+    mapping = aes(x = displ, y = 235 / hwy),
+    alpha = 0.3
+  )
+```
+
+It's also possible to combine them:
+
+```{r scatter-9, echo=TRUE}
+ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = displ, y = 235 / hwy),
+    alpha = 0.3
+  )
+```
+</details>
+
 ## More exercises
 
 Find more examples in Section 3.2.4 of the "R for data science" book (http://r4ds.had.co.nz).

@@ -87,15 +87,22 @@ Don't forget `na.rm = TRUE` if needed!
 
 ## Mean arrival and dep delay
 
-Compute the mean arrival and departure delay overall, and per origin airport. What is the standard deviation of these variables? What is New York City's busiest airport?
+Compute the mean arrival and departure delay overall, and per origin airport.
+What is the standard deviation of these variables?
+What is New York City's busiest airport?
 
 ```r
 flights %>%
-  summarize(mean(___, na.rm = ___))
+  summarize(
+    mean(___, na.rm = ___),
+    _____,
+    _____,
+    _____
+  )
 
 flights %>%
   group_by(___) %>%
-  summarize(___)
+  summarize(_______)
 
 flights %>%
   count(___) %>%
@@ -104,16 +111,6 @@ flights %>%
 
 <details>
 <summary>&#x25BA; Solution:</summary>
-```{r summarize-1}
-flights %>%
-  summarize(mean(arr_delay, na.rm = TRUE))
-```
-
-```{r summarize-2}
-flights %>%
-  summarize(mean(dep_delay, na.rm = TRUE))
-```
-
 ```{r summarize-3}
 flights %>%
   summarize(
@@ -128,7 +125,7 @@ flights %>%
 flights %>%
   summarize_at(
     vars(arr_delay, dep_delay),
-    funs(mean(., na.rm = TRUE), sd(., na.rm = TRUE))
+    list(~ mean(., na.rm = TRUE), ~ sd(., na.rm = TRUE))
   )
 ```
 
@@ -158,10 +155,13 @@ flights %>%
 Which carriers had the longest accumulated air time, excluding cancelled flights?
 
 ```r
-flights %>%
+total_airtime_by_carrier <-
+  flights %>%
   group_by(___) %>%
   summarize(acc_air_time = sum(_____)) %>% 
   ungroup()
+
+total_airtime_by_carrier
 ```
 
 <details>
@@ -169,9 +169,9 @@ flights %>%
 ```{r summarize-7}
 total_airtime_by_carrier <-
   flights %>% 
-    group_by(carrier) %>% 
-    summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>% 
-    ungroup()
+  group_by(carrier) %>% 
+  summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>% 
+  ungroup()
 
 total_airtime_by_carrier
 ```
@@ -211,30 +211,36 @@ total_airtime_by_carrier %>%
 Which carriers specialize on long-distance routes?
 
 ```r
-flights
+mean_miles_by_carrier <-
+  flights
   _____ %>%
   _____ %>%
-  _____ %>%
-  arrange(___)
+  _____
+
+mean_miles_by_carrier %>%
+  arrange(_____)
 ```
 
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r summarize-9}
-carrier_arranged_by_mean_distance <-
+mean_miles_by_carrier <-
   flights %>%
   group_by(carrier) %>% 
   summarize(mean_distance = mean(distance)) %>% 
-  ungroup() %>%
-  arrange(desc(mean_distance))
+  ungroup()
 
-carrier_arranged_by_mean_distance
+mean_miles_by_carrier %>%
+  arrange(desc(mean_distance))
 ```
 </details>
 
 ## Mean distance, visualized
 
-Plot a bar chart of mean distance per flight. Do you use `geom_bar()` or `geom_col()`? Why?
+Plot a bar chart of mean distance per flight.
+Use `fct_inorder()` to avoid sorting the axes.
+Do you use `geom_bar()` or `geom_col()`?
+Why?
 
 ```r
 mean_miles_by_carrier <-
@@ -244,8 +250,8 @@ mean_miles_by_carrier <-
 
 mean_miles_by_carrier %>%
   arrange(_____) %>%
-  mutate(_____) %>%
-  ggplot(aes(___)) +
+  mutate(___ = fct_inorder(___)) %>%
+  ggplot(aes(_____)) +
     geom____()
 ```
 
@@ -254,9 +260,17 @@ mean_miles_by_carrier %>%
 We need `geom_col()`, because the data is already aggregated and contains one row per geometry object we're plotting.
 
 ```{r summarize-10}
-carrier_arranged_by_mean_distance %>% 
+mean_miles_by_carrier <-
+  flights %>%
+  group_by(carrier) %>% 
+  summarize(mean_distance = mean(distance)) %>% 
+  ungroup()
+
+mean_miles_by_carrier %>%
+  arrange(desc(mean_distance)) %>%
+  mutate(carrier = fct_inorder(carrier)) %>%
   ggplot() +
-  geom_col(aes(x = forcats::fct_inorder(carrier), y = mean_distance))
+  geom_col(aes(x = carrier, y = mean_distance))
 ```
 </details>
 
@@ -319,6 +333,8 @@ flights %>%
   summarize(not_departed = sum(is.na(dep_time))) %>% 
   ungroup()
 ```
+
+An alternative, using `filter()` and `count()`:
 
 ```{r summarize-13}
 flights %>% 
