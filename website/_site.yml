@@ -5,14 +5,20 @@ include:
 - images
 exclude: DESCRIPTION
 navbar:
-  title: Data visualization, reporting, and processing with R
+  title: R + tidyverse
   left:
   - text: Home
     href: index.html
-  - text: intro
-    href: intro.html
-  - text: rstudio
-    href: rstudio.html
+  - text: Setup
+    menu:
+    - text: intro
+      href: intro.html
+    - text: rstudio
+      href: rstudio.html
+    - text: outro
+      href: outro.html
+    - text: support
+      href: support.html
   - text: ggplot2
     href: ggplot2.html
   - text: dplyr
@@ -23,10 +29,6 @@ navbar:
     href: import.html
   - text: rmarkdown
     href: rmarkdown.html
-  - text: outro
-    href: outro.html
-  - text: support
-    href: support.html
 output:
   html_document:
     theme: cosmo
