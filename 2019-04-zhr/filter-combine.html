@@ -282,18 +282,33 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Data visualization, reporting, and processing with R</a>
+      <a class="navbar-brand" href="index.html">R + tidyverse</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
 </li>
-<li>
-  <a href="intro.html">intro</a>
-</li>
-<li>
-  <a href="rstudio.html">rstudio</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Setup
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">intro</a>
+    </li>
+    <li>
+      <a href="rstudio.html">rstudio</a>
+    </li>
+    <li>
+      <a href="outro.html">outro</a>
+    </li>
+    <li>
+      <a href="support.html">support</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="ggplot2.html">ggplot2</a>
@@ -309,12 +324,6 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="rmarkdown.html">rmarkdown</a>
-</li>
-<li>
-  <a href="outro.html">outro</a>
-</li>
-<li>
-  <a href="support.html">support</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -578,7 +587,7 @@ flights %&gt;%
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.24    0.00    0.24</code></pre>
+##   0.228   0.000   0.229</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
