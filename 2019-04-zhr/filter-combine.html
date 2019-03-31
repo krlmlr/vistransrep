@@ -587,14 +587,14 @@ flights %&gt;%
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.228   0.004   0.233</code></pre>
+##   0.236   0.000   0.236</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.044   0.000   0.044</code></pre>
+##   0.044   0.000   0.043</code></pre>
 </details>
 </div>
 <div id="understand-predicate-logic" class="section level2">
@@ -606,7 +606,7 @@ flights %&gt;%
 <p>Find more exercises in items 1 and 4 of Section 5.2.4, and in Section 5.3.1, of r4ds.</p>
 </div>
 
-<p>Copyright &copy; 2018 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+<p>Copyright &copy; 2019 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
 
 
 
