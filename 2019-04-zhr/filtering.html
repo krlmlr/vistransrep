@@ -359,66 +359,8 @@ $(document).ready(function () {
 <p><summary>► Solution:</summary> Be careful with the equality operator <code>==</code>:</p>
 <pre class="r"><code>flights %&gt;% 
   filter(month = 6, day = 2)</code></pre>
-<pre><code>## Error: `month` (`month = 6`), `day` (`day = 2`) must not be named, do you need `==`?
-## Backtrace:
-##      █
-##   1. ├─tic::deploy()
-##   2. │ └─tic::run_stage(&quot;deploy&quot;, stages = stages)
-##   3. │   └─stage$run_all()
-##   4. │     └─private$run_one(step)
-##   5. │       ├─base::tryCatch(...)
-##   6. │       │ └─base:::tryCatchList(expr, classes, parentenv, handlers)
-##   7. │       │   └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-##   8. │       │     └─base:::doTryCatch(return(expr), name, parentenv, handler)
-##   9. │       ├─base::withCallingHandlers(...)
-##  10. │       └─step$run()
-##  11. │         └─base::eval(private$call, envir = .GlobalEnv)
-##  12. │           └─base::eval(private$call, envir = .GlobalEnv)
-##  13. ├─withr::with_dir(&quot;website&quot;, rmarkdown::render_site())
-##  14. │ └─base::force(code)
-##  15. ├─rmarkdown::render_site()
-##  16. │ └─generator$render(...)
-##  17. │   └─base::sapply(...)
-##  18. │     └─base::lapply(X = X, FUN = FUN, ...)
-##  19. │       └─rmarkdown:::FUN(X[[i]], ...)
-##  20. │         └─rmarkdown:::render_one(...)
-##  21. │           ├─base::suppressMessages(rmarkdown::render(...))
-##  22. │           │ └─base::withCallingHandlers(expr, message = function(c) invokeRestart(&quot;muffleMessage&quot;))
-##  23. │           └─rmarkdown::render(...)
-##  24. │             └─knitr::knit(...)
-##  25. │               └─knitr:::process_file(text, output)
-##  26. │                 ├─base::withCallingHandlers(...)
-##  27. │                 ├─knitr:::process_group(group)
-##  28. │                 └─knitr:::process_group.block(group)
-##  29. │                   └─knitr:::call_block(x)
-##  30. │                     └─knitr:::block_exec(params)
-##  31. │                       ├─knitr:::in_dir(...)
-##  32. │                       └─knitr:::evaluate(...)
-##  33. │                         └─evaluate::evaluate(...)
-##  34. │                           └─evaluate:::evaluate_call(...)
-##  35. │                             ├─evaluate:::timing_fn(...)
-##  36. │                             ├─evaluate:::handle(...)
-##  37. │                             │ └─base::try(f, silent = TRUE)
-##  38. │                             │   └─base::tryCatch(...)
-##  39. │                             │     └─base:::tryCatchList(expr, classes, parentenv, handlers)
-##  40. │                             │       └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-##  41. │                             │         └─base:::doTryCatch(return(expr), name, parentenv, handler)
-##  42. │                             ├─base::withCallingHandlers(...)
-##  43. │                             ├─base::withVisible(eval(expr, envir, enclos))
-##  44. │                             └─base::eval(expr, envir, enclos)
-##  45. │                               └─base::eval(expr, envir, enclos)
-##  46. └─flights %&gt;% filter(month = 6, day = 2)
-##  47.   ├─base::withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
-##  48.   └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
-##  49.     └─base::eval(quote(`_fseq`(`_lhs`)), env, env)
-##  50.       └─global::`_fseq`(`_lhs`)
-##  51.         └─magrittr::freduce(value, `_function_list`)
-##  52.           ├─base::withVisible(function_list[[k]](value))
-##  53.           └─function_list[[k]](value)
-##  54.             ├─dplyr::filter(., month = 6, day = 2)
-##  55.             └─dplyr:::filter.tbl_df(., month = 6, day = 2)
-##  56.               └─dplyr:::bad_eq_ops(bad, &quot;must not be named, do you need `==`?&quot;)
-##  57.                 └─dplyr:::glubort(fmt_wrong_eq_ops(named_calls), ..., .envir = .envir)</code></pre>
+<pre><code>## `month` (`month = 6`), `day` (`day = 2`) must not be named, do you need
+## `==`?</code></pre>
 <pre class="r"><code>flights %&gt;% 
   filter(month == 6, day == 2)</code></pre>
 <pre><code>## # A tibble: 911 x 19
@@ -444,20 +386,20 @@ $(document).ready(function () {
     month == lubridate::month(Sys.Date()),
     day == lubridate::day(Sys.Date())
   )</code></pre>
-<pre><code>## # A tibble: 982 x 19
+<pre><code>## # A tibble: 897 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     3    28        4           2250        74      121
-##  2  2013     3    28        4           2358         6      356
-##  3  2013     3    28      458            500        -2      641
-##  4  2013     3    28      516            515         1      752
-##  5  2013     3    28      530            530         0      803
-##  6  2013     3    28      536            540        -4      823
-##  7  2013     3    28      538            545        -7      912
-##  8  2013     3    28      550            600       -10      833
-##  9  2013     3    28      553            600        -7      810
-## 10  2013     3    28      553            600        -7      731
-## # … with 972 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013     3    31       51           2245       126      208
+##  2  2013     3    31      456            500        -4      635
+##  3  2013     3    31      513            515        -2      814
+##  4  2013     3    31      538            545        -7      918
+##  5  2013     3    31      540            540         0      842
+##  6  2013     3    31      541            545        -4      917
+##  7  2013     3    31      550            600       -10      833
+##  8  2013     3    31      550            600       -10      848
+##  9  2013     3    31      552            600        -8      912
+## 10  2013     3    31      552            600        -8      841
+## # … with 887 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
@@ -469,20 +411,20 @@ flights %&gt;%
     month == month_,
     day == day_
   )</code></pre>
-<pre><code>## # A tibble: 982 x 19
+<pre><code>## # A tibble: 897 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     3    28        4           2250        74      121
-##  2  2013     3    28        4           2358         6      356
-##  3  2013     3    28      458            500        -2      641
-##  4  2013     3    28      516            515         1      752
-##  5  2013     3    28      530            530         0      803
-##  6  2013     3    28      536            540        -4      823
-##  7  2013     3    28      538            545        -7      912
-##  8  2013     3    28      550            600       -10      833
-##  9  2013     3    28      553            600        -7      810
-## 10  2013     3    28      553            600        -7      731
-## # … with 972 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
+##  1  2013     3    31       51           2245       126      208
+##  2  2013     3    31      456            500        -4      635
+##  3  2013     3    31      513            515        -2      814
+##  4  2013     3    31      538            545        -7      918
+##  5  2013     3    31      540            540         0      842
+##  6  2013     3    31      541            545        -4      917
+##  7  2013     3    31      550            600       -10      833
+##  8  2013     3    31      550            600       -10      848
+##  9  2013     3    31      552            600        -8      912
+## 10  2013     3    31      552            600        -8      841
+## # … with 887 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
 ## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
 ## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
 ## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
