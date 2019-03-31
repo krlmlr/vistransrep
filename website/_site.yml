@@ -1,4 +1,4 @@
-name: my-website
+name: vistransrep
 output_dir: ../docs/2019-04-zhr
 include:
 - .nojekyll
