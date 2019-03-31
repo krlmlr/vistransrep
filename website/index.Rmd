@@ -10,7 +10,7 @@ This website contains exercises, solutions, and slides for the two-day workshop.
 
 ## Resources
 
-- This page: http://bit.ly/2JNxLov
+- This page: https://bit.ly/2JNxLov
     - Long URL: https://krlmlr.github.io/vistransrep/2019-04-zhr
 
 - rstudio.cloud server: https://rstudio.cloud/project/271256
