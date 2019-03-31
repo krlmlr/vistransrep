@@ -11,4 +11,6 @@ get_stage("deploy") %>%
   add_step(step_test_ssh()) %>%
   add_step(step_setup_push_deploy(path = "docs", branch = "gh-pages")) %>%
   add_step(step_run_code(withr::with_dir("website", rmarkdown::render_site()))) %>%
+  add_step(step_run_code(withr::with_dir("landing-page", rmarkdown::render_site()))) %>%
+  add_step(step_run_code(file.copy(dir("docs-landing-page"), "docs", recursive = TRUE))) %>%
   add_step(step_do_push_deploy(path = "docs"))
