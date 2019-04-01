@@ -1,7 +1,6 @@
 ---
 title: "Scales"
 author: "Kirill Müller, cynkra GmbH"
-date: "June 1, 2017"
 output: html_document
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "Filtering and plotting"
 author: "Kirill Müller, cynkra GmbH"
-date: "Nov 28, 2017"
 output: html_document
 ---
 
