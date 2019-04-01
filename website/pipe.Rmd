@@ -55,19 +55,19 @@ flights %>%
 
 ## Ad infinitum, 1
 
-Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM.
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 PM and arrived after 10:00 PM.
 
 ## Ad infinitum, 2
 
-Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours.
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 PM and arrived after 10:00 PM and had a delay of more than two hours.
 
 ## Ad infinitum, 3
 
-Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports.
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 PM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports.
 
 ## Ad infinitum, 4
 
-Extend the four solutions to view all `"UA"` flights that departed before 6:00 AM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
+Extend the four solutions to view all `"UA"` flights that departed before 6:00 PM and arrived after 10:00 PM and had a delay of more than two hours, originating in one of New York City's airports but excluding Honolulu International airport.
 
 Hint: Use `dest != "HNL"` as predicate.
 
@@ -89,7 +89,7 @@ late_flights <-
 late_ua_flights <-
   filter(late_flights, carrier == "UA")
 early_late_ua_flights <-
-  filter(late_ua_flights, dep_time >= 600)
+  filter(late_ua_flights, dep_time < 1800)
 early_late_late_ua_flights <-
   filter(early_late_ua_flights, arr_delay > 120)
 early_late_late_ua_flights_not_honolulu <-
@@ -119,7 +119,7 @@ view(
             ),
             carrier == "UA"
           ),
-          dep_time <= 600
+          dep_time < 1800
         ),
         arr_delay > 120
       ),
@@ -136,7 +136,7 @@ view(
 flights %>% 
   filter(arr_time >= 2200) %>% 
   filter(carrier == "UA") %>% 
-  filter(dep_time <= 600) %>% 
+  filter(dep_time < 1800) %>% 
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL") %>%
   arrange(distance) %>%
@@ -152,7 +152,7 @@ late_late_ua_flights_not_honolulu <-
   flights %>% 
   filter(arr_time >= 2200) %>% 
   filter(carrier == "UA") %>% 
-  filter(dep_time <= 600) %>% 
+  filter(dep_time < 1800) %>% 
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL") %>%
   arrange(distance)
