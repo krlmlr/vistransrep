@@ -2,7 +2,6 @@
 title: "Data visualisation, reporting, and processing with R"
 subtitle: "Introduction"
 author: "Kirill Müller, cynkra GmbH"
-date: "2018-11-29"
 output:
   xaringan::moon_reader:
     lib_dir: libs

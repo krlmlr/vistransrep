@@ -21,15 +21,15 @@ class: center
 
 # Survey results
 
-## Purpose of R: Interactive work, automation, modelling
+## Purpose of R: Automation, interactive work, toolsets
 
 ## Some previous experience with R
 
-### Excel, SPSS/Stata/SAS
+### Excel, SPSS/Stata/SAS/Access/databases
 
-### Little programming experience, e.g. C/C++, VB/VBA, Python, JS
+### Some programming experience, e.g. C/C++, VB/VBA, C, FORTRAN, Java
 
-### Little experience with shell/command line
+### Little experience with shell/command line and VCS
 
 ### Windows and MacOS
 
