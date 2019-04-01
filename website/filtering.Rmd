@@ -10,7 +10,7 @@ library(tidyverse)
 library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 
-View <- function(x) print(x)
+view <- function(x) print(x)
 ```
 
 ## Viewing
@@ -20,7 +20,7 @@ View the `flights` dataset in RStudio's data pane. Look up the meaning of the va
 Hint: You need to load the `nycflights13` package.
     
 ```r
-View(___)
+view(___)
 ```
 
 ## All flights on this day x years ago

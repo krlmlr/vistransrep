@@ -10,7 +10,7 @@ library(tidyverse)
 library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 
-View <- function(x) print(x)
+view <- function(x) print(x)
 ```
 
 ## Flights on the same date as today

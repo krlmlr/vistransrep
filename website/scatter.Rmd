@@ -26,13 +26,13 @@ mpg
 View `mpg` in RStudio's dataset pane (via `View()`). Display all Audis sorted by year then cylinder. What is the maximum number of highway miles per gallon in this dataset?
 
 ```
-View(___)
+view(___)
 ```
 
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```r
-View(mpg)
+view(mpg)
 ```
 
 - Filtering works by clicking on the "Filter" button, then entering a text (for text columns) or restricting the range of values (for numeric columns).

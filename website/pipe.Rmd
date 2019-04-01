@@ -10,7 +10,7 @@ library(tidyverse)
 library(nycflights13)
 knitr::opts_chunk$set(cache = TRUE)
 
-View <- function(x) print(x)
+view <- function(x) print(x)
 ```
 
 ## Late flights
@@ -19,17 +19,17 @@ View all flights that arrived after 10:00 PM. Use an intermediate variable, a ne
 
 ```r
 flights_after_10 <- filter(flights, ___)
-View(flights_after_10)
+view(flights_after_10)
 ```
 
 ```r
-View(filter(flights, ___))
+view(filter(flights, ___))
 ```
 
 ```r
 flights %>%
   filter(___) %>%
-  View()
+  view()
 ```
 
 ## Fly United
@@ -39,18 +39,18 @@ Extend the four solutions to view all `"UA"` flights that arrived after 10:00 PM
 ```r
 flights_after_10 <- filter(flights, ___)
 ua_flights_after_10 <- ...
-View(___)
+view(___)
 ```
 
 ```r
-View(filter(filter(flights, ___), ___))
+view(filter(filter(flights, ___), ___))
 ```
 
 ```r
 flights %>%
   filter(___) %>%
   filter(___) %>%
-  View()
+  view()
 ```
 
 ## Ad infinitum, 1
@@ -99,7 +99,7 @@ early_late_late_ua_flights_not_honolulu_sorted <-
     early_late_late_ua_flights_not_honolulu,
     distance
   )
-View(early_late_late_ua_flights_not_honolulu_sorted)
+view(early_late_late_ua_flights_not_honolulu_sorted)
 ```
 
 ### Nested expressions
@@ -107,7 +107,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)
 Difficult to read.
 
 ```{r filtering-20}
-View(
+view(
   arrange(
     filter(
       filter(
@@ -140,7 +140,7 @@ flights %>%
   filter(arr_delay > 120) %>% 
   filter(dest != "HNL") %>%
   arrange(distance) %>%
-  View()
+  view()
 ```
 
 The original data is never updated! You still need to assign the result of a pipe to a variable:
