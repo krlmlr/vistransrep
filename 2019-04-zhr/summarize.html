@@ -548,20 +548,20 @@ total_airtime_by_carrier</code></pre>
 <div id="air-time-by-carrier-visualized" class="section level2">
 <h2>Air time by carrier, visualized</h2>
 <p>Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.</p>
-<p>Hint: Use <code>forcats::fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
+<p>Hint: Use <code>fct_inorder()</code> to fix the ordering of a categorical variable before plotting.</p>
 <pre class="r"><code>total_airtime_by_carrier &lt;-
   _____
   
 total_airtime_by_carrier %&gt;%
   arrange(acc_air_time) %&gt;%
-  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+  mutate(carrier = fct_inorder(carrier)) %&gt;%
   ggplot(aes(___)) +
     geom_col()</code></pre>
 <details>
 <p><summary>► Solution:</summary></p>
 <pre class="r"><code>total_airtime_by_carrier %&gt;% 
   arrange(acc_air_time) %&gt;%
-  mutate(carrier = forcats::fct_inorder(carrier)) %&gt;%
+  mutate(carrier = fct_inorder(carrier)) %&gt;%
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()</code></pre>
@@ -772,7 +772,7 @@ short_distance_route_ratio</code></pre>
 ## 16 VX                    0</code></pre>
 <pre class="r"><code>short_distance_route_ratio %&gt;%
   ggplot() +
-  geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))</code></pre>
+  geom_col(aes(x = fct_inorder(carrier), y = short_distance_ratio))</code></pre>
 <img src="summarize_files/figure-html/summarize-14-1.png" width="672" />
 </details>
 </div>
