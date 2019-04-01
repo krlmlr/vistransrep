@@ -181,7 +181,7 @@ total_airtime_by_carrier
 
 Plot a bar chart of the accumulated air time per airline, with a suitable unit for the total time.
 
-Hint: Use `forcats::fct_inorder()` to fix the ordering of a categorical variable before plotting.
+Hint: Use `fct_inorder()` to fix the ordering of a categorical variable before plotting.
 
 ```r
 total_airtime_by_carrier <-
@@ -189,7 +189,7 @@ total_airtime_by_carrier <-
   
 total_airtime_by_carrier %>%
   arrange(acc_air_time) %>%
-  mutate(carrier = forcats::fct_inorder(carrier)) %>%
+  mutate(carrier = fct_inorder(carrier)) %>%
   ggplot(aes(___)) +
     geom_col()
 ```
@@ -199,7 +199,7 @@ total_airtime_by_carrier %>%
 ```{r summarize-8}
 total_airtime_by_carrier %>% 
   arrange(acc_air_time) %>%
-  mutate(carrier = forcats::fct_inorder(carrier)) %>%
+  mutate(carrier = fct_inorder(carrier)) %>%
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()
@@ -370,7 +370,7 @@ short_distance_route_ratio
 
 short_distance_route_ratio %>%
   ggplot() +
-  geom_col(aes(x = forcats::fct_inorder(carrier), y = short_distance_ratio))
+  geom_col(aes(x = fct_inorder(carrier), y = short_distance_ratio))
 ```
 </details>
 
