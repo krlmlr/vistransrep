@@ -346,23 +346,23 @@ $(document).ready(function () {
 <h2>Late flights</h2>
 <p>View all flights that arrived after 10:00 PM. Use an intermediate variable, a nested expression, and the pipe. Which appeals more to you?</p>
 <pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
-View(flights_after_10)</code></pre>
-<pre class="r"><code>View(filter(flights, ___))</code></pre>
+view(flights_after_10)</code></pre>
+<pre class="r"><code>view(filter(flights, ___))</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(___) %&gt;%
-  View()</code></pre>
+  view()</code></pre>
 </div>
 <div id="fly-united" class="section level2">
 <h2>Fly United</h2>
 <p>Extend the four solutions to view all <code>&quot;UA&quot;</code> flights that arrived after 10:00 PM.</p>
 <pre class="r"><code>flights_after_10 &lt;- filter(flights, ___)
 ua_flights_after_10 &lt;- ...
-View(___)</code></pre>
-<pre class="r"><code>View(filter(filter(flights, ___), ___))</code></pre>
+view(___)</code></pre>
+<pre class="r"><code>view(filter(filter(flights, ___), ___))</code></pre>
 <pre class="r"><code>flights %&gt;%
   filter(___) %&gt;%
   filter(___) %&gt;%
-  View()</code></pre>
+  view()</code></pre>
 </div>
 <div id="ad-infinitum-1" class="section level2">
 <h2>Ad infinitum, 1</h2>
@@ -405,7 +405,7 @@ early_late_late_ua_flights_not_honolulu_sorted &lt;-
     early_late_late_ua_flights_not_honolulu,
     distance
   )
-View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
+view(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 <pre><code>## # A tibble: 330 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
@@ -426,7 +426,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
 <div id="nested-expressions" class="section level3">
 <h3>Nested expressions</h3>
 <p>Difficult to read.</p>
-<pre class="r"><code>View(
+<pre class="r"><code>view(
   arrange(
     filter(
       filter(
@@ -463,7 +463,7 @@ View(early_late_late_ua_flights_not_honolulu_sorted)</code></pre>
   filter(arr_delay &gt; 120) %&gt;% 
   filter(dest != &quot;HNL&quot;) %&gt;%
   arrange(distance) %&gt;%
-  View()</code></pre>
+  view()</code></pre>
 <pre><code>## # A tibble: 0 x 19
 ## # … with 19 variables: year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, dep_time &lt;int&gt;,
 ## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
