@@ -1,3 +1,5 @@
+### <No caption defined>
+
 library(tidyverse)
 library(nycflights13)
 
@@ -16,8 +18,10 @@ table2 %>%
 
 # gt package
 
+
 # reporttools package
 
 ?`tidyr-package`
 
 # https://tidyr.tidyverse.org/
+NA

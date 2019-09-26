@@ -1,3 +1,5 @@
+### <No caption defined>
+
 library(tidyverse)
 
 ggplot(
@@ -7,4 +9,3 @@ ggplot(
   geom_boxplot()
 
 near(sqrt(2) ^ 2, 2)
-
