@@ -15,6 +15,9 @@ library(tidyverse)
 ```
 </details>
 
+In the {tidyverse} the standard package for visualisation is {ggplot2}.
+The functions of this package follow a quite unique logic (the "grammar of graphics") and therefore require a special syntax.
+In this section we want to give a short introduction, how to get started with {ggplot2}.
 
 ```{r include = FALSE}
 # # One time:
@@ -24,6 +27,10 @@ library(tidyverse)
 
 ```
 
+The main function in the package is `ggplot()`, which prepares/creates a graph.
+By setting the parameters of the function, you can:
+1. choose the dataset to be plotted in the parameter `data`
+2. choose the mapping of the variables to the axes (or further forms of setting apart data) in the parameter `mapping`. This parameter takes the result of the function `aes()`, which you will get to know in many different examples.
 
 ```{r include = FALSE}
 # Empty graph
@@ -35,6 +42,8 @@ ggplot(
 )
 ```
 
+This created only an empty plot, because we did not tell {ggplot2}, which geometry we want to use to display the result.
+We do this by adding (literally using `+` after the `ggplot()`-call) a different function starting with `geom_` to provide this information.
 
 ```{r include = FALSE}
 # Scatterplot
@@ -47,6 +56,8 @@ ggplot(
   geom_point()
 ```
 
+This is maybe the most basic plot you can create.
+To map a different variable than `disp` to the x-axis, change the respective parameter in `aes()`.
 
 ```{r include = FALSE}
 # aes() determines which variables are plotted
@@ -59,6 +70,7 @@ ggplot(
   geom_point()
 ```
 
+You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
 
 ```{r include = FALSE}
 # Pattern unchanged if only variables are plotted
