@@ -1,8 +1,8 @@
-# Function basics {#function-basics}
+# Visualization {#visualization}
 
-> Structuring the code to avoid too much copy-pasting
+> Embracing the grammar of graphics.
 
-This chapter discusses functions as building blocks for more expressive and more powerful data analysis code.
+This chapter discusses plotting with the [ggplot2 package](https://ggplot2.tidyverse.org/).
 
 ```{r child = here::here("script", "2.Rmd")}
 ```
