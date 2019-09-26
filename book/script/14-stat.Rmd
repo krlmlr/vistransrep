@@ -15,6 +15,12 @@ library(tidyverse)
 ```
 </details>
 
+Some `geom()`-functions do some transformations and calculations behind the scenes before the data are visualized.
+One such function is `geom_smooth()` from the last section. 
+Also `geom_bar()` does some transformations first.
+It just needs a mapping for the x-axis.
+Once that is done, the y-values displayed for each value of the x-variable are the numbers of of times that the x-value occurs in the dataset.
+So basically the different values are counted.
 
 ```{r include = FALSE}
 # geom_bar()
