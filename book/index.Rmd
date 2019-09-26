@@ -20,31 +20,22 @@ this_repo <- function(...) {
 }
 
 vistransrep_repo <- function(...) {
-  file.path("https://github.com/krlmlr/vistransrep-proj/tree/2019-05-zhr", ...)
+  file.path("https://github.com/krlmlr/vistransrep-proj/tree/master", ...)
 }
 ```
 
 
 # Preface {-}
 
-Material for the [zhRcourse workshop "Programming in the tidyverse"](https://www.zhrcourses.uzh.ch/en/programm2019/tidyverse.html) on May 10, 2019.
-
 See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
 
 ## Links {-}
 
-- This website: https://bit.ly/vistransrep
-    - Longer URL: https://krlmlr.github.io/vistransrep/
+- This website: https://krlmlr.github.io/vistransrep/
 
 - Scripts and installation instructions: `r vistransrep_repo()`
     - Prepared scripts: `r vistransrep_repo("script")`
     - Live code: `r vistransrep_repo("live")`
-    - The code **will be updated live** with a delay of a few seconds during the workshop, it is **not necessary** to repeat the instructor's typing
-
-- rstudio.cloud server: https://rstudio.cloud/project/329883
-    - Sign up, or log in with Google or GitHub
-    - Click the "Save a private copy" link next to the **TEMPORARY** label in red in the header
-    - All necessary packages are preinstalled
 
 - The source project for this material: `r this_repo()`
 

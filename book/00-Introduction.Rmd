@@ -10,13 +10,11 @@ While this might be true for all languages (once you speak it well enough, thing
 1. consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
 2. evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
 
-This section gives a brief overview, introduces the data used for the course, and offers a refresher for tidy data manipulation and visualization.
-
 ## Overview
 
 This course covers several topics, which everyone working more intently with the `tidyverse` almost inevitably needs to deal with at some point or another.
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.
 
-```{r child = here("script", "1.Rmd")}
+```{r child = here("script", "0.Rmd"), eval = FALSE}
 ```

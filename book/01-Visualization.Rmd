@@ -4,5 +4,5 @@
 
 This chapter discusses plotting with the [ggplot2 package](https://ggplot2.tidyverse.org/).
 
-```{r child = here::here("script", "2.Rmd")}
+```{r child = here::here("script", "1.Rmd")}
 ```
