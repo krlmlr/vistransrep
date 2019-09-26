@@ -1,19 +1,22 @@
-### <No caption defined>
+### Labels and layers
 
 library(tidyverse)
 
+# geom_text()
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_text(label = "A")
 
+# set label in aes() for geom_text()
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = "drv")
 ) +
   geom_text()
 
+# 3rd axis as label for geom_text()
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)
@@ -28,6 +31,7 @@ ggplot(
   geom_point() +
   geom_text()
 
+# Two layers more clearly
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)
@@ -77,6 +81,7 @@ ggplot(
   geom_point() +
   geom_smooth()
 
+# smooth method linear model
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
