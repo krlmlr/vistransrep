@@ -1,8 +1,0 @@
-# Tidy evaluation
-
-> writing functions that work with datasets of different shape
-
-This chapter offers an introduction to tidy evaluation.
-
-```{r child = here::here("script", "7.Rmd")}
-```
