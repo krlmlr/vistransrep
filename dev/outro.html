@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Data visualisation, reporting, and processing with R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kirill Müller, cynkra GmbH" />
+    <link href="site_libs/remark-css/default.css" rel="stylesheet" />
+    <link href="site_libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data visualisation, reporting, and processing with R
+## Closing remarks
+### Kirill Müller, cynkra GmbH
+
+---
+
+
+
+
+# EDA
+
+Understand your data
+
+- Generate questions
+
+- Search for answers
+
+- Rinse and repeat
+
+---
+
+# Important questions
+
+- Variation
+
+- Covariation
+
+???
+
+Tabular data
+
+- Distribution
+- Typica values
+- Unusual values, outliers
+- Missing values
+
+---
+
+# Discrete variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_bar(
+    mapping = aes(x = class)
+  )
+```
+
+![](outro_files/figure-html/outro-1-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(class)
+```
+
+```
+## # A tibble: 7 x 2
+##   class          n
+##   &lt;chr&gt;      &lt;int&gt;
+## 1 2seater        5
+## 2 compact       47
+## 3 midsize       41
+## 4 minivan       11
+## 5 pickup        33
+## 6 subcompact    35
+## 7 suv           62
+```
+]
+
+---
+
+# Continuous variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_histogram(
+    mapping = aes(x = displ),
+    binwidth = 0.05
+  )
+```
+
+![](outro_files/figure-html/outro-3-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ)
+  )
+```
+
+![](outro_files/figure-html/outro-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_density(
+    mapping = aes(x = displ, y = ..scaled.., color = class),
+  )
+```
+
+![](outro_files/figure-html/outro-5-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical vs. continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_boxplot(
+    mapping = aes(x = class, y = displ),
+  )
+```
+
+![](outro_files/figure-html/outro-6-1.png)&lt;!-- --&gt;
+
+---
+
+# Categorical variables
+
+.pull-left[
+
+```r
+ggplot(data = mpg) +
+  geom_bin2d(
+    mapping = aes(x = drv, y = class),
+  )
+```
+
+![](outro_files/figure-html/outro-7-1.png)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+mpg %&gt;% 
+  count(drv, class)
+```
+
+```
+## # A tibble: 12 x 3
+##    drv   class          n
+##    &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
+##  1 4     compact       12
+##  2 4     midsize        3
+##  3 4     pickup        33
+##  4 4     subcompact     4
+##  5 4     suv           51
+##  6 f     compact       35
+##  7 f     midsize       38
+##  8 f     minivan       11
+##  9 f     subcompact    22
+## 10 r     2seater        5
+## 11 r     subcompact     9
+## 12 r     suv           11
+```
+]
+
+---
+
+# Continuous variables
+
+
+```r
+ggplot(data = mpg) +
+  geom_jitter(
+    mapping = aes(x = hwy, y = cty),
+    alpha = 0.3
+  )
+```
+
+![](outro_files/figure-html/outro-9-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse
+
+???
+
+---
+
+# More transformations
+
+- Grouped `mutate()` and `filter()`, see r4ds 5.7.1
+- Scoped functions, see `?scoped`
+- `complete()` and `fill()`
+- `extract()`
+
+## Same syntax for working with databases
+
+- *dbplyr* package
+- Transformation operations are translated to SQL
+
+
+---
+
+# Joins
+
+r4ds, chapter 13
+
+
+```r
+flights %&gt;%
+  select(year, month, day, carrier) %&gt;%
+  left_join(airlines)
+```
+
+```
+## Joining, by = "carrier"
+```
+
+```
+## # A tibble: 336,776 x 5
+##     year month   day carrier name                    
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;                   
+##  1  2013     1     1 UA      United Air Lines Inc.   
+##  2  2013     1     1 UA      United Air Lines Inc.   
+##  3  2013     1     1 AA      American Airlines Inc.  
+##  4  2013     1     1 B6      JetBlue Airways         
+##  5  2013     1     1 DL      Delta Air Lines Inc.    
+##  6  2013     1     1 UA      United Air Lines Inc.   
+##  7  2013     1     1 B6      JetBlue Airways         
+##  8  2013     1     1 EV      ExpressJet Airlines Inc.
+##  9  2013     1     1 B6      JetBlue Airways         
+## 10  2013     1     1 AA      American Airlines Inc.  
+## # … with 336,766 more rows
+```
+
+---
+
+# Nested data frames
+
+r4ds, chapter 25
+
+
+```r
+flights %&gt;%
+  nest(-month) %&gt;% 
+  arrange(month)
+```
+
+```
+## Warning: All elements of `...` must be named.
+## Did you want `data = c(year, day, dep_time, sched_dep_time, dep_delay, arr_time, sched_arr_time, 
+##     arr_delay, carrier, flight, tailnum, origin, dest, air_time, 
+##     distance, hour, minute, time_hour)`?
+```
+
+```
+## # A tibble: 12 x 2
+##    month            data
+##    &lt;int&gt; &lt;list&lt;df[,18]&gt;&gt;
+##  1     1   [27,004 × 18]
+##  2     2   [24,951 × 18]
+##  3     3   [28,834 × 18]
+##  4     4   [28,330 × 18]
+##  5     5   [28,796 × 18]
+##  6     6   [28,243 × 18]
+##  7     7   [29,425 × 18]
+##  8     8   [29,327 × 18]
+##  9     9   [27,574 × 18]
+## 10    10   [28,889 × 18]
+## 11    11   [27,268 × 18]
+## 12    12   [28,135 × 18]
+```
+
+---
+
+# Visualizations not covered
+
+.pull-left[
+
+## Position adjustments
+
+jitter, dodge, stack, nudge
+
+## Scales
+
+labeling, color, range
+
+]
+
+.pull-right[
+
+## Coordinate systems
+
+flipping, aspect ratio, polar
+
+## Theming
+
+tweaking plots, standard appearance
+
+]
+
+---
+
+# Extension for ggplot2
+
+- Useful `ggplot2` extensions, https://www.ggplot2-exts.org/gallery/
+    - ggstance
+    - ggrepel
+    - gganimate
+    - GGally
+
+- Useful `ggplot2` themes
+    - ggpubr
+    - ggthemr
+    - ggpomological
+
+---
+
+# Pointers
+
+Working directory hell:
+- https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
+
+Symbolic link to data directory:
+- Linux and OS X: `file.symlink()`
+- Windows: `Sys.junction()`
+
+R markdown: http://rmarkdown.rstudio.com/gallery.html
+
+---
+
+# Pointers 2
+
+Literature:
+
+- Quick-R [http://www.statmethods.net](http://www.statmethods.net)
+
+- Advanced R [http://adv-r.had.co.nz](http://adv-r.had.co.nz)
+
+- Packages suggested by RStudio [https://github.com/rstudio/RStartHere](https://github.com/rstudio/RStartHere)
+
+- moderndive: [https://moderndive.com/](https://moderndive.com/)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
