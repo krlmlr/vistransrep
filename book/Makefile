@@ -10,10 +10,10 @@ id:
 	R -q -f id.R
 
 push:
-	git subtree push --prefix proj ../tidyprog-proj website
+	git subtree push --prefix proj ../vistransrep-proj website
 
 pull:
-	git subtree pull --prefix proj ../tidyprog-proj website
+	git subtree pull --prefix proj ../vistransrep-proj website
 
 test:
 	ls proj/script/* | parallel --halt now,fail=1 R --vanilla -q -f && rm Rplots.pdf

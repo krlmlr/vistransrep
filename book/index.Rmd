@@ -1,5 +1,5 @@
 ---
-title: "Programming in the tidyverse"
+title: "Visualization, transformation and reporting with the tidyverse"
 author: "Kirill Müller, Tobias Schieferdecker"
 date: "`r format(lubridate::with_tz(Sys.time(), 'CET'), '%d %B %Y, %H:%M %Z')`"
 documentclass: "book"
@@ -16,11 +16,11 @@ if (!knitr::is_latex_output()) {
 library(here)
 
 this_repo <- function(...) {
-  file.path("https://github.com/krlmlr/tidyprog", ...)
+  file.path("https://github.com/krlmlr/vistransrep", ...)
 }
 
-tidyprog_repo <- function(...) {
-  file.path("https://github.com/krlmlr/tidyprog-proj/tree/2019-05-zhr", ...)
+vistransrep_repo <- function(...) {
+  file.path("https://github.com/krlmlr/vistransrep-proj/tree/2019-05-zhr", ...)
 }
 ```
 
@@ -33,12 +33,12 @@ See the controls at the top of the website for searching, font size, editing, an
 
 ## Links {-}
 
-- This website: https://bit.ly/tidyprog
-    - Longer URL: https://krlmlr.github.io/tidyprog/
+- This website: https://bit.ly/vistransrep
+    - Longer URL: https://krlmlr.github.io/vistransrep/
 
-- Scripts and installation instructions: `r tidyprog_repo()`
-    - Prepared scripts: `r tidyprog_repo("script")`
-    - Live code: `r tidyprog_repo("live")`
+- Scripts and installation instructions: `r vistransrep_repo()`
+    - Prepared scripts: `r vistransrep_repo("script")`
+    - Live code: `r vistransrep_repo("live")`
     - The code **will be updated live** with a delay of a few seconds during the workshop, it is **not necessary** to repeat the instructor's typing
 
 - rstudio.cloud server: https://rstudio.cloud/project/329883

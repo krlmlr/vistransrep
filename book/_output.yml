@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     download: [pdf]
     edit:
-        link: https://github.com/krlmlr/tidyprog/edit/master/%s
+        link: https://github.com/krlmlr/vistransrep/edit/master/%s
     sharing:
       facebook: no
       twitter: no
