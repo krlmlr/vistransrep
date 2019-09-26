@@ -3,16 +3,23 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Tweaks and tricks
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Tweaks and tricks
 
 ```
 ```{r 12-setup-12-manual-r}
 library(tidyverse)
+```
+</details>
 
+
+```{r include = FALSE}
+# chose color in geom
+```
+```{r 12-chose-color-in-geom}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -20,7 +27,13 @@ ggplot(
   geom_point(
     color = "red"
   )
+```
 
+
+```{r include = FALSE}
+# different color 1
+```
+```{r 12-different-color-1}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -28,7 +41,13 @@ ggplot(
   geom_point(
     color = "blue"
   )
+```
 
+
+```{r include = FALSE}
+# different color 2
+```
+```{r 12-different-color-2}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -36,13 +55,25 @@ ggplot(
   geom_point(
     color = "green"
   )
+```
 
+
+```{r include = FALSE}
+# color as 3rd axis
+```
+```{r 12-color-as-3-rd-axis}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# point shape as 3rd axis
+```
+```{r 12-point-shape-as-3-rd-axis}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -52,7 +83,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# shape mapped on drv
+```
+```{r 12-shape-mapped-on-drv}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -62,7 +99,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# point size as 3rd axis
+```
+```{r 12-point-size-as-3-rd-axis}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -72,7 +115,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# mix to increase axis num
+```
+```{r 12-mix-to-increase-axis-num}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -83,7 +132,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# unquoted col in aes()
+```
+```{r 12-unquoted-col-in-aes}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -93,10 +148,22 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# mpg quoted and unquoted
+```
+```{r 12-mpg-quoted-and-unquoted}
 mpg
 "mpg"
+```
 
+
+```{r include = FALSE}
+# quoted color in aes()
+```
+```{r 12-quoted-color-in-aes}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -106,7 +173,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# semi-transparency
+```
+```{r 12-semi-transparency}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -115,7 +188,13 @@ ggplot(
   )
 ) +
   geom_point(alpha = 0.2)
+```
 
+
+```{r include = FALSE}
+# function of variables in aes()
+```
+```{r 12-function-of-variables-in-aes}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -124,7 +203,13 @@ ggplot(
   )
 ) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# color in geom()
+```
+```{r 12-color-in-geom}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -134,4 +219,3 @@ ggplot(
 ) +
   geom_point(color = class)
 ```
-</details>

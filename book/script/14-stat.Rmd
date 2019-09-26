@@ -3,20 +3,26 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Statistical summaries
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Statistical summaries
 
 ```
 ```{r 14-setup-14-stat-r}
 library(tidyverse)
+```
+</details>
 
+
+```{r include = FALSE}
+# geom_bar()
+```
+```{r 14-geom-bar}
 ggplot(
   data = mpg,
   mapping = aes(x = class)
 ) +
   geom_bar()
 ```
-</details>

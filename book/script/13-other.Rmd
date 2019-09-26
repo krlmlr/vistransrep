@@ -3,35 +3,53 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Labels and layers
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Labels and layers
 
 ```
 ```{r 13-setup-13-other-r}
 library(tidyverse)
+```
+</details>
 
+
+```{r include = FALSE}
+# geom_text()
+```
+```{r 13-geom-text}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_text(label = "A")
+```
 
+
+```{r include = FALSE}
+# set label in aes() for geom_text()
+```
+```{r 13-set-label-in-aes-for-geom-text}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = "drv")
 ) +
   geom_text()
+```
 
+
+```{r include = FALSE}
+# 3rd axis as label for geom_text()
+```
+```{r 13-3-rd-axis-as-label-for-geom-text}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)
 ) +
   geom_text()
 ```
-</details>
 
 
 ```{r include = FALSE}
@@ -44,7 +62,13 @@ ggplot(
 ) +
   geom_point() +
   geom_text()
+```
 
+
+```{r include = FALSE}
+# Two layers more clearly
+```
+```{r 13-two-layers-more-clearly}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)
@@ -118,7 +142,13 @@ ggplot(
 ) +
   geom_point() +
   geom_smooth()
+```
 
+
+```{r include = FALSE}
+# smooth method linear model
+```
+```{r 13-smooth-method-linear-model}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)

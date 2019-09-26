@@ -3,23 +3,36 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Facet plots
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Facet plots
 
 ```
 ```{r 15-setup-15-facet-r}
 library(tidyverse)
+```
+</details>
 
+
+```{r include = FALSE}
+# facet_wrap()
+```
+```{r 15-facet-wrap}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
   facet_wrap(~ class)
+```
 
+
+```{r include = FALSE}
+# facet_grid()
+```
+```{r 15-facet-grid}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -27,4 +40,29 @@ ggplot(
   geom_point() +
   facet_grid(year ~ drv)
 ```
-</details>
+
+
+```{r include = FALSE}
+# facet_grid() only set rows
+```
+```{r 15-facet-grid-only-set-rows}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  facet_grid(vars(year))
+```
+
+
+```{r include = FALSE}
+# facet_grid() only set cols
+```
+```{r 15-facet-grid-only-set-cols}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  facet_grid(cols = vars(year))
+```

@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Basics for visualisation in R using {ggplot2}
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Basics for visualisation in R using {ggplot2}
 
 ```
 ```{r 11-setup-11-mpg-r}
