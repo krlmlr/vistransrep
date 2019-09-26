@@ -1,0 +1,53 @@
+```{r 74-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## Names {#named}
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### Names
+
+```
+```{r 74-setup-74-named-r}
+library(tidyverse)
+library(rlang)
+```
+</details>
+
+User input in an ellipsis can be named or unnamed.
+We can distinguish between those two kinds and make use of this distinction, in the following way creating a special interface for the function:
+
+```{r include = FALSE}
+# Combo: unnamed arguments define grouping, named arguments define summary
+```
+```{r 74-combo-unnamed-arguments-define-grouping-named-arguments-define-summary}
+gsu <- function(.data, ...) {
+  # Capture (quote) with enquos()
+  quos <- enquos(...)
+
+  is_named <- (names2(quos) != "")
+  named_quos <- quos[is_named]
+  unnamed_quos <- quos[!is_named]
+
+  # Use (unquote-splice) with !!!
+  .data %>%
+    group_by(!!!unnamed_quos) %>%
+    summarize(!!!named_quos) %>%
+    ungroup()
+}
+```
+
+The `named_quos` are our summary columns (name is name of the new column, value is the expression to be used on the input column(s)) and the `unnamed_quos` are now the grouping columns:
+
+```{r include = FALSE}
+# Test it:
+```
+```{r 74-test-it}
+mean_airtime_per_day <-
+  nycflights13::flights %>%
+  gsu(year, month, day, mean_air_time = mean(air_time, na.rm = TRUE))
+
+mean_airtime_per_day
+```
