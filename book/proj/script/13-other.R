@@ -16,7 +16,7 @@ ggplot(
 ) +
   geom_text()
 
-# 3rd axis as label for geom_text()
+# 3rd aesthetic as label for geom_text()
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)

@@ -41,9 +41,9 @@ ggplot(
 
 
 ```{r include = FALSE}
-# 3rd axis as label for geom_text()
+# 3rd aesthetic as label for geom_text()
 ```
-```{r 13-3-rd-axis-as-label-for-geom-text}
+```{r 13-3-rd-aesthetic-as-label-for-geom-text}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, label = drv)
