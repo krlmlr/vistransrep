@@ -29,15 +29,14 @@ ggplot(
     color = "green"
   )
 
-# color as 3rd axis
+# color as 3rd aesthetic
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
 ) +
   geom_point()
 
-
-# point shape as 3rd axis
+# point shape as 3rd aesthetic
 ggplot(
   data = mpg,
   mapping = aes(
@@ -59,7 +58,7 @@ ggplot(
 ) +
   geom_point()
 
-# point size as 3rd axis
+# point size as 3rd aesthetic
 ggplot(
   data = mpg,
   mapping = aes(
@@ -70,7 +69,7 @@ ggplot(
 ) +
   geom_point()
 
-# mix to increase axis num
+# mix to increase num of aesthetics
 ggplot(
   data = mpg,
   mapping = aes(
@@ -83,7 +82,8 @@ ggplot(
   geom_point()
 
 # unquoted col in aes()
-ggplot(
+try(
+  ggplot(
   data = mpg,
   mapping = aes(
     x = displ,
@@ -92,6 +92,7 @@ ggplot(
   )
 ) +
   geom_point()
+)
 
 # mpg quoted and unquoted
 mpg
@@ -129,7 +130,8 @@ ggplot(
   geom_point()
 
 # color in geom()
-ggplot(
+try(
+  ggplot(
   data = mpg,
   mapping = aes(
     x = displ,
@@ -137,3 +139,4 @@ ggplot(
   )
 ) +
   geom_point(color = class)
+)

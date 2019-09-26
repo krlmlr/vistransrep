@@ -59,9 +59,9 @@ ggplot(
 
 
 ```{r include = FALSE}
-# color as 3rd axis
+# color as 3rd aesthetic
 ```
-```{r 12-color-as-3-rd-axis}
+```{r 12-color-as-3-rd-aesthetic}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -71,9 +71,9 @@ ggplot(
 
 
 ```{r include = FALSE}
-# point shape as 3rd axis
+# point shape as 3rd aesthetic
 ```
-```{r 12-point-shape-as-3-rd-axis}
+```{r 12-point-shape-as-3-rd-aesthetic}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -103,9 +103,9 @@ ggplot(
 
 
 ```{r include = FALSE}
-# point size as 3rd axis
+# point size as 3rd aesthetic
 ```
-```{r 12-point-size-as-3-rd-axis}
+```{r 12-point-size-as-3-rd-aesthetic}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -119,9 +119,9 @@ ggplot(
 
 
 ```{r include = FALSE}
-# mix to increase axis num
+# mix to increase num of aesthetics
 ```
-```{r 12-mix-to-increase-axis-num}
+```{r 12-mix-to-increase-num-of-aesthetics}
 ggplot(
   data = mpg,
   mapping = aes(
