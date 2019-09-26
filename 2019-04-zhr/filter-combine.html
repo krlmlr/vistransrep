@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Kirill Müller, cynkra GmbH" />
@@ -85,7 +86,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -245,18 +245,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -585,14 +573,14 @@ flights %&gt;%
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.232   0.000   0.235</code></pre>
+##    0.18    0.00    0.18</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.044   0.000   0.044</code></pre>
+##   0.038   0.001   0.038</code></pre>
 </details>
 </div>
 <div id="understand-predicate-logic" class="section level2">
@@ -622,6 +610,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

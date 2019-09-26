@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Kirill Müller, cynkra GmbH" />
@@ -85,7 +86,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -246,18 +246,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -356,7 +344,7 @@ airports %&gt;%
   semi_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 101 x 8
 ##    faa   name                     lat    lon   alt    tz dst   tzone       
-##    &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       
+##    &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       
 ##  1 ABQ   Albuquerque Internati…  35.0 -107.   5355    -7 A     America/Den…
 ##  2 ACK   Nantucket Mem           41.3  -70.1    48    -5 A     America/New…
 ##  3 ALB   Albany Intl             42.7  -73.8   285    -5 A     America/New…
@@ -379,7 +367,7 @@ airports %&gt;%
   anti_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 1,357 x 8
 ##    faa   name                    lat    lon   alt    tz dst   tzone        
-##    &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        
+##    &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;        
 ##  1 04G   Lansdowne Airport      41.1  -80.6  1044    -5 A     America/New_…
 ##  2 06A   Moton Field Municipa…  32.5  -85.7   264    -6 A     America/Chic…
 ##  3 06C   Schaumburg Regional    42.0  -88.1   801    -6 A     America/Chic…
@@ -416,6 +404,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
