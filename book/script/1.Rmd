@@ -1,2 +1,14 @@
-```{r child = here::here("script", "12-intro.Rmd")}
+```{r child = here::here("script", "11-mpg.Rmd")}
+```
+
+```{r child = here::here("script", "12-manual.Rmd")}
+```
+
+```{r child = here::here("script", "13-other.Rmd")}
+```
+
+```{r child = here::here("script", "14-stat.Rmd")}
+```
+
+```{r child = here::here("script", "15-facet.Rmd")}
 ```

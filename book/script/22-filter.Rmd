@@ -1,0 +1,29 @@
+```{r 22-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 22-setup-22-filter-r}
+library(tidyverse)
+library(nycflights13)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+
+flights
+?flights
+
+flights %>%
+  filter(dep_time < 600)
+
+flights %>%
+  filter(is.na(dep_time))
+```
+</details>

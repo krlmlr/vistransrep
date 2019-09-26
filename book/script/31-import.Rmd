@@ -1,0 +1,32 @@
+```{r 31-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 31-setup-31-import-r}
+library(tidyverse)
+library(nycflights13)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+conflict_prefer("lag", "dplyr")
+
+
+library(readr)
+example1 <-
+  read_delim(
+    "data/example1.csv",
+    ";",
+    escape_double = FALSE, trim_ws = TRUE
+  )
+
+View(example1)
+```
+</details>

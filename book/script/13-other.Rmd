@@ -1,0 +1,128 @@
+```{r 13-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 13-setup-13-other-r}
+library(tidyverse)
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_text(label = "A")
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, label = "drv")
+) +
+  geom_text()
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, label = drv)
+) +
+  geom_text()
+```
+</details>
+
+
+```{r include = FALSE}
+# Two layers
+```
+```{r 13-two-layers}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, label = drv)
+) +
+  geom_point() +
+  geom_text()
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, label = drv)
+) +
+  geom_point(color = "blue") +
+  geom_text(size = 10)
+```
+
+
+```{r include = FALSE}
+# Global and local aesthetic mappings
+```
+```{r 13-global-and-local-aesthetic-mappings}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point(color = "blue") +
+  geom_text(
+    mapping = aes(color = class, label = drv),
+    size = 10,
+    alpha = 0.2
+  )
+```
+
+
+```{r include = FALSE}
+# Good:
+```
+```{r 13-good}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  geom_rug()
+```
+
+
+```{r include = FALSE}
+# Bad:
+```
+```{r 13-bad}
+ggplot(
+  data = mpg
+) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_rug(mapping = aes(x = displ, y = hwy))
+```
+
+
+```{r include = FALSE}
+# Broken:
+```
+```{r 13-broken}
+ggplot(
+  data = mpg
+) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_rug(mapping = aes(x = displ, y = cty))
+```
+
+
+```{r include = FALSE}
+# Smooth
+```
+```{r 13-smooth}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  geom_smooth()
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```

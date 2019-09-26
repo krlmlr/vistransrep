@@ -1,0 +1,30 @@
+```{r 15-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 15-setup-15-facet-r}
+library(tidyverse)
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  facet_wrap(~ class)
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  facet_grid(year ~ drv)
+```
+</details>

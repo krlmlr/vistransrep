@@ -1,0 +1,60 @@
+```{r 24-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 24-setup-24-pipe-r}
+library(tidyverse)
+library(nycflights13)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+
+
+early_flights <-
+  flights %>%
+  filter(dep_time < 600)
+
+early_flights <- filter(flights, dep_time < 600)
+
+?"%>%"
+```
+</details>
+
+
+```{r include = FALSE}
+# Alt + Cursor up/down
+```
+```{r 24-alt-cursor-up-down}
+flights %>%
+  filter(dep_time < 600) %>%
+  filter(month >= 10) %>%
+  arrange(dep_time, dep_delay) %>%
+  view()
+```
+
+
+```{r include = FALSE}
+# Add/remove I or view
+```
+```{r 24-add-remove-i-or-view}
+flights %>%
+  filter(dep_time < 600) %>%
+  filter(month >= 10) %>% I
+```
+
+
+```{r include = FALSE}
+# Remember to remove it!
+```
+```{r 24-remember-to-remove-it}
+  # arrange(dep_time, dep_delay) %>%
+  # view()
+```

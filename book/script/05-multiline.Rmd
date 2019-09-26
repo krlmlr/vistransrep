@@ -1,0 +1,17 @@
+```{r 05-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 05-setup-05-multiline-r}
+3 +
+  5
+```
+</details>

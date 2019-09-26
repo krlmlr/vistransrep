@@ -1,0 +1,46 @@
+```{r 31-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 31-setup-31-import-many-r}
+library(tidyverse)
+library(nycflights13)
+
+library(here)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+
+files <- dir(path = here("data"), pattern = "[.]xlsx$", full.names = TRUE)
+files
+```
+</details>
+
+
+```{r include = FALSE}
+# Manually
+```
+```{r 31-manually}
+files %>%
+  map_dfr(~ readxl::read_excel(.))
+```
+
+
+```{r include = FALSE}
+# Using rio
+```
+```{r 31-using-rio}
+rio::import_list(files)
+
+files %>%
+  rio::import_list(rbind = TRUE) %>%
+  as_tibble()
+```

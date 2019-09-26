@@ -1,0 +1,22 @@
+```{r 14-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 14-setup-14-stat-r}
+library(tidyverse)
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = class)
+) +
+  geom_bar()
+```
+</details>

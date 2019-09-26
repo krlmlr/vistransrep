@@ -1,0 +1,30 @@
+```{r 03-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 03-setup-03-debug-r}
+1 + 2
+
+1 + 2 * 3
+
+1 +
+  2 * 3
+
+1 +
+  (2 *
+      3 *
+
+(1 +
+    2) * 3)
+
+sin(pi)
+```
+</details>

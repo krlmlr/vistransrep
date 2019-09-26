@@ -1,0 +1,32 @@
+```{r 04-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 04-setup-04-help-r}
+library(tidyverse)
+
+?diamonds
+?mpg
+
+?geom_point
+
+example(geom_point)
+```
+</details>
+
+
+```{r include = FALSE}
+# https://tidyverse.org
+# https://www.rdocumentation.org/
+```
+```{r 04-https-tidyverse-org}
+NA
+```

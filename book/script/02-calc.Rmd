@@ -1,0 +1,46 @@
+```{r 02-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 02-setup-02-calc-r}
+1 + 2
+
+3 * 5
+```
+</details>
+
+
+```{r include = FALSE}
+# Like a good one, too!
+# It knows operator precedence rules.
+```
+```{r 02-like-a-good-one-too}
+3 + 4 * 5
+
+(3 + 4) * 5
+
+1234 %% 100
+
+1234 %/% 100
+```
+
+
+```{r include = FALSE}
+# The following examples are built-in
+# arithmetic functions.
+```
+```{r 02-the-following-examples-are-built-in}
+round(1.7)
+
+sin(pi)
+
+pmin(3, 2)
+```

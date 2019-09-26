@@ -1,0 +1,24 @@
+```{r 07-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 07-setup-07-help-r}
+library(tidyverse)
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = class, y = displ)
+) +
+  geom_boxplot()
+
+near(sqrt(2) ^ 2, 2)
+```
+</details>

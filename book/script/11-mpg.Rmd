@@ -1,0 +1,60 @@
+```{r 11-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 11-setup-11-mpg-r}
+library(tidyverse)
+```
+</details>
+
+
+```{r include = FALSE}
+# # One time:
+# install.packages("tidyverse")
+```
+```{r 11-one-time}
+
+```
+
+
+```{r include = FALSE}
+# Empty graph
+```
+```{r 11-empty-graph}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+)
+```
+
+
+```{r include = FALSE}
+# Scatterplot
+```
+```{r 11-scatterplot}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point()
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = cyl, y = hwy)
+) +
+  geom_point()
+
+ggplot(
+  data = mpg,
+  mapping = aes(x = hwy, y = cty)
+) +
+  geom_point()
+```

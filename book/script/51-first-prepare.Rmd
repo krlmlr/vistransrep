@@ -1,0 +1,29 @@
+```{r 51-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 51-setup-51-first-prepare-r}
+library(tidyverse)
+library(nycflights13)
+
+library(here)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+conflict_prefer("lag", "dplyr")
+
+flights_per_month <-
+  flights %>%
+  count(month)
+
+save(flights_per_month, file = here("data/first-report.rda"))
+```
+</details>

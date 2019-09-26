@@ -32,7 +32,7 @@ process_file <- function(path, rmd_path) {
     mutate(flip = coalesce(comment != lag(comment), TRUE)) %>%
     mutate(id = (cumsum(flip) + 1) %/% 2) %>%
     select(-flip) %>%
-    nest(-id, -comment) %>%
+    nest(data = c(-id, -comment)) %>%
     mutate(data = map(data, pull))
 
   headers <-
@@ -74,7 +74,7 @@ files_df %>%
   mutate(group = substr(basename, 1, 1)) %>%
   mutate(rmd_path_code = paste0('here::here("script", "', basename, 'md")')) %>%
   mutate(chunk = paste0('```{r child = ', rmd_path_code, '}\n```')) %>%
-  nest(-group) %>%
+  nest(data = -group) %>%
   mutate(chunks = map_chr(data, ~ glue::glue_collapse(.$chunk, sep = "\n\n"))) %>%
   mutate(file = paste0("script/", group, ".Rmd")) %>%
   select(text = chunks, con = file) %>%

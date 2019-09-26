@@ -1,0 +1,18 @@
+```{r 01-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 01-setup-01-hello-r}
+"Hello, world!"
+
+print("Hello, world!")
+```
+</details>

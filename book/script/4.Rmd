@@ -1,8 +1,11 @@
-```{r child = here::here("script", "41-map2.Rmd")}
+```{r child = here::here("script", "41-spread.Rmd")}
 ```
 
-```{r child = here::here("script", "42-mutate-map.Rmd")}
+```{r child = here::here("script", "42-separate.htmlmd")}
 ```
 
-```{r child = here::here("script", "43-unnest.Rmd")}
+```{r child = here::here("script", "42-separate.Rmd")}
+```
+
+```{r child = here::here("script", "43-ftable.Rmd")}
 ```

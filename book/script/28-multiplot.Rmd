@@ -1,0 +1,81 @@
+```{r 28-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
+## <No caption defined>
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### <No caption defined>
+
+```
+```{r 28-setup-28-multiplot-r}
+library(tidyverse)
+library(nycflights13)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+conflict_prefer("lag", "dplyr")
+```
+</details>
+
+
+```{r include = FALSE}
+# Bar plot: flights per carrier
+```
+```{r 28-bar-plot-flights-per-carrier}
+flights %>%
+  ggplot(aes(x = carrier)) +
+  geom_bar()
+```
+
+
+```{r include = FALSE}
+# Bar plot: flights per carrier, one facet per month
+```
+```{r 28-bar-plot-flights-per-carrier-one-facet-per-month}
+flights %>%
+  ggplot(aes(x = carrier)) +
+  geom_bar() +
+  facet_wrap(~month)
+```
+
+
+```{r include = FALSE}
+# Extract a function
+```
+```{r 28-extract-a-function}
+plot_fun <- function(data) {
+  data %>%
+    ggplot(aes(x = carrier)) +
+    geom_bar()
+}
+
+plot_fun(flights)
+```
+
+
+```{r include = FALSE}
+# Call this function for each subgroup
+```
+```{r 28-call-this-function-for-each-subgroup}
+plot_df <-
+  flights %>%
+  group_by(month) %>%
+  summarize(
+    plot = list(plot_fun(tibble(carrier)))
+  ) %>%
+  ungroup()
+
+plot_df
+```
+
+
+```{r include = FALSE}
+# Show the plots
+```
+```{r 28-show-the-plots}
+plot_df %>%
+  pull()
+```
