@@ -1,5 +1,5 @@
 name: vistransrep
-output_dir: ../docs/2019-04-zhr
+output_dir: ../docs/dev
 include:
 - .nojekyll
 - images
