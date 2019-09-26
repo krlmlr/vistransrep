@@ -13,4 +13,5 @@ get_stage("deploy") %>%
   add_step(step_run_code(withr::with_dir("website", rmarkdown::render_site()))) %>%
   add_step(step_run_code(withr::with_dir("landing-page", rmarkdown::render_site()))) %>%
   add_step(step_run_code(file.copy(dir("docs-landing-page", full.names = TRUE), "docs", recursive = TRUE))) %>%
+  add_step(step_build_bookdown(input = "book", output_format = c("bookdown::pdf_book", "bookdown::gitbook"))) %>%
   add_step(step_do_push_deploy(path = "docs"))
