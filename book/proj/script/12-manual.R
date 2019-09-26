@@ -1,7 +1,8 @@
-### <No caption defined>
+### Tweaks and tricks
 
 library(tidyverse)
 
+# chose color in geom
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -10,6 +11,7 @@ ggplot(
     color = "red"
   )
 
+# different color 1
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -18,6 +20,7 @@ ggplot(
     color = "blue"
   )
 
+# different color 2
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -26,12 +29,15 @@ ggplot(
     color = "green"
   )
 
+# color as 3rd axis
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
 ) +
   geom_point()
 
+
+# point shape as 3rd axis
 ggplot(
   data = mpg,
   mapping = aes(
@@ -42,6 +48,7 @@ ggplot(
 ) +
   geom_point()
 
+# shape mapped on drv
 ggplot(
   data = mpg,
   mapping = aes(
@@ -52,6 +59,7 @@ ggplot(
 ) +
   geom_point()
 
+# point size as 3rd axis
 ggplot(
   data = mpg,
   mapping = aes(
@@ -62,6 +70,7 @@ ggplot(
 ) +
   geom_point()
 
+# mix to increase axis num
 ggplot(
   data = mpg,
   mapping = aes(
@@ -73,6 +82,7 @@ ggplot(
 ) +
   geom_point()
 
+# unquoted col in aes()
 ggplot(
   data = mpg,
   mapping = aes(
@@ -83,9 +93,11 @@ ggplot(
 ) +
   geom_point()
 
+# mpg quoted and unquoted
 mpg
 "mpg"
 
+# quoted color in aes()
 ggplot(
   data = mpg,
   mapping = aes(
@@ -96,6 +108,7 @@ ggplot(
 ) +
   geom_point()
 
+# semi-transparency
 ggplot(
   data = mpg,
   mapping = aes(
@@ -105,6 +118,7 @@ ggplot(
 ) +
   geom_point(alpha = 0.2)
 
+# function of variables in aes()
 ggplot(
   data = mpg,
   mapping = aes(
@@ -114,6 +128,7 @@ ggplot(
 ) +
   geom_point()
 
+# color in geom()
 ggplot(
   data = mpg,
   mapping = aes(
