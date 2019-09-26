@@ -15,6 +15,10 @@ library(tidyverse)
 ```
 </details>
 
+One helpful feature that {ggplot2} offers is the facet plot.
+This means, that for each value of a given variable a different sub-plot is created.
+The relevant functions for this are `facet_wrap()` and `facet_grid()`.
+The former can be used like this.
 
 ```{r include = FALSE}
 # facet_wrap()
@@ -28,6 +32,8 @@ ggplot(
   facet_wrap(~ class)
 ```
 
+The latter has a few more options that you can play with.
+Primarily, you can pass two variables to the function, one of which will determine the facetting along the rows and the other will determine the column facetting.
 
 ```{r include = FALSE}
 # facet_grid()
@@ -41,6 +47,8 @@ ggplot(
   facet_grid(year ~ drv)
 ```
 
+The first argument of `facet_grid()` is by default `rows`.
+If you pass a variable (needs to be the result of a call to `vars()` with the unquoted variable name as its parameter) to it, as many plots will be horizontally lined up, as the variable has distinct values.
 
 ```{r include = FALSE}
 # facet_grid() only set rows
@@ -54,6 +62,7 @@ ggplot(
   facet_grid(vars(year))
 ```
 
+Specifically choose parameter `cols` of `facet_grid()` to vertically stack the plots.
 
 ```{r include = FALSE}
 # facet_grid() only set cols
