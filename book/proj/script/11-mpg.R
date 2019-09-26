@@ -16,12 +16,14 @@ ggplot(
 ) +
   geom_point()
 
+# aes() determines which variables are plotted
 ggplot(
   data = mpg,
   mapping = aes(x = cyl, y = hwy)
 ) +
   geom_point()
 
+# Pattern unchanged if only variables are plotted
 ggplot(
   data = mpg,
   mapping = aes(x = hwy, y = cty)
