@@ -33,4 +33,3 @@ ggplot(
 ) +
   geom_point() +
   facet_grid(cols = vars(year))
-
