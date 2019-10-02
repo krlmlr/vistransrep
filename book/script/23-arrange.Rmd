@@ -16,8 +16,14 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+view <- I
 ```
 </details>
+
+
+*Note: In all of today's scripts, the function `tibble::view()` is redefined.
+It normally let's you browse through a dataset in a newly opened window.
+For our purposes, working with markdown, we are replacing `view()` with `I()`, which makes sure that what comes in also comes out.*
 
 The function `dplyr::arrange()` sorts the rows of the dataset according to the values of the variable(s) you are providing.
 
