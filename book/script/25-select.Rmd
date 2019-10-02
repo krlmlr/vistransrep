@@ -19,6 +19,8 @@ conflict_prefer("filter", "dplyr")
 ```
 </details>
 
+With `dplyr::select()` you can (de-)select and/or rename columns of your dataset.
+The basic operation is like in the following examples:
 
 ```{r include = FALSE}
 # select 1
@@ -46,6 +48,7 @@ flights %>%
   select(year, month, day, dep_delay, arr_delay)
 ```
 
+Renaming works by addressing an existing column on the right hand side of an equality sign and providing the new name of the column on its left hand side.
 
 ```{r include = FALSE}
 # select rename 1
@@ -59,6 +62,7 @@ flights %>%
   )
 ```
 
+If you want to use "strange" column names, put them in between backticks:
 
 ```{r include = FALSE}
 # select rename with spaces
@@ -76,6 +80,7 @@ flights_with_spaces <-
   )
 ```
 
+Addressing them in the same way, if the dataset already has such variables:
 
 ```{r include = FALSE}
 # select columns with spaces
