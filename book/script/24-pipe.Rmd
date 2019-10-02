@@ -19,6 +19,7 @@ conflict_prefer("filter", "dplyr")
 ```
 </details>
 
+We already heavily used it today, but what exactly are the characteristics of `%>%`, better known as "the pipe"?
 
 ```{r include = FALSE}
 # early flights
@@ -29,6 +30,7 @@ early_flights <-
   filter(dep_time < 600)
 ```
 
+The above is just another way of writing:
 
 ```{r include = FALSE}
 # early flights with pipe
@@ -37,6 +39,7 @@ early_flights <-
 early_flights <- filter(flights, dep_time < 600)
 ```
 
+You can consult the manual:
 
 ```{r include = FALSE}
 # pipe help
@@ -45,6 +48,8 @@ early_flights <- filter(flights, dep_time < 600)
 ?"%>%"
 ```
 
+What are the benefits of using the pipe?
+E.g. you can swap the order of the rows with `Alt + Cursor up/down` easily, if you want to exchange the building blocks for your analysis:
 
 ```{r include = FALSE}
 # Alt + Cursor up/down
@@ -57,6 +62,7 @@ flights %>%
   view()
 ```
 
+When working on a code chunk consisting of subsequent transformations connected by pipes, it can be useful to end the pipeline with either `I` or `view()`.
 
 ```{r include = FALSE}
 # Add/remove I or view
@@ -67,6 +73,7 @@ flights %>%
   filter(month >= 10) %>% I
 ```
 
+But once the chunk does what you expect it to do, do not forget to remove the `I` or `view()` call.
 
 ```{r include = FALSE}
 # Remember to remove it!
