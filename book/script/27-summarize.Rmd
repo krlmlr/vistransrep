@@ -20,6 +20,7 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+Often we want to draw just conclusions from larger datasets by gaining insight by using statistical (or other) methods for summarizing -- and thus drastically reducing -- the data:
 
 ```{r include = FALSE}
 # Simple counts
@@ -32,6 +33,12 @@ flights %>%
   summarize(n = n())
 ```
 
+`dplyr::count()` produces results that are frequently of interest, and has a straightforward syntax in these cases.
+`dplyr::summarize()` is more flexible though.
+
+Both functions can work with grouped data.
+For `count()` the grouping variable(s) can be used directly as input parameters for the ellipsis.
+If you assign the parameter `wt` (weight) a variable, the respective variable will be summed up within the given groups.
 
 ```{r include = FALSE}
 # Grouped counts
@@ -47,6 +54,7 @@ flights %>%
   count(year, month, day)
 ```
 
+Weighted, ungrouped counts:
 
 ```{r include = FALSE}
 # Weighted counts
@@ -59,6 +67,8 @@ flights %>%
   summarize(n = sum(air_time, na.rm = TRUE))
 ```
 
+As mentioned, `summarize()` is more flexible.
+It can use all sorts of summarizing functions, that turn a vector of values into one value as a result.
 
 ```{r include = FALSE}
 # summarize with median
@@ -68,6 +78,7 @@ flights %>%
   summarize(n = median(air_time, na.rm = TRUE))
 ```
 
+It's possible to produce two different summarizations at once:
 
 ```{r include = FALSE}
 # multi-summarize
@@ -80,6 +91,7 @@ flights %>%
   )
 ```
 
+...and also grouped summarizations, using `dplyr::group_by()` beforehand:
 
 ```{r include = FALSE}
 # group_by multi-summarize
@@ -93,6 +105,7 @@ flights %>%
   )
 ```
 
+Chosing different groups completely changes the result and its meaning:
 
 ```{r include = FALSE}
 # group_by multi-summarize 2
@@ -106,6 +119,10 @@ flights %>%
   )
 ```
 
+You might have noticed, that after the summarization the tibbles still know how they are grouped.
+This is intentional, but it might lead to unintended effects if it is ignored.
+Best-practice is to use `ungroup()` after a summarization, using the pattern:
+`group_by()` -- `summarize()` -- `ungroup()`.
 
 ```{r include = FALSE}
 # group_by multi-summarize ungroup
@@ -120,6 +137,7 @@ flights %>%
   ungroup()
 ```
 
+Same example with different groups:
 
 ```{r include = FALSE}
 # group_by multi-summarize 2 ungroup
@@ -134,6 +152,7 @@ flights %>%
   ungroup()
 ```
 
+Same example without explicitly giving the names for the summarized values:
 
 ```{r include = FALSE}
 # anonymous summarize
@@ -148,6 +167,7 @@ flights %>%
   ungroup()
 ```
 
+Assign the result of a summarization to a new variable and continue working with it:
 
 ```{r include = FALSE}
 # flights by day
@@ -165,6 +185,7 @@ flights_by_day <-
 flights_by_day
 ```
 
+How much air time per carrier?
 
 ```{r include = FALSE}
 # carrier air time
@@ -177,6 +198,7 @@ total_airtime_by_carrier <-
   ungroup()
 ```
 
+Sorted...
 
 ```{r include = FALSE}
 # arrange carrier air time
@@ -186,6 +208,7 @@ total_airtime_by_carrier %>%
   arrange(acc_air_time)
 ```
 
+Change class of variable `carrier` to `factor`, with a level order just as the levels occur in the tibble:
 
 ```{r include = FALSE}
 # arrange carrier as factor air time
@@ -196,6 +219,7 @@ total_airtime_by_carrier %>%
   mutate(carrier = fct_inorder(carrier))
 ```
 
+Plotting without changing the class to `factor`:
 
 ```{r include = FALSE}
 # plot without factor
@@ -208,6 +232,7 @@ total_airtime_by_carrier %>%
   coord_flip()
 ```
 
+Plotting after changing the class to `factor`:
 
 ```{r include = FALSE}
 # plot with factor
@@ -220,6 +245,7 @@ total_airtime_by_carrier %>%
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365))
 ```
 
+Same with flipped axes:
 
 ```{r include = FALSE}
 # plot with factor flip
@@ -233,6 +259,7 @@ total_airtime_by_carrier %>%
   coord_flip()
 ```
 
+Which plane managed to fail -- for whatever reason -- to take off most often?
 
 ```{r include = FALSE}
 # Worst plane
@@ -246,6 +273,7 @@ flights %>%
   filter(!is.na(tailnum))
 ```
 
+How many flights that were scheduled did actually not take place?
 
 ```{r include = FALSE}
 # sum no lift-off
@@ -256,6 +284,7 @@ flights %>%
   arrange(desc(not_departed))
 ```
 
+Filtering out those flights:
 
 ```{r include = FALSE}
 # filter no lift-off
@@ -265,6 +294,8 @@ flights %>%
   filter(is.na(dep_time))
 ```
 
+`count()` also has a logical parameter `sort`.
+Let's see how many flights there were between two specific places carried out by a specific airline:
 
 ```{r include = FALSE}
 # sorted count flights per airline per relation
@@ -274,6 +305,7 @@ flights %>%
   count(origin, dest, carrier, sort = TRUE)
 ```
 
+...without sorting:
 
 ```{r include = FALSE}
 # count flights per airline per relation
@@ -283,6 +315,7 @@ flights %>%
   count(origin, dest, carrier)
 ```
 
+How many different airlines fly between two specific cities?
 
 ```{r include = FALSE}
 # count num carriers between airports
@@ -293,6 +326,7 @@ flights %>%
   count(origin, dest)
 ```
 
+Same, but sorted by decreasing number of airlines:
 
 ```{r include = FALSE}
 # sorted count num carriers per relation
@@ -303,6 +337,7 @@ flights %>%
   count(origin, dest, sort = TRUE)
 ```
 
+Let's "reanalyse" this using `summarize()`:
 
 ```{r include = FALSE}
 # summarize num flights per airline per relation
@@ -313,6 +348,7 @@ flights %>%
   summarize(n_flights = n())
 ```
 
+Unsorted number of airlines having provided flights in 2013 between two specific locations:
 
 ```{r include = FALSE}
 # summarize num carriers per relation
@@ -325,6 +361,7 @@ flights %>%
   ungroup()
 ```
 
+...sorted:
 
 ```{r include = FALSE}
 # sorted summarize num carriers per relation
