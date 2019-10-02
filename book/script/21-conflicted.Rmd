@@ -18,6 +18,15 @@ conflict_prefer("filter", "dplyr")
 </details>
 
 
+This section is dedicated to show you the basic building blocks (i.e. functions) of data analysis in R within the {tidyverse}.
+The package providing these is {dplyr}.
+
+Before starting, we would like to mention the package {conflicted}, which when loaded, will help detecting functions of the same name from different packages (an error is thrown in case of such situations).
+It furthermore helps to resolve these situations, by allowing you to choose, the function of which package you prefer (`conflicted::conflict_prefer()`).
+You can see an example in the setup code.
+
+Last time we stopped with facet-plots, e.g. like this one here:
+
 ```{r include = FALSE}
 # sample code
 ```
