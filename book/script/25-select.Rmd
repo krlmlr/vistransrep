@@ -80,7 +80,7 @@ flights_with_spaces <-
   )
 ```
 
-Addressing them in the same way, if the dataset already has such variables:
+Address them in the same way, if the dataset already has such variables:
 
 ```{r include = FALSE}
 # select columns with spaces
