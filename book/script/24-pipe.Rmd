@@ -45,7 +45,7 @@ You can consult the manual:
 ```{r include = FALSE}
 # pipe help
 ```
-```{r 24-pipe-help}
+```{r 24-pipe-help, eval=FALSE}
 ?"%>%"
 ```
 
