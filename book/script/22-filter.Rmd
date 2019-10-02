@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Filtering: `dplyr::filter()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Filtering: `dplyr::filter()`
 
 ```
 ```{r 22-setup-22-filter-r}
@@ -16,14 +16,32 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
+
+```{r include = FALSE}
+# example data
+```
+```{r 22-example-data}
 flights
 ?flights
+```
 
+
+```{r include = FALSE}
+# filter 1
+```
+```{r 22-filter-1}
 flights %>%
   filter(dep_time < 600)
+```
 
+
+```{r include = FALSE}
+# filter 2
+```
+```{r 22-filter-2}
 flights %>%
   filter(is.na(dep_time))
 ```
-</details>

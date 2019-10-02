@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Summarize data (by groups): `dplyr::summarize()`, `dplyr::count()`, `dplyr::group_by()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Summarize data (by groups): `dplyr::summarize()`, `dplyr::count()`, `dplyr::group_by()`
 
 ```
 ```{r 27-setup-27-summarize-r}
@@ -57,30 +57,60 @@ flights %>%
 
 flights %>%
   summarize(n = sum(air_time, na.rm = TRUE))
+```
 
+
+```{r include = FALSE}
+# summarize with median
+```
+```{r 27-summarize-with-median}
 flights %>%
   summarize(n = median(air_time, na.rm = TRUE))
+```
 
+
+```{r include = FALSE}
+# multi-summarize
+```
+```{r 27-multi-summarize}
 flights %>%
   summarize(
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   )
+```
 
+
+```{r include = FALSE}
+# group_by multi-summarize
+```
+```{r 27-group-by-multi-summarize}
 flights %>%
   group_by(origin) %>%
   summarize(
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   )
+```
 
+
+```{r include = FALSE}
+# group_by multi-summarize 2
+```
+```{r 27-group-by-multi-summarize-2}
 flights %>%
   group_by(year, month, day) %>%
   summarize(
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   )
+```
 
+
+```{r include = FALSE}
+# group_by multi-summarize ungroup
+```
+```{r 27-group-by-multi-summarize-ungroup}
 flights %>%
   group_by(origin) %>%
   summarize(
@@ -88,7 +118,13 @@ flights %>%
     median_air_time = median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
+```
 
+
+```{r include = FALSE}
+# group_by multi-summarize 2 ungroup
+```
+```{r 27-group-by-multi-summarize-2-ungroup}
 flights %>%
   group_by(year, month, day) %>%
   summarize(
@@ -96,7 +132,13 @@ flights %>%
     median_air_time = median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
+```
 
+
+```{r include = FALSE}
+# anonymous summarize
+```
+```{r 27-anonymous-summarize}
 flights %>%
   group_by(year, month, day) %>%
   summarize(
@@ -104,7 +146,13 @@ flights %>%
     median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
+```
 
+
+```{r include = FALSE}
+# flights by day
+```
+```{r 27-flights-by-day}
 flights_by_day <-
   flights %>%
   group_by(year, month, day) %>%
@@ -119,34 +167,64 @@ flights_by_day
 
 
 ```{r include = FALSE}
-# Mean distance, visualized
+# carrier air time
 ```
-```{r 27-mean-distance-visualized}
+```{r 27-carrier-air-time}
 total_airtime_by_carrier <-
   flights %>%
   group_by(carrier) %>%
   summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>%
   ungroup()
+```
 
+
+```{r include = FALSE}
+# arrange carrier air time
+```
+```{r 27-arrange-carrier-air-time}
 total_airtime_by_carrier %>%
   arrange(acc_air_time)
+```
 
+
+```{r include = FALSE}
+# arrange carrier as factor air time
+```
+```{r 27-arrange-carrier-as-factor-air-time}
 total_airtime_by_carrier %>%
   arrange(acc_air_time) %>%
   mutate(carrier = fct_inorder(carrier))
+```
 
+
+```{r include = FALSE}
+# plot without factor
+```
+```{r 27-plot-without-factor}
 total_airtime_by_carrier %>%
   arrange(acc_air_time) %>%
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
   coord_flip()
+```
 
+
+```{r include = FALSE}
+# plot with factor
+```
+```{r 27-plot-with-factor}
 total_airtime_by_carrier %>%
   arrange(acc_air_time) %>%
   mutate(carrier = fct_inorder(carrier)) %>%
   ggplot() +
   geom_col(aes(carrier, acc_air_time / 60 / 24 / 365))
+```
 
+
+```{r include = FALSE}
+# plot with factor flip
+```
+```{r 27-plot-with-factor-flip}
 total_airtime_by_carrier %>%
   arrange(acc_air_time) %>%
   mutate(carrier = fct_inorder(carrier)) %>%
@@ -166,44 +244,92 @@ flights %>%
   ungroup() %>%
   arrange(desc(not_departed)) %>%
   filter(!is.na(tailnum))
+```
 
+
+```{r include = FALSE}
+# sum no lift-off
+```
+```{r 27-sum-no-lift-off}
 flights %>%
   summarize(not_departed = sum(is.na(dep_time))) %>%
   arrange(desc(not_departed))
+```
 
+
+```{r include = FALSE}
+# filter no lift-off
+```
+```{r 27-filter-no-lift-off}
 flights %>%
   filter(is.na(dep_time))
 ```
 
 
 ```{r include = FALSE}
-# Distinct airlines per relation
+# sorted count flights per airline per relation
 ```
-```{r 27-distinct-airlines-per-relation}
+```{r 27-sorted-count-flights-per-airline-per-relation}
 flights %>%
   count(origin, dest, carrier, sort = TRUE)
+```
 
+
+```{r include = FALSE}
+# count flights per airline per relation
+```
+```{r 27-count-flights-per-airline-per-relation}
 flights %>%
   count(origin, dest, carrier)
+```
 
+
+```{r include = FALSE}
+# count num carriers between airports
+```
+```{r 27-count-num-carriers-between-airports}
 flights %>%
   count(origin, dest, carrier) %>%
   count(origin, dest)
+```
 
+
+```{r include = FALSE}
+# sorted count num carriers per relation
+```
+```{r 27-sorted-count-num-carriers-per-relation}
 flights %>%
   count(origin, dest, carrier) %>%
   count(origin, dest, sort = TRUE)
+```
 
+
+```{r include = FALSE}
+# summarize num flights per airline per relation
+```
+```{r 27-summarize-num-flights-per-airline-per-relation}
 flights %>%
   group_by(origin, dest, carrier) %>%
   summarize(n_flights = n())
+```
 
+
+```{r include = FALSE}
+# summarize num carriers per relation
+```
+```{r 27-summarize-num-carriers-per-relation}
 flights %>%
   group_by(origin, dest, carrier) %>%
   summarize(n_flights = n()) %>%
   summarize(n_distinct_carriers = n()) %>%
   ungroup()
+```
 
+
+```{r include = FALSE}
+# sorted summarize num carriers per relation
+```
+```{r 27-sorted-summarize-num-carriers-per-relation}
 flights %>%
   group_by(origin, dest, carrier) %>%
   summarize(n_flights = n()) %>%

@@ -3,18 +3,25 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Package: {conflicted}
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Package: {conflicted}
 
 ```
 ```{r 21-setup-21-conflicted-r}
 library(tidyverse)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
+
+```{r include = FALSE}
+# sample code
+```
+```{r 21-sample-code}
 my_mpg <- mpg
 
 ggplot(
@@ -24,4 +31,3 @@ ggplot(
   geom_point() +
   facet_grid(year ~ drv)
 ```
-</details>

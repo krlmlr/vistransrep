@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## The pipe
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### The pipe
 
 ```
 ```{r 24-setup-24-pipe-r}
@@ -16,17 +16,34 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
 
+```{r include = FALSE}
+# early flights
+```
+```{r 24-early-flights}
 early_flights <-
   flights %>%
   filter(dep_time < 600)
+```
 
+
+```{r include = FALSE}
+# early flights with pipe
+```
+```{r 24-early-flights-with-pipe}
 early_flights <- filter(flights, dep_time < 600)
+```
 
+
+```{r include = FALSE}
+# pipe help
+```
+```{r 24-pipe-help}
 ?"%>%"
 ```
-</details>
 
 
 ```{r include = FALSE}

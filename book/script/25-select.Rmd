@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Pick columns: `dplyr::select()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Pick columns: `dplyr::select()`
 
 ```
 ```{r 25-setup-25-select-r}
@@ -16,24 +16,54 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
 
+```{r include = FALSE}
+# select 1
+```
+```{r 25-select-1}
 flights %>%
   select(year, month, day)
+```
 
+
+```{r include = FALSE}
+# select 2
+```
+```{r 25-select-2}
 flights %>%
   select(year)
+```
 
+
+```{r include = FALSE}
+# select 3
+```
+```{r 25-select-3}
 flights %>%
   select(year, month, day, dep_delay, arr_delay)
+```
 
+
+```{r include = FALSE}
+# select rename 1
+```
+```{r 25-select-rename-1}
 flights %>%
   select(
     year, month, day,
     departure_delay = dep_delay,
     arrival_delay = arr_delay
   )
+```
 
+
+```{r include = FALSE}
+# select rename with spaces
+```
+```{r 25-select-rename-with-spaces}
 flights_with_spaces <-
   flights %>%
   select(
@@ -44,7 +74,13 @@ flights_with_spaces <-
   filter(
     `Arrival delay` < 0
   )
+```
 
+
+```{r include = FALSE}
+# select columns with spaces
+```
+```{r 25-select-columns-with-spaces}
 flights_with_spaces %>%
   select(
     year, month, day,
@@ -52,4 +88,3 @@ flights_with_spaces %>%
     arr_delay = `Arrival delay`
   )
 ```
-</details>

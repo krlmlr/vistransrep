@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Create new columns based on old ones: `dplyr::mutate()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Create new columns based on old ones: `dplyr::mutate()`
 
 ```
 ```{r 26-setup-26-mutate-r}
@@ -17,20 +17,44 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
+```
+</details>
 
 
+```{r include = FALSE}
+# mutate 1
+```
+```{r 26-mutate-1}
 flights %>%
   mutate(recovery = dep_delay - arr_delay)
+```
 
+
+```{r include = FALSE}
+# mutate select
+```
+```{r 26-mutate-select}
 flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
   select(dep_delay, arr_delay, recovery)
+```
 
+
+```{r include = FALSE}
+# mutate select arrange
+```
+```{r 26-mutate-select-arrange}
 flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
   select(dep_delay, arr_delay, recovery) %>%
   arrange(recovery)
+```
 
+
+```{r include = FALSE}
+# assign mutate select arrange
+```
+```{r 26-assign-mutate-select-arrange}
 recovery_data <-
   flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
@@ -38,74 +62,152 @@ recovery_data <-
   arrange(recovery)
 
 recovery_data
+```
 
+
+```{r include = FALSE}
+# flights head view
+```
+```{r 26-flights-head-view}
 flights %>%
   head() %>%
   view()
+```
 
+
+```{r include = FALSE}
+# flights filter select view
+```
+```{r 26-flights-filter-select-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# flights filter select mutate lead view
+```
+```{r 26-flights-filter-select-mutate-lead-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
   mutate(lead_dep_time = lead(dep_time)) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# flights filter select mutate lag view
+```
+```{r 26-flights-filter-select-mutate-lag-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
   mutate(lag_arr_time = lag(arr_time)) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# flights filter select mutate lag mutate ground time view
+```
+```{r 26-flights-filter-select-mutate-lag-mutate-ground-time-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
   mutate(lag_arr_time = lag(arr_time)) %>%
   mutate(ground_time = dep_time - lag_arr_time) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# deselect with minus
+```
+```{r 26-deselect-with-minus}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
   mutate(lag_arr_time = lag(arr_time)) %>%
   mutate(ground_time = dep_time - lag_arr_time) %>%
   select(-lag_arr_time)
+```
 
+
+```{r include = FALSE}
+# flights filter view
+```
+```{r 26-flights-filter-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   view()
+```
 
+
+```{r include = FALSE}
+# air time N14228
+```
+```{r 26-air-time-n-14228}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(cum_air_time = cumsum(air_time)) %>%
   select(air_time, cum_air_time) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# delayed flag N14228
+```
+```{r 26-delayed-flag-n-14228}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(delayed = if_else(arr_delay > 0, "delayed", "on time")) %>%
   select(arr_delay, delayed)
+```
 
+
+```{r include = FALSE}
+# delayed flag 2 N14228
+```
+```{r 26-delayed-flag-2-n-14228}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(delayed = arr_delay > 0) %>%
   select(arr_delay, delayed)
+```
 
+
+```{r include = FALSE}
+# filter by flag
+```
+```{r 26-filter-by-flag}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(delayed = arr_delay > 0) %>%
   select(arr_delay, delayed) %>%
   filter(delayed)
+```
 
+
+```{r include = FALSE}
+# filter by flag inverse
+```
+```{r 26-filter-by-flag-inverse}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(delayed = arr_delay > 0) %>%
   select(arr_delay, delayed) %>%
   filter(!delayed)
+```
 
+
+```{r include = FALSE}
+# on time flights
+```
+```{r 26-on-time-flights}
 on_time_flights <-
   flights %>%
   filter(tailnum == "N14228") %>%
@@ -113,4 +215,3 @@ on_time_flights <-
   select(arr_delay, delayed) %>%
   filter(!delayed)
 ```
-</details>

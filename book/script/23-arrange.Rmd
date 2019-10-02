@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Sort rows: `dplyr::arrange()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Sort rows: `dplyr::arrange()`
 
 ```
 ```{r 23-setup-23-arrange-r}
@@ -16,44 +16,104 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
+
+```{r include = FALSE}
+# simple arrange
+```
+```{r 23-simple-arrange}
 flights %>%
   arrange(dep_time)
+```
 
+
+```{r include = FALSE}
+# double arrange
+```
+```{r 23-double-arrange}
 flights %>%
   arrange(dep_time, dep_delay)
+```
 
+
+```{r include = FALSE}
+# double arrange view
+```
+```{r 23-double-arrange-view}
 flights %>%
   arrange(dep_time, dep_delay) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# filter double arrange view
+```
+```{r 23-filter-double-arrange-view}
 flights %>%
   filter(dep_time < 600) %>%
   arrange(dep_time, dep_delay) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# filter 2 double arrange view
+```
+```{r 23-filter-2-double-arrange-view}
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>%
   arrange(dep_time, dep_delay) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# another filter arrange view
+```
+```{r 23-another-filter-arrange-view}
 flights %>%
   filter(month == 4) %>%
   arrange(is.na(dep_time)) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# another filter arrange
+```
+```{r 23-another-filter-arrange}
 flights %>%
   filter(month == 4) %>%
   arrange(!is.na(dep_time))
+```
 
+
+```{r include = FALSE}
+# another 2 filters arrange view
+```
+```{r 23-another-2-filters-arrange-view}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
   arrange(!is.na(dep_time)) %>%
   view()
 ```
-</details>
+
+
+```{r include = FALSE}
+# another 2 filters arrange arr time view
+```
+```{r 23-another-2-filters-arrange-arr-time-view}
+flights %>%
+  filter(month == 4) %>%
+  filter(day == 1) %>%
+  arrange(arr_time) %>%
+  view()
+```
 
 
 ```{r include = FALSE}
@@ -63,21 +123,27 @@ flights %>%
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
-  arrange(arr_time) %>%
-  view()
-
-flights %>%
-  filter(month == 4) %>%
-  filter(day == 1) %>%
   arrange(-arr_time) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# Descending 2
+```
+```{r 23-descending-2}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
   arrange(desc(arr_time)) %>%
   view()
+```
 
+
+```{r include = FALSE}
+# Ascending and descending
+```
+```{r 23-ascending-and-descending}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
