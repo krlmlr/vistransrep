@@ -19,6 +19,7 @@ conflict_prefer("filter", "dplyr")
 ```
 </details>
 
+The function `dplyr::arrange()` sorts the rows of the dataset according to the values of the variable(s) you are providing.
 
 ```{r include = FALSE}
 # simple arrange
@@ -28,6 +29,9 @@ flights %>%
   arrange(dep_time)
 ```
 
+When providing multiple variables as arguments in the `...` parameter (AKA ellipsis), the dataset is first sorted accorcing to the values of the first variable.
+Wherever these values occur more than once, another sorting takes place within those groups, according to the second variable you provided.
+The same rule applies for every further variable you add to `arrange()`.
 
 ```{r include = FALSE}
 # double arrange
@@ -37,6 +41,7 @@ flights %>%
   arrange(dep_time, dep_delay)
 ```
 
+Look at the data with `tibble::view()`
 
 ```{r include = FALSE}
 # double arrange view
@@ -47,6 +52,7 @@ flights %>%
   view()
 ```
 
+You can combine `filter()` and `arrange()` (they even commute, though it seems more natural to first filter and then arrange).
 
 ```{r include = FALSE}
 # filter double arrange view
@@ -58,6 +64,7 @@ flights %>%
   view()
 ```
 
+...add one more filter:
 
 ```{r include = FALSE}
 # filter 2 double arrange view
@@ -70,6 +77,7 @@ flights %>%
   view()
 ```
 
+You can also use an expression involving one of the dataset's variables.
 
 ```{r include = FALSE}
 # another filter arrange view
@@ -81,6 +89,9 @@ flights %>%
   view()
 ```
 
+The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (`TRUE`, `FALSE`) is sorted `FALSE`-first (alphabetically).
+
+Let's give it a twist:
 
 ```{r include = FALSE}
 # another filter arrange
@@ -91,6 +102,7 @@ flights %>%
   arrange(!is.na(dep_time))
 ```
 
+Add another filter to further reduce the dataset and make it easier to handle:
 
 ```{r include = FALSE}
 # another 2 filters arrange view
@@ -103,6 +115,7 @@ flights %>%
   view()
 ```
 
+Sorting the dataset according to which flights arrived earliest on 1 April 2013:
 
 ```{r include = FALSE}
 # another 2 filters arrange arr time view
@@ -115,6 +128,7 @@ flights %>%
   view()
 ```
 
+Invert the sorting by either...
 
 ```{r include = FALSE}
 # Descending
@@ -127,6 +141,7 @@ flights %>%
   view()
 ```
 
+... or:
 
 ```{r include = FALSE}
 # Descending 2
@@ -139,6 +154,7 @@ flights %>%
   view()
 ```
 
+You can mix sorting in an ascending and a descending manner by doing the following:
 
 ```{r include = FALSE}
 # Ascending and descending
