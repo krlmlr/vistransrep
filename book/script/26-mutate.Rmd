@@ -20,6 +20,9 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+With `dplyr::mutate()` you can add new columns to a table, e.g. making use of the already existing variables.
+
+How much faster than the scheduled time did the pilots manage to fly:
 
 ```{r include = FALSE}
 # mutate 1
@@ -29,6 +32,7 @@ flights %>%
   mutate(recovery = dep_delay - arr_delay)
 ```
 
+This is another building block added to the toolset:
 
 ```{r include = FALSE}
 # mutate select
@@ -39,6 +43,7 @@ flights %>%
   select(dep_delay, arr_delay, recovery)
 ```
 
+Work with the newly created variable just like with the original ones:
 
 ```{r include = FALSE}
 # mutate select arrange
@@ -50,6 +55,8 @@ flights %>%
   arrange(recovery)
 ```
 
+Assign the results to new variables.
+The old ones remain unchanged.
 
 ```{r include = FALSE}
 # assign mutate select arrange
@@ -64,6 +71,7 @@ recovery_data <-
 recovery_data
 ```
 
+Reduce a dataset to just the first `n` (default is 6) lines with `utils::head()`:
 
 ```{r include = FALSE}
 # flights head view
@@ -74,6 +82,7 @@ flights %>%
   view()
 ```
 
+Let's look at a single airplane:
 
 ```{r include = FALSE}
 # flights filter select view
@@ -85,6 +94,7 @@ flights %>%
   view()
 ```
 
+Adding the departure time of the NEXT flight to the current row, respectively, using `mutate()` with `dplyr::lead()`:
 
 ```{r include = FALSE}
 # flights filter select mutate lead view
@@ -97,6 +107,7 @@ flights %>%
   view()
 ```
 
+The opposite effect to `lead()` can be realized using `lag()`:
 
 ```{r include = FALSE}
 # flights filter select mutate lag view
@@ -109,6 +120,8 @@ flights %>%
   view()
 ```
 
+There is even a use-case for this in our little example.
+How long did our airplane stay on the ground before each of its flights?
 
 ```{r include = FALSE}
 # flights filter select mutate lag mutate ground time view
@@ -122,6 +135,10 @@ flights %>%
   view()
 ```
 
+The negative values occur because not everything happens on the same day, implying that our method is still in need of some refinement.
+Nevertheless, let's continue.
+
+A frequently used workflow is creating a helper variable at some point in the pipeline and then dropping it later on:
 
 ```{r include = FALSE}
 # deselect with minus
@@ -135,6 +152,7 @@ flights %>%
   select(-lag_arr_time)
 ```
 
+Let's work some more with the flight data of our special plane.
 
 ```{r include = FALSE}
 # flights filter view
@@ -145,6 +163,7 @@ flights %>%
   view()
 ```
 
+The total air time of the plane up to and including a given flight can be calculated with `base::cumsum()`:
 
 ```{r include = FALSE}
 # air time N14228
@@ -157,6 +176,7 @@ flights %>%
   view()
 ```
 
+Creating a "flag" variable with `mutate()` which shows if a flight was on time or not:
 
 ```{r include = FALSE}
 # delayed flag N14228
@@ -168,6 +188,7 @@ flights %>%
   select(arr_delay, delayed)
 ```
 
+A more straightforward way to get the same (or at least a very similar and probably easier to work with) result:
 
 ```{r include = FALSE}
 # delayed flag 2 N14228
@@ -179,6 +200,7 @@ flights %>%
   select(arr_delay, delayed)
 ```
 
+... easier to work with, because `filter()` can directly take logical arguments:
 
 ```{r include = FALSE}
 # filter by flag
@@ -191,6 +213,7 @@ flights %>%
   filter(delayed)
 ```
 
+Negation for inverse filtering:
 
 ```{r include = FALSE}
 # filter by flag inverse
@@ -203,6 +226,7 @@ flights %>%
   filter(!delayed)
 ```
 
+These are the flights that had no delay:
 
 ```{r include = FALSE}
 # on time flights
