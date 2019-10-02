@@ -1,4 +1,4 @@
-### <No caption defined>
+### Pick columns: `dplyr::select()`
 
 library(tidyverse)
 library(nycflights13)
@@ -6,16 +6,19 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 
-
+# select 1
 flights %>%
   select(year, month, day)
 
+# select 2
 flights %>%
   select(year)
 
+# select 3
 flights %>%
   select(year, month, day, dep_delay, arr_delay)
 
+# select rename 1
 flights %>%
   select(
     year, month, day,
@@ -23,6 +26,7 @@ flights %>%
     arrival_delay = arr_delay
   )
 
+# select rename with spaces
 flights_with_spaces <-
   flights %>%
   select(
@@ -34,6 +38,7 @@ flights_with_spaces <-
     `Arrival delay` < 0
   )
 
+# select columns with spaces
 flights_with_spaces %>%
   select(
     year, month, day,

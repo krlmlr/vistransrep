@@ -1,9 +1,10 @@
-### <No caption defined>
+### Package: {conflicted}
 
 library(tidyverse)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 
+# sample code
 my_mpg <- mpg
 
 ggplot(

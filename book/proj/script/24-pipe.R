@@ -1,4 +1,4 @@
-### <No caption defined>
+### The pipe
 
 library(tidyverse)
 library(nycflights13)
@@ -6,13 +6,15 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 
-
+# early flights
 early_flights <-
   flights %>%
   filter(dep_time < 600)
 
+# early flights with pipe
 early_flights <- filter(flights, dep_time < 600)
 
+# pipe help
 ?"%>%"
 
 # Alt + Cursor up/down
