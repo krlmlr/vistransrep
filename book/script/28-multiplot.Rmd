@@ -20,6 +20,9 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+Potentially surprisingly, `mutate()` can also work with the results of a `ggplot()` call.
+Let's approach this step by step.
+Here is a basic barplot of `flights$carrier`:
 
 ```{r include = FALSE}
 # Bar plot: flights per carrier
@@ -30,6 +33,7 @@ flights %>%
   geom_bar()
 ```
 
+Same with one facet per month:
 
 ```{r include = FALSE}
 # Bar plot: flights per carrier, one facet per month
@@ -41,6 +45,7 @@ flights %>%
   facet_wrap(~month)
 ```
 
+We can extract a function that takes any data and produces a barplot of the variable `carrier`:
 
 ```{r include = FALSE}
 # Extract a function
@@ -55,6 +60,9 @@ plot_fun <- function(data) {
 plot_fun(flights)
 ```
 
+The result of `ggplot()` is first and foremost an object.
+Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the "Viewer".
+Therefore, we can use the `group_by` -- `summarize()` -- `ungroup()` pattern to produce one plot per group and store it in a new column:
 
 ```{r include = FALSE}
 # Call this function for each subgroup
@@ -71,6 +79,7 @@ plot_df <-
 plot_df
 ```
 
+When using `dplyr::pull()` (this function "extracts" a variable from a `data.frame` and returns it as a normal vector), each of the plots will be subsequently displayed in your "Viewer".
 
 ```{r include = FALSE}
 # Show the plots
@@ -79,3 +88,5 @@ plot_df
 plot_df %>%
   pull()
 ```
+
+Use the left arrow to click through the different plots.
