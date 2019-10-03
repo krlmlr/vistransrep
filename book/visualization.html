@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="introduction.html"/>
-<link rel="next" href="best-practices.html"/>
+<link rel="next" href="transformation.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -139,11 +139,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Statistical summaries</a></li>
 <li class="chapter" data-level="2.5" data-path="visualization.html"><a href="visualization.html#facet-plots"><i class="fa fa-check"></i><b>2.5</b> Facet plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>3</b> Best practices</a><ul>
-<li class="chapter" data-level="3.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>3.1</b> DESCRIPTION</a></li>
-<li class="chapter" data-level="3.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>3.2</b> R</a></li>
-<li class="chapter" data-level="3.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>3.3</b> roxygen2</a></li>
-<li class="chapter" data-level="3.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>3.4</b> testthat</a></li>
+<li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>3.1</b> Package: {conflicted}</a></li>
+<li class="chapter" data-level="3.2" data-path="transformation.html"><a href="transformation.html#filtering-dplyrfilter"><i class="fa fa-check"></i><b>3.2</b> Filtering: <code>dplyr::filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="transformation.html"><a href="transformation.html#sort-rows-dplyrarrange"><i class="fa fa-check"></i><b>3.3</b> Sort rows: <code>dplyr::arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a></li>
+<li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns-dplyrselect"><i class="fa fa-check"></i><b>3.5</b> Pick columns: <code>dplyr::select()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns-based-on-old-ones-dplyrmutate"><i class="fa fa-check"></i><b>3.6</b> Create new columns based on old ones: <code>dplyr::mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data-by-groups-dplyrsummarize-dplyrcount-dplyrgroup_by"><i class="fa fa-check"></i><b>3.7</b> Summarize data (by groups): <code>dplyr::summarize()</code>, <code>dplyr::count()</code>, <code>dplyr::group_by()</code></a></li>
+<li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>4</b> Best practices</a><ul>
+<li class="chapter" data-level="4.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>4.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="4.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>4.2</b> R</a></li>
+<li class="chapter" data-level="4.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>4.3</b> roxygen2</a></li>
+<li class="chapter" data-level="4.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>4.4</b> testthat</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i># References</a></li>
 </ul>
@@ -546,7 +556,7 @@ If you pass a variable (needs to be the result of a call to <code>vars()</code> 
         </div>
       </div>
 <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
