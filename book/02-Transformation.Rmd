@@ -1,0 +1,8 @@
+# Transformation {#transformation}
+
+> Using a consistent grammar of data manipulation.
+
+This chapter discusses data transformation with the [dplyr package](https://dplyr.tidyverse.org/).
+
+```{r child = here::here("script", "2.Rmd")}
+```
