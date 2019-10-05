@@ -79,6 +79,7 @@ Sort the result by `distance`.
 
 <details>
 <summary>&#x25BA; Solution:</summary>
+
 ### Intermediate variables
 
 Naming is hard!
