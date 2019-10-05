@@ -78,13 +78,13 @@ flights %>%
     binwidth = 20
   )
 ```
-</details>
 
 ```{r mutate-1-3}
 flights %>% 
   ggplot() +
   geom_histogram(aes(distance / air_time))
 ```
+</details>
 
 ## On time status
 
