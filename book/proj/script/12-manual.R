@@ -2,7 +2,7 @@
 
 library(tidyverse)
 
-# chose color in geom
+# choose color in geom
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)

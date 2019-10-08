@@ -86,7 +86,7 @@ ggplot(
 ```
 
 It is also possible ot specify the mapping in the `geom()`-function.
-This way, when adding more than one geometry, you can chose different specifications for the mapping in each of the `geom()`-functions.
+This way, when adding more than one geometry, you can choose different specifications for the mapping in each of the `geom()`-functions.
 
 ```{r include = FALSE}
 # Global and local aesthetic mappings

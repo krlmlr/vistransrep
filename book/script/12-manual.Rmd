@@ -18,9 +18,9 @@ library(tidyverse)
 Change the color of the plotted data by setting parameter `color` in the `geom()`-function to a character variable with the color name.
 
 ```{r include = FALSE}
-# chose color in geom
+# choose color in geom
 ```
-```{r 12-chose-color-in-geom}
+```{r 12-choose-color-in-geom}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
