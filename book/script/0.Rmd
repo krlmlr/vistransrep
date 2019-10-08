@@ -1,0 +1,26 @@
+```{r child = here::here("script", "01-hello.Rmd")}
+```
+
+```{r child = here::here("script", "02-calc.Rmd")}
+```
+
+```{r child = here::here("script", "03-debug.Rmd")}
+```
+
+```{r child = here::here("script", "03-incomplete.Rmd")}
+```
+
+```{r child = here::here("script", "04-error.Rmd")}
+```
+
+```{r child = here::here("script", "04-help.Rmd")}
+```
+
+```{r child = here::here("script", "05-multiline.Rmd")}
+```
+
+```{r child = here::here("script", "06-premature.Rmd")}
+```
+
+```{r child = here::here("script", "07-help.Rmd")}
+```
