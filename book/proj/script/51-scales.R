@@ -1,4 +1,4 @@
-### <No caption defined>
+### Plotting: custom labels and scales
 
 library(tidyverse)
 library(nycflights13)
@@ -80,8 +80,13 @@ ggplot(
   mapping = aes(x = displ, y = hwy, color = class)
 ) +
   geom_point() +
-  scale_color_manual(values = c("2seater" = "#000000", "minivan" = "#3355FF", ...))
-
-  # FIXME: scale_color_manual(values = c("#000000", "#3355FF", "#4422FF", "#FF5522", "#66FFFF", "#1188FF", "#FF55FF"))
+  scale_color_manual(values = c(
+    "2seater" = "#000000",
+    "compact" = "#3355FF",
+    "midsize" = "#006400",
+    "minivan" = "#FF5522",
+    "pickup" = "#66FFFF",
+    "subcompact" = "#FF0000",
+    "suv" = "#FF55FF"))
 
 # For "corporate design": ggthemr, https://github.com/cttobin/ggthemr
