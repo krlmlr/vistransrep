@@ -20,6 +20,8 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+In this section we want to spend some time getting to know how to customize the labels and scales of plots using {ggplot2}.
+We start with a pretty basic plot using the `mpg`-tibble which comes with the {tidyverse}.
 
 ```{r include = FALSE}
 # Base plot
@@ -32,6 +34,8 @@ ggplot(
   geom_point()
 ```
 
+With `ggplot2::labs()` you can label all sorts of aesthetics (axes, color mapping, ...). 
+Additionally you can set the title/subtitle and also add a caption and a tag.
 
 ```{r include = FALSE}
 # Add descriptive labels: the labs() function
@@ -51,6 +55,8 @@ ggplot(
   )
 ```
 
+There is a plethora of `scale_...()` functions available in {ggplot2}, which influence the axes.
+For example there is a function to change the scale of an axis to a logarithmic scale.
 
 ```{r include = FALSE}
 # Change scale to log scale
@@ -64,6 +70,8 @@ ggplot(
   scale_x_log10()
 ```
 
+Be careful: you can set the name of an axis in both the `labs()` function and the `scale_...()` functions.
+If you do both, only the name set in the latter will prevail.
 
 ```{r include = FALSE}
 # Name in scale_() overwrites labs() without warning!
@@ -80,6 +88,7 @@ ggplot(
   scale_x_log10(name = "xxx")
 ```
 
+Produce a double logarithmic plot by additionally turning the y-axis to a log scale.
 
 ```{r include = FALSE}
 # Double log scale
@@ -94,6 +103,9 @@ ggplot(
   scale_y_log10()
 ```
 
+Another type `scale_...()`-type function relates to the color-aesthetic.
+These functions affect the palette that is used for the color mapping.
+One of these is `scale_color_brewer()`:
 
 ```{r include = FALSE}
 # Change color palette
@@ -107,6 +119,7 @@ ggplot(
   scale_color_brewer(type = "qual")
 ```
 
+Another option to change the "color theme" is `scale_color_viridis_d()` ("d" for discrete):
 
 ```{r include = FALSE}
 # Other options: viridis
@@ -120,6 +133,7 @@ ggplot(
   scale_color_viridis_d(option = "B")
 ```
 
+...or take full control of the colors yourself using `scale_color_manual()`
 
 ```{r include = FALSE}
 # Full control: manual scale FIXME
