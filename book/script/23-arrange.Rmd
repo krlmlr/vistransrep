@@ -40,9 +40,9 @@ Wherever these values occur more than once, another sorting takes place within t
 The same rule applies for every further variable you add to `arrange()`.
 
 ```{r include = FALSE}
-# double arrange
+# arranging two means first the first then within duplicates the second
 ```
-```{r 23-double-arrange}
+```{r 23-arranging-two-means-first-the-first-then-within-duplicates-the-second}
 flights %>%
   arrange(dep_time, dep_delay)
 ```
@@ -50,9 +50,9 @@ flights %>%
 Look at the data with `tibble::view()`
 
 ```{r include = FALSE}
-# double arrange view
+# view
 ```
-```{r 23-double-arrange-view}
+```{r 23-view}
 flights %>%
   arrange(dep_time, dep_delay) %>%
   view()
@@ -61,9 +61,9 @@ flights %>%
 You can combine `filter()` and `arrange()` (they even commute, though it seems more natural to first filter and then arrange).
 
 ```{r include = FALSE}
-# filter double arrange view
+# filter before arranging two
 ```
-```{r 23-filter-double-arrange-view}
+```{r 23-filter-before-arranging-two}
 flights %>%
   filter(dep_time < 600) %>%
   arrange(dep_time, dep_delay) %>%
@@ -73,9 +73,9 @@ flights %>%
 ...add one more filter:
 
 ```{r include = FALSE}
-# filter 2 double arrange view
+# two filters before arranging two
 ```
-```{r 23-filter-2-double-arrange-view}
+```{r 23-two-filters-before-arranging-two}
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>%
@@ -86,9 +86,9 @@ flights %>%
 You can also use an expression involving one of the dataset's variables.
 
 ```{r include = FALSE}
-# another filter arrange view
+# arrange with regard to function of variable
 ```
-```{r 23-another-filter-arrange-view}
+```{r 23-arrange-with-regard-to-function-of-variable}
 flights %>%
   filter(month == 4) %>%
   arrange(is.na(dep_time)) %>%
@@ -100,9 +100,9 @@ The reason for the result you just saw in the view of the filtered dataset is, t
 Let's give it a twist:
 
 ```{r include = FALSE}
-# another filter arrange
+# non-NAs first
 ```
-```{r 23-another-filter-arrange}
+```{r 23-non-NAs-first}
 flights %>%
   filter(month == 4) %>%
   arrange(!is.na(dep_time))
@@ -111,9 +111,9 @@ flights %>%
 Add another filter to further reduce the dataset and make it easier to handle:
 
 ```{r include = FALSE}
-# another 2 filters arrange view
+# with less data, 1 April
 ```
-```{r 23-another-2-filters-arrange-view}
+```{r 23-with-less-data-1-April}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
@@ -124,9 +124,9 @@ flights %>%
 Sorting the dataset according to which flights arrived earliest on 1 April 2013:
 
 ```{r include = FALSE}
-# another 2 filters arrange arr time view
+# two filters then arrange according arr_time
 ```
-```{r 23-another-2-filters-arrange-arr-time-view}
+```{r 23-two-filters-then-arrange-according-arr_time}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%

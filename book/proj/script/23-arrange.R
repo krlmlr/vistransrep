@@ -10,47 +10,47 @@ conflict_prefer("filter", "dplyr")
 flights %>%
   arrange(dep_time)
 
-# double arrange
+# arranging two means first the first then within duplicates the second
 flights %>%
   arrange(dep_time, dep_delay)
 
-# double arrange view
+# view
 flights %>%
   arrange(dep_time, dep_delay) %>%
   view()
 
-# filter double arrange view
+# filter before arranging two
 flights %>%
   filter(dep_time < 600) %>%
   arrange(dep_time, dep_delay) %>%
   view()
 
-# filter 2 double arrange view
+# two filters before arranging two
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>%
   arrange(dep_time, dep_delay) %>%
   view()
 
-# another filter arrange view
+# arrange with regard to function of variable
 flights %>%
   filter(month == 4) %>%
   arrange(is.na(dep_time)) %>%
   view()
 
-# another filter arrange
+# non-NAs first
 flights %>%
   filter(month == 4) %>%
   arrange(!is.na(dep_time))
 
-# another 2 filters arrange view
+# with less data, 1 April
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
   arrange(!is.na(dep_time)) %>%
   view()
 
-# another 2 filters arrange arr time view
+# two filters then arrange according arr_time
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
