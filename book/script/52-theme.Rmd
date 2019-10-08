@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Plotting: themes
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Plotting: themes
 
 ```
 ```{r 52-setup-52-theme-r}
@@ -17,30 +17,53 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
+```
+</details>
 
 
+```{r include = FALSE}
+# Base plot
+```
+```{r 52-base-plot}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
   theme_void()
+```
 
 
+```{r include = FALSE}
+# bw-theme
+```
+```{r 52-bw-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
   theme_bw()
+```
 
+
+```{r include = FALSE}
+# Data can have color in bw-theme
+```
+```{r 52-data-can-have-color-in-bw-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
 ) +
   geom_point() +
   theme_bw()
+```
 
+
+```{r include = FALSE}
+# tweak aspects of theme with theme()
+```
+```{r 52-tweak-aspects-of-theme-with-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -48,7 +71,13 @@ ggplot(
   geom_point() +
   theme_bw() +
   theme(legend.position = "bottom")
+```
 
+
+```{r include = FALSE}
+# theme_()-functions overwrite theme() if called afterwards
+```
+```{r 52-theme-functions-overwrite-theme-if-called-afterwards}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -56,7 +85,13 @@ ggplot(
   geom_point() +
   theme(legend.position = "bottom") +
   theme_bw()
+```
 
+
+```{r include = FALSE}
+# first param of theme_()-functions is base_size
+```
+```{r 52-first-param-of-theme-functions-is-base-size}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -64,4 +99,3 @@ ggplot(
   geom_point() +
   theme_bw(16)
 ```
-</details>

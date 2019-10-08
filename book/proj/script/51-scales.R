@@ -88,5 +88,4 @@ ggplot(
     "pickup" = "#66FFFF",
     "subcompact" = "#FF0000",
     "suv" = "#FF55FF"))
-
 # For "corporate design": ggthemr, https://github.com/cttobin/ggthemr
