@@ -20,6 +20,8 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+In this section we are looking at the use of visual themes to easily change the look and feel of a plot.
+We start with the introduction of the -- admittedly very basic -- `theme_void()` function.
 
 ```{r include = FALSE}
 # Base plot
@@ -33,6 +35,7 @@ ggplot(
   theme_void()
 ```
 
+Change the default `theme_grey()` to a more traditional black-and-white theme:
 
 ```{r include = FALSE}
 # bw-theme
@@ -46,6 +49,8 @@ ggplot(
   theme_bw()
 ```
 
+Also in this scheme the color aesthetic works as it normally does.
+The black-and-whiteness only relates to the background.
 
 ```{r include = FALSE}
 # Data can have color in bw-theme
@@ -59,6 +64,7 @@ ggplot(
   theme_bw()
 ```
 
+Calling the function `theme()` after a `theme_...()` call let's you tweak certain aspects of the theme.
 
 ```{r include = FALSE}
 # tweak aspects of theme with theme()
@@ -73,6 +79,7 @@ ggplot(
   theme(legend.position = "bottom")
 ```
 
+But mind, that when called before a `theme_...()` function, all potential effects of `theme()` will be ignored, i.e. overwritten with the settings of the theme function:
 
 ```{r include = FALSE}
 # theme_()-functions overwrite theme() if called afterwards
@@ -87,6 +94,7 @@ ggplot(
   theme_bw()
 ```
 
+The first argument of each `theme_...()` function is `base_size`, which refers to the font size.
 
 ```{r include = FALSE}
 # first param of theme_()-functions is base_size
