@@ -10,10 +10,10 @@ conflict_prefer("filter", "dplyr")
 flights
 ?flights
 
-# filter 1
+# all filters are logical: numeric comparison
 flights %>%
   filter(dep_time < 600)
 
-# filter 2
+# filter: logical result from function
 flights %>%
   filter(is.na(dep_time))

@@ -33,20 +33,20 @@ The function `dplyr::filter()` helps you to reduce your dataset to the observati
 The filter condition can use any of the dataset's variables and needs to be a logical expression.
 
 ```{r include = FALSE}
-# filter 1
+# all filters are logical: numeric comparison
 ```
-```{r 22-filter-1}
+```{r 22-all-filters-are-logical-numeric-comparison}
 flights %>%
   filter(dep_time < 600)
 ```
 
 If you use one or more variables of the dataset in the filter condition, a vectorized evaluation of the condition is taking place.
-Generally you can provide a logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
+Generally you can provide any logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
 
 ```{r include = FALSE}
-# filter 2
+# filter: logical result from function
 ```
-```{r 22-filter-2}
+```{r 22-filter-logical-result-from-function}
 flights %>%
   filter(is.na(dep_time))
 ```
