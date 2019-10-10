@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Example for usage of `rmarkdown::render_site()`"
 output: html_document
 ---
 
@@ -26,3 +26,8 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Link to other HTML-files (rendered to HTML from Rmd)
+
+- See first test in [test_1](01-include.html)
+- See second test in [test_2](02-include.html)
