@@ -29,6 +29,32 @@ library(tidyverse)
 
 1. Create a second code chunk that shows a plot of your transformed data. Do not refer to `flights`. Knit again.
 
+## Create site from project documents
+
+A convenient way to create a website/an html document from several Rmd-files within a project is provided by the function `rmarkdown::render_site()`.
+We will give an overview of how it works in this section, but you can always consult the help page of the function with `?rmarkdown::render_site()`.
+
+An example of the workings of this function and the resulting html file can be found under the following link: https://github.com/krlmlr/vistransrep/tree/master/render-site-example.
+Just call `render_site()` in the associated project (`render-site-example.Rproj`) and the html-files will be generated.
+You can see the result when opening `index.html` in your browser.
+
+There are important ingredients that need to be present for this to work:
+
+1. A file "_site.yml" needs to be present in the main directory of the project. 
+It should minimally contain the output directory for the html-files (best practice when working on github is the setting; "output_dir: docs").
+1. A file "index.Rmd", from which the homepage of the website will be constructed. It should link to the other html-files (Rmd-files with replaced extension "Rmd -> html")
+
+It is best to have all the Rmd-documents you want to include in the website in the main directory of the repository.
+This way `render_site()` will detect the files by default and create html files from them in the directory given in "_site.yml".
+
+Further possibilities:
+
+1. You can setup any github-repo to automatically create and update a website from a subdirectory of the main repo directory called "doc", containing the html file.
+This website will then be updated, whenever the html file changes in the master branch of the repo.
+
+1. This here is a quick and easy way of binding together a few Rmd-Files as a website.
+For the creation of larger html-documents we strongly recommend using `bookdown` instead.
+For more information see https://bookdown.org/.
 
 ## Slides and reports
 
