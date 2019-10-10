@@ -10,3 +10,5 @@ knitr::opts_chunk$set(echo = TRUE)
 ## First thing to include
 
 test_1
+
+[Return to main page](index.html)
