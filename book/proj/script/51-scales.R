@@ -74,7 +74,7 @@ ggplot(
   geom_point() +
   scale_color_viridis_d(option = "B")
 
-# Full control: manual scale FIXME
+# Full control: manual scale
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
