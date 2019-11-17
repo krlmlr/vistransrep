@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Visualization | Visualization, transformation and reporting with the tidyverse</title>
   <meta name="description" content="2 Visualization | Visualization, transformation and reporting with the tidyverse" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Visualization | Visualization, transformation and reporting with the tidyverse" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -136,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="visualization.html"><a href="visualization.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a></li>
 <li class="chapter" data-level="2.2" data-path="visualization.html"><a href="visualization.html#tweaks-and-tricks"><i class="fa fa-check"></i><b>2.2</b> Tweaks and tricks</a></li>
 <li class="chapter" data-level="2.3" data-path="visualization.html"><a href="visualization.html#labels-and-layers"><i class="fa fa-check"></i><b>2.3</b> Labels and layers</a></li>
-<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Statistical summaries</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#plotting-statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Plotting: statistical summaries</a></li>
 <li class="chapter" data-level="2.5" data-path="visualization.html"><a href="visualization.html#facet-plots"><i class="fa fa-check"></i><b>2.5</b> Facet plots</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
@@ -235,7 +238,7 @@ To map a different variable than <code>disp</code> to the x-axis, change the res
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(</a>
 <a class="sourceLine" id="cb9-6" data-line-number="6">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span></a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">  )</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/12-chose-color-in-geom-1.png" width="672" /></p>
+<p><img src="vistransrep_files/figure-html/12-choose-color-in-geom-1.png" width="672" /></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
@@ -269,9 +272,9 @@ To map a different variable than <code>disp</code> to the x-axis, change the res
 <a class="sourceLine" id="cb13-7" data-line-number="7">  )</a>
 <a class="sourceLine" id="cb13-8" data-line-number="8">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values
-## because more than 6 becomes difficult to discriminate; you have 7.
-## Consider specifying shapes manually if you must have them.</code></pre>
+<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values because more
+## than 6 becomes difficult to discriminate; you have 7. Consider specifying
+## shapes manually if you must have them.</code></pre>
 <pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
 <p><img src="vistransrep_files/figure-html/12-point-shape-as-3-rd-aesthetic-1.png" width="672" /></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -327,11 +330,11 @@ Since <code>blue</code> is not a variable of <code>mpg</code>, this did not work
 The following should shed some light on the difference between objects with and without quotation marks.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">mpg</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #949494;'># A tibble: 234 x 11</span><span>
-##   </span><span style='font-weight: bold;'>manufacturer</span><span> </span><span style='font-weight: bold;'>model</span><span> </span><span style='font-weight: bold;'>displ</span><span>  </span><span style='font-weight: bold;'>year</span><span>   </span><span style='font-weight: bold;'>cyl</span><span> </span><span style='font-weight: bold;'>trans</span><span>  </span><span style='font-weight: bold;'>drv</span><span>     </span><span style='font-weight: bold;'>cty</span><span>   </span><span style='font-weight: bold;'>hwy</span><span> </span><span style='font-weight: bold;'>fl</span><span>    </span><span style='font-weight: bold;'>class</span><span>
-##   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #BCBCBC;'>1</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 auto(… f        18    29 p     comp…
-## </span><span style='color: #BCBCBC;'>2</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 manua… f        21    29 p     comp…
-## </span><span style='color: #BCBCBC;'>3</span><span> audi         a4      2    </span><span style='text-decoration: underline;'>2</span><span>008     4 manua… f        20    31 p     comp…
+##   </span><span style='font-weight: bold;'>manufacturer</span><span> </span><span style='font-weight: bold;'>model</span><span> </span><span style='font-weight: bold;'>displ</span><span>  </span><span style='font-weight: bold;'>year</span><span>   </span><span style='font-weight: bold;'>cyl</span><span> </span><span style='font-weight: bold;'>trans</span><span>      </span><span style='font-weight: bold;'>drv</span><span>     </span><span style='font-weight: bold;'>cty</span><span>   </span><span style='font-weight: bold;'>hwy</span><span> </span><span style='font-weight: bold;'>fl</span><span>    </span><span style='font-weight: bold;'>class</span><span>  
+##   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
+## </span><span style='color: #BCBCBC;'>1</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 auto(l5)   f        18    29 p     compact
+## </span><span style='color: #BCBCBC;'>2</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 manual(m5) f        21    29 p     compact
+## </span><span style='color: #BCBCBC;'>3</span><span> audi         a4      2    </span><span style='text-decoration: underline;'>2</span><span>008     4 manual(m6) f        20    31 p     compact
 ## </span><span style='color: #949494;'># … with 231 more rows</span><span>
 </span></CODE></PRE>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="st">&quot;mpg&quot;</span></a></code></pre></div>
@@ -431,7 +434,7 @@ This is one way of including the values of character variables in a plot.</p>
 <a class="sourceLine" id="cb34-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/13-two-layers-more-clearly-1.png" width="672" /></p>
 <p>It is also possible ot specify the mapping in the <code>geom()</code>-function.
-This way, when adding more than one geometry, you can chose different specifications for the mapping in each of the <code>geom()</code>-functions.</p>
+This way, when adding more than one geometry, you can choose different specifications for the mapping in each of the <code>geom()</code>-functions.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb35-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
 <a class="sourceLine" id="cb35-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
@@ -485,8 +488,8 @@ Changing the method to “lm”, a linear model will be fitted and displayed in 
 <a class="sourceLine" id="cb41-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/13-smooth-method-linear-model-1.png" width="672" /></p>
 </div>
-<div id="statistical-summaries" class="section level2">
-<h2><span class="header-section-number">2.4</span> Statistical summaries</h2>
+<div id="plotting-statistical-summaries" class="section level2">
+<h2><span class="header-section-number">2.4</span> Plotting: statistical summaries</h2>
 <details>
 <p><summary><em>Click here to show setup code.</em></summary></p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
@@ -502,50 +505,76 @@ So basically the different values are counted.</p>
 <a class="sourceLine" id="cb43-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class)</a>
 <a class="sourceLine" id="cb43-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb43-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/14-geom-bar-1.png" width="672" /></p>
-</div>
-<div id="facet-plots" class="section level2">
-<h2><span class="header-section-number">2.5</span> Facet plots</h2>
-<details>
-<p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-</details>
-<p>One helpful feature that {ggplot2} offers is the facet plot.
-This means, that for each value of a given variable a different sub-plot is created.
-The relevant functions for this are <code>facet_wrap()</code> and <code>facet_grid()</code>.
-The former can be used like this.</p>
+<p><img src="vistransrep_files/figure-html/14-geom-bar-for-counting-unique-values-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy)</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/14-geom-histogram-for-counting-values-in-bins-1.png" width="672" /></p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb45-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb45-4" data-line-number="4">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>class)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-facet-wrap-1.png" width="672" /></p>
-<p>The latter has a few more options that you can play with.
-Primarily, you can pass two variables to the function, one of which will determine the facetting along the rows and the other will determine the column facetting.</p>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/14-geom-boxplot-for-another-way-of-summarizing-numeric-values-1.png" width="672" /></p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb46-4" data-line-number="4">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>drv)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-facet-grid-1.png" width="672" /></p>
-<p>The first argument of <code>facet_grid()</code> is by default <code>rows</code>.
-If you pass a variable (needs to be the result of a call to <code>vars()</code> with the unquoted variable name as its parameter) to it, as many plots will be horizontally lined up, as the variable has distinct values.</p>
+<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/14-x-axis-in-geom-boxplot-to-go-into-detail-1.png" width="672" /></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb47-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
 <a class="sourceLine" id="cb47-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb47-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">vars</span>(year))</a></code></pre></div>
+<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="vistransrep_files/figure-html/14-geom-smooth-for-drawing-a-smooth-curve-through-scatter-plot-1.png" width="672" /></p>
+</div>
+<div id="facet-plots" class="section level2">
+<h2><span class="header-section-number">2.5</span> Facet plots</h2>
+<details>
+<p><summary><em>Click here to show setup code.</em></summary></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+</details>
+<p>One helpful feature that {ggplot2} offers is the facet plot.
+This means, that for each value of a given variable a different sub-plot is created.
+The relevant functions for this are <code>facet_wrap()</code> and <code>facet_grid()</code>.
+The former can be used like this.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb50-4" data-line-number="4">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>class)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/15-facet-wrap-1.png" width="672" /></p>
+<p>The latter has a few more options that you can play with.
+Primarily, you can pass two variables to the function, one of which will determine the facetting along the rows and the other will determine the column facetting.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
+<a class="sourceLine" id="cb51-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>drv)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/15-facet-grid-1.png" width="672" /></p>
+<p>The first argument of <code>facet_grid()</code> is by default <code>rows</code>.
+If you pass a variable (needs to be the result of a call to <code>vars()</code> with the unquoted variable name as its parameter) to it, as many plots will be horizontally lined up, as the variable has distinct values.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb52-4" data-line-number="4">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">vars</span>(year))</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/15-facet-grid-only-set-rows-1.png" width="672" /></p>
 <p>Specifically choose parameter <code>cols</code> of <code>facet_grid()</code> to vertically stack the plots.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
-<a class="sourceLine" id="cb48-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
-<a class="sourceLine" id="cb48-4" data-line-number="4">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(year))</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
+<a class="sourceLine" id="cb53-4" data-line-number="4">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(year))</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/15-facet-grid-only-set-cols-1.png" width="672" /></p>
 
 </div>
@@ -561,24 +590,25 @@ If you pass a variable (needs to be the result of a call to <code>vars()</code> 
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
 "facebook": false,
 "twitter": false,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"github": true
 },
 "fontsettings": {
 "theme": "white",

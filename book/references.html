@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title># References | Visualization, transformation and reporting with the tidyverse</title>
   <meta name="description" content="# References | Visualization, transformation and reporting with the tidyverse" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.15 and GitBook 2.6.7" />
 
   <meta property="og:title" content="# References | Visualization, transformation and reporting with the tidyverse" />
   <meta property="og:type" content="book" />
@@ -39,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -136,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="visualization.html"><a href="visualization.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a></li>
 <li class="chapter" data-level="2.2" data-path="visualization.html"><a href="visualization.html#tweaks-and-tricks"><i class="fa fa-check"></i><b>2.2</b> Tweaks and tricks</a></li>
 <li class="chapter" data-level="2.3" data-path="visualization.html"><a href="visualization.html#labels-and-layers"><i class="fa fa-check"></i><b>2.3</b> Labels and layers</a></li>
-<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Statistical summaries</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#plotting-statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Plotting: statistical summaries</a></li>
 <li class="chapter" data-level="2.5" data-path="visualization.html"><a href="visualization.html#facet-plots"><i class="fa fa-check"></i><b>2.5</b> Facet plots</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
@@ -212,24 +215,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": true,
 "facebook": false,
 "twitter": false,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"github": true
 },
 "fontsettings": {
 "theme": "white",
