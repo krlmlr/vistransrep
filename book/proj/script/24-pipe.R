@@ -15,7 +15,7 @@ early_flights <-
 early_flights <- filter(flights, dep_time < 600)
 
 # pipe help
-?"%>%"
+## ?"%>%"
 
 # Alt + Cursor up/down
 flights %>%
@@ -30,5 +30,7 @@ flights %>%
   filter(month >= 10) %>% I
 
 # Remember to remove it!
-  # arrange(dep_time, dep_delay) %>%
-  # view()
+try(
+  arrange(dep_time, dep_delay) %>%
+  view()
+)

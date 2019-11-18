@@ -30,7 +30,6 @@ ggplot(
 ) +
   geom_boxplot()
 
-
 # geom_smooth() for drawing a smooth curve through scatter plot
 ggplot(
   data = mpg,
@@ -38,4 +37,3 @@ ggplot(
 ) +
   geom_point() +
   geom_smooth()
-
