@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="visualization.html"><a href="visualization.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a></li>
 <li class="chapter" data-level="2.2" data-path="visualization.html"><a href="visualization.html#tweaks-and-tricks"><i class="fa fa-check"></i><b>2.2</b> Tweaks and tricks</a></li>
 <li class="chapter" data-level="2.3" data-path="visualization.html"><a href="visualization.html#labels-and-layers"><i class="fa fa-check"></i><b>2.3</b> Labels and layers</a></li>
-<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#plotting-statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Plotting: statistical summaries</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization.html"><a href="visualization.html#statistical-summaries"><i class="fa fa-check"></i><b>2.4</b> Statistical summaries</a></li>
 <li class="chapter" data-level="2.5" data-path="visualization.html"><a href="visualization.html#facet-plots"><i class="fa fa-check"></i><b>2.5</b> Facet plots</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
@@ -153,7 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns-dplyrselect"><i class="fa fa-check"></i><b>3.5</b> Pick columns: <code>dplyr::select()</code></a></li>
 <li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns-based-on-old-ones-dplyrmutate"><i class="fa fa-check"></i><b>3.6</b> Create new columns based on old ones: <code>dplyr::mutate()</code></a></li>
-<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data-by-groups-dplyrsummarize-dplyrcount-dplyrgroup_by"><i class="fa fa-check"></i><b>3.7</b> Summarize data (by groups): <code>dplyr::summarize()</code>, <code>dplyr::count()</code>, <code>dplyr::group_by()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup"><i class="fa fa-check"></i><b>3.7</b> Summarize data (by groups): <code>dplyr::summarize()</code>, <code>dplyr::group_by()</code> + <code>dplyr::ungroup()</code></a></li>
 <li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>4</b> Best practices</a><ul>
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Visualization, transformation and reporting with the tidyverse</h1>
 <p class="author"><em>Kirill Müller, Tobias Schieferdecker</em></p>
-<p class="date"><em>18 November 2019, 18:07 CET</em></p>
+<p class="date"><em>18 November 2019, 23:38 CET</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
@@ -237,6 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  ellipsis       0.3.0       2019-09-20 [1] CRAN (R 3.6.1)                   
 ##  evaluate       0.14        2019-05-28 [1] CRAN (R 3.6.1)                   
 ##  fansi          0.4.0       2018-10-05 [1] CRAN (R 3.6.1)                   
+##  farver         2.0.1       2019-11-13 [1] CRAN (R 3.6.1)                   
 ##  fastmap        1.0.1       2019-10-08 [1] CRAN (R 3.6.1)                   
 ##  forcats      * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)                   
 ##  generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                   
@@ -288,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                   
 ##  rstudioapi     0.10        2019-03-19 [1] CRAN (R 3.6.1)                   
 ##  rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  scales         1.0.0       2018-08-09 [1] CRAN (R 3.6.1)                   
+##  scales         1.1.0       2019-11-18 [1] CRAN (R 3.6.1)                   
 ##  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                   
 ##  shiny          1.4.0       2019-10-10 [1] CRAN (R 3.6.1)                   
 ##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
