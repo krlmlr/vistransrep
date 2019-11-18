@@ -164,7 +164,7 @@ Let's try passing a color anyway...
 ```{r include = FALSE}
 # unquoted col in aes()
 ```
-```{r 12-unquoted-col-in-aes}
+```{r 12-unquoted-col-in-aes, error = TRUE}
 try(
   ggplot(
     data = mpg,
@@ -265,7 +265,7 @@ Trying to map aesthetics in the `geom()`-function, does not work.
 ```{r include = FALSE}
 # color in geom()
 ```
-```{r 12-color-in-geom}
+```{r 12-color-in-geom, error = TRUE}
 try(
   ggplot(
     data = mpg,
