@@ -29,10 +29,17 @@ ggplot(
     color = "green"
   )
 
-# color as 3rd aesthetic
+# color as 3rd aesthetic (discrete)
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point()
+
+# color as 3rd aesthetic (continuous)
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = cty)
 ) +
   geom_point()
 
@@ -53,6 +60,17 @@ ggplot(
   mapping = aes(
     x = displ,
     y = hwy,
+    shape = drv
+  )
+) +
+  geom_point()
+
+ggplot(
+  data = mpg,
+  mapping = aes(
+    x = displ,
+    y = hwy,
+    color = class,
     shape = drv
   )
 ) +
@@ -84,14 +102,14 @@ ggplot(
 # unquoted col in aes()
 try(
   ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = hwy,
-    color = blue
-  )
-) +
-  geom_point()
+    data = mpg,
+    mapping = aes(
+      x = displ,
+      y = hwy,
+      color = blue
+    )
+  ) +
+    geom_point()
 )
 
 # mpg quoted and unquoted
@@ -108,6 +126,18 @@ ggplot(
   )
 ) +
   geom_point()
+
+# correct way to specify manual aesthetic
+ggplot(
+  data = mpg,
+  mapping = aes(
+    x = displ,
+    y = hwy
+  )
+) +
+  geom_point(
+    color = "blue"
+  )
 
 # semi-transparency
 ggplot(
@@ -132,11 +162,11 @@ ggplot(
 # color in geom()
 try(
   ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = 2.35 / hwy
-  )
-) +
-  geom_point(color = class)
+    data = mpg,
+    mapping = aes(
+      x = displ,
+      y = 2.35 / hwy
+    )
+  ) +
+    geom_point(color = class)
 )

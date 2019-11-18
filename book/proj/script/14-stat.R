@@ -1,4 +1,4 @@
-### Plotting: statistical summaries
+### Statistical summaries
 
 library(tidyverse)
 

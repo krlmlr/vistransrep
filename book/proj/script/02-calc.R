@@ -1,5 +1,6 @@
-### <No caption defined>
+### Calculating expressions
 
+# R works like a calculator!
 1 + 2
 
 3 * 5
