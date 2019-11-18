@@ -66,10 +66,12 @@ ggplot(
 
 Calling the function `theme()` after a `theme_...()` call let's you tweak certain aspects of the theme.
 
+Some plots work better with the legend at the bottom.
+
 ```{r include = FALSE}
-# tweak aspects of theme with theme()
+# Occasionally useful: legend at the bottom
 ```
-```{r 52-tweak-aspects-of-theme-with-theme}
+```{r 52-occasionally-useful-legend-at-the-bottom}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -79,7 +81,38 @@ ggplot(
   theme(legend.position = "bottom")
 ```
 
-But mind, that when called before a `theme_...()` function, all potential effects of `theme()` will be ignored, i.e. overwritten with the settings of the theme function:
+In some plots, the text on the x axis looks better when displayed vertically.
+This is a combination of `theme()` settings which are too difficult to remember.
+
+```{r include = FALSE}
+# Occasionally useful: vertical text at x axis
+```
+```{r 52-occasionally-useful-vertical-text-at-x-axis, eval = FALSE}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme_bw() +
+  theme(........)
+```
+
+The {ggpubr} package offers a handy shortcut:
+
+```{r include = FALSE}
+# Easier with ggpubr package
+```
+```{r 52-easier-with-ggpubr-package}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme_bw() +
+  ggpubr::rotate_x_text()
+```
+
+Mind that `theme_...()` functions overwrite all previous settings of `theme()`:
 
 ```{r include = FALSE}
 # theme_()-functions overwrite theme() if called afterwards

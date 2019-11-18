@@ -34,7 +34,7 @@ ggplot(
   geom_point()
 ```
 
-With `ggplot2::labs()` you can label all sorts of aesthetics (axes, color mapping, ...). 
+With `labs()` you can label all sorts of aesthetics (axes, color mapping, ...). 
 Additionally you can set the title/subtitle and also add a caption and a tag.
 
 ```{r include = FALSE}
@@ -136,9 +136,9 @@ ggplot(
 ...or take full control of the colors yourself using `scale_color_manual()`
 
 ```{r include = FALSE}
-# Full control: manual scale FIXME
+# Full control: manual scale
 ```
-```{r 51-full-control-manual-scale-fixme}
+```{r 51-full-control-manual-scale}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -151,7 +151,8 @@ ggplot(
     "minivan" = "#FF5522",
     "pickup" = "#66FFFF",
     "subcompact" = "#FF0000",
-    "suv" = "#FF55FF"))
+    "suv" = "#FF55FF")
+  )
 ```
 
 

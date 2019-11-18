@@ -16,7 +16,6 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
-view <- I
 ```
 </details>
 
@@ -47,7 +46,7 @@ flights %>%
   arrange(dep_time, dep_delay)
 ```
 
-Look at the data with `tibble::view()`
+Look at the data with `view()`:
 
 ```{r include = FALSE}
 # view
@@ -83,7 +82,7 @@ flights %>%
   view()
 ```
 
-You can also use an expression involving one of the dataset's variables.
+You can use `arrange()` with arbitrary expressions.
 
 ```{r include = FALSE}
 # arrange with regard to function of variable
@@ -95,14 +94,14 @@ flights %>%
   view()
 ```
 
-The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (`TRUE`, `FALSE`) is sorted `FALSE`-first (alphabetically).
+The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (`TRUE`, `FALSE`) is sorted `FALSE`-first (lexicographically).
 
 Let's give it a twist:
 
 ```{r include = FALSE}
 # non-NAs first
 ```
-```{r 23-non-NAs-first}
+```{r 23-non-n-as-first}
 flights %>%
   filter(month == 4) %>%
   arrange(!is.na(dep_time))
@@ -113,7 +112,7 @@ Add another filter to further reduce the dataset and make it easier to handle:
 ```{r include = FALSE}
 # with less data, 1 April
 ```
-```{r 23-with-less-data-1-April}
+```{r 23-with-less-data-1-april}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
@@ -121,12 +120,12 @@ flights %>%
   view()
 ```
 
-Sorting the dataset according to which flights arrived earliest on 1 April 2013:
+Sorting the dataset according to which flights arrived earliest on April 1, 2013:
 
 ```{r include = FALSE}
 # two filters then arrange according arr_time
 ```
-```{r 23-two-filters-then-arrange-according-arr_time}
+```{r 23-two-filters-then-arrange-according-arr-time}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%
@@ -160,7 +159,7 @@ flights %>%
   view()
 ```
 
-You can mix sorting in an ascending and a descending manner by doing the following:
+You can mix sorting in an ascending and a descending manner:
 
 ```{r include = FALSE}
 # Ascending and descending

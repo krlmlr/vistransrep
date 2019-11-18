@@ -1,25 +1,4 @@
-```{r child = here::here("script", "51-first-prepare.Rmd")}
-```
-
-```{r child = here::here("script", "51-first.docxmd")}
-```
-
-```{r child = here::here("script", "51-first.htmlmd")}
-```
-
-```{r child = here::here("script", "51-first.Rmd")}
-```
-
-```{r child = here::here("script", "51-first.Rmdmd")}
-```
-
 ```{r child = here::here("script", "51-scales.Rmd")}
-```
-
-```{r child = here::here("script", "52-presentation.htmlmd")}
-```
-
-```{r child = here::here("script", "52-presentation.Rmdmd")}
 ```
 
 ```{r child = here::here("script", "52-theme.Rmd")}

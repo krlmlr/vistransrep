@@ -1,9 +1,6 @@
 ```{r child = here::here("script", "41-spread.Rmd")}
 ```
 
-```{r child = here::here("script", "42-separate.htmlmd")}
-```
-
 ```{r child = here::here("script", "42-separate.Rmd")}
 ```
 

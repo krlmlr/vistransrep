@@ -16,7 +16,6 @@ library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
-view <- I
 ```
 </details>
 
@@ -40,7 +39,7 @@ The above is just another way of writing:
 early_flights <- filter(flights, dep_time < 600)
 ```
 
-You can consult the manual:
+The manual describes this operator in detail:
 
 ```{r include = FALSE}
 # pipe help
@@ -49,19 +48,82 @@ You can consult the manual:
 ?"%>%"
 ```
 
-What are the benefits of using the pipe?
-E.g. you can swap the order of the rows with `Alt + Cursor up/down` easily, if you want to exchange the building blocks for your analysis:
+With the pipe, code can be read in a natural way, from left to right.
+The following snippet extracts
+
+1. all early flights
+2. from October till December,
+3. ordered by departure time and then departure delay
+4. and displays it.
+
+Note how the reading corresponds to the code.
 
 ```{r include = FALSE}
-# Alt + Cursor up/down
+# Complex pipe
 ```
-```{r 24-alt-cursor-up-down}
+```{r 24-complex-pipe}
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>%
   arrange(dep_time, dep_delay) %>%
   view()
 ```
+
+This is possible, because all transformation verbs (`filter()`, `arrange()`, `view()`) accept the main input (a tibble) as the first argument and also return a tibble.
+
+The following three codes are equivalent, but are more difficult to write, to read and to maintain.
+
+Naming is hard.
+Trying to give each intermediate result a name is exhausting.
+Introducing an additional step in this sequence of operations is prone to errors.
+
+```{r include = FALSE}
+# Intermediate names
+```
+```{r 24-intermediate-names}
+early_flights <- filter(flights, dep_time < 600)
+early_flights_oct_dec <- filter(early_flights, month >= 10)
+early_flights_oct_dec_sorted <- arrange(early_flights_oct_dec, dep_time, dep_delay)
+view(early_flights_oct_dec_sorted)
+```
+
+We can keep using the same variable, e.g. `x`, to avoid naming.
+This adds noise compared to the pipe.
+
+```{r include = FALSE}
+# Catch-all variable
+```
+```{r 24-catch-all-variable}
+x <- flights
+x <- filter(x, dep_time < 600)
+x <- filter(x, month >= 10)
+x <- arrange(x, dep_time, dep_delay)
+view(x)
+```
+
+We can avoid intermediate variables.
+This disconnects the verbs from their arguments and is very difficult to read.
+
+```{r include = FALSE}
+# Layers
+```
+```{r 24-layers}
+view(
+  arrange(
+    filter(
+      filter(
+        flights,
+        dep_time < 600
+      ),
+      month >= 10
+    ),
+    dep_time, dep_delay
+  )
+)
+```
+
+
+### Further advantages
 
 When working on a code chunk consisting of subsequent transformations connected by pipes, it can be useful to end the pipeline with either `I` or `view()`.
 
@@ -72,14 +134,21 @@ When working on a code chunk consisting of subsequent transformations connected 
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>% I
+##arrange(dep_time, dep_delay) %>%
+##view()
 ```
 
-But once the chunk does what you expect it to do, do not forget to remove the `I` or `view()` call.
+Once the chunk does what you expect it to do, do not forget to remove the `I` or `view()` call.
 
 ```{r include = FALSE}
 # Remember to remove it!
 ```
 ```{r 24-remember-to-remove-it}
-  # arrange(dep_time, dep_delay) %>%
-  # view()
+try(
+  arrange(dep_time, dep_delay) %>%
+  view()
+)
 ```
+
+To rearrange rows, you can use the shortcut `Alt + Cursor up/down`.
+In a piped expression, no further editing is necessary!

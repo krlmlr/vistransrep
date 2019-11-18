@@ -17,7 +17,6 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
-view <- I
 ```
 </details>
 
@@ -72,17 +71,6 @@ recovery_data <-
 recovery_data
 ```
 
-Reduce a dataset to just the first `n` (default is 6) lines with `utils::head()`:
-
-```{r include = FALSE}
-# flights head view
-```
-```{r 26-flights-head-view}
-flights %>%
-  head() %>%
-  view()
-```
-
 Let's look at a single airplane:
 
 ```{r include = FALSE}
@@ -95,7 +83,7 @@ flights %>%
   view()
 ```
 
-Adding the departure time of the NEXT flight to the current row, respectively, using `mutate()` with `dplyr::lead()`:
+Adding the departure time of the *next* flight to the current row, respectively, using `mutate()` with `lead()`:
 
 ```{r include = FALSE}
 # flights filter select mutate lead view
@@ -122,7 +110,7 @@ flights %>%
 ```
 
 There is even a use-case for this in our little example.
-How long did our airplane stay on the ground before each of its flights?
+How long has our airplane been absent from NYC airports between each of its flights out?
 
 ```{r include = FALSE}
 # flights filter select mutate lag mutate ground time view
@@ -164,7 +152,7 @@ flights %>%
   view()
 ```
 
-The total air time of the plane up to and including a given flight can be calculated with `base::cumsum()`:
+The total air time of a plane up to and including a given flight can be calculated with `base::cumsum()`:
 
 ```{r include = FALSE}
 # air time N14228
