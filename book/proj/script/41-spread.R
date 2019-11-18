@@ -1,4 +1,4 @@
-### <No caption defined>
+### Pivoting
 
 library(tidyverse)
 library(nycflights13)
@@ -8,9 +8,11 @@ conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
 
 
+# Two datasets containing the same data, wider and longer:
 table1
 table2
 
+# How to summarize?
 table1 %>%
   group_by(country) %>%
   summarize(
@@ -18,6 +20,7 @@ table1 %>%
     max_population = max(population)
   )
 
+# Iterate over columns:
 table1 %>%
   group_by(country) %>%
   summarize_at(
@@ -25,86 +28,109 @@ table1 %>%
     max
   )
 
+# In the longer form, this becomes a grouped operation:
 table2 %>%
   group_by(country, type) %>%
   summarize(
     max = max(count)
   )
 
+# Converting to longer form: pivot_longer()
 table1
 
 table1 %>%
-  gather(type, count, -country, -year)
+  pivot_longer(c(-country, -year))
 
+# Need to rename and arrange to create table1
 table1 %>%
-  gather(type, count, type:count)
-
-table1 %>%
-  gather(type, count, -country, -year) %>%
+  pivot_longer(c(-country, -year)) %>%
+  rename(type = name, count = value) %>%
   arrange(country, year, type)
 
+table1 %>%
+  pivot_longer(
+    c(-country, -year),
+    names_to = "type",
+    values_to = "count"
+  ) %>%
+  arrange(country, year, type)
+
+# Converting to wider form: pivot_wider()
 table2
 
 table2 %>%
-  spread(type, count)
-
-# Changing color
-table2 %>%
-  filter(type == "cases") %>%
-  ggplot() +
-  geom_col(aes(country, count, fill = year)) +
-  facet_wrap(~year)
+  pivot_wider(names_from = type, values_from = count)
 
 table2 %>%
-  filter(type == "cases") %>%
+  rename(name = type, value = count) %>%
+  pivot_wider()
+
+# Longer form: more useful for plotting all values side by side
+table2 %>%
   ggplot() +
-  geom_col(aes(country, count, fill = factor(year))) +
-  facet_wrap(~year)
+  geom_col(aes(country, count, fill = type), position = "dodge") +
+  facet_wrap(~year) +
+  scale_y_log10()
 
 table1 %>%
   ggplot() +
-  geom_col(aes(country, cases, fill = factor(year))) +
+  geom_col(aes(country, population), position = "dodge", fill = "blue") +
+  geom_col(aes(country, cases), position = "dodge", fill = "red") +
+  facet_wrap(~year) +
+  scale_y_log10()
+
+# Wider form: more useful for plotting a single value
+table1 %>%
+  ggplot() +
+  geom_col(aes(country, cases)) +
   facet_wrap(~year)
 
-# Binding
+table2 %>%
+  filter(type == "cases") %>%
+  ggplot() +
+  geom_col(aes(country, count)) +
+  facet_wrap(~year)
 
+# Wider form: the only way to correlate values
+table1 %>%
+  ggplot() +
+  geom_point(aes(cases, population, color = factor(year), shape = country)) +
+  scale_x_log10() +
+  scale_y_log10()
+
+# Split data
 table4a
-
 table4b
 
+# Combine
+table4 <-
+  bind_rows(
+    cases = cases_tbl,
+    population = population_tbl,
+    .id = "type"
+  )
+table4
 
-cases_tbl <-
-  table4a %>%
-  mutate(type = "cases")
+# Imperfect results -- what is missing?
+table4 %>%
+  pivot_longer(c(`1999`, `2000`))
 
-cases_tbl
+# WHO data
+who %>%
+  view()
 
-population_tbl <-
-  table4b %>%
-  mutate(type = "population")
+who_longer <-
+  who %>%
+  pivot_longer(
+    -(country:year),
+    names_pattern = "([a-z_]+)_(.)([0-9]+)",
+    names_to = c("type", "sex", "age")
+  )
 
-population_tbl
+who_longer
 
-bind_rows(cases_tbl, population_tbl)
+who_longer %>%
+  count(type, sex)
 
-bind_rows(cases_tbl, population_tbl) %>%
-  gather(year, count, -country, -type)
-
-bind_rows(cases_tbl, population_tbl) %>%
-  gather(year, count, -country, -type) %>%
-  spread(type, count)
-
-bind_rows(cases = table4a, population = table4b, .id = "type")
-
-# mpg
-mpg %>%
-  mutate(id = row_number()) %>%
-  select(id, everything()) %>%
-  gather(cty_hwy, value, hwy, cty) %>%
-  arrange(id)
-
-mpg %>%
-  select(displ, hwy, cty) %>%
-  gather(cty_hwy, value, -displ) %>%
-  ggplot() +
-  geom_jitter(aes(displ, value, color = cty_hwy))
+who_longer %>%
+  count(age)
