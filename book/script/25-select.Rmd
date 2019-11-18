@@ -23,37 +23,30 @@ With `dplyr::select()` you can (de-)select and/or rename columns of your dataset
 The basic operation is like in the following examples:
 
 ```{r include = FALSE}
-# select 1
+# select columns
 ```
-```{r 25-select-1}
+```{r 25-select-columns}
 flights %>%
   select(year, month, day)
 ```
 
 
 ```{r include = FALSE}
-# select 2
+# select a column away
 ```
-```{r 25-select-2}
+```{r 25-select-a-column-away}
 flights %>%
-  select(year)
-```
-
-
-```{r include = FALSE}
-# select 3
-```
-```{r 25-select-3}
-flights %>%
-  select(year, month, day, dep_delay, arr_delay)
+  select(-year)
 ```
 
 Renaming works by addressing an existing column on the right hand side of an equality sign and providing the new name of the column on its left hand side.
 
+
+
 ```{r include = FALSE}
-# select rename 1
+# select supports renaming
 ```
-```{r 25-select-rename-1}
+```{r 25-select-supports-renaming}
 flights %>%
   select(
     year, month, day,
@@ -62,12 +55,13 @@ flights %>%
   )
 ```
 
-If you want to use "strange" column names, put them in between backticks:
+
+With backticks, it is possible, but not advised, to use arbitrary characters (including spaces) in column names:
 
 ```{r include = FALSE}
-# select rename with spaces
+# select + rename: create spaces (don't do this!)
 ```
-```{r 25-select-rename-with-spaces}
+```{r 25-select-rename-create-spaces-don-t-do-this}
 flights_with_spaces <-
   flights %>%
   select(
@@ -83,13 +77,25 @@ flights_with_spaces <-
 Address them in the same way, if the dataset already has such variables:
 
 ```{r include = FALSE}
-# select columns with spaces
+# select + rename columns with spaces
 ```
-```{r 25-select-columns-with-spaces}
+```{r 25-select-rename-columns-with-spaces}
 flights_with_spaces %>%
   select(
     year, month, day,
     dep_delay = `Departure delay`,
     arr_delay = `Arrival delay`
   )
+```
+
+The {janitor} package helps fixing issues with colum names automatically.
+
+Select helpers allow selecting multiple related columns conveniently.
+
+```{r include = FALSE}
+# select helpers
+```
+```{r 25-select-helpers}
+flights %>%
+  select(origin, dest, ends_with("_time"))
 ```

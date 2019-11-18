@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Plotting: statistical summaries
+## Statistical summaries
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Plotting: statistical summaries
+### Statistical summaries
 
 ```
 ```{r 14-setup-14-stat-r}

@@ -59,11 +59,12 @@ ggplot(
 ```
 
 Different colors can be mapped to the values of a variable as a further aesthetic property of the plot.
+The `class` variable is discrete and leads to a discrete color scale.
 
 ```{r include = FALSE}
-# color as 3rd aesthetic
+# color as 3rd aesthetic (discrete)
 ```
-```{r 12-color-as-3-rd-aesthetic}
+```{r 12-color-as-3-rd-aesthetic-discrete}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -71,7 +72,22 @@ ggplot(
   geom_point()
 ```
 
+The `cty` attribute is continuous, the color scale is adapted accordingly.
+
+
+```{r include = FALSE}
+# color as 3rd aesthetic (continuous)
+```
+```{r 12-color-as-3-rd-aesthetic-continuous}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = cty)
+) +
+  geom_point()
+```
+
 One more degree of freedom is the shape of the symbols to be plotted.
+The warning indicates that a plot should not use too many different shapes.
 
 ```{r include = FALSE}
 # point shape as 3rd aesthetic
@@ -88,6 +104,8 @@ ggplot(
   geom_point()
 ```
 
+Variables with fewer classes are fine.
+Color and shape can be combined too.
 
 ```{r include = FALSE}
 # shape mapped on drv
@@ -98,6 +116,7 @@ ggplot(
   mapping = aes(
     x = displ,
     y = hwy,
+    color = class,
     shape = drv
   )
 ) +
@@ -145,23 +164,23 @@ Let's try passing a color anyway...
 ```{r include = FALSE}
 # unquoted col in aes()
 ```
-```{r 12-unquoted-col-in-aes, error=TRUE}
+```{r 12-unquoted-col-in-aes}
 try(
   ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = hwy,
-    color = blue
-  )
-) +
-  geom_point()
+    data = mpg,
+    mapping = aes(
+      x = displ,
+      y = hwy,
+      color = blue
+    )
+  ) +
+    geom_point()
 )
 ```
 
 R treats objects without quotation marks in a special way, expecting them to be variables.
 Since `blue` is not a variable of `mpg`, this did not work.
-The following should shed some light on the difference between objects with and without quotation marks.
+Use quotation marks if you mean a string, as opposed to a variable or object name.
 
 ```{r include = FALSE}
 # mpg quoted and unquoted
@@ -189,9 +208,26 @@ ggplot(
 ```
 
 At least there was no error, but now the constant value `blue` is mapped to the first default color of the color mapping, which happens to be red.
-We could have been fooled, if it had been blue...
+We could have been fooled, if it had been blue.
+Manual aesthetics must be specified in the geom:
 
-Another way to better display your data can be semi-transparency.
+```{r include = FALSE}
+# correct way to specify manual aesthetic
+```
+```{r 12-correct-way-to-specify-manual-aesthetic}
+ggplot(
+  data = mpg,
+  mapping = aes(
+    x = displ,
+    y = hwy
+  )
+) +
+  geom_point(
+    color = "blue"
+  )
+```
+
+Semi-transparency is another way to better display your data.
 This is useful to get an impression of how many data points share the same coordinates.
 
 ```{r include = FALSE}
@@ -229,15 +265,15 @@ Trying to map aesthetics in the `geom()`-function, does not work.
 ```{r include = FALSE}
 # color in geom()
 ```
-```{r 12-color-in-geom, error=TRUE}
+```{r 12-color-in-geom}
 try(
   ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = 2.35 / hwy
-  )
-) +
-  geom_point(color = class)
+    data = mpg,
+    mapping = aes(
+      x = displ,
+      y = 2.35 / hwy
+    )
+  ) +
+    geom_point(color = class)
 )
 ```

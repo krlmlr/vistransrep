@@ -50,3 +50,30 @@ Generally you can provide any logical vector with a length equal to the number o
 flights %>%
   filter(is.na(dep_time))
 ```
+
+Use `&` or multiple filters to return only rows that match both criteria:
+
+```{r include = FALSE}
+# one AND the other
+```
+```{r 22-one-and-the-other}
+flights %>%
+  filter(dep_time < 600 & arr_time > 2200)
+
+flights %>%
+  filter(dep_time >= 700 & arr_time < 800)
+
+flights %>%
+  filter(dep_time >= 700) %>%
+  filter(arr_time < 800)
+```
+
+Use `|` to return all rows that match either criterion or both:
+
+```{r include = FALSE}
+# one OR the other
+```
+```{r 22-one-or-the-other}
+flights %>%
+  filter(dep_time < 600 | arr_time > 2200)
+```

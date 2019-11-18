@@ -20,10 +20,6 @@ conflict_prefer("filter", "dplyr")
 </details>
 
 
-*Note: In all of today's scripts, the function `tibble::view()` is redefined.
-It normally let's you browse through a dataset in a newly opened window.
-For our purposes, working with markdown, we are replacing `view()` with `I()`, which makes sure that what comes in also comes out.*
-
 The function `dplyr::arrange()` sorts the rows of the dataset according to the values of the variable(s) you are providing.
 
 ```{r include = FALSE}
@@ -39,42 +35,20 @@ Wherever these values occur more than once, another sorting takes place within t
 The same rule applies for every further variable you add to `arrange()`.
 
 ```{r include = FALSE}
-# arranging two means first the first then within duplicates the second
+# lexicographically arranging two columns:
+# first column, resolve ties with the second column
 ```
-```{r 23-arranging-two-means-first-the-first-then-within-duplicates-the-second}
+```{r 23-lexicographically-arranging-two-columns}
 flights %>%
   arrange(dep_time, dep_delay)
 ```
 
-Look at the data with `view()`:
+You can combine `filter()` and `arrange()`.
 
 ```{r include = FALSE}
-# view
+# filtering and arranging can be combined
 ```
-```{r 23-view}
-flights %>%
-  arrange(dep_time, dep_delay) %>%
-  view()
-```
-
-You can combine `filter()` and `arrange()` (they even commute, though it seems more natural to first filter and then arrange).
-
-```{r include = FALSE}
-# filter before arranging two
-```
-```{r 23-filter-before-arranging-two}
-flights %>%
-  filter(dep_time < 600) %>%
-  arrange(dep_time, dep_delay) %>%
-  view()
-```
-
-...add one more filter:
-
-```{r include = FALSE}
-# two filters before arranging two
-```
-```{r 23-two-filters-before-arranging-two}
+```{r 23-filtering-and-arranging-can-be-combined}
 flights %>%
   filter(dep_time < 600) %>%
   filter(month >= 10) %>%
@@ -85,34 +59,24 @@ flights %>%
 You can use `arrange()` with arbitrary expressions.
 
 ```{r include = FALSE}
-# arrange with regard to function of variable
+# moving NA values to end
 ```
-```{r 23-arrange-with-regard-to-function-of-variable}
+```{r 23-moving-na-values-to-end}
 flights %>%
   filter(month == 4) %>%
+  filter(day == 1) %>%
   arrange(is.na(dep_time)) %>%
   view()
 ```
 
-The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (`TRUE`, `FALSE`) is sorted `FALSE`-first (lexicographically).
+The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (`TRUE`, `FALSE`) is sorted `FALSE` first (lexicographically).
 
 Let's give it a twist:
 
 ```{r include = FALSE}
-# non-NAs first
+# moving NA values to start
 ```
-```{r 23-non-n-as-first}
-flights %>%
-  filter(month == 4) %>%
-  arrange(!is.na(dep_time))
-```
-
-Add another filter to further reduce the dataset and make it easier to handle:
-
-```{r include = FALSE}
-# with less data, 1 April
-```
-```{r 23-with-less-data-1-april}
+```{r 23-moving-na-values-to-start}
 flights %>%
   filter(month == 4) %>%
   filter(day == 1) %>%

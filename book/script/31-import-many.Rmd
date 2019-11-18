@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Import many files
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Import many files
 
 ```
 ```{r 31-setup-31-import-many-r}

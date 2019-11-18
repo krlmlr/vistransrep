@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Summarize data (by groups): `dplyr::summarize()`, `dplyr::count()`, `dplyr::group_by()`
+## Summarize data (by groups): `dplyr::summarize()`, `dplyr::group_by()` + `dplyr::ungroup()`
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Summarize data (by groups): `dplyr::summarize()`, `dplyr::count()`, `dplyr::group_by()`
+### Summarize data (by groups): `dplyr::summarize()`, `dplyr::group_by()` + `dplyr::ungroup()`
 
 ```
 ```{r 27-setup-27-summarize-r}
@@ -21,356 +21,126 @@ conflict_prefer("lag", "dplyr")
 </details>
 
 Often we want to draw just conclusions from larger datasets by gaining insight by using statistical (or other) methods for summarizing -- and thus drastically reducing -- the data:
+How much time did all planes spend in the air?
 
 ```{r include = FALSE}
-# Simple counts
+# summary functions
 ```
-```{r 27-simple-counts}
+```{r 27-summary-functions}
 flights %>%
-  count()
+  select(air_time) %>%
+  mutate(total_air_time = sum(air_time, na.rm = TRUE))
+```
 
+The `mutate()` call adds a new variable with the same value across all rows.
+To reduce the result to a single row, use `summarize()`:
+
+```{r include = FALSE}
+# condense to one row with summarize
+```
+```{r 27-condense-to-one-row-with-summarize}
+flights %>%
+  summarize(total_air_time = sum(air_time, na.rm = TRUE))
+```
+
+Simple counts can be computed with `n()` inside `summarize()`:
+
+```{r include = FALSE}
+# summarize with counts
+```
+```{r 27-summarize-with-counts}
 flights %>%
   summarize(n = n())
 ```
 
-`dplyr::count()` produces results that are frequently of interest, and has a straightforward syntax in these cases.
-`dplyr::summarize()` is more flexible though.
-
-Both functions can work with grouped data.
-For `count()` the grouping variable(s) can be used directly as input parameters for the ellipsis.
-If you assign the parameter `wt` (weight) a variable, the respective variable will be summed up within the given groups.
-
-```{r include = FALSE}
-# Grouped counts
-```
-```{r 27-grouped-counts}
-flights %>%
-  count(origin)
-
-flights %>%
-  count(origin, wt = air_time)
-
-flights %>%
-  count(year, month, day)
-```
-
-Weighted, ungrouped counts:
-
-```{r include = FALSE}
-# Weighted counts
-```
-```{r 27-weighted-counts}
-flights %>%
-  count(wt = air_time)
-
-flights %>%
-  summarize(n = sum(air_time, na.rm = TRUE))
-```
-
-As mentioned, `summarize()` is more flexible.
-It can use all sorts of summarizing functions, that turn a vector of values into one value as a result.
+A variety of aggregate functions is supported:
 
 ```{r include = FALSE}
 # summarize with median
 ```
 ```{r 27-summarize-with-median}
 flights %>%
-  summarize(n = median(air_time, na.rm = TRUE))
+  summarize(median = median(air_time, na.rm = TRUE))
 ```
 
 It's possible to produce two different summarizations at once:
 
 ```{r include = FALSE}
-# multi-summarize
+# compute multiple summaries
 ```
-```{r 27-multi-summarize}
+```{r 27-compute-multiple-summaries}
 flights %>%
   summarize(
+    n = n(),
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   )
 ```
 
-...and also grouped summarizations, using `dplyr::group_by()` beforehand:
+The `summarize()` verb gains its full power in grouped operations.
+Surround with `group_by()` and `ungroup()` to compute summaries in groups defined by common values in one or more columns.
+In the next example, the same summary is computed separately for each origin airport.
 
 ```{r include = FALSE}
-# group_by multi-summarize
+# Use group_by() and ungroup() to split data into groups
+# ALWAYS use ungroup()
 ```
-```{r 27-group-by-multi-summarize}
+```{r 27-use-group-by-and-ungroup-to-split-data-into-groups}
 flights %>%
   group_by(origin) %>%
   summarize(
-    mean_air_time = mean(air_time, na.rm = TRUE),
-    median_air_time = median(air_time, na.rm = TRUE)
-  )
-```
-
-Chosing different groups completely changes the result and its meaning:
-
-```{r include = FALSE}
-# group_by multi-summarize 2
-```
-```{r 27-group-by-multi-summarize-2}
-flights %>%
-  group_by(year, month, day) %>%
-  summarize(
-    mean_air_time = mean(air_time, na.rm = TRUE),
-    median_air_time = median(air_time, na.rm = TRUE)
-  )
-```
-
-You might have noticed, that after the summarization the tibbles still know how they are grouped.
-This is intentional, but it might lead to unintended effects if it is ignored.
-Best-practice is to use `ungroup()` after a summarization, using the pattern:
-`group_by()` -- `summarize()` -- `ungroup()`.
-
-```{r include = FALSE}
-# group_by multi-summarize ungroup
-```
-```{r 27-group-by-multi-summarize-ungroup}
-flights %>%
-  group_by(origin) %>%
-  summarize(
+    n = n(),
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
 ```
 
-Same example with different groups:
+The next example splits the data into one group for each day.
 
 ```{r include = FALSE}
-# group_by multi-summarize 2 ungroup
+# Groups can be defined by more than one column
 ```
-```{r 27-group-by-multi-summarize-2-ungroup}
+```{r 27-groups-can-be-defined-by-more-than-one-column}
 flights %>%
   group_by(year, month, day) %>%
   summarize(
+    n = n(),
     mean_air_time = mean(air_time, na.rm = TRUE),
     median_air_time = median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
 ```
 
-Same example without explicitly giving the names for the summarized values:
+For quick exploration, the names of the new columns can be omitted:
 
 ```{r include = FALSE}
-# anonymous summarize
+# Anonymous summarize for a quick glance
+# (column name is defined by the expression)
 ```
-```{r 27-anonymous-summarize}
+```{r 27-anonymous-summarize-for-a-quick-glance}
 flights %>%
   group_by(year, month, day) %>%
   summarize(
+    n(),
     mean(air_time, na.rm = TRUE),
     median(air_time, na.rm = TRUE)
   ) %>%
   ungroup()
 ```
 
-Assign the result of a summarization to a new variable and continue working with it:
 
 ```{r include = FALSE}
-# flights by day
+# FIXME: introduce count()?
 ```
-```{r 27-flights-by-day}
-flights_by_day <-
-  flights %>%
-  group_by(year, month, day) %>%
-  summarize(
-    mean_air_time = mean(air_time, na.rm = TRUE),
-    median_air_time = median(air_time, na.rm = TRUE)
-  ) %>%
-  ungroup()
-
-flights_by_day
+```{r 27-fixme-introduce-count}
+TRUE
 ```
 
-How much air time per carrier?
 
 ```{r include = FALSE}
-# carrier air time
+# FIXME: Copy mre examples from 27-summarize.R?
 ```
-```{r 27-carrier-air-time}
-total_airtime_by_carrier <-
-  flights %>%
-  group_by(carrier) %>%
-  summarize(acc_air_time = sum(air_time, na.rm = TRUE)) %>%
-  ungroup()
-```
-
-Sorted...
-
-```{r include = FALSE}
-# arrange carrier air time
-```
-```{r 27-arrange-carrier-air-time}
-total_airtime_by_carrier %>%
-  arrange(acc_air_time)
-```
-
-Change class of variable `carrier` to `factor`, with a level order just as the levels occur in the tibble:
-
-```{r include = FALSE}
-# arrange carrier as factor air time
-```
-```{r 27-arrange-carrier-as-factor-air-time}
-total_airtime_by_carrier %>%
-  arrange(acc_air_time) %>%
-  mutate(carrier = fct_inorder(carrier))
-```
-
-Plotting without changing the class to `factor`:
-
-```{r include = FALSE}
-# plot without factor
-```
-```{r 27-plot-without-factor}
-total_airtime_by_carrier %>%
-  arrange(acc_air_time) %>%
-  ggplot() +
-  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
-  coord_flip()
-```
-
-Plotting after changing the class to `factor`:
-
-```{r include = FALSE}
-# plot with factor
-```
-```{r 27-plot-with-factor}
-total_airtime_by_carrier %>%
-  arrange(acc_air_time) %>%
-  mutate(carrier = fct_inorder(carrier)) %>%
-  ggplot() +
-  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365))
-```
-
-Same with flipped axes:
-
-```{r include = FALSE}
-# plot with factor flip
-```
-```{r 27-plot-with-factor-flip}
-total_airtime_by_carrier %>%
-  arrange(acc_air_time) %>%
-  mutate(carrier = fct_inorder(carrier)) %>%
-  ggplot() +
-  geom_col(aes(carrier, acc_air_time / 60 / 24 / 365)) +
-  coord_flip()
-```
-
-Which plane managed to fail -- for whatever reason -- to take off most often?
-
-```{r include = FALSE}
-# Worst plane
-```
-```{r 27-worst-plane}
-flights %>%
-  group_by(tailnum) %>%
-  summarize(not_departed = sum(is.na(dep_time))) %>%
-  ungroup() %>%
-  arrange(desc(not_departed)) %>%
-  filter(!is.na(tailnum))
-```
-
-How many flights that were scheduled did actually not take place?
-
-```{r include = FALSE}
-# sum no lift-off
-```
-```{r 27-sum-no-lift-off}
-flights %>%
-  summarize(not_departed = sum(is.na(dep_time))) %>%
-  arrange(desc(not_departed))
-```
-
-Filtering out those flights:
-
-```{r include = FALSE}
-# filter no lift-off
-```
-```{r 27-filter-no-lift-off}
-flights %>%
-  filter(is.na(dep_time))
-```
-
-`count()` also has a logical parameter `sort`.
-Let's see how many flights there were between two specific places carried out by a specific airline:
-
-```{r include = FALSE}
-# sorted count flights per airline per relation
-```
-```{r 27-sorted-count-flights-per-airline-per-relation}
-flights %>%
-  count(origin, dest, carrier, sort = TRUE)
-```
-
-...without sorting:
-
-```{r include = FALSE}
-# count flights per airline per relation
-```
-```{r 27-count-flights-per-airline-per-relation}
-flights %>%
-  count(origin, dest, carrier)
-```
-
-How many different airlines fly between two specific cities?
-
-```{r include = FALSE}
-# count num carriers between airports
-```
-```{r 27-count-num-carriers-between-airports}
-flights %>%
-  count(origin, dest, carrier) %>%
-  count(origin, dest)
-```
-
-Same, but sorted by decreasing number of airlines:
-
-```{r include = FALSE}
-# sorted count num carriers per relation
-```
-```{r 27-sorted-count-num-carriers-per-relation}
-flights %>%
-  count(origin, dest, carrier) %>%
-  count(origin, dest, sort = TRUE)
-```
-
-Let's "reanalyse" this using `summarize()`:
-
-```{r include = FALSE}
-# summarize num flights per airline per relation
-```
-```{r 27-summarize-num-flights-per-airline-per-relation}
-flights %>%
-  group_by(origin, dest, carrier) %>%
-  summarize(n_flights = n())
-```
-
-Unsorted number of airlines having provided flights in 2013 between two specific locations:
-
-```{r include = FALSE}
-# summarize num carriers per relation
-```
-```{r 27-summarize-num-carriers-per-relation}
-flights %>%
-  group_by(origin, dest, carrier) %>%
-  summarize(n_flights = n()) %>%
-  summarize(n_distinct_carriers = n()) %>%
-  ungroup()
-```
-
-...sorted:
-
-```{r include = FALSE}
-# sorted summarize num carriers per relation
-```
-```{r 27-sorted-summarize-num-carriers-per-relation}
-flights %>%
-  group_by(origin, dest, carrier) %>%
-  summarize(n_flights = n()) %>%
-  summarize(n_distinct_carriers = n()) %>%
-  ungroup() %>%
-  arrange(desc(n_distinct_carriers))
+```{r 27-fixme-copy-mre-examples-from-27-summarize-r}
+TRUE
 ```

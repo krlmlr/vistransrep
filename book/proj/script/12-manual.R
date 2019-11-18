@@ -60,16 +60,6 @@ ggplot(
   mapping = aes(
     x = displ,
     y = hwy,
-    shape = drv
-  )
-) +
-  geom_point()
-
-ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = hwy,
     color = class,
     shape = drv
   )
