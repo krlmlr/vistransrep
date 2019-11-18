@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Separating and uniting
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Separating and uniting
 
 ```
 ```{r 42-setup-42-separate-r}
@@ -17,22 +17,42 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
+```
+</details>
 
 
+```{r include = FALSE}
+# Yet another view at the same data
+```
+```{r 42-yet-another-view-at-the-same-data}
 table3
+```
 
+
+```{r include = FALSE}
+# How to split?
+```
+```{r 42-how-to-split}
 table3 %>%
   separate(rate, into = c("cases", "population"))
 
 table3 %>%
-  separate(rate, into = c("cases", "population"), sep = "/")
-
-table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
+```
 
 
+```{r include = FALSE}
+# See help for details
+```
+```{r 42-see-help-for-details}
 ?separate
+```
 
+
+```{r include = FALSE}
+# Parsing numbers
+```
+```{r 42-parsing-numbers}
 thousand_separator <-
   tribble(
     ~num,
@@ -40,36 +60,56 @@ thousand_separator <-
     "2'000'000.00"
   )
 
+thousand_separator
+```
+
+
+```{r include = FALSE}
+# separate() doesn't work here
+```
+```{r 42-separate-doesn-t-work-here}
 thousand_separator %>%
   separate(num, into = c("num"))
+```
 
+
+```{r include = FALSE}
+# Remove all non-number components
+```
+```{r 42-remove-all-non-number-components}
 thousand_separator %>%
-  mutate(num = str_replace_all(num, "[^0-9.]", "")) %>%
+  mutate(num = str_replace_all(num, "[^-0-9.]", "")) %>%
   mutate(num = as.numeric(num))
 ```
-</details>
 
 
 ```{r include = FALSE}
 # Uniting
 ```
 ```{r 42-uniting}
-table1 %>%
-  unite(rate, cases:population)
+table5
 
-?unite
-
-table1 %>%
-  unite(rate, cases:population, sep = "/")
+table5 %>%
+  unite("year", c(century, year))
 ```
 
 
 ```{r include = FALSE}
-# table2 -> table3 directly
+# Not quite done yet:
 ```
-```{r 42-table-2-table-3-directly}
-table2 %>%
-  group_by(country, year) %>%
-  summarize(rate = paste(count, collapse = "/")) %>%
-  ungroup()
+```{r 42-not-quite-done-yet}
+table5 %>%
+  unite("year", c(century, year), sep = "")
+
+table5 %>%
+  unite("year", c(century, year), sep = "") %>%
+  mutate(year = as.numeric(year))
+```
+
+
+```{r include = FALSE}
+# See help for more info
+```
+```{r 42-see-help-for-more-info}
+?unite
 ```
