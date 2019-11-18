@@ -15,5 +15,6 @@ get_stage("deploy") %>%
   add_step(step_run_code(withr::with_dir("book", bookdown::render_book("", output_format = c("bookdown::gitbook"))))) %>%
   add_step(step_run_code(file.copy(dir("docs-landing-page", full.names = TRUE), "docs", recursive = TRUE))) %>%
   add_step(step_run_code(unlink("docs/book", recursive = TRUE))) %>%
-  add_step(step_run_code(file.copy("book/_book", "docs/book", recursive = TRUE))) %>%
+  add_step(step_run_code(dir.create("docs/book"))) %>%
+  add_step(step_run_code(file.copy(dir("book/_book", full.names = TRUE), "docs/book", recursive = TRUE))) %>%
   add_step(step_do_push_deploy(path = "docs"))
