@@ -32,14 +32,14 @@
   
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="transformation.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -54,7 +54,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -66,11 +66,13 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -272,9 +274,9 @@ To map a different variable than <code>disp</code> to the x-axis, change the res
 <a class="sourceLine" id="cb13-7" data-line-number="7">  )</a>
 <a class="sourceLine" id="cb13-8" data-line-number="8">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb13-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values because more
-## than 6 becomes difficult to discriminate; you have 7. Consider specifying
-## shapes manually if you must have them.</code></pre>
+<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values because
+## more than 6 becomes difficult to discriminate; you have 7. Consider
+## specifying shapes manually if you must have them.</code></pre>
 <pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
 <p><img src="vistransrep_files/figure-html/12-point-shape-as-3-rd-aesthetic-1.png" width="672" /></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -329,13 +331,13 @@ Let’s try passing a color anyway…</p>
 Since <code>blue</code> is not a variable of <code>mpg</code>, this did not work.
 The following should shed some light on the difference between objects with and without quotation marks.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">mpg</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #949494;'># A tibble: 234 x 11</span><span>
-##   </span><span style='font-weight: bold;'>manufacturer</span><span> </span><span style='font-weight: bold;'>model</span><span> </span><span style='font-weight: bold;'>displ</span><span>  </span><span style='font-weight: bold;'>year</span><span>   </span><span style='font-weight: bold;'>cyl</span><span> </span><span style='font-weight: bold;'>trans</span><span>      </span><span style='font-weight: bold;'>drv</span><span>     </span><span style='font-weight: bold;'>cty</span><span>   </span><span style='font-weight: bold;'>hwy</span><span> </span><span style='font-weight: bold;'>fl</span><span>    </span><span style='font-weight: bold;'>class</span><span>  
-##   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
-## </span><span style='color: #BCBCBC;'>1</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 auto(l5)   f        18    29 p     compact
-## </span><span style='color: #BCBCBC;'>2</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 manual(m5) f        21    29 p     compact
-## </span><span style='color: #BCBCBC;'>3</span><span> audi         a4      2    </span><span style='text-decoration: underline;'>2</span><span>008     4 manual(m6) f        20    31 p     compact
-## </span><span style='color: #949494;'># … with 231 more rows</span><span>
+<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 234 x 11</span><span>
+##   </span><span style='font-weight: bold;'>manufacturer</span><span> </span><span style='font-weight: bold;'>model</span><span> </span><span style='font-weight: bold;'>displ</span><span>  </span><span style='font-weight: bold;'>year</span><span>   </span><span style='font-weight: bold;'>cyl</span><span> </span><span style='font-weight: bold;'>trans</span><span>      </span><span style='font-weight: bold;'>drv</span><span>     </span><span style='font-weight: bold;'>cty</span><span>   </span><span style='font-weight: bold;'>hwy</span><span> </span><span style='font-weight: bold;'>fl</span><span>    </span><span style='font-weight: bold;'>class</span><span> 
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
+## </span><span style='color: #555555;'>1</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 auto(l5)   f        18    29 p     compa…
+## </span><span style='color: #555555;'>2</span><span> audi         a4      1.8  </span><span style='text-decoration: underline;'>1</span><span>999     4 manual(m5) f        21    29 p     compa…
+## </span><span style='color: #555555;'>3</span><span> audi         a4      2    </span><span style='text-decoration: underline;'>2</span><span>008     4 manual(m6) f        20    31 p     compa…
+## </span><span style='color: #555555;'># … with 231 more rows</span><span>
 </span></CODE></PRE>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="st">&quot;mpg&quot;</span></a></code></pre></div>
 <pre><code>## [1] &quot;mpg&quot;</code></pre>
@@ -588,15 +590,15 @@ If you pass a variable (needs to be the result of a call to <code>vars()</code> 
 <a href="transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

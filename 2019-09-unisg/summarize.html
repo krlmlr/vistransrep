@@ -450,9 +450,9 @@ flights %&gt;%
     sd(dep_delay, na.rm = TRUE)
   )</code></pre>
 <pre><code>## # A tibble: 1 x 4
-##   `mean(arr_delay, … `mean(dep_delay, … `sd(arr_delay, n… `sd(dep_delay, n…
-##                &lt;dbl&gt;              &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
-## 1               6.90               12.6              44.6              40.2</code></pre>
+##   `mean(arr_delay, n… `mean(dep_delay, n… `sd(arr_delay, na.… `sd(dep_delay, na…
+##                 &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;
+## 1                6.90                12.6                44.6               40.2</code></pre>
 <pre class="r"><code>flights %&gt;%
   summarize_at(
     vars(arr_delay, dep_delay),

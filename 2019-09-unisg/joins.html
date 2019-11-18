@@ -353,42 +353,40 @@ $(document).ready(function () {
   inner_join(flights)</code></pre>
 <pre><code>## Joining, by = &quot;carrier&quot;</code></pre>
 <pre><code>## # A tibble: 336,776 x 20
-##    carrier name   year month   day dep_time sched_dep_time dep_delay
-##    &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;
-##  1 9E      Ende…  2013     1     1      810            810         0
-##  2 9E      Ende…  2013     1     1     1451           1500        -9
-##  3 9E      Ende…  2013     1     1     1452           1455        -3
-##  4 9E      Ende…  2013     1     1     1454           1500        -6
-##  5 9E      Ende…  2013     1     1     1507           1515        -8
-##  6 9E      Ende…  2013     1     1     1530           1530         0
-##  7 9E      Ende…  2013     1     1     1546           1540         6
-##  8 9E      Ende…  2013     1     1     1550           1550         0
-##  9 9E      Ende…  2013     1     1     1552           1600        -8
-## 10 9E      Ende…  2013     1     1     1554           1600        -6
-## # … with 336,766 more rows, and 12 more variables: arr_time &lt;int&gt;,
-## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+##    carrier name   year month   day dep_time sched_dep_time dep_delay arr_time
+##    &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+##  1 9E      Ende…  2013     1     1      810            810         0     1048
+##  2 9E      Ende…  2013     1     1     1451           1500        -9     1634
+##  3 9E      Ende…  2013     1     1     1452           1455        -3     1637
+##  4 9E      Ende…  2013     1     1     1454           1500        -6     1635
+##  5 9E      Ende…  2013     1     1     1507           1515        -8     1651
+##  6 9E      Ende…  2013     1     1     1530           1530         0     1650
+##  7 9E      Ende…  2013     1     1     1546           1540         6     1753
+##  8 9E      Ende…  2013     1     1     1550           1550         0     1844
+##  9 9E      Ende…  2013     1     1     1552           1600        -8     1749
+## 10 9E      Ende…  2013     1     1     1554           1600        -6     1701
+## # … with 336,766 more rows, and 11 more variables: sched_arr_time &lt;int&gt;,
+## #   arr_delay &lt;dbl&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <pre class="r"><code>airports %&gt;%
   inner_join(flights, by = c(&quot;faa&quot; = &quot;dest&quot;))</code></pre>
 <pre><code>## # A tibble: 329,174 x 26
-##    faa   name    lat   lon   alt    tz dst   tzone  year month   day
-##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-##  1 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     1
-##  2 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     2
-##  3 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     3
-##  4 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     4
-##  5 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     5
-##  6 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     6
-##  7 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     7
-##  8 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     8
-##  9 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     9
-## 10 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10    10
-## # … with 329,164 more rows, and 15 more variables: dep_time &lt;int&gt;,
-## #   sched_dep_time &lt;int&gt;, dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;,
-## #   sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-## #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-## #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+##    faa   name    lat   lon   alt    tz dst   tzone  year month   day dep_time
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;
+##  1 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     1     1955
+##  2 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     2     2010
+##  3 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     3     1955
+##  4 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     4     2017
+##  5 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     5     1959
+##  6 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     6     1959
+##  7 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     7     2002
+##  8 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     8     1957
+##  9 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10     9     1957
+## 10 ABQ   Albu…  35.0 -107.  5355    -7 A     Amer…  2013    10    10     2011
+## # … with 329,164 more rows, and 14 more variables: sched_dep_time &lt;int&gt;,
+## #   dep_delay &lt;dbl&gt;, arr_time &lt;int&gt;, sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </details>
 </div>
 <div id="destination-by-airline" class="section level2">
@@ -407,23 +405,23 @@ $(document).ready(function () {
   left_join(airlines, by = &quot;carrier&quot;) %&gt;%
   left_join(airports, by = c(&quot;dest&quot; = &quot;faa&quot;))</code></pre>
 <pre><code>## # A tibble: 51,287 x 27
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      557            600        -3      709
-##  2  2013     1     1      559            559         0      702
-##  3  2013     1     1      629            630        -1      721
-##  4  2013     1     1      632            608        24      740
-##  5  2013     1     1      639            640        -1      739
-##  6  2013     1     1      732            735        -3      857
-##  7  2013     1     1      733            736        -3      854
-##  8  2013     1     1      801            805        -4      900
-##  9  2013     1     1      803            810        -7      903
-## 10  2013     1     1      820            830       -10      940
-## # … with 51,277 more rows, and 20 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;,
-## #   lon &lt;dbl&gt;, alt &lt;dbl&gt;, tz &lt;dbl&gt;, dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      557            600        -3      709            723
+##  2  2013     1     1      559            559         0      702            706
+##  3  2013     1     1      629            630        -1      721            740
+##  4  2013     1     1      632            608        24      740            728
+##  5  2013     1     1      639            640        -1      739            749
+##  6  2013     1     1      732            735        -3      857            858
+##  7  2013     1     1      733            736        -3      854            850
+##  8  2013     1     1      801            805        -4      900            919
+##  9  2013     1     1      803            810        -7      903            925
+## 10  2013     1     1      820            830       -10      940            954
+## # … with 51,277 more rows, and 19 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;,
+## #   name.x &lt;chr&gt;, name.y &lt;chr&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;, alt &lt;dbl&gt;, tz &lt;dbl&gt;,
+## #   dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
 </details>
 </div>
 <div id="destination-by-airline-wide-form" class="section level2">
@@ -450,31 +448,31 @@ flights %&gt;%
   count(carrier_name, airport_name) %&gt;%
   spread(carrier_name, n)</code></pre>
 <pre><code>## # A tibble: 19 x 12
-##    airport_name `American Airli… `Delta Air Line… `Endeavor Air I…
-##    &lt;chr&gt;                   &lt;int&gt;            &lt;int&gt;            &lt;int&gt;
-##  1 Albany Intl                NA               NA               NA
-##  2 Baltimore W…               NA               NA              856
-##  3 Bradley Intl               NA               NA               NA
-##  4 Buffalo Nia…               NA                3               54
-##  5 Burlington …               NA               NA                2
-##  6 General Edw…             1455              972              914
-##  7 Greater Roc…               NA               NA              281
-##  8 La Guardia                 NA               NA               NA
-##  9 Manchester …               NA               NA               11
-## 10 &quot;Martha\\\\…               NA               NA               71
-## 11 Nantucket M…               NA               NA               NA
-## 12 Norfolk Intl               NA               NA              402
-## 13 Philadelphi…               NA                2              940
-## 14 Portland In…               NA              235               NA
-## 15 Richmond In…               NA               NA              340
-## 16 Ronald Reag…               NA                2             1074
-## 17 Syracuse Ha…               NA               NA              170
-## 18 Theodore Fr…               NA               NA               NA
-## 19 Washington …               NA               NA              664
-## # … with 8 more variables: `Envoy Air` &lt;int&gt;, `ExpressJet Airlines
-## #   Inc.` &lt;int&gt;, `JetBlue Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;,
-## #   `SkyWest Airlines Inc.` &lt;int&gt;, `Southwest Airlines Co.` &lt;int&gt;, `United
-## #   Air Lines Inc.` &lt;int&gt;, `US Airways Inc.` &lt;int&gt;</code></pre>
+##    airport_name `American Airli… `Delta Air Line… `Endeavor Air I… `Envoy Air`
+##    &lt;chr&gt;                   &lt;int&gt;            &lt;int&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Albany Intl                NA               NA               NA          NA
+##  2 Baltimore W…               NA               NA              856         365
+##  3 Bradley Intl               NA               NA               NA          NA
+##  4 Buffalo Nia…               NA                3               54          NA
+##  5 Burlington …               NA               NA                2          NA
+##  6 General Edw…             1455              972              914          NA
+##  7 Greater Roc…               NA               NA              281          NA
+##  8 La Guardia                 NA               NA               NA          NA
+##  9 Manchester …               NA               NA               11          NA
+## 10 &quot;Martha\\\\…               NA               NA               71          NA
+## 11 Nantucket M…               NA               NA               NA          NA
+## 12 Norfolk Intl               NA               NA              402         365
+## 13 Philadelphi…               NA                2              940          NA
+## 14 Portland In…               NA              235               NA          NA
+## 15 Richmond In…               NA               NA              340          NA
+## 16 Ronald Reag…               NA                2             1074        2194
+## 17 Syracuse Ha…               NA               NA              170          NA
+## 18 Theodore Fr…               NA               NA               NA          NA
+## 19 Washington …               NA               NA              664          NA
+## # … with 7 more variables: `ExpressJet Airlines Inc.` &lt;int&gt;, `JetBlue
+## #   Airways` &lt;int&gt;, `Mesa Airlines Inc.` &lt;int&gt;, `SkyWest Airlines Inc.` &lt;int&gt;,
+## #   `Southwest Airlines Co.` &lt;int&gt;, `United Air Lines Inc.` &lt;int&gt;, `US Airways
+## #   Inc.` &lt;int&gt;</code></pre>
 </details>
 </div>
 <div id="destination-by-airline-economic-join" class="section level2">
