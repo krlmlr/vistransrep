@@ -28,9 +28,9 @@ In this section we want to give a short introduction, how to get started with {g
 ```
 
 The main function in the package is `ggplot()`, which prepares/creates a graph.
-By setting the parameters of the function, you can:
-1. choose the dataset to be plotted in the parameter `data`
-2. choose the mapping of the variables to the axes (or further forms of setting apart data) in the parameter `mapping`. This parameter takes the result of the function `aes()`, which you will get to know in many different examples.
+By setting the arguments of the function, you can:
+1. choose the dataset to be plotted in the argument `data`
+2. choose the mapping of the variables to the axes (or further forms of setting apart data) in the argument `mapping`. This argument takes the result of the function `aes()`, which you will get to know in many different examples.
 
 ```{r include = FALSE}
 # Empty graph
@@ -57,7 +57,7 @@ ggplot(
 ```
 
 This is maybe the most basic plot you can create.
-To map a different variable than `disp` to the x-axis, change the respective parameter in `aes()`.
+To map a different variable than `disp` to the x-axis, change the respective argument in `aes()`.
 
 ```{r include = FALSE}
 # aes() determines which variables are plotted
