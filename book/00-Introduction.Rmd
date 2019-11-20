@@ -10,6 +10,37 @@ While this might be true for all languages (once you speak it well enough, thing
 1. consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
 2. evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
 
+## Speakers
+
+**Kirill Müller** (@krlmlr)
+
+
+**Patrick Schratz** (@pat-s)
+
+```{r, echo = FALSE, fig.width=5}
+knitr::include_graphics("https://pjs-web.de/authors/admin/avatar_hud979e34f5123fec6163cd5fb1cb16697_143342_250x250_fill_q75_box_center.jpg", dpi = 180)
+```
+
+- M.Sc. Geoinformatics
+- Researcher/Research Engineer at University of **Jena** and **LMU Munich**
+- PhD Candidate
+
+---
+
+- Unix & R enthusiast
+- Author/Contributor/Maintainer of several R packages: 
+  - ([mlr3](https://github.com/mlr-org/mlr3), [mlr](https://github.com/mlr-org/mlr))
+  - sperrorest
+  - oddsratio
+  - xaringan
+  - circle
+  - RQGIS
+  - travis
+  - tic
+  - ...
+
+## Overview
+
 This course covers several topics, which everyone working more intently with the `tidyverse` almost inevitably needs to deal with at some point or another.
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.

@@ -1,3 +1,4 @@
 book_filename: vistransrep
 repo: https://github.com/krlmlr/vistransrep/
 split_by: section
+delete_merged_file: true

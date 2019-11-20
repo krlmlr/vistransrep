@@ -46,32 +46,3 @@ ggplot(
   geom_point() +
   facet_grid(year ~ drv)
 ```
-
-The first argument of `facet_grid()` is by default `rows`.
-If you pass a variable (needs to be the result of a call to `vars()` with the unquoted variable name as its parameter) to it, as many plots will be horizontally lined up, as the variable has distinct values.
-
-```{r include = FALSE}
-# facet_grid() only set rows
-```
-```{r 15-facet-grid-only-set-rows}
-ggplot(
-  data = mpg,
-  mapping = aes(x = displ, y = hwy)
-) +
-  geom_point() +
-  facet_grid(vars(year))
-```
-
-Specifically choose parameter `cols` of `facet_grid()` to vertically stack the plots.
-
-```{r include = FALSE}
-# facet_grid() only set cols
-```
-```{r 15-facet-grid-only-set-cols}
-ggplot(
-  data = mpg,
-  mapping = aes(x = displ, y = hwy)
-) +
-  geom_point() +
-  facet_grid(cols = vars(year))
-```

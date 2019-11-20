@@ -15,7 +15,7 @@ library(tidyverse)
 ```
 </details>
 
-Change the color of the plotted data by setting parameter `color` in the `geom()`-function to a character variable with the color name.
+Change the color of the plotted data by setting the `color` argument in the `geom()`-function to a character variable with the color name.
 
 ```{r include = FALSE}
 # choose color in geom
