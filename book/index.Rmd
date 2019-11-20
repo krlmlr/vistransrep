@@ -1,6 +1,6 @@
 ---
 title: "Visualization, transformation and reporting with the tidyverse"
-author: "Kirill Müller, Tobias Schieferdecker"
+author: "Kirill Müller, Tobias Schieferdecker, Patrick Schratz"
 date: "`r format(lubridate::with_tz(Sys.time(), 'CET'), '%d %B %Y, %H:%M %Z')`"
 documentclass: "book"
 site: bookdown::bookdown_site
