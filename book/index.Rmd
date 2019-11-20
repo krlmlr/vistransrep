@@ -7,7 +7,7 @@ site: bookdown::bookdown_site
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = FALSE)
 options(tibble.print_min = 3, tibble.print_max = 5, max.print = 20)
 if (!knitr::is_latex_output()) {
   options(crayon.enabled = TRUE, pillar.bold = TRUE)
