@@ -16,4 +16,4 @@ example1 <-
     escape_double = FALSE, trim_ws = TRUE
   )
 
-View(example1)
+view(example1)

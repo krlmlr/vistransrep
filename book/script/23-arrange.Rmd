@@ -30,7 +30,7 @@ flights %>%
   arrange(dep_time)
 ```
 
-When providing multiple variables as arguments in the `...` parameter (AKA ellipsis), the dataset is first sorted accorcing to the values of the first variable.
+When providing multiple variables as arguments for `...` (the ellipsis), the dataset is first sorted accorcing to the values of the first variable.
 Wherever these values occur more than once, another sorting takes place within those groups, according to the second variable you provided.
 The same rule applies for every further variable you add to `arrange()`.
 
