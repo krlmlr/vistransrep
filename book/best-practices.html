@@ -201,43 +201,43 @@ With the first steps in place, the road to your first R package may become less 
 <h2><span class="header-section-number">4.1</span> DESCRIPTION</h2>
 <p>Create and open a new RStudio project.
 Then, create a <code>DESCRIPTION</code> file with <code>usethis::use_description()</code>:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># install.packages(&quot;usethis&quot;)</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_description</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># install.packages(&quot;usethis&quot;)</span></a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_description</span>()</a></code></pre></div>
 <p>Double-check success:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">load_all</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">load_all</span>()</a></code></pre></div>
 <p>Declare that your project requires the tidyverse and the here package:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;here&quot;</span>)</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co"># Currently doesn&#39;t work, add manually</span></a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co"># https://github.com/r-lib/usethis/issues/760</span></a>
-<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="co"># usethis::use_package(&quot;tidyverse&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;here&quot;</span>)</a>
+<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co"># Currently doesn&#39;t work, add manually</span></a>
+<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co"># https://github.com/r-lib/usethis/issues/760</span></a>
+<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="co"># usethis::use_package(&quot;tidyverse&quot;)</span></a></code></pre></div>
 </div>
 <div id="r" class="section level2">
 <h2><span class="header-section-number">4.2</span> R</h2>
 <p>With a <code>DESCRIPTION</code> file defined, create a new <code>.R</code> file and save it in the <code>R/</code> directory.
 (Create this directory if it does not exist.)
 Create a function in this file, save the file:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Hello, world!&quot;</span>) {</a>
-<a class="sourceLine" id="cb168-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
-<a class="sourceLine" id="cb168-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
-<a class="sourceLine" id="cb168-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Hello, world!&quot;</span>) {</a>
+<a class="sourceLine" id="cb169-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb169-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb169-4" data-line-number="4">}</a></code></pre></div>
 <p>Do not source the file.</p>
 <p>Restart R (with Ctrl + Shift + F10 in RStudio).</p>
 <p>Run <code>devtools::load_all()</code> again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.</p>
 <p>Check that you can run <code>hi()</code> in the console:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">hi</span>(<span class="st">&quot;Wow!&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">hi</span>(<span class="st">&quot;Wow!&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Wow!&quot;</code></pre>
 <p>Edit the function:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
-<a class="sourceLine" id="cb173-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
-<a class="sourceLine" id="cb173-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
+<a class="sourceLine" id="cb174-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb174-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb174-4" data-line-number="4">}</a></code></pre></div>
 <p>Save the file, but do not source it.</p>
 <p>Run <code>devtools::load_all()</code> again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.</p>
 <p>Check that the new implementation of <code>hi()</code> is active:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;Wow!&quot;</code></pre>
 <p>All functions that are required for your project are stored in this directory.
 Do not store executable scripts, use a <code>script/</code> directory.</p>
@@ -245,21 +245,21 @@ Do not store executable scripts, use a <code>script/</code> directory.</p>
 <div id="roxygen2" class="section level2">
 <h2><span class="header-section-number">4.3</span> roxygen2</h2>
 <p>The following intuitive annotation syntax is a standard way to create documentation for your functions:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="co">#&#39; Print a welcome message</span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="co">#&#39; </span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">#&#39; This function prints &quot;Wow!&quot;, or a custom text, on the console.</span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">#&#39;</span></a>
-<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co">#&#39; @param text The text to print, &quot;Wow!&quot; by default.</span></a>
-<a class="sourceLine" id="cb176-6" data-line-number="6"><span class="co">#&#39; </span></a>
-<a class="sourceLine" id="cb176-7" data-line-number="7"><span class="co">#&#39; @return The `text` argument, invisibly.</span></a>
-<a class="sourceLine" id="cb176-8" data-line-number="8"><span class="co">#&#39; </span></a>
-<a class="sourceLine" id="cb176-9" data-line-number="9"><span class="co">#&#39; @examples</span></a>
-<a class="sourceLine" id="cb176-10" data-line-number="10"><span class="co">#&#39; hi()</span></a>
-<a class="sourceLine" id="cb176-11" data-line-number="11"><span class="co">#&#39; hi(&quot;Hello!&quot;)</span></a>
-<a class="sourceLine" id="cb176-12" data-line-number="12">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
-<a class="sourceLine" id="cb176-13" data-line-number="13">  <span class="kw">print</span>(text)</a>
-<a class="sourceLine" id="cb176-14" data-line-number="14">  <span class="kw">invisible</span>(text)</a>
-<a class="sourceLine" id="cb176-15" data-line-number="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="co">#&#39; Print a welcome message</span></a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="co">#&#39; This function prints &quot;Wow!&quot;, or a custom text, on the console.</span></a>
+<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="co">#&#39;</span></a>
+<a class="sourceLine" id="cb177-5" data-line-number="5"><span class="co">#&#39; @param text The text to print, &quot;Wow!&quot; by default.</span></a>
+<a class="sourceLine" id="cb177-6" data-line-number="6"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb177-7" data-line-number="7"><span class="co">#&#39; @return The `text` argument, invisibly.</span></a>
+<a class="sourceLine" id="cb177-8" data-line-number="8"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">#&#39; @examples</span></a>
+<a class="sourceLine" id="cb177-10" data-line-number="10"><span class="co">#&#39; hi()</span></a>
+<a class="sourceLine" id="cb177-11" data-line-number="11"><span class="co">#&#39; hi(&quot;Hello!&quot;)</span></a>
+<a class="sourceLine" id="cb177-12" data-line-number="12">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
+<a class="sourceLine" id="cb177-13" data-line-number="13">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb177-14" data-line-number="14">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb177-15" data-line-number="15">}</a></code></pre></div>
 <p>This annotation can be rendered to a nicely looking HTML page with the roxygen2 and pkgdown packages.
 All you need to do is provide (and maintain) it.</p>
 </div>
@@ -267,23 +267,23 @@ All you need to do is provide (and maintain) it.</p>
 <h2><span class="header-section-number">4.4</span> testthat</h2>
 <p>Automated tests make sure that the functions you write today continue working tomorrow.
 Create your first test with <code>usethis::use_test()</code>:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="co"># install.packages(&quot;testthat&quot;)</span></a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;hi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="co"># install.packages(&quot;testthat&quot;)</span></a>
+<a class="sourceLine" id="cb178-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;hi&quot;</span>)</a></code></pre></div>
 <p>The file <code>tests/testthat/test-hi.R</code> is created, with the following contents:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</a>
-<a class="sourceLine" id="cb178-2" data-line-number="2">  <span class="kw">expect_equal</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb178-3" data-line-number="3">})</a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</a>
+<a class="sourceLine" id="cb179-2" data-line-number="2">  <span class="kw">expect_equal</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb179-3" data-line-number="3">})</a></code></pre></div>
 <p>Replace this predefined text with a test that makes more sense for us:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;hi() works&quot;</span>, {</a>
-<a class="sourceLine" id="cb179-2" data-line-number="2">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(), <span class="st">&quot;Wow&quot;</span>)</a>
-<a class="sourceLine" id="cb179-3" data-line-number="3">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(<span class="st">&quot;Hello&quot;</span>), <span class="st">&quot;Hello&quot;</span>)</a>
-<a class="sourceLine" id="cb179-4" data-line-number="4">})</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;hi() works&quot;</span>, {</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(), <span class="st">&quot;Wow&quot;</span>)</a>
+<a class="sourceLine" id="cb180-3" data-line-number="3">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(<span class="st">&quot;Hello&quot;</span>), <span class="st">&quot;Hello&quot;</span>)</a>
+<a class="sourceLine" id="cb180-4" data-line-number="4">})</a></code></pre></div>
 <p>Run the new test with <code>devtools::test()</code>, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.</p>
 <p>Check that the test actually detects failures by modifying the implementation of <code>hi()</code> and rerunning the test:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Oops!&quot;</span>) {</a>
-<a class="sourceLine" id="cb180-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
-<a class="sourceLine" id="cb180-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
-<a class="sourceLine" id="cb180-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Oops!&quot;</span>) {</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb181-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb181-4" data-line-number="4">}</a></code></pre></div>
 <p>Run the new test with <code>devtools::test()</code>, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
 One test should be failing now.</p>
 
