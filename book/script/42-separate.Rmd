@@ -47,40 +47,6 @@ The inverse is offered by `unite()`.
 The data in `table5` stores year data in two columns.
 
 ```{r include = FALSE}
-# Parsing numbers
-```
-```{r 42-parsing-numbers}
-thousand_separator <-
-  tribble(
-    ~num,
-    "1'000.00",
-    "2'000'000.00"
-  )
-
-thousand_separator
-```
-
-
-```{r include = FALSE}
-# separate() doesn't work here
-```
-```{r 42-separate-doesn-t-work-here}
-thousand_separator %>%
-  separate(num, into = c("num"))
-```
-
-
-```{r include = FALSE}
-# Remove all non-number components
-```
-```{r 42-remove-all-non-number-components}
-thousand_separator %>%
-  mutate(num = str_replace_all(num, "[^-0-9.]", "")) %>%
-  mutate(num = as.numeric(num))
-```
-
-
-```{r include = FALSE}
 # Uniting
 ```
 ```{r 42-uniting}
@@ -114,4 +80,40 @@ See the help for further details.
 ```{r 42-see-help-for-more-info}
 ?separate
 ?unite
+```
+
+
+### Parsing numbers
+
+```{r include = FALSE}
+# Parsing numbers
+```
+```{r 42-parsing-numbers}
+thousand_separator <-
+  tribble(
+    ~num,
+    "1'000.00",
+    "2'000'000.00"
+  )
+
+thousand_separator
+```
+
+
+```{r include = FALSE}
+# separate() doesn't work here
+```
+```{r 42-separate-doesn-t-work-here}
+thousand_separator %>%
+  separate(num, into = c("num"))
+```
+
+
+```{r include = FALSE}
+# Remove all non-number components
+```
+```{r 42-remove-all-non-number-components}
+thousand_separator %>%
+  mutate(num = str_replace_all(num, "[^-0-9.]", "")) %>%
+  mutate(num = as.numeric(num))
 ```

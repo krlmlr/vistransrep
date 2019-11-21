@@ -17,6 +17,24 @@ table3 %>%
 table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 
+# Uniting
+table5
+
+table5 %>%
+  unite("year", c(century, year))
+
+# Not quite done yet:
+table5 %>%
+  unite("year", c(century, year), sep = "")
+
+table5 %>%
+  unite("year", c(century, year), sep = "") %>%
+  mutate(year = as.numeric(year))
+
+# See help for more info
+?separate
+?unite
+
 # Parsing numbers
 thousand_separator <-
   tribble(
@@ -35,21 +53,3 @@ thousand_separator %>%
 thousand_separator %>%
   mutate(num = str_replace_all(num, "[^-0-9.]", "")) %>%
   mutate(num = as.numeric(num))
-
-# Uniting
-table5
-
-table5 %>%
-  unite("year", c(century, year))
-
-# Not quite done yet:
-table5 %>%
-  unite("year", c(century, year), sep = "")
-
-table5 %>%
-  unite("year", c(century, year), sep = "") %>%
-  mutate(year = as.numeric(year))
-
-# See help for more info
-?separate
-?unite
