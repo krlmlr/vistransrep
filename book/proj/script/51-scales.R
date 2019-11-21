@@ -89,3 +89,5 @@ ggplot(
   )
 
 # For "corporate design": ggthemr, https://github.com/cttobin/ggthemr
+## install.packages("devtools")
+## devtools::install_packages("cttobin/ggthemr")
