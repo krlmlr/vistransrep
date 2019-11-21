@@ -7,7 +7,6 @@ library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
 
-
 # Yet another view at the same data
 table3
 
