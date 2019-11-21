@@ -17,9 +17,6 @@ table3 %>%
 table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 
-# See help for details
-?separate
-
 # Parsing numbers
 thousand_separator <-
   tribble(
@@ -54,4 +51,5 @@ table5 %>%
   mutate(year = as.numeric(year))
 
 # See help for more info
+?separate
 ?unite
