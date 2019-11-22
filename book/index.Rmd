@@ -1,13 +1,13 @@
 ---
 title: "Visualization, transformation and reporting with the tidyverse"
-author: "Kirill Müller, Tobias Schieferdecker"
+author: "Kirill Müller, Tobias Schieferdecker, Patrick Schratz"
 date: "`r format(lubridate::with_tz(Sys.time(), 'CET'), '%d %B %Y, %H:%M %Z')`"
 documentclass: "book"
 site: bookdown::bookdown_site
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(cache = TRUE)
+knitr::opts_chunk$set(cache = FALSE)
 options(tibble.print_min = 3, tibble.print_max = 5, max.print = 20)
 if (!knitr::is_latex_output()) {
   options(crayon.enabled = TRUE, pillar.bold = TRUE)

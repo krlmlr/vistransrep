@@ -16,9 +16,9 @@ library(tidyverse)
 </details>
 
 One helpful feature that {ggplot2} offers is the facet plot.
-This means, that for each value of a given variable a different sub-plot is created.
+This means that for each value of a given variable a different sub-plot is created.
 The relevant functions for this are `facet_wrap()` and `facet_grid()`.
-The former can be used like this.
+The former aligns all sub-plots from left to right and from top to bottom by default.
 
 ```{r include = FALSE}
 # facet_wrap()
@@ -29,11 +29,25 @@ ggplot(
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
-  facet_wrap(~ class)
+  facet_wrap(vars(class))
 ```
 
-The latter has a few more options that you can play with.
-Primarily, you can pass two variables to the function, one of which will determine the facetting along the rows and the other will determine the column facetting.
+Combinations of variables are also supported, and result in a sub-plot for each unique combination with valid data points.
+
+```{r include = FALSE}
+# facet_wrap() with multiple variables
+```
+```{r 15-facet-wrap-with-multiple-variables}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  facet_wrap(vars(class, drv))
+```
+
+
+The latter arranges all sub-plots in a grid and requires two variables.
 
 ```{r include = FALSE}
 # facet_grid()
@@ -44,5 +58,5 @@ ggplot(
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
-  facet_grid(year ~ drv)
+  facet_grid(vars(year), vars(drv))
 ```
