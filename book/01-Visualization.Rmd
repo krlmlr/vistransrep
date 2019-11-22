@@ -1,4 +1,4 @@
-# Visualization {#visualization}
+# Visualization Basics {ggplot2} {#visualization}
 
 > Embracing the grammar of graphics.
 

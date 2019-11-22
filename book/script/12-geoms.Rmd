@@ -1,0 +1,115 @@
+## `geom_*` functions
+
+`geom_*` functions are added to the main `ggplot()` call via the "+" operator and
+(usually) placed on a new line.
+
+A list of all available "geoms" can be found here:
+
+https://ggplot2.tidyverse.org/reference/#section-layer-geoms
+
+The most popular ones are
+
+- `geom_point()`
+
+- `geom_histogram()`
+
+- `geom_boxplot()`
+
+- `geom_bar()`
+
+---
+
+The `geom_*` family can be divided into three parts:
+
+**One variable plots**
+
+- `geom_hist()`
+- `geom_bar()`
+- etc.
+
+**Two variable plots**
+
+- `geom_point()`
+- `geom_line()`
+- `geom_boxplot()`
+- etc.
+
+**Three variables plots**
+
+- `geom_raster()`
+- `geom_sf()`
+- `geom_tile()`
+- etc.
+
+### Arguments
+
+```{r, eval=FALSE}
+ggplot(data, mapping = aes(), ...) +
+  geom_XXX(mapping = NULL, data = NULL, stat, ...)
+```
+
+`geom_*` functions have the same basic arguments as `ggplot()`.
+In addition, they come with more arguments specific to the respective "geom".
+
+**stat**
+
+The `stat` parameter defines a statistical transformation: 
+
+- if set to `"identity"`: No transformation
+
+- if set to `boxplot`: Boxplot transformation
+
+- etc.
+
+**position**
+
+The same applies to the `position` argument. 
+In the example below, points are not adjusted and just visualized where they appear in the data.
+
+In the case of boxplots, a special position arrangement function is used to arrange everything nicely: `position_dodge2()` (here denoted by `position = "dodge2"`).
+
+```{r, eval=FALSE}
+geom_point(mapping = NULL, data = NULL, stat = "identity",
+  position = "identity", ..., na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE)
+
+geom_boxplot(mapping = NULL, data = NULL, stat = "boxplot",
+  position = "dodge2", ..., outlier.colour = NULL,
+  outlier.color = NULL, outlier.fill = NULL, outlier.shape = 19,
+  outlier.size = 1.5, outlier.stroke = 0.5, outlier.alpha = NULL,
+  notch = FALSE, notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE,
+  show.legend = NA, inherit.aes = TRUE)
+```
+
+---
+
+`geom_boxplot()` needs one variable to be of class `character` or `factor` (better) to initiate the grouping.
+
+```{r, fig.height=4}
+class(mpg$class)
+
+ggplot(mpg, aes(x = class, y = displ)) +
+  geom_boxplot()
+```
+
+### Combining geoms
+
+Multiple `geom_*` functions can be used in one plot.
+A combination that is often used together is `geom_point()` and `geom_smooth()`
+
+```{r, fig.height=4}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Unless specified differently in the `geom_*()` call, all geoms will use the same variables.
+
+### Summary
+
+The modular principle of `ggplot2` enables:
+
+- the combination of any geometric objects (geoms).
+- a high flexibility and customizability
+
+An extensive description of all geometric objects can be found on the `ggplot2` website https://ggplot2.tidyverse.org/reference/.

@@ -1,0 +1,39 @@
+## One variable plots
+
+This type of plots visualizes ONE variable in a certain way.
+
+To do this in a 2D space, a **statistical transformation** of the variable is required for the missing axis.
+
+### Continuous variables
+
+- Histogram: Most common way - grouping the variable into equal bins
+
+- `geom_density()`, `geom_freq()`, `geom_dotplot()` and `geom_area()` are mainly doing the same as `geom_hist()`
+
+We supply only _one_ variable to the `mapping` argument with the help of `aes()`.
+This one is automatically grouped into 30 bins.
+
+```{r }
+ggplot(mpg, aes(x = hwy)) +
+  geom_histogram()
+```
+
+---
+
+```{r }
+ggplot(mpg, aes(x = hwy)) +
+  geom_density()
+```
+
+### Discrete variables
+
+For discrete data, there is actually only one visualization method - the bar plot.
+
+  \smallskip
+
+*Note the difference of `geom_bar()` compared to `geom_hist()`.*
+
+```{r }
+ggplot(mpg, aes(fl)) +
+  geom_bar()
+```

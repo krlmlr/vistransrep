@@ -1,0 +1,130 @@
+## Introduction
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### Basics for visualisation in R using {ggplot2}
+
+```
+```{r 11-setup-11-mpg-r}
+library(tidyverse)
+```
+</details>
+
+<br>
+
+In the {tidyverse} the standard package for visualization is {ggplot2}.
+The functions of this package follow a quite unique logic (the "grammar of graphics") and therefore require a special syntax.
+In this section we want to give a short introduction, how to get started with {ggplot2}.
+
+### Creating the plot skeleton: `ggplot()`
+
+The main function in the package is `ggplot()`, which prepares/creates a graph.
+By setting the arguments of the function, you can:
+
+1. Choose the dataset to be plotted (argument `data`)
+2. Choose the mapping of the variables to the axes (or further forms of setting apart data) in the argument `mapping`. 
+  This argument takes the result of the function `aes()`, which you will get to know in many different examples.
+
+```{r 11-empty-graph}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+)
+```
+
+This created only an empty plot, because we did not tell {ggplot2} which geometry we want to use to display the variables we set in the `ggplot()` call.
+We do this by adding (with the help of the `+` operator after the `ggplot()`-call) a different function starting with `geom_` to provide this information.
+
+```{r 11-scatterplot}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point()
+```
+
+This is maybe the most basic plot you can create.
+To map a different variable than `disp` to the x-axis, change the respective variable name in the `aes()` argument.
+
+```{r 11-aes-determines-which-variables-are-plotted}
+ggplot(
+  data = mpg,
+  mapping = aes(x = cyl, y = hwy)
+) +
+  geom_point()
+```
+
+You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
+
+```{r 11-pattern-unchanged-if-only-variables-are-plotted}
+ggplot(
+  data = mpg,
+  mapping = aes(x = hwy, y = cty)
+) +
+  geom_point()
+```
+
+Always good to have: The *ggplot2* cheatsheet (https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf).
+
+### What is a "statistical graphic"?
+
+Wilkinson (2005) defines a grammar to describe the basic elements of a
+statistical graphic:
+
+> "[...] a statistical graphic is a mapping from data to
+> aesthetic attributes (colour, shape, size) of geometric objects
+> (points, line, bars)."
+
+\hfill (Wickham, 2009)
+
+### Terminology
+
+- **Data:** The data to visualize -- consists of variables and observations.
+
+- **Geoms:** Geometric objects which represent the data (points, lines, polygons, etc.).
+
+- **Mappings:** Match variables with aesthetic attributes of the (geometric) objects.
+
+- **Scales:** Mapping of the "data units" to "physical units" of the geometric objects (e.g. length, diameter or color); defines the _legend_.
+
+- **Coord:** System of coordinates, mapping of the data to a two dimensional plain of the graphic; defines the _axes_ and _grid_.
+
+- **Stats:** Statistical transformation of the data (5 point summary, classification, etc.).
+
+- **Facetting:** Division and illustration of data subsets, also known as "Trellis" images [@krause2002].
+
+### The Grammar of graphics ...
+
+**is ...**
+
+a formal guideline which describes the dependencies between all elements of a
+  statistical graphic.
+
+<br>
+
+**isn't ...**
+
+- a manual which tells us _which graphic_ should be created for a given question.
+- a specification _how_ a statistical graphic should look like.
+
+### About {ggplot2}
+
+```{r, eval=FALSE, echo = FALSE}
+library("ggplot2")
+packageDescription("ggplot2")
+```
+
+
+```{r, eval = T, echo=FALSE, size="tiny", R.options=list(width=90)}
+library("ggplot2")
+p <- packageDescription("ggplot2")
+p$Collate <- p$LazyLoad <- p$LazyData <- p$Built <-
+    p$Suggests <- p$Extends <- p$Packaged <- p$Repository <-
+    p$Description <- p$NeedsCompilation <- p$VignetteBuilder <- NULL
+p[["Date/Publication"]] <- NULL
+p[["Authors@R"]] <- NULL
+p[["Enhances"]] <- NULL
+p[["RoxygenNote"]] <- NULL
+attr(p, "file") <- NULL
+p
+```
