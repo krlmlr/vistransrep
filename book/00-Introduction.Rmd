@@ -12,10 +12,10 @@ While this might be true for all languages (once you speak it well enough, thing
 
 ## Speakers
 
-**Kirill Müller** (@krlmlr)
+**Kirill Müller** (\@krlmlr)
 
 
-**Patrick Schratz** (@pat-s)
+**Patrick Schratz** (\@pat-s)
 
 ```{r, echo = FALSE, fig.width=5}
 knitr::include_graphics("https://pjs-web.de/authors/admin/avatar_hud979e34f5123fec6163cd5fb1cb16697_143342_250x250_fill_q75_box_center.jpg", dpi = 180)
@@ -45,5 +45,4 @@ This course covers several topics, which everyone working more intently with the
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.
 
-```{r child = here("script", "0.Rmd"), eval = TRUE}
-```
+
