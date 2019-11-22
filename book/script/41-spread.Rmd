@@ -20,6 +20,8 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+Pivoting describes operations that help rearrange data in different ways.
+The following two tables contain the same data arranged differently.
 
 ```{r include = FALSE}
 # Two datasets containing the same data, wider and longer:
@@ -29,6 +31,16 @@ table1
 table2
 ```
 
+Both tables contain `country` and `year` column that describe the source of the measurements.
+The "wider" version, `table1`, contains two columns that hold the number of cases (of a disease) and the population for the corresponding country in the corresponding year.
+In the "longer" version, `table2`, the number of cases and the population are stored in the same `count` column, with the `type` column defining the measurement.
+
+Somewhat counter-intuitively, "longer-form" data is often better suited for analyzing data.
+"Wider-form" data makes better use of screen space, but may be more difficult to work with.
+
+The following example computes the maximum number of cases and population for each country.
+For the wider form, this requires repeating the same expression for all columns.
+This may work with two columns but becomes tedious once more measurements are added.
 
 ```{r include = FALSE}
 # How to summarize?
@@ -39,9 +51,12 @@ table1 %>%
   summarize(
     max_cases = max(cases),
     max_population = max(population)
-  )
+  ) %>% 
+  ungroup()
 ```
 
+The `_at` family of functions helps iterating over columns, but all columns still need to be enumerated.
+(Specifying ranges of columns is rather brittle.)
 
 ```{r include = FALSE}
 # Iterate over columns:
@@ -52,9 +67,12 @@ table1 %>%
   summarize_at(
     vars(cases, population),
     max
-  )
+  ) %>% 
+  ungroup()
 ```
 
+If the data is in the "longer" form, it is sufficient to include `type` in the grouping variables.
+The same code works for arbitrary number of measurements.
 
 ```{r include = FALSE}
 # In the longer form, this becomes a grouped operation:
@@ -64,9 +82,15 @@ table2 %>%
   group_by(country, type) %>%
   summarize(
     max = max(count)
-  )
+  ) %>% 
+  ungroup()
 ```
 
+The following examples give a gentle introduction into pivoting.
+
+### Convert to longer form
+
+The `pivot_longer()` function takes a "wider-form" dataset and converts it to an equivalent dataset with more rows.
 
 ```{r include = FALSE}
 # Converting to longer form: pivot_longer()
@@ -75,28 +99,37 @@ table2 %>%
 table1
 
 table1 %>%
-  pivot_longer(c(-country, -year))
+  pivot_longer(-c(country, year))
 ```
 
+The `-c(...)` notation indicates that all column except `country` and `year` are to be transformed into longer form.
+The column names become the contents of the new `name` column, the values are available in the `value` column.
+
+The result of this operation isn't strictly equivalent to `table2`, we need to rename and sort differently.
+Alternatively, the `names_to` and `values_to` arguments allow specifying the names of the new columns.
 
 ```{r include = FALSE}
 # Need to rename and arrange to create table1
 ```
 ```{r 41-need-to-rename-and-arrange-to-create-table-1}
 table1 %>%
-  pivot_longer(c(-country, -year)) %>%
+  pivot_longer(-c(country, year)) %>%
   rename(type = name, count = value) %>%
   arrange(country, year, type)
 
 table1 %>%
   pivot_longer(
-    c(-country, -year),
+    -c(country, year),
     names_to = "type",
     values_to = "count"
   ) %>%
   arrange(country, year, type)
 ```
 
+### Convert to wider form
+
+The `pivot_wider()` form does the inverse: it creates a dataset with fewer rows.
+If the `name` and `value` columns are named differently, these columns can be provided via the `names_from` and `values_from` arguments.
 
 ```{r include = FALSE}
 # Converting to wider form: pivot_wider()
@@ -112,6 +145,15 @@ table2 %>%
   pivot_wider()
 ```
 
+
+### Use cases
+
+Data in "longer" form usually works better for plotting the values side by side, e.g. by assigning the type of value to an aesthetic.
+Recall that each row in the data produces one geometric object in the corresponding layer.
+For a bar chart that shows cases and population side by side, mapped to the `y` aesthetic, the "longer" form is more natural.
+
+- `table2` form requires only one layer, the fill color is determined automatically, the legend is created automatically
+- `table1` requires two layers, manual assignment of fill color, and manual creation of legend (not shown)
 
 ```{r include = FALSE}
 # Longer form: more useful for plotting all values side by side
@@ -131,6 +173,10 @@ table1 %>%
   scale_y_log10()
 ```
 
+On the other hand, iIf only a single measurement needs to be plotted, the "wider" form is easier to work with.
+
+- `table1` only requires selecting the correct column
+- `table2` requires a `filter()`
 
 ```{r include = FALSE}
 # Wider form: more useful for plotting a single value
@@ -148,6 +194,7 @@ table2 %>%
   facet_wrap(~year)
 ```
 
+The "wider" form is also the only way to map different measures to different aesthetics, e.g. to correlate values.
 
 ```{r include = FALSE}
 # Wider form: the only way to correlate values
@@ -161,6 +208,10 @@ table1 %>%
 ```
 
 
+### Combining vertically
+
+A different view on the same data is given in the two tables `table4a` and `table4b`.
+
 ```{r include = FALSE}
 # Split data
 ```
@@ -169,6 +220,9 @@ table4a
 table4b
 ```
 
+The `bind_rows()` function combines these two parts into a single table.
+The `.id = "type"` setting ensures that the input datasets gain different tags in the new `type` column.
+
 
 ```{r include = FALSE}
 # Combine
@@ -176,13 +230,15 @@ table4b
 ```{r 41-combine}
 table4 <-
   bind_rows(
-    cases = cases_tbl,
-    population = population_tbl,
+    cases = table4a,
+    population = table4b,
     .id = "type"
   )
 table4
 ```
 
+As before, `pivot_longer()` helps converting the results into something similar to `table2`.
+The result isn't quite the same yet, can you spot the difference?
 
 ```{r include = FALSE}
 # Imperfect results -- what is missing?
@@ -192,6 +248,26 @@ table4 %>%
   pivot_longer(c(`1999`, `2000`))
 ```
 
+
+
+### Tidy data
+
+Adapted from "R for data science:
+
+> In a tidy dataset,
+>
+> 1. each variable must have its own column.
+> 1. each observation must have its own row.
+> 1. each value must have its own cell.
+
+![Tidy data](https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+
+The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
+The column names define, in addition to the measurement type `new_sp`, `new_sn`, `new_ep` and `newrel`, the age and sex stratum of the corresponding measurements.
+One single `pivot_longer()` call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
+The `names_pattern` is a regular expression that defines what part of the column name is stored where.
+([Regular expressions](https://en.wikipedia.org/wiki/Regular_expression) are a powerful tool for parsing text data, out of scope for this lecture but very much worth looking into.)
+The `names_to` sequence defines, for each `()` group in `names_pattern`, if the data encoded in the column name is stored in a new column or if it is kept as column name.
 
 ```{r include = FALSE}
 # WHO data
@@ -205,14 +281,11 @@ who_longer <-
   pivot_longer(
     -(country:year),
     names_pattern = "([a-z_]+)_(.)([0-9]+)",
-    names_to = c("type", "sex", "age")
+    names_to = c(".value", "sex", "age")
   )
 
 who_longer
 
 who_longer %>%
-  count(type, sex)
-
-who_longer %>%
-  count(age)
+  count(sex, age)
 ```

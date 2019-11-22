@@ -7,7 +7,6 @@ library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
 
-
 # Two datasets containing the same data, wider and longer:
 table1
 table2
@@ -18,7 +17,8 @@ table1 %>%
   summarize(
     max_cases = max(cases),
     max_population = max(population)
-  )
+  ) %>% 
+  ungroup()
 
 # Iterate over columns:
 table1 %>%
@@ -26,30 +26,32 @@ table1 %>%
   summarize_at(
     vars(cases, population),
     max
-  )
+  ) %>% 
+  ungroup()
 
 # In the longer form, this becomes a grouped operation:
 table2 %>%
   group_by(country, type) %>%
   summarize(
     max = max(count)
-  )
+  ) %>% 
+  ungroup()
 
 # Converting to longer form: pivot_longer()
 table1
 
 table1 %>%
-  pivot_longer(c(-country, -year))
+  pivot_longer(-c(country, year))
 
 # Need to rename and arrange to create table1
 table1 %>%
-  pivot_longer(c(-country, -year)) %>%
+  pivot_longer(-c(country, year)) %>%
   rename(type = name, count = value) %>%
   arrange(country, year, type)
 
 table1 %>%
   pivot_longer(
-    c(-country, -year),
+    -c(country, year),
     names_to = "type",
     values_to = "count"
   ) %>%
@@ -105,8 +107,8 @@ table4b
 # Combine
 table4 <-
   bind_rows(
-    cases = cases_tbl,
-    population = population_tbl,
+    cases = table4a,
+    population = table4b,
     .id = "type"
   )
 table4
@@ -124,13 +126,10 @@ who_longer <-
   pivot_longer(
     -(country:year),
     names_pattern = "([a-z_]+)_(.)([0-9]+)",
-    names_to = c("type", "sex", "age")
+    names_to = c(".value", "sex", "age")
   )
 
 who_longer
 
 who_longer %>%
-  count(type, sex)
-
-who_longer %>%
-  count(age)
+  count(sex, age)

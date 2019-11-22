@@ -1,5 +1,5 @@
-```{r child = here::here("script", "31-import-many.Rmd")}
+```{r child = here::here("script", "31-import.Rmd")}
 ```
 
-```{r child = here::here("script", "31-import.Rmd")}
+```{r child = here::here("script", "32-import-many.Rmd")}
 ```

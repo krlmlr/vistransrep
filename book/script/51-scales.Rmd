@@ -155,10 +155,13 @@ ggplot(
   )
 ```
 
+Review the [{ggthemr} package](https://github.com/cttobin/ggthemr) for tools that help with establishing a "corporate design" for documents.
+
 
 ```{r include = FALSE}
 # For "corporate design": ggthemr, https://github.com/cttobin/ggthemr
 ```
-```{r 51-for-corporate-design-ggthemr-https-github-com-cttobin-ggthemr}
-NA
+```{r 51-for-corporate-design-ggthemr-https-github-com-cttobin-ggthemr, eval=FALSE}
+install.packages("devtools")
+devtools::install_packages("cttobin/ggthemr")
 ```

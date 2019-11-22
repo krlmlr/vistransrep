@@ -20,6 +20,7 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
+The `table3` table violates the third principle of tidy data: each cell contains two values.
 
 ```{r include = FALSE}
 # Yet another view at the same data
@@ -27,6 +28,8 @@ conflict_prefer("lag", "dplyr")
 ```{r 42-yet-another-view-at-the-same-data}
 table3
 ```
+
+The `separate()` verb offers a convenient way to deal with this situation, including automatic type conversion.
 
 
 ```{r include = FALSE}
@@ -40,14 +43,47 @@ table3 %>%
   separate(rate, into = c("cases", "population"), sep = "/", convert = TRUE)
 ```
 
+The inverse is offered by `unite()`.
+The data in `table5` stores year data in two columns.
 
 ```{r include = FALSE}
-# See help for details
+# Uniting
 ```
-```{r 42-see-help-for-details}
-?separate
+```{r 42-uniting}
+table5
+
+table5 %>%
+  unite("year", c(century, year))
 ```
 
+The result needs a few tweaks to finally resemble `table3`.
+
+```{r include = FALSE}
+# Not quite done yet:
+```
+```{r 42-not-quite-done-yet}
+table5 %>%
+  unite("year", c(century, year), sep = "")
+
+table5 %>%
+  unite("year", c(century, year), sep = "") %>%
+  mutate(year = as.numeric(year))
+```
+
+
+
+See the help for further details.
+
+```{r include = FALSE}
+# See help for more info
+```
+```{r 42-see-help-for-more-info}
+?separate
+?unite
+```
+
+
+### Parsing numbers
 
 ```{r include = FALSE}
 # Parsing numbers
@@ -80,36 +116,4 @@ thousand_separator %>%
 thousand_separator %>%
   mutate(num = str_replace_all(num, "[^-0-9.]", "")) %>%
   mutate(num = as.numeric(num))
-```
-
-
-```{r include = FALSE}
-# Uniting
-```
-```{r 42-uniting}
-table5
-
-table5 %>%
-  unite("year", c(century, year))
-```
-
-
-```{r include = FALSE}
-# Not quite done yet:
-```
-```{r 42-not-quite-done-yet}
-table5 %>%
-  unite("year", c(century, year), sep = "")
-
-table5 %>%
-  unite("year", c(century, year), sep = "") %>%
-  mutate(year = as.numeric(year))
-```
-
-
-```{r include = FALSE}
-# See help for more info
-```
-```{r 42-see-help-for-more-info}
-?unite
 ```
