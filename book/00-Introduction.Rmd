@@ -85,7 +85,6 @@ pop_df %>%
     values = c("#f92672", "darkslategray")
   ) +
   ggthemes::theme_pander(base_size = 17) +
-  # theme_ipsum() +
   theme(legend.position = "bottom")
 ```
 

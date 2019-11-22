@@ -14,3 +14,4 @@ Imports:
     shiny,
     tidyverse,
     xaringan
+Encoding: UTF-8
