@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualization, transformation and reporting with the tidyverse</title>
-  <meta name="description" content="Visualization, transformation and reporting with the tidyverse" />
+  <title>4 Reporting | Visualization, transformation and reporting with the tidyverse</title>
+  <meta name="description" content="4 Reporting | Visualization, transformation and reporting with the tidyverse" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualization, transformation and reporting with the tidyverse" />
+  <meta property="og:title" content="4 Reporting | Visualization, transformation and reporting with the tidyverse" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualization, transformation and reporting with the tidyverse" />
+  <meta name="twitter:title" content="4 Reporting | Visualization, transformation and reporting with the tidyverse" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="transformation.html"/>
+<link rel="next" href="best-practices.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -192,148 +192,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Visualization, transformation and reporting with the tidyverse</h1>
-<p class="author"><em>Kirill Müller, Tobias Schieferdecker, Patrick Schratz</em></p>
-<p class="date"><em>23 November 2019, 17:20 CET</em></p>
+<div id="reporting" class="section level1">
+<h1><span class="header-section-number">4</span> Reporting</h1>
+<p>After the successful processing and visualization of the data, the results need to be reported.
+This can be done best in a “literate programming” fashion as provided by R Markdown.</p>
+<p>Using R Markdown, one is able to combine R code (and its results) with text (written in <em>markdown</em>) to create professional looking reports in various output formats (Word, PDF, HTML).</p>
+<p>Both interactive and static documents can be created.
+<a href="https://rmarkdown.rstudio.com/gallery.html">This gallery</a> (maintained by RStudio) gives a first overview of how documents created using R Markdown can look like.</p>
+<div id="overview-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Overview</h2>
+<p>File Format: <code>.Rmd</code> (R Markdown)</p>
+<p>New document (in RStudio): <code>File -&gt; New File -&gt; R Markdown/R Notebook</code>.
+LaTeX Math is supported via <a href="https://www.mathjax.org/">Mathjax</a>:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="op">$</span>y=\frac{(x <span class="op">-</span><span class="st"> </span>\mu)}{(max <span class="op">-</span><span class="st"> </span>min)}<span class="op">$</span></a></code></pre></div>
+<p><span class="math inline">\(y=\frac{(x - \mu)}{(max - min)}\)</span></p>
+<hr />
+<p>Any file with the <code>.Rmd</code> file extension is an “R Markdown document”.
+RMD’s consist <strong>code</strong> and <strong>text</strong> (written in <em>markdown</em> syntax) which need to be <em>compiled</em> into a high-level output format.</p>
+<p>Possible output formats are:</p>
+<ul>
+<li><p>HTML</p></li>
+<li><p>PDF</p></li>
+<li><p>Word</p></li>
+<li><p>Powerpoint</p></li>
+</ul>
+<p>Which output format should be used is specified in the “YAML header” of the R Markdown document.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.</p>
-<div id="links" class="section level2 unnumbered">
-<h2>Links</h2>
+<div id="the-yaml-header" class="section level2">
+<h2><span class="header-section-number">4.2</span> The YAML header</h2>
+<p>In the YAML (Yet Another Markup Language) header users can specify metadata which denote the final appearance of the document.</p>
+<p>Each output format has different settings.
+Fortunately, most settings apply to all formats.</p>
+<p>The YAML header starts and ends with three dashes: <code>---</code>.
+The <strong>output</strong> field is mandatory.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">&quot;&lt;title&gt;&quot;</span></a>
+<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">&quot;&lt;author&gt;&quot;</span></a>
+<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&quot;2019-11-23&quot;</span></a>
+<a class="sourceLine" id="cb167-5" data-line-number="5"><span class="fu">output:</span></a>
+<a class="sourceLine" id="cb167-6" data-line-number="6">  <span class="fu">rmarkdown:</span><span class="at">:html_document:</span></a>
+<a class="sourceLine" id="cb167-7" data-line-number="7">    <span class="fu">toc:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb167-8" data-line-number="8">    <span class="fu">number_sections:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb167-9" data-line-number="9">    <span class="fu">fig_caption:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb167-10" data-line-number="10">    <span class="fu">css:</span><span class="at"> ../custom.css</span></a>
+<a class="sourceLine" id="cb167-11" data-line-number="11"><span class="fu">bibliography:</span><span class="at"> lib.bib</span></a>
+<a class="sourceLine" id="cb167-12" data-line-number="12"><span class="fu">biblio-style:</span><span class="at"> apalike</span></a>
+<a class="sourceLine" id="cb167-13" data-line-number="13"><span class="ot">---</span></a></code></pre></div>
+<p>Valid options for each output format can usually be looked up in the help page of the specific output format.</p>
+<p>For the default output format <code>html_document</code> the <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">R Markdown - The definitive guide</a> book is a good reference.</p>
+<p>An <a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown cheatsheet</a> also exists.</p>
+</div>
+<div id="literate-programming-in-r" class="section level2">
+<h2><span class="header-section-number">4.3</span> Literate programming in R</h2>
+<p>Packages {{rmarkdown}} and {{knitr}} are the base of literate programming in R.</p>
+<p>RMD’s documents can be compiled</p>
 <ul>
-<li><p>This website: <a href="https://krlmlr.github.io/vistransrep/" class="uri">https://krlmlr.github.io/vistransrep/</a></p></li>
-<li>Scripts and installation instructions: <a href="https://github.com/krlmlr/vistransrep-proj/tree/master" class="uri">https://github.com/krlmlr/vistransrep-proj/tree/master</a>
+<li><p>by clicking the “knit” button in RStudio (the name relates to the {{knitr}} package)</p></li>
+<li><p>via the command line by calling <code>rmarkdown::render()</code></p></li>
+</ul>
+<p>Behind the scenes the {{rmarkdown}} package first converts the <code>.Rmd</code> file to <code>.md</code> (markdown).
+Then <a href="https://pandoc.org/">pandoc</a>, which is a universal markdown converter library, converts the <code>.md</code> file to the chosen output format.</p>
+<div id="r-markdown-packages" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> R Markdown packages</h3>
+<p>The following packages are built upon {{rmarkdown}} and simplify special purposes.</p>
 <ul>
-<li>Prepared scripts: <a href="https://github.com/krlmlr/vistransrep-proj/tree/master/script" class="uri">https://github.com/krlmlr/vistransrep-proj/tree/master/script</a></li>
-<li>Live code: <a href="https://github.com/krlmlr/vistransrep-proj/tree/master/live" class="uri">https://github.com/krlmlr/vistransrep-proj/tree/master/live</a></li>
-</ul></li>
-<li><p>The source project for this material: <a href="https://github.com/krlmlr/vistransrep" class="uri">https://github.com/krlmlr/vistransrep</a></p></li>
+<li><p><a href="https://bookdown.org/yihui/bookdown/">bookdown</a>: Mainly used for writing books but can also be used for reports (formats <code>html_document2</code>, <code>git_book</code>, <code>pdf_book</code>, etc.).</p></li>
+<li><p><a href="https://github.com/ismayc/thesisdown">thesisdown</a>: A package for thesis writing.
+Provides ready-to-go templates for different types and simplifies advanced LaTeX usage.</p></li>
+<li><p><a href="https://github.com/juba/rmdformats">rmdformats</a>, <a href="https://github.com/eddelbuettel/pinp">pinp</a> : Different templates for literate programming documents.</p></li>
+<li><p><a href="https://github.com/yihui/xaringan">xaringan</a>: For HTML presentations via <a href="https://remarkjs.com">remark.js</a>.</p></li>
+<li><p><a href="https://github.com/rstudio/blogdown">blogdown</a>: For creating websites. Example: <a href="https://pjs-web.de/" class="uri">https://pjs-web.de/</a></p></li>
+<li><p><a href="https://github.com/rstudio/rticles">rticles</a>: For scientific paper writing in R.</p></li>
 </ul>
 </div>
-<div id="package-versions-used" class="section level2 unnumbered">
-<h2>Package versions used</h2>
-<details>
-<p><summary>Click to expand</summary></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">withr<span class="op">::</span><span class="kw">with_options</span>(<span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">80</span>), <span class="kw">print</span>(sessioninfo<span class="op">::</span><span class="kw">session_info</span>()))</a></code></pre></div>
-<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
-##  setting  value                       
-##  version  R version 3.6.1 (2017-01-27)
-##  os       Ubuntu 16.04.6 LTS          
-##  system   x86_64, linux-gnu           
-##  ui       X11                         
-##  language en_US.UTF-8                 
-##  collate  en_US.UTF-8                 
-##  ctype    en_US.UTF-8                 
-##  tz       UTC                         
-##  date     2019-11-23                  
-## 
-## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package      * version     date       lib source                           
-##  askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                   
-##  assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                   
-##  backports      1.1.5       2019-10-02 [1] CRAN (R 3.6.1)                   
-##  bookdown       0.16        2019-11-22 [1] CRAN (R 3.6.1)                   
-##  broom          0.5.2       2019-04-07 [1] CRAN (R 3.6.1)                   
-##  cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.6.1)                   
-##  cli            1.1.0       2019-03-19 [1] CRAN (R 3.6.1)                   
-##  codetools      0.2-16      2018-12-24 [3] CRAN (R 3.6.1)                   
-##  colorspace     1.4-1       2019-03-18 [1] CRAN (R 3.6.1)                   
-##  crayon         1.3.4       2017-09-16 [1] CRAN (R 3.6.1)                   
-##  crosstalk      1.0.0       2016-12-21 [1] CRAN (R 3.6.1)                   
-##  data.table     1.12.6      2019-10-18 [1] CRAN (R 3.6.1)                   
-##  DBI            1.0.0       2018-05-02 [1] CRAN (R 3.6.1)                   
-##  dbplyr         1.4.2       2019-06-17 [1] CRAN (R 3.6.1)                   
-##  digest         0.6.23      2019-11-23 [1] CRAN (R 3.6.1)                   
-##  dplyr        * 0.8.3       2019-07-04 [1] CRAN (R 3.6.1)                   
-##  DT             0.10        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  ellipsis       0.3.0       2019-09-20 [1] CRAN (R 3.6.1)                   
-##  evaluate       0.14        2019-05-28 [1] CRAN (R 3.6.1)                   
-##  fansi          0.4.0       2018-10-05 [1] CRAN (R 3.6.1)                   
-##  farver         2.0.1       2019-11-13 [1] CRAN (R 3.6.1)                   
-##  fastmap        1.0.1       2019-10-08 [1] CRAN (R 3.6.1)                   
-##  forcats      * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)                   
-##  fs             1.3.1       2019-05-06 [1] CRAN (R 3.6.1)                   
-##  generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                   
-##  ggplot2      * 3.2.1       2019-08-10 [1] CRAN (R 3.6.1)                   
-##  ggpubr         0.2.4       2019-11-14 [1] CRAN (R 3.6.1)                   
-##  ggsignif       0.6.0       2019-08-08 [1] CRAN (R 3.6.1)                   
-##  git2r          0.26.1      2019-06-29 [1] CRAN (R 3.6.1)                   
-##  glue           1.3.1       2019-03-12 [1] CRAN (R 3.6.1)                   
-##  gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                   
-##  haven          2.2.0       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  here         * 0.1         2017-05-28 [1] CRAN (R 3.6.1)                   
-##  hms            0.5.2       2019-10-30 [1] CRAN (R 3.6.1)                   
-##  htmltools      0.4.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  htmlwidgets    1.5.1       2019-10-08 [1] CRAN (R 3.6.1)                   
-##  httpuv         1.5.2       2019-09-11 [1] CRAN (R 3.6.1)                   
-##  httr           1.4.1       2019-08-05 [1] CRAN (R 3.6.1)                   
-##  jsonlite       1.6         2018-12-07 [1] CRAN (R 3.6.1)                   
-##  knitr          1.26        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  labeling       0.3         2014-08-23 [1] CRAN (R 3.6.1)                   
-##  later          1.0.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  lattice        0.20-38     2018-11-04 [3] CRAN (R 3.6.1)                   
-##  lazyeval       0.2.2       2019-03-15 [1] CRAN (R 3.6.1)                   
-##  leaflet      * 2.0.3       2019-11-16 [1] CRAN (R 3.6.1)                   
-##  lifecycle      0.1.0       2019-08-01 [1] CRAN (R 3.6.1)                   
-##  lubridate      1.7.4       2018-04-11 [1] CRAN (R 3.6.1)                   
-##  magrittr       1.5         2014-11-22 [1] CRAN (R 3.6.1)                   
-##  MASS           7.3-51.4    2019-03-31 [3] CRAN (R 3.6.1)                   
-##  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.6.1)                   
-##  mime           0.7         2019-06-11 [1] CRAN (R 3.6.1)                   
-##  modelr         0.1.5       2019-08-08 [1] CRAN (R 3.6.1)                   
-##  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.6.1)                   
-##  nlme           3.1-140     2019-05-12 [3] CRAN (R 3.6.1)                   
-##  nycflights13 * 1.0.1       2019-09-16 [1] CRAN (R 3.6.1)                   
-##  openssl        1.4.1       2019-07-18 [1] CRAN (R 3.6.1)                   
-##  pillar         1.4.2       2019-06-29 [1] CRAN (R 3.6.1)                   
-##  pkgconfig      2.0.3       2019-09-22 [1] CRAN (R 3.6.1)                   
-##  plotly         4.9.1       2019-11-07 [1] CRAN (R 3.6.1)                   
-##  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.6.1)                   
-##  promises       1.1.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  purrr        * 0.3.3       2019-10-18 [1] CRAN (R 3.6.1)                   
-##  R6             2.4.1       2019-11-12 [1] CRAN (R 3.6.1)                   
-##  RColorBrewer   1.1-2       2014-12-07 [1] CRAN (R 3.6.1)                   
-##  Rcpp           1.0.3       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  readr        * 1.3.1       2018-12-21 [1] CRAN (R 3.6.1)                   
-##  readxl         1.3.1       2019-03-13 [1] CRAN (R 3.6.1)                   
-##  reprex         0.3.0       2019-05-16 [1] CRAN (R 3.6.1)                   
-##  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.6.1)                   
-##  rlang          0.4.2       2019-11-23 [1] Github (r-lib/rlang@dbcb76f)     
-##  rmarkdown      1.17        2019-11-13 [1] CRAN (R 3.6.1)                   
-##  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                   
-##  rstudioapi     0.10        2019-03-19 [1] CRAN (R 3.6.1)                   
-##  rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  scales         1.1.0       2019-11-18 [1] CRAN (R 3.6.1)                   
-##  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                   
-##  shiny          1.4.0       2019-10-10 [1] CRAN (R 3.6.1)                   
-##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
-##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
-##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
-##  tic            0.2.13.9021 2019-11-18 [1] Github (ropenscilabs/tic@9a5f965)
-##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
-##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
-##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
-##  utf8           1.1.4       2018-05-24 [1] CRAN (R 3.6.1)                   
-##  vctrs          0.2.0       2019-07-05 [1] CRAN (R 3.6.1)                   
-##  viridisLite    0.3.0       2018-02-01 [1] CRAN (R 3.6.1)                   
-##  withr          2.1.2       2018-03-15 [1] CRAN (R 3.6.1)                   
-##  xaringan       0.13        2019-10-30 [1] CRAN (R 3.6.1)                   
-##  xfun           0.11        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  xml2           1.2.2       2019-08-09 [1] CRAN (R 3.6.1)                   
-##  xtable         1.8-4       2019-04-21 [1] CRAN (R 3.6.1)                   
-##  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.6.1)                   
-##  zeallot        0.1.0       2018-01-28 [1] CRAN (R 3.6.1)                   
-## 
-## [1] /home/travis/R/Library
-## [2] /usr/local/lib/R/site-library
-## [3] /home/travis/R-bin/lib/R/library</code></pre>
-</details>
+<div id="code-chunks-in-r-markdown" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Code chunks in R Markdown</h3>
+<p>To insert code into an R Markdown document, one needs to add a so called “code chunk”.</p>
+<pre><code>```{&lt;language&gt;}
+
+```</code></pre>
+<p>This tells the document that everything within the three backticks should be interpreted as code using the given language.
+Code can be shown/hidden, evaluation can be prevented on demand, results can be cached, etc.
+See <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a> for a full list of supported options</p>
 </div>
-<div id="license" class="section level2 unnumbered">
-<h2>License</h2>
-<p>Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>.</p>
+<div id="r-notebooks" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> R Notebooks</h3>
+<p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html">R Notebooks</a> are a special form of the <code>html_document</code>.
+To use it, specify <code>html_notebook</code> as the “output” type in the YAML header.
+This output format was created by RStudio as an alternative to <code>html_document</code>.</p>
+<p>Differences compared to <code>html_document</code>:</p>
+<ul>
+<li><p>Code output is shown inside the editor and not in the console (can be changed)</p></li>
+<li><p>Instant preview of the output document without having to get all the code in the document running. The results from the last successful code execution will be used (if there was one).</p></li>
+<li><p>Link in the HTML doc to download the source <code>.Rmd</code> file</p></li>
+<li><p>Option to toggle on/off code chunks for the whole document</p></li>
+<li><p>Output file extension is named <code>.nb.html</code></p></li>
+</ul>
+</div>
+<div id="workflow" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Workflow</h3>
+<p>R Markdown documents are most often used for reporting of results created in an Rscript.
+This enables a seamless integration of data processing tasks into the subsequent reporting.</p>
+<p>Reporting often splits up into different formats:</p>
+<ul>
+<li>Talks using presentation slides (<a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">xaringan</a>, <a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html">ioslides</a>, <a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html">Slidy</a>, <a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html">Beamer</a>, <a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html">Powerpoint</a>)</li>
+<li>written reports (Word, PDF), possibly using LaTeX input</li>
+</ul>
+<p>R objects (containing results) can directly be used in the reports to present the results (data, plots).
+If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.</p>
+<p>This is the point where packages like <a href="https://docs.ropensci.org/drake/">drake</a>, <a href="https://jdblischak.github.io/workflowr/">workflowr</a> and <a href="https://github.com/benmarwick/rrtools">rrtools</a> jump in to simplify reproducible workflows in R.</p>
+<p>A widely used concept is to start a project following the structure of an R package.
+This helps due to</p>
+<ul>
+<li>a consistent directory structure of R scripts and R Markdown documents</li>
+<li>documented custom functions</li>
+<li>simplified integration into workflow packages like {{drake}} and friends.</li>
+</ul>
+<p>R “research packages” can be installed locally like any other R package and simplify usage and sharing among colleagues.</p>
+</div>
+</div>
+<div id="shiny-interactive-visualizations" class="section level2">
+<h2><span class="header-section-number">4.4</span> Shiny: Interactive visualizations</h2>
+<p>Javascript based R ecosystem which provides options for rich visualizations.
+<a href="https://shiny.rstudio.com/gallery/">The shiny gallery from RStudio</a> gives a good overview what can be done using <code>shiny</code>.</p>
 
 </div>
 </div>
@@ -342,8 +323,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -374,7 +355,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/krlmlr/vistransrep/edit/master/index.Rmd",
+"link": "https://github.com/krlmlr/vistransrep/edit/master/03-reporting.Rmd",
 "text": "Edit"
 },
 "history": {
