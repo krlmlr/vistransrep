@@ -10,7 +10,7 @@ rm(list = ls())
 ### Import many files
 
 ```
-```{r 31-setup-31-import-many-r}
+```{r 32-setup-32-import-many-r}
 library(tidyverse)
 library(nycflights13)
 
@@ -26,21 +26,78 @@ files
 
 
 ```{r include = FALSE}
-# Manually
+# Import all files at once with rio
 ```
-```{r 31-manually}
+```{r 32-import-all-files-at-once-with-rio}
 files %>%
-  map_dfr(~ readxl::read_excel(.))
+  rio::import_list(setclass = class(tibble()), rbind = TRUE)
 ```
 
 
 ```{r include = FALSE}
-# Using rio
+# Import into named list first
 ```
-```{r 31-using-rio}
-rio::import_list(files)
+```{r 32-import-into-named-list-first}
+list_of_tables <- rio::import_list(files, setclass = class(tibble()))
+list_of_tables
+```
 
+
+```{r include = FALSE}
+# Access individual tables
+```
+```{r 32-access-individual-tables}
+list_of_tables$example6b
+```
+
+
+```{r include = FALSE}
+# Maybe tweak individual files?
+```
+```{r 32-maybe-tweak-individual-files}
+try(
+  list_of_tables$example6b <-
+    list_of_tables$example6b %>%
+    mutate(...) %>%
+    select(...)
+)
+```
+
+
+```{r include = FALSE}
+# Combine into a single data frame
+```
+```{r 32-combine-into-a-single-data-frame}
+all_tables <- bind_rows(list_of_tables, .id = "path")
+all_tables
+```
+
+
+```{r include = FALSE}
+# Analyze one file
+```
+```{r 32-analyze-one-file}
+all_tables %>%
+  filter(path == "example6b") %>%
+  summarize(mean(col1), first(col2))
+```
+
+
+```{r include = FALSE}
+# Analyze multiple files: use group_by()
+```
+```{r 32-analyze-multiple-files-use-group-by}
+all_tables %>%
+  group_by(path) %>%
+  summarize(mean(col1), first(col2)) %>%
+  ungroup()
+```
+
+
+```{r include = FALSE}
+# Alternative: Import manually
+```
+```{r 32-alternative-import-manually}
 files %>%
-  rio::import_list(rbind = TRUE) %>%
-  as_tibble()
+  map_dfr(~ readxl::read_excel(.))
 ```

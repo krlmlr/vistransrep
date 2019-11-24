@@ -10,7 +10,7 @@ rm(list = ls())
 ### Pivoting
 
 ```
-```{r 41-setup-41-spread-r}
+```{r 41-setup-41-pivot-r}
 library(tidyverse)
 library(nycflights13)
 
