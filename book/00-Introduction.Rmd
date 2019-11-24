@@ -17,7 +17,7 @@ While this might be true for all languages (once you speak it well enough, thing
 
 **Patrick Schratz** (@pat-s)
 
-```{r, echo = FALSE, fig.width=5}
+```{r 00-Introduction-1, echo = FALSE, fig.width=5}
 knitr::include_graphics("https://pjs-web.de/authors/admin/avatar_hud979e34f5123fec6163cd5fb1cb16697_143342_250x250_fill_q75_box_center.jpg", dpi = 180)
 ```
 
@@ -47,7 +47,7 @@ In each section, exercises are provided.
 
 ## R as a toolkit
 
-```{r, echo=FALSE}
+```{r 00-Introduction-2, echo=FALSE}
 knitr::include_graphics("img/toolkit.png")
 ```
 
@@ -57,7 +57,7 @@ knitr::include_graphics("img/toolkit.png")
 
 ### Why R and RStudio?
 
-```{R, indeeddotcom, echo = F, fig.height = 6, fig.width = 9, dev = "svg"}
+```{R 00-Introduction-3, indeeddotcom, echo = F, fig.height = 6, fig.width = 9, dev = "svg"}
 # The popularity data
 pop_df <-
   data.frame(
@@ -101,7 +101,7 @@ pop_df %>%
 
 ### Linear regression
 
-```{r}
+```{r 00-Introduction-4}
 fit = lm(dist ~ 1 + speed, data = cars)
 summary(fit)
 ```
@@ -137,7 +137,7 @@ ggplot(data = gapminder,
     - R is like a car’s engine
     - RStudio is like a car’s dashboard
 
-```{r, echo=FALSE, fig.cap="RStudio dashboard metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
+```{r 00-Introduction-5, echo=FALSE, fig.cap="RStudio dashboard metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
 knitr::include_graphics("img/engine-dashboard.png")
 ```
 
@@ -147,7 +147,7 @@ knitr::include_graphics("img/engine-dashboard.png")
 
 - They are written by a world-wide community of R users and can be downloaded for no cost
 
-```{r, echo=FALSE, fig.cap="R phone metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
+```{r 00-Introduction-6, echo=FALSE, fig.cap="R phone metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
 knitr::include_graphics("img/r_vs_r_packages.png")
 ```
 
@@ -164,14 +164,14 @@ knitr::include_graphics("img/r_vs_r_packages.png")
 
 Packages listed as "recommended" inherit the attributes of being widely used and having a long history in the R community.
 
-```{r echo = FALSE}
+```{r 00-Introduction-7, echo = FALSE}
 x <- installed.packages()
 xdf = as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>% dplyr::filter(Priority == "base") %>%
   dplyr::mutate(Package = as.character(Package)) %>%
   print(n = 20)
 ```
 
-```{r echo = FALSE}
+```{r 00-Introduction-8, echo = FALSE}
 xdf = as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>% dplyr::filter(Priority == "recommended") %>%
   print(n = 20)
 ```
@@ -216,7 +216,7 @@ This code will change/overwrite your existing RStudio settings and
 
 R scripts (source code) are written in the _Source_ pane (Editor).
 
-```{r, echo=FALSE}
+```{r 00-Introduction-9, echo=FALSE}
 knitr::include_graphics("img/rstudio_source_rec.png")
 ```
 
@@ -226,7 +226,7 @@ knitr::include_graphics("img/rstudio_source_rec.png")
 
 You can use the menubar or ⇧+⌘+N / ⇧+CTRL+N to create new R scripts.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-10, echo=FALSE}
 knitr::include_graphics("img/rstudio_source_arrow.png")
 ```
 
@@ -234,19 +234,19 @@ knitr::include_graphics("img/rstudio_source_arrow.png")
 
 To execute commands from your R script, use ⌘+Enter / CTRL+Enter.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-11, echo=FALSE}
 knitr::include_graphics("img/rstudio_source_ex.png")
 ```
 
 RStudio will execute the command in the terminal.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-12, echo=FALSE}
 knitr::include_graphics("img/rstudio_source_ex2.png")
 ```
 
 You can see the new object in the _Environment_ pane.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-13, echo=FALSE}
 knitr::include_graphics("img/rstudio_source_ex3.png")
 ```
 
@@ -254,7 +254,7 @@ knitr::include_graphics("img/rstudio_source_ex3.png")
 
 The _History_ tab records your old commands.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-14, echo=FALSE}
 knitr::include_graphics("img/rstudio_history.png")
 ```
 
@@ -262,7 +262,7 @@ knitr::include_graphics("img/rstudio_history.png")
 
 The _Files_ pane is the file explorer.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-15, echo=FALSE}
 knitr::include_graphics("img/rstudio_files.png")
 ```
 
@@ -270,7 +270,7 @@ knitr::include_graphics("img/rstudio_files.png")
 
 The _Plots_ pane/tab shows... plots.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-16, echo=FALSE}
 knitr::include_graphics("img/rstudio_plots.png")
 ```
 
@@ -278,7 +278,7 @@ knitr::include_graphics("img/rstudio_plots.png")
 
 _Packages_ shows installed packages
 
-```{r, echo=FALSE}
+```{r 00-Introduction-17, echo=FALSE}
 knitr::include_graphics("img/rstudio_packages.png")
 ```
 
@@ -286,7 +286,7 @@ knitr::include_graphics("img/rstudio_packages.png")
 
 _Packages_ shows installed packages and whether they are _loaded_.
 
-```{r, echo=FALSE}
+```{r 00-Introduction-18, echo=FALSE}
 knitr::include_graphics("img/rstudio_packages2.png")
 ```
 
@@ -294,7 +294,7 @@ knitr::include_graphics("img/rstudio_packages2.png")
 
 The _Help_ tab shows help documentation (also accessible via `?`).
 
-```{r, echo=FALSE}
+```{r 00-Introduction-19, echo=FALSE}
 knitr::include_graphics("img/rstudio_help.png")
 ```
 
@@ -302,7 +302,7 @@ knitr::include_graphics("img/rstudio_help.png")
 
 Finally, you can customize the actual layout
 
-```{r, echo=FALSE}
+```{r 00-Introduction-20, echo=FALSE}
 knitr::include_graphics("img/rstudio_layout.png")
 ```
 
@@ -343,5 +343,5 @@ sample_df <- read.csv("sample.csv")
 
 - R is supported in other "general purpose IDE's" (VScode, Sublime Text, Atom, Vim, etc.)
 
-```{r child = here("script", "0.Rmd"), eval = TRUE}
+```{r 00-Introduction-21, child = here("script", "0.Rmd"), eval = TRUE}
 ```

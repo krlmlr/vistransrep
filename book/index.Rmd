@@ -43,12 +43,12 @@ See the controls at the top of the website for searching, font size, editing, an
 
 <details><summary>Click to expand</summary>
 
-```{r include = FALSE}
+```{r index-1, include = FALSE}
 library(tidyverse)
 library(here)
 ```
 
-```{r}
+```{r index-2}
 withr::with_options(list(width = 80), print(sessioninfo::session_info()))
 ```
 
