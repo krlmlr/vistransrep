@@ -55,7 +55,7 @@ Base R plotting functions come with suboptimal defaults
 
 ### Storing the plot as an R object
 
-One of the major advantages of \colorbox{github}{\texttt{ggplot()}} is that you can save a plot as an R object and modify it later.
+One of the major advantages of `ggplot()` is that you can save a plot as an R object and modify it later.
 
 This is not possible with base R plots.
 
