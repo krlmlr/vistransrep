@@ -12,6 +12,7 @@ Imports:
     nycflights13,
     plotly,
     RSQLite,
+    rio,
     sessioninfo,
     shiny,
     tidyverse,
