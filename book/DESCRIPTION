@@ -16,6 +16,7 @@ BugReports: https://github.com/krlmlr/vistransrep/issues
 Encoding: UTF-8
 LazyData: true
 Imports: 
+    ggthemes,
     conflicted,
     darksky,
     here,
