@@ -166,14 +166,14 @@ Packages listed as "recommended" inherit the attributes of being widely used and
 
 ```{r 00-Introduction-7, echo = FALSE}
 x <- installed.packages()
-xdf = as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>% dplyr::filter(Priority == "base") %>%
-  dplyr::mutate(Package = as.character(Package)) %>%
-  print(n = 20)
+as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>%
+  dplyr::filter(Priority == "base") %>%
+  dplyr::mutate(Package = as.character(Package))
 ```
 
 ```{r 00-Introduction-8, echo = FALSE}
-xdf = as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>% dplyr::filter(Priority == "recommended") %>%
-  print(n = 20)
+as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>%
+  dplyr::filter(Priority == "recommended")
 ```
 
 ## .Rprofile
