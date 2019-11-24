@@ -8,8 +8,7 @@ bookdown::gitbook:
   css: scroll.css
   config:
     download: [pdf]
-    edit:
-        link: https://github.com/krlmlr/vistransrep/edit/master/%s
+    edit: null
     sharing:
       facebook: no
       twitter: no
