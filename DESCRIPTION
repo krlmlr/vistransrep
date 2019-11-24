@@ -4,6 +4,7 @@ Imports:
     conflicted,
     dbplyr,
     DT,
+    gapminder,
     ggpubr,
     ggthemes,
     here,

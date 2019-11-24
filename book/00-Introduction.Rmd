@@ -17,9 +17,7 @@ While this might be true for all languages (once you speak it well enough, thing
 
 **Patrick Schratz** (\@pat-s)
 
-```{r 00-Introduction-1, echo = FALSE, fig.width=5}
-knitr::include_graphics("images/pjs.jpg", dpi = 180)
-```
+![Patrick Schratz](img/pjs.jpg)
 
 - M.Sc. Geoinformatics
 - Researcher/Research Engineer at University of **Jena** and **LMU Munich**
@@ -47,9 +45,7 @@ In each section, exercises are provided.
 
 ## R as a toolkit
 
-```{r 00-Introduction-2, echo=FALSE}
-knitr::include_graphics("img/toolkit.png")
-```
+![R as a toolkit](img/toolkit.png)
 
 - Scriptability $\rightarrow$ R
 - Literate programming (code, narrative, output in one place) $\rightarrow$ R Markdown
@@ -57,7 +53,7 @@ knitr::include_graphics("img/toolkit.png")
 
 ### Why R and RStudio?
 
-```{R 00-Introduction-3, indeeddotcom, echo = F, fig.height = 6, fig.width = 9}
+```{R indeeddotcom, echo = F, fig.height = 4, fig.width = 6}
 # The popularity data
 pop_df <-
   data.frame(
@@ -108,7 +104,7 @@ summary(fit)
 
 ### Base R plot
 
-```{r cars_basefig, fig.height=4.2}
+```{r cars_basefig}
 par(mar = c(4, 4, 1, .1)) ## nice plot margins
 plot(cars, pch = 19, col = 'darkgray')
 abline(fit, lwd = 2)
@@ -116,7 +112,7 @@ abline(fit, lwd = 2)
 
 ### ggplot2
 
-```{r gapm_plot, fig.height=4.2}
+```{r gapm_plot}
 library(ggplot2)
 library(gapminder) ## For the gapminder data
 
@@ -137,9 +133,7 @@ ggplot(data = gapminder,
     - R is like a car’s engine
     - RStudio is like a car’s dashboard
 
-```{r 00-Introduction-5, echo=FALSE, fig.cap="RStudio dashboard metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
-knitr::include_graphics("img/engine-dashboard.png")
-```
+![Engine vs. dashboard](img/engine-dashboard.png)
 
 ## R vs. R packages
 
@@ -147,9 +141,7 @@ knitr::include_graphics("img/engine-dashboard.png")
 
 - They are written by a world-wide community of R users and can be downloaded for no cost
 
-```{r 00-Introduction-6, echo=FALSE, fig.cap="R phone metapher ^[Source: [Modern Dive](https://moderndive.com/)]" }
-knitr::include_graphics("img/r_vs_r_packages.png")
-```
+![R versus R packages](img/r_vs_r_packages.png)
 
 ## R packages
 
@@ -216,9 +208,7 @@ This code will change/overwrite your existing RStudio settings and
 
 R scripts (source code) are written in the _Source_ pane (Editor).
 
-```{r 00-Introduction-9, echo=FALSE}
-knitr::include_graphics("img/rstudio_source_rec.png")
-```
+![Source pane](img/rstudio_source_rec.png)
 
 (Source of all following RStudio screenshots: https://github.com/edrubin/EC525S19)
 
@@ -226,85 +216,63 @@ knitr::include_graphics("img/rstudio_source_rec.png")
 
 You can use the menubar or ⇧+⌘+N / ⇧+CTRL+N to create new R scripts.
 
-```{r 00-Introduction-10, echo=FALSE}
-knitr::include_graphics("img/rstudio_source_arrow.png")
-```
+![New script](img/rstudio_source_arrow.png)
 
 ---
 
 To execute commands from your R script, use ⌘+Enter / CTRL+Enter.
 
-```{r 00-Introduction-11, echo=FALSE}
-knitr::include_graphics("img/rstudio_source_ex.png")
-```
+![Execute commands](img/rstudio_source_ex.png)
 
-RStudio will execute the command in the terminal.
+RStudio will execute the command in the console.
 
-```{r 00-Introduction-12, echo=FALSE}
-knitr::include_graphics("img/rstudio_source_ex2.png")
-```
+![Console output](img/rstudio_source_ex2.png)
 
 You can see the new object in the _Environment_ pane.
 
-```{r 00-Introduction-13, echo=FALSE}
-knitr::include_graphics("img/rstudio_source_ex3.png")
-```
+![Environment pane](img/rstudio_source_ex3.png)
 
 ---
 
 The _History_ tab records your old commands.
 
-```{r 00-Introduction-14, echo=FALSE}
-knitr::include_graphics("img/rstudio_history.png")
-```
+![History pane](img/rstudio_history.png)
 
 ---
 
 The _Files_ pane is the file explorer.
 
-```{r 00-Introduction-15, echo=FALSE}
-knitr::include_graphics("img/rstudio_files.png")
-```
+![Files pane](img/rstudio_files.png)
 
 ---
 
 The _Plots_ pane/tab shows... plots.
 
-```{r 00-Introduction-16, echo=FALSE}
-knitr::include_graphics("img/rstudio_plots.png")
-```
+![Plots pane](img/rstudio_plots.png)
 
 ---
 
 _Packages_ shows installed packages
 
-```{r 00-Introduction-17, echo=FALSE}
-knitr::include_graphics("img/rstudio_packages.png")
-```
+![Packages pane](img/rstudio_packages.png)
 
 ---
 
 _Packages_ shows installed packages and whether they are _loaded_.
 
-```{r 00-Introduction-18, echo=FALSE}
-knitr::include_graphics("img/rstudio_packages2.png")
-```
+![Loaded and installed packages](img/rstudio_packages2.png)
 
 ---
 
 The _Help_ tab shows help documentation (also accessible via `?`).
 
-```{r 00-Introduction-19, echo=FALSE}
-knitr::include_graphics("img/rstudio_help.png")
-```
+![Help pane](img/rstudio_help.png)
 
 ---
 
 Finally, you can customize the actual layout
 
-```{r 00-Introduction-20, echo=FALSE}
-knitr::include_graphics("img/rstudio_layout.png")
-```
+![Customize layout](img/rstudio_layout.png)
 
 ## RStudio Addins
 

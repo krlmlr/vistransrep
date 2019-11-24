@@ -1,3 +1,9 @@
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: lualatex
+  citation_package: natbib
+  keep_tex: yes
 bookdown::gitbook:
   css: scroll.css
   config:
@@ -9,10 +15,4 @@ bookdown::gitbook:
       twitter: no
       linkedin: no
       github: yes
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: pdflatex
-  citation_package: natbib
-  keep_tex: yes
 bookdown::epub_book: default
