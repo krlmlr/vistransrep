@@ -128,7 +128,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{24 November 2019, 22:08 CET}
+    \date{24 November 2019, 22:18 CET}
 
 \usepackage{booktabs}
 
@@ -1926,23 +1926,6 @@ The package providing these is \{dplyr\}.
 Before starting, we would like to mention the package \{conflicted\}, which when loaded, will help detecting functions of the same name from different packages (an error is thrown in case of such situations).
 It furthermore helps to resolve these situations, by allowing you to choose, the function of which package you prefer (\texttt{conflicted::conflict\_prefer()}).
 You can see an example in the setup code.
-
-Last time we stopped with facet-plots, e.g.~like this one here:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{my_mpg <-}\StringTok{ }\NormalTok{mpg}
-
-\KeywordTok{ggplot}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
-\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(year }\OperatorTok{~}\StringTok{ }\NormalTok{drv)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/21-sample-code-1} \end{flushright}
 
 \hypertarget{filtering-dplyrfilter}{%
 \section{\texorpdfstring{Filtering: \texttt{dplyr::filter()}}{Filtering: dplyr::filter()}}\label{filtering-dplyrfilter}}
