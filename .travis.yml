@@ -1,9 +1,14 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: true
 cache: packages
 latex: true
+
+addons:
+  apt:
+    packages:
+      - lmodern
 
 #before_install
 before_install:
