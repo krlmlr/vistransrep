@@ -3,12 +3,15 @@
 language: R
 sudo: true
 cache: packages
-latex: true
+latex: false # didn't work with lualatex out of the box
 
 addons:
   apt:
     packages:
       - lmodern
+      - texlive-xetex
+      - texlive-luatex
+      - texlive-latex-recommended
 
 #before_install
 before_install:
