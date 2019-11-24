@@ -5,6 +5,7 @@ Imports:
     dbplyr,
     DT,
     ggpubr,
+    ggthemes,
     here,
     leaflet,
     nycflights13,
