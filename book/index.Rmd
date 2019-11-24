@@ -20,6 +20,7 @@ if (!knitr::is_latex_output()) {
 } else {
   options(width = 62)
 }
+library(tidyverse)
 library(here)
 
 this_repo <- function(...) {
@@ -29,6 +30,14 @@ this_repo <- function(...) {
 vistransrep_repo <- function(...) {
   file.path("https://github.com/krlmlr/vistransrep-proj/tree/master", ...)
 }
+
+# Override
+attach(list(
+  view = function(x) {
+    print(x)
+    invisible(x)
+  }
+))
 ```
 
 
@@ -38,11 +47,10 @@ See the controls at the top of the website for searching, font size, editing, an
 
 ## Links {-}
 
-- This website: https://krlmlr.github.io/vistransrep/
+- This website: https://krlmlr.github.io/vistransrep/book
 
 - Scripts and installation instructions: `r vistransrep_repo()`
     - Prepared scripts: `r vistransrep_repo("script")`
-    - Live code: `r vistransrep_repo("live")`
 
 - The source project for this material: `r this_repo()`
 
