@@ -98,7 +98,7 @@ pop_df %>%
 ### Linear regression
 
 ```{r 00-Introduction-4}
-fit = lm(dist ~ 1 + speed, data = cars)
+fit <- lm(dist ~ 1 + speed, data = cars)
 summary(fit)
 ```
 

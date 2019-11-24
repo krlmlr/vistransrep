@@ -60,7 +60,7 @@ One of the major advantages of `ggplot()` is that you can save a plot as an R ob
 This is not possible with base R plots.
 
 ```{r eval=TRUE, fig.height=3}
-p = ggplot(mpg, aes(displ, hwy)) +
+p <- ggplot(mpg, aes(displ, hwy)) +
   geom_point()
 
 p + geom_point(aes(color = class))
