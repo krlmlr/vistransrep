@@ -1,0 +1,3254 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Visualization, transformation and reporting with the tidyverse},
+            pdfauthor={Kirill Müller, Tobias Schieferdecker, Patrick Schratz},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+% grffile has become a legacy package: https://ctan.org/pkg/grffile
+\IfFileExists{grffile.sty}{%
+\usepackage{grffile}
+}{}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Visualization, transformation and reporting with the tidyverse}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{24 November 2019, 21:16 CET}
+
+\usepackage{booktabs}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
+
+\hypertarget{links}{%
+\section*{Links}\label{links}}
+\addcontentsline{toc}{section}{Links}
+
+\begin{itemize}
+\item
+  This website: \url{https://krlmlr.github.io/vistransrep/}
+\item
+  Scripts and installation instructions: \url{https://github.com/krlmlr/vistransrep-proj/tree/master}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prepared scripts: \url{https://github.com/krlmlr/vistransrep-proj/tree/master/script}
+  \item
+    Live code: \url{https://github.com/krlmlr/vistransrep-proj/tree/master/live}
+  \end{itemize}
+\item
+  The source project for this material: \url{https://github.com/krlmlr/vistransrep}
+\end{itemize}
+
+\hypertarget{package-versions-used}{%
+\section*{Package versions used}\label{package-versions-used}}
+\addcontentsline{toc}{section}{Package versions used}
+
+Click to expand
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{withr}\OperatorTok{::}\KeywordTok{with_options}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{width =} \DecValTok{80}\NormalTok{), }\KeywordTok{print}\NormalTok{(sessioninfo}\OperatorTok{::}\KeywordTok{session_info}\NormalTok{()))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## - Session info ---------------------------------------------------------------
+##  setting  value                       
+##  version  R version 3.6.1 (2017-01-27)
+##  os       Ubuntu 16.04.6 LTS          
+##  system   x86_64, linux-gnu           
+##  ui       X11                         
+##  language en_US.UTF-8                 
+##  collate  en_US.UTF-8                 
+##  ctype    en_US.UTF-8                 
+##  tz       UTC                         
+##  date     2019-11-24                  
+## 
+## - Packages -------------------------------------------------------------------
+##  package      * version     date       lib source                           
+##  askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                   
+##  assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                   
+##  backports      1.1.5       2019-10-02 [1] CRAN (R 3.6.1)                   
+##  bookdown       0.16        2019-11-22 [1] CRAN (R 3.6.1)                   
+##  broom          0.5.2       2019-04-07 [1] CRAN (R 3.6.1)                   
+##  cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.6.1)                   
+##  cli            1.1.0       2019-03-19 [1] CRAN (R 3.6.1)                   
+##  codetools      0.2-16      2018-12-24 [3] CRAN (R 3.6.1)                   
+##  colorspace     1.4-1       2019-03-18 [1] CRAN (R 3.6.1)                   
+##  crayon         1.3.4       2017-09-16 [1] CRAN (R 3.6.1)                   
+##  crosstalk      1.0.0       2016-12-21 [1] CRAN (R 3.6.1)                   
+##  data.table     1.12.6      2019-10-18 [1] CRAN (R 3.6.1)                   
+##  DBI            1.0.0       2018-05-02 [1] CRAN (R 3.6.1)                   
+##  dbplyr         1.4.2       2019-06-17 [1] CRAN (R 3.6.1)                   
+##  digest         0.6.23      2019-11-23 [1] CRAN (R 3.6.1)                   
+##  dplyr        * 0.8.3       2019-07-04 [1] CRAN (R 3.6.1)                   
+##  DT             0.10        2019-11-12 [1] CRAN (R 3.6.1)                   
+##  ellipsis       0.3.0       2019-09-20 [1] CRAN (R 3.6.1)                   
+##  evaluate       0.14        2019-05-28 [1] CRAN (R 3.6.1)                   
+##  fansi          0.4.0       2018-10-05 [1] CRAN (R 3.6.1)                   
+##  farver         2.0.1       2019-11-13 [1] CRAN (R 3.6.1)                   
+##  fastmap        1.0.1       2019-10-08 [1] CRAN (R 3.6.1)                   
+##  forcats      * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)                   
+##  fs             1.3.1       2019-05-06 [1] CRAN (R 3.6.1)                   
+##  generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                   
+##  ggplot2      * 3.2.1       2019-08-10 [1] CRAN (R 3.6.1)                   
+##  ggpubr         0.2.4       2019-11-14 [1] CRAN (R 3.6.1)                   
+##  ggsignif       0.6.0       2019-08-08 [1] CRAN (R 3.6.1)                   
+##  git2r          0.26.1      2019-06-29 [1] CRAN (R 3.6.1)                   
+##  glue           1.3.1       2019-03-12 [1] CRAN (R 3.6.1)                   
+##  gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                   
+##  haven          2.2.0       2019-11-08 [1] CRAN (R 3.6.1)                   
+##  here         * 0.1         2017-05-28 [1] CRAN (R 3.6.1)                   
+##  hms            0.5.2       2019-10-30 [1] CRAN (R 3.6.1)                   
+##  htmltools      0.4.0       2019-10-04 [1] CRAN (R 3.6.1)                   
+##  htmlwidgets    1.5.1       2019-10-08 [1] CRAN (R 3.6.1)                   
+##  httpuv         1.5.2       2019-09-11 [1] CRAN (R 3.6.1)                   
+##  httr           1.4.1       2019-08-05 [1] CRAN (R 3.6.1)                   
+##  jsonlite       1.6         2018-12-07 [1] CRAN (R 3.6.1)                   
+##  knitr          1.26        2019-11-12 [1] CRAN (R 3.6.1)                   
+##  labeling       0.3         2014-08-23 [1] CRAN (R 3.6.1)                   
+##  later          1.0.0       2019-10-04 [1] CRAN (R 3.6.1)                   
+##  lattice        0.20-38     2018-11-04 [3] CRAN (R 3.6.1)                   
+##  lazyeval       0.2.2       2019-03-15 [1] CRAN (R 3.6.1)                   
+##  leaflet      * 2.0.3       2019-11-16 [1] CRAN (R 3.6.1)                   
+##  lifecycle      0.1.0       2019-08-01 [1] CRAN (R 3.6.1)                   
+##  lubridate      1.7.4       2018-04-11 [1] CRAN (R 3.6.1)                   
+##  magrittr       1.5         2014-11-22 [1] CRAN (R 3.6.1)                   
+##  MASS           7.3-51.4    2019-03-31 [3] CRAN (R 3.6.1)                   
+##  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.6.1)                   
+##  mime           0.7         2019-06-11 [1] CRAN (R 3.6.1)                   
+##  modelr         0.1.5       2019-08-08 [1] CRAN (R 3.6.1)                   
+##  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.6.1)                   
+##  nlme           3.1-140     2019-05-12 [3] CRAN (R 3.6.1)                   
+##  nycflights13 * 1.0.1       2019-09-16 [1] CRAN (R 3.6.1)                   
+##  openssl        1.4.1       2019-07-18 [1] CRAN (R 3.6.1)                   
+##  pillar         1.4.2       2019-06-29 [1] CRAN (R 3.6.1)                   
+##  pkgconfig      2.0.3       2019-09-22 [1] CRAN (R 3.6.1)                   
+##  plotly         4.9.1       2019-11-07 [1] CRAN (R 3.6.1)                   
+##  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.6.1)                   
+##  promises       1.1.0       2019-10-04 [1] CRAN (R 3.6.1)                   
+##  purrr        * 0.3.3       2019-10-18 [1] CRAN (R 3.6.1)                   
+##  R6             2.4.1       2019-11-12 [1] CRAN (R 3.6.1)                   
+##  RColorBrewer   1.1-2       2014-12-07 [1] CRAN (R 3.6.1)                   
+##  Rcpp           1.0.3       2019-11-08 [1] CRAN (R 3.6.1)                   
+##  readr        * 1.3.1       2018-12-21 [1] CRAN (R 3.6.1)                   
+##  readxl         1.3.1       2019-03-13 [1] CRAN (R 3.6.1)                   
+##  reprex         0.3.0       2019-05-16 [1] CRAN (R 3.6.1)                   
+##  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.6.1)                   
+##  rlang          0.4.2       2019-11-24 [1] Github (r-lib/rlang@dbcb76f)     
+##  rmarkdown      1.17        2019-11-13 [1] CRAN (R 3.6.1)                   
+##  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                   
+##  rstudioapi     0.10        2019-03-19 [1] CRAN (R 3.6.1)                   
+##  rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                   
+##  scales         1.1.0       2019-11-18 [1] CRAN (R 3.6.1)                   
+##  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                   
+##  shiny          1.4.0       2019-10-10 [1] CRAN (R 3.6.1)                   
+##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
+##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
+##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
+##  tic            0.2.13.9021 2019-11-18 [1] Github (ropenscilabs/tic@9a5f965)
+##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
+##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
+##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
+##  utf8           1.1.4       2018-05-24 [1] CRAN (R 3.6.1)                   
+##  vctrs          0.2.0       2019-07-05 [1] CRAN (R 3.6.1)                   
+##  viridisLite    0.3.0       2018-02-01 [1] CRAN (R 3.6.1)                   
+##  withr          2.1.2       2018-03-15 [1] CRAN (R 3.6.1)                   
+##  xaringan       0.13        2019-10-30 [1] CRAN (R 3.6.1)                   
+##  xfun           0.11        2019-11-12 [1] CRAN (R 3.6.1)                   
+##  xml2           1.2.2       2019-08-09 [1] CRAN (R 3.6.1)                   
+##  xtable         1.8-4       2019-04-21 [1] CRAN (R 3.6.1)                   
+##  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.6.1)                   
+##  zeallot        0.1.0       2018-01-28 [1] CRAN (R 3.6.1)                   
+## 
+## [1] /home/travis/R/Library
+## [2] /usr/local/lib/R/site-library
+## [3] /home/travis/R-bin/lib/R/library
+\end{verbatim}
+
+\hypertarget{license}{%
+\section*{License}\label{license}}
+\addcontentsline{toc}{section}{License}
+
+Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4.0}.
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+The \texttt{tidyverse} has quickly developed over the last years.
+Its first implementation as a collection of partly older packages was in the second half of 2016.
+All its packages ``share an underlying design philosophy, grammar, and data structures.''\footnote{citation from \href{https://www.tidyverse.org/}{tidyverse homepage}}
+It is for sure difficult to tell, if ``learning the \texttt{tidyverse}'' is a hard task, since the result of this assessment might differ from person to person.
+We do believe though, that there are concepts in its approach, which -- when grasped -- have the potential to increase one's productivity, since code creation will seem more natural.
+While this might be true for all languages (once you speak it well enough, things go smoothly), in our opinion the \texttt{tidyverse} worth exploring in depth, since it is
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
+\item
+  evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
+\end{enumerate}
+
+\hypertarget{speakers}{%
+\section{Speakers}\label{speakers}}
+
+\textbf{Kirill Müller} (@krlmlr)
+
+\textbf{Patrick Schratz} (@pat-s)
+
+\begin{figure}
+\centering
+\includegraphics{img/pjs.jpg}
+\caption{Patrick Schratz}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  M.Sc. Geoinformatics
+\item
+  Researcher/Research Engineer at University of \textbf{Jena} and \textbf{LMU Munich}
+\item
+  PhD Candidate
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Unix \& R enthusiast
+\item
+  Author/Contributor/Maintainer of several R packages:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    (\href{https://github.com/mlr-org/mlr3}{mlr3}, \href{https://github.com/mlr-org/mlr}{mlr})
+  \item
+    sperrorest
+  \item
+    oddsratio
+  \item
+    xaringan
+  \item
+    circle
+  \item
+    RQGIS
+  \item
+    travis
+  \item
+    tic
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{overview}{%
+\section{Overview}\label{overview}}
+
+This course covers several topics, which everyone working more intently with the \texttt{tidyverse} almost inevitably needs to deal with at some point or another.
+The topics are organized in chapters that contain mostly R code with output and text.
+In each section, exercises are provided.
+
+\hypertarget{r-as-a-toolkit}{%
+\section{R as a toolkit}\label{r-as-a-toolkit}}
+
+\begin{figure}
+\centering
+\includegraphics{img/toolkit.png}
+\caption{R as a toolkit}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Scriptability \(\rightarrow\) R
+\item
+  Literate programming (code, narrative, output in one place) \(\rightarrow\) R Markdown
+\item
+  Version control \(\rightarrow\) Git / GitHub
+\end{itemize}
+
+\hypertarget{why-r-and-rstudio}{%
+\subsection{Why R and RStudio?}\label{why-r-and-rstudio}}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/indeeddotcom-1} \end{flushright}
+
+\hypertarget{some-r-basics}{%
+\subsection{Some R basics}\label{some-r-basics}}
+
+\begin{itemize}
+\tightlist
+\item
+  You will load packages at the \textbf{start of every new R session}.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ``Base'' R comes with tons of useful built-in functions. It also provides all the tools necessary for you to write your own functions.
+  \item
+    However, many of R's best data science functions and tools come from external packages written by other users.
+  \end{itemize}
+\item
+  R easily and infinitely parallelizes. For free.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Compare the cost of a \href{https://www.stata.com/statamp/}{Stata/MP} license, nevermind the fact that you effectively pay per core\ldots{}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{r-code-examples}{%
+\section{R code examples}\label{r-code-examples}}
+
+\hypertarget{linear-regression}{%
+\subsection{Linear regression}\label{linear-regression}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit =}\StringTok{ }\KeywordTok{lm}\NormalTok{(dist }\OperatorTok{~}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{speed, }\DataTypeTok{data =}\NormalTok{ cars)}
+\KeywordTok{summary}\NormalTok{(fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = dist ~ 1 + speed, data = cars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## speed         3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
+\end{verbatim}
+
+\hypertarget{base-r-plot}{%
+\subsection{Base R plot}\label{base-r-plot}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{.1}\NormalTok{)) ## nice plot margins}
+\KeywordTok{plot}\NormalTok{(cars, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{'darkgray'}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(fit, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/cars_basefig-1} \end{flushright}
+
+\hypertarget{ggplot2}{%
+\subsection{ggplot2}\label{ggplot2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(gapminder) ## For the gapminder data}
+
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ gapminder,}
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdpPercap, }\DataTypeTok{y =}\NormalTok{ lifeExp)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/gapm_plot-1} \end{flushright}
+
+\hypertarget{gganimate}{%
+\subsection{gganimate}\label{gganimate}}
+
+\hypertarget{r-vs.rstudio}{%
+\section{R vs.~RStudio}\label{r-vs.rstudio}}
+
+\begin{itemize}
+\tightlist
+\item
+  R is a statistical \textbf{programming language}
+\item
+  RStudio is a convenient interface for R (an \textbf{integrated development environment}, IDE)
+\item
+  At its simplest:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    R is like a car's engine
+  \item
+    RStudio is like a car's dashboard
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{img/engine-dashboard.png}
+\caption{Engine vs.~dashboard}
+\end{figure}
+
+\hypertarget{r-vs.r-packages}{%
+\section{R vs.~R packages}\label{r-vs.r-packages}}
+
+\begin{itemize}
+\item
+  R packages \textbf{extend} the functionality of R by providing additional functions, data, and documentation.
+\item
+  They are written by a world-wide community of R users and can be downloaded for no cost
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{img/r_vs_r_packages.png}
+\caption{R versus R packages}
+\end{figure}
+
+\hypertarget{r-packages}{%
+\section{R packages}\label{r-packages}}
+
+\begin{itemize}
+\item
+  \textbf{CRAN}: A group of people who check that packages fulfill certain standards
+\item
+  \textbf{Mirror}: A location on the web where to download R packages from. Because many thousand people download them daily, the load is distributed on different machines. Pick one which is geographically close to you
+\item
+  \textbf{R base/recommended packages}: The base installation of R ships with a bunch of default packages. In addition, there are some more packages listed as ``recommended''.
+\end{itemize}
+
+``base'' packages are managed by the R core team and will only be updated for every R release.
+
+Packages listed as ``recommended'' inherit the attributes of being widely used and having a long history in the R community.
+
+\begin{verbatim}
+##     Package Priority
+## 1      base     base
+## 2  compiler     base
+## 3  datasets     base
+## 4  graphics     base
+## 5 grDevices     base
+## 6      grid     base
+## 7   methods     base
+## 8  parallel     base
+\end{verbatim}
+
+\begin{verbatim}
+##       Package    Priority
+## 1        boot recommended
+## 2       class recommended
+## 3     cluster recommended
+## 4   codetools recommended
+## 5     foreign recommended
+## 6  KernSmooth recommended
+## 7     lattice recommended
+## 8        MASS recommended
+## 9      Matrix recommended
+## 10       mgcv recommended
+##  [ reached 'max' / getOption("max.print") -- omitted 2 rows ]
+\end{verbatim}
+
+\hypertarget{rprofile}{%
+\section{.Rprofile}\label{rprofile}}
+
+\begin{itemize}
+\item
+  File in your home directory \texttt{\textasciitilde{}/.Rprofile}
+\item
+  Will be executed before every R session starts
+\item
+  Useful to set global options and for loading of often used packages
+\end{itemize}
+
+\hypertarget{renviron}{%
+\section{.Renviron}\label{renviron}}
+
+\begin{itemize}
+\item
+  File in your home directory \texttt{\textasciitilde{}/.Renviron}
+\item
+  Used to set environment variables
+\item
+  Used to store ``Access tokens'' (Github, CI provider, C++ flags)
+\end{itemize}
+
+\hypertarget{rstudio}{%
+\section{RStudio}\label{rstudio}}
+
+\(\rightarrow\) Exists to \textbf{boost} your productivity
+
+\(\rightarrow\) Change the defaults to your liking so you \emph{actually} can be \textbf{productive}
+
+\(\rightarrow\) Keybindings = productivity
+
+Since RStudio v1.3 a \href{https://docs.rstudio.com/ide/desktop-pro/latest/settings.html\#preferences}{portable JSON settings file} exists.
+
+If you want to have sane settings without much hassle, you can execute the following R code: \texttt{source("https://bit.ly/rstudio-pat")}
+
+This code will change/overwrite your existing RStudio settings and
+
+\begin{itemize}
+\item
+  set custom keybindings
+\item
+  move the console panel to the top-right (by default bottom-left)
+\item
+  Enable/Disable some core settings to have a better overall experience
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+R scripts (source code) are written in the \emph{Source} pane (Editor).
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_source_rec.png}
+\caption{Source pane}
+\end{figure}
+
+(Source of all following RStudio screenshots: \url{https://github.com/edrubin/EC525S19})
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+You can use the menubar or ⇧+⌘+N / ⇧+CTRL+N to create new R scripts.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_source_arrow.png}
+\caption{New script}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+To execute commands from your R script, use ⌘+Enter / CTRL+Enter.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_source_ex.png}
+\caption{Execute commands}
+\end{figure}
+
+RStudio will execute the command in the console.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_source_ex2.png}
+\caption{Console output}
+\end{figure}
+
+You can see the new object in the \emph{Environment} pane.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_source_ex3.png}
+\caption{Environment pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+The \emph{History} tab records your old commands.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_history.png}
+\caption{History pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+The \emph{Files} pane is the file explorer.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_files.png}
+\caption{Files pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+The \emph{Plots} pane/tab shows\ldots{} plots.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_plots.png}
+\caption{Plots pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\emph{Packages} shows installed packages
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_packages.png}
+\caption{Packages pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\emph{Packages} shows installed packages and whether they are \emph{loaded}.
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_packages2.png}
+\caption{Loaded and installed packages}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+The \emph{Help} tab shows help documentation (also accessible via \texttt{?}).
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_help.png}
+\caption{Help pane}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Finally, you can customize the actual layout
+
+\begin{figure}
+\centering
+\includegraphics{img/rstudio_layout.png}
+\caption{Customize layout}
+\end{figure}
+
+\hypertarget{rstudio-addins}{%
+\section{RStudio Addins}\label{rstudio-addins}}
+
+RStudio can be further enhanced by so called ``addins''.
+These are clickable snippets that execute certain actions in RStudio.
+
+They aim to make repetitive tasks easier and to save you time.
+There is an addin called \href{https://github.com/daattali/addinslist}{addinslist} which lists all available addins.
+It can be installed as a normal package from CRAN:
+
+\texttt{install.packages("addinslist")}
+
+To have an addin available in RStudio after installation, RStudio needs to be restarted.
+
+\hypertarget{rstudio-projects}{%
+\section{RStudio projects}\label{rstudio-projects}}
+
+Without a project, you will need to define \textbf{long} file paths which \textbf{only exist on your machine}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"/Users/<yourname>/somewhere/on/this/machine/sample.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+With a project, R automatically references the project's folder as the current working directory.
+
+From there on, you can use \emph{relative paths} to point to files.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample_df <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"sample.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Double-plus bonus}: The \href{https://github.com/r-lib/here}{\emph{here}} package extends \emph{RStudio project} philosophy even more and helps in cases when not using RStudio (e.g.~on the command line).
+
+\hypertarget{alternatives-to-rstudio}{%
+\section{Alternatives to RStudio}\label{alternatives-to-rstudio}}
+
+\begin{itemize}
+\item
+  Using R directly in the terminal via \href{https://github.com/randy3k/radian}{radian} (optimized R console interpreter)
+\item
+  R is supported in other ``general purpose IDE's'' (VScode, Sublime Text, Atom, Vim, etc.)
+\end{itemize}
+
+\hypertarget{visualization}{%
+\chapter{Visualization}\label{visualization}}
+
+\begin{quote}
+Embracing the grammar of graphics.
+\end{quote}
+
+This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{ggplot2 package}.
+
+\hypertarget{basics-for-visualisation-in-r-using-ggplot2}{%
+\section{Basics for visualisation in R using \{ggplot2\}}\label{basics-for-visualisation-in-r-using-ggplot2}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+In the \{tidyverse\} the standard package for visualisation is \{ggplot2\}.
+The functions of this package follow a quite unique logic (the ``grammar of graphics'') and therefore require a special syntax.
+In this section we want to give a short introduction, how to get started with \{ggplot2\}.
+
+The main function in the package is \texttt{ggplot()}, which prepares/creates a graph.
+By setting the arguments of the function, you can:
+1. choose the dataset to be plotted in the argument \texttt{data}
+2. choose the mapping of the variables to the axes (or further forms of setting apart data) in the argument \texttt{mapping}. This argument takes the result of the function \texttt{aes()}, which you will get to know in many different examples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-empty-graph-1} \end{flushright}
+
+This created only an empty plot, because we did not tell \{ggplot2\}, which geometry we want to use to display the result.
+We do this by adding (literally using \texttt{+} after the \texttt{ggplot()}-call) a different function starting with \texttt{geom\_} to provide this information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-scatterplot-1} \end{flushright}
+
+This is maybe the most basic plot you can create.
+To map a different variable than \texttt{disp} to the x-axis, change the respective argument in \texttt{aes()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ cyl, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-aes-determines-which-variables-are-plotted-1} \end{flushright}
+
+You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ hwy, }\DataTypeTok{y =}\NormalTok{ cty)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-pattern-unchanged-if-only-variables-are-plotted-1} \end{flushright}
+
+\hypertarget{tweaks-and-tricks}{%
+\section{Tweaks and tricks}\label{tweaks-and-tricks}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Change the color of the plotted data by setting the \texttt{color} argument in the \texttt{geom()}-function to a character variable with the color name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"red"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-choose-color-in-geom-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-different-color-1-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"green"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-different-color-2-1} \end{flushright}
+
+Different colors can be mapped to the values of a variable as a further aesthetic property of the plot.
+The \texttt{class} variable is discrete and leads to a discrete color scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-discrete-1} \end{flushright}
+
+The \texttt{cty} attribute is continuous, the color scale is adapted accordingly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ cty)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-continuous-1} \end{flushright}
+
+One more degree of freedom is the shape of the symbols to be plotted.
+The warning indicates that a plot should not use too many different shapes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{shape =}\NormalTok{ class}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The shape palette can deal with a maximum of 6
+## discrete values because more than 6 becomes difficult
+## to discriminate; you have 7. Consider specifying
+## shapes manually if you must have them.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 62 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-shape-as-3-rd-aesthetic-1} \end{flushright}
+
+Variables with fewer classes are fine.
+Color and shape can be combined too.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =}\NormalTok{ class,}
+    \DataTypeTok{shape =}\NormalTok{ drv}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-shape-mapped-on-drv-1} \end{flushright}
+
+And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{size =}\NormalTok{ cty}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-size-as-3-rd-aesthetic-1} \end{flushright}
+
+You can mix different aesthetic mappings in order to produce a plot with densely packed information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =}\NormalTok{ class,}
+    \DataTypeTok{size =}\NormalTok{ cty}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-mix-to-increase-num-of-aesthetics-1} \end{flushright}
+
+Choosing a specific color in the \texttt{mapping}-argument of \texttt{ggplot()} does not work, since a mapping of a variable to an aesthetic is expected.
+Let's try passing a color anyway\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+  \KeywordTok{ggplot}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ mpg,}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+      \DataTypeTok{x =}\NormalTok{ displ,}
+      \DataTypeTok{y =}\NormalTok{ hwy,}
+      \DataTypeTok{color =}\NormalTok{ blue}
+\NormalTok{    )}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): object 'blue' not found
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{flushright}
+
+R treats objects without quotation marks in a special way, expecting them to be variables.
+Since \texttt{blue} is not a variable of \texttt{mpg}, this did not work.
+Use quotation marks if you mean a string, as opposed to a variable or object name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 234 x 11
+##   manufacturer model displ  year   cyl trans drv     cty   hwy
+##   <chr>        <chr> <dbl> <int> <int> <chr> <chr> <int> <int>
+## 1 audi         a4      1.8  1999     4 auto~ f        18    29
+## 2 audi         a4      1.8  1999     4 manu~ f        21    29
+## 3 audi         a4      2    2008     4 manu~ f        20    31
+## # ... with 231 more rows, and 2 more variables: fl <chr>,
+## #   class <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"mpg"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mpg"
+\end{verbatim}
+
+So what if we pass the color as a character variable?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-quoted-color-in-aes-1} \end{flushright}
+
+At least there was no error, but now the constant value \texttt{blue} is mapped to the first default color of the color mapping, which happens to be red.
+We could have been fooled, if it had been blue.
+Manual aesthetics must be specified in the geom:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{flushright}
+
+Semi-transparency is another way to better display your data.
+This is useful to get an impression of how many data points share the same coordinates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-semi-transparency-1} \end{flushright}
+
+Within the \texttt{aes()}-function you can not only provide the bare variable of the data set, but you can also pass a function of a variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =} \FloatTok{2.35} \OperatorTok{/}\StringTok{ }\NormalTok{hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-function-of-variables-in-aes-1} \end{flushright}
+
+Trying to map aesthetics in the \texttt{geom()}-function, does not work.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+  \KeywordTok{ggplot}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ mpg,}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+      \DataTypeTok{x =}\NormalTok{ displ,}
+      \DataTypeTok{y =} \FloatTok{2.35} \OperatorTok{/}\StringTok{ }\NormalTok{hwy}
+\NormalTok{    )}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in rep(value[[k]], length.out = n): attempt to replicate an object of type 'builtin'
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-in-geom-1} \end{flushright}
+
+\hypertarget{labels-and-layers}{%
+\section{Labels and layers}\label{labels-and-layers}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+For character variables there is further way of integrating its value to a plot.
+\texttt{geom\_text()} takes a \texttt{label} argument, which influences the plot in the following way.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{label =} \StringTok{"A"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-geom-text-1} \end{flushright}
+
+Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset in the \texttt{mapping} argument of \texttt{ggplot()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{label =} \StringTok{"drv"}\NormalTok{)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-set-label-in-aes-for-geom-text-1} \end{flushright}
+
+Right, of course we need to pass the variable without quotation marks, otherwise it is interpreted as a (constant) character variable.
+When changing this, a vector with the values of the variable is passed on to \texttt{geom\_text()}.
+This is one way of including the values of character variables in a plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{label =}\NormalTok{ drv)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-3-rd-aesthetic-as-label-for-geom-text-1} \end{flushright}
+
+By adding more than one \texttt{geom()}-function, more than one geometry is added to the plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{label =}\NormalTok{ drv)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-1} \end{flushright}
+
+Since this looks just slightly odd, let's try to make it more apparent, what is happening.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{label =}\NormalTok{ drv)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{flushright}
+
+It is also possible ot specify the mapping in the \texttt{geom()}-function.
+This way, when adding more than one geometry, you can choose different specifications for the mapping in each of the \texttt{geom()}-functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class, }\DataTypeTok{label =}\NormalTok{ drv),}
+    \DataTypeTok{size =} \DecValTok{10}\NormalTok{,}
+    \DataTypeTok{alpha =} \FloatTok{0.2}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-global-and-local-aesthetic-mappings-1} \end{flushright}
+
+This can be dangerous sometimes though.
+A good approach is always to define the mapping globally in \texttt{ggplot()} when possible.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-good-1} \end{flushright}
+
+This would be redundant:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-bad-1} \end{flushright}
+
+And here we have a mismatch between the two geometries, since the y-mapping is referring to different variables of the dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ cty))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-broken-1} \end{flushright}
+
+Displaying a scatter plot with an overlaid smooth curve fitted to the data is made very easy by the geometry function \texttt{geom\_smooth()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-smooth-1} \end{flushright}
+
+The default for the smoothing method is set to \texttt{auto}, which translates to a LOESS (locally estimated scatterplot smoothing) method, when dealing with fewer than 1000 observations.
+Changing the method to ``lm'', a linear model will be fitted and displayed in your plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-smooth-method-linear-model-1} \end{flushright}
+
+\hypertarget{statistical-summaries}{%
+\section{Statistical summaries}\label{statistical-summaries}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Some \texttt{geom()}-functions do some transformations and calculations behind the scenes before the data are visualized.
+One such function is \texttt{geom\_smooth()} from the last section.
+Also \texttt{geom\_bar()} does some transformations first.
+It just needs a mapping for the x-axis.
+Once that is done, the y-values displayed for each value of the x-variable are the numbers of of times that the x-value occurs in the dataset.
+So basically the different values are counted.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-geom-bar-for-counting-unique-values-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-geom-histogram-for-counting-values-in-bins-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-geom-boxplot-for-another-way-of-summarizing-numeric-values-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-x-axis-in-geom-boxplot-to-go-into-detail-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-geom-smooth-for-drawing-a-smooth-curve-through-scatter-plot-1} \end{flushright}
+
+\hypertarget{facet-plots}{%
+\section{Facet plots}\label{facet-plots}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+One helpful feature that \{ggplot2\} offers is the facet plot.
+This means that for each value of a given variable a different sub-plot is created.
+The relevant functions for this are \texttt{facet\_wrap()} and \texttt{facet\_grid()}.
+The former aligns all sub-plots from left to right and from top to bottom by default.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(class))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-facet-wrap-1} \end{flushright}
+
+Combinations of variables are also supported, and result in a sub-plot for each unique combination with valid data points.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(class, drv))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-facet-wrap-with-multiple-variables-1} \end{flushright}
+
+The latter arranges all sub-plots in a grid and requires two variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(drv))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-facet-grid-1} \end{flushright}
+
+\hypertarget{transformation}{%
+\chapter{Transformation}\label{transformation}}
+
+\begin{quote}
+Using a consistent grammar of data manipulation.
+\end{quote}
+
+This chapter discusses data transformation with the \href{https://dplyr.tidyverse.org/}{dplyr package}.
+
+\hypertarget{package-conflicted}{%
+\section{Package: \{conflicted\}}\label{package-conflicted}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+This section is dedicated to show you the basic building blocks (i.e.~functions) of data analysis in R within the \{tidyverse\}.
+The package providing these is \{dplyr\}.
+
+Before starting, we would like to mention the package \{conflicted\}, which when loaded, will help detecting functions of the same name from different packages (an error is thrown in case of such situations).
+It furthermore helps to resolve these situations, by allowing you to choose, the function of which package you prefer (\texttt{conflicted::conflict\_prefer()}).
+You can see an example in the setup code.
+
+Last time we stopped with facet-plots, e.g.~like this one here:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_mpg <-}\StringTok{ }\NormalTok{mpg}
+
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(year }\OperatorTok{~}\StringTok{ }\NormalTok{drv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/21-sample-code-1} \end{flushright}
+
+\hypertarget{filtering-dplyrfilter}{%
+\section{\texorpdfstring{Filtering: \texttt{dplyr::filter()}}{Filtering: dplyr::filter()}}\label{filtering-dplyrfilter}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+During this lecture we will be working with data from the package \{nycflights13\}, which contains flights in the year 2013 with their departure in New York City (airports: JFK, LGA or EWR) to destinations in the United States, Puerto Rico, and the American Virgin Islands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?flights}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?flights}
+\end{Highlighting}
+\end{Shaded}
+
+The function \texttt{dplyr::filter()} helps you to reduce your dataset to the observations (rows) of interest.
+The filter condition can use any of the dataset's variables and needs to be a logical expression.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,730 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 8,727 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+If you use one or more variables of the dataset in the filter condition, a vectorized evaluation of the condition is taking place.
+Generally you can provide any logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dep_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,255 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1       NA           1630        NA       NA
+## 2  2013     1     1       NA           1935        NA       NA
+## 3  2013     1     1       NA           1500        NA       NA
+## # ... with 8,252 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Use \texttt{\&} or multiple filters to return only rows that match both criteria:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600} \OperatorTok{&}\StringTok{ }\NormalTok{arr_time }\OperatorTok{>}\StringTok{ }\DecValTok{2200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 19
+## # ... with 19 variables: year <int>, month <int>, day <int>,
+## #   dep_time <int>, sched_dep_time <int>, dep_delay <dbl>,
+## #   arr_time <int>, sched_arr_time <int>, arr_delay <dbl>,
+## #   carrier <chr>, flight <int>, tailnum <chr>, origin <chr>,
+## #   dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
+## #   minute <dbl>, time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{>=}\StringTok{ }\DecValTok{700} \OperatorTok{&}\StringTok{ }\NormalTok{arr_time }\OperatorTok{<}\StringTok{ }\DecValTok{800}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10,654 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1     1929           1920         9        3
+## 2  2013     1     1     1939           1840        59       29
+## 3  2013     1     1     2058           2100        -2        8
+## # ... with 1.065e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{>=}\StringTok{ }\DecValTok{700}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(arr_time }\OperatorTok{<}\StringTok{ }\DecValTok{800}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10,654 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1     1929           1920         9        3
+## 2  2013     1     1     1939           1840        59       29
+## 3  2013     1     1     2058           2100        -2        8
+## # ... with 1.065e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Use \texttt{\textbar{}} to return all rows that match either criterion or both:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600} \OperatorTok{|}\StringTok{ }\NormalTok{arr_time }\OperatorTok{>}\StringTok{ }\DecValTok{2200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 40,879 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 4.088e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\hypertarget{sort-rows-dplyrarrange}{%
+\section{\texorpdfstring{Sort rows: \texttt{dplyr::arrange()}}{Sort rows: dplyr::arrange()}}\label{sort-rows-dplyrarrange}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+The function \texttt{dplyr::arrange()} sorts the rows of the dataset according to the values of the variable(s) you are providing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1    13        1           2249        72      108
+## 2  2013     1    31        1           2100       181      124
+## 3  2013    11    13        1           2359         2      442
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+When providing multiple variables as arguments for \texttt{...} (the ellipsis), the dataset is first sorted accorcing to the values of the first variable.
+Wherever these values occur more than once, another sorting takes place within those groups, according to the second variable you provided.
+The same rule applies for every further variable you add to \texttt{arrange()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+You can combine \texttt{filter()} and \texttt{arrange()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+You can use \texttt{arrange()} with arbitrary expressions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (\texttt{TRUE}, \texttt{FALSE}) is sorted \texttt{FALSE} first (lexicographically).
+
+Let's give it a twist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Sorting the dataset according to which flights arrived earliest on April 1, 2013:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Invert the sorting by either\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{} or:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+You can mix sorting in an ascending and a descending manner:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, }\KeywordTok{desc}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-pipe}{%
+\section{The pipe}\label{the-pipe}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+We already heavily used it today, but what exactly are the characteristics of \texttt{\%\textgreater{}\%}, better known as ``the pipe''?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The above is just another way of writing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(flights, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The manual describes this operator in detail:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?}\StringTok{"%>%"}
+\end{Highlighting}
+\end{Shaded}
+
+With the pipe, code can be read in a natural way, from left to right.
+The following snippet extracts
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  all early flights
+\item
+  from October till December,
+\item
+  ordered by departure time and then departure delay
+\item
+  and displays it.
+\end{enumerate}
+
+Note how the reading corresponds to the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+This is possible, because all transformation verbs (\texttt{filter()}, \texttt{arrange()}, \texttt{view()}) accept the main input (a tibble) as the first argument and also return a tibble.
+
+The following three codes are equivalent, but are more difficult to write, to read and to maintain.
+
+Naming is hard.
+Trying to give each intermediate result a name is exhausting.
+Introducing an additional step in this sequence of operations is prone to errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(flights, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\NormalTok{early_flights_oct_dec <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(early_flights, month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\NormalTok{early_flights_oct_dec_sorted <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(early_flights_oct_dec, dep_time, dep_delay)}
+\KeywordTok{view}\NormalTok{(early_flights_oct_dec_sorted)}
+\end{Highlighting}
+\end{Shaded}
+
+We can keep using the same variable, e.g. \texttt{x}, to avoid naming.
+This adds noise compared to the pipe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\NormalTok{flights}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(x, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(x, month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(x, dep_time, dep_delay)}
+\KeywordTok{view}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+We can avoid intermediate variables.
+This disconnects the verbs from their arguments and is very difficult to read.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{view}\NormalTok{(}
+  \KeywordTok{arrange}\NormalTok{(}
+    \KeywordTok{filter}\NormalTok{(}
+      \KeywordTok{filter}\NormalTok{(}
+\NormalTok{        flights,}
+\NormalTok{        dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}
+\NormalTok{      ),}
+\NormalTok{      month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}
+\NormalTok{    ),}
+\NormalTok{    dep_time, dep_delay}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{further-advantages}{%
+\subsection{Further advantages}\label{further-advantages}}
+
+When working on a code chunk consisting of subsequent transformations connected by pipes, it can be useful to end the pipeline with either \texttt{I} or \texttt{view()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\NormalTok{I}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+## * <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    10     1      447            500       -13      614
+## 2  2013    10     1      522            517         5      735
+## 3  2013    10     1      536            545        -9      809
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##arrange(dep_time, dep_delay) %>%}
+\NormalTok{##view()}
+\end{Highlighting}
+\end{Shaded}
+
+Once the chunk does what you expect it to do, do not forget to remove the \texttt{I} or \texttt{view()} call.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+  \KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in arrange(dep_time, dep_delay) : object 'dep_time' not found
+\end{verbatim}
+
+To rearrange rows, you can use the shortcut \texttt{Alt\ +\ Cursor\ up/down}.
+In a piped expression, no further editing is necessary!
+
+\hypertarget{pick-columns-dplyrselect}{%
+\section{\texorpdfstring{Pick columns: \texttt{dplyr::select()}}{Pick columns: dplyr::select()}}\label{pick-columns-dplyrselect}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+With \texttt{dplyr::select()} you can (de-)select and/or rename columns of your dataset.
+The basic operation is like in the following examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##    year month   day
+##   <int> <int> <int>
+## 1  2013     1     1
+## 2  2013     1     1
+## 3  2013     1     1
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 18
+##   month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int>    <int>          <int>     <dbl>    <int>
+## 1     1     1      517            515         2      830
+## 2     1     1      533            529         4      850
+## 3     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Renaming works by addressing an existing column on the right hand side of an equality sign and providing the new name of the column on its left hand side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \DataTypeTok{departure_delay =}\NormalTok{ dep_delay,}
+    \DataTypeTok{arrival_delay =}\NormalTok{ arr_delay}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 5
+##    year month   day departure_delay arrival_delay
+##   <int> <int> <int>           <dbl>         <dbl>
+## 1  2013     1     1               2            11
+## 2  2013     1     1               4            20
+## 3  2013     1     1               2            33
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+With backticks, it is possible, but not advised, to use arbitrary characters (including spaces) in column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights_with_spaces <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \StringTok{`}\DataTypeTok{Departure delay}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{dep_delay,}
+    \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{arr_delay}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+    \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`} \OperatorTok{<}\StringTok{ }\DecValTok{0}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Address them in the same way, if the dataset already has such variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights_with_spaces }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \DataTypeTok{dep_delay =} \StringTok{`}\DataTypeTok{Departure delay}\StringTok{`}\NormalTok{,}
+    \DataTypeTok{arr_delay =} \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 188,933 x 5
+##    year month   day dep_delay arr_delay
+##   <int> <int> <int>     <dbl>     <dbl>
+## 1  2013     1     1        -1       -18
+## 2  2013     1     1        -6       -25
+## 3  2013     1     1        -3       -14
+## # ... with 1.889e+05 more rows
+\end{verbatim}
+
+The \{janitor\} package helps fixing issues with colum names automatically.
+
+Select helpers allow selecting multiple related columns conveniently.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, }\KeywordTok{ends_with}\NormalTok{(}\StringTok{"_time"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 7
+##   origin dest  dep_time sched_dep_time arr_time sched_arr_time
+##   <chr>  <chr>    <int>          <int>    <int>          <int>
+## 1 EWR    IAH        517            515      830            819
+## 2 LGA    IAH        533            529      850            830
+## 3 JFK    MIA        542            540      923            850
+## # ... with 3.368e+05 more rows, and 1 more variable:
+## #   air_time <dbl>
+\end{verbatim}
+
+\hypertarget{create-new-columns-based-on-old-ones-dplyrmutate}{%
+\section{\texorpdfstring{Create new columns based on old ones: \texttt{dplyr::mutate()}}{Create new columns based on old ones: dplyr::mutate()}}\label{create-new-columns-based-on-old-ones-dplyrmutate}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+With \texttt{dplyr::mutate()} you can add new columns to a table, e.g.~making use of the already existing variables.
+
+How much faster than the scheduled time did the pilots manage to fly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 20
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 13 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>, recovery <dbl>
+\end{verbatim}
+
+This is another building block added to the toolset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1         2        11       -9
+## 2         4        20      -16
+## 3         2        33      -31
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Work with the newly created variable just like with the original ones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(recovery)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1        -2       194     -196
+## 2        -2       179     -181
+## 3       180       345     -165
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Assign the results to new variables.
+The old ones remain unchanged.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{recovery_data <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(recovery)}
+
+\NormalTok{recovery_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1        -2       194     -196
+## 2        -2       179     -181
+## 3       180       345     -165
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Let's look at a single airplane:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Adding the departure time of the \emph{next} flight to the current row, respectively, using \texttt{mutate()} with \texttt{lead()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lead_dep_time =} \KeywordTok{lead}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+The opposite effect to \texttt{lead()} can be realized using \texttt{lag()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+There is even a use-case for this in our little example.
+How long has our airplane been absent from NYC airports between each of its flights out?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{lag_arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+The negative values occur because not everything happens on the same day, implying that our method is still in need of some refinement.
+Nevertheless, let's continue.
+
+A frequently used workflow is creating a helper variable at some point in the pipeline and then dropping it later on:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{lag_arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{lag_arr_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 6
+##    year month   day dep_time arr_time ground_time
+##   <int> <int> <int>    <int>    <int>       <int>
+## 1  2013     1     1      517      830          NA
+## 2  2013     1     8     1435     1717         605
+## 3  2013     1     9      717      812       -1000
+## # ... with 108 more rows
+\end{verbatim}
+
+Let's work some more with the flight data of our special plane.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+The total air time of a plane up to and including a given flight can be calculated with \texttt{base::cumsum()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cum_air_time =} \KeywordTok{cumsum}\NormalTok{(air_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(air_time, cum_air_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Creating a ``flag'' variable with \texttt{mutate()} which shows if a flight was on time or not:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =} \KeywordTok{if_else}\NormalTok{(arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"delayed"}\NormalTok{, }\StringTok{"on time"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 2
+##   arr_delay delayed
+##       <dbl> <chr>  
+## 1        11 delayed
+## 2       -29 on time
+## 3        -3 on time
+## # ... with 108 more rows
+\end{verbatim}
+
+A more straightforward way to get the same (or at least a very similar and probably easier to work with) result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1        11 TRUE   
+## 2       -29 FALSE  
+## 3        -3 FALSE  
+## # ... with 108 more rows
+\end{verbatim}
+
+\ldots{} easier to work with, because \texttt{filter()} can directly take logical arguments:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1        11 TRUE   
+## 2        39 TRUE   
+## 3        54 TRUE   
+## # ... with 36 more rows
+\end{verbatim}
+
+Negation for inverse filtering:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 72 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1       -29 FALSE  
+## 2        -3 FALSE  
+## 3       -20 FALSE  
+## # ... with 69 more rows
+\end{verbatim}
+
+These are the flights that had no delay:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{on_time_flights <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}{%
+\section{\texorpdfstring{Summarize data (by groups): \texttt{dplyr::summarize()}, \texttt{dplyr::group\_by()} + \texttt{dplyr::ungroup()}}{Summarize data (by groups): dplyr::summarize(), dplyr::group\_by() + dplyr::ungroup()}}\label{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Often we want to draw just conclusions from larger datasets by gaining insight by using statistical (or other) methods for summarizing -- and thus drastically reducing -- the data:
+How much time did all planes spend in the air?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(air_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_air_time =} \KeywordTok{sum}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 2
+##   air_time total_air_time
+##      <dbl>          <dbl>
+## 1      227       49326610
+## 2      227       49326610
+## 3      160       49326610
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+The \texttt{mutate()} call adds a new variable with the same value across all rows.
+To reduce the result to a single row, use \texttt{summarize()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_air_time =} \KeywordTok{sum}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   total_air_time
+##            <dbl>
+## 1       49326610
+\end{verbatim}
+
+Simple counts can be computed with \texttt{n()} inside \texttt{summarize()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##        n
+##    <int>
+## 1 336776
+\end{verbatim}
+
+A variety of aggregate functions is supported:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{median =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   median
+##    <dbl>
+## 1    129
+\end{verbatim}
+
+It's possible to produce two different summarizations at once:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##        n mean_air_time median_air_time
+##    <int>         <dbl>           <dbl>
+## 1 336776          151.             129
+\end{verbatim}
+
+The \texttt{summarize()} verb gains its full power in grouped operations.
+Surround with \texttt{group\_by()} and \texttt{ungroup()} to compute summaries in groups defined by common values in one or more columns.
+In the next example, the same summary is computed separately for each origin airport.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(origin) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   origin      n mean_air_time median_air_time
+##   <chr>   <int>         <dbl>           <dbl>
+## 1 EWR    120835          153.             130
+## 2 JFK    111279          178.             149
+## 3 LGA    104662          118.             115
+\end{verbatim}
+
+The next example splits the data into one group for each day.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, month, day) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 365 x 6
+##    year month   day     n mean_air_time median_air_time
+##   <int> <int> <int> <int>         <dbl>           <dbl>
+## 1  2013     1     1   842          170.             149
+## 2  2013     1     2   943          162.             148
+## 3  2013     1     3   914          157.             148
+## # ... with 362 more rows
+\end{verbatim}
+
+For quick exploration, the names of the new columns can be omitted:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, month, day) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \KeywordTok{n}\NormalTok{(),}
+    \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 365 x 6
+##    year month   day `n()` `mean(air_time, n~ `median(air_time~
+##   <int> <int> <int> <int>              <dbl>             <dbl>
+## 1  2013     1     1   842               170.               149
+## 2  2013     1     2   943               162.               148
+## 3  2013     1     3   914               157.               148
+## # ... with 362 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{summary-plots}{%
+\section{Summary-plots}\label{summary-plots}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Potentially surprisingly, \texttt{mutate()} can also work with the results of a \texttt{ggplot()} call.
+Let's approach this step by step.
+Here is a basic barplot of \texttt{flights\$carrier}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-1} \end{flushright}
+
+Same with one facet per month:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-one-facet-per-month-1} \end{flushright}
+
+We can extract a function that takes any data and produces a barplot of the variable \texttt{carrier}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_fun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{  data }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{()}
+\NormalTok{\}}
+
+\KeywordTok{plot_fun}\NormalTok{(flights)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-extract-a-function-1} \end{flushright}
+
+The result of \texttt{ggplot()} is first and foremost an object.
+Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the ``Viewer''.
+Therefore, we can use the \texttt{group\_by} -- \texttt{summarize()} -- \texttt{ungroup()} pattern to produce one plot per group and store it in a new column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_df <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(month) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{plot =} \KeywordTok{list}\NormalTok{(}\KeywordTok{plot_fun}\NormalTok{(}\KeywordTok{tibble}\NormalTok{(carrier)))}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+
+\NormalTok{plot_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 2
+##   month plot  
+##   <int> <list>
+## 1     1 <gg>  
+## 2     2 <gg>  
+## 3     3 <gg>  
+## # ... with 9 more rows
+\end{verbatim}
+
+When using \texttt{dplyr::pull()} (this function ``extracts'' a variable from a \texttt{data.frame} and returns it as a normal vector), each of the plots will be subsequently displayed in your ``Viewer''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_df }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pull}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-1} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[2]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-2} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[3]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-3} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[4]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-4} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[5]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-5} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[6]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-6} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[7]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-7} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[8]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-8} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[9]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-9} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[10]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-10} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[11]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-11} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[12]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-12} \end{flushright}
+
+Use the left arrow to click through the different plots.
+
+\hypertarget{best-practices}{%
+\chapter{Best practices}\label{best-practices}}
+
+R code is often organized in packages that can be installed from centralized repositories such as CRAN or GitHub.
+If you are new to writing R packages, this course cannot give a complete introduction into packages.
+It is still useful to embrace some very few concepts of R packages to gain access to a vast toolbox and also organize your code in a standardized way familiar to other users.
+With the first steps in place, the road to your first R package may become less steep.
+
+\begin{itemize}
+\tightlist
+\item
+  Create a \texttt{DESCRIPTION} file to declare dependencies and allow easy reloading of the functions you define
+\item
+  Store your functions in \texttt{.R} files in the \texttt{R/} directory in your project
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Scripts that you execute live in \texttt{script/} or a similar directory
+  \end{itemize}
+\item
+  Use \href{https://github.com/klutometis/roxygen}{roxygen2} to document your functions close to the source
+\item
+  Write tests for your functions, e.g.~with \href{https://testthat.r-lib.org/}{testthat}
+\end{itemize}
+
+See \href{http://r-pkgs.had.co.nz/}{R packages} for a more comprehensive treatment.
+
+\hypertarget{description}{%
+\section{DESCRIPTION}\label{description}}
+
+Create and open a new RStudio project.
+Then, create a \texttt{DESCRIPTION} file with \texttt{usethis::use\_description()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("usethis")}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_description}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Double-check success:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("devtools")}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{load_all}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Declare that your project requires the tidyverse and the here package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_package}\NormalTok{(}\StringTok{"here"}\NormalTok{)}
+\CommentTok{# Currently doesn't work, add manually}
+\CommentTok{# https://github.com/r-lib/usethis/issues/760}
+\CommentTok{# usethis::use_package("tidyverse")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{r}{%
+\section{R}\label{r}}
+
+With a \texttt{DESCRIPTION} file defined, create a new \texttt{.R} file and save it in the \texttt{R/} directory.
+(Create this directory if it does not exist.)
+Create a function in this file, save the file:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{text =} \StringTok{"Hello, world!"}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(text)}
+  \KeywordTok{invisible}\NormalTok{(text)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Do not source the file.
+
+Restart R (with Ctrl + Shift + F10 in RStudio).
+
+Run \texttt{devtools::load\_all()} again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.
+
+Check that you can run \texttt{hi()} in the console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hi}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello, world!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hi}\NormalTok{(}\StringTok{"Wow!"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Wow!"
+\end{verbatim}
+
+Edit the function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{text =} \StringTok{"Wow!"}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(text)}
+  \KeywordTok{invisible}\NormalTok{(text)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Save the file, but do not source it.
+
+Run \texttt{devtools::load\_all()} again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.
+
+Check that the new implementation of \texttt{hi()} is active:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hi}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Wow!"
+\end{verbatim}
+
+All functions that are required for your project are stored in this directory.
+Do not store executable scripts, use a \texttt{script/} directory.
+
+\hypertarget{roxygen2}{%
+\section{roxygen2}\label{roxygen2}}
+
+The following intuitive annotation syntax is a standard way to create documentation for your functions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#' Print a welcome message}
+\CommentTok{#' }
+\CommentTok{#' This function prints "Wow!", or a custom text, on the console.}
+\CommentTok{#'}
+\CommentTok{#' @param text The text to print, "Wow!" by default.}
+\CommentTok{#' }
+\CommentTok{#' @return The `text` argument, invisibly.}
+\CommentTok{#' }
+\CommentTok{#' @examples}
+\CommentTok{#' hi()}
+\CommentTok{#' hi("Hello!")}
+\NormalTok{hi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{text =} \StringTok{"Wow!"}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(text)}
+  \KeywordTok{invisible}\NormalTok{(text)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This annotation can be rendered to a nicely looking HTML page with the roxygen2 and pkgdown packages.
+All you need to do is provide (and maintain) it.
+
+\hypertarget{testthat}{%
+\section{testthat}\label{testthat}}
+
+Automated tests make sure that the functions you write today continue working tomorrow.
+Create your first test with \texttt{usethis::use\_test()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# install.packages("testthat")}
+\NormalTok{usethis}\OperatorTok{::}\KeywordTok{use_test}\NormalTok{(}\StringTok{"hi"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The file \texttt{tests/testthat/test-hi.R} is created, with the following contents:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{test_that}\NormalTok{(}\StringTok{"multiplication works"}\NormalTok{, \{}
+  \KeywordTok{expect_equal}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+Replace this predefined text with a test that makes more sense for us:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{test_that}\NormalTok{(}\StringTok{"hi() works"}\NormalTok{, \{}
+  \KeywordTok{expect_output}\NormalTok{(}\KeywordTok{hi}\NormalTok{(), }\StringTok{"Wow"}\NormalTok{)}
+  \KeywordTok{expect_output}\NormalTok{(}\KeywordTok{hi}\NormalTok{(}\StringTok{"Hello"}\NormalTok{), }\StringTok{"Hello"}\NormalTok{)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+Run the new test with \texttt{devtools::test()}, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
+
+Check that the test actually detects failures by modifying the implementation of \texttt{hi()} and rerunning the test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hi <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{text =} \StringTok{"Oops!"}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(text)}
+  \KeywordTok{invisible}\NormalTok{(text)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Run the new test with \texttt{devtools::test()}, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
+One test should be failing now.
+
+\hypertarget{section}{%
+\chapter{}\label{section}}
+
+\begin{itemize}
+\item
+  R for data science: \url{https://r4ds.had.co.nz/}
+\item
+  Row oriented workflows: \url{https://github.com/jennybc/row-oriented-workflows\#readme}
+\item
+  Advanced R: \url{http://adv-r.had.co.nz/}
+\item
+  Tidy evaluation: \url{https://tidyeval.tidyverse.org/}
+\item
+  R packages: \url{http://r-pkgs.had.co.nz/}
+\item
+  roxygen2: Vignettes in \url{https://cran.r-project.org/package=roxygen2}, especially:
+
+  \begin{itemize}
+  \item
+    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html}{Introduction to roxygen2}
+  \item
+    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html}{Generating Rd files} for an overview of available tags
+  \item
+    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/markdown.html}{Write R documentation in Markdown}
+  \end{itemize}
+\item
+  How R searches and finds stuff: \url{http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/}
+\item
+  What they forgot to teach you: \url{https://whattheyforgot.org/}
+\item
+  Parallel processing with a purrr-like interface: \url{https://davisvaughan.github.io/furrr/}
+\item
+  Tidyverse principles: \url{https://principles.tidyverse.org/}
+\item
+  Recursive lists to use in teaching and examples: \url{https://github.com/jennybc/repurrrsive}
+\end{itemize}
+
+
+\end{document}
