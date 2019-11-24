@@ -1,0 +1,72 @@
+## Labels
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r 13-setup-13-other-r}
+library(tidyverse)
+```
+</details>
+
+For character variables there is further way of integrating its value to a plot.
+`geom_text()` takes a `label` argument, which influences the plot in the following way.
+
+```{r 13-geom-text}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_text(label = "A")
+```
+
+Let's try to map this argument to a variable (here: `drv`) of our dataset in the `mapping` argument of `ggplot()`.
+
+```{r 13-set-label-in-aes-for-geom-text}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_text(label = "drv")
+```
+
+Right, of course we need to pass the variable without quotation marks, otherwise it is interpreted as a (constant) character variable.
+When changing this, a vector with the values of the variable is passed on to `geom_text()`.
+This is one way of including the values of character variables in a plot.
+
+```{r 13-3-rd-aesthetic-as-label-for-geom-text}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_text(aes(label = drv))
+```
+
+When adding more than one `geom()`-function, multiple geometries are added to the plot.
+However, because `geom_point()` has no support for passing a label, we can only use this mapping in `geom_text()`.
+
+```{r 13-two-layers}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  geom_text(aes(label = drv))
+```
+
+Since this looks just slightly odd, let's try to make it more apparent, what is happening.
+
+```{r 13-two-layers-more-clearly}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point(color = "blue") +
+  geom_text(aes(label = drv), size = 10)
+```
+
+```{r 13-good}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  geom_rug()
+```

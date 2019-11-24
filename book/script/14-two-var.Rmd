@@ -1,0 +1,33 @@
+## Two variable plots
+
+"Two variable plots" can be split into sub-categories:
+
+- Continuous X and Y
+
+- Continuous X and discrete Y (and vice-versa)
+
+- Discrete X and Y
+
+### Continuous X and Y
+
+```{r }
+ggplot(mpg, aes(x = cty, y = hwy)) +
+  geom_point()
+```
+
+
+### Discrete X and continuous Y
+
+```{r }
+ggplot(mpg, aes(x = class, y = hwy)) +
+  geom_boxplot()
+```
+
+---
+
+### Discrete X and Y
+
+```{r }
+ggplot(mpg, aes(x = class, y = manufacturer)) +
+  geom_jitter()
+```

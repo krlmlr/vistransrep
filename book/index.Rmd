@@ -4,6 +4,10 @@ author: "Kirill Müller, Tobias Schieferdecker, Patrick Schratz"
 date: "`r format(lubridate::with_tz(Sys.time(), 'CET'), '%d %B %Y, %H:%M %Z')`"
 documentclass: "book"
 site: bookdown::bookdown_site
+bibliography: book.bib
+biblio-style: apa-old.cls
+link-citations: true
+nocite: "@grolemund2017"
 ---
 
 ```{r setup, include = FALSE}
