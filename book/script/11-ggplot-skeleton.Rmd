@@ -91,7 +91,7 @@ statistical graphic:
 
 - **Stats:** Statistical transformation of the data (5 point summary, classification, etc.).
 
-- **Facetting:** Division and illustration of data subsets, also known as "Trellis" images [@krause2002].
+- **Facetting:** Division and illustration of data subsets, also known as "Trellis" images.
 
 ### The Grammar of graphics ...
 
