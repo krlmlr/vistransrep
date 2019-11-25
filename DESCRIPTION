@@ -8,16 +8,18 @@ Imports:
     ggpubr,
     ggthemes,
     here,
+    icon,
     leaflet,
     nycflights13,
     patchwork,
     plotly,
-    RSQLite,
     rio,
+    RSQLite,
     sessioninfo,
     shiny,
     tidyverse,
     xaringan
-Encoding: UTF-8
 Remotes: 
-  thomasp85/patchwork
+    ropenscilabs/icon,
+    thomasp85/patchwork
+Encoding: UTF-8
