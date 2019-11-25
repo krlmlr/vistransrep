@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{25 November 2019, 11:26 CET}
+    \date{25 November 2019, 13:07 CET}
 
 \usepackage{booktabs}
 
@@ -460,8 +460,7 @@ In each section, exercises are provided.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{.1}\NormalTok{)) ## nice plot margins}
-\KeywordTok{plot}\NormalTok{(cars, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{'darkgray'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(cars, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{"darkgray"}\NormalTok{)}
 \KeywordTok{abline}\NormalTok{(fit, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -476,8 +475,10 @@ In each section, exercises are provided.
 \KeywordTok{library}\NormalTok{(ggplot2)}
 \KeywordTok{library}\NormalTok{(gapminder) ## For the gapminder data}
 
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ gapminder,}
-       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdpPercap, }\DataTypeTok{y =}\NormalTok{ lifeExp)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ gapminder,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ gdpPercap, }\DataTypeTok{y =}\NormalTok{ lifeExp)}
+\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -786,8 +787,11 @@ From there on, you can use \emph{relative paths} to point to files.
   R is supported in other ``general purpose IDE's'' (VScode, Sublime Text, Atom, Vim, etc.)
 \end{itemize}
 
-\hypertarget{visualization}{%
-\chapter{Visualization Basics \{ggplot2\}}\label{visualization}}
+\hypertarget{part-visualization}{%
+\part{Visualization}\label{part-visualization}}
+
+\hypertarget{vis-basics}{%
+\chapter{\{ggplot2\} basics}\label{vis-basics}}
 
 \begin{quote}
 Embracing the grammar of graphics.
@@ -1885,6 +1889,12 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 \end{Shaded}
 
 \begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-good-1} \end{flushright}
+
+\hypertarget{vis-adv}{%
+\chapter{\{ggplot2\} advanced}\label{vis-adv}}
+
+\hypertarget{part-tidying-and-transforming}{%
+\part{Tidying and transforming}\label{part-tidying-and-transforming}}
 
 \hypertarget{transformation}{%
 \chapter{Transformation}\label{transformation}}
