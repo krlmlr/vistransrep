@@ -107,8 +107,7 @@ summary(fit)
 ### Base R plot
 
 ```{r cars_basefig}
-par(mar = c(4, 4, 1, .1)) ## nice plot margins
-plot(cars, pch = 19, col = 'darkgray')
+plot(cars, pch = 19, col = "darkgray")
 abline(fit, lwd = 2)
 ```
 
@@ -118,8 +117,10 @@ abline(fit, lwd = 2)
 library(ggplot2)
 library(gapminder) ## For the gapminder data
 
-ggplot(data = gapminder,
-       mapping = aes(x = gdpPercap, y = lifeExp)) +
+ggplot(
+  data = gapminder,
+  mapping = aes(x = gdpPercap, y = lifeExp)
+) +
   geom_point()
 ```
 
@@ -160,13 +161,13 @@ Packages listed as "recommended" inherit the attributes of being widely used and
 
 ```{r 00-Introduction-7, echo = FALSE}
 x <- installed.packages()
-as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>%
+as.data.frame(x[ !is.na(x[, "Priority"]), c("Package", "Priority")][1:20, ]) %>%
   dplyr::filter(Priority == "base") %>%
   dplyr::mutate(Package = as.character(Package))
 ```
 
 ```{r 00-Introduction-8, echo = FALSE}
-as.data.frame(x[ !is.na(x[ ,"Priority"]), c("Package", "Priority")][1:20, ]) %>%
+as.data.frame(x[ !is.na(x[, "Priority"]), c("Package", "Priority")][1:20, ]) %>%
   dplyr::filter(Priority == "recommended")
 ```
 
@@ -314,5 +315,6 @@ sample_df <- read.csv("sample.csv")
 - R is supported in other "general purpose IDE's" (VScode, Sublime Text, Atom, Vim, etc.)
 
 ```{r 00-Introduction-21, child = here("script", "0.Rmd"), eval = TRUE}
+
 ```
 
