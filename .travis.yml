@@ -1,9 +1,17 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: true
 cache: packages
-latex: false
+latex: false # didn't work with lualatex out of the box
+
+addons:
+  apt:
+    packages:
+      - lmodern
+      - texlive-xetex
+      - texlive-luatex
+      - texlive-latex-recommended
 
 #before_install
 before_install:

@@ -29,6 +29,10 @@ flights
 ?flights
 ```
 
+```{r 22-example-data-help, eval = FALSE}
+?flights
+```
+
 The function `dplyr::filter()` helps you to reduce your dataset to the observations (rows) of interest.
 The filter condition can use any of the dataset's variables and needs to be a logical expression.
 

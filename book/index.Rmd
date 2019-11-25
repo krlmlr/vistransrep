@@ -4,15 +4,23 @@ author: "Kirill Müller, Tobias Schieferdecker, Patrick Schratz"
 date: "`r format(lubridate::with_tz(Sys.time(), 'CET'), '%d %B %Y, %H:%M %Z')`"
 documentclass: "book"
 site: bookdown::bookdown_site
+bibliography: book.bib
+biblio-style: apa-old.cls
+link-citations: true
+nocite: "@grolemund2017"
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(fig.width = 3, fig.height = 2, fig.align = "right")
 options(tibble.print_min = 3, tibble.print_max = 5, max.print = 20)
 if (!knitr::is_latex_output()) {
   options(crayon.enabled = TRUE, pillar.bold = TRUE)
   fansi::set_knit_hooks(knitr::knit_hooks)
+} else {
+  options(width = 62)
 }
+library(tidyverse)
 library(here)
 
 this_repo <- function(...) {
@@ -22,6 +30,14 @@ this_repo <- function(...) {
 vistransrep_repo <- function(...) {
   file.path("https://github.com/krlmlr/vistransrep-proj/tree/master", ...)
 }
+
+# Override
+attach(list(
+  view = function(x) {
+    print(x)
+    invisible(x)
+  }
+))
 ```
 
 
@@ -31,11 +47,10 @@ See the controls at the top of the website for searching, font size, editing, an
 
 ## Links {-}
 
-- This website: https://krlmlr.github.io/vistransrep/
+- This website: https://krlmlr.github.io/vistransrep/book
 
 - Scripts and installation instructions: `r vistransrep_repo()`
     - Prepared scripts: `r vistransrep_repo("script")`
-    - Live code: `r vistransrep_repo("live")`
 
 - The source project for this material: `r this_repo()`
 
@@ -43,12 +58,12 @@ See the controls at the top of the website for searching, font size, editing, an
 
 <details><summary>Click to expand</summary>
 
-```{r include = FALSE}
+```{r index-1, include = FALSE}
 library(tidyverse)
 library(here)
 ```
 
-```{r}
+```{r index-2}
 withr::with_options(list(width = 80), print(sessioninfo::session_info()))
 ```
 

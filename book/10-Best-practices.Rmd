@@ -49,7 +49,7 @@ With a `DESCRIPTION` file defined, create a new `.R` file and save it in the `R/
 (Create this directory if it does not exist.)
 Create a function in this file, save the file:
 
-```{r}
+```{r 10-Best-practices-1}
 hi <- function(text = "Hello, world!") {
   print(text)
   invisible(text)
@@ -64,14 +64,14 @@ Run `devtools::load_all()` again, you can use the shortcut Ctrl + Shift + L or C
 
 Check that you can run `hi()` in the console:
 
-```{r}
+```{r 10-Best-practices-2}
 hi()
 hi("Wow!")
 ```
 
 Edit the function:
 
-```{r}
+```{r 10-Best-practices-3}
 hi <- function(text = "Wow!") {
   print(text)
   invisible(text)
@@ -84,7 +84,7 @@ Run `devtools::load_all()` again, you can use the shortcut Ctrl + Shift + L or C
 
 Check that the new implementation of `hi()` is active:
 
-```{r}
+```{r 10-Best-practices-4}
 hi()
 ```
 
@@ -96,7 +96,7 @@ Do not store executable scripts, use a `script/` directory.
 
 The following intuitive annotation syntax is a standard way to create documentation for your functions:
 
-```{r}
+```{r 10-Best-practices-5}
 #' Print a welcome message
 #' 
 #' This function prints "Wow!", or a custom text, on the console.
@@ -150,7 +150,7 @@ Run the new test with `devtools::test()`, you can use the shortcut Ctrl + Shift 
 
 Check that the test actually detects failures by modifying the implementation of `hi()` and rerunning the test:
 
-```{r}
+```{r 10-Best-practices-6}
 hi <- function(text = "Oops!") {
   print(text)
   invisible(text)

@@ -10,7 +10,7 @@ rm(list = ls())
 ### Pivoting
 
 ```
-```{r 41-setup-41-spread-r}
+```{r 41-setup-41-pivot-r}
 library(tidyverse)
 library(nycflights13)
 
@@ -252,7 +252,7 @@ table4 %>%
 
 ### Tidy data
 
-Adapted from "R for data science:
+From "R for data science":
 
 > In a tidy dataset,
 >
@@ -260,7 +260,7 @@ Adapted from "R for data science:
 > 1. each observation must have its own row.
 > 1. each value must have its own cell.
 
-![Tidy data](https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png)
+![Tidy data](img/tidy-1.png)
 
 The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
 The column names define, in addition to the measurement type `new_sp`, `new_sn`, `new_ep` and `newrel`, the age and sex stratum of the corresponding measurements.

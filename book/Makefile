@@ -9,6 +9,9 @@ purl:
 id:
 	R -q -f id.R
 
+pdf:
+	Rscript -e 'bookdown::render_book("bookdown::pdf_book", envir = new.env())'
+
 push:
 	git subtree push --prefix proj ../vistransrep-proj website
 

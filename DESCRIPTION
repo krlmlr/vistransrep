@@ -4,13 +4,17 @@ Imports:
     conflicted,
     dbplyr,
     DT,
+    gapminder,
     ggpubr,
+    ggthemes,
     here,
     leaflet,
     nycflights13,
     plotly,
     RSQLite,
+    rio,
     sessioninfo,
     shiny,
     tidyverse,
     xaringan
+Encoding: UTF-8

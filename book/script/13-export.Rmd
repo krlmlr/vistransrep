@@ -1,0 +1,85 @@
+## Export & saving
+
+The default way to export plots in {{ggplot2}} is by using `ggsave()`. 
+
+It differs slightly from other "exporting" functions in R because it comes with some smart defaults:
+
+> ggsave() is a convenient function for saving a plot. It defaults to **saving the last plot** that you displayed, using the size of the current graphics device. It also **guesses the type** of graphics device from the extension.
+
+```{r eval = FALSE}
+ggplot(mtcars, aes(mpg, wt)) + 
+  geom_point()
+```
+
+```{r}
+ggsave("mtcars.pdf")
+ggsave("mtcars.png")
+```
+
+```{r echo = FALSE, message=FALSE, results='hide'}
+file.remove(c("mtcars.pdf", "mtcars.png"))
+```
+
+This might seem natural to you but is is not.
+Let's compare base R and {{ggplot2}}.
+
+### Base R vs. {{ggplot2}}
+
+In base R
+
+- one needs to open a specific graphic device first
+
+- then create the plot 
+
+- and close the graphic device again.
+
+```{r eval = FALSE, out.width="100%"}
+png("Plot.png")
+plot(mpg$displ, mpg$hwy)
+dev.off()
+```
+
+```{r eval=FALSE}
+ggplot(mpg, aes(disply, hwy)) +
+  geom_point()
+ggsave("Plot.png")
+```
+
+Base R plotting functions come with suboptimal defaults
+
+- saving in pixels (differs on every monitors)
+
+- saving as a square image
+
+- no option to specify the DPI (dots per inch)
+
+### Storing the plot as an R object
+
+One of the major advantages of `ggplot()` is that you can save a plot as an R object and modify it later.
+
+This is not possible with base R plots.
+
+```{r eval=TRUE, fig.height=3}
+p <- ggplot(mpg, aes(displ, hwy)) +
+  geom_point()
+
+p + geom_point(aes(color = class))
+
+print(p)
+```
+
+```{r}
+str(p)
+```
+
+### Best practices for exporting
+
+Some best practices:
+
+- Use a reasonable high DPI. A value of "300" is ok in most cases.
+
+- Save in "inches" and not in "pixels". The latter always differs on screens with different resolutions (`png()` uses pixels by default.)
+
+- Always specify a file name to ensure the right plot is chosen. Do not rely on the default behavior of `ggsave()` (even though it might seem convenient) which takes the last visualized plot.
+
+- An alternative to `ggsave()` is `cowplot::save_plot()` which comes with sensible defaults for multi-plot arrangements.

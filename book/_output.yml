@@ -1,18 +1,21 @@
+bookdown::pdf_book:
+  dev: "cairo_pdf"
+  includes:
+    in_header: preamble.tex
+  latex_engine: lualatex
+  citation_package: natbib
+  keep_tex: yes
+  highlight: haddock
+
 bookdown::gitbook:
   css: scroll.css
   config:
     download: [pdf]
-    edit:
-        link: https://github.com/krlmlr/vistransrep/edit/master/%s
+    edit: null
     sharing:
       facebook: no
       twitter: no
       linkedin: no
       github: yes
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: pdflatex
-  citation_package: natbib
-  keep_tex: yes
+
 bookdown::epub_book: default
