@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{25 November 2019, 18:55 CET}
+    \date{25 November 2019, 21:45 CET}
 
 \usepackage{booktabs}
 
@@ -295,19 +295,31 @@ Click to expand
 
 Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4.0}.
 
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+The \texttt{tidyverse} has quickly developed over the last years.
+Its first implementation as a collection of partly older packages was in the second half of 2016.
+All its packages ``share an underlying design philosophy, grammar, and data structures.''\footnote{citation from \href{https://www.tidyverse.org/}{tidyverse homepage}}
+It is for sure difficult to tell, if ``learning the \texttt{tidyverse}'' is a hard task, since the result of this assessment might differ from person to person.
+We do believe though, that there are concepts in its approach, which -- when grasped -- have the potential to increase one's productivity, since code creation will seem more natural.
+While this might be true for all languages (once you speak it well enough, things go smoothly), in our opinion the \texttt{tidyverse} worth exploring in depth, since it is
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
+\item
+  evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
+\end{enumerate}
+
 \hypertarget{speakers}{%
-\section*{Speakers}\label{speakers}}
-\addcontentsline{toc}{section}{Speakers}
+\section{Speakers}\label{speakers}}
 
-\hypertarget{kirill-muxfcller-krlmlr}{%
-\subsection*{\texorpdfstring{Kirill Müller (\href{https://github.com/krlmlr}{@krlmlr})}{Kirill Müller (@krlmlr)}}\label{kirill-muxfcller-krlmlr}}
-\addcontentsline{toc}{subsection}{Kirill Müller (\href{https://github.com/krlmlr}{@krlmlr})}
+\textbf{Kirill Müller} (@krlmlr)
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-
-\hypertarget{patrick-schratz-pat-s}{%
-\subsection*{\texorpdfstring{Patrick Schratz (\href{https://github.com/pat-s}{@pat-s})}{Patrick Schratz (@pat-s)}}\label{patrick-schratz-pat-s}}
-\addcontentsline{toc}{subsection}{Patrick Schratz (\href{https://github.com/pat-s}{@pat-s})}
+\textbf{Patrick Schratz} (@pat-s)
 
 \begin{flushright}\includegraphics{img/pjs} \end{flushright}
 
@@ -353,35 +365,12 @@ Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4
   \end{itemize}
 \end{itemize}
 
-\hypertarget{introduction-overview}{%
-\section*{Introduction \& overview}\label{introduction-overview}}
-\addcontentsline{toc}{section}{Introduction \& overview}
-
-The \texttt{tidyverse} has quickly developed over the last years.
-Its first implementation as a collection of partly older packages was in the second half of 2016.
-All its packages ``share an underlying design philosophy, grammar, and data structures.''\footnote{citation from \href{https://www.tidyverse.org/}{tidyverse homepage}}
-It is for sure difficult to tell, if ``learning the \texttt{tidyverse}'' is a hard task, since the result of this assessment might differ from person to person.
-We do believe though, that there are concepts in its approach, which -- when grasped -- have the potential to increase one's productivity, since code creation will seem more natural.
-While this might be true for all languages (once you speak it well enough, things go smoothly), in our opinion the \texttt{tidyverse} worth exploring in depth, since it is
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
-\item
-  evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
-\end{enumerate}
+\hypertarget{overview}{%
+\section{Overview}\label{overview}}
 
 This course covers several topics, which everyone working more intently with the \texttt{tidyverse} almost inevitably needs to deal with at some point or another.
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.
-
-\hypertarget{part-r-rstudio}{%
-\part{R \& RStudio}\label{part-r-rstudio}}
-
-\hypertarget{r}{%
-\chapter{R}\label{r}}
 
 \hypertarget{r-as-a-toolkit}{%
 \section{R as a toolkit}\label{r-as-a-toolkit}}
@@ -610,10 +599,7 @@ Packages listed as ``recommended'' inherit the attributes of being widely used a
 \end{itemize}
 
 \hypertarget{rstudio}{%
-\chapter{RStudio}\label{rstudio}}
-
-\hypertarget{ide-structure}{%
-\section{IDE structure}\label{ide-structure}}
+\section{RStudio}\label{rstudio}}
 
 \(\rightarrow\) Exists to \textbf{boost} your productivity
 
@@ -813,20 +799,1102 @@ Embracing the grammar of graphics.
 
 This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{ggplot2 package}.
 
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+In the \{tidyverse\} the standard package for visualization is \{ggplot2\}.
+The functions of this package follow a quite unique logic (the ``grammar of graphics'') and therefore require a special syntax.
+In this section we want to give a short introduction, how to get started with \{ggplot2\}.
+
+\hypertarget{creating-the-plot-skeleton-ggplot}{%
+\subsection{\texorpdfstring{Creating the plot skeleton: \texttt{ggplot()}}{Creating the plot skeleton: ggplot()}}\label{creating-the-plot-skeleton-ggplot}}
+
+The main function in the package is \texttt{ggplot()}, which prepares/creates a graph.
+By setting the arguments of the function, you can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Choose the dataset to be plotted (argument \texttt{data})
+\item
+  Choose the mapping of the variables to the axes (or further forms of setting apart data) in the argument \texttt{mapping}.
+  This argument takes the result of the function \texttt{aes()}, which you will get to know in many different examples.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-empty-graph-1} \end{flushright}
+
+This created only an empty plot, because we did not tell \{ggplot2\} which geometry we want to use to display the variables we set in the \texttt{ggplot()} call.
+We do this by adding (with the help of the \texttt{+} operator after the \texttt{ggplot()}-call) a different function starting with \texttt{geom\_} to provide this information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-scatterplot-1} \end{flushright}
+
+This is maybe the most basic plot you can create.
+To map a different variable than \texttt{disp} to the x-axis, change the respective variable name in the \texttt{aes()} argument.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ cyl, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-aes-determines-which-variables-are-plotted-1} \end{flushright}
+
+You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ hwy, }\DataTypeTok{y =}\NormalTok{ cty)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-pattern-unchanged-if-only-variables-are-plotted-1} \end{flushright}
+
+Always good to have: The \emph{ggplot2} cheatsheet (\url{https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf}).
+
+\hypertarget{what-is-a-statistical-graphic}{%
+\subsection{What is a ``statistical graphic''?}\label{what-is-a-statistical-graphic}}
+
+Wilkinson (2005) defines a grammar to describe the basic elements of a
+statistical graphic:
+
+\begin{quote}
+``{[}\ldots{}{]} a statistical graphic is a mapping from data to
+aesthetic attributes (colour, shape, size) of geometric objects
+(points, line, bars).''
+\end{quote}
+
+\hfill (Wickham, 2009)
+
+\hypertarget{terminology}{%
+\subsection{Terminology}\label{terminology}}
+
+\begin{itemize}
+\item
+  \textbf{Data:} The data to visualize -- consists of variables and observations.
+\item
+  \textbf{Geoms:} Geometric objects which represent the data (points, lines, polygons, etc.).
+\item
+  \textbf{Mappings:} Match variables with aesthetic attributes of the (geometric) objects.
+\item
+  \textbf{Scales:} Mapping of the ``data units'' to ``physical units'' of the geometric objects (e.g.~length, diameter or color); defines the \emph{legend}.
+\item
+  \textbf{Coord:} System of coordinates, mapping of the data to a two dimensional plain of the graphic; defines the \emph{axes} and \emph{grid}.
+\item
+  \textbf{Stats:} Statistical transformation of the data (5 point summary, classification, etc.).
+\item
+  \textbf{Facetting:} Division and illustration of data subsets, also known as ``Trellis'' images.
+\end{itemize}
+
+\hypertarget{the-grammar-of-graphics}{%
+\subsection{The Grammar of graphics \ldots{}}\label{the-grammar-of-graphics}}
+
+\textbf{is \ldots{}}
+
+a formal guideline which describes the dependencies between all elements of a
+statistical graphic.
+
+\textbf{isn't \ldots{}}
+
+\begin{itemize}
+\tightlist
+\item
+  a manual which tells us \emph{which graphic} should be created for a given question.
+\item
+  a specification \emph{how} a statistical graphic should look like.
+\end{itemize}
+
+\hypertarget{about-ggplot2}{%
+\subsection{About \{ggplot2\}}\label{about-ggplot2}}
+
+\begin{verbatim}
+## Package: ggplot2
+## Version: 3.2.1
+## Title: Create Elegant Data Visualisations Using the Grammar of Graphics
+## Depends: R (>= 3.2)
+## Imports: digest, grDevices, grid, gtable (>= 0.1.1), lazyeval, MASS, mgcv,
+##          reshape2, rlang (>= 0.3.0), scales (>= 0.5.0), stats, tibble,
+##          viridisLite, withr (>= 2.0.0)
+## License: GPL-2 | file LICENSE
+## URL: http://ggplot2.tidyverse.org, https://github.com/tidyverse/ggplot2
+## BugReports: https://github.com/tidyverse/ggplot2/issues
+## Encoding: UTF-8
+## Author: Hadley Wickham [aut, cre], Winston Chang [aut], Lionel Henry [aut],
+##          Thomas Lin Pedersen [aut], Kohske Takahashi [aut], Claus Wilke [aut],
+##          Kara Woo [aut], Hiroaki Yutani [aut], RStudio [cph]
+## Maintainer: Hadley Wickham <hadley@rstudio.com>
+## 
+## -- File:
+\end{verbatim}
+
+\hypertarget{geom_-functions}{%
+\section{\texorpdfstring{\texttt{geom\_*} functions}{geom\_* functions}}\label{geom_-functions}}
+
+\texttt{geom\_*} functions are added to the main \texttt{ggplot()} call via the ``+'' operator and
+(usually) placed on a new line.
+
+A list of all available ``geoms'' can be found here:
+
+\url{https://ggplot2.tidyverse.org/reference/\#section-layer-geoms}
+
+The most popular ones are
+
+\begin{itemize}
+\item
+  \texttt{geom\_point()}
+\item
+  \texttt{geom\_histogram()}
+\item
+  \texttt{geom\_boxplot()}
+\item
+  \texttt{geom\_bar()}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+The \texttt{geom\_*} family can be divided into three parts:
+
+\textbf{One variable plots}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{geom\_hist()}
+\item
+  \texttt{geom\_bar()}
+\item
+  etc.
+\end{itemize}
+
+\textbf{Two variable plots}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{geom\_point()}
+\item
+  \texttt{geom\_line()}
+\item
+  \texttt{geom\_boxplot()}
+\item
+  etc.
+\end{itemize}
+
+\textbf{Three variables plots}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{geom\_raster()}
+\item
+  \texttt{geom\_sf()}
+\item
+  \texttt{geom\_tile()}
+\item
+  etc.
+\end{itemize}
+
+\hypertarget{arguments}{%
+\subsection{Arguments}\label{arguments}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(data, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(), ...) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_XXX}\NormalTok{(}\DataTypeTok{mapping =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{data =} \OtherTok{NULL}\NormalTok{, stat, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{geom\_*} functions have the same basic arguments as \texttt{ggplot()}.
+In addition, they come with more arguments specific to the respective ``geom''.
+
+\textbf{stat}
+
+The \texttt{stat} parameter defines a statistical transformation:
+
+\begin{itemize}
+\item
+  if set to \texttt{"identity"}: No transformation
+\item
+  if set to \texttt{boxplot}: Boxplot transformation
+\item
+  etc.
+\end{itemize}
+
+\textbf{position}
+
+The same applies to the \texttt{position} argument.
+In the example below, points are not adjusted and just visualized where they appear in the data.
+
+In the case of boxplots, a special position arrangement function is used to arrange everything nicely: \texttt{position\_dodge2()} (here denoted by \texttt{position\ =\ "dodge2"}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{data =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{,}
+  \DataTypeTok{position =} \StringTok{"identity"}\NormalTok{, ..., }\DataTypeTok{na.rm =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{show.legend =} \OtherTok{NA}\NormalTok{,}
+  \DataTypeTok{inherit.aes =} \OtherTok{TRUE}\NormalTok{)}
+
+\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{mapping =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{data =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{stat =} \StringTok{"boxplot"}\NormalTok{,}
+  \DataTypeTok{position =} \StringTok{"dodge2"}\NormalTok{, ..., }\DataTypeTok{outlier.colour =} \OtherTok{NULL}\NormalTok{,}
+  \DataTypeTok{outlier.color =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{outlier.fill =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{outlier.shape =} \DecValTok{19}\NormalTok{,}
+  \DataTypeTok{outlier.size =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{outlier.stroke =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{outlier.alpha =} \OtherTok{NULL}\NormalTok{,}
+  \DataTypeTok{notch =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{notchwidth =} \FloatTok{0.5}\NormalTok{, }\DataTypeTok{varwidth =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{FALSE}\NormalTok{,}
+  \DataTypeTok{show.legend =} \OtherTok{NA}\NormalTok{, }\DataTypeTok{inherit.aes =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\texttt{geom\_boxplot()} needs one variable to be of class \texttt{character} or \texttt{factor} (better) to initiate the grouping.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(mpg}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class, }\DataTypeTok{y =}\NormalTok{ displ)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-23-1} \end{flushright}
+
+\hypertarget{combining-geoms}{%
+\subsection{Combining geoms}\label{combining-geoms}}
+
+Multiple \texttt{geom\_*} functions can be used in one plot.
+A combination that is often used together is \texttt{geom\_point()} and \texttt{geom\_smooth()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-24-1} \end{flushright}
+
+Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
+
+\hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+The modular principle of \texttt{ggplot2} enables:
+
+\begin{itemize}
+\tightlist
+\item
+  the combination of any geometric objects (geoms).
+\item
+  a high flexibility and customizability
+\end{itemize}
+
+An extensive description of all geometric objects can be found on the \texttt{ggplot2} website \url{https://ggplot2.tidyverse.org/reference/}.
+
+\hypertarget{export-saving}{%
+\section{Export \& saving}\label{export-saving}}
+
+The default way to export plots in \{\{ggplot2\}\} is by using \texttt{ggsave()}.
+
+It differs slightly from other ``exporting'' functions in R because it comes with some smart defaults:
+
+\begin{quote}
+ggsave() is a convenient function for saving a plot. It defaults to \textbf{saving the last plot} that you displayed, using the size of the current graphics device. It also \textbf{guesses the type} of graphics device from the extension.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(mpg, wt)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.pdf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 3 x 2 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 3 x 2 in image
+\end{verbatim}
+
+This might seem natural to you but is is not.
+Let's compare base R and \{\{ggplot2\}\}.
+
+\hypertarget{base-r-vs.-ggplot2}{%
+\subsection{Base R vs. \{\{ggplot2\}\}}\label{base-r-vs.-ggplot2}}
+
+In base R
+
+\begin{itemize}
+\item
+  one needs to open a specific graphic device first
+\item
+  then create the plot
+\item
+  and close the graphic device again.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{png}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(mpg}\OperatorTok{$}\NormalTok{displ, mpg}\OperatorTok{$}\NormalTok{hwy)}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(disply, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Base R plotting functions come with suboptimal defaults
+
+\begin{itemize}
+\item
+  saving in pixels (differs on every monitors)
+\item
+  saving as a square image
+\item
+  no option to specify the DPI (dots per inch)
+\end{itemize}
+
+\hypertarget{storing-the-plot-as-an-r-object}{%
+\subsection{Storing the plot as an R object}\label{storing-the-plot-as-an-r-object}}
+
+One of the major advantages of \texttt{ggplot()} is that you can save a plot as an R object and modify it later.
+
+This is not possible with base R plots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-30-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-30-2} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ data       :Classes 'tbl_df', 'tbl' and 'data.frame': 234 obs. of  11 variables:
+##   ..$ manufacturer: chr [1:234] "audi" "audi" "audi" "audi" ...
+##   ..$ model       : chr [1:234] "a4" "a4" "a4" "a4" ...
+##   ..$ displ       : num [1:234] 1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+##   ..$ year        : int [1:234] 1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+##   ..$ cyl         : int [1:234] 4 4 4 4 6 6 6 4 4 4 ...
+##   ..$ trans       : chr [1:234] "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+##   ..$ drv         : chr [1:234] "f" "f" "f" "f" ...
+##   ..$ cty         : int [1:234] 18 21 20 21 16 18 18 18 16 20 ...
+##   ..$ hwy         : int [1:234] 29 29 31 30 26 26 27 26 25 28 ...
+##   ..$ fl          : chr [1:234] "p" "p" "p" "p" ...
+##   ..$ class       : chr [1:234] "compact" "compact" "compact" "compact" ...
+##  $ layers     :List of 1
+##   ..$ :Classes 'LayerInstance', 'Layer', 'ggproto', 'gg' <ggproto object: Class LayerInstance, Layer, gg>
+##     aes_params: list
+##     compute_aesthetics: function
+##     compute_geom_1: function
+##     compute_geom_2: function
+##     compute_position: function
+##     compute_statistic: function
+##     data: waiver
+##     draw_geom: function
+##     finish_statistics: function
+##     geom: <ggproto object: Class GeomPoint, Geom, gg>
+##         aesthetics: function
+##         default_aes: uneval
+##         draw_group: function
+##         draw_key: function
+##         draw_layer: function
+##         draw_panel: function
+##         extra_params: na.rm
+##         handle_na: function
+##         non_missing_aes: size shape colour
+##         optional_aes: 
+##         parameters: function
+##         required_aes: x y
+##         setup_data: function
+##         use_defaults: function
+##         super:  <ggproto object: Class Geom, gg>
+##     geom_params: list
+##     inherit.aes: TRUE
+##     layer_data: function
+##     map_statistic: function
+##     mapping: NULL
+##     position: <ggproto object: Class PositionIdentity, Position, gg>
+##         compute_layer: function
+##         compute_panel: function
+##         required_aes: 
+##         setup_data: function
+##         setup_params: function
+##         super:  <ggproto object: Class Position, gg>
+##     print: function
+##     setup_layer: function
+##     show.legend: NA
+##     stat: <ggproto object: Class StatIdentity, Stat, gg>
+##         aesthetics: function
+##         compute_group: function
+##         compute_layer: function
+##         compute_panel: function
+##         default_aes: uneval
+##         extra_params: na.rm
+##         finish_layer: function
+##         non_missing_aes: 
+##         parameters: function
+##         required_aes: 
+##         retransform: TRUE
+##         setup_data: function
+##         setup_params: function
+##         super:  <ggproto object: Class Stat, gg>
+##     stat_params: list
+##     super:  <ggproto object: Class Layer, gg> 
+##  $ scales     :Classes 'ScalesList', 'ggproto', 'gg' <ggproto object: Class ScalesList, gg>
+##     add: function
+##     clone: function
+##     find: function
+##     get_scales: function
+##     has_scale: function
+##     input: function
+##     n: function
+##     non_position_scales: function
+##     scales: list
+##     super:  <ggproto object: Class ScalesList, gg> 
+##  $ mapping    :List of 2
+##   ..$ x: language ~displ
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   ..$ y: language ~hwy
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   ..- attr(*, "class")= chr "uneval"
+##  $ theme      : list()
+##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' <ggproto object: Class CoordCartesian, Coord, gg>
+##     aspect: function
+##     backtransform_range: function
+##     clip: on
+##     default: TRUE
+##     distance: function
+##     expand: TRUE
+##     is_free: function
+##     is_linear: function
+##     labels: function
+##     limits: list
+##     modify_scales: function
+##     range: function
+##     render_axis_h: function
+##     render_axis_v: function
+##     render_bg: function
+##     render_fg: function
+##     setup_data: function
+##     setup_layout: function
+##     setup_panel_params: function
+##     setup_params: function
+##     transform: function
+##     super:  <ggproto object: Class CoordCartesian, Coord, gg> 
+##  $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' <ggproto object: Class FacetNull, Facet, gg>
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  <ggproto object: Class FacetNull, Facet, gg> 
+##  $ plot_env   :<environment: R_GlobalEnv> 
+##  $ labels     :List of 2
+##   ..$ x: chr "displ"
+##   ..$ y: chr "hwy"
+##  - attr(*, "class")= chr [1:2] "gg" "ggplot"
+\end{verbatim}
+
+\hypertarget{best-practices-for-exporting}{%
+\subsection{Best practices for exporting}\label{best-practices-for-exporting}}
+
+Some best practices:
+
+\begin{itemize}
+\item
+  Use a reasonable high DPI. A value of ``300'' is ok in most cases.
+\item
+  Save in ``inches'' and not in ``pixels''. The latter always differs on screens with different resolutions (\texttt{png()} uses pixels by default.)
+\item
+  Always specify a file name to ensure the right plot is chosen. Do not rely on the default behavior of \texttt{ggsave()} (even though it might seem convenient) which takes the last visualized plot.
+\item
+  An alternative to \texttt{ggsave()} is \texttt{cowplot::save\_plot()} which comes with sensible defaults for multi-plot arrangements.
+\end{itemize}
+
+\hypertarget{two-variable-plots}{%
+\section{Two variable plots}\label{two-variable-plots}}
+
+``Two variable plots'' can be split into sub-categories:
+
+\begin{itemize}
+\item
+  Continuous X and Y
+\item
+  Continuous X and discrete Y (and vice-versa)
+\item
+  Discrete X and Y
+\end{itemize}
+
+\hypertarget{continuous-x-and-y}{%
+\subsection{Continuous X and Y}\label{continuous-x-and-y}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ cty, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-1} \end{flushright}
+
+\hypertarget{discrete-x-and-continuous-y}{%
+\subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-33-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{discrete-x-and-y}{%
+\subsection{Discrete X and Y}\label{discrete-x-and-y}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class, }\DataTypeTok{y =}\NormalTok{ manufacturer)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{flushright}
+
+\hypertarget{one-variable-plots}{%
+\section{One variable plots}\label{one-variable-plots}}
+
+This type of plots visualizes ONE variable in a certain way.
+
+To do this in a 2D space, a \textbf{statistical transformation} of the variable is required for the missing axis.
+
+\hypertarget{continuous-variables}{%
+\subsection{Continuous variables}\label{continuous-variables}}
+
+\begin{itemize}
+\item
+  Histogram: Most common way - grouping the variable into equal bins
+\item
+  \texttt{geom\_density()}, \texttt{geom\_freq()}, \texttt{geom\_dotplot()} and \texttt{geom\_area()} are mainly doing the same as \texttt{geom\_hist()}
+\end{itemize}
+
+We supply only \emph{one} variable to the \texttt{mapping} argument with the help of \texttt{aes()}.
+This one is automatically grouped into 30 bins.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
+
+\hypertarget{discrete-variables}{%
+\subsection{Discrete variables}\label{discrete-variables}}
+
+For discrete data, there is actually only one visualization method - the bar plot.
+
+\smallskip
+
+\emph{Note the difference of \texttt{geom\_bar()} compared to \texttt{geom\_hist()}.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+
+\hypertarget{colors-and-shape}{%
+\section{Colors and shape}\label{colors-and-shape}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{static-colors}{%
+\subsection{Static colors}\label{static-colors}}
+
+There are many ways to set a color for a specific geom.
+The simplest is to set all observations of a geom to a dedicated color, supplied as a character value.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-different-color-1} \end{flushright}
+
+\hypertarget{dynamic-colors}{%
+\subsection{Dynamic colors}\label{dynamic-colors}}
+
+Dynamic colors, which depend on a variable of the dataset, need to be passed within an \texttt{aes()} call.
+A direct specification like in the example above with \texttt{color\ =\ "blue"} only works for static colors.
+
+\emph{Good to know}: While it is possible to include \texttt{color\ =\ class} directly in the \texttt{aes()} call of the \texttt{ggplot()} function, it is recommended to set it within the particular geom.
+This is for two reasons:
+
+\begin{itemize}
+\tightlist
+\item
+  When working with multiple geoms, you can use different mappings for each geom without any possibility of conflicts
+\item
+  When reading the code, it becomes more clear which settings apply to which geoms
+\end{itemize}
+
+\textbf{Discrete}
+
+Different colors can be mapped to the values of a variable by supplying a variable of the dataset.
+The \texttt{class} variable is discrete and leads to a discrete color scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-discrete-1} \end{flushright}
+
+\textbf{Continuous}
+
+The \texttt{cty} attribute is continuous, the color scale is adapted accordingly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ cty))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-continuous-1} \end{flushright}
+
+\hypertarget{shape}{%
+\subsection{Shape}\label{shape}}
+
+One more degree of freedom is the shape of the symbols to be plotted.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{shape =}\NormalTok{ fl))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-shape-as-3-rd-aesthetic-1} \end{flushright}
+
+\hypertarget{combining-color-and-shape}{%
+\subsection{Combining color and shape}\label{combining-color-and-shape}}
+
+Color and shape can be combined.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class, }\DataTypeTok{shape =}\NormalTok{ drv))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-shape-mapped-on-drv-1} \end{flushright}
+
+And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{size =}\NormalTok{ cty}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-size-as-3-rd-aesthetic-1} \end{flushright}
+
+You can mix different aesthetic mappings in order to produce a plot with densely packed information.
+However, be aware that adding too much information to a plot does not necessarily make it better.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =}\NormalTok{ class,}
+    \DataTypeTok{size =}\NormalTok{ cty}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-mix-to-increase-num-of-aesthetics-1} \end{flushright}
+
+\hypertarget{transparency}{%
+\subsection{Transparency}\label{transparency}}
+
+Semi-transparency is another way to better display your data when observations are overlapping.
+This is useful to get an impression of how many data points share the same coordinates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-semi-transparency-1} \end{flushright}
+
+\hypertarget{what-can-go-wrong}{%
+\subsection{What can go wrong}\label{what-can-go-wrong}}
+
+If you try to specify a color in the \texttt{mapping}-argument of the main \texttt{ggplot()} call, you will face an error since a mapping of a variable to an aesthetic is expected.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =}\NormalTok{ blue}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in FUN(X[[i]], ...): object 'blue' not found
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{flushright}
+
+R treats objects without quotation marks in a special way, expecting them to be variables.
+Since \texttt{blue} is not a variable of \texttt{mpg}, this did not work.
+Use quotation marks if you mean a string, as opposed to a variable or object name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 234 x 11
+##   manufacturer model displ  year   cyl trans drv     cty   hwy
+##   <chr>        <chr> <dbl> <int> <int> <chr> <chr> <int> <int>
+## 1 audi         a4      1.8  1999     4 auto~ f        18    29
+## 2 audi         a4      1.8  1999     4 manu~ f        21    29
+## 3 audi         a4      2    2008     4 manu~ f        20    31
+## # ... with 231 more rows, and 2 more variables: fl <chr>,
+## #   class <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"mpg"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "mpg"
+\end{verbatim}
+
+So what if we pass the color as a character variable?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy,}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-quoted-color-in-aes-1} \end{flushright}
+
+At least there was no error, but now the constant value \texttt{blue} is mapped to the first default color of the color mapping, which happens to be red.
+We could have been fooled, if it had been blue.
+Recall, it is best to specify geom related mappings with the respective geom function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{x =}\NormalTok{ displ,}
+    \DataTypeTok{y =}\NormalTok{ hwy}
+\NormalTok{  )}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}
+    \DataTypeTok{color =} \StringTok{"blue"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{flushright}
+
+\hypertarget{labels}{%
+\section{Labels}\label{labels}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+For character variables there is further way of integrating its value to a plot.
+\texttt{geom\_text()} takes a \texttt{label} argument, which influences the plot in the following way.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{label =} \StringTok{"A"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-geom-text-1} \end{flushright}
+
+Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset in the \texttt{mapping} argument of \texttt{ggplot()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{label =} \StringTok{"drv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-set-label-in-aes-for-geom-text-1} \end{flushright}
+
+Right, of course we need to pass the variable without quotation marks, otherwise it is interpreted as a (constant) character variable.
+When changing this, a vector with the values of the variable is passed on to \texttt{geom\_text()}.
+This is one way of including the values of character variables in a plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ drv))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-3-rd-aesthetic-as-label-for-geom-text-1} \end{flushright}
+
+When adding more than one \texttt{geom()}-function, multiple geometries are added to the plot.
+However, because \texttt{geom\_point()} has no support for passing a label, we can only use this mapping in \texttt{geom\_text()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ drv))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-1} \end{flushright}
+
+Since this looks just slightly odd, let's try to make it more apparent, what is happening.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ drv), }\DataTypeTok{size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-good-1} \end{flushright}
+
 \hypertarget{vis-adv}{%
 \chapter{\{ggplot2\} advanced}\label{vis-adv}}
 
 \hypertarget{part-tidying-and-transforming}{%
 \part{Tidying and transforming}\label{part-tidying-and-transforming}}
-
-\hypertarget{import}{%
-\chapter{Import}\label{import}}
-
-\begin{quote}
-Ingesting data.
-\end{quote}
-
-This chapter discusses data import with RStudio, with the help of the \href{https://readr.tidyverse.org/}{readr}, \href{https://readxl.tidyverse.org/}{readxl}, and \href{https://github.com/leeper/rio}{rio} packages.
 
 \hypertarget{transformation}{%
 \chapter{Transformation}\label{transformation}}
@@ -837,6 +1905,1930 @@ Using a consistent grammar of data manipulation.
 
 This chapter discusses data transformation with the \href{https://dplyr.tidyverse.org/}{dplyr package}.
 
+\hypertarget{package-conflicted}{%
+\section{Package: \{conflicted\}}\label{package-conflicted}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+This section is dedicated to show you the basic building blocks (i.e.~functions) of data analysis in R within the \{tidyverse\}.
+The package providing these is \{dplyr\}.
+
+Before starting, we would like to mention the package \{conflicted\}, which when loaded, will help detecting functions of the same name from different packages (an error is thrown in case of such situations).
+It furthermore helps to resolve these situations, by allowing you to choose, the function of which package you prefer (\texttt{conflicted::conflict\_prefer()}).
+You can see an example in the setup code.
+
+\hypertarget{filtering-dplyrfilter}{%
+\section{\texorpdfstring{Filtering: \texttt{dplyr::filter()}}{Filtering: dplyr::filter()}}\label{filtering-dplyrfilter}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+During this lecture we will be working with data from the package \{nycflights13\}, which contains flights in the year 2013 with their departure in New York City (airports: JFK, LGA or EWR) to destinations in the United States, Puerto Rico, and the American Virgin Islands.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?flights}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?flights}
+\end{Highlighting}
+\end{Shaded}
+
+The function \texttt{dplyr::filter()} helps you to reduce your dataset to the observations (rows) of interest.
+The filter condition can use any of the dataset's variables and needs to be a logical expression.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,730 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 8,727 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+If you use one or more variables of the dataset in the filter condition, a vectorized evaluation of the condition is taking place.
+Generally you can provide any logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dep_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,255 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1       NA           1630        NA       NA
+## 2  2013     1     1       NA           1935        NA       NA
+## 3  2013     1     1       NA           1500        NA       NA
+## # ... with 8,252 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Use \texttt{\&} or multiple filters to return only rows that match both criteria:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600} \OperatorTok{&}\StringTok{ }\NormalTok{arr_time }\OperatorTok{>}\StringTok{ }\DecValTok{2200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 19
+## # ... with 19 variables: year <int>, month <int>, day <int>,
+## #   dep_time <int>, sched_dep_time <int>, dep_delay <dbl>,
+## #   arr_time <int>, sched_arr_time <int>, arr_delay <dbl>,
+## #   carrier <chr>, flight <int>, tailnum <chr>, origin <chr>,
+## #   dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
+## #   minute <dbl>, time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{>=}\StringTok{ }\DecValTok{700} \OperatorTok{&}\StringTok{ }\NormalTok{arr_time }\OperatorTok{<}\StringTok{ }\DecValTok{800}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10,654 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1     1929           1920         9        3
+## 2  2013     1     1     1939           1840        59       29
+## 3  2013     1     1     2058           2100        -2        8
+## # ... with 1.065e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{>=}\StringTok{ }\DecValTok{700}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(arr_time }\OperatorTok{<}\StringTok{ }\DecValTok{800}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10,654 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1     1929           1920         9        3
+## 2  2013     1     1     1939           1840        59       29
+## 3  2013     1     1     2058           2100        -2        8
+## # ... with 1.065e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Use \texttt{\textbar{}} to return all rows that match either criterion or both:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600} \OperatorTok{|}\StringTok{ }\NormalTok{arr_time }\OperatorTok{>}\StringTok{ }\DecValTok{2200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 40,879 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 4.088e+04 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\hypertarget{sort-rows-dplyrarrange}{%
+\section{\texorpdfstring{Sort rows: \texttt{dplyr::arrange()}}{Sort rows: dplyr::arrange()}}\label{sort-rows-dplyrarrange}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+The function \texttt{dplyr::arrange()} sorts the rows of the dataset according to the values of the variable(s) you are providing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1    13        1           2249        72      108
+## 2  2013     1    31        1           2100       181      124
+## 3  2013    11    13        1           2359         2      442
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+When providing multiple variables as arguments for \texttt{...} (the ellipsis), the dataset is first sorted accorcing to the values of the first variable.
+Wherever these values occur more than once, another sorting takes place within those groups, according to the second variable you provided.
+The same rule applies for every further variable you add to \texttt{arrange()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+You can combine \texttt{filter()} and \texttt{arrange()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+You can use \texttt{arrange()} with arbitrary expressions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1      454            500        -6      636
+## 2  2013     4     1      509            515        -6      743
+## 3  2013     4     1      526            530        -4      812
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+The reason for the result you just saw in the view of the filtered dataset is, that the binary result of the expression (\texttt{TRUE}, \texttt{FALSE}) is sorted \texttt{FALSE} first (lexicographically).
+
+Let's give it a twist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1       NA           1125        NA       NA
+## 2  2013     4     1       NA           1545        NA       NA
+## 3  2013     4     1       NA            850        NA       NA
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Sorting the dataset according to which flights arrived earliest on April 1, 2013:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1     2243           2245        -2        6
+## 2  2013     4     1     2056           1925        91        8
+## 3  2013     4     1     2216           2100        76        9
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Invert the sorting by either\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1     2027           2032        -5     2358
+## 2  2013     4     1     2151           1930       141     2358
+## 3  2013     4     1     2252           2245         7     2358
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\ldots{} or:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1     2027           2032        -5     2358
+## 2  2013     4     1     2151           1930       141     2358
+## 3  2013     4     1     2252           2245         7     2358
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+You can mix sorting in an ascending and a descending manner:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{==}\StringTok{ }\DecValTok{4}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(day }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, }\KeywordTok{desc}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 970 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     4     1      454            500        -6      636
+## 2  2013     4     1      509            515        -6      743
+## 3  2013     4     1      526            530        -4      812
+## # ... with 967 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\hypertarget{the-pipe}{%
+\section{The pipe}\label{the-pipe}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+We already heavily used it today, but what exactly are the characteristics of \texttt{\%\textgreater{}\%}, better known as ``the pipe''?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The above is just another way of writing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(flights, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The manual describes this operator in detail:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?}\StringTok{"%>%"}
+\end{Highlighting}
+\end{Shaded}
+
+With the pipe, code can be read in a natural way, from left to right.
+The following snippet extracts
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  all early flights
+\item
+  from October till December,
+\item
+  ordered by departure time and then departure delay
+\item
+  and displays it.
+\end{enumerate}
+
+Note how the reading corresponds to the code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+This is possible, because all transformation verbs (\texttt{filter()}, \texttt{arrange()}, \texttt{view()}) accept the main input (a tibble) as the first argument and also return a tibble.
+
+The following three codes are equivalent, but are more difficult to write, to read and to maintain.
+
+Naming is hard.
+Trying to give each intermediate result a name is exhausting.
+Introducing an additional step in this sequence of operations is prone to errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{early_flights <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(flights, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\NormalTok{early_flights_oct_dec <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(early_flights, month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\NormalTok{early_flights_oct_dec_sorted <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(early_flights_oct_dec, dep_time, dep_delay)}
+\KeywordTok{view}\NormalTok{(early_flights_oct_dec_sorted)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+We can keep using the same variable, e.g. \texttt{x}, to avoid naming.
+This adds noise compared to the pipe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\NormalTok{flights}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(x, dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(x, month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{arrange}\NormalTok{(x, dep_time, dep_delay)}
+\KeywordTok{view}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+We can avoid intermediate variables.
+This disconnects the verbs from their arguments and is very difficult to read.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{view}\NormalTok{(}
+  \KeywordTok{arrange}\NormalTok{(}
+    \KeywordTok{filter}\NormalTok{(}
+      \KeywordTok{filter}\NormalTok{(}
+\NormalTok{        flights,}
+\NormalTok{        dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}
+\NormalTok{      ),}
+\NormalTok{      month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}
+\NormalTok{    ),}
+\NormalTok{    dep_time, dep_delay}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    11    13        1           2359         2      442
+## 2  2013    12    16        1           2359         2      447
+## 3  2013    12    20        1           2359         2      430
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\hypertarget{further-advantages}{%
+\subsection{Further advantages}\label{further-advantages}}
+
+When working on a code chunk consisting of subsequent transformations connected by pipes, it can be useful to end the pipeline with either \texttt{I} or \texttt{view()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(dep_time }\OperatorTok{<}\StringTok{ }\DecValTok{600}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\NormalTok{I}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,894 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+## * <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013    10     1      447            500       -13      614
+## 2  2013    10     1      522            517         5      735
+## 3  2013    10     1      536            545        -9      809
+## # ... with 1,891 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##arrange(dep_time, dep_delay) %>%}
+\NormalTok{##view()}
+\end{Highlighting}
+\end{Shaded}
+
+Once the chunk does what you expect it to do, do not forget to remove the \texttt{I} or \texttt{view()} call.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+  \KeywordTok{arrange}\NormalTok{(dep_time, dep_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in arrange(dep_time, dep_delay) : object 'dep_time' not found
+\end{verbatim}
+
+To rearrange rows, you can use the shortcut \texttt{Alt\ +\ Cursor\ up/down}.
+In a piped expression, no further editing is necessary!
+
+\hypertarget{pick-columns-dplyrselect}{%
+\section{\texorpdfstring{Pick columns: \texttt{dplyr::select()}}{Pick columns: dplyr::select()}}\label{pick-columns-dplyrselect}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+With \texttt{dplyr::select()} you can (de-)select and/or rename columns of your dataset.
+The basic operation is like in the following examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##    year month   day
+##   <int> <int> <int>
+## 1  2013     1     1
+## 2  2013     1     1
+## 3  2013     1     1
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 18
+##   month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int>    <int>          <int>     <dbl>    <int>
+## 1     1     1      517            515         2      830
+## 2     1     1      533            529         4      850
+## 3     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+Renaming works by addressing an existing column on the right hand side of an equality sign and providing the new name of the column on its left hand side.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \DataTypeTok{departure_delay =}\NormalTok{ dep_delay,}
+    \DataTypeTok{arrival_delay =}\NormalTok{ arr_delay}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 5
+##    year month   day departure_delay arrival_delay
+##   <int> <int> <int>           <dbl>         <dbl>
+## 1  2013     1     1               2            11
+## 2  2013     1     1               4            20
+## 3  2013     1     1               2            33
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+With backticks, it is possible, but not advised, to use arbitrary characters (including spaces) in column names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights_with_spaces <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \StringTok{`}\DataTypeTok{Departure delay}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{dep_delay,}
+    \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{arr_delay}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+    \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`} \OperatorTok{<}\StringTok{ }\DecValTok{0}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Address them in the same way, if the dataset already has such variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights_with_spaces }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}
+\NormalTok{    year, month, day,}
+    \DataTypeTok{dep_delay =} \StringTok{`}\DataTypeTok{Departure delay}\StringTok{`}\NormalTok{,}
+    \DataTypeTok{arr_delay =} \StringTok{`}\DataTypeTok{Arrival delay}\StringTok{`}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 188,933 x 5
+##    year month   day dep_delay arr_delay
+##   <int> <int> <int>     <dbl>     <dbl>
+## 1  2013     1     1        -1       -18
+## 2  2013     1     1        -6       -25
+## 3  2013     1     1        -3       -14
+## # ... with 1.889e+05 more rows
+\end{verbatim}
+
+The \{janitor\} package helps fixing issues with colum names automatically.
+
+Select helpers allow selecting multiple related columns conveniently.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, }\KeywordTok{ends_with}\NormalTok{(}\StringTok{"_time"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 7
+##   origin dest  dep_time sched_dep_time arr_time sched_arr_time
+##   <chr>  <chr>    <int>          <int>    <int>          <int>
+## 1 EWR    IAH        517            515      830            819
+## 2 LGA    IAH        533            529      850            830
+## 3 JFK    MIA        542            540      923            850
+## # ... with 3.368e+05 more rows, and 1 more variable:
+## #   air_time <dbl>
+\end{verbatim}
+
+\hypertarget{create-new-columns-based-on-old-ones-dplyrmutate}{%
+\section{\texorpdfstring{Create new columns based on old ones: \texttt{dplyr::mutate()}}{Create new columns based on old ones: dplyr::mutate()}}\label{create-new-columns-based-on-old-ones-dplyrmutate}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+With \texttt{dplyr::mutate()} you can add new columns to a table, e.g.~making use of the already existing variables.
+
+How much faster than the scheduled time did the pilots manage to fly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 20
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 13 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>, recovery <dbl>
+\end{verbatim}
+
+This is another building block added to the toolset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1         2        11       -9
+## 2         4        20      -16
+## 3         2        33      -31
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Work with the newly created variable just like with the original ones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(recovery)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1        -2       194     -196
+## 2        -2       179     -181
+## 3       180       345     -165
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Assign the results to new variables.
+The old ones remain unchanged.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{recovery_data <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_delay, arr_delay, recovery) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(recovery)}
+
+\NormalTok{recovery_data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_delay arr_delay recovery
+##       <dbl>     <dbl>    <dbl>
+## 1        -2       194     -196
+## 2        -2       179     -181
+## 3       180       345     -165
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Let's look at a single airplane:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 5
+##    year month   day dep_time arr_time
+##   <int> <int> <int>    <int>    <int>
+## 1  2013     1     1      517      830
+## 2  2013     1     8     1435     1717
+## 3  2013     1     9      717      812
+## # ... with 108 more rows
+\end{verbatim}
+
+Adding the departure time of the \emph{next} flight to the current row, respectively, using \texttt{mutate()} with \texttt{lead()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lead_dep_time =} \KeywordTok{lead}\NormalTok{(dep_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 6
+##    year month   day dep_time arr_time lead_dep_time
+##   <int> <int> <int>    <int>    <int>         <int>
+## 1  2013     1     1      517      830          1435
+## 2  2013     1     8     1435     1717           717
+## 3  2013     1     9      717      812          1143
+## # ... with 108 more rows
+\end{verbatim}
+
+The opposite effect to \texttt{lead()} can be realized using \texttt{lag()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 6
+##    year month   day dep_time arr_time lag_arr_time
+##   <int> <int> <int>    <int>    <int>        <int>
+## 1  2013     1     1      517      830           NA
+## 2  2013     1     8     1435     1717          830
+## 3  2013     1     9      717      812         1717
+## # ... with 108 more rows
+\end{verbatim}
+
+There is even a use-case for this in our little example.
+How long has our airplane been absent from NYC airports between each of its flights out?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{lag_arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 7
+##    year month   day dep_time arr_time lag_arr_time ground_time
+##   <int> <int> <int>    <int>    <int>        <int>       <int>
+## 1  2013     1     1      517      830           NA          NA
+## 2  2013     1     8     1435     1717          830         605
+## 3  2013     1     9      717      812         1717       -1000
+## # ... with 108 more rows
+\end{verbatim}
+
+The negative values occur because not everything happens on the same day, implying that our method is still in need of some refinement.
+Nevertheless, let's continue.
+
+A frequently used workflow is creating a helper variable at some point in the pipeline and then dropping it later on:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{lag_arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{lag_arr_time)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 6
+##    year month   day dep_time arr_time ground_time
+##   <int> <int> <int>    <int>    <int>       <int>
+## 1  2013     1     1      517      830          NA
+## 2  2013     1     8     1435     1717         605
+## 3  2013     1     9      717      812       -1000
+## # ... with 108 more rows
+\end{verbatim}
+
+Let's work some more with the flight data of our special plane.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     8     1435           1440        -5     1717
+## 3  2013     1     9      717            700        17      812
+## # ... with 108 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+The total air time of a plane up to and including a given flight can be calculated with \texttt{base::cumsum()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{cum_air_time =} \KeywordTok{cumsum}\NormalTok{(air_time)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(air_time, cum_air_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 2
+##   air_time cum_air_time
+##      <dbl>        <dbl>
+## 1      227          227
+## 2      150          377
+## 3       39          416
+## # ... with 108 more rows
+\end{verbatim}
+
+Creating a ``flag'' variable with \texttt{mutate()} which shows if a flight was on time or not:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =} \KeywordTok{if_else}\NormalTok{(arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"delayed"}\NormalTok{, }\StringTok{"on time"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 2
+##   arr_delay delayed
+##       <dbl> <chr>  
+## 1        11 delayed
+## 2       -29 on time
+## 3        -3 on time
+## # ... with 108 more rows
+\end{verbatim}
+
+A more straightforward way to get the same (or at least a very similar and probably easier to work with) result:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 111 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1        11 TRUE   
+## 2       -29 FALSE  
+## 3        -3 FALSE  
+## # ... with 108 more rows
+\end{verbatim}
+
+\ldots{} easier to work with, because \texttt{filter()} can directly take logical arguments:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 39 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1        11 TRUE   
+## 2        39 TRUE   
+## 3        54 TRUE   
+## # ... with 36 more rows
+\end{verbatim}
+
+Negation for inverse filtering:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 72 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1       -29 FALSE  
+## 2        -3 FALSE  
+## 3       -20 FALSE  
+## # ... with 69 more rows
+\end{verbatim}
+
+These are the flights that had no delay:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{on_time_flights <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}{%
+\section{\texorpdfstring{Summarize data (by groups): \texttt{dplyr::summarize()}, \texttt{dplyr::group\_by()} + \texttt{dplyr::ungroup()}}{Summarize data (by groups): dplyr::summarize(), dplyr::group\_by() + dplyr::ungroup()}}\label{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Often we want to draw just conclusions from larger datasets by gaining insight by using statistical (or other) methods for summarizing -- and thus drastically reducing -- the data:
+How much time did all planes spend in the air?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(air_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_air_time =} \KeywordTok{sum}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 2
+##   air_time total_air_time
+##      <dbl>          <dbl>
+## 1      227       49326610
+## 2      227       49326610
+## 3      160       49326610
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+The \texttt{mutate()} call adds a new variable with the same value across all rows.
+To reduce the result to a single row, use \texttt{summarize()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{total_air_time =} \KeywordTok{sum}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   total_air_time
+##            <dbl>
+## 1       49326610
+\end{verbatim}
+
+Simple counts can be computed with \texttt{n()} inside \texttt{summarize()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##        n
+##    <int>
+## 1 336776
+\end{verbatim}
+
+A variety of aggregate functions is supported:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{median =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##   median
+##    <dbl>
+## 1    129
+\end{verbatim}
+
+It's possible to produce two different summarizations at once:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 3
+##        n mean_air_time median_air_time
+##    <int>         <dbl>           <dbl>
+## 1 336776          151.             129
+\end{verbatim}
+
+The \texttt{summarize()} verb gains its full power in grouped operations.
+Surround with \texttt{group\_by()} and \texttt{ungroup()} to compute summaries in groups defined by common values in one or more columns.
+In the next example, the same summary is computed separately for each origin airport.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(origin) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 4
+##   origin      n mean_air_time median_air_time
+##   <chr>   <int>         <dbl>           <dbl>
+## 1 EWR    120835          153.             130
+## 2 JFK    111279          178.             149
+## 3 LGA    104662          118.             115
+\end{verbatim}
+
+The next example splits the data into one group for each day.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, month, day) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+    \DataTypeTok{mean_air_time =} \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{median_air_time =} \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 365 x 6
+##    year month   day     n mean_air_time median_air_time
+##   <int> <int> <int> <int>         <dbl>           <dbl>
+## 1  2013     1     1   842          170.             149
+## 2  2013     1     2   943          162.             148
+## 3  2013     1     3   914          157.             148
+## # ... with 362 more rows
+\end{verbatim}
+
+For quick exploration, the names of the new columns can be omitted:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, month, day) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \KeywordTok{n}\NormalTok{(),}
+    \KeywordTok{mean}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \KeywordTok{median}\NormalTok{(air_time, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 365 x 6
+##    year month   day `n()` `mean(air_time, n~ `median(air_time~
+##   <int> <int> <int> <int>              <dbl>             <dbl>
+## 1  2013     1     1   842               170.               149
+## 2  2013     1     2   943               162.               148
+## 3  2013     1     3   914               157.               148
+## # ... with 362 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{summary-plots}{%
+\section{Summary-plots}\label{summary-plots}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Potentially surprisingly, \texttt{mutate()} can also work with the results of a \texttt{ggplot()} call.
+Let's approach this step by step.
+Here is a basic barplot of \texttt{flights\$carrier}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-1} \end{flushright}
+
+Same with one facet per month:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-one-facet-per-month-1} \end{flushright}
+
+We can extract a function that takes any data and produces a barplot of the variable \texttt{carrier}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_fun <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data) \{}
+\NormalTok{  data }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ carrier)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{()}
+\NormalTok{\}}
+
+\KeywordTok{plot_fun}\NormalTok{(flights)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-extract-a-function-1} \end{flushright}
+
+The result of \texttt{ggplot()} is first and foremost an object.
+Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the ``Viewer''.
+Therefore, we can use the \texttt{group\_by} -- \texttt{summarize()} -- \texttt{ungroup()} pattern to produce one plot per group and store it in a new column:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_df <-}
+\StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(month) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{plot =} \KeywordTok{list}\NormalTok{(}\KeywordTok{plot_fun}\NormalTok{(}\KeywordTok{tibble}\NormalTok{(carrier)))}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+
+\NormalTok{plot_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 2
+##   month plot  
+##   <int> <list>
+## 1     1 <gg>  
+## 2     2 <gg>  
+## 3     3 <gg>  
+## # ... with 9 more rows
+\end{verbatim}
+
+When using \texttt{dplyr::pull()} (this function ``extracts'' a variable from a \texttt{data.frame} and returns it as a normal vector), each of the plots will be subsequently displayed in your ``Viewer''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot_df }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pull}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-1} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[2]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-2} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[3]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-3} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[4]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-4} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[5]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-5} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[6]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-6} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[7]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-7} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[8]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-8} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[9]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-9} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[10]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-10} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[11]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-11} \end{flushright}
+
+\begin{verbatim}
+## 
+## [[12]]
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-12} \end{flushright}
+
+Use the left arrow to click through the different plots.
+
+\hypertarget{import}{%
+\chapter{Import}\label{import}}
+
+\begin{quote}
+Ingesting data.
+\end{quote}
+
+This chapter discusses data import with RStudio, with the help of the \href{https://readr.tidyverse.org/}{readr}, \href{https://readxl.tidyverse.org/}{readxl}, and \href{https://github.com/leeper/rio}{rio} packages.
+
+\hypertarget{section}{%
+\section{}\label{section}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{example1 <-}
+\StringTok{  }\KeywordTok{read_delim}\NormalTok{(}
+    \StringTok{"data/example1.csv"}\NormalTok{,}
+    \StringTok{";"}\NormalTok{,}
+    \DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{trim_ws =} \OtherTok{TRUE}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   col1 = col_double(),
+##   col2 = col_character(),
+##   col3 = col_character()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{view}\NormalTok{(example1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##    col1 col2  col3 
+##   <dbl> <chr> <chr>
+## 1   1   a     X    
+## 2   2.5 b     Y
+\end{verbatim}
+
+\hypertarget{import-many-files}{%
+\section{Import many files}\label{import-many-files}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(here)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{files <-}\StringTok{ }\KeywordTok{dir}\NormalTok{(}\DataTypeTok{path =} \KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{), }\DataTypeTok{pattern =} \StringTok{"[.]xlsx$"}\NormalTok{, }\DataTypeTok{full.names =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{files}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/home/travis/build/krlmlr/vistransrep/book/data/example6a.xlsx"
+## [2] "/home/travis/build/krlmlr/vistransrep/book/data/example6b.xlsx"
+## [3] "/home/travis/build/krlmlr/vistransrep/book/data/example6c.xlsx"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{files }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{rio}\OperatorTok{::}\KeywordTok{import_list}\NormalTok{(}\DataTypeTok{setclass =} \KeywordTok{class}\NormalTok{(}\KeywordTok{tibble}\NormalTok{()), }\DataTypeTok{rbind =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##      id  col1 col2  col3  `_file`                             
+##   <dbl> <dbl> <chr> <chr> <chr>                               
+## 1     1   1   a     X     /home/travis/build/krlmlr/vistransr~
+## 2     1   2.5 b     Y     /home/travis/build/krlmlr/vistransr~
+## 3     2   1.5 c     Z     /home/travis/build/krlmlr/vistransr~
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list_of_tables <-}\StringTok{ }\NormalTok{rio}\OperatorTok{::}\KeywordTok{import_list}\NormalTok{(files, }\DataTypeTok{setclass =} \KeywordTok{class}\NormalTok{(}\KeywordTok{tibble}\NormalTok{()))}
+\NormalTok{list_of_tables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $example6a
+## # A tibble: 2 x 4
+##      id  col1 col2  col3 
+##   <dbl> <dbl> <chr> <chr>
+## 1     1   1   a     X    
+## 2     1   2.5 b     Y    
+## 
+## $example6b
+## # A tibble: 2 x 4
+##      id  col1 col2  col3 
+##   <dbl> <dbl> <chr> <chr>
+## 1     2   1.5 c     Z    
+## 2     2   2   d     W    
+## 
+## $example6c
+## # A tibble: 2 x 4
+##      id  col1 col2  col3 
+##   <dbl> <dbl> <chr> <chr>
+## 1     3   4   g     J    
+## 2     3   3.5 f     H
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list_of_tables}\OperatorTok{$}\NormalTok{example6b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 4
+##      id  col1 col2  col3 
+##   <dbl> <dbl> <chr> <chr>
+## 1     2   1.5 c     Z    
+## 2     2   2   d     W
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  list_of_tables}\OperatorTok{$}\NormalTok{example6b <-}
+\StringTok{    }\NormalTok{list_of_tables}\OperatorTok{$}\NormalTok{example6b }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(...) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select}\NormalTok{(...)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in function_list[[i]](value) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all_tables <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(list_of_tables, }\DataTypeTok{.id =} \StringTok{"path"}\NormalTok{)}
+\NormalTok{all_tables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 5
+##   path         id  col1 col2  col3 
+##   <chr>     <dbl> <dbl> <chr> <chr>
+## 1 example6a     1   1   a     X    
+## 2 example6a     1   2.5 b     Y    
+## 3 example6b     2   1.5 c     Z    
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all_tables }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(path }\OperatorTok{==}\StringTok{ "example6b"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{mean}\NormalTok{(col1), }\KeywordTok{first}\NormalTok{(col2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   `mean(col1)` `first(col2)`
+##          <dbl> <chr>        
+## 1         1.75 c
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all_tables }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(path) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{mean}\NormalTok{(col1), }\KeywordTok{first}\NormalTok{(col2)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   path      `mean(col1)` `first(col2)`
+##   <chr>            <dbl> <chr>        
+## 1 example6a         1.75 a            
+## 2 example6b         1.75 c            
+## 3 example6c         3.75 g
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{files }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{map_dfr}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(.))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##      id  col1 col2  col3 
+##   <dbl> <dbl> <chr> <chr>
+## 1     1   1   a     X    
+## 2     1   2.5 b     Y    
+## 3     2   1.5 c     Z    
+## # ... with 3 more rows
+\end{verbatim}
+
 \hypertarget{tidying}{%
 \chapter{Tidying}\label{tidying}}
 
@@ -846,11 +3838,905 @@ Rows, columns, cells.
 
 This chapter discusses pivoting and data tidying with the help of the \href{https://tidyr.tidyverse.org/}{tidyr} package.
 
-\hypertarget{part-reporting}{%
-\part{Reporting}\label{part-reporting}}
+\hypertarget{pivoting}{%
+\section{Pivoting}\label{pivoting}}
 
-\hypertarget{part-appendix}{%
-\part{Appendix}\label{part-appendix}}
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Pivoting describes operations that help rearrange data in different ways.
+The following two tables contain the same data arranged differently.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <int>      <int>
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   country      year type          count
+##   <chr>       <int> <chr>         <int>
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## # ... with 9 more rows
+\end{verbatim}
+
+Both tables contain \texttt{country} and \texttt{year} column that describe the source of the measurements.
+The ``wider'' version, \texttt{table1}, contains two columns that hold the number of cases (of a disease) and the population for the corresponding country in the corresponding year.
+In the ``longer'' version, \texttt{table2}, the number of cases and the population are stored in the same \texttt{count} column, with the \texttt{type} column defining the measurement.
+
+Somewhat counter-intuitively, ``longer-form'' data is often better suited for analyzing data.
+``Wider-form'' data makes better use of screen space, but may be more difficult to work with.
+
+The following example computes the maximum number of cases and population for each country.
+For the wider form, this requires repeating the same expression for all columns.
+This may work with two columns but becomes tedious once more measurements are added.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(country) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{max_cases =} \KeywordTok{max}\NormalTok{(cases),}
+    \DataTypeTok{max_population =} \KeywordTok{max}\NormalTok{(population)}
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   country     max_cases max_population
+##   <chr>           <int>          <int>
+## 1 Afghanistan      2666       20595360
+## 2 Brazil          80488      174504898
+## 3 China          213766     1280428583
+\end{verbatim}
+
+The \texttt{\_at} family of functions helps iterating over columns, but all columns still need to be enumerated.
+(Specifying ranges of columns is rather brittle.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(country) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize_at}\NormalTok{(}
+    \KeywordTok{vars}\NormalTok{(cases, population),}
+\NormalTok{    max}
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   country      cases population
+##   <chr>        <int>      <int>
+## 1 Afghanistan   2666   20595360
+## 2 Brazil       80488  174504898
+## 3 China       213766 1280428583
+\end{verbatim}
+
+If the data is in the ``longer'' form, it is sufficient to include \texttt{type} in the grouping variables.
+The same code works for arbitrary number of measurements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(country, type) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{max =} \KeywordTok{max}\NormalTok{(count)}
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   country     type            max
+##   <chr>       <chr>         <int>
+## 1 Afghanistan cases          2666
+## 2 Afghanistan population 20595360
+## 3 Brazil      cases         80488
+## # ... with 3 more rows
+\end{verbatim}
+
+The following examples give a gentle introduction into pivoting.
+
+\hypertarget{convert-to-longer-form}{%
+\subsection{Convert to longer form}\label{convert-to-longer-form}}
+
+The \texttt{pivot\_longer()} function takes a ``wider-form'' dataset and converts it to an equivalent dataset with more rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <int>      <int>
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   country      year name          value
+##   <chr>       <int> <chr>         <int>
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## # ... with 9 more rows
+\end{verbatim}
+
+The \texttt{-c(...)} notation indicates that all column except \texttt{country} and \texttt{year} are to be transformed into longer form.
+The column names become the contents of the new \texttt{name} column, the values are available in the \texttt{value} column.
+
+The result of this operation isn't strictly equivalent to \texttt{table2}, we need to rename and sort differently.
+Alternatively, the \texttt{names\_to} and \texttt{values\_to} arguments allow specifying the names of the new columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{type =}\NormalTok{ name, }\DataTypeTok{count =}\NormalTok{ value) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(country, year, type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   country      year type          count
+##   <chr>       <int> <chr>         <int>
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## # ... with 9 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}
+    \OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year),}
+    \DataTypeTok{names_to =} \StringTok{"type"}\NormalTok{,}
+    \DataTypeTok{values_to =} \StringTok{"count"}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(country, year, type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   country      year type          count
+##   <chr>       <int> <chr>         <int>
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## # ... with 9 more rows
+\end{verbatim}
+
+\hypertarget{convert-to-wider-form}{%
+\subsection{Convert to wider form}\label{convert-to-wider-form}}
+
+The \texttt{pivot\_wider()} form does the inverse: it creates a dataset with fewer rows.
+If the \texttt{name} and \texttt{value} columns are named differently, these columns can be provided via the \texttt{names\_from} and \texttt{values\_from} arguments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   country      year type          count
+##   <chr>       <int> <chr>         <int>
+## 1 Afghanistan  1999 cases           745
+## 2 Afghanistan  1999 population 19987071
+## 3 Afghanistan  2000 cases          2666
+## # ... with 9 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from =}\NormalTok{ type, }\DataTypeTok{values_from =}\NormalTok{ count)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <int>      <int>
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{name =}\NormalTok{ type, }\DataTypeTok{value =}\NormalTok{ count) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <int>      <int>
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\hypertarget{use-cases}{%
+\subsection{Use cases}\label{use-cases}}
+
+Data in ``longer'' form usually works better for plotting the values side by side, e.g.~by assigning the type of value to an aesthetic.
+Recall that each row in the data produces one geometric object in the corresponding layer.
+For a bar chart that shows cases and population side by side, mapped to the \texttt{y} aesthetic, the ``longer'' form is more natural.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{table2} form requires only one layer, the fill color is determined automatically, the legend is created automatically
+\item
+  \texttt{table1} requires two layers, manual assignment of fill color, and manual creation of legend (not shown)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(country, count, }\DataTypeTok{fill =}\NormalTok{ type), }\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{year) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(country, population), }\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(country, cases), }\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{year) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2} \end{flushright}
+
+On the other hand, iIf only a single measurement needs to be plotted, the ``wider'' form is easier to work with.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{table1} only requires selecting the correct column
+\item
+  \texttt{table2} requires a \texttt{filter()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(country, cases)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(type }\OperatorTok{==}\StringTok{ "cases"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(country, count)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-2} \end{flushright}
+
+The ``wider'' form is also the only way to map different measures to different aesthetics, e.g.~to correlate values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(cases, population, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(year), }\DataTypeTok{shape =}\NormalTok{ country)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_log10}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-the-only-way-to-correlate-values-1} \end{flushright}
+
+\hypertarget{combining-vertically}{%
+\subsection{Combining vertically}\label{combining-vertically}}
+
+A different view on the same data is given in the two tables \texttt{table4a} and \texttt{table4b}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * <chr>        <int>  <int>
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   country         `1999`     `2000`
+## * <chr>            <int>      <int>
+## 1 Afghanistan   19987071   20595360
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583
+\end{verbatim}
+
+The \texttt{bind\_rows()} function combines these two parts into a single table.
+The \texttt{.id\ =\ "type"} setting ensures that the input datasets gain different tags in the new \texttt{type} column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4 <-}
+\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(}
+    \DataTypeTok{cases =}\NormalTok{ table4a,}
+    \DataTypeTok{population =}\NormalTok{ table4b,}
+    \DataTypeTok{.id =} \StringTok{"type"}
+\NormalTok{  )}
+\NormalTok{table4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   type  country     `1999` `2000`
+##   <chr> <chr>        <int>  <int>
+## 1 cases Afghanistan    745   2666
+## 2 cases Brazil       37737  80488
+## 3 cases China       212258 213766
+## # ... with 3 more rows
+\end{verbatim}
+
+As before, \texttt{pivot\_longer()} helps converting the results into something similar to \texttt{table2}.
+The result isn't quite the same yet, can you spot the difference?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{`}\DataTypeTok{1999}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{2000}\StringTok{`}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+##   type  country     name  value
+##   <chr> <chr>       <chr> <int>
+## 1 cases Afghanistan 1999    745
+## 2 cases Afghanistan 2000   2666
+## 3 cases Brazil      1999  37737
+## # ... with 9 more rows
+\end{verbatim}
+
+\hypertarget{tidy-data}{%
+\subsection{Tidy data}\label{tidy-data}}
+
+From ``R for data science'':
+
+\begin{quote}
+In a tidy dataset,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  each variable must have its own column.
+\item
+  each observation must have its own row.
+\item
+  each value must have its own cell.
+\end{enumerate}
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{img/tidy-1.png}
+\caption{Tidy data}
+\end{figure}
+
+The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
+The column names define, in addition to the measurement type \texttt{new\_sp}, \texttt{new\_sn}, \texttt{new\_ep} and \texttt{newrel}, the age and sex stratum of the corresponding measurements.
+One single \texttt{pivot\_longer()} call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
+The \texttt{names\_pattern} is a regular expression that defines what part of the column name is stored where.
+(\href{https://en.wikipedia.org/wiki/Regular_expression}{Regular expressions} are a powerful tool for parsing text data, out of scope for this lecture but very much worth looking into.)
+The \texttt{names\_to} sequence defines, for each \texttt{()} group in \texttt{names\_pattern}, if the data encoded in the column name is stored in a new column or if it is kept as column name.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{who }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{view}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7,240 x 60
+##   country iso2  iso3   year new_sp_m014 new_sp_m1524
+##   <chr>   <chr> <chr> <int>       <int>        <int>
+## 1 Afghan~ AF    AFG    1980          NA           NA
+## 2 Afghan~ AF    AFG    1981          NA           NA
+## 3 Afghan~ AF    AFG    1982          NA           NA
+## # ... with 7,237 more rows, and 54 more variables:
+## #   new_sp_m2534 <int>, new_sp_m3544 <int>,
+## #   new_sp_m4554 <int>, new_sp_m5564 <int>, new_sp_m65 <int>,
+## #   new_sp_f014 <int>, new_sp_f1524 <int>,
+## #   new_sp_f2534 <int>, new_sp_f3544 <int>,
+## #   new_sp_f4554 <int>, new_sp_f5564 <int>, new_sp_f65 <int>,
+## #   new_sn_m014 <int>, new_sn_m1524 <int>,
+## #   new_sn_m2534 <int>, new_sn_m3544 <int>,
+## #   new_sn_m4554 <int>, new_sn_m5564 <int>, new_sn_m65 <int>,
+## #   new_sn_f014 <int>, new_sn_f1524 <int>,
+## #   new_sn_f2534 <int>, new_sn_f3544 <int>,
+## #   new_sn_f4554 <int>, new_sn_f5564 <int>, new_sn_f65 <int>,
+## #   new_ep_m014 <int>, new_ep_m1524 <int>,
+## #   new_ep_m2534 <int>, new_ep_m3544 <int>,
+## #   new_ep_m4554 <int>, new_ep_m5564 <int>, new_ep_m65 <int>,
+## #   new_ep_f014 <int>, new_ep_f1524 <int>,
+## #   new_ep_f2534 <int>, new_ep_f3544 <int>,
+## #   new_ep_f4554 <int>, new_ep_f5564 <int>, new_ep_f65 <int>,
+## #   newrel_m014 <int>, newrel_m1524 <int>,
+## #   newrel_m2534 <int>, newrel_m3544 <int>,
+## #   newrel_m4554 <int>, newrel_m5564 <int>, newrel_m65 <int>,
+## #   newrel_f014 <int>, newrel_f1524 <int>,
+## #   newrel_f2534 <int>, newrel_f3544 <int>,
+## #   newrel_f4554 <int>, newrel_f5564 <int>, newrel_f65 <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{who_longer <-}
+\StringTok{  }\NormalTok{who }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}
+    \OperatorTok{-}\NormalTok{(country}\OperatorTok{:}\NormalTok{year),}
+    \DataTypeTok{names_pattern =} \StringTok{"([a-z_]+)_(.)([0-9]+)"}\NormalTok{,}
+    \DataTypeTok{names_to =} \KeywordTok{c}\NormalTok{(}\StringTok{".value"}\NormalTok{, }\StringTok{"sex"}\NormalTok{, }\StringTok{"age"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{who_longer}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 101,360 x 10
+##   country iso2  iso3   year sex   age   new_sp new_sn new_ep
+##   <chr>   <chr> <chr> <int> <chr> <chr>  <int>  <int>  <int>
+## 1 Afghan~ AF    AFG    1980 m     014       NA     NA     NA
+## 2 Afghan~ AF    AFG    1980 m     1524      NA     NA     NA
+## 3 Afghan~ AF    AFG    1980 m     2534      NA     NA     NA
+## # ... with 1.014e+05 more rows, and 1 more variable:
+## #   newrel <int>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{who_longer }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(sex, age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 3
+##   sex   age       n
+##   <chr> <chr> <int>
+## 1 f     014    7240
+## 2 f     1524   7240
+## 3 f     2534   7240
+## # ... with 11 more rows
+\end{verbatim}
+
+\hypertarget{separating-and-uniting}{%
+\section{Separating and uniting}\label{separating-and-uniting}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+The \texttt{table3} table violates the third principle of tidy data: each cell contains two values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   country      year rate           
+## * <chr>       <int> <chr>          
+## 1 Afghanistan  1999 745/19987071   
+## 2 Afghanistan  2000 2666/20595360  
+## 3 Brazil       1999 37737/172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+The \texttt{separate()} verb offers a convenient way to deal with this situation, including automatic type conversion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{separate}\NormalTok{(rate, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"cases"}\NormalTok{, }\StringTok{"population"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <chr> <chr>     
+## 1 Afghanistan  1999 745   19987071  
+## 2 Afghanistan  2000 2666  20595360  
+## 3 Brazil       1999 37737 172006362 
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{separate}\NormalTok{(rate, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"cases"}\NormalTok{, }\StringTok{"population"}\NormalTok{), }\DataTypeTok{sep =} \StringTok{"/"}\NormalTok{, }\DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country      year cases population
+##   <chr>       <int> <int>      <int>
+## 1 Afghanistan  1999   745   19987071
+## 2 Afghanistan  2000  2666   20595360
+## 3 Brazil       1999 37737  172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+The inverse is offered by \texttt{unite()}.
+The data in \texttt{table5} stores year data in two columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+##   country     century year  rate           
+## * <chr>       <chr>   <chr> <chr>          
+## 1 Afghanistan 19      99    745/19987071   
+## 2 Afghanistan 20      00    2666/20595360  
+## 3 Brazil      19      99    37737/172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\KeywordTok{c}\NormalTok{(century, year))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   country     year  rate           
+##   <chr>       <chr> <chr>          
+## 1 Afghanistan 19_99 745/19987071   
+## 2 Afghanistan 20_00 2666/20595360  
+## 3 Brazil      19_99 37737/172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+The result needs a few tweaks to finally resemble \texttt{table3}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\KeywordTok{c}\NormalTok{(century, year), }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   country     year  rate           
+##   <chr>       <chr> <chr>          
+## 1 Afghanistan 1999  745/19987071   
+## 2 Afghanistan 2000  2666/20595360  
+## 3 Brazil      1999  37737/172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\KeywordTok{c}\NormalTok{(century, year), }\DataTypeTok{sep =} \StringTok{""}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   country      year rate           
+##   <chr>       <dbl> <chr>          
+## 1 Afghanistan  1999 745/19987071   
+## 2 Afghanistan  2000 2666/20595360  
+## 3 Brazil       1999 37737/172006362
+## # ... with 3 more rows
+\end{verbatim}
+
+See the help for further details.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?separate}
+\NormalTok{?unite}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{parsing-numbers}{%
+\subsection{Parsing numbers}\label{parsing-numbers}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thousand_separator <-}
+\StringTok{  }\KeywordTok{tribble}\NormalTok{(}
+    \OperatorTok{~}\NormalTok{num,}
+    \StringTok{"1'000.00"}\NormalTok{,}
+    \StringTok{"2'000'000.00"}
+\NormalTok{  )}
+
+\NormalTok{thousand_separator}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 1
+##   num         
+##   <chr>       
+## 1 1'000.00    
+## 2 2'000'000.00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thousand_separator }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{separate}\NormalTok{(num, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"num"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Expected 1 pieces. Additional pieces discarded in 2
+## rows [1, 2].
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 2 x 1
+##   num  
+##   <chr>
+## 1 1    
+## 2 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thousand_separator }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{num =} \KeywordTok{str_replace_all}\NormalTok{(num, }\StringTok{"[^-0-9.]"}\NormalTok{, }\StringTok{""}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{num =} \KeywordTok{as.numeric}\NormalTok{(num))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 1
+##       num
+##     <dbl>
+## 1    1000
+## 2 2000000
+\end{verbatim}
+
+\hypertarget{section-1}{%
+\section{}\label{section-1}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ftable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  type      cases population
+## country     year                           
+## Afghanistan 1999             745   19987071
+##             2000            2666   20595360
+## Brazil      1999           37737  172006362
+##             2000           80488  174504898
+## China       1999          212258 1272915272
+##             2000          213766 1280428583
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ftable}\NormalTok{(}\DataTypeTok{col.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             year       1999                  2000           
+##             type      cases population      cases population
+## country                                                     
+## Afghanistan             745   19987071       2666   20595360
+## Brazil                37737  172006362      80488  174504898
+## China                212258 1272915272     213766 1280428583
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?}\StringTok{`}\DataTypeTok{tidyr-package}\StringTok{`}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
 
 \hypertarget{best-practices}{%
 \chapter{Best practices}\label{best-practices}}
@@ -913,8 +4799,8 @@ Declare that your project requires the tidyverse and the here package:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{r-1}{%
-\section{R}\label{r-1}}
+\hypertarget{r}{%
+\section{R}\label{r}}
 
 With a \texttt{DESCRIPTION} file defined, create a new \texttt{.R} file and save it in the \texttt{R/} directory.
 (Create this directory if it does not exist.)
@@ -1065,8 +4951,8 @@ Check that the test actually detects failures by modifying the implementation of
 Run the new test with \texttt{devtools::test()}, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
 One test should be failing now.
 
-\hypertarget{section}{%
-\chapter{}\label{section}}
+\hypertarget{section-2}{%
+\chapter{}\label{section-2}}
 
 \begin{itemize}
 \item
