@@ -426,7 +426,7 @@ In the example below, points are not adjusted and just visualized where they app
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> displ)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-22-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-23-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="combining-geoms" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Combining geoms</h3>
@@ -435,7 +435,7 @@ A combination that is often used together is <code>geom_point()</code> and <code
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-23-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-24-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>Unless specified differently in the <code>geom_*()</code> call, all geoms will use the same variables.</p>
 </div>
 <div id="summary" class="section level3">
@@ -492,9 +492,9 @@ Let’s compare base R and {{ggplot2}}.</p>
 <a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
 <a class="sourceLine" id="cb30-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb30-4" data-line-number="4">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-29-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-30-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">print</span>(p)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-29-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-30-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">str</span>(p)</a></code></pre></div>
 <pre><code>## List of 9
 ##  $ data       :Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;: 234 obs. of  11 variables:
@@ -654,20 +654,20 @@ Let’s compare base R and {{ggplot2}}.</p>
 <h3><span class="header-section-number">2.4.1</span> Continuous X and Y</h3>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-31-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-32-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="discrete-x-and-continuous-y" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Discrete X and continuous Y</h3>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-32-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-33-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <hr />
 </div>
 <div id="discrete-x-and-y" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Discrete X and Y</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> manufacturer)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_jitter</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-33-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-34-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 </div>
 <div id="one-variable-plots" class="section level2">
@@ -686,11 +686,11 @@ This one is automatically grouped into 30 bins.</p>
 <a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
 ## `binwidth`.</code></pre>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-34-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-35-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <hr />
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> hwy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_density</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-35-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-36-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="discrete-variables" class="section level3">
 <h3><span class="header-section-number">2.5.2</span> Discrete variables</h3>
@@ -699,7 +699,7 @@ This one is automatically grouped into 30 bins.</p>
 <p><em>Note the difference of <code>geom_bar()</code> compared to <code>geom_hist()</code>.</em></p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(fl)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/unnamed-chunk-36-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/unnamed-chunk-37-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 </div>
 <div id="colors-and-shape" class="section level2">
