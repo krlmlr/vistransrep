@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Tidying | Visualization, transformation and reporting with the tidyverse</title>
-  <meta name="description" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <title>2 RStudio | Visualization, transformation and reporting with the tidyverse</title>
+  <meta name="description" content="2 RStudio | Visualization, transformation and reporting with the tidyverse" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <meta property="og:title" content="2 RStudio | Visualization, transformation and reporting with the tidyverse" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <meta name="twitter:title" content="2 RStudio | Visualization, transformation and reporting with the tidyverse" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="transformation.html"/>
-<link rel="next" href="best-practices.html"/>
+<link rel="prev" href="r.html"/>
+<link rel="next" href="vis-basics.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -196,17 +196,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tidying" class="section level1">
-<h1><span class="header-section-number">7</span> Tidying</h1>
-<blockquote>
-<p>Rows, columns, cells.</p>
-</blockquote>
-<p>This chapter discusses pivoting and data tidying with the help of the <a href="https://tidyr.tidyverse.org/">tidyr</a> package.</p>
+<div id="rstudio" class="section level1">
+<h1><span class="header-section-number">2</span> RStudio</h1>
+<div id="ide-structure" class="section level2">
+<h2><span class="header-section-number">2.1</span> IDE structure</h2>
+<p><span class="math inline">\(\rightarrow\)</span> Exists to <strong>boost</strong> your productivity</p>
+<p><span class="math inline">\(\rightarrow\)</span> Change the defaults to your liking so you <em>actually</em> can be <strong>productive</strong></p>
+<p><span class="math inline">\(\rightarrow\)</span> Keybindings = productivity</p>
+<p>Since RStudio v1.3 a <a href="https://docs.rstudio.com/ide/desktop-pro/latest/settings.html#preferences">portable JSON settings file</a> exists.</p>
+<p>If you want to have sane settings without much hassle, you can execute the following R code: <code>source(&quot;https://bit.ly/rstudio-pat&quot;)</code></p>
+<p>This code will change/overwrite your existing RStudio settings and</p>
+<ul>
+<li><p>set custom keybindings</p></li>
+<li><p>move the console panel to the top-right (by default bottom-left)</p></li>
+<li><p>Enable/Disable some core settings to have a better overall experience</p></li>
+</ul>
+<hr />
+<p>R scripts (source code) are written in the <em>Source</em> pane (Editor).</p>
+<div class="figure">
+<img src="img/rstudio_source_rec.png" alt="Source pane" />
+<p class="caption">Source pane</p>
+</div>
+<p>(Source of all following RStudio screenshots: <a href="https://github.com/edrubin/EC525S19" class="uri">https://github.com/edrubin/EC525S19</a>)</p>
+<hr />
+<p>You can use the menubar or ⇧+⌘+N / ⇧+CTRL+N to create new R scripts.</p>
+<div class="figure">
+<img src="img/rstudio_source_arrow.png" alt="New script" />
+<p class="caption">New script</p>
+</div>
+<hr />
+<p>To execute commands from your R script, use ⌘+Enter / CTRL+Enter.</p>
+<div class="figure">
+<img src="img/rstudio_source_ex.png" alt="Execute commands" />
+<p class="caption">Execute commands</p>
+</div>
+<p>RStudio will execute the command in the console.</p>
+<div class="figure">
+<img src="img/rstudio_source_ex2.png" alt="Console output" />
+<p class="caption">Console output</p>
+</div>
+<p>You can see the new object in the <em>Environment</em> pane.</p>
+<div class="figure">
+<img src="img/rstudio_source_ex3.png" alt="Environment pane" />
+<p class="caption">Environment pane</p>
+</div>
+<hr />
+<p>The <em>History</em> tab records your old commands.</p>
+<div class="figure">
+<img src="img/rstudio_history.png" alt="History pane" />
+<p class="caption">History pane</p>
+</div>
+<hr />
+<p>The <em>Files</em> pane is the file explorer.</p>
+<div class="figure">
+<img src="img/rstudio_files.png" alt="Files pane" />
+<p class="caption">Files pane</p>
+</div>
+<hr />
+<p>The <em>Plots</em> pane/tab shows… plots.</p>
+<div class="figure">
+<img src="img/rstudio_plots.png" alt="Plots pane" />
+<p class="caption">Plots pane</p>
+</div>
+<hr />
+<p><em>Packages</em> shows installed packages</p>
+<div class="figure">
+<img src="img/rstudio_packages.png" alt="Packages pane" />
+<p class="caption">Packages pane</p>
+</div>
+<hr />
+<p><em>Packages</em> shows installed packages and whether they are <em>loaded</em>.</p>
+<div class="figure">
+<img src="img/rstudio_packages2.png" alt="Loaded and installed packages" />
+<p class="caption">Loaded and installed packages</p>
+</div>
+<hr />
+<p>The <em>Help</em> tab shows help documentation (also accessible via <code>?</code>).</p>
+<div class="figure">
+<img src="img/rstudio_help.png" alt="Help pane" />
+<p class="caption">Help pane</p>
+</div>
+<hr />
+<p>Finally, you can customize the actual layout</p>
+<div class="figure">
+<img src="img/rstudio_layout.png" alt="Customize layout" />
+<p class="caption">Customize layout</p>
+</div>
+</div>
+<div id="rstudio-addins" class="section level2">
+<h2><span class="header-section-number">2.2</span> RStudio Addins</h2>
+<p>RStudio can be further enhanced by so called “addins”.
+These are clickable snippets that execute certain actions in RStudio.</p>
+<p>They aim to make repetitive tasks easier and to save you time.
+There is an addin called <a href="https://github.com/daattali/addinslist">addinslist</a> which lists all available addins.
+It can be installed as a normal package from CRAN:</p>
+<p><code>install.packages(&quot;addinslist&quot;)</code></p>
+<p>To have an addin available in RStudio after installation, RStudio needs to be restarted.</p>
+</div>
+<div id="rstudio-projects" class="section level2">
+<h2><span class="header-section-number">2.3</span> RStudio projects</h2>
+<p>Without a project, you will need to define <strong>long</strong> file paths which <strong>only exist on your machine</strong>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/&lt;yourname&gt;/somewhere/on/this/machine/sample.csv&quot;</span>)</a></code></pre></div>
+<p>With a project, R automatically references the project’s folder as the current working directory.</p>
+<p>From there on, you can use <em>relative paths</em> to point to files.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;sample.csv&quot;</span>)</a></code></pre></div>
+<p><strong>Double-plus bonus</strong>: The <a href="https://github.com/r-lib/here"><em>here</em></a> package extends <em>RStudio project</em> philosophy even more and helps in cases when not using RStudio (e.g. on the command line).</p>
+</div>
+<div id="alternatives-to-rstudio" class="section level2">
+<h2><span class="header-section-number">2.4</span> Alternatives to RStudio</h2>
+<ul>
+<li><p>Using R directly in the terminal via <a href="https://github.com/randy3k/radian">radian</a> (optimized R console interpreter)</p></li>
+<li><p>R is supported in other “general purpose IDE’s” (VScode, Sublime Text, Atom, Vim, etc.)</p></li>
+</ul>
 
 </div>
-
-
-
 </div>
 
 
@@ -217,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vis-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

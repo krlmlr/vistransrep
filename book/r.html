@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Tidying | Visualization, transformation and reporting with the tidyverse</title>
-  <meta name="description" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <title>1 R | Visualization, transformation and reporting with the tidyverse</title>
+  <meta name="description" content="1 R | Visualization, transformation and reporting with the tidyverse" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <meta property="og:title" content="1 R | Visualization, transformation and reporting with the tidyverse" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Tidying | Visualization, transformation and reporting with the tidyverse" />
+  <meta name="twitter:title" content="1 R | Visualization, transformation and reporting with the tidyverse" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="transformation.html"/>
-<link rel="next" href="best-practices.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="rstudio.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -196,29 +196,169 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tidying" class="section level1">
-<h1><span class="header-section-number">7</span> Tidying</h1>
-<blockquote>
-<p>Rows, columns, cells.</p>
-</blockquote>
-<p>This chapter discusses pivoting and data tidying with the help of the <a href="https://tidyr.tidyverse.org/">tidyr</a> package.</p>
+<div id="r" class="section level1">
+<h1><span class="header-section-number">1</span> R</h1>
+<div id="r-as-a-toolkit" class="section level2">
+<h2><span class="header-section-number">1.1</span> R as a toolkit</h2>
+<div class="figure">
+<img src="img/toolkit.png" alt="R as a toolkit" />
+<p class="caption">R as a toolkit</p>
+</div>
+<ul>
+<li>Scriptability <span class="math inline">\(\rightarrow\)</span> R</li>
+<li>Literate programming (code, narrative, output in one place) <span class="math inline">\(\rightarrow\)</span> R Markdown</li>
+<li>Version control <span class="math inline">\(\rightarrow\)</span> Git / GitHub</li>
+</ul>
+<div id="why-r-and-rstudio" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Why R and RStudio?</h3>
+<p><img src="vistransrep_files/figure-html/indeeddotcom-1.png" width="576" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<div id="some-r-basics" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Some R basics</h3>
+<ul>
+<li>You will load packages at the <strong>start of every new R session</strong>.
+<ul>
+<li>“Base” R comes with tons of useful built-in functions. It also provides all the tools necessary for you to write your own functions.</li>
+<li>However, many of R’s best data science functions and tools come from external packages written by other users.</li>
+</ul></li>
+<li>R easily and infinitely parallelizes. For free.
+<ul>
+<li>Compare the cost of a <a href="https://www.stata.com/statamp/">Stata/MP</a> license, nevermind the fact that you effectively pay per core…</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="r-code-examples" class="section level2">
+<h2><span class="header-section-number">1.2</span> R code examples</h2>
+<div id="linear-regression" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Linear regression</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(dist <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>speed, <span class="dt">data =</span> cars)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ 1 + speed, data = cars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -29.069  -9.525  -2.272   9.215  43.201 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+## speed         3.9324     0.4155   9.464 1.49e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.38 on 48 degrees of freedom
+## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
+## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+</div>
+<div id="base-r-plot" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Base R plot</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">abline</span>(fit, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/cars_basefig-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<div id="ggplot2" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> ggplot2</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(gapminder) ## For the gapminder data</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">data =</span> gapminder,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/gapm_plot-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+</div>
+<div id="gganimate" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> gganimate</h3>
+<p><img src="https://raw.githubusercontent.com/uo-ec607/lectures/master/01-intro/01-Intro_files/figure-html/ggamin2-1.gif" width = "910px" /></p>
+</div>
+</div>
+<div id="r-vs.rstudio" class="section level2">
+<h2><span class="header-section-number">1.3</span> R vs. RStudio</h2>
+<ul>
+<li>R is a statistical <strong>programming language</strong></li>
+<li>RStudio is a convenient interface for R (an <strong>integrated development environment</strong>, IDE)</li>
+<li>At its simplest:
+<ul>
+<li>R is like a car’s engine</li>
+<li>RStudio is like a car’s dashboard</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/engine-dashboard.png" alt="Engine vs. dashboard" />
+<p class="caption">Engine vs. dashboard</p>
+</div>
+</div>
+<div id="r-vs.r-packages" class="section level2">
+<h2><span class="header-section-number">1.4</span> R vs. R packages</h2>
+<ul>
+<li><p>R packages <strong>extend</strong> the functionality of R by providing additional functions, data, and documentation.</p></li>
+<li><p>They are written by a world-wide community of R users and can be downloaded for no cost</p></li>
+</ul>
+<div class="figure">
+<img src="img/r_vs_r_packages.png" alt="R versus R packages" />
+<p class="caption">R versus R packages</p>
+</div>
+</div>
+<div id="r-packages" class="section level2">
+<h2><span class="header-section-number">1.5</span> R packages</h2>
+<ul>
+<li><p><strong>CRAN</strong>: A group of people who check that packages fulfill certain standards</p></li>
+<li><p><strong>Mirror</strong>: A location on the web where to download R packages from. Because many thousand people download them daily, the load is distributed on different machines. Pick one which is geographically close to you</p></li>
+<li><p><strong>R base/recommended packages</strong>: The base installation of R ships with a bunch of default packages. In addition, there are some more packages listed as “recommended”.</p></li>
+</ul>
+<p>“base” packages are managed by the R core team and will only be updated for every R release.</p>
+<p>Packages listed as “recommended” inherit the attributes of being widely used and having a long history in the R community.</p>
+<pre><code>##     Package Priority
+## 1      base     base
+## 2  compiler     base
+## 3  datasets     base
+## 4  graphics     base
+## 5 grDevices     base
+## 6      grid     base
+## 7   methods     base
+## 8  parallel     base</code></pre>
+<pre><code>##       Package    Priority
+## 1        boot recommended
+## 2       class recommended
+## 3     cluster recommended
+## 4   codetools recommended
+## 5     foreign recommended
+## 6  KernSmooth recommended
+## 7     lattice recommended
+## 8        MASS recommended
+## 9      Matrix recommended
+## 10       mgcv recommended
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 2 rows ]</code></pre>
+</div>
+<div id="rprofile" class="section level2">
+<h2><span class="header-section-number">1.6</span> .Rprofile</h2>
+<ul>
+<li><p>File in your home directory <code>~/.Rprofile</code></p></li>
+<li><p>Will be executed before every R session starts</p></li>
+<li><p>Useful to set global options and for loading of often used packages</p></li>
+</ul>
+</div>
+<div id="renviron" class="section level2">
+<h2><span class="header-section-number">1.7</span> .Renviron</h2>
+<ul>
+<li><p>File in your home directory <code>~/.Renviron</code></p></li>
+<li><p>Used to set environment variables</p></li>
+<li><p>Used to store “Access tokens” (Github, CI provider, C++ flags)</p></li>
+</ul>
 
 </div>
-
-
-
-</div>
-
-
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
