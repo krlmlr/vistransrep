@@ -74,7 +74,7 @@ withr::with_options(list(width = 80), print(sessioninfo::session_info()))
 
 Licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-## Speakers
+## Speakers {-}
 
 **Kirill Müller** (\@krlmlr)
 
@@ -103,7 +103,7 @@ knitr::include_graphics("img/pjs.jpg")
   - tic
   - ...
   
-## Introduction
+## Introduction {-}
 
 The `tidyverse` has quickly developed over the last years.
 Its first implementation as a collection of partly older packages was in the second half of 2016.
