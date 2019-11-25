@@ -1,3 +1,5 @@
+# (PART) Tidying and transforming {-}
+
 # Transformation {#transformation}
 
 > Using a consistent grammar of data manipulation.
