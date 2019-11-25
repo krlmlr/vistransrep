@@ -1,0 +1,75 @@
+See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
+
+## Links {-}
+
+- This website: https://krlmlr.github.io/vistransrep/book
+
+- Scripts and installation instructions: `r vistransrep_repo()`
+    - Prepared scripts: `r vistransrep_repo("script")`
+
+- The source project for this material: `r this_repo()`
+
+## Package versions used {-}
+
+<details><summary>Click to expand</summary>
+
+```{r index-1, include = FALSE}
+library(tidyverse)
+library(here)
+```
+
+```{r index-2}
+withr::with_options(list(width = 80), print(sessioninfo::session_info()))
+```
+
+</details>
+
+## License {-}
+
+Licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+## Speakers {-}
+
+### Kirill Müller ([\@krlmlr](https://github.com/krlmlr)) {-}
+
+---
+
+### Patrick Schratz ([\@pat-s](https://github.com/pat-s)) {-}
+
+```{r, echo=FALSE}
+knitr::include_graphics("img/pjs.jpg")
+```
+
+- M.Sc. Geoinformatics
+- Researcher/Research Engineer at University of **Jena** and **LMU Munich**
+- PhD Candidate
+
+---
+
+- Unix & R enthusiast
+- Author/Contributor/Maintainer of several R packages: 
+  - ([mlr3](https://github.com/mlr-org/mlr3), [mlr](https://github.com/mlr-org/mlr))
+  - sperrorest
+  - oddsratio
+  - xaringan
+  - circle
+  - RQGIS
+  - travis
+  - tic
+  - ...
+  
+## Introduction & overview {-}
+
+The `tidyverse` has quickly developed over the last years.
+Its first implementation as a collection of partly older packages was in the second half of 2016.
+All its packages "share an underlying design philosophy, grammar, and data structures."^[citation from [tidyverse homepage](https://www.tidyverse.org/)]
+It is for sure difficult to tell, if "learning the `tidyverse`" is a hard task, since the result of this assessment might differ from person to person.
+We do believe though, that there are concepts in its approach, which -- when grasped -- have the potential to increase one's productivity, since code creation will seem more natural.
+While this might be true for all languages (once you speak it well enough, things go smoothly), in our opinion the `tidyverse` worth exploring in depth, since it is
+
+1. consistent: an especially well designed framework that aims at making data analysis and programming intuitive,
+2. evolving: constantly deepened understanding for challenges arising in modern data analysis leads to improving ergonomic user interfaces.
+
+This course covers several topics, which everyone working more intently with the `tidyverse` almost inevitably needs to deal with at some point or another.
+The topics are organized in chapters that contain mostly R code with output and text.
+In each section, exercises are provided.

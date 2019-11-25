@@ -1,10 +1,6 @@
-# (PART) Tidying and transforming {-}
-
 # Transformation {#transformation}
 
 > Using a consistent grammar of data manipulation.
 
 This chapter discusses data transformation with the [dplyr package](https://dplyr.tidyverse.org/).
 
-```{r 02-Transformation-1, child = here::here("script", "2.Rmd")}
-```

@@ -4,5 +4,3 @@
 
 This chapter discusses pivoting and data tidying with the help of the [tidyr](https://tidyr.tidyverse.org/) package.
 
-```{r 04-Tidying-1, child = here::here("script", "4.Rmd")}
-```

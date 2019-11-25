@@ -40,35 +40,4 @@ attach(list(
 ))
 ```
 
-
 # Preface {-}
-
-See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
-
-## Links {-}
-
-- This website: https://krlmlr.github.io/vistransrep/book
-
-- Scripts and installation instructions: `r vistransrep_repo()`
-    - Prepared scripts: `r vistransrep_repo("script")`
-
-- The source project for this material: `r this_repo()`
-
-## Package versions used {-}
-
-<details><summary>Click to expand</summary>
-
-```{r index-1, include = FALSE}
-library(tidyverse)
-library(here)
-```
-
-```{r index-2}
-withr::with_options(list(width = 80), print(sessioninfo::session_info()))
-```
-
-</details>
-
-## License {-}
-
-Licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).

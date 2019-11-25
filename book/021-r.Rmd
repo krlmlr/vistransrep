@@ -1,0 +1,143 @@
+# R
+
+## R as a toolkit
+
+![R as a toolkit](img/toolkit.png)
+
+- Scriptability $\rightarrow$ R
+- Literate programming (code, narrative, output in one place) $\rightarrow$ R Markdown
+- Version control $\rightarrow$ Git / GitHub
+
+### Why R and RStudio?
+
+```{R indeeddotcom, echo = F, fig.height = 4, fig.width = 6}
+# The popularity data
+pop_df <-
+  data.frame(
+    lang = c("SQL", "Python", "R", "SAS", "Matlab", "SPSS", "Stata"),
+    n_jobs = c(107130, 66976, 48772, 25644, 11464, 3717, 1624),
+    free = c(T, T, T, F, F, F, F)
+  )
+## Plot it
+pop_df %>%
+  mutate(lang = lang %>% factor(ordered = T)) %>%
+  ggplot(aes(x = lang, y = n_jobs, fill = free)) +
+  geom_col() +
+  geom_hline(yintercept = 0) +
+  aes(x = reorder(lang, -n_jobs), fill = reorder(free, -free)) +
+  xlab("Statistical language") +
+  scale_y_continuous(labels = scales::comma) +
+  ylab("Number of jobs") +
+  labs(
+    title = "Comparing statistical languages",
+    subtitle = "Number of job postings on Indeed.com, 2019/01/06"
+  ) +
+  scale_fill_manual(
+    "Free?",
+    labels = c("True", "False"),
+    values = c("#f92672", "darkslategray")
+  ) +
+  ggthemes::theme_pander(base_size = 17) +
+  theme(legend.position = "bottom")
+```
+
+### Some R basics
+
+* You will load packages at the **start of every new R session**.
+  - "Base" R comes with tons of useful built-in functions. It also provides all the tools necessary for you to write your own functions.
+  - However, many of R's best data science functions and tools come from external packages written by other users.
+
+* R easily and infinitely parallelizes. For free.
+  - Compare the cost of a [Stata/MP](https://www.stata.com/statamp/) license, nevermind the fact that you effectively pay per core...
+
+## R code examples
+
+### Linear regression
+
+```{r 00-Introduction-4}
+fit <- lm(dist ~ 1 + speed, data = cars)
+summary(fit)
+```
+
+### Base R plot
+
+```{r cars_basefig}
+plot(cars, pch = 19, col = "darkgray")
+abline(fit, lwd = 2)
+```
+
+### ggplot2
+
+```{r gapm_plot}
+library(ggplot2)
+library(gapminder) ## For the gapminder data
+
+ggplot(
+  data = gapminder,
+  mapping = aes(x = gdpPercap, y = lifeExp)
+) +
+  geom_point()
+```
+
+### gganimate
+
+<img src="https://raw.githubusercontent.com/uo-ec607/lectures/master/01-intro/01-Intro_files/figure-html/ggamin2-1.gif" width = "910px" />
+
+## R vs. RStudio
+
+- R is a statistical **programming language**
+- RStudio is a convenient interface for R (an **integrated development environment**, IDE)
+- At its simplest:
+    - R is like a car’s engine
+    - RStudio is like a car’s dashboard
+
+![Engine vs. dashboard](img/engine-dashboard.png)
+
+## R vs. R packages
+
+- R packages **extend** the functionality of R by providing additional functions, data, and documentation.
+
+- They are written by a world-wide community of R users and can be downloaded for no cost
+
+![R versus R packages](img/r_vs_r_packages.png)
+
+## R packages
+
+- **CRAN**: A group of people who check that packages fulfill certain standards
+
+- **Mirror**: A location on the web where to download R packages from. Because many thousand people download them daily, the load is distributed on different machines. Pick one which is geographically close to you
+
+- **R base/recommended packages**: The base installation of R ships with a bunch of default packages. In addition, there are some more packages listed as "recommended".
+
+
+"base" packages are managed by the R core team and will only be updated for every R release.
+
+Packages listed as "recommended" inherit the attributes of being widely used and having a long history in the R community.
+
+```{r 00-Introduction-7, echo = FALSE}
+x <- installed.packages()
+as.data.frame(x[ !is.na(x[, "Priority"]), c("Package", "Priority")][1:20, ]) %>%
+  dplyr::filter(Priority == "base") %>%
+  dplyr::mutate(Package = as.character(Package))
+```
+
+```{r 00-Introduction-8, echo = FALSE}
+as.data.frame(x[ !is.na(x[, "Priority"]), c("Package", "Priority")][1:20, ]) %>%
+  dplyr::filter(Priority == "recommended")
+```
+
+## .Rprofile
+
+- File in your home directory `~/.Rprofile`
+
+- Will be executed before every R session starts
+
+- Useful to set global options and for loading of often used packages
+
+## .Renviron
+
+- File in your home directory `~/.Renviron`
+
+- Used to set environment variables
+
+- Used to store "Access tokens" (Github, CI provider, C++ flags)

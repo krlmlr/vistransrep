@@ -4,5 +4,4 @@
 
 This chapter discusses data import with RStudio, with the help of the [readr](https://readr.tidyverse.org/), [readxl](https://readxl.tidyverse.org/), and [rio](https://github.com/leeper/rio) packages.
 
-```{r 03-Import-1, child = here::here("script", "3.Rmd")}
-```
+
