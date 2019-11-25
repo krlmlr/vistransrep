@@ -1,9 +1,12 @@
 bookdown::pdf_book:
+  dev: "cairo_pdf"
   includes:
     in_header: preamble.tex
   latex_engine: lualatex
   citation_package: natbib
   keep_tex: yes
+  highlight: haddock
+
 bookdown::gitbook:
   css: scroll.css
   config:
@@ -14,4 +17,5 @@ bookdown::gitbook:
       twitter: no
       linkedin: no
       github: yes
+
 bookdown::epub_book: default
