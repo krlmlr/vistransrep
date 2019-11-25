@@ -17,5 +17,7 @@ bookdown::gitbook:
       twitter: no
       linkedin: no
       github: yes
+    toc:
+      collapse: section
 
 bookdown::epub_book: default
