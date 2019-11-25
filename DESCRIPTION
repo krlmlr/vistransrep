@@ -10,6 +10,7 @@ Imports:
     here,
     leaflet,
     nycflights13,
+    patchwork,
     plotly,
     RSQLite,
     rio,
