@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="vis-basics.html"/>
+<link rel="next" href="r-and-rstudio.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -49,6 +49,12 @@
 
 
 
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding/girafe.js"></script>
 
 
 <style type="text/css">
@@ -135,102 +141,116 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#speakers"><i class="fa fa-check"></i><b>0.1</b> Speakers</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>0.2</b> Introduction</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>0.3</b> R as a toolkit</a><ul>
-<li class="chapter" data-level="0.3.1" data-path="index.html"><a href="index.html#why-r-and-rstudio"><i class="fa fa-check"></i><b>0.3.1</b> Why R and RStudio?</a></li>
-<li class="chapter" data-level="0.3.2" data-path="index.html"><a href="index.html#some-r-basics"><i class="fa fa-check"></i><b>0.3.2</b> Some R basics</a></li>
 </ul></li>
-<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#r-code-examples"><i class="fa fa-check"></i><b>0.4</b> R code examples</a><ul>
-<li class="chapter" data-level="0.4.1" data-path="index.html"><a href="index.html#linear-regression"><i class="fa fa-check"></i><b>0.4.1</b> Linear regression</a></li>
-<li class="chapter" data-level="0.4.2" data-path="index.html"><a href="index.html#base-r-plot"><i class="fa fa-check"></i><b>0.4.2</b> Base R plot</a></li>
-<li class="chapter" data-level="0.4.3" data-path="index.html"><a href="index.html#ggplot2"><i class="fa fa-check"></i><b>0.4.3</b> ggplot2</a></li>
-<li class="chapter" data-level="0.4.4" data-path="index.html"><a href="index.html#gganimate"><i class="fa fa-check"></i><b>0.4.4</b> gganimate</a></li>
+<li class="chapter" data-level="1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Why R and RStudio?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#some-r-basics"><i class="fa fa-check"></i><b>1.1.2</b> Some R basics</a></li>
 </ul></li>
-<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#r-vs.rstudio"><i class="fa fa-check"></i><b>0.5</b> R vs. RStudio</a></li>
-<li class="chapter" data-level="0.6" data-path="index.html"><a href="index.html#r-vs.r-packages"><i class="fa fa-check"></i><b>0.6</b> R vs. R packages</a></li>
-<li class="chapter" data-level="0.7" data-path="index.html"><a href="index.html#r-packages"><i class="fa fa-check"></i><b>0.7</b> R packages</a></li>
-<li class="chapter" data-level="0.8" data-path="index.html"><a href="index.html#rprofile"><i class="fa fa-check"></i><b>0.8</b> .Rprofile</a></li>
-<li class="chapter" data-level="0.9" data-path="index.html"><a href="index.html#renviron"><i class="fa fa-check"></i><b>0.9</b> .Renviron</a></li>
-<li class="chapter" data-level="0.10" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i><b>0.10</b> RStudio</a></li>
-<li class="chapter" data-level="0.11" data-path="index.html"><a href="index.html#rstudio-addins"><i class="fa fa-check"></i><b>0.11</b> RStudio Addins</a></li>
-<li class="chapter" data-level="0.12" data-path="index.html"><a href="index.html#rstudio-projects"><i class="fa fa-check"></i><b>0.12</b> RStudio projects</a></li>
-<li class="chapter" data-level="0.13" data-path="index.html"><a href="index.html#alternatives-to-rstudio"><i class="fa fa-check"></i><b>0.13</b> Alternatives to RStudio</a></li>
+<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#linear-regression"><i class="fa fa-check"></i><b>1.2.1</b> Linear regression</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#base-r-plot"><i class="fa fa-check"></i><b>1.2.2</b> Base R plot</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#gganimate"><i class="fa fa-check"></i><b>1.2.4</b> gganimate</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.rstudio"><i class="fa fa-check"></i><b>1.3</b> R vs. RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.r-packages"><i class="fa fa-check"></i><b>1.4</b> R vs. R packages</a></li>
+<li class="chapter" data-level="1.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-packages"><i class="fa fa-check"></i><b>1.5</b> R packages</a></li>
+<li class="chapter" data-level="1.6" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rprofile"><i class="fa fa-check"></i><b>1.6</b> .Rprofile</a></li>
+<li class="chapter" data-level="1.7" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#renviron"><i class="fa fa-check"></i><b>1.7</b> .Renviron</a></li>
+<li class="chapter" data-level="1.8" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.8</b> RStudio</a></li>
+<li class="chapter" data-level="1.9" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-addins"><i class="fa fa-check"></i><b>1.9</b> RStudio Addins</a></li>
+<li class="chapter" data-level="1.10" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>1.10</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.11" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#alternatives-to-rstudio"><i class="fa fa-check"></i><b>1.11</b> Alternatives to RStudio</a></li>
 </ul></li>
 <li class="part"><span><b>I Visualization</b></span></li>
-<li class="chapter" data-level="1" data-path="vis-basics.html"><a href="vis-basics.html"><i class="fa fa-check"></i><b>1</b> {ggplot2} basics</a><ul>
-<li class="chapter" data-level="1.1" data-path="vis-basics.html"><a href="vis-basics.html#introduction-1"><i class="fa fa-check"></i><b>1.1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>1.1.1</b> Creating the plot skeleton: <code>ggplot()</code></a></li>
-<li class="chapter" data-level="1.1.2" data-path="vis-basics.html"><a href="vis-basics.html#what-is-a-statistical-graphic"><i class="fa fa-check"></i><b>1.1.2</b> What is a “statistical graphic”?</a></li>
-<li class="chapter" data-level="1.1.3" data-path="vis-basics.html"><a href="vis-basics.html#terminology"><i class="fa fa-check"></i><b>1.1.3</b> Terminology</a></li>
-<li class="chapter" data-level="1.1.4" data-path="vis-basics.html"><a href="vis-basics.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>1.1.4</b> The Grammar of graphics …</a></li>
-<li class="chapter" data-level="1.1.5" data-path="vis-basics.html"><a href="vis-basics.html#about-ggplot2"><i class="fa fa-check"></i><b>1.1.5</b> About {ggplot2}</a></li>
+<li class="chapter" data-level="2" data-path="vis-basics.html"><a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> {ggplot2} basics</a><ul>
+<li class="chapter" data-level="2.1" data-path="vis-basics.html"><a href="vis-basics.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>2.1.1</b> Creating the plot skeleton: <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.1.2" data-path="vis-basics.html"><a href="vis-basics.html#what-is-a-statistical-graphic"><i class="fa fa-check"></i><b>2.1.2</b> What is a “statistical graphic”?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="vis-basics.html"><a href="vis-basics.html#terminology"><i class="fa fa-check"></i><b>2.1.3</b> Terminology</a></li>
+<li class="chapter" data-level="2.1.4" data-path="vis-basics.html"><a href="vis-basics.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.1.4</b> The Grammar of graphics …</a></li>
+<li class="chapter" data-level="2.1.5" data-path="vis-basics.html"><a href="vis-basics.html#about-ggplot2"><i class="fa fa-check"></i><b>2.1.5</b> About {ggplot2}</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="vis-basics.html"><a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>1.2</b> <code>geom_*</code> functions</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="vis-basics.html"><a href="vis-basics.html#arguments"><i class="fa fa-check"></i><b>1.2.1</b> Arguments</a></li>
-<li class="chapter" data-level="1.2.2" data-path="vis-basics.html"><a href="vis-basics.html#combining-geoms"><i class="fa fa-check"></i><b>1.2.2</b> Combining geoms</a></li>
-<li class="chapter" data-level="1.2.3" data-path="vis-basics.html"><a href="vis-basics.html#summary"><i class="fa fa-check"></i><b>1.2.3</b> Summary</a></li>
+<li class="chapter" data-level="2.2" data-path="vis-basics.html"><a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="vis-basics.html"><a href="vis-basics.html#arguments"><i class="fa fa-check"></i><b>2.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="2.2.2" data-path="vis-basics.html"><a href="vis-basics.html#combining-geoms"><i class="fa fa-check"></i><b>2.2.2</b> Combining geoms</a></li>
+<li class="chapter" data-level="2.2.3" data-path="vis-basics.html"><a href="vis-basics.html#summary"><i class="fa fa-check"></i><b>2.2.3</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="vis-basics.html"><a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>1.3</b> Export &amp; saving</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="vis-basics.html"><a href="vis-basics.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>1.3.1</b> Base R vs. {{ggplot2}}</a></li>
-<li class="chapter" data-level="1.3.2" data-path="vis-basics.html"><a href="vis-basics.html#storing-the-plot-as-an-r-object"><i class="fa fa-check"></i><b>1.3.2</b> Storing the plot as an R object</a></li>
-<li class="chapter" data-level="1.3.3" data-path="vis-basics.html"><a href="vis-basics.html#best-practices-for-exporting"><i class="fa fa-check"></i><b>1.3.3</b> Best practices for exporting</a></li>
+<li class="chapter" data-level="2.3" data-path="vis-basics.html"><a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.3</b> Export &amp; saving</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="vis-basics.html"><a href="vis-basics.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>2.3.1</b> Base R vs. {{ggplot2}}</a></li>
+<li class="chapter" data-level="2.3.2" data-path="vis-basics.html"><a href="vis-basics.html#storing-the-plot-as-an-r-object"><i class="fa fa-check"></i><b>2.3.2</b> Storing the plot as an R object</a></li>
+<li class="chapter" data-level="2.3.3" data-path="vis-basics.html"><a href="vis-basics.html#best-practices-for-exporting"><i class="fa fa-check"></i><b>2.3.3</b> Best practices for exporting</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="vis-basics.html"><a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>1.4</b> Two variable plots</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-x-and-y"><i class="fa fa-check"></i><b>1.4.1</b> Continuous X and Y</a></li>
-<li class="chapter" data-level="1.4.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-continuous-y"><i class="fa fa-check"></i><b>1.4.2</b> Discrete X and continuous Y</a></li>
-<li class="chapter" data-level="1.4.3" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-y"><i class="fa fa-check"></i><b>1.4.3</b> Discrete X and Y</a></li>
+<li class="chapter" data-level="2.4" data-path="vis-basics.html"><a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.4</b> Two variable plots</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-x-and-y"><i class="fa fa-check"></i><b>2.4.1</b> Continuous X and Y</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-continuous-y"><i class="fa fa-check"></i><b>2.4.2</b> Discrete X and continuous Y</a></li>
+<li class="chapter" data-level="2.4.3" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-y"><i class="fa fa-check"></i><b>2.4.3</b> Discrete X and Y</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="vis-basics.html"><a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>1.5</b> One variable plots</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-variables"><i class="fa fa-check"></i><b>1.5.1</b> Continuous variables</a></li>
-<li class="chapter" data-level="1.5.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-variables"><i class="fa fa-check"></i><b>1.5.2</b> Discrete variables</a></li>
+<li class="chapter" data-level="2.5" data-path="vis-basics.html"><a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.5</b> One variable plots</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-variables"><i class="fa fa-check"></i><b>2.5.1</b> Continuous variables</a></li>
+<li class="chapter" data-level="2.5.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-variables"><i class="fa fa-check"></i><b>2.5.2</b> Discrete variables</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="vis-basics.html"><a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>1.6</b> Colors and shape</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="vis-basics.html"><a href="vis-basics.html#static-colors"><i class="fa fa-check"></i><b>1.6.1</b> Static colors</a></li>
-<li class="chapter" data-level="1.6.2" data-path="vis-basics.html"><a href="vis-basics.html#dynamic-colors"><i class="fa fa-check"></i><b>1.6.2</b> Dynamic colors</a></li>
-<li class="chapter" data-level="1.6.3" data-path="vis-basics.html"><a href="vis-basics.html#shape"><i class="fa fa-check"></i><b>1.6.3</b> Shape</a></li>
-<li class="chapter" data-level="1.6.4" data-path="vis-basics.html"><a href="vis-basics.html#combining-color-and-shape"><i class="fa fa-check"></i><b>1.6.4</b> Combining color and shape</a></li>
-<li class="chapter" data-level="1.6.5" data-path="vis-basics.html"><a href="vis-basics.html#transparency"><i class="fa fa-check"></i><b>1.6.5</b> Transparency</a></li>
-<li class="chapter" data-level="1.6.6" data-path="vis-basics.html"><a href="vis-basics.html#what-can-go-wrong"><i class="fa fa-check"></i><b>1.6.6</b> What can go wrong</a></li>
+<li class="chapter" data-level="2.6" data-path="vis-basics.html"><a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.6</b> Colors and shape</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="vis-basics.html"><a href="vis-basics.html#static-colors"><i class="fa fa-check"></i><b>2.6.1</b> Static colors</a></li>
+<li class="chapter" data-level="2.6.2" data-path="vis-basics.html"><a href="vis-basics.html#dynamic-colors"><i class="fa fa-check"></i><b>2.6.2</b> Dynamic colors</a></li>
+<li class="chapter" data-level="2.6.3" data-path="vis-basics.html"><a href="vis-basics.html#shape"><i class="fa fa-check"></i><b>2.6.3</b> Shape</a></li>
+<li class="chapter" data-level="2.6.4" data-path="vis-basics.html"><a href="vis-basics.html#combining-color-and-shape"><i class="fa fa-check"></i><b>2.6.4</b> Combining color and shape</a></li>
+<li class="chapter" data-level="2.6.5" data-path="vis-basics.html"><a href="vis-basics.html#transparency"><i class="fa fa-check"></i><b>2.6.5</b> Transparency</a></li>
+<li class="chapter" data-level="2.6.6" data-path="vis-basics.html"><a href="vis-basics.html#what-can-go-wrong"><i class="fa fa-check"></i><b>2.6.6</b> What can go wrong</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="vis-basics.html"><a href="vis-basics.html#labels"><i class="fa fa-check"></i><b>1.7</b> Labels</a></li>
+<li class="chapter" data-level="2.7" data-path="vis-basics.html"><a href="vis-basics.html#labels"><i class="fa fa-check"></i><b>2.7</b> Labels</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="vis-adv.html"><a href="vis-adv.html"><i class="fa fa-check"></i><b>2</b> {ggplot2} advanced</a></li>
+<li class="chapter" data-level="3" data-path="vis-adv.html"><a href="vis-adv.html"><i class="fa fa-check"></i><b>3</b> {ggplot2} advanced</a><ul>
+<li class="chapter" data-level="3.1" data-path="vis-adv.html"><a href="vis-adv.html#extensions"><i class="fa fa-check"></i><b>3.1</b> Extensions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="vis-adv.html"><a href="vis-adv.html#ggsci"><i class="fa fa-check"></i><b>3.1.1</b> {ggsci}</a></li>
+<li class="chapter" data-level="3.1.2" data-path="vis-adv.html"><a href="vis-adv.html#ggforce"><i class="fa fa-check"></i><b>3.1.2</b> {ggforce}</a></li>
+<li class="chapter" data-level="3.1.3" data-path="vis-adv.html"><a href="vis-adv.html#gganimate-1"><i class="fa fa-check"></i><b>3.1.3</b> {gganimate}</a></li>
+<li class="chapter" data-level="3.1.4" data-path="vis-adv.html"><a href="vis-adv.html#ggtext"><i class="fa fa-check"></i><b>3.1.4</b> {ggtext}</a></li>
+<li class="chapter" data-level="3.1.5" data-path="vis-adv.html"><a href="vis-adv.html#ggrepel"><i class="fa fa-check"></i><b>3.1.5</b> {ggrepel}</a></li>
+<li class="chapter" data-level="3.1.6" data-path="vis-adv.html"><a href="vis-adv.html#ggiraph"><i class="fa fa-check"></i><b>3.1.6</b> {ggiraph}</a></li>
+<li class="chapter" data-level="3.1.7" data-path="vis-adv.html"><a href="vis-adv.html#ggbeeswarm"><i class="fa fa-check"></i><b>3.1.7</b> {ggbeeswarm}</a></li>
+<li class="chapter" data-level="3.1.8" data-path="vis-adv.html"><a href="vis-adv.html#ggpmisc"><i class="fa fa-check"></i><b>3.1.8</b> {ggpmisc}</a></li>
+<li class="chapter" data-level="3.1.9" data-path="vis-adv.html"><a href="vis-adv.html#esquisse"><i class="fa fa-check"></i><b>3.1.9</b> {esquisse}</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>II Tidying, transforming and importing</b></span></li>
-<li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
-<li class="chapter" data-level="3.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>3.1</b> Package: {conflicted}</a></li>
-<li class="chapter" data-level="3.2" data-path="transformation.html"><a href="transformation.html#filtering-dplyrfilter"><i class="fa fa-check"></i><b>3.2</b> Filtering: <code>dplyr::filter()</code></a></li>
-<li class="chapter" data-level="3.3" data-path="transformation.html"><a href="transformation.html#sort-rows-dplyrarrange"><i class="fa fa-check"></i><b>3.3</b> Sort rows: <code>dplyr::arrange()</code></a></li>
-<li class="chapter" data-level="3.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="transformation.html"><a href="transformation.html#further-advantages"><i class="fa fa-check"></i><b>3.4.1</b> Further advantages</a></li>
+<li class="chapter" data-level="4" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>4</b> Transformation</a><ul>
+<li class="chapter" data-level="4.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>4.1</b> Package: {conflicted}</a></li>
+<li class="chapter" data-level="4.2" data-path="transformation.html"><a href="transformation.html#filtering-dplyrfilter"><i class="fa fa-check"></i><b>4.2</b> Filtering: <code>dplyr::filter()</code></a></li>
+<li class="chapter" data-level="4.3" data-path="transformation.html"><a href="transformation.html#sort-rows-dplyrarrange"><i class="fa fa-check"></i><b>4.3</b> Sort rows: <code>dplyr::arrange()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>4.4</b> The pipe</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="transformation.html"><a href="transformation.html#further-advantages"><i class="fa fa-check"></i><b>4.4.1</b> Further advantages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns-dplyrselect"><i class="fa fa-check"></i><b>3.5</b> Pick columns: <code>dplyr::select()</code></a></li>
-<li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns-based-on-old-ones-dplyrmutate"><i class="fa fa-check"></i><b>3.6</b> Create new columns based on old ones: <code>dplyr::mutate()</code></a></li>
-<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup"><i class="fa fa-check"></i><b>3.7</b> Summarize data (by groups): <code>dplyr::summarize()</code>, <code>dplyr::group_by()</code> + <code>dplyr::ungroup()</code></a></li>
-<li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
+<li class="chapter" data-level="4.5" data-path="transformation.html"><a href="transformation.html#pick-columns-dplyrselect"><i class="fa fa-check"></i><b>4.5</b> Pick columns: <code>dplyr::select()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="transformation.html"><a href="transformation.html#create-new-columns-based-on-old-ones-dplyrmutate"><i class="fa fa-check"></i><b>4.6</b> Create new columns based on old ones: <code>dplyr::mutate()</code></a></li>
+<li class="chapter" data-level="4.7" data-path="transformation.html"><a href="transformation.html#summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup"><i class="fa fa-check"></i><b>4.7</b> Summarize data (by groups): <code>dplyr::summarize()</code>, <code>dplyr::group_by()</code> + <code>dplyr::ungroup()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>4.8</b> Summary-plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
-<li class="chapter" data-level="4.1" data-path="import.html"><a href="import.html#section"><i class="fa fa-check"></i><b>4.1</b> <No caption defined></a></li>
-<li class="chapter" data-level="4.2" data-path="import.html"><a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a></li>
+<li class="chapter" data-level="5" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>5</b> Import</a><ul>
+<li class="chapter" data-level="5.1" data-path="import.html"><a href="import.html#section"><i class="fa fa-check"></i><b>5.1</b> <No caption defined></a></li>
+<li class="chapter" data-level="5.2" data-path="import.html"><a href="import.html#import-many-files"><i class="fa fa-check"></i><b>5.2</b> Import many files</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
-<li class="chapter" data-level="5.1" data-path="tidying.html"><a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="tidying.html"><a href="tidying.html#convert-to-longer-form"><i class="fa fa-check"></i><b>5.1.1</b> Convert to longer form</a></li>
-<li class="chapter" data-level="5.1.2" data-path="tidying.html"><a href="tidying.html#convert-to-wider-form"><i class="fa fa-check"></i><b>5.1.2</b> Convert to wider form</a></li>
-<li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
-<li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
-<li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
+<li class="chapter" data-level="6" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>6</b> Tidying</a><ul>
+<li class="chapter" data-level="6.1" data-path="tidying.html"><a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>6.1</b> Pivoting</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="tidying.html"><a href="tidying.html#convert-to-longer-form"><i class="fa fa-check"></i><b>6.1.1</b> Convert to longer form</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tidying.html"><a href="tidying.html#convert-to-wider-form"><i class="fa fa-check"></i><b>6.1.2</b> Convert to wider form</a></li>
+<li class="chapter" data-level="6.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>6.1.3</b> Use cases</a></li>
+<li class="chapter" data-level="6.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>6.1.4</b> Combining vertically</a></li>
+<li class="chapter" data-level="6.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>6.1.5</b> Tidy data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="tidying.html"><a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
+<li class="chapter" data-level="6.2" data-path="tidying.html"><a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>6.2</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>6.2.1</b> Parsing numbers</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section-1"><i class="fa fa-check"></i><b>5.3</b> <No caption defined></a></li>
+<li class="chapter" data-level="6.3" data-path="tidying.html"><a href="tidying.html#section-1"><i class="fa fa-check"></i><b>6.3</b> <No caption defined></a></li>
 </ul></li>
 <li class="part"><span><b>III Reporting</b></span></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="6" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>6</b> Best practices</a><ul>
-<li class="chapter" data-level="6.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>6.1</b> DESCRIPTION</a></li>
-<li class="chapter" data-level="6.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>6.2</b> R</a></li>
-<li class="chapter" data-level="6.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>6.3</b> roxygen2</a></li>
-<li class="chapter" data-level="6.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>6.4</b> testthat</a></li>
+<li class="chapter" data-level="7" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>7</b> Best practices</a><ul>
+<li class="chapter" data-level="7.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="7.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
+<li class="chapter" data-level="7.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
+<li class="chapter" data-level="7.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -253,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Visualization, transformation and reporting with the tidyverse</h1>
 <p class="author"><em>Kirill Müller, Tobias Schieferdecker, Patrick Schratz</em></p>
-<p class="date"><em>25 November 2019, 22:20 CET</em></p>
+<p class="date"><em>26 November 2019, 00:35 CET</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
@@ -287,110 +307,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  date     2019-11-25                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package      * version     date       lib source                           
-##  askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                   
-##  assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                   
-##  backports      1.1.5       2019-10-02 [1] CRAN (R 3.6.1)                   
-##  bookdown       0.16        2019-11-22 [1] CRAN (R 3.6.1)                   
-##  broom          0.5.2       2019-04-07 [1] CRAN (R 3.6.1)                   
-##  cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.6.1)                   
-##  cli            1.1.0       2019-03-19 [1] CRAN (R 3.6.1)                   
-##  codetools      0.2-16      2018-12-24 [3] CRAN (R 3.6.1)                   
-##  colorspace     1.4-1       2019-03-18 [1] CRAN (R 3.6.1)                   
-##  conflicted   * 1.0.4       2019-06-21 [1] CRAN (R 3.6.1)                   
-##  crayon         1.3.4       2017-09-16 [1] CRAN (R 3.6.1)                   
-##  crosstalk      1.0.0       2016-12-21 [1] CRAN (R 3.6.1)                   
-##  curl           4.2         2019-09-24 [1] CRAN (R 3.6.1)                   
-##  data.table     1.12.6      2019-10-18 [1] CRAN (R 3.6.1)                   
-##  DBI            1.0.0       2018-05-02 [1] CRAN (R 3.6.1)                   
-##  dbplyr         1.4.2       2019-06-17 [1] CRAN (R 3.6.1)                   
-##  digest         0.6.23      2019-11-23 [1] CRAN (R 3.6.1)                   
-##  dplyr        * 0.8.3       2019-07-04 [1] CRAN (R 3.6.1)                   
-##  DT             0.10        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  ellipsis       0.3.0       2019-09-20 [1] CRAN (R 3.6.1)                   
-##  evaluate       0.14        2019-05-28 [1] CRAN (R 3.6.1)                   
-##  fansi          0.4.0       2018-10-05 [1] CRAN (R 3.6.1)                   
-##  farver         2.0.1       2019-11-13 [1] CRAN (R 3.6.1)                   
-##  fastmap        1.0.1       2019-10-08 [1] CRAN (R 3.6.1)                   
-##  forcats      * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)                   
-##  foreign        0.8-71      2018-07-20 [3] CRAN (R 3.6.1)                   
-##  fs             1.3.1       2019-05-06 [1] CRAN (R 3.6.1)                   
-##  gapminder    * 0.3.0       2017-10-31 [1] CRAN (R 3.6.1)                   
-##  generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                   
-##  ggplot2      * 3.2.1       2019-08-10 [1] CRAN (R 3.6.1)                   
-##  ggpubr         0.2.4       2019-11-14 [1] CRAN (R 3.6.1)                   
-##  ggsignif       0.6.0       2019-08-08 [1] CRAN (R 3.6.1)                   
-##  ggthemes       4.2.0       2019-05-13 [1] CRAN (R 3.6.1)                   
-##  git2r          0.26.1      2019-06-29 [1] CRAN (R 3.6.1)                   
-##  glue           1.3.1       2019-03-12 [1] CRAN (R 3.6.1)                   
-##  gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                   
-##  haven          2.2.0       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  here         * 0.1         2017-05-28 [1] CRAN (R 3.6.1)                   
-##  hms            0.5.2       2019-10-30 [1] CRAN (R 3.6.1)                   
-##  htmltools      0.4.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  htmlwidgets    1.5.1       2019-10-08 [1] CRAN (R 3.6.1)                   
-##  httpuv         1.5.2       2019-09-11 [1] CRAN (R 3.6.1)                   
-##  httr           1.4.1       2019-08-05 [1] CRAN (R 3.6.1)                   
-##  jsonlite       1.6         2018-12-07 [1] CRAN (R 3.6.1)                   
-##  knitr          1.26        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  labeling       0.3         2014-08-23 [1] CRAN (R 3.6.1)                   
-##  later          1.0.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  lattice        0.20-38     2018-11-04 [3] CRAN (R 3.6.1)                   
-##  lazyeval       0.2.2       2019-03-15 [1] CRAN (R 3.6.1)                   
-##  leaflet      * 2.0.3       2019-11-16 [1] CRAN (R 3.6.1)                   
-##  lifecycle      0.1.0       2019-08-01 [1] CRAN (R 3.6.1)                   
-##  lubridate      1.7.4       2018-04-11 [1] CRAN (R 3.6.1)                   
-##  magrittr       1.5         2014-11-22 [1] CRAN (R 3.6.1)                   
-##  MASS           7.3-51.4    2019-03-31 [3] CRAN (R 3.6.1)                   
-##  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.6.1)                   
-##  mime           0.7         2019-06-11 [1] CRAN (R 3.6.1)                   
-##  modelr         0.1.5       2019-08-08 [1] CRAN (R 3.6.1)                   
-##  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.6.1)                   
-##  nlme           3.1-140     2019-05-12 [3] CRAN (R 3.6.1)                   
-##  nycflights13 * 1.0.1       2019-09-16 [1] CRAN (R 3.6.1)                   
-##  openssl        1.4.1       2019-07-18 [1] CRAN (R 3.6.1)                   
-##  openxlsx       4.1.3       2019-11-07 [1] CRAN (R 3.6.1)                   
-##  pillar         1.4.2       2019-06-29 [1] CRAN (R 3.6.1)                   
-##  pkgconfig      2.0.3       2019-09-22 [1] CRAN (R 3.6.1)                   
-##  plotly         4.9.1       2019-11-07 [1] CRAN (R 3.6.1)                   
-##  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.6.1)                   
-##  promises       1.1.0       2019-10-04 [1] CRAN (R 3.6.1)                   
-##  purrr        * 0.3.3       2019-10-18 [1] CRAN (R 3.6.1)                   
-##  R6             2.4.1       2019-11-12 [1] CRAN (R 3.6.1)                   
-##  RColorBrewer   1.1-2       2014-12-07 [1] CRAN (R 3.6.1)                   
-##  Rcpp           1.0.3       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  readr        * 1.3.1       2018-12-21 [1] CRAN (R 3.6.1)                   
-##  readxl         1.3.1       2019-03-13 [1] CRAN (R 3.6.1)                   
-##  reprex         0.3.0       2019-05-16 [1] CRAN (R 3.6.1)                   
-##  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.6.1)                   
-##  rio            0.5.16      2018-11-26 [1] CRAN (R 3.6.1)                   
-##  rlang          0.4.2.9000  2019-11-25 [1] Github (r-lib/rlang@26bf207)     
-##  rmarkdown      1.17        2019-11-13 [1] CRAN (R 3.6.1)                   
-##  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                   
-##  rstudioapi     0.10        2019-03-19 [1] CRAN (R 3.6.1)                   
-##  rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                   
-##  scales         1.1.0       2019-11-18 [1] CRAN (R 3.6.1)                   
-##  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                   
-##  shiny          1.4.0       2019-10-10 [1] CRAN (R 3.6.1)                   
-##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
-##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
-##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
-##  tic            0.2.13.9021 2019-11-18 [1] Github (ropenscilabs/tic@9a5f965)
-##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
-##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
-##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
-##  tinytex        0.17        2019-10-30 [1] CRAN (R 3.6.1)                   
-##  utf8           1.1.4       2018-05-24 [1] CRAN (R 3.6.1)                   
-##  vctrs          0.2.0       2019-07-05 [1] CRAN (R 3.6.1)                   
-##  viridisLite    0.3.0       2018-02-01 [1] CRAN (R 3.6.1)                   
-##  withr          2.1.2       2018-03-15 [1] CRAN (R 3.6.1)                   
-##  xaringan       0.13        2019-10-30 [1] CRAN (R 3.6.1)                   
-##  xfun           0.11        2019-11-12 [1] CRAN (R 3.6.1)                   
-##  xml2           1.2.2       2019-08-09 [1] CRAN (R 3.6.1)                   
-##  xtable         1.8-4       2019-04-21 [1] CRAN (R 3.6.1)                   
-##  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.6.1)                   
-##  zeallot        0.1.0       2018-01-28 [1] CRAN (R 3.6.1)                   
-##  zip            2.0.4       2019-09-01 [1] CRAN (R 3.6.1)                   
+##  package      * version     date       lib source                              
+##  askpass        1.1         2019-01-13 [1] CRAN (R 3.6.1)                      
+##  assertthat     0.2.1       2019-03-21 [1] CRAN (R 3.6.1)                      
+##  backports      1.1.5       2019-10-02 [1] CRAN (R 3.6.1)                      
+##  beeswarm       0.2.3       2016-04-25 [1] CRAN (R 3.6.1)                      
+##  bookdown       0.16        2019-11-22 [1] CRAN (R 3.6.1)                      
+##  broom          0.5.2       2019-04-07 [1] CRAN (R 3.6.1)                      
+##  cellranger     1.1.0       2016-07-27 [1] CRAN (R 3.6.1)                      
+##  cli            1.1.0       2019-03-19 [1] CRAN (R 3.6.1)                      
+##  codetools      0.2-16      2018-12-24 [3] CRAN (R 3.6.1)                      
+##  colorspace     1.4-1       2019-03-18 [1] CRAN (R 3.6.1)                      
+##  conflicted   * 1.0.4       2019-06-21 [1] CRAN (R 3.6.1)                      
+##  crayon         1.3.4       2017-09-16 [1] CRAN (R 3.6.1)                      
+##  crosstalk      1.0.0       2016-12-21 [1] CRAN (R 3.6.1)                      
+##  curl           4.2         2019-09-24 [1] CRAN (R 3.6.1)                      
+##  data.table     1.12.6      2019-10-18 [1] CRAN (R 3.6.1)                      
+##  DBI            1.0.0       2018-05-02 [1] CRAN (R 3.6.1)                      
+##  dbplyr         1.4.2       2019-06-17 [1] CRAN (R 3.6.1)                      
+##  digest         0.6.23      2019-11-23 [1] CRAN (R 3.6.1)                      
+##  dplyr        * 0.8.3       2019-07-04 [1] CRAN (R 3.6.1)                      
+##  DT             0.10        2019-11-12 [1] CRAN (R 3.6.1)                      
+##  ellipsis       0.3.0       2019-09-20 [1] CRAN (R 3.6.1)                      
+##  evaluate       0.14        2019-05-28 [1] CRAN (R 3.6.1)                      
+##  fansi          0.4.0       2018-10-05 [1] CRAN (R 3.6.1)                      
+##  farver         2.0.1       2019-11-13 [1] CRAN (R 3.6.1)                      
+##  fastmap        1.0.1       2019-10-08 [1] CRAN (R 3.6.1)                      
+##  forcats      * 0.4.0       2019-02-17 [1] CRAN (R 3.6.1)                      
+##  foreign        0.8-71      2018-07-20 [3] CRAN (R 3.6.1)                      
+##  fs             1.3.1       2019-05-06 [1] CRAN (R 3.6.1)                      
+##  gapminder    * 0.3.0       2017-10-31 [1] CRAN (R 3.6.1)                      
+##  gdtools      * 0.2.1       2019-10-14 [1] CRAN (R 3.6.1)                      
+##  generics       0.0.2       2018-11-29 [1] CRAN (R 3.6.1)                      
+##  gganimate    * 1.0.4       2019-11-18 [1] CRAN (R 3.6.1)                      
+##  ggbeeswarm   * 0.6.0       2017-08-07 [1] CRAN (R 3.6.1)                      
+##  ggforce      * 0.3.1       2019-08-20 [1] CRAN (R 3.6.1)                      
+##  ggiraph      * 0.7.0       2019-10-31 [1] CRAN (R 3.6.1)                      
+##  ggplot2      * 3.2.1       2019-08-10 [1] CRAN (R 3.6.1)                      
+##  ggpmisc      * 0.3.2       2019-11-11 [1] CRAN (R 3.6.1)                      
+##  ggpubr       * 0.2.4       2019-11-14 [1] CRAN (R 3.6.1)                      
+##  ggrepel      * 0.8.1       2019-05-07 [1] CRAN (R 3.6.1)                      
+##  ggsci        * 2.9         2018-05-14 [1] CRAN (R 3.6.1)                      
+##  ggsignif       0.6.0       2019-08-08 [1] CRAN (R 3.6.1)                      
+##  ggtext         0.1.0       2019-11-25 [1] Github (clauswilke/ggtext@7449318)  
+##  ggthemes       4.2.0       2019-05-13 [1] CRAN (R 3.6.1)                      
+##  git2r          0.26.1      2019-06-29 [1] CRAN (R 3.6.1)                      
+##  glue           1.3.1       2019-03-12 [1] CRAN (R 3.6.1)                      
+##  gridtext       0.1.0       2019-11-25 [1] Github (clauswilke/gridtext@b885f40)
+##  gtable         0.3.0       2019-03-25 [1] CRAN (R 3.6.1)                      
+##  haven          2.2.0       2019-11-08 [1] CRAN (R 3.6.1)                      
+##  here         * 0.1         2017-05-28 [1] CRAN (R 3.6.1)                      
+##  hms            0.5.2       2019-10-30 [1] CRAN (R 3.6.1)                      
+##  htmltools      0.4.0       2019-10-04 [1] CRAN (R 3.6.1)                      
+##  htmlwidgets    1.5.1       2019-10-08 [1] CRAN (R 3.6.1)                      
+##  httpuv         1.5.2       2019-09-11 [1] CRAN (R 3.6.1)                      
+##  httr           1.4.1       2019-08-05 [1] CRAN (R 3.6.1)                      
+##  jpeg           0.1-8.1     2019-10-24 [1] CRAN (R 3.6.1)                      
+##  jsonlite       1.6         2018-12-07 [1] CRAN (R 3.6.1)                      
+##  knitr          1.26        2019-11-12 [1] CRAN (R 3.6.1)                      
+##  labeling       0.3         2014-08-23 [1] CRAN (R 3.6.1)                      
+##  later          1.0.0       2019-10-04 [1] CRAN (R 3.6.1)                      
+##  lattice        0.20-38     2018-11-04 [3] CRAN (R 3.6.1)                      
+##  lazyeval       0.2.2       2019-03-15 [1] CRAN (R 3.6.1)                      
+##  leaflet      * 2.0.3       2019-11-16 [1] CRAN (R 3.6.1)                      
+##  lifecycle      0.1.0       2019-08-01 [1] CRAN (R 3.6.1)                      
+##  lubridate      1.7.4       2018-04-11 [1] CRAN (R 3.6.1)                      
+##  magrittr     * 1.5         2014-11-22 [1] CRAN (R 3.6.1)                      
+##  markdown       1.1         2019-08-07 [1] CRAN (R 3.6.1)                      
+##  MASS           7.3-51.4    2019-03-31 [3] CRAN (R 3.6.1)                      
+##  memoise        1.1.0       2017-04-21 [1] CRAN (R 3.6.1)                      
+##  mime           0.7         2019-06-11 [1] CRAN (R 3.6.1)                      
+##  modelr         0.1.5       2019-08-08 [1] CRAN (R 3.6.1)                      
+##  munsell        0.5.0       2018-06-12 [1] CRAN (R 3.6.1)                      
+##  nlme           3.1-140     2019-05-12 [3] CRAN (R 3.6.1)                      
+##  nycflights13 * 1.0.1       2019-09-16 [1] CRAN (R 3.6.1)                      
+##  openssl        1.4.1       2019-07-18 [1] CRAN (R 3.6.1)                      
+##  openxlsx       4.1.3       2019-11-07 [1] CRAN (R 3.6.1)                      
+##  patchwork    * 0.0.1.9000  2019-11-25 [1] Github (thomasp85/patchwork@63d82a7)
+##  pillar         1.4.2       2019-06-29 [1] CRAN (R 3.6.1)                      
+##  pkgconfig      2.0.3       2019-09-22 [1] CRAN (R 3.6.1)                      
+##  plotly         4.9.1       2019-11-07 [1] CRAN (R 3.6.1)                      
+##  plyr           1.8.4       2016-06-08 [1] CRAN (R 3.6.1)                      
+##  polyclip       1.10-0      2019-03-14 [1] CRAN (R 3.6.1)                      
+##  prettyunits    1.0.2       2015-07-13 [1] CRAN (R 3.6.1)                      
+##  progress       1.2.2       2019-05-16 [1] CRAN (R 3.6.1)                      
+##  promises       1.1.0       2019-10-04 [1] CRAN (R 3.6.1)                      
+##  purrr        * 0.3.3       2019-10-18 [1] CRAN (R 3.6.1)                      
+##  R6             2.4.1       2019-11-12 [1] CRAN (R 3.6.1)                      
+##  RColorBrewer   1.1-2       2014-12-07 [1] CRAN (R 3.6.1)                      
+##  Rcpp           1.0.3       2019-11-08 [1] CRAN (R 3.6.1)                      
+##  readr        * 1.3.1       2018-12-21 [1] CRAN (R 3.6.1)                      
+##  readxl         1.3.1       2019-03-13 [1] CRAN (R 3.6.1)                      
+##  reprex         0.3.0       2019-05-16 [1] CRAN (R 3.6.1)                      
+##  reshape2       1.4.3       2017-12-11 [1] CRAN (R 3.6.1)                      
+##  rio            0.5.16      2018-11-26 [1] CRAN (R 3.6.1)                      
+##  rlang          0.4.2.9000  2019-11-25 [1] Github (r-lib/rlang@26bf207)        
+##  rmarkdown      1.17        2019-11-13 [1] CRAN (R 3.6.1)                      
+##  rprojroot      1.3-2       2018-01-03 [1] CRAN (R 3.6.1)                      
+##  rstudioapi     0.10        2019-03-19 [1] CRAN (R 3.6.1)                      
+##  rvest          0.3.5       2019-11-08 [1] CRAN (R 3.6.1)                      
+##  scales         1.1.0       2019-11-18 [1] CRAN (R 3.6.1)                      
+##  sessioninfo    1.1.1       2018-11-05 [1] CRAN (R 3.6.1)                      
+##  shiny          1.4.0       2019-10-10 [1] CRAN (R 3.6.1)                      
+##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                      
+##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                      
+##  systemfonts    0.1.1       2019-07-01 [1] CRAN (R 3.6.1)                      
+##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                      
+##  tic            0.2.13.9021 2019-11-18 [1] Github (ropenscilabs/tic@9a5f965)   
+##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                      
+##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                      
+##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                      
+##  tinytex        0.17        2019-10-30 [1] CRAN (R 3.6.1)                      
+##  tweenr         1.0.1       2018-12-14 [1] CRAN (R 3.6.1)                      
+##  utf8           1.1.4       2018-05-24 [1] CRAN (R 3.6.1)                      
+##  uuid           0.1-2       2015-07-28 [1] CRAN (R 3.6.1)                      
+##  vctrs          0.2.0       2019-07-05 [1] CRAN (R 3.6.1)                      
+##  vipor          0.4.5       2017-03-22 [1] CRAN (R 3.6.1)                      
+##  viridisLite    0.3.0       2018-02-01 [1] CRAN (R 3.6.1)                      
+##  withr          2.1.2       2018-03-15 [1] CRAN (R 3.6.1)                      
+##  xaringan       0.13        2019-10-30 [1] CRAN (R 3.6.1)                      
+##  xfun           0.11        2019-11-12 [1] CRAN (R 3.6.1)                      
+##  xml2           1.2.2       2019-08-09 [1] CRAN (R 3.6.1)                      
+##  xtable         1.8-4       2019-04-21 [1] CRAN (R 3.6.1)                      
+##  yaml           2.2.0       2018-07-25 [1] CRAN (R 3.6.1)                      
+##  zeallot        0.1.0       2018-01-28 [1] CRAN (R 3.6.1)                      
+##  zip            2.0.4       2019-09-01 [1] CRAN (R 3.6.1)                      
 ## 
 ## [1] /home/travis/R/Library
 ## [2] /usr/local/lib/R/site-library
@@ -405,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">0.1</span> Speakers</h2>
 <p><strong>Kirill Müller</strong> (@krlmlr)</p>
 <p><strong>Patrick Schratz</strong> (@pat-s)</p>
-<p><img src="img/pjs.jpg" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="img/pjs.jpg" width="125" style="display: block; margin: auto 0 auto auto;" /></p>
 <ul>
 <li>M.Sc. Geoinformatics</li>
 <li>Researcher/Research Engineer at University of <strong>Jena</strong> and <strong>LMU Munich</strong></li>
@@ -445,274 +486,6 @@ The topics are organized in chapters that contain mostly R code with output and 
 In each section, exercises are provided.</p>
 
 </div>
-<div id="r-as-a-toolkit" class="section level2">
-<h2><span class="header-section-number">0.3</span> R as a toolkit</h2>
-<div class="figure">
-<img src="img/toolkit.png" alt="R as a toolkit" />
-<p class="caption">R as a toolkit</p>
-</div>
-<ul>
-<li>Scriptability <span class="math inline">\(\rightarrow\)</span> R</li>
-<li>Literate programming (code, narrative, output in one place) <span class="math inline">\(\rightarrow\)</span> R Markdown</li>
-<li>Version control <span class="math inline">\(\rightarrow\)</span> Git / GitHub</li>
-</ul>
-<div id="why-r-and-rstudio" class="section level3">
-<h3><span class="header-section-number">0.3.1</span> Why R and RStudio?</h3>
-<p><img src="vistransrep_files/figure-html/indeeddotcom-1.png" width="576" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="some-r-basics" class="section level3">
-<h3><span class="header-section-number">0.3.2</span> Some R basics</h3>
-<ul>
-<li>You will load packages at the <strong>start of every new R session</strong>.
-<ul>
-<li>“Base” R comes with tons of useful built-in functions. It also provides all the tools necessary for you to write your own functions.</li>
-<li>However, many of R’s best data science functions and tools come from external packages written by other users.</li>
-</ul></li>
-<li>R easily and infinitely parallelizes. For free.
-<ul>
-<li>Compare the cost of a <a href="https://www.stata.com/statamp/">Stata/MP</a> license, nevermind the fact that you effectively pay per core…</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="r-code-examples" class="section level2">
-<h2><span class="header-section-number">0.4</span> R code examples</h2>
-<div id="linear-regression" class="section level3">
-<h3><span class="header-section-number">0.4.1</span> Linear regression</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(dist <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>speed, <span class="dt">data =</span> cars)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = dist ~ 1 + speed, data = cars)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -29.069  -9.525  -2.272   9.215  43.201 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
-## speed         3.9324     0.4155   9.464 1.49e-12 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 15.38 on 48 degrees of freedom
-## Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 
-## F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
-</div>
-<div id="base-r-plot" class="section level3">
-<h3><span class="header-section-number">0.4.2</span> Base R plot</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">abline</span>(fit, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/cars_basefig-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="ggplot2" class="section level3">
-<h3><span class="header-section-number">0.4.3</span> ggplot2</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(gapminder) ## For the gapminder data</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">data =</span> gapminder,</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/gapm_plot-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
-</div>
-<div id="gganimate" class="section level3">
-<h3><span class="header-section-number">0.4.4</span> gganimate</h3>
-<p><img src="https://raw.githubusercontent.com/uo-ec607/lectures/master/01-intro/01-Intro_files/figure-html/ggamin2-1.gif" width = "910px" /></p>
-</div>
-</div>
-<div id="r-vs.rstudio" class="section level2">
-<h2><span class="header-section-number">0.5</span> R vs. RStudio</h2>
-<ul>
-<li>R is a statistical <strong>programming language</strong></li>
-<li>RStudio is a convenient interface for R (an <strong>integrated development environment</strong>, IDE)</li>
-<li>At its simplest:
-<ul>
-<li>R is like a car’s engine</li>
-<li>RStudio is like a car’s dashboard</li>
-</ul></li>
-</ul>
-<div class="figure">
-<img src="img/engine-dashboard.png" alt="Engine vs. dashboard" />
-<p class="caption">Engine vs. dashboard</p>
-</div>
-</div>
-<div id="r-vs.r-packages" class="section level2">
-<h2><span class="header-section-number">0.6</span> R vs. R packages</h2>
-<ul>
-<li><p>R packages <strong>extend</strong> the functionality of R by providing additional functions, data, and documentation.</p></li>
-<li><p>They are written by a world-wide community of R users and can be downloaded for no cost</p></li>
-</ul>
-<div class="figure">
-<img src="img/r_vs_r_packages.png" alt="R versus R packages" />
-<p class="caption">R versus R packages</p>
-</div>
-</div>
-<div id="r-packages" class="section level2">
-<h2><span class="header-section-number">0.7</span> R packages</h2>
-<ul>
-<li><p><strong>CRAN</strong>: A group of people who check that packages fulfill certain standards</p></li>
-<li><p><strong>Mirror</strong>: A location on the web where to download R packages from. Because many thousand people download them daily, the load is distributed on different machines. Pick one which is geographically close to you</p></li>
-<li><p><strong>R base/recommended packages</strong>: The base installation of R ships with a bunch of default packages. In addition, there are some more packages listed as “recommended”.</p></li>
-</ul>
-<p>“base” packages are managed by the R core team and will only be updated for every R release.</p>
-<p>Packages listed as “recommended” inherit the attributes of being widely used and having a long history in the R community.</p>
-<pre><code>##     Package Priority
-## 1      base     base
-## 2  compiler     base
-## 3  datasets     base
-## 4  graphics     base
-## 5 grDevices     base
-## 6      grid     base
-## 7   methods     base
-## 8  parallel     base</code></pre>
-<pre><code>##       Package    Priority
-## 1        boot recommended
-## 2       class recommended
-## 3     cluster recommended
-## 4   codetools recommended
-## 5     foreign recommended
-## 6  KernSmooth recommended
-## 7     lattice recommended
-## 8        MASS recommended
-## 9      Matrix recommended
-## 10       mgcv recommended
-##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 2 rows ]</code></pre>
-</div>
-<div id="rprofile" class="section level2">
-<h2><span class="header-section-number">0.8</span> .Rprofile</h2>
-<ul>
-<li><p>File in your home directory <code>~/.Rprofile</code></p></li>
-<li><p>Will be executed before every R session starts</p></li>
-<li><p>Useful to set global options and for loading of often used packages</p></li>
-</ul>
-</div>
-<div id="renviron" class="section level2">
-<h2><span class="header-section-number">0.9</span> .Renviron</h2>
-<ul>
-<li><p>File in your home directory <code>~/.Renviron</code></p></li>
-<li><p>Used to set environment variables</p></li>
-<li><p>Used to store “Access tokens” (Github, CI provider, C++ flags)</p></li>
-</ul>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">0.10</span> RStudio</h2>
-<p><span class="math inline">\(\rightarrow\)</span> Exists to <strong>boost</strong> your productivity</p>
-<p><span class="math inline">\(\rightarrow\)</span> Change the defaults to your liking so you <em>actually</em> can be <strong>productive</strong></p>
-<p><span class="math inline">\(\rightarrow\)</span> Keybindings = productivity</p>
-<p>Since RStudio v1.3 a <a href="https://docs.rstudio.com/ide/desktop-pro/latest/settings.html#preferences">portable JSON settings file</a> exists.</p>
-<p>If you want to have sane settings without much hassle, you can execute the following R code: <code>source(&quot;https://bit.ly/rstudio-pat&quot;)</code></p>
-<p>This code will change/overwrite your existing RStudio settings and</p>
-<ul>
-<li><p>set custom keybindings</p></li>
-<li><p>move the console panel to the top-right (by default bottom-left)</p></li>
-<li><p>Enable/Disable some core settings to have a better overall experience</p></li>
-</ul>
-<hr />
-<p>R scripts (source code) are written in the <em>Source</em> pane (Editor).</p>
-<div class="figure">
-<img src="img/rstudio_source_rec.png" alt="Source pane" />
-<p class="caption">Source pane</p>
-</div>
-<p>(Source of all following RStudio screenshots: <a href="https://github.com/edrubin/EC525S19" class="uri">https://github.com/edrubin/EC525S19</a>)</p>
-<hr />
-<p>You can use the menubar or ⇧+⌘+N / ⇧+CTRL+N to create new R scripts.</p>
-<div class="figure">
-<img src="img/rstudio_source_arrow.png" alt="New script" />
-<p class="caption">New script</p>
-</div>
-<hr />
-<p>To execute commands from your R script, use ⌘+Enter / CTRL+Enter.</p>
-<div class="figure">
-<img src="img/rstudio_source_ex.png" alt="Execute commands" />
-<p class="caption">Execute commands</p>
-</div>
-<p>RStudio will execute the command in the console.</p>
-<div class="figure">
-<img src="img/rstudio_source_ex2.png" alt="Console output" />
-<p class="caption">Console output</p>
-</div>
-<p>You can see the new object in the <em>Environment</em> pane.</p>
-<div class="figure">
-<img src="img/rstudio_source_ex3.png" alt="Environment pane" />
-<p class="caption">Environment pane</p>
-</div>
-<hr />
-<p>The <em>History</em> tab records your old commands.</p>
-<div class="figure">
-<img src="img/rstudio_history.png" alt="History pane" />
-<p class="caption">History pane</p>
-</div>
-<hr />
-<p>The <em>Files</em> pane is the file explorer.</p>
-<div class="figure">
-<img src="img/rstudio_files.png" alt="Files pane" />
-<p class="caption">Files pane</p>
-</div>
-<hr />
-<p>The <em>Plots</em> pane/tab shows… plots.</p>
-<div class="figure">
-<img src="img/rstudio_plots.png" alt="Plots pane" />
-<p class="caption">Plots pane</p>
-</div>
-<hr />
-<p><em>Packages</em> shows installed packages</p>
-<div class="figure">
-<img src="img/rstudio_packages.png" alt="Packages pane" />
-<p class="caption">Packages pane</p>
-</div>
-<hr />
-<p><em>Packages</em> shows installed packages and whether they are <em>loaded</em>.</p>
-<div class="figure">
-<img src="img/rstudio_packages2.png" alt="Loaded and installed packages" />
-<p class="caption">Loaded and installed packages</p>
-</div>
-<hr />
-<p>The <em>Help</em> tab shows help documentation (also accessible via <code>?</code>).</p>
-<div class="figure">
-<img src="img/rstudio_help.png" alt="Help pane" />
-<p class="caption">Help pane</p>
-</div>
-<hr />
-<p>Finally, you can customize the actual layout</p>
-<div class="figure">
-<img src="img/rstudio_layout.png" alt="Customize layout" />
-<p class="caption">Customize layout</p>
-</div>
-</div>
-<div id="rstudio-addins" class="section level2">
-<h2><span class="header-section-number">0.11</span> RStudio Addins</h2>
-<p>RStudio can be further enhanced by so called “addins”.
-These are clickable snippets that execute certain actions in RStudio.</p>
-<p>They aim to make repetitive tasks easier and to save you time.
-There is an addin called <a href="https://github.com/daattali/addinslist">addinslist</a> which lists all available addins.
-It can be installed as a normal package from CRAN:</p>
-<p><code>install.packages(&quot;addinslist&quot;)</code></p>
-<p>To have an addin available in RStudio after installation, RStudio needs to be restarted.</p>
-</div>
-<div id="rstudio-projects" class="section level2">
-<h2><span class="header-section-number">0.12</span> RStudio projects</h2>
-<p>Without a project, you will need to define <strong>long</strong> file paths which <strong>only exist on your machine</strong>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/&lt;yourname&gt;/somewhere/on/this/machine/sample.csv&quot;</span>)</a></code></pre></div>
-<p>With a project, R automatically references the project’s folder as the current working directory.</p>
-<p>From there on, you can use <em>relative paths</em> to point to files.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;sample.csv&quot;</span>)</a></code></pre></div>
-<p><strong>Double-plus bonus</strong>: The <a href="https://github.com/r-lib/here"><em>here</em></a> package extends <em>RStudio project</em> philosophy even more and helps in cases when not using RStudio (e.g. on the command line).</p>
-</div>
-<div id="alternatives-to-rstudio" class="section level2">
-<h2><span class="header-section-number">0.13</span> Alternatives to RStudio</h2>
-<ul>
-<li><p>Using R directly in the terminal via <a href="https://github.com/randy3k/radian">radian</a> (optimized R console interpreter)</p></li>
-<li><p>R is supported in other “general purpose IDE’s” (VScode, Sublime Text, Atom, Vim, etc.)</p></li>
-</ul>
-
-</div>
-</div>
-
-
-
 </div>
 <div class="footnotes">
 <hr />
@@ -726,7 +499,7 @@ It can be installed as a normal package from CRAN:</p>
         </div>
       </div>
 
-<a href="vis-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-and-rstudio.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
