@@ -1,4 +1,4 @@
-# (PART) Tidying and transforming {-}
+# (PART) Tidying, transforming and importing {-}
 
 # Transformation {#transformation}
 

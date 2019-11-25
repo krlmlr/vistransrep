@@ -1,3 +1,5 @@
+# (PART) Appendix {-}
+
 # Best practices
 
 R code is often organized in packages that can be installed from centralized repositories such as CRAN or GitHub.
