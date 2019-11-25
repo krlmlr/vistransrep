@@ -27,5 +27,3 @@ Imports:
     shiny,
     tidyverse
 Roxygen: list(markdown = TRUE)
-Remotes: 
-  thomasp85/patchwork

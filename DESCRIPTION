@@ -18,3 +18,5 @@ Imports:
     tidyverse,
     xaringan
 Encoding: UTF-8
+Remotes: 
+  thomasp85/patchwork
