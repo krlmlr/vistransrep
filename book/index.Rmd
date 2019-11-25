@@ -8,6 +8,7 @@ bibliography: book.bib
 biblio-style: apa-old.cls
 link-citations: true
 nocite: "@grolemund2017"
+always_allow_html: true
 ---
 
 ```{r setup, include = FALSE}
