@@ -17,6 +17,16 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     conflicted,
+    ggpubr,
+    ggiraph,
+    ggbeeswarm,
+    gganimate,
+    ggforce,
+    ggrepel,
+    ggpmisc,
+    ggstatsplot,
+    ggsci,
+    gapminder,
     darksky,
     ggthemes,
     here,
@@ -27,3 +37,6 @@ Imports:
     shiny,
     tidyverse
 Roxygen: list(markdown = TRUE)
+Remotes:
+  clauswilke/ggtext,
+  thomasp85/patchwork
