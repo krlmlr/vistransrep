@@ -8,7 +8,6 @@ Imports:
     ggpubr,
     ggthemes,
     here,
-    icon,
     leaflet,
     nycflights13,
     patchwork,
@@ -20,6 +19,5 @@ Imports:
     tidyverse,
     xaringan
 Remotes: 
-    ropenscilabs/icon,
     thomasp85/patchwork
 Encoding: UTF-8

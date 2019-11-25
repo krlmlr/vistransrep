@@ -26,9 +26,9 @@ facet_wrap(facets = <variable> ~ ., scales = "fixed", ...)
 
 The position of `<variable>` denotes on which axis the facets will be shown:
 
-- `<variable> ~ .` `r icon::fa_arrow_right()` y-axis
+- `<variable> ~ .` $\right_arrow$ y-axis
 
-- `. ~ <variable> ``r icon::fa_arrow_right()` x-axis
+- `. ~ <variable>` $\right_arrow$ x-axis
 
 ![](img/facets.png)
 
