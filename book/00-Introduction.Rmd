@@ -1,3 +1,5 @@
+# R and RStudio 
+
 ## R as a toolkit
 
 ![R as a toolkit](img/toolkit.png)
