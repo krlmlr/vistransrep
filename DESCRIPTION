@@ -12,7 +12,6 @@ Imports:
     ggpubr,
     ggrepel,
     ggsci,
-    ggstatsplot,
     ggtext,
     ggthemes,
     here,
