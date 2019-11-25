@@ -17,7 +17,9 @@ While this might be true for all languages (once you speak it well enough, thing
 
 **Patrick Schratz** (\@pat-s)
 
-![Patrick Schratz](img/pjs.jpg)
+```{r, include=FALSE}
+knitr::include_graphics("img/pjs.jpg")
+```
 
 - M.Sc. Geoinformatics
 - Researcher/Research Engineer at University of **Jena** and **LMU Munich**
