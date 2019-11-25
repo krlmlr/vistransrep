@@ -6,6 +6,7 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
   highlight: haddock
+  always_allow_html: true
 
 bookdown::gitbook:
   css: scroll.css
