@@ -1,5 +1,10 @@
 ## One variable plots
 
+```{r 15-setup}
+library(tidyverse)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+```
+
 This type of plots visualizes ONE variable in a certain way.
 
 To do this in a 2D space, a **statistical transformation** of the variable is required for the missing axis.
