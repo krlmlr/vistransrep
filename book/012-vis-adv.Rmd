@@ -131,23 +131,18 @@ Keep in mind: Visualization should _simplify_ data!
 
 ### Renaming of facet labels
 
-A non-trivial change that is often applied to facet plots is the renaming of the facet labels.
+A non-trivial change that is often applied to facet plots is the (re-)naming of the facet labels.
 Facet labels are automatically created based on the factor levels of the respective variable.
+However, sometimes the raw factor levels are not descriptive enough.
+In these cases, it makes sense to prefix the factor level values with the column name.
+This can be achieved by setting the `labeller` argument of `facet_*` to `label_both`.
 
-There are two ways to change the labels:
-
-- By modifying the underlying factor levels of the data
-
-- By providing a custom "labeller" function
-
-```{r}
-my_labeller = as_labeller(c(`4` = "Cyl: 4", `5` = "Cyl: 5",
-  `6` = "Cyl: 6", `8` = "Cyl: 8"))
-```
+(An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
 
 ```{r, fig.width=8, fig.height=4}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  facet_grid(. ~ cyl, labeller = my_labeller) +
+  facet_grid(. ~ cyl, labeller = label_both) +
   theme_pubr()
 ```
+
