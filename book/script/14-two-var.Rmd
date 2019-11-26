@@ -1,5 +1,10 @@
 ## Two variable plots
 
+```{r 14-setup}
+library(tidyverse)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+```
+
 "Two variable plots" can be split into sub-categories:
 
 - Continuous X and Y
