@@ -280,20 +280,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Pivoting</h2>
 <details>
 <p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb224-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
-<a class="sourceLine" id="cb224-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb224-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
-<a class="sourceLine" id="cb224-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb223-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
+<a class="sourceLine" id="cb223-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb223-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
+<a class="sourceLine" id="cb223-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
 </details>
 <p>Pivoting describes operations that help rearrange data in different ways.
 The following two tables contain the same data arranged differently.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">table1</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -302,7 +302,7 @@ The following two tables contain the same data arranged differently.</p>
 ## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">table2</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>type</span><span>          </span><span style='font-weight: bold;'>count</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -319,13 +319,13 @@ In the “longer” version, <code>table2</code>, the number of cases and the po
 <p>The following example computes the maximum number of cases and population for each country.
 For the wider form, this requires repeating the same expression for all columns.
 This may work with two columns but becomes tedious once more measurements are added.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb232-4" data-line-number="4">    <span class="dt">max_cases =</span> <span class="kw">max</span>(cases),</a>
-<a class="sourceLine" id="cb232-5" data-line-number="5">    <span class="dt">max_population =</span> <span class="kw">max</span>(population)</a>
-<a class="sourceLine" id="cb232-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb232-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb231-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb231-4" data-line-number="4">    <span class="dt">max_cases =</span> <span class="kw">max</span>(cases),</a>
+<a class="sourceLine" id="cb231-5" data-line-number="5">    <span class="dt">max_population =</span> <span class="kw">max</span>(population)</a>
+<a class="sourceLine" id="cb231-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb231-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 3 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>max_cases</span><span> </span><span style='font-weight: bold;'>max_population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -335,13 +335,13 @@ This may work with two columns but becomes tedious once more measurements are ad
 </span></CODE></PRE>
 <p>The <code>_at</code> family of functions helps iterating over columns, but all columns still need to be enumerated.
 (Specifying ranges of columns is rather brittle.)</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_at</span>(</a>
-<a class="sourceLine" id="cb233-4" data-line-number="4">    <span class="kw">vars</span>(cases, population),</a>
-<a class="sourceLine" id="cb233-5" data-line-number="5">    max</a>
-<a class="sourceLine" id="cb233-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb233-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize_at</span>(</a>
+<a class="sourceLine" id="cb232-4" data-line-number="4">    <span class="kw">vars</span>(cases, population),</a>
+<a class="sourceLine" id="cb232-5" data-line-number="5">    max</a>
+<a class="sourceLine" id="cb232-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb232-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 3 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -351,12 +351,12 @@ This may work with two columns but becomes tedious once more measurements are ad
 </span></CODE></PRE>
 <p>If the data is in the “longer” form, it is sufficient to include <code>type</code> in the grouping variables.
 The same code works for arbitrary number of measurements.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country, type) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb234-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb234-4" data-line-number="4">    <span class="dt">max =</span> <span class="kw">max</span>(count)</a>
-<a class="sourceLine" id="cb234-5" data-line-number="5">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb234-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(country, type) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb233-4" data-line-number="4">    <span class="dt">max =</span> <span class="kw">max</span>(count)</a>
+<a class="sourceLine" id="cb233-5" data-line-number="5">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb233-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>type</span><span>            </span><span style='font-weight: bold;'>max</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -369,7 +369,7 @@ The same code works for arbitrary number of measurements.</p>
 <div id="convert-to-longer-form" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Convert to longer form</h3>
 <p>The <code>pivot_longer()</code> function takes a “wider-form” dataset and converts it to an equivalent dataset with more rows.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">table1</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -378,8 +378,8 @@ The same code works for arbitrary number of measurements.</p>
 ## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(country, year))</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(country, year))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>name</span><span>          </span><span style='font-weight: bold;'>value</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -392,10 +392,10 @@ The same code works for arbitrary number of measurements.</p>
 The column names become the contents of the new <code>name</code> column, the values are available in the <code>value</code> column.</p>
 <p>The result of this operation isn’t strictly equivalent to <code>table2</code>, we need to rename and sort differently.
 Alternatively, the <code>names_to</code> and <code>values_to</code> arguments allow specifying the names of the new columns.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(country, year)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">type =</span> name, <span class="dt">count =</span> value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(country, year, type)</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(country, year)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">type =</span> name, <span class="dt">count =</span> value) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb236-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(country, year, type)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>type</span><span>          </span><span style='font-weight: bold;'>count</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -404,13 +404,13 @@ Alternatively, the <code>names_to</code> and <code>values_to</code> arguments al
 ## </span><span style='color: #555555;'>3</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 cases          </span><span style='text-decoration: underline;'>2</span><span>666
 ## </span><span style='color: #555555;'># … with 9 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">    <span class="op">-</span><span class="kw">c</span>(country, year),</a>
-<a class="sourceLine" id="cb238-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;type&quot;</span>,</a>
-<a class="sourceLine" id="cb238-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;count&quot;</span></a>
-<a class="sourceLine" id="cb238-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb238-7" data-line-number="7"><span class="st">  </span><span class="kw">arrange</span>(country, year, type)</a></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb237-3" data-line-number="3">    <span class="op">-</span><span class="kw">c</span>(country, year),</a>
+<a class="sourceLine" id="cb237-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">&quot;type&quot;</span>,</a>
+<a class="sourceLine" id="cb237-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">&quot;count&quot;</span></a>
+<a class="sourceLine" id="cb237-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb237-7" data-line-number="7"><span class="st">  </span><span class="kw">arrange</span>(country, year, type)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>type</span><span>          </span><span style='font-weight: bold;'>count</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -424,7 +424,7 @@ Alternatively, the <code>names_to</code> and <code>values_to</code> arguments al
 <h3><span class="header-section-number">6.1.2</span> Convert to wider form</h3>
 <p>The <code>pivot_wider()</code> form does the inverse: it creates a dataset with fewer rows.
 If the <code>name</code> and <code>value</code> columns are named differently, these columns can be provided via the <code>names_from</code> and <code>values_from</code> arguments.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">table2</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>type</span><span>          </span><span style='font-weight: bold;'>count</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -433,8 +433,8 @@ If the <code>name</code> and <code>value</code> columns are named differently, t
 ## </span><span style='color: #555555;'>3</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 cases          </span><span style='text-decoration: underline;'>2</span><span>666
 ## </span><span style='color: #555555;'># … with 9 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> type, <span class="dt">values_from =</span> count)</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb239-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> type, <span class="dt">values_from =</span> count)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -443,9 +443,9 @@ If the <code>name</code> and <code>value</code> columns are named differently, t
 ## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">name =</span> type, <span class="dt">value =</span> count) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_wider</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">name =</span> type, <span class="dt">value =</span> count) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_wider</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -464,47 +464,47 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <li><code>table2</code> form requires only one layer, the fill color is determined automatically, the legend is created automatically</li>
 <li><code>table1</code> requires two layers, manual assignment of fill color, and manual creation of legend (not shown)</li>
 </ul>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb242-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
-<a class="sourceLine" id="cb242-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb241-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
+<a class="sourceLine" id="cb241-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, population), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb243-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
-<a class="sourceLine" id="cb243-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, population), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb242-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb242-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
+<a class="sourceLine" id="cb242-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>On the other hand, iIf only a single measurement needs to be plotted, the “wider” form is easier to work with.</p>
 <ul>
 <li><code>table1</code> only requires selecting the correct column</li>
 <li><code>table2</code> requires a <code>filter()</code></li>
 </ul>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb244-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb244-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;cases&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb244-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;cases&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb244-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb244-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>The “wider” form is also the only way to map different measures to different aesthetics, e.g. to correlate values.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(cases, population, <span class="dt">color =</span> <span class="kw">factor</span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb246-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb246-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(cases, population, <span class="dt">color =</span> <span class="kw">factor</span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="combining-vertically" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Combining vertically</h3>
 <p>A different view on the same data is given in the two tables <code>table4a</code> and <code>table4b</code>.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">table4a</a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">table4a</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 3 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>`1999`</span><span> </span><span style='font-weight: bold;'>`2000`</span><span>
 ## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -512,7 +512,7 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 ## </span><span style='color: #555555;'>2</span><span> Brazil       </span><span style='text-decoration: underline;'>37</span><span>737  </span><span style='text-decoration: underline;'>80</span><span>488
 ## </span><span style='color: #555555;'>3</span><span> China       </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>213</span><span>766
 </span></CODE></PRE>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">table4b</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">table4b</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 3 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>         </span><span style='font-weight: bold;'>`1999`</span><span>     </span><span style='font-weight: bold;'>`2000`</span><span>
 ## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -522,13 +522,13 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 </span></CODE></PRE>
 <p>The <code>bind_rows()</code> function combines these two parts into a single table.
 The <code>.id = &quot;type&quot;</code> setting ensures that the input datasets gain different tags in the new <code>type</code> column.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">table4 &lt;-</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">bind_rows</span>(</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3">    <span class="dt">cases =</span> table4a,</a>
-<a class="sourceLine" id="cb249-4" data-line-number="4">    <span class="dt">population =</span> table4b,</a>
-<a class="sourceLine" id="cb249-5" data-line-number="5">    <span class="dt">.id =</span> <span class="st">&quot;type&quot;</span></a>
-<a class="sourceLine" id="cb249-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb249-7" data-line-number="7">table4</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">table4 &lt;-</a>
+<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw">bind_rows</span>(</a>
+<a class="sourceLine" id="cb248-3" data-line-number="3">    <span class="dt">cases =</span> table4a,</a>
+<a class="sourceLine" id="cb248-4" data-line-number="4">    <span class="dt">population =</span> table4b,</a>
+<a class="sourceLine" id="cb248-5" data-line-number="5">    <span class="dt">.id =</span> <span class="st">&quot;type&quot;</span></a>
+<a class="sourceLine" id="cb248-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb248-7" data-line-number="7">table4</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>type</span><span>  </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>`1999`</span><span> </span><span style='font-weight: bold;'>`2000`</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -539,8 +539,8 @@ The <code>.id = &quot;type&quot;</code> setting ensures that the input datasets 
 </span></CODE></PRE>
 <p>As before, <code>pivot_longer()</code> helps converting the results into something similar to <code>table2</code>.
 The result isn’t quite the same yet, can you spot the difference?</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">table4 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">table4 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>type</span><span>  </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>name</span><span>  </span><span style='font-weight: bold;'>value</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -571,8 +571,8 @@ One single <code>pivot_longer()</code> call transforms the data into a longer-fo
 The <code>names_pattern</code> is a regular expression that defines what part of the column name is stored where.
 (<a href="https://en.wikipedia.org/wiki/Regular_expression">Regular expressions</a> are a powerful tool for parsing text data, out of scope for this lecture but very much worth looking into.)
 The <code>names_to</code> sequence defines, for each <code>()</code> group in <code>names_pattern</code>, if the data encoded in the column name is stored in a new column or if it is kept as column name.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">who <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">view</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">who <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="st">  </span><span class="kw">view</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 7,240 x 60</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span> </span><span style='font-weight: bold;'>iso2</span><span>  </span><span style='font-weight: bold;'>iso3</span><span>   </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>new_sp_m014</span><span> </span><span style='font-weight: bold;'>new_sp_m1524</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -604,15 +604,15 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## #   </span><span style='color: #555555;font-weight: bold;'>newrel_f2534</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, </span><span style='color: #555555;font-weight: bold;'>newrel_f3544</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
 ## #   </span><span style='color: #555555;font-weight: bold;'>newrel_f4554</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, </span><span style='color: #555555;font-weight: bold;'>newrel_f5564</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, </span><span style='color: #555555;font-weight: bold;'>newrel_f65</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">who_longer &lt;-</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="st">  </span>who <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
-<a class="sourceLine" id="cb252-4" data-line-number="4">    <span class="op">-</span>(country<span class="op">:</span>year),</a>
-<a class="sourceLine" id="cb252-5" data-line-number="5">    <span class="dt">names_pattern =</span> <span class="st">&quot;([a-z_]+)_(.)([0-9]+)&quot;</span>,</a>
-<a class="sourceLine" id="cb252-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="kw">c</span>(<span class="st">&quot;.value&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>)</a>
-<a class="sourceLine" id="cb252-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb252-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb252-9" data-line-number="9">who_longer</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">who_longer &lt;-</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span>who <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_longer</span>(</a>
+<a class="sourceLine" id="cb251-4" data-line-number="4">    <span class="op">-</span>(country<span class="op">:</span>year),</a>
+<a class="sourceLine" id="cb251-5" data-line-number="5">    <span class="dt">names_pattern =</span> <span class="st">&quot;([a-z_]+)_(.)([0-9]+)&quot;</span>,</a>
+<a class="sourceLine" id="cb251-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="kw">c</span>(<span class="st">&quot;.value&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>)</a>
+<a class="sourceLine" id="cb251-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb251-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb251-9" data-line-number="9">who_longer</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 101,360 x 10</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span> </span><span style='font-weight: bold;'>iso2</span><span>  </span><span style='font-weight: bold;'>iso3</span><span>   </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>sex</span><span>   </span><span style='font-weight: bold;'>age</span><span>   </span><span style='font-weight: bold;'>new_sp</span><span> </span><span style='font-weight: bold;'>new_sn</span><span> </span><span style='font-weight: bold;'>new_ep</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -622,8 +622,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style='color: #555555;'># … with 1.014e+05 more rows, and 1 more variable:
 ## #   </span><span style='color: #555555;font-weight: bold;'>newrel</span><span style='color: #555555;'> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">who_longer <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(sex, age)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">who_longer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(sex, age)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 14 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>sex</span><span>   </span><span style='font-weight: bold;'>age</span><span>       </span><span style='font-weight: bold;'>n</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -638,19 +638,19 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 <h2><span class="header-section-number">6.2</span> Separating and uniting</h2>
 <details>
 <p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
-<a class="sourceLine" id="cb254-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb254-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
-<a class="sourceLine" id="cb254-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
+<a class="sourceLine" id="cb253-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
+<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
 </details>
 <p>The <code>table3</code> table violates the third principle of tidy data: each cell contains two values.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">table3</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>           
 ## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -660,8 +660,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
 <p>The <code>separate()</code> verb offers a convenient way to deal with this situation, including automatic type conversion.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
@@ -670,8 +670,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737 172006362 
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -682,7 +682,7 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 </span></CODE></PRE>
 <p>The inverse is offered by <code>unite()</code>.
 The data in <code>table5</code> stores year data in two columns.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">table5</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">table5</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>century</span><span> </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
 ## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -691,8 +691,8 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style='color: #555555;'>3</span><span> Brazil      19      99    37737/172006362
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year))</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -702,8 +702,8 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
 <p>The result needs a few tweaks to finally resemble <code>table3</code>.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -712,9 +712,9 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style='color: #555555;'>3</span><span> Brazil      1999  37737/172006362
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb265-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
 ##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>           
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
@@ -724,26 +724,26 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style='color: #555555;'># … with 3 more rows</span><span>
 </span></CODE></PRE>
 <p>See the help for further details.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">?separate</a>
-<a class="sourceLine" id="cb267-2" data-line-number="2">?unite</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">?separate</a>
+<a class="sourceLine" id="cb266-2" data-line-number="2">?unite</a></code></pre></div>
 <div id="parsing-numbers" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Parsing numbers</h3>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">thousand_separator &lt;-</a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw">tribble</span>(</a>
-<a class="sourceLine" id="cb268-3" data-line-number="3">    <span class="op">~</span>num,</a>
-<a class="sourceLine" id="cb268-4" data-line-number="4">    <span class="st">&quot;1&#39;000.00&quot;</span>,</a>
-<a class="sourceLine" id="cb268-5" data-line-number="5">    <span class="st">&quot;2&#39;000&#39;000.00&quot;</span></a>
-<a class="sourceLine" id="cb268-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb268-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb268-8" data-line-number="8">thousand_separator</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">thousand_separator &lt;-</a>
+<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="st">  </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb267-3" data-line-number="3">    <span class="op">~</span>num,</a>
+<a class="sourceLine" id="cb267-4" data-line-number="4">    <span class="st">&quot;1&#39;000.00&quot;</span>,</a>
+<a class="sourceLine" id="cb267-5" data-line-number="5">    <span class="st">&quot;2&#39;000&#39;000.00&quot;</span></a>
+<a class="sourceLine" id="cb267-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb267-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb267-8" data-line-number="8">thousand_separator</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 2 x 1</span><span>
 ##   </span><span style='font-weight: bold;'>num</span><span>         
 ##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       
 ## </span><span style='color: #555555;'>1</span><span> 1'000.00    
 ## </span><span style='color: #555555;'>2</span><span> 2'000'000.00
 </span></CODE></PRE>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(num, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;num&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(num, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;num&quot;</span>))</a></code></pre></div>
 <pre><code>## Warning: Expected 1 pieces. Additional pieces discarded in 2
 ## rows [1, 2].</code></pre>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 2 x 1</span><span>
@@ -752,9 +752,9 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style='color: #555555;'>1</span><span> 1    
 ## </span><span style='color: #555555;'>2</span><span> 2
 </span></CODE></PRE>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">num =</span> <span class="kw">str_replace_all</span>(num, <span class="st">&quot;[^-0-9.]&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">num =</span> <span class="kw">as.numeric</span>(num))</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">num =</span> <span class="kw">str_replace_all</span>(num, <span class="st">&quot;[^-0-9.]&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">num =</span> <span class="kw">as.numeric</span>(num))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 2 x 1</span><span>
 ##       </span><span style='font-weight: bold;'>num</span><span>
 ##     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
@@ -767,19 +767,19 @@ The data in <code>table5</code> stores year data in two columns.</p>
 <h2><span class="header-section-number">6.3</span> <No caption defined></h2>
 <details>
 <p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
-<a class="sourceLine" id="cb272-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb272-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
-<a class="sourceLine" id="cb272-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
+<a class="sourceLine" id="cb271-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb271-4" data-line-number="4"><span class="kw">library</span>(conflicted)</a>
+<a class="sourceLine" id="cb271-5" data-line-number="5"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">conflict_prefer</span>(<span class="st">&quot;lag&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="st">  </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb278-3" data-line-number="3"><span class="st">  </span><span class="kw">ftable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="st">  </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">  </span><span class="kw">ftable</span>()</a></code></pre></div>
 <pre><code>##                  type      cases population
 ## country     year                           
 ## Afghanistan 1999             745   19987071
@@ -788,9 +788,9 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ##             2000           80488  174504898
 ## China       1999          212258 1272915272
 ##             2000          213766 1280428583</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="st">  </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb280-3" data-line-number="3"><span class="st">  </span><span class="kw">ftable</span>(<span class="dt">col.vars =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;type&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="st">  </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="st">  </span><span class="kw">ftable</span>(<span class="dt">col.vars =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;type&quot;</span>))</a></code></pre></div>
 <pre><code>##             year       1999                  2000           
 ##             type      cases population      cases population
 ## country                                                     
@@ -798,8 +798,8 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## Brazil                37737  172006362      80488  174504898
 ## China                212258 1272915272     213766 1280428583</code></pre>
 </details>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">?<span class="st">`</span><span class="dt">tidyr-package</span><span class="st">`</span></a></code></pre></div>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">?<span class="st">`</span><span class="dt">tidyr-package</span><span class="st">`</span></a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="ot">NA</span></a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 
 </div>

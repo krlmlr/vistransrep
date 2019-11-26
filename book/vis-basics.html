@@ -949,13 +949,6 @@ However, because <code>geom_point()</code> has no support for passing a label, w
 <a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb67-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> drv), <span class="dt">size =</span> <span class="dv">10</span>)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/13-two-layers-more-clearly-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
-<a class="sourceLine" id="cb68-4" data-line-number="4">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_rug</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/13-good-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
 
 </div>
 </div>
