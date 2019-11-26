@@ -70,7 +70,10 @@ mpg$year = as.factor(mpg$year)
 ```
 
 ```{r, fig.width=8, fig.height=5}
-ggplot(mpg, aes(displ, hwy)) +
+mpg %>% 
+  mutate(manufacturer = as.factor(manufacturer)) %>% 
+  mutate(year = as.factor(year)) %>% 
+  ggplot(aes(displ, hwy)) +
   geom_point() +
   facet_wrap(~ manufacturer:year) +
   theme_pubr()
