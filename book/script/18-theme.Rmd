@@ -1,0 +1,105 @@
+## Themes
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r 18-setupr}
+library(tidyverse)
+library(nycflights13)
+
+library(conflicted)
+conflict_prefer("filter", "dplyr")
+conflict_prefer("lag", "dplyr")
+
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+```
+</details>
+
+<br>
+
+In this section we are looking at the use of visual themes to easily change the look and feel of a plot.
+We start with the introduction of the default theme -- `theme_grey()` function.
+
+```{r 18-base-plot}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  theme_grey()
+```
+
+Change the default `theme_grey()` to a more traditional black-and-white theme:
+
+```{r 18-bw-theme}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy)
+) +
+  geom_point() +
+  theme_bw()
+```
+
+Also in this scheme the color aesthetic works as it normally does.
+The black-and-whiteness only relates to the background.
+
+```{r 18-data-can-have-color-in-bw-theme}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme_bw()
+```
+
+Calling the function `theme()` after a `theme_...()` call let's you tweak certain aspects of the theme.
+
+Some plots work better with the legend at the bottom.
+
+```{r 18-occasionally-useful-legend-at-the-bottom}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
+
+Mind that `theme_...()` functions overwrite all previous settings of `theme()`:
+
+```{r 18-theme-functions-overwrite-theme-if-called-afterwards}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme(legend.position = "bottom") +
+  theme_bw()
+```
+
+The first argument of each `theme_...()` function is `base_size`, which refers to the font size of all elements in the plot.
+
+```{r 18-first-param-of-theme-functions-is-base-size}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  theme_bw(16)
+```
+
+If we were asked to suggest themes, we'd go for 
+
+- `ggplot2::theme_minimal()` 
+- `hrbrthemes::theme_ipsum()`
+- `ggpubr::theme_pubr()`
+
+Here is how `ggpubr::theme_pubr()` looks like.
+
+```{r 18-ggpubr}
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  ggpubr::theme_pubr()
+```
