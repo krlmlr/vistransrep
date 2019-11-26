@@ -64,11 +64,6 @@ ggplot(mpg, aes(displ, hwy)) +
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class `factor`).
 
-```{r}
-mpg$manufacturer = as.factor(mpg$manufacturer)
-mpg$year = as.factor(mpg$year)
-```
-
 ```{r, fig.width=8, fig.height=5}
 mpg %>% 
   mutate(manufacturer = as.factor(manufacturer)) %>% 
