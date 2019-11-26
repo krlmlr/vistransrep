@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{26 November 2019, 00:45 CET}
+    \date{26 November 2019, 15:07 CET}
 
 \usepackage{booktabs}
 
@@ -185,7 +185,7 @@ Click to expand
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2019-11-25                  
+##  date     2019-11-26                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package      * version     date       lib source                           
@@ -809,6 +809,7 @@ This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{g
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -966,6 +967,13 @@ statistical graphic.
 
 \hypertarget{geom_-functions}{%
 \section{\texorpdfstring{\texttt{geom\_*} functions}{geom\_* functions}}\label{geom_-functions}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \texttt{geom\_*} functions are added to the main \texttt{ggplot()} call via the ``+'' operator and
 (usually) placed on a new line.
@@ -1138,6 +1146,13 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \hypertarget{export-saving}{%
 \section{Export \& saving}\label{export-saving}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 The default way to export plots in \{\{ggplot2\}\} is by using \texttt{ggsave()}.
 
 It differs slightly from other ``exporting'' functions in R because it comes with some smart defaults:
@@ -1160,7 +1175,7 @@ ggsave() is a convenient function for saving a plot. It defaults to \textbf{savi
 \end{Shaded}
 
 \begin{verbatim}
-## Saving 3 x 2 in image
+## Saving 8 x 5 in image
 \end{verbatim}
 
 \begin{Shaded}
@@ -1170,7 +1185,7 @@ ggsave() is a convenient function for saving a plot. It defaults to \textbf{savi
 \end{Shaded}
 
 \begin{verbatim}
-## Saving 3 x 2 in image
+## Saving 8 x 5 in image
 \end{verbatim}
 
 This might seem natural to you but is is not.
@@ -1405,6 +1420,13 @@ Some best practices:
 \hypertarget{two-variable-plots}{%
 \section{Two variable plots}\label{two-variable-plots}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 ``Two variable plots'' can be split into sub-categories:
 
 \begin{itemize}
@@ -1456,6 +1478,13 @@ Some best practices:
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 This type of plots visualizes ONE variable in a certain way.
 
@@ -1519,6 +1548,13 @@ For discrete data, there is actually only one visualization method - the bar plo
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \emph{Click here to show setup code.}
 
@@ -1795,11 +1831,10 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 \hypertarget{labels}{%
 \section{Labels}\label{labels}}
 
-\emph{Click here to show setup code.}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{fig.width =} \DecValTok{8}\NormalTok{, }\DataTypeTok{fig.height =} \DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 

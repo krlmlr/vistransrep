@@ -370,20 +370,20 @@ $(document).ready(function () {
     month == lubridate::month(Sys.Date()),
     day == lubridate::day(Sys.Date())
   )</code></pre>
-<pre><code>## # A tibble: 942 x 19
+<pre><code>## # A tibble: 989 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013    11    25        5           2359         6      436            445
-##  2  2013    11    25      508            500         8      647            651
-##  3  2013    11    25      513            515        -2      801            808
-##  4  2013    11    25      537            540        -3      827            850
-##  5  2013    11    25      542            545        -3      845            835
-##  6  2013    11    25      550            600       -10      843            856
-##  7  2013    11    25      550            600       -10      647            659
-##  8  2013    11    25      551            550         1     1019           1027
-##  9  2013    11    25      553            600        -7      657            719
-## 10  2013    11    25      553            600        -7      826            846
-## # … with 932 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+##  1  2013    11    26      458            500        -2      648            651
+##  2  2013    11    26      512            515        -3      809            808
+##  3  2013    11    26      536            540        -4      829            850
+##  4  2013    11    26      539            545        -6      830            835
+##  5  2013    11    26      546            550        -4     1004           1027
+##  6  2013    11    26      548            600       -12      801            755
+##  7  2013    11    26      550            600       -10     1024           1043
+##  8  2013    11    26      551            600        -9      704            719
+##  9  2013    11    26      551            600        -9      843            856
+## 10  2013    11    26      552            600        -8      858            846
+## # … with 979 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 <p>Can we use arguments?</p>
@@ -394,20 +394,20 @@ flights %&gt;%
     month == month_,
     day == day_
   )</code></pre>
-<pre><code>## # A tibble: 942 x 19
+<pre><code>## # A tibble: 989 x 19
 ##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
 ##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
-##  1  2013    11    25        5           2359         6      436            445
-##  2  2013    11    25      508            500         8      647            651
-##  3  2013    11    25      513            515        -2      801            808
-##  4  2013    11    25      537            540        -3      827            850
-##  5  2013    11    25      542            545        -3      845            835
-##  6  2013    11    25      550            600       -10      843            856
-##  7  2013    11    25      550            600       -10      647            659
-##  8  2013    11    25      551            550         1     1019           1027
-##  9  2013    11    25      553            600        -7      657            719
-## 10  2013    11    25      553            600        -7      826            846
-## # … with 932 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+##  1  2013    11    26      458            500        -2      648            651
+##  2  2013    11    26      512            515        -3      809            808
+##  3  2013    11    26      536            540        -4      829            850
+##  4  2013    11    26      539            545        -6      830            835
+##  5  2013    11    26      546            550        -4     1004           1027
+##  6  2013    11    26      548            600       -12      801            755
+##  7  2013    11    26      550            600       -10     1024           1043
+##  8  2013    11    26      551            600        -9      704            719
+##  9  2013    11    26      551            600        -9      843            856
+## 10  2013    11    26      552            600        -8      858            846
+## # … with 979 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
 ## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
 ## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </details>
