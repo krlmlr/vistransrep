@@ -12,6 +12,9 @@ addons:
       - texlive-xetex
       - texlive-luatex
       - texlive-latex-recommended
+      # for rgl
+      - libcgal-dev
+      - libglu1-mesa-dev
 
 #before_install
 before_install:
