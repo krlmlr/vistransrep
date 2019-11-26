@@ -15,20 +15,24 @@ library(patchwork)
 
 "Facetting" (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
 
+The variables used for facetting should be passed encapsulated in `vars()`.
+(Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the facetting variables.)
+
 ```{r, eval=FALSE}
-facet_grid(facets = . ~ ., scales = "fixed", ...)
-facet_wrap(facets = <variable> ~ ., scales = "fixed", ...)
+facet_grid(facets = vars(<variable>), scales = "fixed", ...)
+facet_wrap(rows = vars(<variable>), cols = vars(<variable>), 
+           scales = "fixed", ...)
 ```
 
-**facet**: Formula with splitting variable.
+**facet**: Variables given via `vars()` or formula with splitting variable.
 
 **scales**: Scale of the axes over the sub-graphics.
 
-The position of `<variable>` denotes on which axis the facets will be shown:
+The position of `<variable>` in `facet_wrap()` denotes on which axis the facets will appear:
 
-- `<variable> ~ .` $\right_arrow$ y-axis
+- `vars(<variable>)` $\right_arrow$ y-axis
 
-- `. ~ <variable>` $\right_arrow$ x-axis
+- `vars(), vars(<variable>)` $\right_arrow$ x-axis
 
 ![](img/facets.png)
 
@@ -38,13 +42,13 @@ The position of `<variable>` denotes on which axis the facets will be shown:
 facet_x = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
-  facet_grid(. ~ year) +
+  facet_grid(vars(), vars(year)) +
   theme_pubr()
 
 facet_y = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
-  facet_grid(year ~ .) +
+  facet_grid(vars(year), vars()) +
   theme_pubr()
 ```
 
@@ -52,12 +56,13 @@ facet_y = ggplot(mpg, aes(displ, hwy)) +
 facet_x + facet_y
 ```
 
-Facets can also be shown on both axes using different (categorical) variables
+Facets can also be shown on both axes using different (categorical) variables.
+For this, `facet_grid()` is useful:
 
 ```{r, fig.width=8, fig.height=4}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  facet_grid(year ~ cyl) +
+  facet_grid(cols = vars(cyl), rows = vars(year)) +
   theme_pubr()
 ```
 
@@ -70,7 +75,7 @@ mpg %>%
   mutate(year = as.factor(year)) %>% 
   ggplot(aes(displ, hwy)) +
   geom_point() +
-  facet_wrap(~ manufacturer:year) +
+  facet_wrap(vars(manufacturer:year)) +
   theme_pubr()
 ```
 
@@ -79,14 +84,14 @@ This is usually a better setting than doubling the facet labels - but might also
 ```{r, fig.height=8}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  facet_wrap(manufacturer ~ year) +
+  facet_wrap(vars(manufacturer, year)) +
   theme_pubr()
 ```
 
 ### `facet_grid()`
 
 While `facet_wrap()` tries to act smart and share axes of sub-plots, `facet_grid()` will create a grid of sub-plots each having their own axes.
-Most of the time when using only one categorical variable, `facet_wrap()` does a good job and is preferred over `facet_wrap()`.
+Most of the time when using only one categorical variable, `facet_wrap()` does a good job and is preferred over `facet_grid()`.
 
 However, `facet_grid` might be preferred in the following cases:
 
@@ -99,12 +104,12 @@ Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables
 ```{r, fig.height=10}
 fc_gd = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  facet_grid(year ~ cyl) +
+  facet_grid(vars(year), vars(cyl)) +
   theme_pubr()
 
 fc_wrap = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  facet_wrap(year ~ cyl) +
+  facet_wrap(vars(year, cyl)) +
   theme_pubr()
 
 fc_gd / fc_wrap
@@ -119,7 +124,7 @@ By setting this argument to either `"free_x"` or `"free_y"` one can specify that
 ```{r, fig.width=8, fig.height=3.5}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  facet_grid(year ~ cyl, scales = "free_x") +
+  facet_grid(vars(year), vars(cyl), scales = "free_x") +
   theme_pubr(base_size = 7)
 ```
 
@@ -142,7 +147,7 @@ This can be achieved by setting the `labeller` argument of `facet_*` to `label_b
 ```{r, fig.width=8, fig.height=4}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  facet_grid(. ~ cyl, labeller = label_both) +
+  facet_grid(vars(), vars(cyl), labeller = label_both) +
   theme_pubr()
 ```
 
