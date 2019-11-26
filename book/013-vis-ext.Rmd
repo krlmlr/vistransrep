@@ -19,9 +19,9 @@ Here is a selected list of our favorite {ggplot2} extensions including some use 
 
 {ggbeeswarm}: https://github.com/eclarke/ggbeeswarm
 
-{ggstatsplot}: https://indrajeetpatil.github.io/ggstatsplot
-
 {esquisse}: https://dreamrs.github.io/esquisse
+
+( {ggstatsplot}: https://indrajeetpatil.github.io/ggstatsplot )
 
 ( {ggedit}: https://github.com/metrumresearchgroup/ggedit )
 
@@ -36,7 +36,6 @@ library(patchwork)
 library(ggpmisc)
 library(ggiraph)
 library(ggbeeswarm)
-library(ggstatsplot)
 library(gganimate)
 library(ggrepel)
 library(ggforce)
@@ -172,29 +171,6 @@ ggbeeswarm <- ggplot(mpg, aes(class, hwy)) +
 ```{r ggbeeswarm-3, fig.width=8, fig.height=5}
 library(patchwork)
 normal_overplotting + ggbeeswarm
-```
-
-### {ggstatsplot}
-
-```{r ggstatsplot, fig.width=8, fig.height=5}
-set.seed(123)
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  corr.method = "robust", # correlation method
-  sig.level = 0.001, # threshold of significance
-  p.adjust.method = "holm", # p-value adjustment method for multiple comparisons
-  cor.vars = c(sleep_rem, awake:bodywt), # a range of variables can be selected
-  cor.vars.names = c(
-    "REM sleep", # variable names
-    "time awake",
-    "brain weight",
-    "body weight"
-  ),
-  matrix.type = "upper", # type of visualization matrix
-  colors = c("#B2182B", "white", "#4D4D4D"),
-  title = "Correlalogram for mammals sleep dataset",
-  subtitle = "sleep units: hours; weight units: kilograms"
-)
 ```
 
 ### {ggpmisc}
