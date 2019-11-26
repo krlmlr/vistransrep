@@ -1,5 +1,10 @@
 ## `geom_*` functions
 
+```{r 12-setup}
+library(tidyverse)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
+```
+
 `geom_*` functions are added to the main `ggplot()` call via the "+" operator and
 (usually) placed on a new line.
 

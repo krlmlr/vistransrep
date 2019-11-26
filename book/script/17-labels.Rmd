@@ -1,10 +1,9 @@
 ## Labels
 
-<details><summary>*Click here to show setup code.*</summary>
-```{r 13-setup-13-other-r}
+```{r 17-setup}
 library(tidyverse)
+knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 ```
-</details>
 
 For character variables there is further way of integrating its value to a plot.
 `geom_text()` takes a `label` argument, which influences the plot in the following way.
@@ -60,13 +59,4 @@ ggplot(
 ) +
   geom_point(color = "blue") +
   geom_text(aes(label = drv), size = 10)
-```
-
-```{r 13-good}
-ggplot(
-  data = mpg,
-  mapping = aes(x = displ, y = hwy)
-) +
-  geom_point() +
-  geom_rug()
 ```
