@@ -30,9 +30,9 @@ facet_wrap(rows = vars(<variable>), cols = vars(<variable>),
 
 The position of `<variable>` in `facet_wrap()` denotes on which axis the facets will appear:
 
-- `vars(<variable>)` $\right_arrow$ y-axis
+- `vars(<variable>)` $\rightarrow$ y-axis
 
-- `vars(), vars(<variable>)` $\right_arrow$ x-axis
+- `vars(), vars(<variable>)` $\rightarrow$ x-axis
 
 ![](img/facets.png)
 
