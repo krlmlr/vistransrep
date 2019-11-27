@@ -150,4 +150,3 @@ ggplot(mpg, aes(displ, hwy)) +
   facet_grid(vars(), vars(cyl), labeller = label_both) +
   theme_pubr()
 ```
-
