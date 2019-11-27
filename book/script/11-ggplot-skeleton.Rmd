@@ -3,7 +3,7 @@ rm(list = ls())
 ```
 
 
-## Introduction
+## Basics for visualisation in R using {ggplot2}
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}

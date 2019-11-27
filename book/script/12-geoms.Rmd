@@ -86,7 +86,7 @@ In the example below, points are not adjusted and just visualized where they app
 
 In the case of boxplots, a special position arrangement function is used to arrange everything nicely: `position_dodge2()` (here denoted by `position = "dodge2"`).
 
-```{r include = FALSE}
+```{r eval = FALSE}
 geom_point(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE)
