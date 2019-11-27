@@ -50,9 +50,9 @@ attach(list(
 See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
 
 
-```{r results=if (knitr::is_latex_output()) "hide" else "asis"}
-cat("
-## Links to material for past workshops
+```{r results=if (knitr::is_latex_output()) "hide" else "asis", echo = FALSE}
+"
+## Links to material for past workshops {-}
 
 - [2019-04](2019-04-zhr)
 
@@ -65,7 +65,7 @@ cat("
 - [2018-05](2018-05-zhr)
 
 - [2017-10](2017-10-zhr)
-")
+"
 ```
 
 ## Links {-}
