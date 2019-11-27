@@ -21,6 +21,8 @@ conflict_prefer("filter", "dplyr")
 ```
 </details>
 
+Occasionally, a dataset is split across many files with a very similar format.
+The `data/` directory contains several Excel files with the `.xlsx` extension with tables of nearly identical format.
 
 ```{r include = FALSE}
 # List all files of interest
@@ -30,6 +32,7 @@ files <- dir(path = here("data"), pattern = "[.]xlsx$", full.names = TRUE)
 files
 ```
 
+An easy way to import all files at once is the `rio::import_list()` function from the {rio} package.
 
 ```{r include = FALSE}
 # Import all files at once with rio
@@ -39,6 +42,7 @@ files %>%
   rio::import_list(setclass = class(tibble()), rbind = TRUE)
 ```
 
+If some files need manipulation before the data can be bound together, {rio} also offers a way to import them as a "named list".
 
 ```{r include = FALSE}
 # Import into named list first
@@ -48,6 +52,7 @@ list_of_tables <- rio::import_list(files, setclass = class(tibble()))
 list_of_tables
 ```
 
+The data can be accessed individually for each input file.
 
 ```{r include = FALSE}
 # Access individual tables
@@ -56,6 +61,7 @@ list_of_tables
 list_of_tables$example6b
 ```
 
+If a tweak is necessary, the data can be overwritten as needed.
 
 ```{r include = FALSE}
 # Maybe tweak individual files?
@@ -69,6 +75,7 @@ try(
 )
 ```
 
+The `bind_rows()` function combines these components into a single dataset again.
 
 ```{r include = FALSE}
 # Combine into a single data frame
@@ -78,6 +85,7 @@ all_tables <- bind_rows(list_of_tables, .id = "path")
 all_tables
 ```
 
+When done, use `filter()` to access a single dataset.
 
 ```{r include = FALSE}
 # Analyze one file
@@ -88,6 +96,7 @@ all_tables %>%
   summarize(mean(col1), first(col2))
 ```
 
+For performing an analysis across the entire dataset, per input file, use `group_by()`:
 
 ```{r include = FALSE}
 # Analyze multiple files: use group_by()
@@ -99,6 +108,8 @@ all_tables %>%
   ungroup()
 ```
 
+Finally, `map_dfr()` offers a way to import files with more control.
+The details are out of scope here.
 
 ```{r include = FALSE}
 # Alternative: Import manually
