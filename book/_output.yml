@@ -8,7 +8,9 @@ bookdown::pdf_book:
   highlight: haddock
 
 bookdown::gitbook:
-  css: scroll.css
+  css:
+    - scroll.css
+    - extra.css
   config:
     download: [pdf]
     edit: null
