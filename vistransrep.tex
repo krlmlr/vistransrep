@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 20:35 CET}
+\date{27 November 2019, 21:14 CET}
 
 \begin{document}
 \maketitle
@@ -324,7 +324,19 @@ Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4
 
 \textbf{Kirill Müller} (@krlmlr) \url{https://www.cynkra.com/about.html}
 
-\begin{flushright}\includegraphics[width=9.33in]{img/kirill} \end{flushright}
+\begin{flushright}\includegraphics[width=3.47in]{img/kirill} \end{flushright}
+
+\begin{itemize}
+\tightlist
+\item
+  Co-founder cynkra
+\item
+  Computer + data science
+\item
+  Workflows, user interfaces, databases
+\item
+  R package author + maintainer
+\end{itemize}
 
 \textbf{Patrick Schratz} (@pat-s) \url{https://pat-s.me}
 
@@ -2803,6 +2815,44 @@ Using a consistent grammar of data manipulation.
 
 This chapter discusses data transformation with the \href{https://dplyr.tidyverse.org/}{dplyr package}.
 
+\begin{itemize}
+\tightlist
+\item
+  One table:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{filter()}
+  \item
+    \texttt{select()}
+  \item
+    \texttt{arrange()}
+  \item
+    \texttt{mutate()}
+  \item
+    \texttt{summarise()}
+  \end{itemize}
+\item
+  Grouped operations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{group\_by()}
+  \item
+    \texttt{ungroup()}
+  \end{itemize}
+\item
+  Joins
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{xxx\_join()}
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{package-conflicted}{%
 \section{Package: \{conflicted\}}\label{package-conflicted}}
 
@@ -2878,12 +2928,6 @@ During this lecture we will be working with data from the package \{nycflights13
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?flights}
-\end{Highlighting}
-\end{Shaded}
-
 The function \texttt{dplyr::filter()} helps you to reduce your dataset to the observations (rows) of interest.
 The filter condition can use any of the dataset's variables and needs to be a logical expression.
 
@@ -2908,8 +2952,23 @@ The filter condition can use any of the dataset's variables and needs to be a lo
 ## #   time_hour <dttm>
 \end{verbatim}
 
-If you use one or more variables of the dataset in the filter condition, a vectorized evaluation of the condition is taking place.
-Generally you can provide any logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
+The following building blocks are frequently used in a filter:
+
+\begin{itemize}
+\item
+  Operators: \texttt{==}, \texttt{!=}, \texttt{\textless{}}, \texttt{\textgreater{}}, \texttt{\textless{}=}, \texttt{\textgreater{}=}
+  \texttt{r\ \ \ month\ ==\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ careful:\ two\ =\ \ \ month\ \textgreater{}=\ 10\ \ \ carrier\ !=\ "UA"\ \ \ \ \ \ \ \ \ \#\ careful:\ \textless{}\textgreater{}\ doesn\textquotesingle{}t\ work\ \ \ arr\_time\ \textless{}\ dep\_time}
+\item
+  \texttt{near()}
+  \texttt{r\ \ \ near(sin(pi),\ 0)}
+\item
+  \texttt{between()}, \texttt{\%in\%}
+  \texttt{r\ \ \ between(hour,\ 8,\ 12)\ \ \ month\ \%in\%\ c(12,\ 1,\ 2)}
+\item
+  \texttt{str\_detect()} for strings
+\end{itemize}
+
+Missing values can be detected with \texttt{is.na()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2926,6 +2985,27 @@ Generally you can provide any logical vector with a length equal to the number o
 ## 2  2013     1     1       NA           1935        NA       NA
 ## 3  2013     1     1       NA           1500        NA       NA
 ## # ... with 8,252 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{arr_time))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,713 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1     2016           1930        46       NA
+## 2  2013     1     1       NA           1630        NA       NA
+## 3  2013     1     1       NA           1935        NA       NA
+## # ... with 8,710 more rows, and 12 more variables:
 ## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
 ## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
 ## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
@@ -3636,7 +3716,7 @@ Address them in the same way, if the dataset already has such variables:
 
 The \{janitor\} package helps fixing issues with colum names automatically.
 
-Select helpers allow selecting multiple related columns conveniently.
+Select helpers allow selecting multiple related columns conveniently:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3733,6 +3813,46 @@ This is another building block added to the toolset:
 ## 3         2        33      -31
 ## # ... with 3.368e+05 more rows
 \end{verbatim}
+
+The following constructs are often applied inside \texttt{mutate()}:
+
+\begin{itemize}
+\item
+  Arithmetic: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{\^{}}, \texttt{\%\%}, \texttt{\%/\%}
+  \texttt{r\ \ \ dep\_delay\ -\ arr\_delay\ \ \ dep\_time\ \%/\%\ 100\ \ \ dep\_time\ \%\%\ 100\ \ \ dep\_delay\ -\ mean(dep\_delay)\ \ \ \#\ Deviation\ from\ mean}
+\item
+  Real functions, see \texttt{?base::Math} and \texttt{?dplyr::lead}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Rounding: \texttt{floor()}, \texttt{ceiling()}, \texttt{round()}
+  \item
+    Sign: \texttt{abs()}, \texttt{sign()}
+  \item
+    Transform: \texttt{sqrt()}, \texttt{log()}, \texttt{log2()}, \texttt{exp()}
+  \item
+    Trigonometric: \texttt{sin()} etc.
+  \end{itemize}
+\item
+  Recoding: \texttt{if\_else()}, \texttt{case\_when()}, \texttt{recode()}
+\item
+  All filtering functions for a new \texttt{logical} column
+\item
+  \texttt{str\_replace()} for string columns
+\item
+  Functions that process values from other rows:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Cumulative: \texttt{cumsum()} etc.
+  \item
+    Lead and lag: \texttt{lead()}, \texttt{lag()}
+  \item
+    Ranking: \texttt{row\_number()}, \texttt{min\_rank()}, \texttt{ntile()}
+  \end{itemize}
+\end{itemize}
 
 Work with the newly created variable just like with the original ones:
 
@@ -4040,8 +4160,8 @@ These are the flights that had no delay:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}{%
-\section{\texorpdfstring{Summarize data (by groups): \texttt{dplyr::summarize()}, \texttt{dplyr::group\_by()} + \texttt{dplyr::ungroup()}}{Summarize data (by groups): dplyr::summarize(), dplyr::group\_by() + dplyr::ungroup()}}\label{summarize-data-by-groups-dplyrsummarize-dplyrgroup_by-dplyrungroup}}
+\hypertarget{summarize-data}{%
+\section{Summarize data}\label{summarize-data}}
 
 \emph{Click here to show setup code.}
 
@@ -4114,6 +4234,40 @@ To reduce the result to a single row, use \texttt{summarize()}:
 ##            <dbl>
 ## 1       49326610
 \end{verbatim}
+
+The following functions compute summary values:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sum()}, \texttt{prod()}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{na.rm\ =\ TRUE}
+  \end{itemize}
+\item
+  \texttt{mean()}, \texttt{median()}
+\item
+  \texttt{sd()}, \texttt{IQR()}, \texttt{mad()}
+\item
+  \texttt{min()}, \texttt{quantile(0.75)}, \texttt{max()}
+\item
+  \texttt{sum()} and \texttt{mean()} for \texttt{logical} variables:
+  \texttt{r\ \ \ mean(is.na(arr\_time))}
+\end{itemize}
+
+\hypertarget{ranking}{%
+\section{Ranking}\label{ranking}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{n()}
+\item
+  \texttt{first()}, \texttt{last()}, \texttt{nth()}
+\end{itemize}
 
 Simple counts can be computed with \texttt{n()} inside \texttt{summarize()}:
 
