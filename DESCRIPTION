@@ -1,3 +1,5 @@
+Type: Package
+Version: 0.1
 Package: vistransrep
 URL: https://github.com/krlmlr/vistransrep
 Imports:
