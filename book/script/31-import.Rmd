@@ -12,21 +12,27 @@ rm(list = ls())
 ```
 ```{r 31-setup-31-import-r}
 library(tidyverse)
-library(nycflights13)
-
-library(conflicted)
-conflict_prefer("filter", "dplyr")
-conflict_prefer("lag", "dplyr")
-
-
 library(readr)
+```
+</details>
+
+
+```{r include = FALSE}
+# Import one single file
+```
+```{r 31-import-one-single-file}
 example1 <-
   read_delim(
     "data/example1.csv",
     ";",
     escape_double = FALSE, trim_ws = TRUE
   )
+```
 
+
+```{r include = FALSE}
+# View the result
+```
+```{r 31-view-the-result}
 view(example1)
 ```
-</details>
