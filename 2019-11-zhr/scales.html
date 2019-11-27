@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Kirill Müller, cynkra GmbH" />
+<meta name="author" content="Kirill Müller, Patrick Schratz" />
 
 
 <title>Scales</title>
@@ -325,7 +325,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Scales</h1>
-<h4 class="author">Kirill Müller, cynkra GmbH</h4>
+<h4 class="author">Kirill Müller, Patrick Schratz</h4>
 
 </div>
 
@@ -333,7 +333,7 @@ $(document).ready(function () {
 <div id="naming-scales" class="section level2">
 <h2>Naming scales</h2>
 <p>Choose one or two of your previous plots, and give the scales a proper name.</p>
-<p>Hint: Use one or more <code>scale_...()</code> functions.</p>
+<p>Hint: Use one or more <code>scale_...()</code> functions or the <code>labs()</code> function.</p>
 <pre><code>ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = factor(year))
@@ -359,7 +359,7 @@ $(document).ready(function () {
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
   scale_color_discrete(name = &quot;Year&quot;)</code></pre>
 <p><img src="scales_files/figure-html/scales-1-1.png" width="672" /></p>
-There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.
+There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y labels, but not for color or fill. We recommend to stick with the explicit versions.
 </details>
 </div>
 <div id="changing-scales-twice" class="section level2">
@@ -376,27 +376,17 @@ There exist shortcuts <code>xlab()</code> and <code>ylab()</code> for x and y la
 <img src="scales_files/figure-html/scales-2-1.png" width="672" />
 </details>
 </div>
-<div id="colorbrewer-scales" class="section level2">
-<h2>ColorBrewer scales</h2>
-<p>Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.</p>
-<p>Hint: Insert a code chunk containing <code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></p>
-<details>
-<p><summary>► Solution:</summary></p>
-<pre class="r"><code>RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)</code></pre>
-<img src="scales_files/figure-html/scales-3-1.png" width="672" />
-</details>
-</div>
-<div id="a-better-scale-for-car-class" class="section level2">
-<h2>A better scale for car class</h2>
-<p>Choose an appealing scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
+<div id="a-better-scale-for-the-car-class" class="section level2">
+<h2>A better scale for the ‘car’ class</h2>
+<p>Choose an appealing color scale for one of your plots that use the “color” or “fill” aesthetics. Apply it with <code>scale_..._brewer(&quot;&lt;name&gt;&quot;, palette = &quot;&lt;palette&gt;&quot;)</code></p>
 <p>Hint: Use <code>scale_..._distiller()</code> if you have mapped a continuous variable.</p>
 <details>
 <p><summary>► Solution:</summary></p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_jitter(mapping = aes(color = class)) +
   scale_x_continuous(name = &quot;Displacement&quot;) +
   scale_y_continuous(name = &quot;Fuel economy [miles per gallon]&quot;) +
-  scale_color_brewer(name = &quot;Car class&quot;, palette = &quot;Set2&quot;)</code></pre>
+  scale_color_viridis_d(name = &quot;Car class&quot;, option = &quot;A&quot;)</code></pre>
 <img src="scales_files/figure-html/scales-4-1.png" width="672" />
 </details>
 </div>

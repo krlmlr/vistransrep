@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 14:47 CET}
+\date{27 November 2019, 16:29 CET}
 
 \begin{document}
 \maketitle
@@ -1129,7 +1129,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-29-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-31-1} \end{flushright}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1145,7 +1145,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-30-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-1} \end{flushright}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1164,278 +1164,9 @@ The modular principle of \texttt{ggplot2} enables:
 
 An extensive description of all geometric objects can be found on the \texttt{ggplot2} website \url{https://ggplot2.tidyverse.org/reference/}.
 
-\hypertarget{export-saving}{%
-\section{Export \& saving}\label{export-saving}}
+\textbf{Exercises}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
-
-The default way to export plots in \{\{ggplot2\}\} is by using \texttt{ggsave()}.
-
-It differs slightly from other ``exporting'' functions in R because it comes with some smart defaults:
-
-\begin{quote}
-ggsave() is a convenient function for saving a plot. It defaults to \textbf{saving the last plot} that you displayed, using the size of the current graphics device. It also \textbf{guesses the type} of graphics device from the extension.
-\end{quote}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(mpg, wt)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.pdf"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Saving 3 x 2 in image
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Saving 3 x 2 in image
-\end{verbatim}
-
-This might seem natural to you but is is not.
-Let's compare base R and \{\{ggplot2\}\}.
-
-\hypertarget{base-r-vs.-ggplot2}{%
-\subsection{Base R vs. \{\{ggplot2\}\}}\label{base-r-vs.-ggplot2}}
-
-In base R
-
-\begin{itemize}
-\item
-  one needs to open a specific graphic device first
-\item
-  then create the plot
-\item
-  and close the graphic device again.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{png}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
-\KeywordTok{plot}\NormalTok{(mpg}\OperatorTok{$}\NormalTok{displ, mpg}\OperatorTok{$}\NormalTok{hwy)}
-\KeywordTok{dev.off}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(disply, hwy)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\KeywordTok{ggsave}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Base R plotting functions come with suboptimal defaults
-
-\begin{itemize}
-\item
-  saving in pixels (differs on every monitors)
-\item
-  saving as a square image
-\item
-  no option to specify the DPI (dots per inch)
-\end{itemize}
-
-\hypertarget{storing-the-plot-as-an-r-object}{%
-\subsection{Storing the plot as an R object}\label{storing-the-plot-as-an-r-object}}
-
-One of the major advantages of \texttt{ggplot()} is that you can save a plot as an R object and modify it later.
-
-This is not possible with base R plots.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-
-\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{print}\NormalTok{(p)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-2} \end{flushright}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{str}\NormalTok{(p)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## List of 9
-##  $ data       :Classes 'tbl_df', 'tbl' and 'data.frame': 234 obs. of  11 variables:
-##   ..$ manufacturer: chr [1:234] "audi" "audi" "audi" "audi" ...
-##   ..$ model       : chr [1:234] "a4" "a4" "a4" "a4" ...
-##   ..$ displ       : num [1:234] 1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
-##   ..$ year        : int [1:234] 1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
-##   ..$ cyl         : int [1:234] 4 4 4 4 6 6 6 4 4 4 ...
-##   ..$ trans       : chr [1:234] "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
-##   ..$ drv         : chr [1:234] "f" "f" "f" "f" ...
-##   ..$ cty         : int [1:234] 18 21 20 21 16 18 18 18 16 20 ...
-##   ..$ hwy         : int [1:234] 29 29 31 30 26 26 27 26 25 28 ...
-##   ..$ fl          : chr [1:234] "p" "p" "p" "p" ...
-##   ..$ class       : chr [1:234] "compact" "compact" "compact" "compact" ...
-##  $ layers     :List of 1
-##   ..$ :Classes 'LayerInstance', 'Layer', 'ggproto', 'gg' <ggproto object: Class LayerInstance, Layer, gg>
-##     aes_params: list
-##     compute_aesthetics: function
-##     compute_geom_1: function
-##     compute_geom_2: function
-##     compute_position: function
-##     compute_statistic: function
-##     data: waiver
-##     draw_geom: function
-##     finish_statistics: function
-##     geom: <ggproto object: Class GeomPoint, Geom, gg>
-##         aesthetics: function
-##         default_aes: uneval
-##         draw_group: function
-##         draw_key: function
-##         draw_layer: function
-##         draw_panel: function
-##         extra_params: na.rm
-##         handle_na: function
-##         non_missing_aes: size shape colour
-##         optional_aes: 
-##         parameters: function
-##         required_aes: x y
-##         setup_data: function
-##         use_defaults: function
-##         super:  <ggproto object: Class Geom, gg>
-##     geom_params: list
-##     inherit.aes: TRUE
-##     layer_data: function
-##     map_statistic: function
-##     mapping: NULL
-##     position: <ggproto object: Class PositionIdentity, Position, gg>
-##         compute_layer: function
-##         compute_panel: function
-##         required_aes: 
-##         setup_data: function
-##         setup_params: function
-##         super:  <ggproto object: Class Position, gg>
-##     print: function
-##     setup_layer: function
-##     show.legend: NA
-##     stat: <ggproto object: Class StatIdentity, Stat, gg>
-##         aesthetics: function
-##         compute_group: function
-##         compute_layer: function
-##         compute_panel: function
-##         default_aes: uneval
-##         extra_params: na.rm
-##         finish_layer: function
-##         non_missing_aes: 
-##         parameters: function
-##         required_aes: 
-##         retransform: TRUE
-##         setup_data: function
-##         setup_params: function
-##         super:  <ggproto object: Class Stat, gg>
-##     stat_params: list
-##     super:  <ggproto object: Class Layer, gg> 
-##  $ scales     :Classes 'ScalesList', 'ggproto', 'gg' <ggproto object: Class ScalesList, gg>
-##     add: function
-##     clone: function
-##     find: function
-##     get_scales: function
-##     has_scale: function
-##     input: function
-##     n: function
-##     non_position_scales: function
-##     scales: list
-##     super:  <ggproto object: Class ScalesList, gg> 
-##  $ mapping    :List of 2
-##   ..$ x: language ~displ
-##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-##   ..$ y: language ~hwy
-##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
-##   ..- attr(*, "class")= chr "uneval"
-##  $ theme      : list()
-##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' <ggproto object: Class CoordCartesian, Coord, gg>
-##     aspect: function
-##     backtransform_range: function
-##     clip: on
-##     default: TRUE
-##     distance: function
-##     expand: TRUE
-##     is_free: function
-##     is_linear: function
-##     labels: function
-##     limits: list
-##     modify_scales: function
-##     range: function
-##     render_axis_h: function
-##     render_axis_v: function
-##     render_bg: function
-##     render_fg: function
-##     setup_data: function
-##     setup_layout: function
-##     setup_panel_params: function
-##     setup_params: function
-##     transform: function
-##     super:  <ggproto object: Class CoordCartesian, Coord, gg> 
-##  $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' <ggproto object: Class FacetNull, Facet, gg>
-##     compute_layout: function
-##     draw_back: function
-##     draw_front: function
-##     draw_labels: function
-##     draw_panels: function
-##     finish_data: function
-##     init_scales: function
-##     map_data: function
-##     params: list
-##     setup_data: function
-##     setup_params: function
-##     shrink: TRUE
-##     train_scales: function
-##     vars: function
-##     super:  <ggproto object: Class FacetNull, Facet, gg> 
-##  $ plot_env   :<environment: R_GlobalEnv> 
-##  $ labels     :List of 2
-##   ..$ x: chr "displ"
-##   ..$ y: chr "hwy"
-##  - attr(*, "class")= chr [1:2] "gg" "ggplot"
-\end{verbatim}
-
-\hypertarget{best-practices-for-exporting}{%
-\subsection{Best practices for exporting}\label{best-practices-for-exporting}}
-
-Some best practices:
-
-\begin{itemize}
-\item
-  Use a reasonable high DPI. A value of ``300'' is ok in most cases.
-\item
-  Save in ``inches'' and not in ``pixels''. The latter always differs on screens with different resolutions (\texttt{png()} uses pixels by default.)
-\item
-  Always specify a file name to ensure the right plot is chosen. Do not rely on the default behavior of \texttt{ggsave()} (even though it might seem convenient) which takes the last visualized plot.
-\item
-  An alternative to \texttt{ggsave()} is \texttt{cowplot::save\_plot()} which comes with sensible defaults for multi-plot arrangements.
-\end{itemize}
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/geoms.html}
 
 \hypertarget{two-variable-plots}{%
 \section{Two variable plots}\label{two-variable-plots}}
@@ -1467,7 +1198,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-33-1} \end{flushright}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1479,7 +1210,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1493,7 +1224,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
@@ -1533,7 +1264,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1544,7 +1275,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-42-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1562,7 +1293,12 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-43-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+
+\hypertarget{exercises}{%
+\section{Exercises}\label{exercises}}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html}
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
@@ -1845,6 +1581,10 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 
 \begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{flushright}
 
+\textbf{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter3.html}
+
 \hypertarget{labels}{%
 \section{Labels}\label{labels}}
 
@@ -1930,18 +1670,170 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 
 \begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{flushright}
 
-\hypertarget{vis-adv}{%
-\chapter{\{ggplot2\} advanced}\label{vis-adv}}
-
-\hypertarget{facetting}{%
-\section{Facetting}\label{facetting}}
+\hypertarget{themes}{%
+\section{Themes}\label{themes}}
 
 \emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(ggsci)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+In this section we are looking at the use of visual themes to easily change the look and feel of a plot.
+We start with the introduction of the default theme -- \texttt{theme\_grey()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_grey}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-1} \end{flushright}
+
+Change the default \texttt{theme\_grey()} to a more traditional black-and-white theme:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-bw-theme-1} \end{flushright}
+
+Also in this scheme the color aesthetic works as it normally does.
+The black-and-whiteness only relates to the background.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-data-can-have-color-in-bw-theme-1} \end{flushright}
+
+Calling the function \texttt{theme()} after a \texttt{theme\_...()} call let's you tweak certain aspects of the theme.
+
+Some plots work better with the legend at the bottom.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-occasionally-useful-legend-at-the-bottom-1} \end{flushright}
+
+Mind that \texttt{theme\_...()} functions overwrite all previous settings of \texttt{theme()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-theme-functions-overwrite-theme-if-called-afterwards-1} \end{flushright}
+
+The first argument of each \texttt{theme\_...()} function is \texttt{base\_size}, which refers to the font size of all elements in the plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{(}\DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-first-param-of-theme-functions-is-base-size-1} \end{flushright}
+
+If we were asked to suggest themes, we'd go for
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{ggplot2::theme\_minimal()}
+\item
+  \texttt{hrbrthemes::theme\_ipsum()}
+\item
+  \texttt{ggpubr::theme\_pubr()}
+\end{itemize}
+
+Here is how \texttt{ggpubr::theme\_pubr()} looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\NormalTok{ggpubr}\OperatorTok{::}\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-ggpubr-1} \end{flushright}
+
+Also from here onward we will use \texttt{theme\_pubr()} as the default theme for plots.
+This can be done by setting
+
+\hypertarget{scales}{%
+\section{Scales}\label{scales}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
 \KeywordTok{library}\NormalTok{(ggpubr)}
 \end{Highlighting}
 \end{Shaded}
@@ -1969,14 +1861,530 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+In this section we want to spend some time getting to know how to customize the labels and scales of plots using \{ggplot2\}.
+We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with the \{tidyverse\}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-base-plot-1} \end{flushright}
+
+\hypertarget{labs}{%
+\subsection{\texorpdfstring{\texttt{labs()}}{labs()}}\label{labs}}
+
+With \texttt{labs()} you can label all sorts of aesthetics (axes, color mapping, \ldots{}).
+Additionally you can set the title/subtitle and also add a caption and a tag.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{x =} \StringTok{"Displacement"}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"Highway mileage}\CharTok{\textbackslash{}n}\StringTok{[miles per gallon]"}\NormalTok{,}
+    \DataTypeTok{color =} \StringTok{"Car class"}\NormalTok{,}
+    \DataTypeTok{title =} \StringTok{"Highway mileages depending on displacement"}\NormalTok{,}
+    \DataTypeTok{subtitle =} \StringTok{"By car class"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-add-descriptive-labels-the-labs-function-1} \end{flushright}
+
+\hypertarget{axes}{%
+\subsection{Axes}\label{axes}}
+
+There is a plethora of \texttt{scale\_...()} functions available in \{ggplot2\}, which influence the axes.
+For example there is a function to change the scale of an axis to a logarithmic scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-change-scale-to-log-scale-1} \end{flushright}
+
+Be careful: you can set the name of an axis in both the \texttt{labs()} function and the \texttt{scale\_...()} functions.
+If you do both, only the name set in the latter will prevail.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{x =} \StringTok{"Displacement"}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{(}\DataTypeTok{name =} \StringTok{"xxx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-name-in-scale-overwrites-labs-without-warning-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+For more control over discrete and continuous axis labels, limits and breaks, the \texttt{scale\_\textless{}axis\ name\textgreater{}\_\textless{}variable\ type\textgreater{}} functions exist, e.g. \texttt{scale\_x\_continuous()}.
+
+These enable custom axis breaks and labels if the ones autogenerated from the data are not sufficient.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{), }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 27 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-custom-axis-breaks-1} \end{flushright}
+
+Values not falling into the custom limits will be silently droppend including a warning message.
+
+\hypertarget{color-scale}{%
+\subsection{Color scale}\label{color-scale}}
+
+Another type \texttt{scale\_...()}-type function relates to the color-aesthetic.
+These functions affect the palette that is used for the color mapping.
+By default, \texttt{scale\_color\_hue()} will be used for categorical variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_hue}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-default-1} \end{flushright}
+
+To change the color palette, pass a palette-function of your liking in the form of
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{scale\_color\_\textless{}name\textgreater{}}
+\item
+  \texttt{scale\_fill\_\textless{}name\textgreater{}}
+\end{itemize}
+
+Whether to use \texttt{fill} or \texttt{color} depends on what keyword has been used for applying the color.
+Points are colored by using the ``color'' keyword.
+So to change the palette for point coloring, one needs to use \texttt{scale\_color\_\textless{}name\textgreater{}}.
+
+A popular color palette is the \href{https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html\#gallery}{viridis} color palette.
+To specify that we are dealing with categorical values, we add a \texttt{\_d} at the end which stands for ``discrete''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_viridis_d}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-other-options-viridis-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+To take full control of the colors \texttt{scale\_color\_manual()} should be used.
+Here, color values (either as a string or in hex format) can be bound to a specific factor level.
+
+This is useful if certain levels come with implicit meanings of their color choice.
+Another helpful scenario is when there are more levels in the data than colors supported by the palette (most palettes support between 9-12 levels).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}
+  \DataTypeTok{data =}\NormalTok{ mpg,}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}
+    \StringTok{"2seater"}\NormalTok{ =}\StringTok{ "#000000"}\NormalTok{,}
+    \StringTok{"compact"}\NormalTok{ =}\StringTok{ "#3355FF"}\NormalTok{,}
+    \StringTok{"midsize"}\NormalTok{ =}\StringTok{ "#006400"}\NormalTok{,}
+    \StringTok{"minivan"}\NormalTok{ =}\StringTok{ "#FF5522"}\NormalTok{,}
+    \StringTok{"pickup"}\NormalTok{ =}\StringTok{ "#66FFFF"}\NormalTok{,}
+    \StringTok{"subcompact"}\NormalTok{ =}\StringTok{ "#FF0000"}\NormalTok{,}
+    \StringTok{"suv"}\NormalTok{ =}\StringTok{ "#FF55FF"}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-full-control-manual-scale-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Review the \href{https://github.com/cttobin/ggthemr}{\{ggthemr\} package} for tools that help with establishing a ``corporate design'' for documents.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"remotes"}\NormalTok{)}
+\NormalTok{remotes}\OperatorTok{::}\KeywordTok{install_packages}\NormalTok{(}\StringTok{"cttobin/ggthemr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/scales.html}
+
+\hypertarget{export-saving}{%
+\section{Export \& saving}\label{export-saving}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+The default way to export plots in \{\{ggplot2\}\} is by using \texttt{ggsave()}.
+
+It differs slightly from other ``exporting'' functions in R because it comes with some smart defaults:
+
+\begin{quote}
+ggsave() is a convenient function for saving a plot. It defaults to \textbf{saving the last plot} that you displayed, using the size of the current graphics device. It also \textbf{guesses the type} of graphics device from the extension.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(mpg, wt)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.pdf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 3 x 2 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"mtcars.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 3 x 2 in image
+\end{verbatim}
+
+This might seem natural to you but is is not.
+Let's compare base R and \{\{ggplot2\}\}.
+
+\hypertarget{base-r-vs.-ggplot2}{%
+\subsection{Base R vs. \{\{ggplot2\}\}}\label{base-r-vs.-ggplot2}}
+
+In base R
+
+\begin{itemize}
+\item
+  one needs to open a specific graphic device first
+\item
+  then create the plot
+\item
+  and close the graphic device again.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{png}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(mpg}\OperatorTok{$}\NormalTok{displ, mpg}\OperatorTok{$}\NormalTok{hwy)}
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(disply, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"Plot.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Base R plotting functions come with suboptimal defaults
+
+\begin{itemize}
+\item
+  saving in pixels (differs on every monitors)
+\item
+  saving as a square image
+\item
+  no option to specify the DPI (dots per inch)
+\end{itemize}
+
+\hypertarget{storing-the-plot-as-an-r-object}{%
+\subsection{Storing the plot as an R object}\label{storing-the-plot-as-an-r-object}}
+
+One of the major advantages of \texttt{ggplot()} is that you can save a plot as an R object and modify it later.
+
+This is not possible with base R plots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-2} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 9
+##  $ data       :Classes 'tbl_df', 'tbl' and 'data.frame': 234 obs. of  11 variables:
+##   ..$ manufacturer: chr [1:234] "audi" "audi" "audi" "audi" ...
+##   ..$ model       : chr [1:234] "a4" "a4" "a4" "a4" ...
+##   ..$ displ       : num [1:234] 1.8 1.8 2 2 2.8 2.8 3.1 1.8 1.8 2 ...
+##   ..$ year        : int [1:234] 1999 1999 2008 2008 1999 1999 2008 1999 1999 2008 ...
+##   ..$ cyl         : int [1:234] 4 4 4 4 6 6 6 4 4 4 ...
+##   ..$ trans       : chr [1:234] "auto(l5)" "manual(m5)" "manual(m6)" "auto(av)" ...
+##   ..$ drv         : chr [1:234] "f" "f" "f" "f" ...
+##   ..$ cty         : int [1:234] 18 21 20 21 16 18 18 18 16 20 ...
+##   ..$ hwy         : int [1:234] 29 29 31 30 26 26 27 26 25 28 ...
+##   ..$ fl          : chr [1:234] "p" "p" "p" "p" ...
+##   ..$ class       : chr [1:234] "compact" "compact" "compact" "compact" ...
+##  $ layers     :List of 1
+##   ..$ :Classes 'LayerInstance', 'Layer', 'ggproto', 'gg' <ggproto object: Class LayerInstance, Layer, gg>
+##     aes_params: list
+##     compute_aesthetics: function
+##     compute_geom_1: function
+##     compute_geom_2: function
+##     compute_position: function
+##     compute_statistic: function
+##     data: waiver
+##     draw_geom: function
+##     finish_statistics: function
+##     geom: <ggproto object: Class GeomPoint, Geom, gg>
+##         aesthetics: function
+##         default_aes: uneval
+##         draw_group: function
+##         draw_key: function
+##         draw_layer: function
+##         draw_panel: function
+##         extra_params: na.rm
+##         handle_na: function
+##         non_missing_aes: size shape colour
+##         optional_aes: 
+##         parameters: function
+##         required_aes: x y
+##         setup_data: function
+##         use_defaults: function
+##         super:  <ggproto object: Class Geom, gg>
+##     geom_params: list
+##     inherit.aes: TRUE
+##     layer_data: function
+##     map_statistic: function
+##     mapping: NULL
+##     position: <ggproto object: Class PositionIdentity, Position, gg>
+##         compute_layer: function
+##         compute_panel: function
+##         required_aes: 
+##         setup_data: function
+##         setup_params: function
+##         super:  <ggproto object: Class Position, gg>
+##     print: function
+##     setup_layer: function
+##     show.legend: NA
+##     stat: <ggproto object: Class StatIdentity, Stat, gg>
+##         aesthetics: function
+##         compute_group: function
+##         compute_layer: function
+##         compute_panel: function
+##         default_aes: uneval
+##         extra_params: na.rm
+##         finish_layer: function
+##         non_missing_aes: 
+##         parameters: function
+##         required_aes: 
+##         retransform: TRUE
+##         setup_data: function
+##         setup_params: function
+##         super:  <ggproto object: Class Stat, gg>
+##     stat_params: list
+##     super:  <ggproto object: Class Layer, gg> 
+##  $ scales     :Classes 'ScalesList', 'ggproto', 'gg' <ggproto object: Class ScalesList, gg>
+##     add: function
+##     clone: function
+##     find: function
+##     get_scales: function
+##     has_scale: function
+##     input: function
+##     n: function
+##     non_position_scales: function
+##     scales: list
+##     super:  <ggproto object: Class ScalesList, gg> 
+##  $ mapping    :List of 2
+##   ..$ x: language ~displ
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   ..$ y: language ~hwy
+##   .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+##   ..- attr(*, "class")= chr "uneval"
+##  $ theme      : list()
+##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' <ggproto object: Class CoordCartesian, Coord, gg>
+##     aspect: function
+##     backtransform_range: function
+##     clip: on
+##     default: TRUE
+##     distance: function
+##     expand: TRUE
+##     is_free: function
+##     is_linear: function
+##     labels: function
+##     limits: list
+##     modify_scales: function
+##     range: function
+##     render_axis_h: function
+##     render_axis_v: function
+##     render_bg: function
+##     render_fg: function
+##     setup_data: function
+##     setup_layout: function
+##     setup_panel_params: function
+##     setup_params: function
+##     transform: function
+##     super:  <ggproto object: Class CoordCartesian, Coord, gg> 
+##  $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' <ggproto object: Class FacetNull, Facet, gg>
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  <ggproto object: Class FacetNull, Facet, gg> 
+##  $ plot_env   :<environment: R_GlobalEnv> 
+##  $ labels     :List of 2
+##   ..$ x: chr "displ"
+##   ..$ y: chr "hwy"
+##  - attr(*, "class")= chr [1:2] "gg" "ggplot"
+\end{verbatim}
+
+\hypertarget{best-practices-for-exporting}{%
+\subsection{Best practices for exporting}\label{best-practices-for-exporting}}
+
+Some best practices:
+
+\begin{itemize}
+\item
+  Use a reasonable high DPI. A value of ``300'' is ok in most cases.
+\item
+  Save in ``inches'' and not in ``pixels''. The latter always differs on screens with different resolutions (\texttt{png()} uses pixels by default.)
+\item
+  Always specify a file name to ensure the right plot is chosen. Do not rely on the default behavior of \texttt{ggsave()} (even though it might seem convenient) which takes the last visualized plot.
+\item
+  An alternative to \texttt{ggsave()} is \texttt{cowplot::save\_plot()} which comes with sensible defaults for multi-plot arrangements.
+\end{itemize}
+
+\hypertarget{vis-adv}{%
+\chapter{\{ggplot2\} advanced}\label{vis-adv}}
+
+\hypertarget{facetting}{%
+\section{Facetting}\label{facetting}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggsci)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
 \KeywordTok{theme_set}\NormalTok{(}\KeywordTok{theme_pubr}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
 ``Facetting'' (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
 
-The variables used for facetting should be passed encapsulated in \texttt{vars()}.
-(Before \{ggplot2\} v3.0.0 the default was to use a formula notation (\texttt{\textless{}variable\textgreater{}\ \textasciitilde{}\ \textless{}variable\textgreater{}}) to specify the facetting variables.)
+The variables used for faceting should be passed encapsulated in \texttt{vars()}.
+(Before \{ggplot2\} v3.0.0 the default was to use a formula notation (\texttt{\textless{}variable\textgreater{}\ \textasciitilde{}\ \textless{}variable\textgreater{}}) to specify the faceting variables.)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2010,13 +2418,7 @@ The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wra
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(year))}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-1} \end{flushright}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
@@ -2024,7 +2426,7 @@ The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-2} \end{flushright}
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-1} \includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-2} \end{flushright}
 
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class \texttt{factor}).
@@ -2064,7 +2466,7 @@ However, \texttt{facet\_grid} might be preferred in the following cases:
 
 \begin{itemize}
 \item
-  when facetting over \textgreater{}= 2 variables
+  when faceting over \textgreater{}= 2 variables
 \item
   when plots of empty combinations should be shown
 \end{itemize}
@@ -2076,23 +2478,17 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl))}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-1} \end{flushright}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-2} \end{flushright}
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-1} \includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-2} \end{flushright}
 
-\hypertarget{scales}{%
-\subsection{Scales}\label{scales}}
+\hypertarget{scales-1}{%
+\subsection{Scales}\label{scales-1}}
 
 By default, scales are fixed across each facet (\texttt{scales\ =\ "fixed"}).
 This means that all sub-plots should share the same axes.
@@ -2135,6 +2531,10 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \end{Shaded}
 
 \begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{flushright}
+
+\textbf{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/facet.html}
 
 \hypertarget{extensions}{%
 \section{Extensions}\label{extensions}}
@@ -2436,6 +2836,10 @@ This chapter discusses data transformation with the \href{https://dplyr.tidyvers
 \KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
 
 \begin{verbatim}
 ## [conflicted] Will prefer dplyr::filter over any other package
@@ -3305,6 +3709,10 @@ Select helpers allow selecting multiple related columns conveniently.
 \KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
 
 \begin{verbatim}
 ## [conflicted] Will prefer dplyr::lag over any other package

@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Kirill Müller, cynkra GmbH" />
+<meta name="author" content="Kirill Müller, Patrick Schratz" />
 
 
-<title>Other geoms</title>
+<title>Geoms</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -324,8 +324,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Other geoms</h1>
-<h4 class="author">Kirill Müller, cynkra GmbH</h4>
+<h1 class="title toc-ignore">Geoms</h1>
+<h4 class="author">Kirill Müller, Patrick Schratz</h4>
 
 </div>
 
@@ -444,151 +444,6 @@ We need better data transformation tools to reformat the data for plotting it in
   geom_bar(aes(x = drv))</code></pre>
 <img src="geoms_files/figure-html/geoms-9-1.png" width="672" />
 </details>
-</div>
-<div id="explicit-count" class="section level2">
-<h2>Explicit count</h2>
-<p>Does the appearance of the plot change when you add <code>y = ..count..</code> to the <code>aes()</code> call? Why/why not?</p>
-<pre><code>ggplot(_____, aes(_____, y = ..count..)) +
-  geom____()</code></pre>
-<details>
-<p><summary>► Solution:</summary> The output is the same:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = drv, y = ..count..))</code></pre>
-<p><img src="geoms_files/figure-html/geoms-10-1.png" width="672" /></p>
-By default, <code>geom_bar()</code> plots the computed “count” aesthetic, which is by convention written with two surrounding dots.
-</details>
-</div>
-<div id="proportions" class="section level2">
-<h2>Proportions</h2>
-<p>What happens if you instead use <code>y = ..prop.., group = 1</code> in the <code>aes()</code> call? What happens if you omit <code>group = 1</code>? Why?</p>
-<p>Hint: The section “Computed variables” to <code>geom_bar()</code> offers a brief explanation.</p>
-<pre><code>ggplot(_____, aes(_____, y = ..prop.., group = 1)) +
-  geom_bar()</code></pre>
-<details>
-<p><summary>► Solution:</summary> Plotting overall proportions changes the y scale:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = drv, y = ..prop.., group = 1))</code></pre>
-<p><img src="geoms_files/figure-html/geoms-11-1.png" width="672" /></p>
-<p>Omitting <code>group</code> will plot proportions per drivetrain in each column, which are 1 by default:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = drv, y = ..prop..))</code></pre>
-<img src="geoms_files/figure-html/geoms-12-1.png" width="672" />
-</details>
-</div>
-<div id="fuel-economy" class="section level2">
-<h2>Fuel economy</h2>
-<p>Visualize the overall distribution of fuel economy in the dataset with a histogram. Compare this with a frequency polygon, use a second layer if you like.</p>
-<pre><code>ggplot(data = mpg, mapping = aes(x = hwy)) +
-  geom____()</code></pre>
-<details>
-<p><summary>► Solution:</summary> We use a histogram of <code>hwy</code>, again only the “x” aesthetic needs to be supplied:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(mapping = aes(x = hwy))</code></pre>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="geoms_files/figure-html/geoms-13-1.png" width="672" /></p>
-<p>The frequency polygon is very similar. We tweak aesthetics manually in order to be able to distinguish between both layers.</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy),
-    fill = NA,
-    color = &quot;blue&quot;,
-    binwidth = 1
-  ) +
-  geom_freqpoly(
-    mapping = aes(x = hwy),
-    binwidth = 1,
-    size = 2
-  )</code></pre>
-<img src="geoms_files/figure-html/geoms-15-1.png" width="672" />
-</details>
-</div>
-<div id="silencing-a-warning" class="section level2">
-<h2>Silencing a warning</h2>
-<p>How do you remove the warning in the previous example?</p>
-<pre><code>ggplot(_____) +
-  geom_____(binwidth = ___)</code></pre>
-<details>
-<p><summary>► Solution:</summary> The bin width should be set explicitly to avoid the warning:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy),
-    binwidth = 1
-  )</code></pre>
-<img src="geoms_files/figure-html/geoms-14-1.png" width="672" />
-</details>
-</div>
-<div id="fuel-economy-by-drivetrain" class="section level2">
-<h2>Fuel economy by drivetrain</h2>
-<p>Visualize the distribution of fuel economy in the dataset per drivetrain. Do you prefer a histogram or a frequency polygon?</p>
-<details>
-<p><summary>► Solution:</summary> We can set the “fill” aesthetic:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy, fill = drv),
-    binwidth = 1
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-16-1.png" width="672" /></p>
-<p>However, the bars are stacked, and difficult to compare to each other:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_histogram(
-    mapping = aes(x = hwy, color = drv),
-    fill = NA,
-    binwidth = 1
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-17-1.png" width="672" /></p>
-<p>The frequency polygon offers a much clearer display of the same data:</p>
-<pre class="r"><code>ggplot(data = mpg) +
-  geom_freqpoly(
-    mapping = aes(x = hwy, color = drv),
-    binwidth = 1
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-18-1.png" width="672" /></p>
-<div id="a-history-of-failed-attempts" class="section level3">
-<h3>A history of failed attempts</h3>
-<p>Can I just copy and adapt the code from the last solution?</p>
-<pre class="r"><code>ggplot(mpg, aes(hwy, color = drv)) +
-  geom_histogram(fill = NA, color = &quot;black&quot;, size = 0.2, binwidth = 2) +
-  geom_freqpoly(color = &quot;red&quot;, binwidth = 2)</code></pre>
-<p><img src="geoms_files/figure-html/geoms-19-1.png" width="672" /></p>
-<p>Nope. Something’s wrong here. Maybe if I follow the template?</p>
-<pre class="r"><code>ggplot(mpg) +
-  geom_histogram(
-    aes(hwy, color = drv),
-    binwidth = 2,
-    fill = NA,
-    color = &quot;black&quot;,
-    size = 0.2
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-20-1.png" width="672" /></p>
-<p>I can’t use color both as variable and manual aesthetic, ggplot2 silently uses the manual assignment! Need to be careful with assigning aesthetics.</p>
-<pre class="r"><code>ggplot(mpg) +
-  geom_histogram(
-    aes(hwy, color = drv, group = drv),
-    binwidth = 2,
-    size = 0.2,
-    fill = NA
-  ) +
-  geom_freqpoly(
-    aes(hwy, color = drv, group = drv),
-    binwidth = 2
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-21-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(mpg) +
-  geom_histogram(
-    aes(hwy, color = drv),
-    binwidth = 2,
-    size = 0.2,
-    fill = NA
-  )</code></pre>
-<p><img src="geoms_files/figure-html/geoms-22-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(mpg) +
-  geom_freqpoly(
-    aes(hwy, color = drv),
-    binwidth = 2
-  )</code></pre>
-<img src="geoms_files/figure-html/geoms-23-1.png" width="672" />
-</details>
-</div>
 </div>
 <div id="more-exercises" class="section level2">
 <h2>More exercises</h2>
