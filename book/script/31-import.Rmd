@@ -3,30 +3,47 @@ rm(list = ls())
 ```
 
 
-## <No caption defined>
+## Import single files
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### <No caption defined>
+### Import single files
 
 ```
 ```{r 31-setup-31-import-r}
 library(tidyverse)
-library(nycflights13)
-
-library(conflicted)
-conflict_prefer("filter", "dplyr")
-conflict_prefer("lag", "dplyr")
-
-
 library(readr)
+```
+</details>
+
+The RStudio IDE offers a convenient way to import files in various common formats, including CSV and Excel.
+The "File / Import Dataset / From ..." menus provide access to import assistants that:
+
+1. open a file for preview,
+1. allow tweaking import options,
+1. generate R code that you can copy-paste into your scripts for further reuse.
+
+The assistant is run once for each dataset, from then only the generated code is required to import the data in a consistent way.
+
+This is an example of auto-generated code for importing a dataset from the `data/` directory.
+
+```{r include = FALSE}
+# Import one single file
+```
+```{r 31-import-one-single-file}
 example1 <-
   read_delim(
     "data/example1.csv",
     ";",
     escape_double = FALSE, trim_ws = TRUE
   )
+```
 
+After importing, use `view()` to display the ingested dataset.
+
+```{r include = FALSE}
+# View the result
+```
+```{r 31-view-the-result}
 view(example1)
 ```
-</details>
