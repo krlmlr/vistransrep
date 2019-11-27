@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 16:29 CET}
+\date{27 November 2019, 18:16 CET}
 
 \begin{document}
 \maketitle
@@ -172,7 +172,7 @@ See the controls at the top of the website for searching, font size, editing, an
 
 \begin{itemize}
 \item
-  This website: \url{https://krlmlr.github.io/vistransrep/book}
+  This website: \url{https://krlmlr.github.io/vistransrep}
 \item
   Scripts and installation instructions: \url{https://github.com/krlmlr/vistransrep-proj/tree/master}
 
@@ -824,8 +824,8 @@ Embracing the grammar of graphics.
 
 This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{ggplot2 package}.
 
-\hypertarget{introduction-1}{%
-\section{Introduction}\label{introduction-1}}
+\hypertarget{basics-for-visualisation-in-r-using-ggplot2}{%
+\section{Basics for visualisation in R using \{ggplot2\}}\label{basics-for-visualisation-in-r-using-ggplot2}}
 
 \emph{Click here to show setup code.}
 
@@ -990,6 +990,8 @@ statistical graphic.
 \hypertarget{geom_-functions}{%
 \section{\texorpdfstring{\texttt{geom\_*} functions}{geom\_* functions}}\label{geom_-functions}}
 
+\emph{Click here to show setup code.}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
@@ -1129,7 +1131,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-31-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-geom-point-mapping-null-data-null-stat-identity-1} \end{flushright}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1145,7 +1147,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1170,6 +1172,8 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 
 \hypertarget{two-variable-plots}{%
 \section{Two variable plots}\label{two-variable-plots}}
+
+\emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1198,7 +1202,7 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-33-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1210,7 +1214,7 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1224,10 +1228,12 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
+
+\emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1264,7 +1270,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-43-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1275,7 +1281,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-1} \end{flushright}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1293,7 +1299,7 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-45-1} \end{flushright}
 
 \hypertarget{exercises}{%
 \section{Exercises}\label{exercises}}
@@ -1302,12 +1308,6 @@ For discrete data, there is actually only one visualization method - the bar plo
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\end{Highlighting}
-\end{Shaded}
 
 \emph{Click here to show setup code.}
 
@@ -1493,21 +1493,19 @@ If you try to specify a color in the \texttt{mapping}-argument of the main \text
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}
-  \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
-    \DataTypeTok{x =}\NormalTok{ displ,}
-    \DataTypeTok{y =}\NormalTok{ hwy,}
-    \DataTypeTok{color =}\NormalTok{ blue}
-\NormalTok{  )}
-\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\KeywordTok{try}\NormalTok{(}\KeywordTok{print}\NormalTok{(}
+  \KeywordTok{ggplot}\NormalTok{(}
+    \DataTypeTok{data =}\NormalTok{ mpg,}
+    \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
+      \DataTypeTok{x =}\NormalTok{ displ,}
+      \DataTypeTok{y =}\NormalTok{ hwy,}
+      \DataTypeTok{color =}\NormalTok{ blue}
+\NormalTok{    )}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{()}
+\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Error in FUN(X[[i]], ...): object 'blue' not found
-\end{verbatim}
 
 \begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{flushright}
 
@@ -1587,6 +1585,8 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 
 \hypertarget{labels}{%
 \section{Labels}\label{labels}}
+
+\emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1678,26 +1678,8 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(nycflights13)}
-
-\KeywordTok{library}\NormalTok{(conflicted)}
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::filter over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::lag over any other package
-\end{verbatim}
 
 In this section we are looking at the use of visual themes to easily change the look and feel of a plot.
 We start with the introduction of the default theme -- \texttt{theme\_grey()} function.
@@ -1713,7 +1695,7 @@ We start with the introduction of the default theme -- \texttt{theme\_grey()} fu
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-base-plot-1} \end{flushright}
 
 Change the default \texttt{theme\_grey()} to a more traditional black-and-white theme:
 
@@ -1728,7 +1710,7 @@ Change the default \texttt{theme\_grey()} to a more traditional black-and-white 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-bw-theme-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-bw-theme-1} \end{flushright}
 
 Also in this scheme the color aesthetic works as it normally does.
 The black-and-whiteness only relates to the background.
@@ -1744,7 +1726,7 @@ The black-and-whiteness only relates to the background.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-data-can-have-color-in-bw-theme-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-data-can-have-color-in-bw-theme-1} \end{flushright}
 
 Calling the function \texttt{theme()} after a \texttt{theme\_...()} call let's you tweak certain aspects of the theme.
 
@@ -1762,7 +1744,7 @@ Some plots work better with the legend at the bottom.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-occasionally-useful-legend-at-the-bottom-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-occasionally-useful-legend-at-the-bottom-1} \end{flushright}
 
 Mind that \texttt{theme\_...()} functions overwrite all previous settings of \texttt{theme()}:
 
@@ -1793,7 +1775,7 @@ The first argument of each \texttt{theme\_...()} function is \texttt{base\_size}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-first-param-of-theme-functions-is-base-size-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-first-param-of-theme-functions-is-base-size-1} \end{flushright}
 
 If we were asked to suggest themes, we'd go for
 
@@ -1820,7 +1802,7 @@ Here is how \texttt{ggpubr::theme\_pubr()} looks like.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-ggpubr-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-predefined-themes-available-e-g-in-ggpubr-package-1} \end{flushright}
 
 Also from here onward we will use \texttt{theme\_pubr()} as the default theme for plots.
 This can be done by setting
@@ -1833,7 +1815,6 @@ This can be done by setting
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(nycflights13)}
 \KeywordTok{library}\NormalTok{(ggpubr)}
 \end{Highlighting}
 \end{Shaded}
@@ -1859,35 +1840,6 @@ This can be done by setting
 ##     extract
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(conflicted)}
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::filter over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::lag over any other package
-\end{verbatim}
-
 In this section we want to spend some time getting to know how to customize the labels and scales of plots using \{ggplot2\}.
 We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with the \{tidyverse\}.
 
@@ -1902,7 +1854,7 @@ We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-base-plot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-1} \end{flushright}
 
 \hypertarget{labs}{%
 \subsection{\texorpdfstring{\texttt{labs()}}{labs()}}\label{labs}}
@@ -1928,7 +1880,7 @@ Additionally you can set the title/subtitle and also add a caption and a tag.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-add-descriptive-labels-the-labs-function-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-add-descriptive-labels-the-labs-function-1} \end{flushright}
 
 \hypertarget{axes}{%
 \subsection{Axes}\label{axes}}
@@ -1948,7 +1900,7 @@ For example there is a function to change the scale of an axis to a logarithmic 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-change-scale-to-log-scale-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-change-scale-to-log-scale-1} \end{flushright}
 
 Be careful: you can set the name of an axis in both the \texttt{labs()} function and the \texttt{scale\_...()} functions.
 If you do both, only the name set in the latter will prevail.
@@ -1968,7 +1920,7 @@ If you do both, only the name set in the latter will prevail.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-name-in-scale-overwrites-labs-without-warning-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-name-in-scale-overwrites-labs-without-warning-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1990,7 +1942,7 @@ These enable custom axis breaks and labels if the ones autogenerated from the da
 ## (geom_point).
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-custom-axis-breaks-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx1-1} \end{flushright}
 
 Values not falling into the custom limits will be silently droppend including a warning message.
 
@@ -2013,7 +1965,7 @@ By default, \texttt{scale\_color\_hue()} will be used for categorical variables.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-default-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx2-1} \end{flushright}
 
 To change the color palette, pass a palette-function of your liking in the form of
 
@@ -2044,7 +1996,7 @@ To specify that we are dealing with categorical values, we add a \texttt{\_d} at
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-other-options-viridis-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xx3-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2074,7 +2026,7 @@ Another helpful scenario is when there are more levels in the data than colors s
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-full-control-manual-scale-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx4-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2093,6 +2045,8 @@ Review the \href{https://github.com/cttobin/ggthemr}{\{ggthemr\} package} for to
 
 \hypertarget{export-saving}{%
 \section{Export \& saving}\label{export-saving}}
+
+\emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2195,7 +2149,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-71-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2203,7 +2157,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-71-2} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2836,10 +2790,6 @@ This chapter discusses data transformation with the \href{https://dplyr.tidyvers
 \KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
 
 \begin{verbatim}
 ## [conflicted] Will prefer dplyr::filter over any other package
@@ -3711,10 +3661,6 @@ Select helpers allow selecting multiple related columns conveniently.
 \end{Shaded}
 
 \begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
 ## [conflicted] Will prefer dplyr::lag over any other package
 \end{verbatim}
 
@@ -4503,46 +4449,38 @@ Ingesting data.
 
 This chapter discusses data import with RStudio, with the help of the \href{https://readr.tidyverse.org/}{readr}, \href{https://readxl.tidyverse.org/}{readxl}, and \href{https://github.com/leeper/rio}{rio} packages.
 
-\hypertarget{section}{%
-\section{}\label{section}}
+\hypertarget{import-single-files}{%
+\section{Import single files}\label{import-single-files}}
 
 \emph{Click here to show setup code.}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(nycflights13)}
-
-\KeywordTok{library}\NormalTok{(conflicted)}
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::filter over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::lag over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(readr)}
+\end{Highlighting}
+\end{Shaded}
+
+The RStudio IDE offers a convenient way to import files in various common formats, including CSV and Excel.
+The ``File / Import Dataset / From \ldots{}'' menus provide access to import assistants that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  open a file for preview,
+\item
+  allow tweaking import options,
+\item
+  generate R code that you can copy-paste into your scripts for further reuse.
+\end{enumerate}
+
+The assistant is run once for each dataset, from then only the generated code is required to import the data in a consistent way.
+
+This is an example of auto-generated code for importing a dataset from the \texttt{data/} directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{example1 <-}
 \StringTok{  }\KeywordTok{read_delim}\NormalTok{(}
     \StringTok{"data/example1.csv"}\NormalTok{,}
@@ -4560,6 +4498,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ##   col3 = col_character()
 ## )
 \end{verbatim}
+
+After importing, use \texttt{view()} to display the ingested dataset.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4600,6 +4540,9 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## [conflicted] Will prefer dplyr::filter over any other package
 \end{verbatim}
 
+Occasionally, a dataset is split across many files with a very similar format.
+The \texttt{data/} directory contains several Excel files with the \texttt{.xlsx} extension with tables of nearly identical format.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{files <-}\StringTok{ }\KeywordTok{dir}\NormalTok{(}\DataTypeTok{path =} \KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{), }\DataTypeTok{pattern =} \StringTok{"[.]xlsx$"}\NormalTok{, }\DataTypeTok{full.names =} \OtherTok{TRUE}\NormalTok{)}
@@ -4612,6 +4555,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## [2] "/home/travis/build/krlmlr/vistransrep/book/data/example6b.xlsx"
 ## [3] "/home/travis/build/krlmlr/vistransrep/book/data/example6c.xlsx"
 \end{verbatim}
+
+An easy way to import all files at once is the \texttt{rio::import\_list()} function from the \{rio\} package.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4631,6 +4576,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## 5     3   4   g     J     /home/travis/build/krlmlr/vistransr~
 ## 6     3   3.5 f     H     /home/travis/build/krlmlr/vistransr~
 \end{verbatim}
+
+If some files need manipulation before the data can be bound together, \{rio\} also offers a way to import them as a ``named list''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4662,6 +4609,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## 2     3   3.5 f     H
 \end{verbatim}
 
+The data can be accessed individually for each input file.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{list_of_tables}\OperatorTok{$}\NormalTok{example6b}
@@ -4675,6 +4624,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## 1     2   1.5 c     Z    
 ## 2     2   2   d     W
 \end{verbatim}
+
+If a tweak is necessary, the data can be overwritten as needed.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4690,6 +4641,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 \begin{verbatim}
 ## Error in function_list[[i]](value) : '...' used in an incorrect context
 \end{verbatim}
+
+The \texttt{bind\_rows()} function combines these components into a single dataset again.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4710,6 +4663,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## 6 example6c     3   3.5 f     H
 \end{verbatim}
 
+When done, use \texttt{filter()} to access a single dataset.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{all_tables }\OperatorTok{%>%}
@@ -4724,6 +4679,8 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ##          <dbl> <chr>        
 ## 1         1.75 c
 \end{verbatim}
+
+For performing an analysis across the entire dataset, per input file, use \texttt{group\_by()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4742,6 +4699,9 @@ This chapter discusses data import with RStudio, with the help of the \href{http
 ## 2 example6b         1.75 c            
 ## 3 example6c         3.75 g
 \end{verbatim}
+
+Finally, \texttt{map\_dfr()} offers a way to import files with more control.
+The details are out of scope here.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5608,8 +5568,8 @@ See the help for further details.
 ## 2 2000000
 \end{verbatim}
 
-\hypertarget{section-1}{%
-\section{}\label{section-1}}
+\hypertarget{section}{%
+\section{}\label{section}}
 
 \emph{Click here to show setup code.}
 
@@ -6115,8 +6075,8 @@ Check that the test actually detects failures by modifying the implementation of
 Run the new test with \texttt{devtools::test()}, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
 One test should be failing now.
 
-\hypertarget{section-2}{%
-\chapter{}\label{section-2}}
+\hypertarget{section-1}{%
+\chapter{}\label{section-1}}
 
 \begin{itemize}
 \item
