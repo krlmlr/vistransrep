@@ -28,7 +28,7 @@ Here is a selected list of our favorite {ggplot2} extensions including some use 
 ( {lindia}: https://github.com/yeukyul/lindia )
 
 <details><summary>*Click here to show setup code.*</summary>
-```{r setup-vis-adv}
+```{r setup-vis-ext}
 library(tidyverse)
 library(ggsci)
 library(ggpubr)

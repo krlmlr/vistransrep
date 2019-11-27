@@ -1,1 +1,152 @@
 # {ggplot2} advanced {#vis-adv}
+
+## Facetting
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r setup-vis-adv}
+library(tidyverse)
+library(ggsci)
+library(ggpubr)
+library(patchwork)
+```
+</details>
+
+<br>
+
+"Facetting" (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
+
+The variables used for facetting should be passed encapsulated in `vars()`.
+(Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the facetting variables.)
+
+```{r, eval=FALSE}
+facet_grid(facets = vars(<variable>), scales = "fixed", ...)
+facet_wrap(rows = vars(<variable>), cols = vars(<variable>), 
+           scales = "fixed", ...)
+```
+
+**facet**: Variables given via `vars()` or formula with splitting variable.
+
+**scales**: Scale of the axes over the sub-graphics.
+
+The position of `<variable>` in `facet_wrap()` denotes on which axis the facets will appear:
+
+- `vars(<variable>)` $\rightarrow$ y-axis
+
+- `vars(), vars(<variable>)` $\rightarrow$ x-axis
+
+![](img/facets.png)
+
+### `facet_wrap()`
+
+```{r, fig.width=8, fig.height=4}
+facet_x = ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = fl)) +
+  scale_color_nejm() +
+  facet_grid(vars(), vars(year)) +
+  theme_pubr()
+
+facet_y = ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = fl)) +
+  scale_color_nejm() +
+  facet_grid(vars(year), vars()) +
+  theme_pubr()
+```
+
+```{r}
+facet_x + facet_y
+```
+
+Facets can also be shown on both axes using different (categorical) variables.
+For this, `facet_grid()` is useful:
+
+```{r, fig.width=8, fig.height=4}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  facet_grid(cols = vars(cyl), rows = vars(year)) +
+  theme_pubr()
+```
+
+Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
+(For this to work, the variables need to be of class `factor`).
+
+```{r, fig.width=8, fig.height=5}
+mpg %>% 
+  mutate(manufacturer = as.factor(manufacturer)) %>% 
+  mutate(year = as.factor(year)) %>% 
+  ggplot(aes(displ, hwy)) +
+  geom_point() +
+  facet_wrap(vars(manufacturer:year)) +
+  theme_pubr()
+```
+
+This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
+
+```{r, fig.height=8}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_wrap(vars(manufacturer, year)) +
+  theme_pubr()
+```
+
+### `facet_grid()`
+
+While `facet_wrap()` tries to act smart and hide non-existing combinations of sub-plots, `facet_grid()` will create a full matrix of sub-plots for all possible combinations.
+Most of the time when using only one categorical variable, `facet_wrap()` does a good job and is preferred over `facet_grid()`.
+
+However, `facet_grid` might be preferred in the following cases:
+
+- when facetting over >= 2 variables
+
+- when plots of empty combinations should be shown
+
+Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables where not all combinations of those contain observations:
+
+```{r, fig.height=10}
+fc_gd = ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  facet_grid(vars(year), vars(cyl)) +
+  theme_pubr()
+
+fc_wrap = ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  facet_wrap(vars(year, cyl)) +
+  theme_pubr()
+
+fc_gd / fc_wrap
+```
+
+### Scales
+
+By default, scales are fixed across each facet (`scales = "fixed"`).
+This means that all sub-plots should share the same axes.
+By setting this argument to either `"free_x"` or `"free_y"` one can specify that each each sub-plot should have its own scale.
+
+```{r, fig.width=8, fig.height=3.5}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_grid(vars(year), vars(cyl), scales = "free_x") +
+  theme_pubr(base_size = 7)
+```
+
+This only makes sense if the ranges for each facet differ substantially (so not in this example!).
+This example is good to show the confusion that this setting might introduce.
+People usually expect to look at **equal ranges** across facets (unless there is a good reason for it not to) and differing scales make the plot more complicated.
+
+Keep in mind: Visualization should _simplify_ data!
+
+### Renaming of facet labels
+
+A non-trivial change that is often applied to facet plots is the (re-)naming of the facet labels.
+Facet labels are automatically created based on the factor levels of the respective variable.
+However, sometimes the raw factor levels are not descriptive enough.
+In these cases, it makes sense to prefix the factor level values with the column name.
+This can be achieved by setting the `labeller` argument of `facet_*` to `label_both`.
+
+(An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
+
+```{r, fig.width=8, fig.height=4}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_grid(vars(), vars(cyl), labeller = label_both) +
+  theme_pubr()
+```
