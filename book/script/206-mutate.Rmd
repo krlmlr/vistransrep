@@ -1,4 +1,4 @@
-```{r 26-remove-all, include = FALSE}
+```{r 206-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Create new columns
 
 ```
-```{r 26-setup-26-mutate-r}
+```{r 206-setup-206-mutate-r}
 library(tidyverse)
 library(nycflights13)
 
@@ -21,27 +21,20 @@ conflict_prefer("lag", "dplyr")
 </details>
 
 With `dplyr::mutate()` you can add new columns to a table, e.g. making use of the already existing variables.
+This is another building block added to the toolset.
 
 How much faster than the scheduled time did the pilots manage to fly:
 
 ```{r include = FALSE}
-# mutate 1
+# Compute new variables
 ```
-```{r 26-mutate-1}
-flights %>%
-  mutate(recovery = dep_delay - arr_delay)
-```
-
-This is another building block added to the toolset:
-
-```{r include = FALSE}
-# mutate select
-```
-```{r 26-mutate-select}
+```{r 206-compute-new-variables}
 flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
   select(dep_delay, arr_delay, recovery)
 ```
+
+Conceptually, the expression that defines the new variable is evaluated for each row.
 
 The following constructs are often applied inside `mutate()`:
 
@@ -71,25 +64,30 @@ The following constructs are often applied inside `mutate()`:
     - Lead and lag: `lead()`, `lag()`
     - Ranking: `row_number()`, `min_rank()`, `ntile()`
 
-Work with the newly created variable just like with the original ones:
+Work with the newly created variables just like with the original ones:
 
 ```{r include = FALSE}
-# mutate select arrange
+# Work with new variables
 ```
-```{r 26-mutate-select-arrange}
+```{r 206-work-with-new-variables}
 flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
   select(dep_delay, arr_delay, recovery) %>%
   arrange(recovery)
 ```
 
-Assign the results to new variables.
-The old ones remain unchanged.
+A `mutate()` never changes a dataset.
+To make a computation persistent, store the entire result as a new dataset variable.
 
 ```{r include = FALSE}
-# assign mutate select arrange
+# Assign to persist:
 ```
-```{r 26-assign-mutate-select-arrange}
+```{r 206-assign-to-persist}
+try(
+  flights %>%
+  select(recovery)
+)
+
 recovery_data <-
   flights %>%
   mutate(recovery = dep_delay - arr_delay) %>%
@@ -104,7 +102,7 @@ Let's look at a single airplane:
 ```{r include = FALSE}
 # flights filter select view
 ```
-```{r 26-flights-filter-select-view}
+```{r 206-flights-filter-select-view}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
@@ -114,9 +112,9 @@ flights %>%
 Adding the departure time of the *next* flight to the current row, respectively, using `mutate()` with `lead()`:
 
 ```{r include = FALSE}
-# flights filter select mutate lead view
+# Lead values look across rows:
 ```
-```{r 26-flights-filter-select-mutate-lead-view}
+```{r 206-lead-values-look-across-rows}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
@@ -127,9 +125,9 @@ flights %>%
 The opposite effect to `lead()` can be realized using `lag()`:
 
 ```{r include = FALSE}
-# flights filter select mutate lag view
+# Lag: opposite of lead:
 ```
-```{r 26-flights-filter-select-mutate-lag-view}
+```{r 206-lag-opposite-of-lead}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
@@ -138,29 +136,26 @@ flights %>%
 ```
 
 There is even a use-case for this in our little example.
-How long has our airplane been absent from NYC airports between each of its flights out?
+How long does it take for the airplane to return to NYC with each flight out?
 
 ```{r include = FALSE}
-# flights filter select mutate lag mutate ground time view
+# Compute absence time from NYC airports:
 ```
-```{r 26-flights-filter-select-mutate-lag-mutate-ground-time-view}
+```{r 206-compute-absence-time-from-nyc-airports}
 flights %>%
   filter(tailnum == "N14228") %>%
-  select(year, month, day, dep_time, arr_time) %>%
-  mutate(lag_arr_time = lag(arr_time)) %>%
-  mutate(ground_time = dep_time - lag_arr_time) %>%
+  select(year, month, day, time_hour) %>%
+  mutate(lag_time_hour = lag(time_hour)) %>%
+  mutate(ground_time = time_hour - lag_time_hour) %>%
   view()
 ```
-
-The negative values occur because not everything happens on the same day, implying that our method is still in need of some refinement.
-Nevertheless, let's continue.
 
 A frequently used workflow is creating a helper variable at some point in the pipeline and then dropping it later on:
 
 ```{r include = FALSE}
-# deselect with minus
+# Create helper, then deselect with `-`:
 ```
-```{r 26-deselect-with-minus}
+```{r 206-create-helper-then-deselect-with}
 flights %>%
   filter(tailnum == "N14228") %>%
   select(year, month, day, dep_time, arr_time) %>%
@@ -170,22 +165,12 @@ flights %>%
 ```
 
 Let's work some more with the flight data of our special plane.
+The total air time of a plane up to and including a given flight can be calculated with `cumsum()`:
 
 ```{r include = FALSE}
-# flights filter view
+# Cumulative air time:
 ```
-```{r 26-flights-filter-view}
-flights %>%
-  filter(tailnum == "N14228") %>%
-  view()
-```
-
-The total air time of a plane up to and including a given flight can be calculated with `base::cumsum()`:
-
-```{r include = FALSE}
-# air time N14228
-```
-```{r 26-air-time-n-14228}
+```{r 206-cumulative-air-time}
 flights %>%
   filter(tailnum == "N14228") %>%
   mutate(cum_air_time = cumsum(air_time)) %>%
@@ -193,68 +178,53 @@ flights %>%
   view()
 ```
 
-Creating a "flag" variable with `mutate()` which shows if a flight was on time or not:
+Creating a "flag" variable with `mutate()` allows selecting if a flight was on time or not:
 
 ```{r include = FALSE}
-# delayed flag N14228
+# Verbose indicators:
 ```
-```{r 26-delayed-flag-n-14228}
+```{r 206-verbose-indicators}
 flights %>%
-  filter(tailnum == "N14228") %>%
   mutate(delayed = if_else(arr_delay > 0, "delayed", "on time")) %>%
   select(arr_delay, delayed)
 ```
 
-A more straightforward way to get the same (or at least a very similar and probably easier to work with) result:
+Shorter, but less verbose:
 
 ```{r include = FALSE}
-# delayed flag 2 N14228
+# Logical flags:
 ```
-```{r 26-delayed-flag-2-n-14228}
+```{r 206-logical-flags}
 flights %>%
-  filter(tailnum == "N14228") %>%
-  mutate(delayed = arr_delay > 0) %>%
+  mutate(delayed = (arr_delay > 0)) %>%
   select(arr_delay, delayed)
 ```
 
-... easier to work with, because `filter()` can directly take logical arguments:
+A flag can be passed on to `filter()` directly:
 
 ```{r include = FALSE}
-# filter by flag
+# Filter by flag:
 ```
-```{r 26-filter-by-flag}
+```{r 206-filter-by-flag}
 flights %>%
-  filter(tailnum == "N14228") %>%
   mutate(delayed = arr_delay > 0) %>%
   select(arr_delay, delayed) %>%
   filter(delayed)
 ```
 
-Negation for inverse filtering:
+Use negation for inverse filtering, and store in a dataset variable for reuse:
 
 ```{r include = FALSE}
-# filter by flag inverse
+# Negation, persistence:
 ```
-```{r 26-filter-by-flag-inverse}
-flights %>%
-  filter(tailnum == "N14228") %>%
-  mutate(delayed = arr_delay > 0) %>%
-  select(arr_delay, delayed) %>%
-  filter(!delayed)
-```
-
-These are the flights that had no delay:
-
-```{r include = FALSE}
-# on time flights
-```
-```{r 26-on-time-flights}
+```{r 206-negation-persistence}
 on_time_flights <-
   flights %>%
-  filter(tailnum == "N14228") %>%
-  mutate(delayed = arr_delay > 0) %>%
+  mutate(delayed = (arr_delay > 0)) %>%
   select(arr_delay, delayed) %>%
   filter(!delayed)
+
+on_time_flights
 ```
 
 ### Exercises {-}
