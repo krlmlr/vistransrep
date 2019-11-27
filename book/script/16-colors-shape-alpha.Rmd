@@ -2,7 +2,6 @@
 
 ```{r 16-setup}
 library(tidyverse)
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 ```
 
 <details><summary>*Click here to show setup code.*</summary>
