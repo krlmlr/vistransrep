@@ -38,7 +38,7 @@ The position of `<variable>` in `facet_wrap()` denotes on which axis the facets 
 
 ### `facet_wrap()`
 
-```{r facet-wrap1, out.width="50%", results='hold'}
+```{r facet-wrap1, out.width="50%", fig.show='hold'}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
@@ -83,7 +83,7 @@ However, `facet_grid` might be preferred in the following cases:
 
 Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables where not all combinations of those contain observations:
 
-```{r out.width="50%", results='hold'}
+```{r out.width="50%", fig.show='hold'}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
   facet_grid(vars(year), vars(cyl))
