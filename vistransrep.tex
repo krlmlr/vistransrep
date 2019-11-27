@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 21:57 CET}
+\date{27 November 2019, 22:34 CET}
 
 \begin{document}
 \maketitle
@@ -2848,8 +2848,8 @@ Before starting, we would like to mention the package \{conflicted\}, which when
 It furthermore helps to resolve these situations, by allowing you to choose, the function of which package you prefer (\texttt{conflicted::conflict\_prefer()}).
 You can see an example in the setup code.
 
-\hypertarget{filtering-dplyrfilter}{%
-\section{\texorpdfstring{Filtering: \texttt{dplyr::filter()}}{Filtering: dplyr::filter()}}\label{filtering-dplyrfilter}}
+\hypertarget{filtering}{%
+\section{Filtering}\label{filtering}}
 
 \emph{Click here to show setup code.}
 
@@ -2928,13 +2928,32 @@ The following building blocks are frequently used in a filter:
 \begin{itemize}
 \item
   Operators: \texttt{==}, \texttt{!=}, \texttt{\textless{}}, \texttt{\textgreater{}}, \texttt{\textless{}=}, \texttt{\textgreater{}=}
-  \texttt{r\ \ \ month\ ==\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ careful:\ two\ =\ \ \ month\ \textgreater{}=\ 10\ \ \ carrier\ !=\ "UA"\ \ \ \ \ \ \ \ \ \#\ careful:\ \textless{}\textgreater{}\ doesn\textquotesingle{}t\ work\ \ \ arr\_time\ \textless{}\ dep\_time}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{month }\OperatorTok{==}\StringTok{ }\DecValTok{3}              \CommentTok{# careful: two =}
+\NormalTok{month }\OperatorTok{>=}\StringTok{ }\DecValTok{10}
+\NormalTok{carrier }\OperatorTok{!=}\StringTok{ "UA"}         \CommentTok{# careful: <> doesn't work}
+\NormalTok{arr_time }\OperatorTok{<}\StringTok{ }\NormalTok{dep_time}
+\end{Highlighting}
+\end{Shaded}
 \item
   \texttt{near()}
-  \texttt{r\ \ \ near(sin(pi),\ 0)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{near}\NormalTok{(}\KeywordTok{sin}\NormalTok{(pi), }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   \texttt{between()}, \texttt{\%in\%}
-  \texttt{r\ \ \ between(hour,\ 8,\ 12)\ \ \ month\ \%in\%\ c(12,\ 1,\ 2)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{between}\NormalTok{(hour, }\DecValTok{8}\NormalTok{, }\DecValTok{12}\NormalTok{)}
+\NormalTok{month }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 \item
   \texttt{str\_detect()} for strings
 \end{itemize}
@@ -3068,8 +3087,16 @@ Use \texttt{\textbar{}} to return all rows that match either criterion or both:
 ## #   time_hour <dttm>
 \end{verbatim}
 
-\hypertarget{sort-rows-dplyrarrange}{%
-\section{\texorpdfstring{Sort rows: \texttt{dplyr::arrange()}}{Sort rows: dplyr::arrange()}}\label{sort-rows-dplyrarrange}}
+\hypertarget{exercises}{%
+\subsection*{Exercises}\label{exercises}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/filtering.html}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/filter-combine.html}
+
+\hypertarget{sorting}{%
+\section{Sorting}\label{sorting}}
 
 \emph{Click here to show setup code.}
 
@@ -3323,6 +3350,12 @@ You can mix sorting in an ascending and a descending manner:
 ## #   time_hour <dttm>
 \end{verbatim}
 
+\hypertarget{exercises-1}{%
+\subsection*{Exercises}\label{exercises-1}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/arrange.html}
+
 \hypertarget{the-pipe}{%
 \section{The pipe}\label{the-pipe}}
 
@@ -3558,8 +3591,14 @@ Once the chunk does what you expect it to do, do not forget to remove the \textt
 To rearrange rows, you can use the shortcut \texttt{Alt\ +\ Cursor\ up/down}.
 In a piped expression, no further editing is necessary!
 
-\hypertarget{pick-columns-dplyrselect}{%
-\section{\texorpdfstring{Pick columns: \texttt{dplyr::select()}}{Pick columns: dplyr::select()}}\label{pick-columns-dplyrselect}}
+\hypertarget{exercises-2}{%
+\subsection*{Exercises}\label{exercises-2}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/pipe.html}
+
+\hypertarget{pick-columns}{%
+\section{Pick columns}\label{pick-columns}}
 
 \emph{Click here to show setup code.}
 
@@ -3707,8 +3746,14 @@ Select helpers allow selecting multiple related columns conveniently:
 ## #   air_time <dbl>
 \end{verbatim}
 
-\hypertarget{create-new-columns-based-on-old-ones-dplyrmutate}{%
-\section{\texorpdfstring{Create new columns based on old ones: \texttt{dplyr::mutate()}}{Create new columns based on old ones: dplyr::mutate()}}\label{create-new-columns-based-on-old-ones-dplyrmutate}}
+\hypertarget{exercises-3}{%
+\subsection*{Exercises}\label{exercises-3}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/select-rename.html}
+
+\hypertarget{create-new-columns}{%
+\section{Create new columns}\label{create-new-columns}}
 
 \emph{Click here to show setup code.}
 
@@ -3790,7 +3835,15 @@ The following constructs are often applied inside \texttt{mutate()}:
 \begin{itemize}
 \item
   Arithmetic: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{\^{}}, \texttt{\%\%}, \texttt{\%/\%}
-  \texttt{r\ \ \ dep\_delay\ -\ arr\_delay\ \ \ dep\_time\ \%/\%\ 100\ \ \ dep\_time\ \%\%\ 100\ \ \ dep\_delay\ -\ mean(dep\_delay)\ \ \ \#\ Deviation\ from\ mean}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay}
+\NormalTok{dep_time }\OperatorTok{%/%}\StringTok{ }\DecValTok{100}
+\NormalTok{dep_time }\OperatorTok{%%}\StringTok{ }\DecValTok{100}
+\NormalTok{dep_delay }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(dep_delay)   }\CommentTok{# Deviation from mean}
+\end{Highlighting}
+\end{Shaded}
 \item
   Real functions, see \texttt{?base::Math} and \texttt{?dplyr::lead}:
 
@@ -4131,6 +4184,12 @@ These are the flights that had no delay:
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{exercises-4}{%
+\subsection*{Exercises}\label{exercises-4}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/mutate.html}
+
 \hypertarget{summarize-data}{%
 \section{Summarize data}\label{summarize-data}}
 
@@ -4209,7 +4268,6 @@ To reduce the result to a single row, use \texttt{summarize()}:
 The following functions compute summary values:
 
 \begin{itemize}
-\tightlist
 \item
   \texttt{sum()}, \texttt{prod()}
 
@@ -4227,17 +4285,16 @@ The following functions compute summary values:
 \item
   \texttt{sum()} and \texttt{mean()} for \texttt{logical} variables:
   \texttt{r\ \ \ mean(is.na(arr\_time))}
-\end{itemize}
-
-\hypertarget{ranking}{%
-\section{Ranking}\label{ranking}}
-
-\begin{itemize}
-\tightlist
 \item
-  \texttt{n()}
-\item
-  \texttt{first()}, \texttt{last()}, \texttt{nth()}
+  Ranking
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{n()}
+  \item
+    \texttt{first()}, \texttt{last()}, \texttt{nth()}
+  \end{itemize}
 \end{itemize}
 
 Simple counts can be computed with \texttt{n()} inside \texttt{summarize()}:
@@ -4318,6 +4375,27 @@ In the next example, the same summary is computed separately for each origin air
 ## 3 LGA    104662          118.             115
 \end{verbatim}
 
+Conceptually this corresponds to the following sequence of operations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Split} the dataset into groups defined by the values of the \texttt{origin} column.
+  Each group has the same value in \texttt{origin}.
+\item
+  \textbf{Apply} the same summary for each group.
+  In this case, the size, mean air time, and median air time is computed
+  across all flights for each group.
+\item
+  \textbf{Combine} the results into one data frame.
+  The grouping variables and the results are bound together for further analysis.
+\end{enumerate}
+
+More often than not, the question ``how do I iterate over each group and do \ldots{}'' can be reprased as ``what summary value do I want to compute for each group''.
+Recognizing this takes a bit of practice but is worth the effort, because the analysis code becomes shorter and more robust and often runs faster.
+
+Groups can be defined over multiple columns as well.
 The next example splits the data into one group for each day.
 
 \begin{Shaded}
@@ -4368,25 +4446,33 @@ For quick exploration, the names of the new columns can be omitted:
 ## # ... with 362 more rows
 \end{verbatim}
 
+The \texttt{n()} function computes a simple count, and is one of the most frequently used summary functions.
+The \texttt{count()} function provides a convenient alternative.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\OtherTok{TRUE}
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(year, month, day)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] TRUE
+## # A tibble: 365 x 4
+##    year month   day     n
+##   <int> <int> <int> <int>
+## 1  2013     1     1   842
+## 2  2013     1     2   943
+## 3  2013     1     3   914
+## # ... with 362 more rows
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\OtherTok{TRUE}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{exercises-5}{%
+\subsection*{Exercises}\label{exercises-5}}
+\addcontentsline{toc}{subsection}{Exercises}
 
-\begin{verbatim}
-## [1] TRUE
-\end{verbatim}
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/summarize.html}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/summarize-mult.html}
 
 \hypertarget{summary-plots}{%
 \section{Summary-plots}\label{summary-plots}}
@@ -4665,6 +4751,12 @@ After importing, use \texttt{view()} to display the ingested dataset.
 ## 2   2.5 b     Y
 \end{verbatim}
 
+\hypertarget{exercises-6}{%
+\subsection*{Exercises}\label{exercises-6}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html}, task 1 and 2
+
 \hypertarget{import-many-files}{%
 \section{Import many files}\label{import-many-files}}
 
@@ -4871,6 +4963,12 @@ The details are out of scope here.
 ## 5     3   4   g     J    
 ## 6     3   3.5 f     H
 \end{verbatim}
+
+\hypertarget{exercises-7}{%
+\subsection*{Exercises}\label{exercises-7}}
+\addcontentsline{toc}{subsection}{Exercises}
+
+\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html}, task 3 and 4
 
 \hypertarget{tidying}{%
 \chapter{Tidying}\label{tidying}}
