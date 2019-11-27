@@ -31,7 +31,7 @@ ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
-  geom_point(color = class) +
+  geom_point(aes(color = class)) +
   theme_bw() +
   theme(legend.position = "bottom")
 
