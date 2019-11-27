@@ -4,18 +4,23 @@
 ```{r child = here::here("script", "12-geoms.Rmd")}
 ```
 
-```{r child = here::here("script", "13-export.Rmd")}
+```{r child = here::here("script", "13-two-var.Rmd")}
 ```
 
-```{r child = here::here("script", "14-two-var.Rmd")}
+```{r child = here::here("script", "14-one-var.Rmd")}
 ```
 
-```{r child = here::here("script", "15-one-var.Rmd")}
+```{r child = here::here("script", "15-colors-shape-alpha.Rmd")}
 ```
 
-```{r child = here::here("script", "16-colors-shape-alpha.Rmd")}
+```{r child = here::here("script", "16-labels.Rmd")}
 ```
 
-```{r child = here::here("script", "17-labels.Rmd")}
+```{r child = here::here("script", "17-theme.Rmd")}
 ```
 
+```{r child = here::here("script", "18-scales.Rmd")}
+```
+
+```{r child = here::here("script", "19-export.Rmd")}
+```
