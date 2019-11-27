@@ -1,4 +1,4 @@
-### xxx
+### `geom_*` functions
 
 library(tidyverse)
 

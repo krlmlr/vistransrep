@@ -1,4 +1,4 @@
-### Plotting: custom labels and scales
+### Scales
 
 library(tidyverse)
 library(ggpubr)

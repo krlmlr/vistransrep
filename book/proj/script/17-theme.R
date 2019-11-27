@@ -1,6 +1,7 @@
 ### Themes
 
 library(tidyverse)
+
 # Base plot
 ggplot(
   data = mpg,
