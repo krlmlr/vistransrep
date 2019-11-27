@@ -1,1 +1,164 @@
 # (PART) Reporting {-}
+
+# Reporting
+
+After the successful processing and visualization of the data, the results need to be reported.
+This can be done best in a "literate programming" fashion as provided by R Markdown.
+
+Using R Markdown, one is able to combine R code (and its results) with text (written in _markdown_) to create professional looking reports in various output formats (Word, PDF, HTML).
+
+Both interactive and static documents can be created.
+[This gallery](https://rmarkdown.rstudio.com/gallery.html) (maintained by RStudio) gives a first overview of how documents created using R Markdown can look like.
+
+## Overview
+
+File Format: `.Rmd` (R Markdown)
+
+New document (in RStudio): `File -> New File -> R Markdown/R Notebook`.
+LaTeX Math is supported via [Mathjax](https://www.mathjax.org/):
+
+```{r, eval = FALSE, echo = TRUE}
+$y=\frac{(x - \mu)}{(max - min)}$
+```
+    
+$y=\frac{(x - \mu)}{(max - min)}$
+
+---
+
+Any file with the `.Rmd` file extension is an "R Markdown document".
+RMD's consist **code** and **text** (written in _markdown_ syntax) which need to be _compiled_ into a high-level output format.
+
+Possible output formats are:
+
+  - HTML
+  
+  - PDF
+  
+  - Word
+  
+  - Powerpoint
+  
+Which output format should be used is specified in the "YAML header" of the R Markdown document.
+
+## The YAML header
+
+In the YAML (Yet Another Markup Language) header users can specify metadata which denote the final appearance of the document.
+
+Each output format has different settings. 
+Fortunately, most settings apply to all formats.
+
+The YAML header starts and ends with three dashes: `---`.
+The **output** field is mandatory.
+
+```YAML
+---
+title: "<title>"
+author: "<author>"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_document:
+    toc: yes
+    number_sections: yes
+    fig_caption: yes
+    css: ../custom.css
+bibliography: lib.bib
+biblio-style: apalike
+---
+```
+
+Valid options for each output format can usually be looked up in the help page of the specific output format.
+
+For the default output format `html_document` the [R Markdown - The definitive guide](https://bookdown.org/yihui/rmarkdown/html-document.html) book is a good reference.
+
+An [R Markdown cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) also exists.
+
+## Literate programming in R
+
+Packages {{rmarkdown}} and {{knitr}} are the base of literate programming in R.
+
+RMD's documents can be compiled
+
+- by clicking the "knit" button in RStudio (the name relates to the {{knitr}} package)
+
+- via the command line by calling `rmarkdown::render()`
+
+Behind the scenes the {{rmarkdown}} package first converts the `.Rmd` file to `.md` (markdown).
+Then [pandoc](https://pandoc.org/), which is a universal markdown converter library, converts the `.md` file to the chosen output format.
+
+### R Markdown packages
+
+The following packages are built upon {{rmarkdown}} and simplify special purposes.
+
+- [bookdown](https://bookdown.org/yihui/bookdown/): Mainly used for writing books but can also be used for reports (formats `html_document2`, `git_book`, `pdf_book`, etc.).
+
+- [thesisdown](https://github.com/ismayc/thesisdown): A package for thesis writing.
+Provides ready-to-go templates for different types and simplifies advanced LaTeX usage.
+
+- [rmdformats](https://github.com/juba/rmdformats), [pinp](https://github.com/eddelbuettel/pinp) : Different templates for literate programming documents.
+
+- [xaringan](https://github.com/yihui/xaringan): For HTML presentations via [remark.js](https://remarkjs.com).
+
+- [blogdown](https://github.com/rstudio/blogdown): For creating websites. Example: [https://pjs-web.de/](https://pjs-web.de/)
+
+- [rticles](https://github.com/rstudio/rticles): For scientific paper writing in R.
+
+### Code chunks in R Markdown
+
+To insert code into an R Markdown document, one needs to add a so called "code chunk".
+
+````
+```{<language>}
+
+```
+````
+
+This tells the document that everything within the three backticks should be interpreted as code using the given language.
+Code can be shown/hidden, evaluation can be prevented on demand, results can be cached, etc.
+See https://yihui.org/knitr/options/ for a full list of supported options
+
+### R Notebooks
+
+[R Notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html) are a special form of the `html_document`.
+To use it, specify `html_notebook` as the "output" type in the YAML header.
+This output format was created by RStudio as an alternative to `html_document`.
+
+Differences compared to `html_document`:
+
+- Code output is shown inside the editor and not in the console (can be changed)
+
+- Instant preview of the output document without having to get all the code in the document running. The results from the last successful code execution will be used (if there was one).
+
+- Link in the HTML doc to download the source `.Rmd` file
+
+- Option to toggle on/off code chunks for the whole document
+
+- Output file extension is named `.nb.html`
+
+### Workflow
+
+R Markdown documents are most often used for reporting of results created in an Rscript.
+This enables a seamless integration of data processing tasks into the subsequent reporting.
+
+Reporting often splits up into different formats:
+
+- Talks using presentation slides ([xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html), [ioslides](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), [Slidy](https://bookdown.org/yihui/rmarkdown/slidy-presentation.html), [Beamer](https://bookdown.org/yihui/rmarkdown/beamer-presentation.html), [Powerpoint](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html))
+- written reports (Word, PDF), possibly using LaTeX input
+
+R objects (containing results) can directly be used in the reports to present the results (data, plots).
+If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.
+
+This is the point where packages like [drake](https://docs.ropensci.org/drake/), [workflowr](https://jdblischak.github.io/workflowr/) and [rrtools](https://github.com/benmarwick/rrtools) jump in to simplify reproducible workflows in R.
+
+A widely used concept is to start a project following the structure of an R package.
+This helps due to
+
+- a consistent directory structure of R scripts and R Markdown documents
+- documented custom functions 
+- simplified integration into workflow packages like {{drake}} and friends.
+
+R "research packages" can be installed locally like any other R package and simplify usage and sharing among colleagues. 
+
+## Shiny: Interactive visualizations
+
+Javascript based R ecosystem which provides options for rich visualizations.
+[The shiny gallery from RStudio](https://shiny.rstudio.com/gallery/) gives a good overview what can be done using `shiny`.
