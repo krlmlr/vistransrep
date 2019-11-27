@@ -70,7 +70,7 @@ See the controls at the top of the website for searching, font size, editing, an
 
 ## Links {-}
 
-- This website: https://krlmlr.github.io/vistransrep/book
+- This website: https://krlmlr.github.io/vistransrep
 
 - Scripts and installation instructions: `r vistransrep_repo()`
     - Prepared scripts: `r vistransrep_repo("script")`
