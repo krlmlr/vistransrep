@@ -19,4 +19,4 @@ pull:
 	git subtree pull --prefix proj ../vistransrep-proj website
 
 test:
-	ls proj/script/* | parallel --halt now,fail=1 R --vanilla -q -f && rm Rplots.pdf
+	ls proj/script/* | grep -v /0 | parallel --halt now,fail=1 R --vanilla -q -f && rm Rplots.pdf
