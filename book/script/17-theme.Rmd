@@ -21,9 +21,9 @@ In this section we are looking at the use of visual themes to easily change the 
 We start with the introduction of the default theme -- `theme_grey()` function.
 
 ```{r include = FALSE}
-# Base plot
+# Base plot with default theme
 ```
-```{r 17-base-plot}
+```{r 17-base-plot-with-default-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -50,14 +50,14 @@ Also in this scheme the color aesthetic works as it normally does.
 The black-and-whiteness only relates to the background.
 
 ```{r include = FALSE}
-# Data can have color in bw-theme
+# Theme does not affect color palette of geoms
 ```
-```{r 17-data-can-have-color-in-bw-theme}
+```{r 17-theme-does-not-affect-color-palette-of-geoms}
 ggplot(
   data = mpg,
-  mapping = aes(x = displ, y = hwy, color = class)
+  mapping = aes(x = displ, y = hwy)
 ) +
-  geom_point() +
+  geom_point(aes(color = class)) +
   theme_bw()
 ```
 
@@ -71,21 +71,24 @@ Some plots work better with the legend at the bottom.
 ```{r 17-occasionally-useful-legend-at-the-bottom}
 ggplot(
   data = mpg,
-  mapping = aes(x = displ, y = hwy, color = class)
+  mapping = aes(x = displ, y = hwy)
 ) +
-  geom_point() +
+  geom_point(color = class) +
   theme_bw() +
   theme(legend.position = "bottom")
 ```
 
 Mind that `theme_...()` functions overwrite all previous settings of `theme()`:
 
-```{r 18-theme-functions-overwrite-theme-if-called-afterwards}
+```{r include = FALSE}
+# theme_* overwrites theme() calls: mind the order!
+```
+```{r 17-theme-overwrites-theme-calls-mind-the-order}
 ggplot(
   data = mpg,
-  mapping = aes(x = displ, y = hwy, color = class)
+  mapping = aes(x = displ, y = hwy)
 ) +
-  geom_point() +
+  geom_point(color = class) +
   theme(legend.position = "bottom") +
   theme_bw()
 ```
@@ -113,9 +116,9 @@ If we were asked to suggest themes, we'd go for
 Here is how `ggpubr::theme_pubr()` looks like.
 
 ```{r include = FALSE}
-# predefined themes available, e.g. in ggpubr package
+# predefined custom themes available, e.g. in ggpubr package
 ```
-```{r 17-predefined-themes-available-e-g-in-ggpubr-package}
+```{r 17-predefined-custom-themes-available-e-g-in-ggpubr-package}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)

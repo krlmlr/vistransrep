@@ -13,6 +13,7 @@ rm(list = ls())
 ```{r 14-setup-14-one-var-r}
 library(tidyverse)
 ```
+</details>
 
 This type of plots visualizes ONE variable in a certain way.
 
@@ -27,14 +28,20 @@ To do this in a 2D space, a **statistical transformation** of the variable is re
 We supply only _one_ variable to the `mapping` argument with the help of `aes()`.
 This one is automatically grouped into 30 bins.
 
-```{r }
+```{r include = FALSE}
+# Continuous variables: histogram most common
+```
+```{r 14-continuous-variables-histogram-most-common}
 ggplot(mpg, aes(x = hwy)) +
   geom_histogram()
 ```
 
 ---
 
-```{r }
+```{r include = FALSE}
+# showcase: density
+```
+```{r 14-showcase-density}
 ggplot(mpg, aes(x = hwy)) +
   geom_density()
 ```
@@ -47,11 +54,19 @@ For discrete data, there is actually only one visualization method - the bar plo
 
 *Note the difference of `geom_bar()` compared to `geom_hist()`.*
 
-```{r }
+```{r include = FALSE}
+# example for discrete var: barplot
+```
+```{r 14-example-for-discrete-var-barplot}
 ggplot(mpg, aes(fl)) +
   geom_bar()
 ```
 
 ## Exercises
 
-https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html
+```{r include = FALSE}
+# Exercise
+```
+```{r 14-exercise}
+browseURL("https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html")
+```

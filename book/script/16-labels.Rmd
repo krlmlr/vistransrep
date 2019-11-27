@@ -18,7 +18,10 @@ library(tidyverse)
 For character variables there is further way of integrating its value to a plot.
 `geom_text()` takes a `label` argument, which influences the plot in the following way.
 
-```{r 13-geom-text}
+```{r include = FALSE}
+# showcase geom_text()
+```
+```{r 16-showcase-geom-text}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -28,7 +31,10 @@ ggplot(
 
 Let's try to map this argument to a variable (here: `drv`) of our dataset in the `mapping` argument of `ggplot()`.
 
-```{r 13-set-label-in-aes-for-geom-text}
+```{r include = FALSE}
+# object vs string again
+```
+```{r 16-object-vs-string-again}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -40,7 +46,10 @@ Right, of course we need to pass the variable without quotation marks, otherwise
 When changing this, a vector with the values of the variable is passed on to `geom_text()`.
 This is one way of including the values of character variables in a plot.
 
-```{r 13-3-rd-aesthetic-as-label-for-geom-text}
+```{r include = FALSE}
+# dynamic labeling to variable
+```
+```{r 16-dynamic-labeling-to-variable}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -51,7 +60,11 @@ ggplot(
 When adding more than one `geom()`-function, multiple geometries are added to the plot.
 However, because `geom_point()` has no support for passing a label, we can only use this mapping in `geom_text()`.
 
-```{r 13-two-layers}
+```{r include = FALSE}
+# points and labels overplotting
+# only geom_text() supports label arg
+```
+```{r 16-points-and-labels-overplotting}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -62,7 +75,10 @@ ggplot(
 
 Since this looks just slightly odd, let's try to make it more apparent, what is happening.
 
-```{r 13-two-layers-more-clearly}
+```{r include = FALSE}
+# aesthetic changes to distinguish better
+```
+```{r 16-aesthetic-changes-to-distinguish-better}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)

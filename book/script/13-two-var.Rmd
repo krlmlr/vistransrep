@@ -13,6 +13,7 @@ rm(list = ls())
 ```{r 13-setup-13-two-var-r}
 library(tidyverse)
 ```
+</details>
 
 "Two variable plots" can be split into sub-categories:
 
@@ -24,15 +25,22 @@ library(tidyverse)
 
 ### Continuous X and Y
 
-```{r }
+```{r include = FALSE}
+# Continuous X and Y
+```
+```{r 13-continuous-x-and-y}
 ggplot(mpg, aes(x = cty, y = hwy)) +
   geom_point()
 ```
 
+---
 
 ### Discrete X and continuous Y
 
-```{r }
+```{r include = FALSE}
+# Discrete X and continuous Y
+```
+```{r 13-discrete-x-and-continuous-y}
 ggplot(mpg, aes(x = class, y = hwy)) +
   geom_boxplot()
 ```
@@ -41,7 +49,10 @@ ggplot(mpg, aes(x = class, y = hwy)) +
 
 ### Discrete X and Y
 
-```{r }
+```{r include = FALSE}
+# Discrete X and Y
+```
+```{r 13-discrete-x-and-y}
 ggplot(mpg, aes(x = class, y = manufacturer)) +
   geom_jitter()
 ```
