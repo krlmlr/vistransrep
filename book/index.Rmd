@@ -98,10 +98,13 @@ Licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
 ## Speakers {-}
 
-**Kirill Müller** (\@krlmlr)
+**Kirill Müller** (\@krlmlr) https://www.cynkra.com/about.html
 
+```{r, echo=FALSE}
+knitr::include_graphics("img/kirill.jpg")
+```
 
-**Patrick Schratz** (\@pat-s)
+**Patrick Schratz** (\@pat-s) https://pat-s.me
 
 ```{r, echo=FALSE}
 knitr::include_graphics("img/pjs.jpg")
