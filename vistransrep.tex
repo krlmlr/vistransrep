@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 23:39 CET}
+\date{28 November 2019, 00:03 CET}
 
 \begin{document}
 \maketitle
@@ -164,6 +164,10 @@ See the controls at the top of the website for searching, font size, editing, an
 \item
   The source project for this material: \url{https://github.com/krlmlr/vistransrep}
 \end{itemize}
+
+\hypertarget{download-data-and-code}{%
+\section*{Download data and code}\label{download-data-and-code}}
+\addcontentsline{toc}{section}{Download data and code}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -374,17 +378,11 @@ Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4
 \section*{Introduction}\label{introduction}}
 \addcontentsline{toc}{section}{Introduction}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/r_first_then.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 
 \hfill{}\includegraphics[width=11.11in]{img/r_first_then} 
 
-\caption{Copyright: Allison Horst}\label{fig:r-first}
+\caption{© Allison Horst}\label{fig:r-first}
 \end{figure}
 
 The \texttt{tidyverse} has quickly developed over the last years.
@@ -412,13 +410,6 @@ In each section, exercises are provided.
 \NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"img/environmental-data-science-r4ds-general.png"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{figure}
-
-\hfill{}\includegraphics[width=11.11in]{img/environmental-data-science-r4ds-general} 
-
-\caption{Copyright: Allison Horst}\label{fig:r4ds}
-\end{figure}
 
 \hypertarget{r-and-rstudio}{%
 \chapter{R and RStudio}\label{r-and-rstudio}}
@@ -792,7 +783,7 @@ Finally, you can customize the actual layout
 \end{figure}
 
 \hypertarget{rstudio-addins}{%
-\section{RStudio Addins}\label{rstudio-addins}}
+\section{RStudio addins}\label{rstudio-addins}}
 
 RStudio can be further enhanced by so called ``addins''.
 These are clickable snippets that execute certain actions in RStudio.
@@ -828,6 +819,13 @@ From there on, you can use \emph{relative paths} to point to files.
 
 \textbf{Double-plus bonus}: The \href{https://github.com/r-lib/here}{\emph{here}} package extends \emph{RStudio project} philosophy even more and helps in cases when not using RStudio (e.g.~on the command line).
 
+\begin{figure}
+
+\hfill{}\includegraphics[width=11.11in]{img/here} 
+
+\caption{© Allison Horst}\label{fig:unnamed-chunk-5}
+\end{figure}
+
 \hypertarget{alternatives-to-rstudio}{%
 \section{Alternatives to RStudio}\label{alternatives-to-rstudio}}
 
@@ -847,6 +845,13 @@ Embracing the grammar of graphics.
 
 This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{ggplot2 package}.
 
+\begin{figure}
+
+\hfill{}\includegraphics[width=11.11in]{img/ggplot2_masterpiece} 
+
+\caption{© Allison Horst}\label{fig:unnamed-chunk-6}
+\end{figure}
+
 \hypertarget{basics-for-visualisation-in-r-using-ggplot2}{%
 \section{Basics for visualisation in R using \{ggplot2\}}\label{basics-for-visualisation-in-r-using-ggplot2}}
 
@@ -861,6 +866,13 @@ This chapter discusses plotting with the \href{https://ggplot2.tidyverse.org/}{g
 In the \{tidyverse\} the standard package for visualization is \{ggplot2\}.
 The functions of this package follow a quite unique logic (the ``grammar of graphics'') and therefore require a special syntax.
 In this section we want to give a short introduction, how to get started with \{ggplot2\}.
+
+\begin{figure}
+
+\hfill{}\includegraphics[width=11.11in]{img/ggplot2_exploratory} 
+
+\caption{© Allison Horst}\label{fig:unnamed-chunk-29}
+\end{figure}
 
 \hypertarget{creating-the-plot-skeleton-ggplot}{%
 \subsection{\texorpdfstring{Creating the plot skeleton: \texttt{ggplot()}}{Creating the plot skeleton: ggplot()}}\label{creating-the-plot-skeleton-ggplot}}
@@ -2472,7 +2484,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-96-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-99-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2482,7 +2494,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-96-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-99-2} \end{flushright}
 
 \hypertarget{scales-1}{%
 \subsection{Scales}\label{scales-1}}
@@ -2500,7 +2512,7 @@ By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-97-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-100-1} \end{flushright}
 
 This only makes sense if the ranges for each facet differ substantially (so not in this example!).
 This example is good to show the confusion that this setting might introduce.
@@ -2527,7 +2539,7 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-98-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-101-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -2723,7 +2735,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-100-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-103-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
