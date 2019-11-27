@@ -2,7 +2,6 @@
 
 ```{r 13-setup}
 library(tidyverse)
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 ```
 
 The default way to export plots in {{ggplot2}} is by using `ggsave()`. 

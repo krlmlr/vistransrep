@@ -15,6 +15,7 @@ addons:
       # for rgl
       - libcgal-dev
       - libglu1-mesa-dev
+      - texlive-math-extra
 
 #before_install
 before_install:
