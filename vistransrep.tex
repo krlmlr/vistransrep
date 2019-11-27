@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 14:07 CET}
+\date{27 November 2019, 14:17 CET}
 
 \begin{document}
 \maketitle
@@ -1129,7 +1129,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-25-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-28-1} \end{flushright}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1145,7 +1145,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-26-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-29-1} \end{flushright}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1268,7 +1268,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1276,7 +1276,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-2} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1467,7 +1467,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1479,7 +1479,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1493,7 +1493,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
@@ -1533,7 +1533,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1544,7 +1544,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1562,7 +1562,7 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-42-1} \end{flushright}
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
@@ -1933,6 +1933,194 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 \hypertarget{vis-adv}{%
 \chapter{\{ggplot2\} advanced}\label{vis-adv}}
 
+\hypertarget{facetting}{%
+\section{Facetting}\label{facetting}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggsci)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: magrittr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'magrittr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+\end{verbatim}
+
+``Facetting'' (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
+
+The variables used for facetting should be passed encapsulated in \texttt{vars()}.
+(Before \{ggplot2\} v3.0.0 the default was to use a formula notation (\texttt{\textless{}variable\textgreater{}\ \textasciitilde{}\ \textless{}variable\textgreater{}}) to specify the facetting variables.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{facet_grid}\NormalTok{(}\DataTypeTok{facets =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
+\KeywordTok{facet_wrap}\NormalTok{(}\DataTypeTok{rows =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{cols =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
+           \DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{facet}: Variables given via \texttt{vars()} or formula with splitting variable.
+
+\textbf{scales}: Scale of the axes over the sub-graphics.
+
+The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wrap()} denotes on which axis the facets will appear:
+
+\begin{itemize}
+\item
+  \texttt{vars(\textless{}variable\textgreater{})} \(\rightarrow\) y-axis
+\item
+  \texttt{vars(),\ vars(\textless{}variable\textgreater{})} \(\rightarrow\) x-axis
+\end{itemize}
+
+\includegraphics{img/facets.png}
+
+\hypertarget{facet_wrap}{%
+\subsection{\texorpdfstring{\texttt{facet\_wrap()}}{facet\_wrap()}}\label{facet_wrap}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{facet_x =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+
+\NormalTok{facet_y =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
+(For this to work, the variables need to be of class \texttt{factor}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{manufacturer =} \KeywordTok{as.factor}\NormalTok{(manufacturer)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.factor}\NormalTok{(year)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer}\OperatorTok{:}\NormalTok{year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/facet-wrap-2-1} \end{flushright}
+
+This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer, year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/facet-wrap3-1} \end{flushright}
+
+\hypertarget{facet_grid}{%
+\subsection{\texorpdfstring{\texttt{facet\_grid()}}{facet\_grid()}}\label{facet_grid}}
+
+While \texttt{facet\_wrap()} tries to act smart and hide non-existing combinations of sub-plots, \texttt{facet\_grid()} will create a full matrix of sub-plots for all possible combinations.
+Most of the time when using only one categorical variable, \texttt{facet\_wrap()} does a good job and is preferred over \texttt{facet\_grid()}.
+
+However, \texttt{facet\_grid} might be preferred in the following cases:
+
+\begin{itemize}
+\item
+  when facetting over \textgreater{}= 2 variables
+\item
+  when plots of empty combinations should be shown
+\end{itemize}
+
+Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 grouping variables where not all combinations of those contain observations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fc_gd =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+
+\NormalTok{fc_wrap =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{scales}{%
+\subsection{Scales}\label{scales}}
+
+By default, scales are fixed across each facet (\texttt{scales\ =\ "fixed"}).
+This means that all sub-plots should share the same axes.
+By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one can specify that each each sub-plot should have its own scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{(}\DataTypeTok{base_size =} \DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-1} \end{flushright}
+
+This only makes sense if the ranges for each facet differ substantially (so not in this example!).
+This example is good to show the confusion that this setting might introduce.
+People usually expect to look at \textbf{equal ranges} across facets (unless there is a good reason for it not to) and differing scales make the plot more complicated.
+
+Keep in mind: Visualization should \emph{simplify} data!
+
+\hypertarget{renaming-of-facet-labels}{%
+\subsection{Renaming of facet labels}\label{renaming-of-facet-labels}}
+
+A non-trivial change that is often applied to facet plots is the (re-)naming of the facet labels.
+Facet labels are automatically created based on the factor levels of the respective variable.
+However, sometimes the raw factor levels are not descriptive enough.
+In these cases, it makes sense to prefix the factor level values with the column name.
+This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\_*} to \texttt{label\_both}.
+
+(An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{labeller =}\NormalTok{ label_both) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{flushright}
+
 \hypertarget{extensions}{%
 \section{Extensions}\label{extensions}}
 
@@ -1970,32 +2158,6 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(ggsci)}
 \KeywordTok{library}\NormalTok{(ggpubr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: magrittr
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'magrittr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(patchwork)}
 \KeywordTok{library}\NormalTok{(ggpmisc)}
 \end{Highlighting}
@@ -2149,7 +2311,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-3-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-6-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
