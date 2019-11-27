@@ -1,8 +1,7 @@
-### <No caption defined>
+### Import single files
 
 library(tidyverse)
 library(readr)
-
 
 # Import one single file
 example1 <-
