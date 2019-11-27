@@ -7,7 +7,6 @@
 library(tidyverse)
 library(ggsci)
 library(ggpubr)
-library(patchwork)
 ```
 </details>
 
@@ -18,7 +17,7 @@ library(patchwork)
 The variables used for facetting should be passed encapsulated in `vars()`.
 (Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the facetting variables.)
 
-```{r, eval=FALSE}
+```{r facet-1, eval=FALSE}
 facet_grid(facets = vars(<variable>), scales = "fixed", ...)
 facet_wrap(rows = vars(<variable>), cols = vars(<variable>), 
            scales = "fixed", ...)
@@ -38,7 +37,7 @@ The position of `<variable>` in `facet_wrap()` denotes on which axis the facets 
 
 ### `facet_wrap()`
 
-```{r, fig.width=8, fig.height=4}
+```{r facet-wrap1, out.width="50%", results='hold'}
 facet_x = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
@@ -52,24 +51,10 @@ facet_y = ggplot(mpg, aes(displ, hwy)) +
   theme_pubr()
 ```
 
-```{r}
-facet_x + facet_y
-```
-
-Facets can also be shown on both axes using different (categorical) variables.
-For this, `facet_grid()` is useful:
-
-```{r, fig.width=8, fig.height=4}
-ggplot(mpg, aes(displ, hwy)) +
-  geom_point(aes(colour = class)) +
-  facet_grid(cols = vars(cyl), rows = vars(year)) +
-  theme_pubr()
-```
-
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class `factor`).
 
-```{r, fig.width=8, fig.height=5}
+```{r facet-wrap-2}
 mpg %>% 
   mutate(manufacturer = as.factor(manufacturer)) %>% 
   mutate(year = as.factor(year)) %>% 
@@ -81,7 +66,7 @@ mpg %>%
 
 This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
 
-```{r, fig.height=8}
+```{r, facet-wrap3}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_wrap(vars(manufacturer, year)) +
@@ -101,7 +86,7 @@ However, `facet_grid` might be preferred in the following cases:
 
 Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables where not all combinations of those contain observations:
 
-```{r, fig.height=10}
+```{r out.width="50%", results='hold'}
 fc_gd = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
   facet_grid(vars(year), vars(cyl)) +
@@ -111,8 +96,6 @@ fc_wrap = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
   facet_wrap(vars(year, cyl)) +
   theme_pubr()
-
-fc_gd / fc_wrap
 ```
 
 ### Scales
@@ -121,7 +104,7 @@ By default, scales are fixed across each facet (`scales = "fixed"`).
 This means that all sub-plots should share the same axes.
 By setting this argument to either `"free_x"` or `"free_y"` one can specify that each each sub-plot should have its own scale.
 
-```{r, fig.width=8, fig.height=3.5}
+```{r }
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_grid(vars(year), vars(cyl), scales = "free_x") +
@@ -144,7 +127,7 @@ This can be achieved by setting the `labeller` argument of `facet_*` to `label_b
 
 (An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
 
-```{r, fig.width=8, fig.height=4}
+```{r }
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_grid(vars(), vars(cyl), labeller = label_both) +
