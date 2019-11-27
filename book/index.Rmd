@@ -51,10 +51,10 @@ See the controls at the top of the website for searching, font size, editing, an
 
 ## Links {-}
 
-```{md results=if (knitr::is_latex_output()) "hide" else "asis", echo = FALSE}
-## Links to material for past workshops {-}
+```{r results=if (knitr::is_latex_output()) "hide" else "asis", echo = FALSE}
+writeLines("## Links to material for past workshops {-}
 
-- [2019-04](2019-04-zhr)
+- [2019-04](2019-04-zhr)  
 
 - [2018-12](2018-12-zhr)
 
@@ -65,7 +65,7 @@ See the controls at the top of the website for searching, font size, editing, an
 - [2018-05](2018-05-zhr)
 
 - [2017-10](2017-10-zhr)
-
+")
 ```
 
 - This website: https://krlmlr.github.io/vistransrep
@@ -137,6 +137,10 @@ knitr::include_graphics("img/pjs.jpg")
   
 ## Introduction {-}
 
+```{r r-first, fig.cap="Copyright: Allison Horst"}
+knitr::include_graphics("img/r_first_then.png")
+```
+
 The `tidyverse` has quickly developed over the last years.
 Its first implementation as a collection of partly older packages was in the second half of 2016.
 All its packages "share an underlying design philosophy, grammar, and data structures."^[citation from [tidyverse homepage](https://www.tidyverse.org/)]
@@ -150,3 +154,7 @@ While this might be true for all languages (once you speak it well enough, thing
 This course covers several topics, which everyone working more intently with the `tidyverse` almost inevitably needs to deal with at some point or another.
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.
+
+```{r r4ds, fig.cap="Copyright: Allison Horst"}
+knitr::include_graphics("img/environmental-data-science-r4ds-general.png")
+```
