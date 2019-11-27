@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Appendix: Best practices | Visualization, transformation and reporting with the tidyverse</title>
+  <meta name="description" content="7 Appendix: Best practices | Visualization, transformation and reporting with the tidyverse" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Appendix: Best practices | Visualization, transformation and reporting with the tidyverse" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Appendix: Best practices | Visualization, transformation and reporting with the tidyverse" />
+  
+  
+  
+
+<meta name="author" content="Kirill Müller, Tobias Schieferdecker, Patrick Schratz" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reporting.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/d3-lasso/d3-lasso.min.js"></script>
+<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding/girafe.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="scroll.css" type="text/css" />
+<link rel="stylesheet" href="extra.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><strong><a href="./">vis trans rep</a></strong></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#links"><i class="fa fa-check"></i>Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#package-versions-used"><i class="fa fa-check"></i>Package versions used</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#speakers"><i class="fa fa-check"></i>Speakers</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Why R and RStudio?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#some-r-basics"><i class="fa fa-check"></i><b>1.1.2</b> Some R basics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#linear-regression"><i class="fa fa-check"></i><b>1.2.1</b> Linear regression</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#base-r-plot"><i class="fa fa-check"></i><b>1.2.2</b> Base R plot</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#gganimate"><i class="fa fa-check"></i><b>1.2.4</b> gganimate</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.rstudio"><i class="fa fa-check"></i><b>1.3</b> R vs. RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.r-packages"><i class="fa fa-check"></i><b>1.4</b> R vs. R packages</a></li>
+<li class="chapter" data-level="1.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-packages"><i class="fa fa-check"></i><b>1.5</b> R packages</a></li>
+<li class="chapter" data-level="1.6" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rprofile"><i class="fa fa-check"></i><b>1.6</b> .Rprofile</a></li>
+<li class="chapter" data-level="1.7" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#renviron"><i class="fa fa-check"></i><b>1.7</b> .Renviron</a></li>
+<li class="chapter" data-level="1.8" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio"><i class="fa fa-check"></i><b>1.8</b> RStudio</a></li>
+<li class="chapter" data-level="1.9" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-addins"><i class="fa fa-check"></i><b>1.9</b> RStudio Addins</a></li>
+<li class="chapter" data-level="1.10" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>1.10</b> RStudio projects</a></li>
+<li class="chapter" data-level="1.11" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#alternatives-to-rstudio"><i class="fa fa-check"></i><b>1.11</b> Alternatives to RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="vis-basics.html"><a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> Visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="vis-basics.html"><a href="vis-basics.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>2.1.1</b> Creating the plot skeleton: <code>ggplot()</code></a></li>
+<li class="chapter" data-level="2.1.2" data-path="vis-basics.html"><a href="vis-basics.html#what-is-a-statistical-graphic"><i class="fa fa-check"></i><b>2.1.2</b> What is a “statistical graphic”?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="vis-basics.html"><a href="vis-basics.html#terminology"><i class="fa fa-check"></i><b>2.1.3</b> Terminology</a></li>
+<li class="chapter" data-level="2.1.4" data-path="vis-basics.html"><a href="vis-basics.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.1.4</b> The Grammar of graphics …</a></li>
+<li class="chapter" data-level="2.1.5" data-path="vis-basics.html"><a href="vis-basics.html#about-ggplot2"><i class="fa fa-check"></i><b>2.1.5</b> About {ggplot2}</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="vis-basics.html"><a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="vis-basics.html"><a href="vis-basics.html#arguments"><i class="fa fa-check"></i><b>2.2.1</b> Arguments</a></li>
+<li class="chapter" data-level="2.2.2" data-path="vis-basics.html"><a href="vis-basics.html#combining-geoms"><i class="fa fa-check"></i><b>2.2.2</b> Combining geoms</a></li>
+<li class="chapter" data-level="2.2.3" data-path="vis-basics.html"><a href="vis-basics.html#summary"><i class="fa fa-check"></i><b>2.2.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="vis-basics.html"><a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.3</b> Two variable plots</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-x-and-y"><i class="fa fa-check"></i><b>2.3.1</b> Continuous X and Y</a></li>
+<li class="chapter" data-level="2.3.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-continuous-y"><i class="fa fa-check"></i><b>2.3.2</b> Discrete X and continuous Y</a></li>
+<li class="chapter" data-level="2.3.3" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-y"><i class="fa fa-check"></i><b>2.3.3</b> Discrete X and Y</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vis-basics.html"><a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.4</b> One variable plots</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-variables"><i class="fa fa-check"></i><b>2.4.1</b> Continuous variables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-variables"><i class="fa fa-check"></i><b>2.4.2</b> Discrete variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="vis-basics.html"><a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.5</b> Colors and shape</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="vis-basics.html"><a href="vis-basics.html#static-colors"><i class="fa fa-check"></i><b>2.5.1</b> Static colors</a></li>
+<li class="chapter" data-level="2.5.2" data-path="vis-basics.html"><a href="vis-basics.html#dynamic-colors"><i class="fa fa-check"></i><b>2.5.2</b> Dynamic colors</a></li>
+<li class="chapter" data-level="2.5.3" data-path="vis-basics.html"><a href="vis-basics.html#shape"><i class="fa fa-check"></i><b>2.5.3</b> Shape</a></li>
+<li class="chapter" data-level="2.5.4" data-path="vis-basics.html"><a href="vis-basics.html#combining-color-and-shape"><i class="fa fa-check"></i><b>2.5.4</b> Combining color and shape</a></li>
+<li class="chapter" data-level="2.5.5" data-path="vis-basics.html"><a href="vis-basics.html#transparency"><i class="fa fa-check"></i><b>2.5.5</b> Transparency</a></li>
+<li class="chapter" data-level="2.5.6" data-path="vis-basics.html"><a href="vis-basics.html#what-can-go-wrong"><i class="fa fa-check"></i><b>2.5.6</b> What can go wrong</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="vis-basics.html"><a href="vis-basics.html#labels"><i class="fa fa-check"></i><b>2.6</b> Labels</a></li>
+<li class="chapter" data-level="2.7" data-path="vis-basics.html"><a href="vis-basics.html#themes"><i class="fa fa-check"></i><b>2.7</b> Themes</a></li>
+<li class="chapter" data-level="2.8" data-path="vis-basics.html"><a href="vis-basics.html#scales"><i class="fa fa-check"></i><b>2.8</b> Scales</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="vis-basics.html"><a href="vis-basics.html#labs"><i class="fa fa-check"></i><b>2.8.1</b> <code>labs()</code></a></li>
+<li class="chapter" data-level="2.8.2" data-path="vis-basics.html"><a href="vis-basics.html#axes"><i class="fa fa-check"></i><b>2.8.2</b> Axes</a></li>
+<li class="chapter" data-level="2.8.3" data-path="vis-basics.html"><a href="vis-basics.html#color-scale"><i class="fa fa-check"></i><b>2.8.3</b> Color scale</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="vis-basics.html"><a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.9</b> Export &amp; saving</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="vis-basics.html"><a href="vis-basics.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>2.9.1</b> Base R vs. {{ggplot2}}</a></li>
+<li class="chapter" data-level="2.9.2" data-path="vis-basics.html"><a href="vis-basics.html#storing-the-plot-as-an-r-object"><i class="fa fa-check"></i><b>2.9.2</b> Storing the plot as an R object</a></li>
+<li class="chapter" data-level="2.9.3" data-path="vis-basics.html"><a href="vis-basics.html#best-practices-for-exporting"><i class="fa fa-check"></i><b>2.9.3</b> Best practices for exporting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="vis-basics.html"><a href="vis-basics.html#facetting"><i class="fa fa-check"></i><b>2.10</b> Facetting</a><ul>
+<li class="chapter" data-level="2.10.1" data-path="vis-basics.html"><a href="vis-basics.html#facet_wrap"><i class="fa fa-check"></i><b>2.10.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="vis-basics.html"><a href="vis-basics.html#facet_grid"><i class="fa fa-check"></i><b>2.10.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="2.10.3" data-path="vis-basics.html"><a href="vis-basics.html#scales-1"><i class="fa fa-check"></i><b>2.10.3</b> Scales</a></li>
+<li class="chapter" data-level="2.10.4" data-path="vis-basics.html"><a href="vis-basics.html#renaming-of-facet-labels"><i class="fa fa-check"></i><b>2.10.4</b> Renaming of facet labels</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="vis-basics.html"><a href="vis-basics.html#extensions"><i class="fa fa-check"></i><b>2.11</b> Extensions</a><ul>
+<li class="chapter" data-level="2.11.1" data-path="vis-basics.html"><a href="vis-basics.html#ggsci"><i class="fa fa-check"></i><b>2.11.1</b> {ggsci}</a></li>
+<li class="chapter" data-level="2.11.2" data-path="vis-basics.html"><a href="vis-basics.html#ggforce"><i class="fa fa-check"></i><b>2.11.2</b> {ggforce}</a></li>
+<li class="chapter" data-level="2.11.3" data-path="vis-basics.html"><a href="vis-basics.html#gganimate-1"><i class="fa fa-check"></i><b>2.11.3</b> {gganimate}</a></li>
+<li class="chapter" data-level="2.11.4" data-path="vis-basics.html"><a href="vis-basics.html#ggtext"><i class="fa fa-check"></i><b>2.11.4</b> {ggtext}</a></li>
+<li class="chapter" data-level="2.11.5" data-path="vis-basics.html"><a href="vis-basics.html#ggrepel"><i class="fa fa-check"></i><b>2.11.5</b> {ggrepel}</a></li>
+<li class="chapter" data-level="2.11.6" data-path="vis-basics.html"><a href="vis-basics.html#ggiraph"><i class="fa fa-check"></i><b>2.11.6</b> {ggiraph}</a></li>
+<li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.7</b> {ggbeeswarm}</a></li>
+<li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.8</b> {ggpmisc}</a></li>
+<li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.9</b> {esquisse}</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
+<li class="chapter" data-level="3.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>3.1</b> Package: {conflicted}</a></li>
+<li class="chapter" data-level="3.2" data-path="transformation.html"><a href="transformation.html#filtering-dplyrfilter"><i class="fa fa-check"></i><b>3.2</b> Filtering: <code>dplyr::filter()</code></a></li>
+<li class="chapter" data-level="3.3" data-path="transformation.html"><a href="transformation.html#sort-rows-dplyrarrange"><i class="fa fa-check"></i><b>3.3</b> Sort rows: <code>dplyr::arrange()</code></a></li>
+<li class="chapter" data-level="3.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="transformation.html"><a href="transformation.html#further-advantages"><i class="fa fa-check"></i><b>3.4.1</b> Further advantages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns-dplyrselect"><i class="fa fa-check"></i><b>3.5</b> Pick columns: <code>dplyr::select()</code></a></li>
+<li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns-based-on-old-ones-dplyrmutate"><i class="fa fa-check"></i><b>3.6</b> Create new columns based on old ones: <code>dplyr::mutate()</code></a></li>
+<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data"><i class="fa fa-check"></i><b>3.7</b> Summarize data</a></li>
+<li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#ranking"><i class="fa fa-check"></i><b>3.8</b> Ranking</a></li>
+<li class="chapter" data-level="3.9" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.9</b> Summary-plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
+<li class="chapter" data-level="4.1" data-path="import.html"><a href="import.html#import-single-files"><i class="fa fa-check"></i><b>4.1</b> Import single files</a></li>
+<li class="chapter" data-level="4.2" data-path="import.html"><a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
+<li class="chapter" data-level="5.1" data-path="tidying.html"><a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="tidying.html"><a href="tidying.html#convert-to-longer-form"><i class="fa fa-check"></i><b>5.1.1</b> Convert to longer form</a></li>
+<li class="chapter" data-level="5.1.2" data-path="tidying.html"><a href="tidying.html#convert-to-wider-form"><i class="fa fa-check"></i><b>5.1.2</b> Convert to wider form</a></li>
+<li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
+<li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
+<li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="tidying.html"><a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <No caption defined></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>6</b> Reporting</a><ul>
+<li class="chapter" data-level="6.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>6.2</b> The YAML header</a></li>
+<li class="chapter" data-level="6.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>6.3</b> Literate programming in R</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>6.3.1</b> R Markdown packages</a></li>
+<li class="chapter" data-level="6.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>6.3.2</b> Code chunks in R Markdown</a></li>
+<li class="chapter" data-level="6.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>6.3.3</b> R Notebooks</a></li>
+<li class="chapter" data-level="6.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>6.3.4</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>6.4</b> Shiny: Interactive visualizations</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html"><i class="fa fa-check"></i><b>7</b> Appendix: Best practices</a><ul>
+<li class="chapter" data-level="7.1" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="7.2" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
+<li class="chapter" data-level="7.3" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
+<li class="chapter" data-level="7.4" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Visualization, transformation and reporting with the tidyverse</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-best-practices" class="section level1">
+<h1><span class="header-section-number">7</span> Appendix: Best practices</h1>
+<p>R code is often organized in packages that can be installed from centralized repositories such as CRAN or GitHub.
+If you are new to writing R packages, this course cannot give a complete introduction into packages.
+It is still useful to embrace some very few concepts of R packages to gain access to a vast toolbox and also organize your code in a standardized way familiar to other users.
+With the first steps in place, the road to your first R package may become less steep.</p>
+<ul>
+<li>Create a <code>DESCRIPTION</code> file to declare dependencies and allow easy reloading of the functions you define</li>
+<li>Store your functions in <code>.R</code> files in the <code>R/</code> directory in your project
+<ul>
+<li>Scripts that you execute live in <code>script/</code> or a similar directory</li>
+</ul></li>
+<li>Use <a href="https://github.com/klutometis/roxygen">roxygen2</a> to document your functions close to the source</li>
+<li>Write tests for your functions, e.g. with <a href="https://testthat.r-lib.org/">testthat</a></li>
+</ul>
+<p>See <a href="http://r-pkgs.had.co.nz/">R packages</a> for a more comprehensive treatment.</p>
+<div id="description" class="section level2">
+<h2><span class="header-section-number">7.1</span> DESCRIPTION</h2>
+<p>Create and open a new RStudio project.
+Then, create a <code>DESCRIPTION</code> file with <code>usethis::use_description()</code>:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="co"># install.packages(&quot;usethis&quot;)</span></a>
+<a class="sourceLine" id="cb311-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_description</span>()</a></code></pre></div>
+<p>Double-check success:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">load_all</span>()</a></code></pre></div>
+<p>Declare that your project requires the tidyverse and the here package:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&quot;here&quot;</span>)</a>
+<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="co"># Currently doesn&#39;t work, add manually</span></a>
+<a class="sourceLine" id="cb313-3" data-line-number="3"><span class="co"># https://github.com/r-lib/usethis/issues/760</span></a>
+<a class="sourceLine" id="cb313-4" data-line-number="4"><span class="co"># usethis::use_package(&quot;tidyverse&quot;)</span></a></code></pre></div>
+</div>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">7.2</span> R</h2>
+<p>With a <code>DESCRIPTION</code> file defined, create a new <code>.R</code> file and save it in the <code>R/</code> directory.
+(Create this directory if it does not exist.)
+Create a function in this file, save the file:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Hello, world!&quot;</span>) {</a>
+<a class="sourceLine" id="cb314-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb314-4" data-line-number="4">}</a></code></pre></div>
+<p>Do not source the file.</p>
+<p>Restart R (with Ctrl + Shift + F10 in RStudio).</p>
+<p>Run <code>devtools::load_all()</code> again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.</p>
+<p>Check that you can run <code>hi()</code> in the console:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;Hello, world!&quot;</code></pre>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">hi</span>(<span class="st">&quot;Wow!&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Wow!&quot;</code></pre>
+<p>Edit the function:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
+<a class="sourceLine" id="cb319-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb319-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb319-4" data-line-number="4">}</a></code></pre></div>
+<p>Save the file, but do not source it.</p>
+<p>Run <code>devtools::load_all()</code> again, you can use the shortcut Ctrl + Shift + L or Cmd + Shift + L in RStudio.</p>
+<p>Check that the new implementation of <code>hi()</code> is active:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">hi</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;Wow!&quot;</code></pre>
+<p>All functions that are required for your project are stored in this directory.
+Do not store executable scripts, use a <code>script/</code> directory.</p>
+</div>
+<div id="roxygen2" class="section level2">
+<h2><span class="header-section-number">7.3</span> roxygen2</h2>
+<p>The following intuitive annotation syntax is a standard way to create documentation for your functions:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1"><span class="co">#&#39; Print a welcome message</span></a>
+<a class="sourceLine" id="cb322-2" data-line-number="2"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb322-3" data-line-number="3"><span class="co">#&#39; This function prints &quot;Wow!&quot;, or a custom text, on the console.</span></a>
+<a class="sourceLine" id="cb322-4" data-line-number="4"><span class="co">#&#39;</span></a>
+<a class="sourceLine" id="cb322-5" data-line-number="5"><span class="co">#&#39; @param text The text to print, &quot;Wow!&quot; by default.</span></a>
+<a class="sourceLine" id="cb322-6" data-line-number="6"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb322-7" data-line-number="7"><span class="co">#&#39; @return The `text` argument, invisibly.</span></a>
+<a class="sourceLine" id="cb322-8" data-line-number="8"><span class="co">#&#39; </span></a>
+<a class="sourceLine" id="cb322-9" data-line-number="9"><span class="co">#&#39; @examples</span></a>
+<a class="sourceLine" id="cb322-10" data-line-number="10"><span class="co">#&#39; hi()</span></a>
+<a class="sourceLine" id="cb322-11" data-line-number="11"><span class="co">#&#39; hi(&quot;Hello!&quot;)</span></a>
+<a class="sourceLine" id="cb322-12" data-line-number="12">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Wow!&quot;</span>) {</a>
+<a class="sourceLine" id="cb322-13" data-line-number="13">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb322-14" data-line-number="14">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb322-15" data-line-number="15">}</a></code></pre></div>
+<p>This annotation can be rendered to a nicely looking HTML page with the roxygen2 and pkgdown packages.
+All you need to do is provide (and maintain) it.</p>
+</div>
+<div id="testthat" class="section level2">
+<h2><span class="header-section-number">7.4</span> testthat</h2>
+<p>Automated tests make sure that the functions you write today continue working tomorrow.
+Create your first test with <code>usethis::use_test()</code>:</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1"><span class="co"># install.packages(&quot;testthat&quot;)</span></a>
+<a class="sourceLine" id="cb323-2" data-line-number="2">usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;hi&quot;</span>)</a></code></pre></div>
+<p>The file <code>tests/testthat/test-hi.R</code> is created, with the following contents:</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</a>
+<a class="sourceLine" id="cb324-2" data-line-number="2">  <span class="kw">expect_equal</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb324-3" data-line-number="3">})</a></code></pre></div>
+<p>Replace this predefined text with a test that makes more sense for us:</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="kw">test_that</span>(<span class="st">&quot;hi() works&quot;</span>, {</a>
+<a class="sourceLine" id="cb325-2" data-line-number="2">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(), <span class="st">&quot;Wow&quot;</span>)</a>
+<a class="sourceLine" id="cb325-3" data-line-number="3">  <span class="kw">expect_output</span>(<span class="kw">hi</span>(<span class="st">&quot;Hello&quot;</span>), <span class="st">&quot;Hello&quot;</span>)</a>
+<a class="sourceLine" id="cb325-4" data-line-number="4">})</a></code></pre></div>
+<p>Run the new test with <code>devtools::test()</code>, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.</p>
+<p>Check that the test actually detects failures by modifying the implementation of <code>hi()</code> and rerunning the test:</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">hi &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">text =</span> <span class="st">&quot;Oops!&quot;</span>) {</a>
+<a class="sourceLine" id="cb326-2" data-line-number="2">  <span class="kw">print</span>(text)</a>
+<a class="sourceLine" id="cb326-3" data-line-number="3">  <span class="kw">invisible</span>(text)</a>
+<a class="sourceLine" id="cb326-4" data-line-number="4">}</a></code></pre></div>
+<p>Run the new test with <code>devtools::test()</code>, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
+One test should be failing now.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reporting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["vistransrep.pdf"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

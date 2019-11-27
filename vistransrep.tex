@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 21:45 CET}
+\date{27 November 2019, 21:57 CET}
 
 \begin{document}
 \maketitle
@@ -145,26 +145,6 @@
 \addcontentsline{toc}{chapter}{Preface}
 
 See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{cat}\NormalTok{(}\StringTok{"}
-\StringTok{## Links to material for past workshops}
-
-\StringTok{- [2019-04](2019-04-zhr)}
-
-\StringTok{- [2018-12](2018-12-zhr)}
-
-\StringTok{- [2018-11](2018-11-zhr)}
-
-\StringTok{- [2018-11](2018-11-snb)}
-
-\StringTok{- [2018-05](2018-05-zhr)}
-
-\StringTok{- [2017-10](2017-10-zhr)}
-\StringTok{"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{links}{%
 \section*{Links}\label{links}}
@@ -826,11 +806,8 @@ From there on, you can use \emph{relative paths} to point to files.
   R is supported in other ``general purpose IDE's'' (VScode, Sublime Text, Atom, Vim, etc.)
 \end{itemize}
 
-\hypertarget{part-visualization}{%
-\part{Visualization}\label{part-visualization}}
-
 \hypertarget{vis-basics}{%
-\chapter{\{ggplot2\} basics}\label{vis-basics}}
+\chapter{Visualization}\label{vis-basics}}
 
 \begin{quote}
 Embracing the grammar of graphics.
@@ -2344,9 +2321,6 @@ Some best practices:
   An alternative to \texttt{ggsave()} is \texttt{cowplot::save\_plot()} which comes with sensible defaults for multi-plot arrangements.
 \end{itemize}
 
-\hypertarget{vis-adv}{%
-\chapter{\{ggplot2\} advanced}\label{vis-adv}}
-
 \hypertarget{facetting}{%
 \section{Facetting}\label{facetting}}
 
@@ -2466,7 +2440,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-95-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2476,7 +2450,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-95-2} \end{flushright}
 
 \hypertarget{scales-1}{%
 \subsection{Scales}\label{scales-1}}
@@ -2494,7 +2468,7 @@ By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-96-1} \end{flushright}
 
 This only makes sense if the ranges for each facet differ substantially (so not in this example!).
 This example is good to show the confusion that this setting might introduce.
@@ -2521,7 +2495,7 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-6-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-97-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -2717,7 +2691,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-7-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-99-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
@@ -2802,9 +2776,6 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \NormalTok{esquisse}\OperatorTok{::}\KeywordTok{esquisser}\NormalTok{(mpg)}
 \end{Highlighting}
 \end{Shaded}
-
-\hypertarget{part-tidying-transforming-and-importing}{%
-\part{Tidying, transforming and importing}\label{part-tidying-transforming-and-importing}}
 
 \hypertarget{transformation}{%
 \chapter{Transformation}\label{transformation}}
@@ -5836,9 +5807,6 @@ See the help for further details.
 ## [1] NA
 \end{verbatim}
 
-\hypertarget{part-reporting}{%
-\part{Reporting}\label{part-reporting}}
-
 \hypertarget{reporting}{%
 \chapter{Reporting}\label{reporting}}
 
@@ -6038,11 +6006,8 @@ R ``research packages'' can be installed locally like any other R package and si
 Javascript based R ecosystem which provides options for rich visualizations.
 \href{https://shiny.rstudio.com/gallery/}{The shiny gallery from RStudio} gives a good overview what can be done using \texttt{shiny}.
 
-\hypertarget{part-appendix}{%
-\part{Appendix}\label{part-appendix}}
-
-\hypertarget{best-practices}{%
-\chapter{Best practices}\label{best-practices}}
+\hypertarget{appendix-best-practices}{%
+\chapter{Appendix: Best practices}\label{appendix-best-practices}}
 
 R code is often organized in packages that can be installed from centralized repositories such as CRAN or GitHub.
 If you are new to writing R packages, this course cannot give a complete introduction into packages.
