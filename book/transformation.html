@@ -245,23 +245,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="tidying.html"><a href="tidying.html#section-1"><i class="fa fa-check"></i><b>6.3</b> <No caption defined></a></li>
 </ul></li>
 <li class="part"><span><b>III Reporting</b></span></li>
-<li class="chapter" data-level="7" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>7</b> Reporting</a><ul>
-<li class="chapter" data-level="7.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>7.2</b> The YAML header</a></li>
-<li class="chapter" data-level="7.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>7.3</b> Literate programming in R</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>7.3.1</b> R Markdown packages</a></li>
-<li class="chapter" data-level="7.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>7.3.2</b> Code chunks in R Markdown</a></li>
-<li class="chapter" data-level="7.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>7.3.3</b> R Notebooks</a></li>
-<li class="chapter" data-level="7.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>7.3.4</b> Workflow</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>7.4</b> Shiny: Interactive visualizations</a></li>
-</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="8" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>8</b> Best practices</a><ul>
-<li class="chapter" data-level="8.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>8.1</b> DESCRIPTION</a></li>
-<li class="chapter" data-level="8.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>8.2</b> R</a></li>
-<li class="chapter" data-level="8.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>8.3</b> roxygen2</a></li>
-<li class="chapter" data-level="8.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>8.4</b> testthat</a></li>
+<li class="chapter" data-level="7" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>7</b> Best practices</a><ul>
+<li class="chapter" data-level="7.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="7.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
+<li class="chapter" data-level="7.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
+<li class="chapter" data-level="7.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -1208,13 +1197,13 @@ Here is a basic barplot of <code>flights$carrier</code>:</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb183-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb183-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>Same with one facet per month:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb184-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb184-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-one-facet-per-month-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-one-facet-per-month-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>We can extract a function that takes any data and produces a barplot of the variable <code>carrier</code>:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">plot_fun &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb185-2" data-line-number="2">  data <span class="op">%&gt;%</span></a>
@@ -1223,7 +1212,7 @@ Here is a basic barplot of <code>flights$carrier</code>:</p>
 <a class="sourceLine" id="cb185-5" data-line-number="5">}</a>
 <a class="sourceLine" id="cb185-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb185-7" data-line-number="7"><span class="kw">plot_fun</span>(flights)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-extract-a-function-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-extract-a-function-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>The result of <code>ggplot()</code> is first and foremost an object.
 Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the “Viewer”.
 Therefore, we can use the <code>group_by</code> – <code>summarize()</code> – <code>ungroup()</code> pattern to produce one plot per group and store it in a new column:</p>
@@ -1248,40 +1237,40 @@ Therefore, we can use the <code>group_by</code> – <code>summarize()</code> –
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">plot_df <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
 <pre><code>## [[1]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[2]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-2.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[3]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-3.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-3.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[4]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-4.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-4.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[5]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-5.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-5.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[6]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-6.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-6.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[7]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-7.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-7.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[8]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-8.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-8.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[9]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-9.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-9.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[10]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-10.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-10.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[11]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-11.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-11.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <pre><code>## 
 ## [[12]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-12.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-12.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>Use the left arrow to click through the different plots.</p>
 
 </div>

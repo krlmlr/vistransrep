@@ -245,23 +245,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="tidying.html"><a href="tidying.html#section-1"><i class="fa fa-check"></i><b>6.3</b> <No caption defined></a></li>
 </ul></li>
 <li class="part"><span><b>III Reporting</b></span></li>
-<li class="chapter" data-level="7" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>7</b> Reporting</a><ul>
-<li class="chapter" data-level="7.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>7.2</b> The YAML header</a></li>
-<li class="chapter" data-level="7.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>7.3</b> Literate programming in R</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>7.3.1</b> R Markdown packages</a></li>
-<li class="chapter" data-level="7.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>7.3.2</b> Code chunks in R Markdown</a></li>
-<li class="chapter" data-level="7.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>7.3.3</b> R Notebooks</a></li>
-<li class="chapter" data-level="7.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>7.3.4</b> Workflow</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>7.4</b> Shiny: Interactive visualizations</a></li>
-</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="8" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>8</b> Best practices</a><ul>
-<li class="chapter" data-level="8.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>8.1</b> DESCRIPTION</a></li>
-<li class="chapter" data-level="8.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>8.2</b> R</a></li>
-<li class="chapter" data-level="8.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>8.3</b> roxygen2</a></li>
-<li class="chapter" data-level="8.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>8.4</b> testthat</a></li>
+<li class="chapter" data-level="7" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>7</b> Best practices</a><ul>
+<li class="chapter" data-level="7.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="7.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
+<li class="chapter" data-level="7.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
+<li class="chapter" data-level="7.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -350,7 +339,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## </span><span style='color: #555555;'>1</span><span>     1   1   a     X     /home/travis/build/krlmlr/vistransr…
 ## </span><span style='color: #555555;'>2</span><span>     1   2.5 b     Y     /home/travis/build/krlmlr/vistransr…
 ## </span><span style='color: #555555;'>3</span><span>     2   1.5 c     Z     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+## </span><span style='color: #555555;'>4</span><span>     2   2   d     W     /home/travis/build/krlmlr/vistransr…
+## </span><span style='color: #555555;'>5</span><span>     3   4   g     J     /home/travis/build/krlmlr/vistransr…
+## </span><span style='color: #555555;'>6</span><span>     3   3.5 f     H     /home/travis/build/krlmlr/vistransr…
 </span></CODE></PRE>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">list_of_tables &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw">import_list</span>(files, <span class="dt">setclass =</span> <span class="kw">class</span>(<span class="kw">tibble</span>()))</a>
 <a class="sourceLine" id="cb215-2" data-line-number="2">list_of_tables</a></code></pre></div>
@@ -397,7 +388,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## </span><span style='color: #555555;'>1</span><span> example6a     1   1   a     X    
 ## </span><span style='color: #555555;'>2</span><span> example6a     1   2.5 b     Y    
 ## </span><span style='color: #555555;'>3</span><span> example6b     2   1.5 c     Z    
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+## </span><span style='color: #555555;'>4</span><span> example6b     2   2   d     W    
+## </span><span style='color: #555555;'>5</span><span> example6c     3   4   g     J    
+## </span><span style='color: #555555;'>6</span><span> example6c     3   3.5 f     H
 </span></CODE></PRE>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">all_tables <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(path <span class="op">==</span><span class="st"> &quot;example6b&quot;</span>) <span class="op">%&gt;%</span></a>
@@ -426,7 +419,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## </span><span style='color: #555555;'>1</span><span>     1   1   a     X    
 ## </span><span style='color: #555555;'>2</span><span>     1   2.5 b     Y    
 ## </span><span style='color: #555555;'>3</span><span>     2   1.5 c     Z    
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+## </span><span style='color: #555555;'>4</span><span>     2   2   d     W    
+## </span><span style='color: #555555;'>5</span><span>     3   4   g     J    
+## </span><span style='color: #555555;'>6</span><span>     3   3.5 f     H
 </span></CODE></PRE>
 
 </div>

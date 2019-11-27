@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="import.html"/>
-<link rel="next" href="reporting.html"/>
+<link rel="next" href="best-practices.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -245,23 +245,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="tidying.html"><a href="tidying.html#section-1"><i class="fa fa-check"></i><b>6.3</b> <No caption defined></a></li>
 </ul></li>
 <li class="part"><span><b>III Reporting</b></span></li>
-<li class="chapter" data-level="7" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>7</b> Reporting</a><ul>
-<li class="chapter" data-level="7.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>7.2</b> The YAML header</a></li>
-<li class="chapter" data-level="7.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>7.3</b> Literate programming in R</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>7.3.1</b> R Markdown packages</a></li>
-<li class="chapter" data-level="7.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>7.3.2</b> Code chunks in R Markdown</a></li>
-<li class="chapter" data-level="7.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>7.3.3</b> R Notebooks</a></li>
-<li class="chapter" data-level="7.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>7.3.4</b> Workflow</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>7.4</b> Shiny: Interactive visualizations</a></li>
-</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="8" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>8</b> Best practices</a><ul>
-<li class="chapter" data-level="8.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>8.1</b> DESCRIPTION</a></li>
-<li class="chapter" data-level="8.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>8.2</b> R</a></li>
-<li class="chapter" data-level="8.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>8.3</b> roxygen2</a></li>
-<li class="chapter" data-level="8.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>8.4</b> testthat</a></li>
+<li class="chapter" data-level="7" data-path="best-practices.html"><a href="best-practices.html"><i class="fa fa-check"></i><b>7</b> Best practices</a><ul>
+<li class="chapter" data-level="7.1" data-path="best-practices.html"><a href="best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
+<li class="chapter" data-level="7.2" data-path="best-practices.html"><a href="best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
+<li class="chapter" data-level="7.3" data-path="best-practices.html"><a href="best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
+<li class="chapter" data-level="7.4" data-path="best-practices.html"><a href="best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -306,12 +295,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 The following two tables contain the same data arranged differently.</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">table1</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999   745   19</span><span style='text-decoration: underline;'>987</span><span>071
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999    745   19</span><span style='text-decoration: underline;'>987</span><span>071
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000   </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999  </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>80</span><span>488  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 </span><span style='text-decoration: underline;'>213</span><span>766 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">table2</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 12 x 4</span><span>
@@ -369,12 +360,14 @@ The same code works for arbitrary number of measurements.</p>
 <a class="sourceLine" id="cb233-5" data-line-number="5">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb233-6" data-line-number="6"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>type</span><span>            </span><span style='font-weight: bold;'>max</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan cases          </span><span style='text-decoration: underline;'>2</span><span>666
-## </span><span style='color: #555555;'>2</span><span> Afghanistan population 20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil      cases         </span><span style='text-decoration: underline;'>80</span><span>488
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>type</span><span>              </span><span style='font-weight: bold;'>max</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan cases            </span><span style='text-decoration: underline;'>2</span><span>666
+## </span><span style='color: #555555;'>2</span><span> Afghanistan population   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil      cases           </span><span style='text-decoration: underline;'>80</span><span>488
+## </span><span style='color: #555555;'>4</span><span> Brazil      population  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China       cases          </span><span style='text-decoration: underline;'>213</span><span>766
+## </span><span style='color: #555555;'>6</span><span> China       population </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <p>The following examples give a gentle introduction into pivoting.</p>
 <div id="convert-to-longer-form" class="section level3">
@@ -382,12 +375,14 @@ The same code works for arbitrary number of measurements.</p>
 <p>The <code>pivot_longer()</code> function takes a “wider-form” dataset and converts it to an equivalent dataset with more rows.</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">table1</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999   745   19</span><span style='text-decoration: underline;'>987</span><span>071
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999    745   19</span><span style='text-decoration: underline;'>987</span><span>071
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000   </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999  </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>80</span><span>488  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 </span><span style='text-decoration: underline;'>213</span><span>766 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb235-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(country, year))</a></code></pre></div>
@@ -447,23 +442,27 @@ If the <code>name</code> and <code>value</code> columns are named differently, t
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb239-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> type, <span class="dt">values_from =</span> count)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999   745   19</span><span style='text-decoration: underline;'>987</span><span>071
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999    745   19</span><span style='text-decoration: underline;'>987</span><span>071
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000   </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999  </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>80</span><span>488  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 </span><span style='text-decoration: underline;'>213</span><span>766 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">name =</span> type, <span class="dt">value =</span> count) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb240-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_wider</span>()</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999   745   19</span><span style='text-decoration: underline;'>987</span><span>071
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999    745   19</span><span style='text-decoration: underline;'>987</span><span>071
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000   </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999  </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>80</span><span>488  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 </span><span style='text-decoration: underline;'>213</span><span>766 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 </div>
 <div id="use-cases" class="section level3">
@@ -480,14 +479,14 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb241-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
 <a class="sourceLine" id="cb241-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, population), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>On the other hand, iIf only a single measurement needs to be plotted, the “wider” form is easier to work with.</p>
 <ul>
 <li><code>table1</code> only requires selecting the correct column</li>
@@ -497,20 +496,20 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb244-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;cases&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb244-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb244-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 <p>The “wider” form is also the only way to map different measures to different aesthetics, e.g. to correlate values.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(cases, population, <span class="dt">color =</span> <span class="kw">factor</span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="768" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
 </div>
 <div id="combining-vertically" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Combining vertically</h3>
@@ -541,12 +540,14 @@ The <code>.id = &quot;type&quot;</code> setting ensures that the input datasets 
 <a class="sourceLine" id="cb248-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb248-7" data-line-number="7">table4</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>type</span><span>  </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>`1999`</span><span> </span><span style='font-weight: bold;'>`2000`</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> cases Afghanistan    745   </span><span style='text-decoration: underline;'>2</span><span>666
-## </span><span style='color: #555555;'>2</span><span> cases Brazil       </span><span style='text-decoration: underline;'>37</span><span>737  </span><span style='text-decoration: underline;'>80</span><span>488
-## </span><span style='color: #555555;'>3</span><span> cases China       </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>213</span><span>766
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>type</span><span>       </span><span style='font-weight: bold;'>country</span><span>         </span><span style='font-weight: bold;'>`1999`</span><span>     </span><span style='font-weight: bold;'>`2000`</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> cases      Afghanistan        745       </span><span style='text-decoration: underline;'>2</span><span>666
+## </span><span style='color: #555555;'>2</span><span> cases      Brazil           </span><span style='text-decoration: underline;'>37</span><span>737      </span><span style='text-decoration: underline;'>80</span><span>488
+## </span><span style='color: #555555;'>3</span><span> cases      China           </span><span style='text-decoration: underline;'>212</span><span>258     </span><span style='text-decoration: underline;'>213</span><span>766
+## </span><span style='color: #555555;'>4</span><span> population Afghanistan   19</span><span style='text-decoration: underline;'>987</span><span>071   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>5</span><span> population Brazil       172</span><span style='text-decoration: underline;'>006</span><span>362  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>6</span><span> population China       </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <p>As before, <code>pivot_longer()</code> helps converting the results into something similar to <code>table2</code>.
 The result isn’t quite the same yet, can you spot the difference?</p>
@@ -663,76 +664,90 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 <p>The <code>table3</code> table violates the third principle of tidy data: each cell contains two values.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">table3</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>           
-## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745/19987071   
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666/20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737/172006362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>             
+## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745/19987071     
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666/20595360    
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737/172006362  
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000 80488/174504898  
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 212258/1272915272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 213766/1280428583
 </span></CODE></PRE>
 <p>The <code>separate()</code> verb offers a convenient way to deal with this situation, including automatic type conversion.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb260-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745   19987071  
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666  20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737 172006362 
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span>  </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745    19987071  
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666   20595360  
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737  172006362 
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000 80488  174504898 
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 212258 1272915272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 213766 1280428583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999   745   19</span><span style='text-decoration: underline;'>987</span><span>071
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>cases</span><span> </span><span style='font-weight: bold;'>population</span><span>
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999    745   19</span><span style='text-decoration: underline;'>987</span><span>071
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000   </span><span style='text-decoration: underline;'>2</span><span>666   20</span><span style='text-decoration: underline;'>595</span><span>360
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999  </span><span style='text-decoration: underline;'>37</span><span>737  172</span><span style='text-decoration: underline;'>006</span><span>362
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>80</span><span>488  174</span><span style='text-decoration: underline;'>504</span><span>898
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 </span><span style='text-decoration: underline;'>212</span><span>258 </span><span style='text-decoration: underline;'>1</span><span>272</span><span style='text-decoration: underline;'>915</span><span>272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 </span><span style='text-decoration: underline;'>213</span><span>766 </span><span style='text-decoration: underline;'>1</span><span>280</span><span style='text-decoration: underline;'>428</span><span>583
 </span></CODE></PRE>
 <p>The inverse is offered by <code>unite()</code>.
 The data in <code>table5</code> stores year data in two columns.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">table5</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>century</span><span> </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
-## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
-## </span><span style='color: #555555;'>1</span><span> Afghanistan 19      99    745/19987071   
-## </span><span style='color: #555555;'>2</span><span> Afghanistan 20      00    2666/20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil      19      99    37737/172006362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>century</span><span> </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>             
+## </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+## </span><span style='color: #555555;'>1</span><span> Afghanistan 19      99    745/19987071     
+## </span><span style='color: #555555;'>2</span><span> Afghanistan 20      00    2666/20595360    
+## </span><span style='color: #555555;'>3</span><span> Brazil      19      99    37737/172006362  
+## </span><span style='color: #555555;'>4</span><span> Brazil      20      00    80488/174504898  
+## </span><span style='color: #555555;'>5</span><span> China       19      99    212258/1272915272
+## </span><span style='color: #555555;'>6</span><span> China       20      00    213766/1280428583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
-## </span><span style='color: #555555;'>1</span><span> Afghanistan 19_99 745/19987071   
-## </span><span style='color: #555555;'>2</span><span> Afghanistan 20_00 2666/20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil      19_99 37737/172006362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>             
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+## </span><span style='color: #555555;'>1</span><span> Afghanistan 19_99 745/19987071     
+## </span><span style='color: #555555;'>2</span><span> Afghanistan 20_00 2666/20595360    
+## </span><span style='color: #555555;'>3</span><span> Brazil      19_99 37737/172006362  
+## </span><span style='color: #555555;'>4</span><span> Brazil      20_00 80488/174504898  
+## </span><span style='color: #555555;'>5</span><span> China       19_99 212258/1272915272
+## </span><span style='color: #555555;'>6</span><span> China       20_00 213766/1280428583
 </span></CODE></PRE>
 <p>The result needs a few tweaks to finally resemble <code>table3</code>.</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>           
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
-## </span><span style='color: #555555;'>1</span><span> Afghanistan 1999  745/19987071   
-## </span><span style='color: #555555;'>2</span><span> Afghanistan 2000  2666/20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil      1999  37737/172006362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>     </span><span style='font-weight: bold;'>year</span><span>  </span><span style='font-weight: bold;'>rate</span><span>             
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+## </span><span style='color: #555555;'>1</span><span> Afghanistan 1999  745/19987071     
+## </span><span style='color: #555555;'>2</span><span> Afghanistan 2000  2666/20595360    
+## </span><span style='color: #555555;'>3</span><span> Brazil      1999  37737/172006362  
+## </span><span style='color: #555555;'>4</span><span> Brazil      2000  80488/174504898  
+## </span><span style='color: #555555;'>5</span><span> China       1999  212258/1272915272
+## </span><span style='color: #555555;'>6</span><span> China       2000  213766/1280428583
 </span></CODE></PRE>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;year&quot;</span>, <span class="kw">c</span>(century, year), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb265-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 3</span><span>
-##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>           
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          
-## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745/19987071   
-## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666/20595360  
-## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737/172006362
-## </span><span style='color: #555555;'># … with 3 more rows</span><span>
+##   </span><span style='font-weight: bold;'>country</span><span>      </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>rate</span><span>             
+##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            
+## </span><span style='color: #555555;'>1</span><span> Afghanistan  </span><span style='text-decoration: underline;'>1</span><span>999 745/19987071     
+## </span><span style='color: #555555;'>2</span><span> Afghanistan  </span><span style='text-decoration: underline;'>2</span><span>000 2666/20595360    
+## </span><span style='color: #555555;'>3</span><span> Brazil       </span><span style='text-decoration: underline;'>1</span><span>999 37737/172006362  
+## </span><span style='color: #555555;'>4</span><span> Brazil       </span><span style='text-decoration: underline;'>2</span><span>000 80488/174504898  
+## </span><span style='color: #555555;'>5</span><span> China        </span><span style='text-decoration: underline;'>1</span><span>999 212258/1272915272
+## </span><span style='color: #555555;'>6</span><span> China        </span><span style='text-decoration: underline;'>2</span><span>000 213766/1280428583
 </span></CODE></PRE>
 <p>See the help for further details.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">?separate</a>
@@ -818,13 +833,17 @@ The data in <code>table5</code> stores year data in two columns.</p>
 
 
 
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reporting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
