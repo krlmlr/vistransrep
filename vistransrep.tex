@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 22:34 CET}
+\date{27 November 2019, 22:52 CET}
 
 \begin{document}
 \maketitle
@@ -3786,31 +3786,9 @@ Select helpers allow selecting multiple related columns conveniently:
 \end{verbatim}
 
 With \texttt{dplyr::mutate()} you can add new columns to a table, e.g.~making use of the already existing variables.
+This is another building block added to the toolset.
 
 How much faster than the scheduled time did the pilots manage to fly:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{recovery =}\NormalTok{ dep_delay }\OperatorTok{-}\StringTok{ }\NormalTok{arr_delay)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 336,776 x 20
-##    year month   day dep_time sched_dep_time dep_delay arr_time
-##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1  2013     1     1      517            515         2      830
-## 2  2013     1     1      533            529         4      850
-## 3  2013     1     1      542            540         2      923
-## # ... with 3.368e+05 more rows, and 13 more variables:
-## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
-## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
-## #   time_hour <dttm>, recovery <dbl>
-\end{verbatim}
-
-This is another building block added to the toolset:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3829,6 +3807,8 @@ This is another building block added to the toolset:
 ## 3         2        33      -31
 ## # ... with 3.368e+05 more rows
 \end{verbatim}
+
+Conceptually, the expression that defines the new variable is evaluated for each row.
 
 The following constructs are often applied inside \texttt{mutate()}:
 
@@ -3878,7 +3858,7 @@ The following constructs are often applied inside \texttt{mutate()}:
   \end{itemize}
 \end{itemize}
 
-Work with the newly created variable just like with the original ones:
+Work with the newly created variables just like with the original ones:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3899,8 +3879,21 @@ Work with the newly created variable just like with the original ones:
 ## # ... with 3.368e+05 more rows
 \end{verbatim}
 
-Assign the results to new variables.
-The old ones remain unchanged.
+A \texttt{mutate()} never changes a dataset.
+To make a computation persistent, store the entire result as a new dataset variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(recovery)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in .f(.x[[i]], ...) : object 'recovery' not found
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3990,31 +3983,29 @@ The opposite effect to \texttt{lead()} can be realized using \texttt{lag()}:
 \end{verbatim}
 
 There is even a use-case for this in our little example.
-How long has our airplane been absent from NYC airports between each of its flights out?
+How long does it take for the airplane to return to NYC with each flight out?
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, dep_time, arr_time) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_arr_time =} \KeywordTok{lag}\NormalTok{(arr_time)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ dep_time }\OperatorTok{-}\StringTok{ }\NormalTok{lag_arr_time) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(year, month, day, time_hour) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{lag_time_hour =} \KeywordTok{lag}\NormalTok{(time_hour)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ground_time =}\NormalTok{ time_hour }\OperatorTok{-}\StringTok{ }\NormalTok{lag_time_hour) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{view}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 111 x 7
-##    year month   day dep_time arr_time lag_arr_time ground_time
-##   <int> <int> <int>    <int>    <int>        <int>       <int>
-## 1  2013     1     1      517      830           NA          NA
-## 2  2013     1     8     1435     1717          830         605
-## 3  2013     1     9      717      812         1717       -1000
-## # ... with 108 more rows
+## # A tibble: 111 x 6
+##    year month   day time_hour           lag_time_hour      
+##   <int> <int> <int> <dttm>              <dttm>             
+## 1  2013     1     1 2013-01-01 05:00:00 NA                 
+## 2  2013     1     8 2013-01-08 14:00:00 2013-01-01 05:00:00
+## 3  2013     1     9 2013-01-09 07:00:00 2013-01-08 14:00:00
+## # ... with 108 more rows, and 1 more variable:
+## #   ground_time <drtn>
 \end{verbatim}
-
-The negative values occur because not everything happens on the same day, implying that our method is still in need of some refinement.
-Nevertheless, let's continue.
 
 A frequently used workflow is creating a helper variable at some point in the pipeline and then dropping it later on:
 
@@ -4040,30 +4031,7 @@ A frequently used workflow is creating a helper variable at some point in the pi
 \end{verbatim}
 
 Let's work some more with the flight data of our special plane.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{view}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 111 x 19
-##    year month   day dep_time sched_dep_time dep_delay arr_time
-##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
-## 1  2013     1     1      517            515         2      830
-## 2  2013     1     8     1435           1440        -5     1717
-## 3  2013     1     9      717            700        17      812
-## # ... with 108 more rows, and 12 more variables:
-## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
-## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
-## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
-## #   time_hour <dttm>
-\end{verbatim}
-
-The total air time of a plane up to and including a given flight can be calculated with \texttt{base::cumsum()}:
+The total air time of a plane up to and including a given flight can be calculated with \texttt{cumsum()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4085,54 +4053,51 @@ The total air time of a plane up to and including a given flight can be calculat
 ## # ... with 108 more rows
 \end{verbatim}
 
-Creating a ``flag'' variable with \texttt{mutate()} which shows if a flight was on time or not:
+Creating a ``flag'' variable with \texttt{mutate()} allows selecting if a flight was on time or not:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =} \KeywordTok{if_else}\NormalTok{(arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"delayed"}\NormalTok{, }\StringTok{"on time"}\NormalTok{)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 111 x 2
+## # A tibble: 336,776 x 2
 ##   arr_delay delayed
 ##       <dbl> <chr>  
 ## 1        11 delayed
-## 2       -29 on time
-## 3        -3 on time
-## # ... with 108 more rows
+## 2        20 delayed
+## 3        33 delayed
+## # ... with 3.368e+05 more rows
 \end{verbatim}
 
-A more straightforward way to get the same (or at least a very similar and probably easier to work with) result:
+Shorter, but less verbose:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ (arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 111 x 2
+## # A tibble: 336,776 x 2
 ##   arr_delay delayed
 ##       <dbl> <lgl>  
 ## 1        11 TRUE   
-## 2       -29 FALSE  
-## 3        -3 FALSE  
-## # ... with 108 more rows
+## 2        20 TRUE   
+## 3        33 TRUE   
+## # ... with 3.368e+05 more rows
 \end{verbatim}
 
-\ldots{} easier to work with, because \texttt{filter()} can directly take logical arguments:
+A flag can be passed on to \texttt{filter()} directly:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{filter}\NormalTok{(delayed)}
@@ -4140,49 +4105,38 @@ A more straightforward way to get the same (or at least a very similar and proba
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 39 x 2
+## # A tibble: 133,004 x 2
 ##   arr_delay delayed
 ##       <dbl> <lgl>  
 ## 1        11 TRUE   
-## 2        39 TRUE   
-## 3        54 TRUE   
-## # ... with 36 more rows
+## 2        20 TRUE   
+## 3        33 TRUE   
+## # ... with 1.33e+05 more rows
 \end{verbatim}
 
-Negation for inverse filtering:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 72 x 2
-##   arr_delay delayed
-##       <dbl> <lgl>  
-## 1       -29 FALSE  
-## 2        -3 FALSE  
-## 3       -20 FALSE  
-## # ... with 69 more rows
-\end{verbatim}
-
-These are the flights that had no delay:
+Use negation for inverse filtering, and store in a dataset variable for reuse:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{on_time_flights <-}
 \StringTok{  }\NormalTok{flights }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{filter}\NormalTok{(tailnum }\OperatorTok{==}\StringTok{ "N14228"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{delayed =}\NormalTok{ (arr_delay }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{select}\NormalTok{(arr_delay, delayed) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{delayed)}
+
+\NormalTok{on_time_flights}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 194,342 x 2
+##   arr_delay delayed
+##       <dbl> <lgl>  
+## 1       -18 FALSE  
+## 2       -25 FALSE  
+## 3       -14 FALSE  
+## # ... with 1.943e+05 more rows
+\end{verbatim}
 
 \hypertarget{exercises-4}{%
 \subsection*{Exercises}\label{exercises-4}}
