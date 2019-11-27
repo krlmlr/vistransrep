@@ -2,7 +2,6 @@
 
 ```{r 17-setup}
 library(tidyverse)
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 ```
 
 For character variables there is further way of integrating its value to a plot.

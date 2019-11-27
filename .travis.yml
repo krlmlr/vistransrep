@@ -12,6 +12,7 @@ addons:
       - texlive-xetex
       - texlive-luatex
       - texlive-latex-recommended
+      - texlive-math-extra
 
 #before_install
 before_install:
