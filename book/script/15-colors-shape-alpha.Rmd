@@ -22,7 +22,10 @@ library(tidyverse)
 There are many ways to set a color for a specific geom.
 The simplest is to set all observations of a geom to a dedicated color, supplied as a character value.
 
-```{r 12-different-color}
+```{r include = FALSE}
+# static color: blue
+```
+```{r 15-static-color-blue}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -48,7 +51,10 @@ This is for two reasons:
 Different colors can be mapped to the values of a variable by supplying a variable of the dataset.
 The `class` variable is discrete and leads to a discrete color scale.
 
-```{r 12-color-as-3-rd-aesthetic-discrete}
+```{r include = FALSE}
+# dynamic color: variable mapping discrete
+```
+```{r 15-dynamic-color-variable-mapping-discrete}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -60,7 +66,10 @@ ggplot(
 
 The `cty` attribute is continuous, the color scale is adapted accordingly.
 
-```{r 12-color-as-3-rd-aesthetic-continuous}
+```{r include = FALSE}
+# dynamic color: variable mapping cont.
+```
+```{r 15-dynamic-color-variable-mapping-cont}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -72,7 +81,10 @@ ggplot(
 
 One more degree of freedom is the shape of the symbols to be plotted.
 
-```{r 12-point-shape-as-3-rd-aesthetic}
+```{r include = FALSE}
+# shape
+```
+```{r 15-shape}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -87,7 +99,10 @@ ggplot(
 
 Color and shape can be combined.
 
-```{r 12-shape-mapped-on-drv}
+```{r include = FALSE}
+# dynamic: combining color and shape
+```
+```{r 15-dynamic-combining-color-and-shape}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -100,32 +115,38 @@ ggplot(
 
 And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable. 
 
-```{r 12-point-size-as-3-rd-aesthetic}
+```{r include = FALSE}
+# dynamic: size
+```
+```{r 15-dynamic-size}
 ggplot(
   data = mpg,
   mapping = aes(
     x = displ,
-    y = hwy,
-    size = cty
+    y = hwy
   )
 ) +
-  geom_point()
+  geom_point(aes(size = cty))
 ```
 
 You can mix different aesthetic mappings in order to produce a plot with densely packed information.
 However, be aware that adding too much information to a plot does not necessarily make it better.
 
-```{r 12-mix-to-increase-num-of-aesthetics}
+```{r include = FALSE}
+# sometimes less is more...
+```
+```{r 15-sometimes-less-is-more}
 ggplot(
   data = mpg,
   mapping = aes(
     x = displ,
-    y = hwy,
-    color = class,
-    size = cty
+    y = hwy
   )
 ) +
-  geom_point()
+  geom_point(aes(
+    color = class,
+    size = cty
+  ))
 ```
 
 ### Transparency
@@ -133,7 +154,10 @@ ggplot(
 Semi-transparency is another way to better display your data when observations are overlapping.
 This is useful to get an impression of how many data points share the same coordinates.
 
-```{r 12-semi-transparency}
+```{r include = FALSE}
+# transparency: alpha
+```
+```{r 15-transparency-alpha}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -148,7 +172,10 @@ ggplot(
 
 If you try to specify a color in the `mapping`-argument of the main `ggplot()` call, you will face an error since a mapping of a variable to an aesthetic is expected.
 
-```{r 12-unquoted-col-in-aes, error = TRUE, results='hide'}
+```{r include = FALSE}
+# what can go wrong
+```
+```{r 15-what-can-go-wrong}
 try(print(
   ggplot(
     data = mpg,
@@ -166,30 +193,38 @@ R treats objects without quotation marks in a special way, expecting them to be 
 Since `blue` is not a variable of `mpg`, this did not work.
 Use quotation marks if you mean a string, as opposed to a variable or object name.
 
-```{r 12-mpg-quoted-and-unquoted}
+```{r include = FALSE}
+# quoted and unquoted
+```
+```{r 15-quoted-and-unquoted}
 mpg
 "mpg"
 ```
 
 So what if we pass the color as a character variable?
 
-```{r 12-quoted-color-in-aes}
+```{r include = FALSE}
+# what happens with strings in aes()
+```
+```{r 15-what-happens-with-strings-in-aes}
 ggplot(
   data = mpg,
   mapping = aes(
     x = displ,
-    y = hwy,
-    color = "blue"
+    y = hwy
   )
 ) +
-  geom_point()
+  geom_point(aes(color = "blue"))
 ```
 
 At least there was no error, but now the constant value `blue` is mapped to the first default color of the color mapping, which happens to be red.
 We could have been fooled, if it had been blue.
 Recall, it is best to specify geom related mappings with the respective geom function.
 
-```{r 12-correct-way-to-specify-manual-aesthetic}
+```{r include = FALSE}
+# map static colors outside of aes()
+```
+```{r 15-map-static-colors-outside-of-aes}
 ggplot(
   data = mpg,
   mapping = aes(

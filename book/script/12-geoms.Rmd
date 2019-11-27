@@ -102,9 +102,19 @@ geom_boxplot(mapping = NULL, data = NULL, stat = "boxplot",
 
 `geom_boxplot()` needs one variable to be of class `character` or `factor` (better) to initiate the grouping.
 
-```{r 12-geom-point-mapping-null-data-null-stat-identity}
-class(mpg$class)
 
+```{r include = FALSE}
+# geom_boxplot needs a factor var
+```
+```{r 12-geom-boxplot-needs-a-factor-var}
+class(mpg$class)
+```
+
+
+```{r include = FALSE}
+# show geom_boxplot
+```
+```{r 12-show-geom-boxplot}
 ggplot(mpg, aes(x = class, y = displ)) +
   geom_boxplot()
 ```
@@ -114,7 +124,10 @@ ggplot(mpg, aes(x = class, y = displ)) +
 Multiple `geom_*` functions can be used in one plot.
 A combination that is often used together is `geom_point()` and `geom_smooth()`
 
-```{r, fig.height=4}
+```{r include = FALSE}
+# combining multiple geoms
+```
+```{r 12-combining-multiple-geoms}
 ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() +
   geom_smooth(method = "lm")
