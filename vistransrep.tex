@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 21:31 CET}
+\date{27 November 2019, 21:45 CET}
 
 \begin{document}
 \maketitle
@@ -878,7 +878,7 @@ By setting the arguments of the function, you can:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-empty-graph-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/101-empty-graph-1} \end{flushright}
 
 This created only an empty plot, because we did not tell \{ggplot2\} which geometry we want to use to display the variables we set in the \texttt{ggplot()} call.
 We do this by adding (with the help of the \texttt{+} operator after the \texttt{ggplot()}-call) a different function starting with \texttt{geom\_} to provide this information.
@@ -893,7 +893,7 @@ We do this by adding (with the help of the \texttt{+} operator after the \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-visualize-variables-as-points-scatterplot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/101-visualize-variables-as-points-scatterplot-1} \end{flushright}
 
 This is maybe the most basic plot you can create.
 To map a different variable than \texttt{disp} to the x-axis, change the respective variable name in the \texttt{aes()} argument.
@@ -908,7 +908,7 @@ To map a different variable than \texttt{disp} to the x-axis, change the respect
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-aes-determines-which-variables-are-plotted-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/101-aes-determines-which-variables-are-plotted-1} \end{flushright}
 
 You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
 
@@ -922,7 +922,7 @@ You can exchange the variables to be plotted freely, without changing anything e
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-pattern-unchanged-if-only-variables-are-plotted-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/101-pattern-unchanged-if-only-variables-are-plotted-1} \end{flushright}
 
 Always good to have: The \emph{ggplot2} cheatsheet (\url{https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf}).
 
@@ -1354,7 +1354,7 @@ The simplest is to set all observations of a geom to a dedicated color, supplied
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-static-color-blue-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-static-color-blue-1} \end{flushright}
 
 \hypertarget{dynamic-colors}{%
 \subsection{Dynamic colors}\label{dynamic-colors}}
@@ -1388,7 +1388,7 @@ The \texttt{class} variable is discrete and leads to a discrete color scale.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-color-variable-mapping-discrete-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-dynamic-color-variable-mapping-discrete-1} \end{flushright}
 
 \textbf{Continuous}
 
@@ -1404,7 +1404,7 @@ The \texttt{cty} attribute is continuous, the color scale is adapted accordingly
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-color-variable-mapping-cont-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-dynamic-color-variable-mapping-cont-1} \end{flushright}
 
 \hypertarget{shape}{%
 \subsection{Shape}\label{shape}}
@@ -1424,7 +1424,7 @@ One more degree of freedom is the shape of the symbols to be plotted.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-shape-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-shape-1} \end{flushright}
 
 \hypertarget{combining-color-and-shape}{%
 \subsection{Combining color and shape}\label{combining-color-and-shape}}
@@ -1444,7 +1444,7 @@ Color and shape can be combined.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-combining-color-and-shape-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-dynamic-combining-color-and-shape-1} \end{flushright}
 
 And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.
 
@@ -1461,7 +1461,7 @@ And last but not least, the size of the plotted symbols can be linked to numeric
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-size-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-dynamic-size-1} \end{flushright}
 
 You can mix different aesthetic mappings in order to produce a plot with densely packed information.
 However, be aware that adding too much information to a plot does not necessarily make it better.
@@ -1482,7 +1482,7 @@ However, be aware that adding too much information to a plot does not necessaril
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-sometimes-less-is-more-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-sometimes-less-is-more-1} \end{flushright}
 
 \hypertarget{transparency}{%
 \subsection{Transparency}\label{transparency}}
@@ -1503,7 +1503,7 @@ This is useful to get an impression of how many data points share the same coord
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-transparency-alpha-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-transparency-alpha-1} \end{flushright}
 
 \hypertarget{what-can-go-wrong}{%
 \subsection{What can go wrong}\label{what-can-go-wrong}}
@@ -1526,7 +1526,7 @@ If you try to specify a color in the \texttt{mapping}-argument of the main \text
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-what-can-go-wrong-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-what-can-go-wrong-1} \end{flushright}
 
 \begin{verbatim}
 ## Error in FUN(X[[i]], ...) : object 'blue' not found
@@ -1578,7 +1578,7 @@ So what if we pass the color as a character variable?
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-what-happens-with-strings-in-aes-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-what-happens-with-strings-in-aes-1} \end{flushright}
 
 At least there was no error, but now the constant value \texttt{blue} is mapped to the first default color of the color mapping, which happens to be red.
 We could have been fooled, if it had been blue.
@@ -1599,7 +1599,7 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-map-static-colors-outside-of-aes-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/105-map-static-colors-outside-of-aes-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -1881,7 +1881,7 @@ We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-to-start-with-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-base-plot-to-start-with-1} \end{flushright}
 
 \hypertarget{labs}{%
 \subsection{\texorpdfstring{\texttt{labs()}}{labs()}}\label{labs}}
@@ -1906,7 +1906,7 @@ Additionally you can set the title/subtitle and also add a caption and a tag.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-add-descriptive-labels-the-labs-function-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-add-descriptive-labels-the-labs-function-1} \end{flushright}
 
 \hypertarget{axes}{%
 \subsection{Axes}\label{axes}}
@@ -1925,7 +1925,7 @@ For example there is a function to change the scale of an axis to a logarithmic 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-change-scale-to-log-scale-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-change-scale-to-log-scale-1} \end{flushright}
 
 Be careful: you can set the name of an axis in both the \texttt{labs()} function and the \texttt{scale\_...()} functions.
 If you do both, only the name set in the latter will prevail.
@@ -1944,7 +1944,7 @@ If you do both, only the name set in the latter will prevail.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-name-in-scale-overwrites-labs-without-warning-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-name-in-scale-overwrites-labs-without-warning-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1965,7 +1965,7 @@ These enable custom axis breaks and labels if the ones autogenerated from the da
 ## (geom_point).
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-showcase-manual-axis-scaling-limits-breaks-labels-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-showcase-manual-axis-scaling-limits-breaks-labels-1} \end{flushright}
 
 Values not falling into the custom limits will be silently droppend including a warning message.
 
@@ -1987,7 +1987,7 @@ By default, \texttt{scale\_color\_hue()} will be used for categorical variables.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-default-color-palette-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-default-color-palette-1} \end{flushright}
 
 To change the color palette, pass a palette-function of your liking in the form of
 
@@ -2017,7 +2017,7 @@ To specify that we are dealing with categorical values, we add a \texttt{\_d} at
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-show-viridis-color-palette-discrete-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-show-viridis-color-palette-discrete-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2046,7 +2046,7 @@ Another helpful scenario is when there are more levels in the data than colors s
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-show-how-to-set-manual-colors-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/108-show-how-to-set-manual-colors-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -6263,32 +6263,23 @@ One test should be failing now.
 \item
   Row oriented workflows: \url{https://github.com/jennybc/row-oriented-workflows\#readme}
 \item
+  What they forgot to teach you: \url{https://whattheyforgot.org/}
+\item
   Advanced R: \url{http://adv-r.had.co.nz/}
 \item
   Tidy evaluation: \url{https://tidyeval.tidyverse.org/}
 \item
   R packages: \url{http://r-pkgs.had.co.nz/}
 \item
-  roxygen2: Vignettes in \url{https://cran.r-project.org/package=roxygen2}, especially:
-
-  \begin{itemize}
-  \item
-    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html}{Introduction to roxygen2}
-  \item
-    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html}{Generating Rd files} for an overview of available tags
-  \item
-    \href{https://cran.r-project.org/web/packages/roxygen2/vignettes/markdown.html}{Write R documentation in Markdown}
-  \end{itemize}
+  roxygen2: \url{https://roxygen2.r-lib.org/}
 \item
   How R searches and finds stuff: \url{http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/}
 \item
-  What they forgot to teach you: \url{https://whattheyforgot.org/}
-\item
   Parallel processing with a purrr-like interface: \url{https://davisvaughan.github.io/furrr/}
 \item
-  Tidyverse principles: \url{https://principles.tidyverse.org/}
-\item
   Recursive lists to use in teaching and examples: \url{https://github.com/jennybc/repurrrsive}
+\item
+  Tidyverse principles: \url{https://principles.tidyverse.org/}
 \end{itemize}
 
 \bibliography{book.bib}

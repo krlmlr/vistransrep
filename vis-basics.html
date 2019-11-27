@@ -328,7 +328,7 @@ This argument takes the result of the function <code>aes()</code>, which you wil
 <a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/11-empty-graph-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/101-empty-graph-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>This created only an empty plot, because we did not tell {ggplot2} which geometry we want to use to display the variables we set in the <code>ggplot()</code> call.
 We do this by adding (with the help of the <code>+</code> operator after the <code>ggplot()</code>-call) a different function starting with <code>geom_</code> to provide this information.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -336,7 +336,7 @@ We do this by adding (with the help of the <code>+</code> operator after the <co
 <a class="sourceLine" id="cb14-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb14-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/11-visualize-variables-as-points-scatterplot-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/101-visualize-variables-as-points-scatterplot-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>This is maybe the most basic plot you can create.
 To map a different variable than <code>disp</code> to the x-axis, change the respective variable name in the <code>aes()</code> argument.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -344,14 +344,14 @@ To map a different variable than <code>disp</code> to the x-axis, change the res
 <a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb15-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/11-aes-determines-which-variables-are-plotted-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/101-aes-determines-which-variables-are-plotted-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> hwy, <span class="dt">y =</span> cty)</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/11-pattern-unchanged-if-only-variables-are-plotted-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/101-pattern-unchanged-if-only-variables-are-plotted-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>Always good to have: The <em>ggplot2</em> cheatsheet (<a href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf" class="uri">https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf</a>).</p>
 </div>
 <div id="what-is-a-statistical-graphic" class="section level3">
@@ -595,7 +595,7 @@ The simplest is to set all observations of a geom to a dedicated color, supplied
 <a class="sourceLine" id="cb36-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(</a>
 <a class="sourceLine" id="cb36-6" data-line-number="6">    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span></a>
 <a class="sourceLine" id="cb36-7" data-line-number="7">  )</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-static-color-blue-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-static-color-blue-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="dynamic-colors" class="section level3">
 <h3><span class="header-section-number">2.5.2</span> Dynamic colors</h3>
@@ -615,7 +615,7 @@ The <code>class</code> variable is discrete and leads to a discrete color scale.
 <a class="sourceLine" id="cb37-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb37-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-dynamic-color-variable-mapping-discrete-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-dynamic-color-variable-mapping-discrete-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p><strong>Continuous</strong></p>
 <p>The <code>cty</code> attribute is continuous, the color scale is adapted accordingly.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -623,7 +623,7 @@ The <code>class</code> variable is discrete and leads to a discrete color scale.
 <a class="sourceLine" id="cb38-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)</a>
 <a class="sourceLine" id="cb38-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> cty))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-dynamic-color-variable-mapping-cont-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-dynamic-color-variable-mapping-cont-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="shape" class="section level3">
 <h3><span class="header-section-number">2.5.3</span> Shape</h3>
@@ -636,7 +636,7 @@ The <code>class</code> variable is discrete and leads to a discrete color scale.
 <a class="sourceLine" id="cb39-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb39-7" data-line-number="7">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb39-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> fl))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-shape-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-shape-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combining-color-and-shape" class="section level3">
 <h3><span class="header-section-number">2.5.4</span> Combining color and shape</h3>
@@ -649,7 +649,7 @@ The <code>class</code> variable is discrete and leads to a discrete color scale.
 <a class="sourceLine" id="cb40-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb40-7" data-line-number="7">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb40-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class, <span class="dt">shape =</span> drv))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-dynamic-combining-color-and-shape-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-dynamic-combining-color-and-shape-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
 <a class="sourceLine" id="cb41-2" data-line-number="2">  <span class="dt">data =</span> mpg,</a>
@@ -659,7 +659,7 @@ The <code>class</code> variable is discrete and leads to a discrete color scale.
 <a class="sourceLine" id="cb41-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb41-7" data-line-number="7">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb41-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> cty))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-dynamic-size-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-dynamic-size-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>You can mix different aesthetic mappings in order to produce a plot with densely packed information.
 However, be aware that adding too much information to a plot does not necessarily make it better.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -673,7 +673,7 @@ However, be aware that adding too much information to a plot does not necessaril
 <a class="sourceLine" id="cb42-9" data-line-number="9">    <span class="dt">color =</span> class,</a>
 <a class="sourceLine" id="cb42-10" data-line-number="10">    <span class="dt">size =</span> cty</a>
 <a class="sourceLine" id="cb42-11" data-line-number="11">  ))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-sometimes-less-is-more-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-sometimes-less-is-more-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="transparency" class="section level3">
 <h3><span class="header-section-number">2.5.5</span> Transparency</h3>
@@ -687,7 +687,7 @@ This is useful to get an impression of how many data points share the same coord
 <a class="sourceLine" id="cb43-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb43-7" data-line-number="7">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb43-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-transparency-alpha-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-transparency-alpha-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="what-can-go-wrong" class="section level3">
 <h3><span class="header-section-number">2.5.6</span> What can go wrong</h3>
@@ -703,7 +703,7 @@ This is useful to get an impression of how many data points share the same coord
 <a class="sourceLine" id="cb44-9" data-line-number="9">  ) <span class="op">+</span></a>
 <a class="sourceLine" id="cb44-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_point</span>()</a>
 <a class="sourceLine" id="cb44-11" data-line-number="11">))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-what-can-go-wrong-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-what-can-go-wrong-1.png" width="624" style="display: block; margin: auto;" /></p>
 <pre><code>## Error in FUN(X[[i]], ...) : object &#39;blue&#39; not found</code></pre>
 <p>R treats objects without quotation marks in a special way, expecting them to be variables.
 Since <code>blue</code> is not a variable of <code>mpg</code>, this did not work.
@@ -729,7 +729,7 @@ Use quotation marks if you mean a string, as opposed to a variable or object nam
 <a class="sourceLine" id="cb49-6" data-line-number="6">  )</a>
 <a class="sourceLine" id="cb49-7" data-line-number="7">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb49-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-what-happens-with-strings-in-aes-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-what-happens-with-strings-in-aes-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>At least there was no error, but now the constant value <code>blue</code> is mapped to the first default color of the color mapping, which happens to be red.
 We could have been fooled, if it had been blue.
 Recall, it is best to specify geom related mappings with the respective geom function.</p>
@@ -743,7 +743,7 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 <a class="sourceLine" id="cb50-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(</a>
 <a class="sourceLine" id="cb50-9" data-line-number="9">    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span></a>
 <a class="sourceLine" id="cb50-10" data-line-number="10">  )</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/15-map-static-colors-outside-of-aes-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/105-map-static-colors-outside-of-aes-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p><strong>Exercises</strong></p>
 <p><a href="https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter3.html" class="uri">https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter3.html</a></p>
 </div>
@@ -889,7 +889,7 @@ We start with a pretty basic plot using the <code>mpg</code>-tibble which comes 
 <a class="sourceLine" id="cb66-3" data-line-number="3">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> class)</a>
 <a class="sourceLine" id="cb66-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-base-plot-to-start-with-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-base-plot-to-start-with-1.png" width="624" style="display: block; margin: auto;" /></p>
 <div id="labs" class="section level3">
 <h3><span class="header-section-number">2.8.1</span> <code>labs()</code></h3>
 <p>With <code>labs()</code> you can label all sorts of aesthetics (axes, color mapping, …).
@@ -906,7 +906,7 @@ Additionally you can set the title/subtitle and also add a caption and a tag.</p
 <a class="sourceLine" id="cb67-10" data-line-number="10">    <span class="dt">title =</span> <span class="st">&quot;Highway mileages depending on displacement&quot;</span>,</a>
 <a class="sourceLine" id="cb67-11" data-line-number="11">    <span class="dt">subtitle =</span> <span class="st">&quot;By car class&quot;</span></a>
 <a class="sourceLine" id="cb67-12" data-line-number="12">  )</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-add-descriptive-labels-the-labs-function-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-add-descriptive-labels-the-labs-function-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="axes" class="section level3">
 <h3><span class="header-section-number">2.8.2</span> Axes</h3>
@@ -918,7 +918,7 @@ For example there is a function to change the scale of an axis to a logarithmic 
 <a class="sourceLine" id="cb68-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb68-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_x_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-change-scale-to-log-scale-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-change-scale-to-log-scale-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>Be careful: you can set the name of an axis in both the <code>labs()</code> function and the <code>scale_...()</code> functions.
 If you do both, only the name set in the latter will prevail.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">ggplot</span>(</a>
@@ -930,7 +930,7 @@ If you do both, only the name set in the latter will prevail.</p>
 <a class="sourceLine" id="cb69-7" data-line-number="7">    <span class="dt">x =</span> <span class="st">&quot;Displacement&quot;</span></a>
 <a class="sourceLine" id="cb69-8" data-line-number="8">  ) <span class="op">+</span></a>
 <a class="sourceLine" id="cb69-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_x_log10</span>(<span class="dt">name =</span> <span class="st">&quot;xxx&quot;</span>)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-name-in-scale-overwrites-labs-without-warning-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-name-in-scale-overwrites-labs-without-warning-1.png" width="624" style="display: block; margin: auto;" /></p>
 <hr />
 <p>For more control over discrete and continuous axis labels, limits and breaks, the <code>scale_&lt;axis name&gt;_&lt;variable type&gt;</code> functions exist, e.g. <code>scale_x_continuous()</code>.</p>
 <p>These enable custom axis breaks and labels if the ones autogenerated from the data are not sufficient.</p>
@@ -939,7 +939,7 @@ If you do both, only the name set in the latter will prevail.</p>
 <a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))</a></code></pre></div>
 <pre><code>## Warning: Removed 27 rows containing missing values
 ## (geom_point).</code></pre>
-<p><img src="vistransrep_files/figure-html/18-showcase-manual-axis-scaling-limits-breaks-labels-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-showcase-manual-axis-scaling-limits-breaks-labels-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>Values not falling into the custom limits will be silently droppend including a warning message.</p>
 </div>
 <div id="color-scale" class="section level3">
@@ -953,7 +953,7 @@ By default, <code>scale_color_hue()</code> will be used for categorical variable
 <a class="sourceLine" id="cb72-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb72-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb72-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_color_hue</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-default-color-palette-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-default-color-palette-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>To change the color palette, pass a palette-function of your liking in the form of</p>
 <ul>
 <li><code>scale_color_&lt;name&gt;</code></li>
@@ -970,7 +970,7 @@ To specify that we are dealing with categorical values, we add a <code>_d</code>
 <a class="sourceLine" id="cb73-4" data-line-number="4">) <span class="op">+</span></a>
 <a class="sourceLine" id="cb73-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> class)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb73-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-show-viridis-color-palette-discrete-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-show-viridis-color-palette-discrete-1.png" width="624" style="display: block; margin: auto;" /></p>
 <hr />
 <p>To take full control of the colors <code>scale_color_manual()</code> should be used.
 Here, color values (either as a string or in hex format) can be bound to a specific factor level.</p>
@@ -990,7 +990,7 @@ Another helpful scenario is when there are more levels in the data than colors s
 <a class="sourceLine" id="cb74-12" data-line-number="12">    <span class="st">&quot;subcompact&quot;</span> =<span class="st"> &quot;#FF0000&quot;</span>,</a>
 <a class="sourceLine" id="cb74-13" data-line-number="13">    <span class="st">&quot;suv&quot;</span> =<span class="st"> &quot;#FF55FF&quot;</span></a>
 <a class="sourceLine" id="cb74-14" data-line-number="14">  ))</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/18-show-how-to-set-manual-colors-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="vistransrep_files/figure-html/108-show-how-to-set-manual-colors-1.png" width="624" style="display: block; margin: auto;" /></p>
 <hr />
 <p>Review the <a href="https://github.com/cttobin/ggthemr">{ggthemr} package</a> for tools that help with establishing a “corporate design” for documents.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</a>
