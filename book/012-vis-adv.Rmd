@@ -19,9 +19,14 @@ The variables used for faceting should be passed encapsulated in `vars()`.
 (Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the faceting variables.)
 
 ```{r facet-1, eval=FALSE}
-facet_grid(facets = vars(<variable>), scales = "fixed", ...)
-facet_wrap(rows = vars(<variable>), cols = vars(<variable>), 
-           scales = "fixed", ...)
+facet_grid(facets = vars(<variable>), 
+           scales = "fixed", 
+           ...)
+
+facet_wrap(rows = vars(<variable>), 
+           cols = vars(<variable>), 
+           scales = "fixed", 
+           ...)
 ```
 
 **facet**: Variables given via `vars()` or formula with splitting variable.
@@ -53,7 +58,7 @@ ggplot(mpg, aes(displ, hwy)) +
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class `factor`).
 
-```{r facet-wrap-2}
+```{r facet-wrap-2, fig.width=8, fig.height=5}
 mpg %>% 
   mutate(manufacturer = as.factor(manufacturer)) %>% 
   mutate(year = as.factor(year)) %>% 
@@ -64,7 +69,7 @@ mpg %>%
 
 This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
 
-```{r, facet-wrap3}
+```{r, facet-wrap3, fig.width=8, fig.height=5}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_wrap(vars(manufacturer, year))
@@ -83,7 +88,7 @@ However, `facet_grid` might be preferred in the following cases:
 
 Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables where not all combinations of those contain observations:
 
-```{r out.width="50%", fig.show='hold'}
+```{r fig.width=8, fig.height=5}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
   facet_grid(vars(year), vars(cyl))
@@ -122,7 +127,7 @@ This can be achieved by setting the `labeller` argument of `facet_*` to `label_b
 
 (An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
 
-```{r }
+```{r, fig.width=8, fig.height=5}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_grid(vars(), vars(cyl), labeller = label_both)
