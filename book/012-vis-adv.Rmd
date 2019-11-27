@@ -7,6 +7,7 @@
 library(tidyverse)
 library(ggsci)
 library(ggpubr)
+theme_set(theme_pubr())
 ```
 </details>
 
@@ -47,8 +48,7 @@ facet_x = ggplot(mpg, aes(displ, hwy)) +
 facet_y = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
-  facet_grid(vars(year), vars()) +
-  theme_pubr()
+  facet_grid(vars(year), vars()) 
 ```
 
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
@@ -60,8 +60,7 @@ mpg %>%
   mutate(year = as.factor(year)) %>% 
   ggplot(aes(displ, hwy)) +
   geom_point() +
-  facet_wrap(vars(manufacturer:year)) +
-  theme_pubr()
+  facet_wrap(vars(manufacturer:year))
 ```
 
 This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
@@ -89,13 +88,11 @@ Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables 
 ```{r out.width="50%", results='hold'}
 fc_gd = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  facet_grid(vars(year), vars(cyl)) +
-  theme_pubr()
+  facet_grid(vars(year), vars(cyl))
 
 fc_wrap = ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = class)) +
-  facet_wrap(vars(year, cyl)) +
-  theme_pubr()
+  facet_wrap(vars(year, cyl))
 ```
 
 ### Scales
@@ -130,6 +127,5 @@ This can be achieved by setting the `labeller` argument of `facet_*` to `label_b
 ```{r }
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
-  facet_grid(vars(), vars(cyl), labeller = label_both) +
-  theme_pubr()
+  facet_grid(vars(), vars(cyl), labeller = label_both)
 ```
