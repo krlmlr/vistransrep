@@ -21,6 +21,11 @@ In the {tidyverse} the standard package for visualization is {ggplot2}.
 The functions of this package follow a quite unique logic (the "grammar of graphics") and therefore require a special syntax.
 In this section we want to give a short introduction, how to get started with {ggplot2}.
 
+```{r, echo=FALSE, fig.cap="© Allison Horst"}
+knitr::include_graphics("img/ggplot2_exploratory.png")
+```
+
+
 ```{r include = FALSE}
 # # One time:
 # install.packages("tidyverse") OR install.packages("ggplot2")

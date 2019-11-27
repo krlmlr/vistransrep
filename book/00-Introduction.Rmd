@@ -232,7 +232,7 @@ Finally, you can customize the actual layout
 
 ![Customize layout](img/rstudio_layout.png)
 
-## RStudio Addins
+## RStudio addins
 
 RStudio can be further enhanced by so called "addins".
 These are clickable snippets that execute certain actions in RStudio.
@@ -262,6 +262,10 @@ sample_df <- read.csv("sample.csv")
 ```
 
 **Double-plus bonus**: The [_here_](https://github.com/r-lib/here) package extends _RStudio project_ philosophy even more and helps in cases when not using RStudio (e.g. on the command line).
+
+```{r, fig.cap="© Allison Horst", echo=FALSE}
+knitr::include_graphics("img/here.png")
+```
 
 ## Alternatives to RStudio
 
