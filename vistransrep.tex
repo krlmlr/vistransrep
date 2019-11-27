@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 11:52 CET}
+\date{27 November 2019, 14:01 CET}
 
 \begin{document}
 \maketitle
@@ -292,7 +292,7 @@ Click to expand
 ##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
 ##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
 ##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
-##  tic            0.2.13.9021 2019-11-18 [1] Github (ropenscilabs/tic@9a5f965)
+##  tic            0.2.13.9021 2019-11-27 [1] Github (ropenscilabs/tic@8d76ddb)
 ##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
 ##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
 ##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
@@ -326,7 +326,7 @@ Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4
 
 \textbf{Patrick Schratz} (@pat-s)
 
-\begin{flushright}\includegraphics[width=3.47in]{img/pjs} \end{flushright}
+\begin{center}\includegraphics[width=3.47in]{img/pjs} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -419,7 +419,7 @@ In each section, exercises are provided.
 \hypertarget{why-r-and-rstudio}{%
 \subsection{Why R and RStudio?}\label{why-r-and-rstudio}}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/indeeddotcom-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/indeeddotcom-1} \end{center}
 
 \hypertarget{some-r-basics}{%
 \subsection{Some R basics}\label{some-r-basics}}
@@ -490,7 +490,7 @@ In each section, exercises are provided.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/cars_basefig-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/cars_basefig-1} \end{center}
 
 \hypertarget{ggplot2}{%
 \subsection{ggplot2}\label{ggplot2}}
@@ -508,7 +508,7 @@ In each section, exercises are provided.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/gapm_plot-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/gapm_plot-1} \end{center}
 
 \hypertarget{gganimate}{%
 \subsection{gganimate}\label{gganimate}}
@@ -864,7 +864,7 @@ By setting the arguments of the function, you can:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-empty-graph-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/11-empty-graph-1} \end{center}
 
 This created only an empty plot, because we did not tell \{ggplot2\} which geometry we want to use to display the variables we set in the \texttt{ggplot()} call.
 We do this by adding (with the help of the \texttt{+} operator after the \texttt{ggplot()}-call) a different function starting with \texttt{geom\_} to provide this information.
@@ -879,7 +879,7 @@ We do this by adding (with the help of the \texttt{+} operator after the \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-scatterplot-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/11-scatterplot-1} \end{center}
 
 This is maybe the most basic plot you can create.
 To map a different variable than \texttt{disp} to the x-axis, change the respective variable name in the \texttt{aes()} argument.
@@ -894,7 +894,7 @@ To map a different variable than \texttt{disp} to the x-axis, change the respect
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-aes-determines-which-variables-are-plotted-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/11-aes-determines-which-variables-are-plotted-1} \end{center}
 
 You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
 
@@ -908,7 +908,7 @@ You can exchange the variables to be plotted freely, without changing anything e
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-pattern-unchanged-if-only-variables-are-plotted-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/11-pattern-unchanged-if-only-variables-are-plotted-1} \end{center}
 
 Always good to have: The \emph{ggplot2} cheatsheet (\url{https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf}).
 
@@ -1129,7 +1129,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-25-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{center}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1145,7 +1145,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-26-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{center}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1195,7 +1195,7 @@ ggsave() is a convenient function for saving a plot. It defaults to \textbf{savi
 \end{Shaded}
 
 \begin{verbatim}
-## Saving 3 x 2 in image
+## Saving 5.39 x 3 in image
 \end{verbatim}
 
 \begin{Shaded}
@@ -1205,7 +1205,7 @@ ggsave() is a convenient function for saving a plot. It defaults to \textbf{savi
 \end{Shaded}
 
 \begin{verbatim}
-## Saving 3 x 2 in image
+## Saving 5.39 x 3 in image
 \end{verbatim}
 
 This might seem natural to you but is is not.
@@ -1268,7 +1268,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1276,7 +1276,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-32-2} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1467,7 +1467,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-34-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-43-1} \end{center}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1479,7 +1479,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1493,7 +1493,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-45-1} \end{center}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
@@ -1533,7 +1533,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-46-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1544,7 +1544,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-47-1} \end{center}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1562,7 +1562,7 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-48-1} \end{center}
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
@@ -1599,7 +1599,7 @@ The simplest is to set all observations of a geom to a dedicated color, supplied
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-different-color-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-different-color-1} \end{center}
 
 \hypertarget{dynamic-colors}{%
 \subsection{Dynamic colors}\label{dynamic-colors}}
@@ -1633,7 +1633,7 @@ The \texttt{class} variable is discrete and leads to a discrete color scale.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-discrete-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-discrete-1} \end{center}
 
 \textbf{Continuous}
 
@@ -1649,7 +1649,7 @@ The \texttt{cty} attribute is continuous, the color scale is adapted accordingly
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-continuous-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-continuous-1} \end{center}
 
 \hypertarget{shape}{%
 \subsection{Shape}\label{shape}}
@@ -1669,7 +1669,7 @@ One more degree of freedom is the shape of the symbols to be plotted.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-shape-as-3-rd-aesthetic-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-point-shape-as-3-rd-aesthetic-1} \end{center}
 
 \hypertarget{combining-color-and-shape}{%
 \subsection{Combining color and shape}\label{combining-color-and-shape}}
@@ -1689,7 +1689,7 @@ Color and shape can be combined.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-shape-mapped-on-drv-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-shape-mapped-on-drv-1} \end{center}
 
 And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.
 
@@ -1707,7 +1707,7 @@ And last but not least, the size of the plotted symbols can be linked to numeric
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-size-as-3-rd-aesthetic-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-point-size-as-3-rd-aesthetic-1} \end{center}
 
 You can mix different aesthetic mappings in order to produce a plot with densely packed information.
 However, be aware that adding too much information to a plot does not necessarily make it better.
@@ -1727,7 +1727,7 @@ However, be aware that adding too much information to a plot does not necessaril
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-mix-to-increase-num-of-aesthetics-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-mix-to-increase-num-of-aesthetics-1} \end{center}
 
 \hypertarget{transparency}{%
 \subsection{Transparency}\label{transparency}}
@@ -1748,7 +1748,7 @@ This is useful to get an impression of how many data points share the same coord
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-semi-transparency-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-semi-transparency-1} \end{center}
 
 \hypertarget{what-can-go-wrong}{%
 \subsection{What can go wrong}\label{what-can-go-wrong}}
@@ -1773,7 +1773,7 @@ If you try to specify a color in the \texttt{mapping}-argument of the main \text
 ## Error in FUN(X[[i]], ...): object 'blue' not found
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{center}
 
 R treats objects without quotation marks in a special way, expecting them to be variables.
 Since \texttt{blue} is not a variable of \texttt{mpg}, this did not work.
@@ -1822,7 +1822,7 @@ So what if we pass the color as a character variable?
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-quoted-color-in-aes-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-quoted-color-in-aes-1} \end{center}
 
 At least there was no error, but now the constant value \texttt{blue} is mapped to the first default color of the color mapping, which happens to be red.
 We could have been fooled, if it had been blue.
@@ -1843,7 +1843,7 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{center}
 
 \hypertarget{labels}{%
 \section{Labels}\label{labels}}
@@ -1867,7 +1867,7 @@ For character variables there is further way of integrating its value to a plot.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-geom-text-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/13-geom-text-1} \end{center}
 
 Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset in the \texttt{mapping} argument of \texttt{ggplot()}.
 
@@ -1881,7 +1881,7 @@ Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-set-label-in-aes-for-geom-text-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/13-set-label-in-aes-for-geom-text-1} \end{center}
 
 Right, of course we need to pass the variable without quotation marks, otherwise it is interpreted as a (constant) character variable.
 When changing this, a vector with the values of the variable is passed on to \texttt{geom\_text()}.
@@ -1897,7 +1897,7 @@ This is one way of including the values of character variables in a plot.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-3-rd-aesthetic-as-label-for-geom-text-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/13-3-rd-aesthetic-as-label-for-geom-text-1} \end{center}
 
 When adding more than one \texttt{geom()}-function, multiple geometries are added to the plot.
 However, because \texttt{geom\_point()} has no support for passing a label, we can only use this mapping in \texttt{geom\_text()}.
@@ -1913,7 +1913,7 @@ However, because \texttt{geom\_point()} has no support for passing a label, we c
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/13-two-layers-1} \end{center}
 
 Since this looks just slightly odd, let's try to make it more apparent, what is happening.
 
@@ -1928,10 +1928,230 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{center}
 
 \hypertarget{vis-adv}{%
 \chapter{\{ggplot2\} advanced}\label{vis-adv}}
+
+\hypertarget{facetting}{%
+\section{Facetting}\label{facetting}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(ggsci)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: magrittr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'magrittr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     set_names
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:tidyr':
+## 
+##     extract
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(patchwork)}
+\end{Highlighting}
+\end{Shaded}
+
+``Facetting'' (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
+
+The variables used for facetting should be passed encapsulated in \texttt{vars()}.
+(Before \{ggplot2\} v3.0.0 the default was to use a formula notation (\texttt{\textless{}variable\textgreater{}\ \textasciitilde{}\ \textless{}variable\textgreater{}}) to specify the facetting variables.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{facet_grid}\NormalTok{(}\DataTypeTok{facets =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
+\KeywordTok{facet_wrap}\NormalTok{(}\DataTypeTok{rows =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{cols =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
+           \DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{facet}: Variables given via \texttt{vars()} or formula with splitting variable.
+
+\textbf{scales}: Scale of the axes over the sub-graphics.
+
+The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wrap()} denotes on which axis the facets will appear:
+
+\begin{itemize}
+\item
+  \texttt{vars(\textless{}variable\textgreater{})} \(\rightarrow\) y-axis
+\item
+  \texttt{vars(),\ vars(\textless{}variable\textgreater{})} \(\rightarrow\) x-axis
+\end{itemize}
+
+\includegraphics{img/facets.png}
+
+\hypertarget{facet_wrap}{%
+\subsection{\texorpdfstring{\texttt{facet\_wrap()}}{facet\_wrap()}}\label{facet_wrap}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{facet_x =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+
+\NormalTok{facet_y =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{()) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{facet_x }\OperatorTok{+}\StringTok{ }\NormalTok{facet_y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+Facets can also be shown on both axes using different (categorical) variables.
+For this, \texttt{facet\_grid()} is useful:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{rows =} \KeywordTok{vars}\NormalTok{(year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
+(For this to work, the variables need to be of class \texttt{factor}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{manufacturer =} \KeywordTok{as.factor}\NormalTok{(manufacturer)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.factor}\NormalTok{(year)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer}\OperatorTok{:}\NormalTok{year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+This is usually a better setting than doubling the facet labels - but might also be up to personal preference.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer, year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-8-1} \end{center}
+
+\hypertarget{facet_grid}{%
+\subsection{\texorpdfstring{\texttt{facet\_grid()}}{facet\_grid()}}\label{facet_grid}}
+
+While \texttt{facet\_wrap()} tries to act smart and hide non-existing combinations of sub-plots, \texttt{facet\_grid()} will create a full matrix of sub-plots for all possible combinations.
+Most of the time when using only one categorical variable, \texttt{facet\_wrap()} does a good job and is preferred over \texttt{facet\_grid()}.
+
+However, \texttt{facet\_grid} might be preferred in the following cases:
+
+\begin{itemize}
+\item
+  when facetting over \textgreater{}= 2 variables
+\item
+  when plots of empty combinations should be shown
+\end{itemize}
+
+Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 grouping variables where not all combinations of those contain observations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fc_gd =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+
+\NormalTok{fc_wrap =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+
+\NormalTok{fc_gd }\OperatorTok{/}\StringTok{ }\NormalTok{fc_wrap}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-9-1} \end{center}
+
+\hypertarget{scales}{%
+\subsection{Scales}\label{scales}}
+
+By default, scales are fixed across each facet (\texttt{scales\ =\ "fixed"}).
+This means that all sub-plots should share the same axes.
+By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one can specify that each each sub-plot should have its own scale.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{(}\DataTypeTok{base_size =} \DecValTok{7}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+This only makes sense if the ranges for each facet differ substantially (so not in this example!).
+This example is good to show the confusion that this setting might introduce.
+People usually expect to look at \textbf{equal ranges} across facets (unless there is a good reason for it not to) and differing scales make the plot more complicated.
+
+Keep in mind: Visualization should \emph{simplify} data!
+
+\hypertarget{renaming-of-facet-labels}{%
+\subsection{Renaming of facet labels}\label{renaming-of-facet-labels}}
+
+A non-trivial change that is often applied to facet plots is the (re-)naming of the facet labels.
+Facet labels are automatically created based on the factor levels of the respective variable.
+However, sometimes the raw factor levels are not descriptive enough.
+In these cases, it makes sense to prefix the factor level values with the column name.
+This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\_*} to \texttt{label\_both}.
+
+(An alternative would be to modify the underlying factor levels of the data so that these are descriptive right from the start.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{labeller =}\NormalTok{ label_both) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \hypertarget{extensions}{%
 \section{Extensions}\label{extensions}}
@@ -1970,32 +2190,6 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(ggsci)}
 \KeywordTok{library}\NormalTok{(ggpubr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: magrittr
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'magrittr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:purrr':
-## 
-##     set_names
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(patchwork)}
 \KeywordTok{library}\NormalTok{(ggpmisc)}
 \end{Highlighting}
@@ -2040,7 +2234,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/patchwork-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/patchwork-1} \end{center}
 
 \hypertarget{ggforce}{%
 \subsection{\{ggforce\}}\label{ggforce}}
@@ -2053,7 +2247,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/ggforce-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/ggforce-1} \end{center}
 
 \hypertarget{gganimate-1}{%
 \subsection{\{gganimate\}}\label{gganimate-1}}
@@ -2120,7 +2314,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/ggtext-2-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/ggtext-2-1} \end{center}
 
 \hypertarget{ggrepel}{%
 \subsection{\{ggrepel\}}\label{ggrepel}}
@@ -2149,7 +2343,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-3-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
@@ -2191,7 +2385,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/ggbeeswarm-3-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/ggbeeswarm-3-1} \end{center}
 
 \hypertarget{ggpmisc}{%
 \subsection{\{ggpmisc\}}\label{ggpmisc}}
@@ -2224,7 +2418,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/ggpmisc-2-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/ggpmisc-2-1} \end{center}
 
 \hypertarget{esquisse}{%
 \subsection{\{esquisse\}}\label{esquisse}}
@@ -3756,7 +3950,7 @@ Here is a basic barplot of \texttt{flights\$carrier}:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-1} \end{center}
 
 Same with one facet per month:
 
@@ -3769,7 +3963,7 @@ Same with one facet per month:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-one-facet-per-month-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-bar-plot-flights-per-carrier-one-facet-per-month-1} \end{center}
 
 We can extract a function that takes any data and produces a barplot of the variable \texttt{carrier}:
 
@@ -3785,7 +3979,7 @@ We can extract a function that takes any data and produces a barplot of the vari
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-extract-a-function-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-extract-a-function-1} \end{center}
 
 The result of \texttt{ggplot()} is first and foremost an object.
 Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the ``Viewer''.
@@ -3828,84 +4022,84 @@ When using \texttt{dplyr::pull()} (this function ``extracts'' a variable from a 
 ## [[1]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-1} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[2]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-2} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-2} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[3]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-3} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-3} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[4]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-4} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-4} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[5]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-5} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-5} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[6]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-6} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-6} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[7]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-7} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-7} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[8]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-8} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-8} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[9]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-9} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-9} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[10]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-10} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-10} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[11]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-11} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-11} \end{center}
 
 \begin{verbatim}
 ## 
 ## [[12]]
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-12} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/28-show-the-plots-12} \end{center}
 
 Use the left arrow to click through the different plots.
 
@@ -4517,7 +4711,7 @@ For a bar chart that shows cases and population side by side, mapped to the \tex
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4530,7 +4724,7 @@ For a bar chart that shows cases and population side by side, mapped to the \tex
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2} \end{center}
 
 On the other hand, iIf only a single measurement needs to be plotted, the ``wider'' form is easier to work with.
 
@@ -4551,7 +4745,7 @@ On the other hand, iIf only a single measurement needs to be plotted, the ``wide
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4563,7 +4757,7 @@ On the other hand, iIf only a single measurement needs to be plotted, the ``wide
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-2} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-2} \end{center}
 
 The ``wider'' form is also the only way to map different measures to different aesthetics, e.g.~to correlate values.
 
@@ -4577,7 +4771,7 @@ The ``wider'' form is also the only way to map different measures to different a
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-the-only-way-to-correlate-values-1} \end{flushright}
+\begin{center}\includegraphics{vistransrep_files/figure-latex/41-wider-form-the-only-way-to-correlate-values-1} \end{center}
 
 \hypertarget{combining-vertically}{%
 \subsection{Combining vertically}\label{combining-vertically}}
