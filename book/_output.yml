@@ -12,12 +12,10 @@ bookdown::gitbook:
   config:
     download: [pdf]
     edit: null
-    sharing:
-      facebook: no
-      twitter: no
-      linkedin: no
-      github: yes
+    sharing: no
     toc:
       collapse: section
+      before: |
+        <li><strong><a href="./">vistransrep</a></strong></li>
 
 bookdown::epub_book: default
