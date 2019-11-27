@@ -15,8 +15,8 @@ theme_set(theme_pubr())
 
 "Facetting" (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
 
-The variables used for facetting should be passed encapsulated in `vars()`.
-(Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the facetting variables.)
+The variables used for faceting should be passed encapsulated in `vars()`.
+(Before {ggplot2} v3.0.0 the default was to use a formula notation (`<variable> ~ <variable>`) to specify the faceting variables.)
 
 ```{r facet-1, eval=FALSE}
 facet_grid(facets = vars(<variable>), scales = "fixed", ...)
@@ -77,7 +77,7 @@ Most of the time when using only one categorical variable, `facet_wrap()` does a
 
 However, `facet_grid` might be preferred in the following cases:
 
-- when facetting over >= 2 variables
+- when faceting over >= 2 variables
 
 - when plots of empty combinations should be shown
 
