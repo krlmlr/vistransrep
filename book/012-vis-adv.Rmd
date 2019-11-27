@@ -90,7 +90,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ### `facet_grid()`
 
-While `facet_wrap()` tries to act smart and share axes of sub-plots, `facet_grid()` will create a grid of sub-plots each having their own axes.
+While `facet_wrap()` tries to act smart and hide non-existing combinations of sub-plots, `facet_grid()` will create a full matrix of sub-plots for all possible combinations.
 Most of the time when using only one categorical variable, `facet_wrap()` does a good job and is preferred over `facet_grid()`.
 
 However, `facet_grid` might be preferred in the following cases:
@@ -99,7 +99,7 @@ However, `facet_grid` might be preferred in the following cases:
 
 - when plots of empty combinations should be shown
 
-Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables
+Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables where not all combinations of those contain observations:
 
 ```{r, fig.height=10}
 fc_gd = ggplot(mpg, aes(displ, hwy)) +
