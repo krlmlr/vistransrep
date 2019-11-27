@@ -14,7 +14,9 @@ bookdown::gitbook:
   config:
     download: [pdf]
     edit: null
-    sharing: no
+    sharing:
+      facebook: no
+      github: yes
     toc:
       collapse: section
       before: |

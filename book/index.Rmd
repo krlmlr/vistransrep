@@ -7,6 +7,8 @@ site: bookdown::bookdown_site
 bibliography: book.bib
 biblio-style: apa-old.cls
 link-citations: true
+url: 'https\://krlmlr.github.io/vistransrep'
+github-repo: krlmlr/vistransrep
 nocite: "@grolemund2017"
 always_allow_html: true
 ---
