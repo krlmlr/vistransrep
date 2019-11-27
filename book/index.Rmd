@@ -19,7 +19,7 @@ if (knitr::is_latex_output()) {
   knitr::opts_chunk$set(fig.width = 3, fig.height = 2, fig.align = "right")
   options(width = 62)
 } else {
-  knitr::opts_chunk$set(fig.width = 5.4, fig.height = 3, fig.align = "center")
+  knitr::opts_chunk$set(fig.width = 6.5, fig.height = 4, fig.align = "center")
   options(crayon.enabled = TRUE, pillar.bold = TRUE)
   fansi::set_knit_hooks(knitr::knit_hooks)
 }
