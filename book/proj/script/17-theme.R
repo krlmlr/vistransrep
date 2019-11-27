@@ -1,19 +1,13 @@
-### Plotting: themes
+### Themes
 
 library(tidyverse)
-library(nycflights13)
-
-library(conflicted)
-conflict_prefer("filter", "dplyr")
-conflict_prefer("lag", "dplyr")
-
 # Base plot
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
 ) +
   geom_point() +
-  theme_void()
+  theme_grey()
 
 # bw-theme
 ggplot(
@@ -40,25 +34,6 @@ ggplot(
   theme_bw() +
   theme(legend.position = "bottom")
 
-# Occasionally useful: vertical text at x axis
-## ggplot(
-##   data = mpg,
-##   mapping = aes(x = displ, y = hwy, color = class)
-## ) +
-##   geom_point() +
-##   theme_bw() +
-##   theme(........)
-
-# Easier with ggpubr package
-ggplot(
-  data = mpg,
-  mapping = aes(x = displ, y = hwy, color = class)
-) +
-  geom_point() +
-  theme_bw() +
-  ggpubr::rotate_x_text()
-
-# theme_()-functions overwrite theme() if called afterwards
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -74,3 +49,11 @@ ggplot(
 ) +
   geom_point() +
   theme_bw(16)
+
+# predefined themes available, e.g. in ggpubr package
+ggplot(
+  data = mpg,
+  mapping = aes(x = displ, y = hwy, color = class)
+) +
+  geom_point() +
+  ggpubr::theme_pubr()

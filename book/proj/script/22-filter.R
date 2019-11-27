@@ -10,6 +10,8 @@ conflict_prefer("filter", "dplyr")
 flights
 ?flights
 
+## ?flights
+
 # all filters are logical: numeric comparison
 flights %>%
   filter(dep_time < 600)
