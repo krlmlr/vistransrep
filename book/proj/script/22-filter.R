@@ -6,10 +6,10 @@ library(nycflights13)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 
-# example data
+# show example data
 flights
-?flights
 
+# access help for example data
 ## ?flights
 
 # all filters are logical: numeric comparison
