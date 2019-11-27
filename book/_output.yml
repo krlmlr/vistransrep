@@ -8,16 +8,16 @@ bookdown::pdf_book:
   highlight: haddock
 
 bookdown::gitbook:
-  css: scroll.css
+  css:
+    - scroll.css
+    - extra.css
   config:
     download: [pdf]
     edit: null
-    sharing:
-      facebook: no
-      twitter: no
-      linkedin: no
-      github: yes
+    sharing: no
     toc:
       collapse: section
+      before: |
+        <li><strong><a href="./">vistransrep</a></strong></li>
 
 bookdown::epub_book: default
