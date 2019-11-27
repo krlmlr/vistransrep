@@ -7,7 +7,6 @@
 ```
 ```{r 11-setup-11-mpg-r}
 library(tidyverse)
-knitr::opts_chunk$set(fig.width = 8, fig.height = 5)
 ```
 </details>
 

@@ -13,12 +13,13 @@ always_allow_html: true
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(cache = FALSE)
-knitr::opts_chunk$set(fig.width = 3, fig.height = 2, fig.align = "right")
-options(tibble.print_min = 3, tibble.print_max = 5, max.print = 20)
+options(tibble.print_min = 3, tibble.print_max = 6, max.print = 20)
 if (!knitr::is_latex_output()) {
+  knitr::opts_chunk$set(fig.width = 3, fig.height = 2, fig.align = "right")
   options(crayon.enabled = TRUE, pillar.bold = TRUE)
   fansi::set_knit_hooks(knitr::knit_hooks)
 } else {
+  knitr::opts_chunk$set(fig.width = 5.4, fig.height = 3, fig.align = "center")
   options(width = 62)
 }
 library(tidyverse)
