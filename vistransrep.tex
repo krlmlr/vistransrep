@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 14:17 CET}
+\date{27 November 2019, 14:39 CET}
 
 \begin{document}
 \maketitle
@@ -1967,6 +1967,12 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 ##     extract
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{theme_set}\NormalTok{(}\KeywordTok{theme_pubr}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
 ``Facetting'' (or trellis plots, lattice plots) denotes an idea of dividing a graphic into sub-graphics based on the (categorical) values of one or more variables of a dataset.
 
 The variables used for facetting should be passed encapsulated in \texttt{vars()}.
@@ -2000,19 +2006,25 @@ The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wra
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{facet_x =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(year)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
-
-\NormalTok{facet_y =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{()) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(year))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ fl)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_nejm}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{()) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-2} \end{flushright}
 
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class \texttt{factor}).
@@ -2024,8 +2036,7 @@ Rather than visualizing a 2D-facet plot on x and y, there is also the option to 
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.factor}\NormalTok{(year)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer}\OperatorTok{:}\NormalTok{year)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer}\OperatorTok{:}\NormalTok{year))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2037,8 +2048,7 @@ This is usually a better setting than doubling the facet labels - but might also
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer, year)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(manufacturer, year))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2063,17 +2073,23 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fc_gd =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
-
-\NormalTok{fc_wrap =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl))}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-2} \end{flushright}
 
 \hypertarget{scales}{%
 \subsection{Scales}\label{scales}}
@@ -2114,8 +2130,7 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{labeller =}\NormalTok{ label_both) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(), }\KeywordTok{vars}\NormalTok{(cyl), }\DataTypeTok{labeller =}\NormalTok{ label_both)}
 \end{Highlighting}
 \end{Shaded}
 
