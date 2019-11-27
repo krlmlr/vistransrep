@@ -1,5 +1,3 @@
-# (PART) Tidying, transforming and importing {-}
-
 # Transformation {#transformation}
 
 > Using a consistent grammar of data manipulation.

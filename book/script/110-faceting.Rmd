@@ -1,9 +1,16 @@
-# {ggplot2} advanced {#vis-adv}
+```{r 110-remove-all, include = FALSE}
+rm(list = ls())
+```
+
 
 ## Facetting
 
 <details><summary>*Click here to show setup code.*</summary>
-```{r setup-vis-adv}
+```{r include = FALSE}
+### Facetting
+
+```
+```{r 110-setup-110-faceting-r}
 library(tidyverse)
 library(ggsci)
 library(ggpubr)

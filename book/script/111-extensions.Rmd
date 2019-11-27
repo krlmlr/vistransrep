@@ -1,3 +1,8 @@
+```{r 111-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## Extensions
 
 A mass of R packages extending {ggplot2} exists.
@@ -28,7 +33,11 @@ Here is a selected list of our favorite {ggplot2} extensions including some use 
 ( {lindia}: https://github.com/yeukyul/lindia )
 
 <details><summary>*Click here to show setup code.*</summary>
-```{r setup-vis-ext}
+```{r include = FALSE}
+### Extensions
+
+```
+```{r 111-setup-111-extensions-r}
 library(tidyverse)
 library(ggsci)
 library(ggpubr)

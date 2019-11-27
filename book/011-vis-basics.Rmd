@@ -1,9 +1,0 @@
-# {ggplot2} basics {#vis-basics}
-
-> Embracing the grammar of graphics.
-
-This chapter discusses plotting with the [ggplot2 package](https://ggplot2.tidyverse.org/).
-
-```{r 01-Visualization-1, child = here::here("script", "1.Rmd")}
-```
-

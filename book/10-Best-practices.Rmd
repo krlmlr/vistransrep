@@ -1,6 +1,4 @@
-# (PART) Appendix {-}
-
-# Best practices
+# Appendix: Best practices
 
 R code is often organized in packages that can be installed from centralized repositories such as CRAN or GitHub.
 If you are new to writing R packages, this course cannot give a complete introduction into packages.

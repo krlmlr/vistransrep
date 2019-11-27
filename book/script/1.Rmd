@@ -24,3 +24,9 @@
 
 ```{r child = here::here("script", "109-export.Rmd")}
 ```
+
+```{r child = here::here("script", "110-faceting.Rmd")}
+```
+
+```{r child = here::here("script", "111-extensions.Rmd")}
+```
