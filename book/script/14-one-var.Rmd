@@ -41,3 +41,7 @@ For discrete data, there is actually only one visualization method - the bar plo
 ggplot(mpg, aes(fl)) +
   geom_bar()
 ```
+
+## Exercises
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html

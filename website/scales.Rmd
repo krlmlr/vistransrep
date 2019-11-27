@@ -1,6 +1,6 @@
 ---
 title: "Scales"
-author: "Kirill Müller, cynkra GmbH"
+author: "Kirill Müller, Patrick Schratz"
 output: html_document
 ---
 
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 Choose one or two of your previous plots, and give the scales a proper name.
 
-Hint: Use one or more `scale_...()` functions.
+Hint: Use one or more `scale_...()` functions or the `labs()` function.
    
 ```
 ggplot(
@@ -49,7 +49,7 @@ ggplot(data = mpg) +
   scale_color_discrete(name = "Year")
 ```
 
-There exist shortcuts `xlab()` and `ylab()` for x and y labels, but not for color or fill. I recommend to stick with the explicit versions.
+There exist shortcuts `xlab()` and `ylab()` for x and y labels, but not for color or fill. We recommend to stick with the explicit versions.
 </details>
 
 ## Changing scales twice
@@ -68,33 +68,20 @@ ggplot(data = mpg) +
 ```
 </details>
 
-## ColorBrewer scales
+## A better scale for the 'car' class
 
-Add an overview over all available colorblind friendly Brewer scales to your rmarkdown document.
-
-Hint: Insert a code chunk containing `RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)`
-
-<details>
-<summary>&#x25BA; Solution:</summary>
-```{r scales-3}
-RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)
-```
-</details>
-
-## A better scale for car class
-
-Choose an appealing scale for one of your plots that use the "color" or "fill" aesthetics. Apply it with `scale_..._brewer("<name>", palette = "<palette>")`
+Choose an appealing color scale for one of your plots that use the "color" or "fill" aesthetics. Apply it with `scale_..._brewer("<name>", palette = "<palette>")`
 
 Hint: Use `scale_..._distiller()` if you have mapped a continuous variable.
 
 <details>
 <summary>&#x25BA; Solution:</summary>
 ```{r scales-4, echo=TRUE}
-ggplot(data = mpg) +
-  geom_jitter(mapping = aes(x = displ, y = hwy, color = class)) +
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_jitter(mapping = aes(color = class)) +
   scale_x_continuous(name = "Displacement") +
   scale_y_continuous(name = "Fuel economy [miles per gallon]") +
-  scale_color_brewer(name = "Car class", palette = "Set2")
+  scale_color_viridis_d(name = "Car class", option = "A")
 ```
 </details>
 

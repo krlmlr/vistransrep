@@ -1,6 +1,6 @@
 ---
 title: "Scatterplots"
-author: "Kirill Müller, cynkra GmbH"
+author: "Kirill Müller, Patrick Schratz"
 output: html_document
 ---
 
@@ -98,41 +98,6 @@ ggplot(data = ___) +
 ```{r scatter-7, echo=TRUE}
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = 235 / hwy))
-```
-</details>
-
-## Overplotting
-
-How can you reduce overplotting? Use your favorite search engine to find out.
-
-```    
-ggplot(data = ___) +
-  geom____(_____)
-```
-
-<details>
-<summary>&#x25BA; Solution:</summary>
-Jitter and transparency are two options:
-
-```{r scatter-8, echo=TRUE}
-ggplot(data = mpg) +
-  geom_jitter(mapping = aes(x = displ, y = 235 / hwy))
-
-ggplot(data = mpg) +
-  geom_point(
-    mapping = aes(x = displ, y = 235 / hwy),
-    alpha = 0.3
-  )
-```
-
-It's also possible to combine them:
-
-```{r scatter-9, echo=TRUE}
-ggplot(data = mpg) +
-  geom_jitter(
-    mapping = aes(x = displ, y = 235 / hwy),
-    alpha = 0.3
-  )
 ```
 </details>
 

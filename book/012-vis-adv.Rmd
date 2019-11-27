@@ -127,3 +127,7 @@ ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   facet_grid(vars(), vars(cyl), labeller = label_both)
 ```
+
+**Exercises**
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/facet.html

@@ -165,3 +165,7 @@ Review the [{ggthemr} package](https://github.com/cttobin/ggthemr) for tools tha
 install.packages("remotes")
 remotes::install_packages("cttobin/ggthemr")
 ```
+
+**Exercises**
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/scales.html

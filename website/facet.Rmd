@@ -1,6 +1,6 @@
 ---
 title: "Facets"
-author: "Kirill Müller, cynkra GmbH"
+author: "Kirill Müller, Patrick Schratz"
 output: html_document
 ---
 
@@ -129,6 +129,7 @@ ggplot(data = mpg) +
 
 Experiment with other arguments to `facet_wrap()` and `facet_grid()`.
 
+
 ## More exercises
 
-Find more exercises in Section 3.5.1 of r4ds.
+Find more exercises in [Section 3.5.1 of r4ds](https://r4ds.had.co.nz/data-visualisation.html#exercises-2).
