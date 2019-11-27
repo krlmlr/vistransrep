@@ -18,6 +18,6 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><strong><a href="./">vistransrep</a></strong></li>
+        <li><strong><a href="./">VisTransRep</a></strong></li>
 
 bookdown::epub_book: default
