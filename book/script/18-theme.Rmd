@@ -101,3 +101,6 @@ ggplot(
   geom_point() +
   ggpubr::theme_pubr()
 ```
+
+Also from here onward we will use `theme_pubr()` as the default theme for plots.
+This can be done by setting 
