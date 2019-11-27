@@ -104,6 +104,11 @@ Licensed under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 knitr::include_graphics("img/kirill.jpg")
 ```
 
+- Co-founder cynkra
+- Computer + data science
+- Workflows, user interfaces, databases
+- R package author + maintainer
+
 **Patrick Schratz** (\@pat-s) https://pat-s.me
 
 ```{r, echo=FALSE}
