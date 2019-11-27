@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 14:39 CET}
+\date{27 November 2019, 14:47 CET}
 
 \begin{document}
 \maketitle
@@ -1129,7 +1129,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-28-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-29-1} \end{flushright}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1145,7 +1145,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-29-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-30-1} \end{flushright}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1268,7 +1268,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1276,7 +1276,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-35-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-36-2} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1467,7 +1467,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1479,7 +1479,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-38-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1493,7 +1493,7 @@ Some best practices:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
@@ -1533,7 +1533,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1544,7 +1544,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-42-1} \end{flushright}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1562,7 +1562,7 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-42-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-43-1} \end{flushright}
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
@@ -5291,6 +5291,205 @@ See the help for further details.
 
 \hypertarget{part-reporting}{%
 \part{Reporting}\label{part-reporting}}
+
+\hypertarget{reporting}{%
+\chapter{Reporting}\label{reporting}}
+
+After the successful processing and visualization of the data, the results need to be reported.
+This can be done best in a ``literate programming'' fashion as provided by R Markdown.
+
+Using R Markdown, one is able to combine R code (and its results) with text (written in \emph{markdown}) to create professional looking reports in various output formats (Word, PDF, HTML).
+
+Both interactive and static documents can be created.
+\href{https://rmarkdown.rstudio.com/gallery.html}{This gallery} (maintained by RStudio) gives a first overview of how documents created using R Markdown can look like.
+
+\hypertarget{overview}{%
+\section{Overview}\label{overview}}
+
+File Format: \texttt{.Rmd} (R Markdown)
+
+New document (in RStudio): \texttt{File\ -\textgreater{}\ New\ File\ -\textgreater{}\ R\ Markdown/R\ Notebook}.
+LaTeX Math is supported via \href{https://www.mathjax.org/}{Mathjax}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{$}\NormalTok{y=\textbackslash{}frac\{(x }\OperatorTok{-}\StringTok{ }\NormalTok{\textbackslash{}mu)\}\{(max }\OperatorTok{-}\StringTok{ }\NormalTok{min)\}}\OperatorTok{$}
+\end{Highlighting}
+\end{Shaded}
+
+\(y=\frac{(x - \mu)}{(max - min)}\)
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Any file with the \texttt{.Rmd} file extension is an ``R Markdown document''.
+RMD's consist \textbf{code} and \textbf{text} (written in \emph{markdown} syntax) which need to be \emph{compiled} into a high-level output format.
+
+Possible output formats are:
+
+\begin{itemize}
+\item
+  HTML
+\item
+  PDF
+\item
+  Word
+\item
+  Powerpoint
+\end{itemize}
+
+Which output format should be used is specified in the ``YAML header'' of the R Markdown document.
+
+\hypertarget{the-yaml-header}{%
+\section{The YAML header}\label{the-yaml-header}}
+
+In the YAML (Yet Another Markup Language) header users can specify metadata which denote the final appearance of the document.
+
+Each output format has different settings.
+Fortunately, most settings apply to all formats.
+
+The YAML header starts and ends with three dashes: \texttt{-\/-\/-}.
+The \textbf{output} field is mandatory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{---}
+\FunctionTok{title:}\AttributeTok{ }\StringTok{"<title>"}
+\FunctionTok{author:}\AttributeTok{ }\StringTok{"<author>"}
+\FunctionTok{date:}\AttributeTok{ }\StringTok{"2019-11-27"}
+\FunctionTok{output:}
+  \FunctionTok{rmarkdown:}\AttributeTok{:html_document:}
+    \FunctionTok{toc:}\AttributeTok{ yes}
+    \FunctionTok{number_sections:}\AttributeTok{ yes}
+    \FunctionTok{fig_caption:}\AttributeTok{ yes}
+    \FunctionTok{css:}\AttributeTok{ ../custom.css}
+\FunctionTok{bibliography:}\AttributeTok{ lib.bib}
+\FunctionTok{biblio-style:}\AttributeTok{ apalike}
+\OtherTok{---}
+\end{Highlighting}
+\end{Shaded}
+
+Valid options for each output format can usually be looked up in the help page of the specific output format.
+
+For the default output format \texttt{html\_document} the \href{https://bookdown.org/yihui/rmarkdown/html-document.html}{R Markdown - The definitive guide} book is a good reference.
+
+An \href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{R Markdown cheatsheet} also exists.
+
+\hypertarget{literate-programming-in-r}{%
+\section{Literate programming in R}\label{literate-programming-in-r}}
+
+Packages \{\{rmarkdown\}\} and \{\{knitr\}\} are the base of literate programming in R.
+
+RMD's documents can be compiled
+
+\begin{itemize}
+\item
+  by clicking the ``knit'' button in RStudio (the name relates to the \{\{knitr\}\} package)
+\item
+  via the command line by calling \texttt{rmarkdown::render()}
+\end{itemize}
+
+Behind the scenes the \{\{rmarkdown\}\} package first converts the \texttt{.Rmd} file to \texttt{.md} (markdown).
+Then \href{https://pandoc.org/}{pandoc}, which is a universal markdown converter library, converts the \texttt{.md} file to the chosen output format.
+
+\hypertarget{r-markdown-packages}{%
+\subsection{R Markdown packages}\label{r-markdown-packages}}
+
+The following packages are built upon \{\{rmarkdown\}\} and simplify special purposes.
+
+\begin{itemize}
+\item
+  \href{https://bookdown.org/yihui/bookdown/}{bookdown}: Mainly used for writing books but can also be used for reports (formats \texttt{html\_document2}, \texttt{git\_book}, \texttt{pdf\_book}, etc.).
+\item
+  \href{https://github.com/ismayc/thesisdown}{thesisdown}: A package for thesis writing.
+  Provides ready-to-go templates for different types and simplifies advanced LaTeX usage.
+\item
+  \href{https://github.com/juba/rmdformats}{rmdformats}, \href{https://github.com/eddelbuettel/pinp}{pinp} : Different templates for literate programming documents.
+\item
+  \href{https://github.com/yihui/xaringan}{xaringan}: For HTML presentations via \href{https://remarkjs.com}{remark.js}.
+\item
+  \href{https://github.com/rstudio/blogdown}{blogdown}: For creating websites. Example: \url{https://pjs-web.de/}
+\item
+  \href{https://github.com/rstudio/rticles}{rticles}: For scientific paper writing in R.
+\end{itemize}
+
+\hypertarget{code-chunks-in-r-markdown}{%
+\subsection{Code chunks in R Markdown}\label{code-chunks-in-r-markdown}}
+
+To insert code into an R Markdown document, one needs to add a so called ``code chunk''.
+
+\begin{verbatim}
+```{<language>}
+
+```
+\end{verbatim}
+
+This tells the document that everything within the three backticks should be interpreted as code using the given language.
+Code can be shown/hidden, evaluation can be prevented on demand, results can be cached, etc.
+See \url{https://yihui.org/knitr/options/} for a full list of supported options
+
+\hypertarget{r-notebooks}{%
+\subsection{R Notebooks}\label{r-notebooks}}
+
+\href{https://bookdown.org/yihui/rmarkdown/notebook.html}{R Notebooks} are a special form of the \texttt{html\_document}.
+To use it, specify \texttt{html\_notebook} as the ``output'' type in the YAML header.
+This output format was created by RStudio as an alternative to \texttt{html\_document}.
+
+Differences compared to \texttt{html\_document}:
+
+\begin{itemize}
+\item
+  Code output is shown inside the editor and not in the console (can be changed)
+\item
+  Instant preview of the output document without having to get all the code in the document running. The results from the last successful code execution will be used (if there was one).
+\item
+  Link in the HTML doc to download the source \texttt{.Rmd} file
+\item
+  Option to toggle on/off code chunks for the whole document
+\item
+  Output file extension is named \texttt{.nb.html}
+\end{itemize}
+
+\hypertarget{workflow}{%
+\subsection{Workflow}\label{workflow}}
+
+R Markdown documents are most often used for reporting of results created in an Rscript.
+This enables a seamless integration of data processing tasks into the subsequent reporting.
+
+Reporting often splits up into different formats:
+
+\begin{itemize}
+\tightlist
+\item
+  Talks using presentation slides (\href{https://bookdown.org/yihui/rmarkdown/xaringan.html}{xaringan}, \href{https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html}{ioslides}, \href{https://bookdown.org/yihui/rmarkdown/slidy-presentation.html}{Slidy}, \href{https://bookdown.org/yihui/rmarkdown/beamer-presentation.html}{Beamer}, \href{https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html}{Powerpoint})
+\item
+  written reports (Word, PDF), possibly using LaTeX input
+\end{itemize}
+
+R objects (containing results) can directly be used in the reports to present the results (data, plots).
+If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g.~incoming data) can easily be integrated.
+
+This is the point where packages like \href{https://docs.ropensci.org/drake/}{drake}, \href{https://jdblischak.github.io/workflowr/}{workflowr} and \href{https://github.com/benmarwick/rrtools}{rrtools} jump in to simplify reproducible workflows in R.
+
+A widely used concept is to start a project following the structure of an R package.
+This helps due to
+
+\begin{itemize}
+\tightlist
+\item
+  a consistent directory structure of R scripts and R Markdown documents
+\item
+  documented custom functions
+\item
+  simplified integration into workflow packages like \{\{drake\}\} and friends.
+\end{itemize}
+
+R ``research packages'' can be installed locally like any other R package and simplify usage and sharing among colleagues.
+
+\hypertarget{shiny-interactive-visualizations}{%
+\section{Shiny: Interactive visualizations}\label{shiny-interactive-visualizations}}
+
+Javascript based R ecosystem which provides options for rich visualizations.
+\href{https://shiny.rstudio.com/gallery/}{The shiny gallery from RStudio} gives a good overview what can be done using \texttt{shiny}.
 
 \hypertarget{part-appendix}{%
 \part{Appendix}\label{part-appendix}}
