@@ -49,9 +49,9 @@ attach(list(
 
 See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
 
+## Links {-}
 
-```{r results=if (knitr::is_latex_output()) "hide" else "asis", echo = FALSE}
-"
+```{md results=if (knitr::is_latex_output()) "hide" else "asis", echo = FALSE}
 ## Links to material for past workshops {-}
 
 - [2019-04](2019-04-zhr)
@@ -65,10 +65,8 @@ See the controls at the top of the website for searching, font size, editing, an
 - [2018-05](2018-05-zhr)
 
 - [2017-10](2017-10-zhr)
-"
-```
 
-## Links {-}
+```
 
 - This website: https://krlmlr.github.io/vistransrep
 
@@ -76,6 +74,10 @@ See the controls at the top of the website for searching, font size, editing, an
     - Prepared scripts: `r vistransrep_repo("script")`
 
 - The source project for this material: `r this_repo()`
+
+```{r eval = FALSE}
+usethis::use_course("krlmlr/vistransrep-proj")
+```
 
 ## Package versions used {-}
 
