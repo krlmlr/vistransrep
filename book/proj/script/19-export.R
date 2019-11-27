@@ -4,7 +4,7 @@ library(tidyverse)
 
 ## create plot for export
 ggplot(mtcars, aes(mpg, wt)) +
-   geom_point()
+  geom_point()
 
 # show exporting
 ggsave("mtcars.pdf")
@@ -13,10 +13,11 @@ ggsave("mtcars.png")
 file.remove(c("mtcars.pdf", "mtcars.png"))
 
 # show how base plot exporting works
-png("Plot.png")
-plot(mpg$displ, mpg$hwy)
-dev.off()
+## png("Plot.png")
+## plot(mpg$displ, mpg$hwy)
+## dev.off()
 
+# show how ggplot exporting works
 ## ggplot(mpg, aes(disply, hwy)) +
 ##   geom_point()
 ## ggsave("Plot.png")

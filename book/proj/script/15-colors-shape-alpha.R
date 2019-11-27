@@ -78,8 +78,7 @@ ggplot(
 ) +
   geom_point(alpha = 0.2)
 
-# what can go wrong ------------------------------------------------------------
-
+# what can go wrong
 try(print(
   ggplot(
     data = mpg,

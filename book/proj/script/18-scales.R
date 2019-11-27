@@ -25,8 +25,6 @@ ggplot(
     subtitle = "By car class"
   )
 
-# axes -------------------------------------------------------------------------
-
 # Change scale to log scale
 ggplot(
   data = mpg,
@@ -50,8 +48,6 @@ ggplot(
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
   scale_x_continuous(limits = c(2, 6), breaks = c(2, 4, 6))
-
-# color ------------------------------------------------------------------------
 
 # default color palette
 ggplot(

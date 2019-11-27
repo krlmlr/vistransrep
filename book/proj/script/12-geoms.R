@@ -5,10 +5,11 @@ library(tidyverse)
 ## ggplot(data, mapping = aes(), ...) +
 ##   geom_XXX(mapping = NULL, data = NULL, stat, ...)
 
+
 ## geom_point(mapping = NULL, data = NULL, stat = "identity",
 ##   position = "identity", ..., na.rm = FALSE, show.legend = NA,
 ##   inherit.aes = TRUE)
-##
+## 
 ## geom_boxplot(mapping = NULL, data = NULL, stat = "boxplot",
 ##   position = "dodge2", ..., outlier.colour = NULL,
 ##   outlier.color = NULL, outlier.fill = NULL, outlier.shape = 19,
