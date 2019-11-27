@@ -1,12 +1,16 @@
-## Colors and shape
-
-```{r 16-setup}
-library(tidyverse)
+```{r 15-remove-all, include = FALSE}
+rm(list = ls())
 ```
 
-<details><summary>*Click here to show setup code.*</summary>
 
-```{r 12-setup-12-manual-r}
+## Colors and shape
+
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### Colors and shape
+
+```
+```{r 15-setup-15-colors-shape-alpha-r}
 library(tidyverse)
 ```
 </details>
@@ -145,15 +149,17 @@ ggplot(
 If you try to specify a color in the `mapping`-argument of the main `ggplot()` call, you will face an error since a mapping of a variable to an aesthetic is expected.
 
 ```{r 12-unquoted-col-in-aes, error = TRUE, results='hide'}
-ggplot(
-  data = mpg,
-  mapping = aes(
-    x = displ,
-    y = hwy,
-    color = blue
-  )
-) +
-  geom_point()
+try(print(
+  ggplot(
+    data = mpg,
+    mapping = aes(
+      x = displ,
+      y = hwy,
+      color = blue
+    )
+  ) +
+    geom_point()
+))
 ```
 
 R treats objects without quotation marks in a special way, expecting them to be variables.

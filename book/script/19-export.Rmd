@@ -1,8 +1,20 @@
+```{r 19-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## Export & saving
 
-```{r 13-setup}
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### Export & saving
+
+```
+```{r 19-setup-19-export-r}
 library(tidyverse)
 ```
+</details>
+
 
 The default way to export plots in {{ggplot2}} is by using `ggsave()`. 
 
@@ -10,6 +22,9 @@ It differs slightly from other "exporting" functions in R because it comes with 
 
 > ggsave() is a convenient function for saving a plot. It defaults to **saving the last plot** that you displayed, using the size of the current graphics device. It also **guesses the type** of graphics device from the extension.
 
+```{r include = FALSE}
+## xxx1
+```
 ```{r eval = FALSE}
 ggplot(mtcars, aes(mpg, wt)) + 
   geom_point()

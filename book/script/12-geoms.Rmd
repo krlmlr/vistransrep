@@ -1,8 +1,19 @@
+```{r 12-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## `geom_*` functions
 
-```{r 12-setup}
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### `geom_*` functions
+
+```
+```{r 12-setup-12-geoms-r}
 library(tidyverse)
 ```
+</details>
 
 `geom_*` functions are added to the main `ggplot()` call via the "+" operator and
 (usually) placed on a new line.
@@ -51,6 +62,9 @@ The `geom_*` family can be divided into three parts:
 ggplot(data, mapping = aes(), ...) +
   geom_XXX(mapping = NULL, data = NULL, stat, ...)
 ```
+```{r 12-ggplot-data-mapping-aes}
+
+```
 
 `geom_*` functions have the same basic arguments as `ggplot()`.
 In addition, they come with more arguments specific to the respective "geom".
@@ -72,7 +86,7 @@ In the example below, points are not adjusted and just visualized where they app
 
 In the case of boxplots, a special position arrangement function is used to arrange everything nicely: `position_dodge2()` (here denoted by `position = "dodge2"`).
 
-```{r, eval=FALSE}
+```{r include = FALSE}
 geom_point(mapping = NULL, data = NULL, stat = "identity",
   position = "identity", ..., na.rm = FALSE, show.legend = NA,
   inherit.aes = TRUE)
@@ -84,12 +98,11 @@ geom_boxplot(mapping = NULL, data = NULL, stat = "boxplot",
   notch = FALSE, notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE,
   show.legend = NA, inherit.aes = TRUE)
 ```
-
 ---
 
 `geom_boxplot()` needs one variable to be of class `character` or `factor` (better) to initiate the grouping.
 
-```{r, fig.height=4}
+```{r 12-geom-point-mapping-null-data-null-stat-identity}
 class(mpg$class)
 
 ggplot(mpg, aes(x = class, y = displ)) +

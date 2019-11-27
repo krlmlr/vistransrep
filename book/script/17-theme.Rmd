@@ -1,13 +1,17 @@
+```{r 17-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## Themes
 
 <details><summary>*Click here to show setup code.*</summary>
-```{r 18-setupr}
-library(tidyverse)
-library(nycflights13)
+```{r include = FALSE}
+### Themes
 
-library(conflicted)
-conflict_prefer("filter", "dplyr")
-conflict_prefer("lag", "dplyr")
+```
+```{r 17-setup-17-theme-r}
+library(tidyverse)
 ```
 </details>
 
@@ -16,7 +20,10 @@ conflict_prefer("lag", "dplyr")
 In this section we are looking at the use of visual themes to easily change the look and feel of a plot.
 We start with the introduction of the default theme -- `theme_grey()` function.
 
-```{r 18-base-plot}
+```{r include = FALSE}
+# Base plot
+```
+```{r 17-base-plot}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -27,7 +34,10 @@ ggplot(
 
 Change the default `theme_grey()` to a more traditional black-and-white theme:
 
-```{r 18-bw-theme}
+```{r include = FALSE}
+# bw-theme
+```
+```{r 17-bw-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -39,7 +49,10 @@ ggplot(
 Also in this scheme the color aesthetic works as it normally does.
 The black-and-whiteness only relates to the background.
 
-```{r 18-data-can-have-color-in-bw-theme}
+```{r include = FALSE}
+# Data can have color in bw-theme
+```
+```{r 17-data-can-have-color-in-bw-theme}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -52,7 +65,10 @@ Calling the function `theme()` after a `theme_...()` call let's you tweak certai
 
 Some plots work better with the legend at the bottom.
 
-```{r 18-occasionally-useful-legend-at-the-bottom}
+```{r include = FALSE}
+# Occasionally useful: legend at the bottom
+```
+```{r 17-occasionally-useful-legend-at-the-bottom}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -76,7 +92,10 @@ ggplot(
 
 The first argument of each `theme_...()` function is `base_size`, which refers to the font size of all elements in the plot.
 
-```{r 18-first-param-of-theme-functions-is-base-size}
+```{r include = FALSE}
+# first param of theme_()-functions is base_size
+```
+```{r 17-first-param-of-theme-functions-is-base-size}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)
@@ -93,7 +112,10 @@ If we were asked to suggest themes, we'd go for
 
 Here is how `ggpubr::theme_pubr()` looks like.
 
-```{r 18-ggpubr}
+```{r include = FALSE}
+# predefined themes available, e.g. in ggpubr package
+```
+```{r 17-predefined-themes-available-e-g-in-ggpubr-package}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy, color = class)

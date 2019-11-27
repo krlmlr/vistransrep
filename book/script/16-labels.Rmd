@@ -1,8 +1,19 @@
+```{r 16-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## Labels
 
-```{r 17-setup}
+<details><summary>*Click here to show setup code.*</summary>
+```{r include = FALSE}
+### Labels
+
+```
+```{r 16-setup-16-labels-r}
 library(tidyverse)
 ```
+</details>
 
 For character variables there is further way of integrating its value to a plot.
 `geom_text()` takes a `label` argument, which influences the plot in the following way.

@@ -1,3 +1,8 @@
+```{r 11-remove-all, include = FALSE}
+rm(list = ls())
+```
+
+
 ## Introduction
 
 <details><summary>*Click here to show setup code.*</summary>
@@ -5,7 +10,7 @@
 ### Basics for visualisation in R using {ggplot2}
 
 ```
-```{r 11-setup-11-mpg-r}
+```{r 11-setup-11-ggplot-skeleton-r}
 library(tidyverse)
 ```
 </details>
@@ -16,6 +21,14 @@ In the {tidyverse} the standard package for visualization is {ggplot2}.
 The functions of this package follow a quite unique logic (the "grammar of graphics") and therefore require a special syntax.
 In this section we want to give a short introduction, how to get started with {ggplot2}.
 
+```{r include = FALSE}
+# # One time:
+# install.packages("tidyverse")
+```
+```{r 11-one-time}
+
+```
+
 ### Creating the plot skeleton: `ggplot()`
 
 The main function in the package is `ggplot()`, which prepares/creates a graph.
@@ -25,6 +38,10 @@ By setting the arguments of the function, you can:
 2. Choose the mapping of the variables to the axes (or further forms of setting apart data) in the argument `mapping`. 
   This argument takes the result of the function `aes()`, which you will get to know in many different examples.
 
+
+```{r include = FALSE}
+# Empty graph
+```
 ```{r 11-empty-graph}
 ggplot(
   data = mpg,
@@ -35,6 +52,9 @@ ggplot(
 This created only an empty plot, because we did not tell {ggplot2} which geometry we want to use to display the variables we set in the `ggplot()` call.
 We do this by adding (with the help of the `+` operator after the `ggplot()`-call) a different function starting with `geom_` to provide this information.
 
+```{r include = FALSE}
+# Scatterplot
+```
 ```{r 11-scatterplot}
 ggplot(
   data = mpg,
@@ -46,6 +66,9 @@ ggplot(
 This is maybe the most basic plot you can create.
 To map a different variable than `disp` to the x-axis, change the respective variable name in the `aes()` argument.
 
+```{r include = FALSE}
+# aes() determines which variables are plotted
+```
 ```{r 11-aes-determines-which-variables-are-plotted}
 ggplot(
   data = mpg,
@@ -56,6 +79,9 @@ ggplot(
 
 You can exchange the variables to be plotted freely, without changing anything else to the rest of the code.
 
+```{r include = FALSE}
+# Pattern unchanged if only variables are plotted
+```
 ```{r 11-pattern-unchanged-if-only-variables-are-plotted}
 ggplot(
   data = mpg,
