@@ -47,6 +47,25 @@ attach(list(
 
 See the controls at the top of the website for searching, font size, editing, and a link to the PDF version of the material.
 
+
+```{r results=if (knitr::is_latex_output()) "hide" else "asis"}
+"
+## Links to material for past workshops
+
+- [2019-04](2019-04-zhr)
+
+- [2018-12](2018-12-zhr)
+
+- [2018-11](2018-11-zhr)
+
+- [2018-11](2018-11-snb)
+
+- [2018-05](2018-05-zhr)
+
+- [2017-10](2017-10-zhr)
+"
+```
+
 ## Links {-}
 
 - This website: https://krlmlr.github.io/vistransrep/book
