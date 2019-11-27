@@ -1,2 +1,2 @@
-```{r child = here::here("script", "61-join.Rmd")}
+```{r child = here::here("script", "601-join.Rmd")}
 ```

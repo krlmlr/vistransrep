@@ -1,4 +1,4 @@
-```{r 61-remove-all, include = FALSE}
+```{r 601-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Joins
 
 ```
-```{r 61-setup-61-join-r}
+```{r 601-setup-601-join-r}
 library(tidyverse)
 library(nycflights13)
 
@@ -27,7 +27,7 @@ conflict_prefer("lag", "dplyr")
 # `airlines` contain detailed information for each airline
 # (in this case only the name)
 ```
-```{r 61-airlines-contain-detailed-information-for-each-airline}
+```{r 601-airlines-contain-detailed-information-for-each-airline}
 airlines
 ```
 
@@ -35,7 +35,7 @@ airlines
 ```{r include = FALSE}
 # `flights` can be augmented with this detailed information
 ```
-```{r 61-flights-can-be-augmented-with-this-detailed-information}
+```{r 601-flights-can-be-augmented-with-this-detailed-information}
 flights %>%
   left_join(airlines) %>%
   select(dep_time, carrier, name)
@@ -45,7 +45,7 @@ flights %>%
 ```{r include = FALSE}
 # for "production code", always indicate the columns to join by
 ```
-```{r 61-for-production-code-always-indicate-the-columns-to-join-by}
+```{r 601-for-production-code-always-indicate-the-columns-to-join-by}
 flights %>%
   left_join(airlines, by = "carrier") %>%
   select(dep_time, carrier, name)
@@ -55,7 +55,7 @@ flights %>%
 ```{r include = FALSE}
 # Your turn: join the `planes` table
 ```
-```{r 61-your-turn-join-the-planes-table}
+```{r 601-your-turn-join-the-planes-table}
 planes
 ```
 
@@ -63,7 +63,7 @@ planes
 ```{r include = FALSE}
 # Does it work out of the box?
 ```
-```{r 61-does-it-work-out-of-the-box}
+```{r 601-does-it-work-out-of-the-box}
 try(
   ... %>%
     ..._join(...)
@@ -74,7 +74,7 @@ try(
 ```{r include = FALSE}
 # How to fix, and also turn off the message?
 ```
-```{r 61-how-to-fix-and-also-turn-off-the-message}
+```{r 601-how-to-fix-and-also-turn-off-the-message}
 try(
   ... %>%
     ..._join(..., ... = "...")
@@ -85,7 +85,7 @@ try(
 ```{r include = FALSE}
 # `airports` contain detailed information for each airport
 ```
-```{r 61-airports-contain-detailed-information-for-each-airport}
+```{r 601-airports-contain-detailed-information-for-each-airport}
 airports
 
 try(
@@ -98,7 +98,7 @@ try(
 ```{r include = FALSE}
 # in this case, explicit "by" columns are required
 ```
-```{r 61-in-this-case-explicit-by-columns-are-required}
+```{r 601-in-this-case-explicit-by-columns-are-required}
 flights %>%
   left_join(airports, by = c("dest" = "faa")) %>%
   select(origin, dest, name)
@@ -108,7 +108,7 @@ flights %>%
 ```{r include = FALSE}
 # we have mismatches!
 ```
-```{r 61-we-have-mismatches}
+```{r 601-we-have-mismatches}
 flights %>%
   left_join(airports, by = c("dest" = "faa")) %>%
   select(origin, dest, name) %>%
@@ -119,7 +119,7 @@ flights %>%
 ```{r include = FALSE}
 # what about the NA name?
 ```
-```{r 61-what-about-the-na-name}
+```{r 601-what-about-the-na-name}
 airports %>%
   filter(faa == "BQN")
 ```
@@ -128,7 +128,7 @@ airports %>%
 ```{r include = FALSE}
 # left vs. inner vs. outer joins control what happens in case of mismatches
 ```
-```{r 61-left-vs-inner-vs-outer-joins-control-what-happens-in-case-of-mismatches}
+```{r 601-left-vs-inner-vs-outer-joins-control-what-happens-in-case-of-mismatches}
 flights %>%
   inner_join(airports, by = c("dest" = "faa")) %>%
   select(origin, dest, name)
@@ -138,7 +138,7 @@ flights %>%
 ```{r include = FALSE}
 # Your turn: understand mismatches when joining the `planes` data
 ```
-```{r 61-your-turn-understand-mismatches-when-joining-the-planes-data}
+```{r 601-your-turn-understand-mismatches-when-joining-the-planes-data}
 try(
   ... %>%
     left_join(..., ... = "...") %>%
@@ -150,7 +150,7 @@ try(
 ```{r include = FALSE}
 # Verify that "AA" has more mismatches than other airlines
 ```
-```{r 61-verify-that-aa-has-more-mismatches-than-other-airlines}
+```{r 601-verify-that-aa-has-more-mismatches-than-other-airlines}
 try(
   ... %>%
     left_join(..., ... = "...") %>%
@@ -163,7 +163,7 @@ try(
 ```{r include = FALSE}
 # How to keep only the flights where we have airplane details?
 ```
-```{r 61-how-to-keep-only-the-flights-where-we-have-airplane-details}
+```{r 601-how-to-keep-only-the-flights-where-we-have-airplane-details}
 try(
   ... %>%
     ..._join(..., ... = "...")
@@ -174,7 +174,7 @@ try(
 ```{r include = FALSE}
 # Case study: classification of mismatches
 ```
-```{r 61-case-study-classification-of-mismatches}
+```{r 601-case-study-classification-of-mismatches}
 flights %>%
   left_join(planes %>% select(tailnum, manufacturer), by = "tailnum") %>%
   mutate(mismatch = is.na(manufacturer)) %>%
@@ -186,7 +186,7 @@ flights %>%
 ```{r include = FALSE}
 # before joining, prepare the RHS table(s)
 ```
-```{r 61-before-joining-prepare-the-rhs-table-s}
+```{r 601-before-joining-prepare-the-rhs-table-s}
 origin_airports <-
   airports %>%
   select(origin = faa, origin_name = name)
@@ -204,7 +204,7 @@ dest_airports
 ```{r include = FALSE}
 # much easier with the prepared tables
 ```
-```{r 61-much-easier-with-the-prepared-tables}
+```{r 601-much-easier-with-the-prepared-tables}
 flights %>%
   left_join(origin_airports) %>%
   left_join(dest_airports) %>%
@@ -215,7 +215,7 @@ flights %>%
 ```{r include = FALSE}
 # "by" still recommended
 ```
-```{r 61-by-still-recommended}
+```{r 601-by-still-recommended}
 flights %>%
   left_join(origin_airports, by = "origin") %>%
   left_join(dest_airports, by = "dest") %>%
@@ -226,7 +226,7 @@ flights %>%
 ```{r include = FALSE}
 # Your turn: we only need `engines` and `seats` from the `planes` table
 ```
-```{r 61-your-turn-we-only-need-engines-and-seats-from-the-planes-table}
+```{r 601-your-turn-we-only-need-engines-and-seats-from-the-planes-table}
 try({
   planes_join <-
     ... %>%
@@ -241,7 +241,7 @@ try({
 ```{r include = FALSE}
 # either LHS or RHS should have a key as part of "by"
 ```
-```{r 61-either-lhs-or-rhs-should-have-a-key-as-part-of-by}
+```{r 601-either-lhs-or-rhs-should-have-a-key-as-part-of-by}
 airports %>%
   count(faa)
 
@@ -254,7 +254,7 @@ airports %>%
 ```{r include = FALSE}
 # Your turn: double-check that `tailnum` is indeed a key in `planes`
 ```
-```{r 61-your-turn-double-check-that-tailnum-is-indeed-a-key-in-planes}
+```{r 601-your-turn-double-check-that-tailnum-is-indeed-a-key-in-planes}
 try(
   ... %>%
     count(...) %>%
@@ -266,7 +266,7 @@ try(
 ```{r include = FALSE}
 # create artificial dataset where airport is not a key
 ```
-```{r 61-create-artificial-dataset-where-airport-is-not-a-key}
+```{r 601-create-artificial-dataset-where-airport-is-not-a-key}
 dup_airports <-
   bind_rows(airports, sample_n(airports, 100))
 
@@ -287,7 +287,7 @@ dup_airports %>%
 ```{r include = FALSE}
 # what happens if not key?
 ```
-```{r 61-what-happens-if-not-key}
+```{r 601-what-happens-if-not-key}
 flights %>%
   left_join(dup_airports, by = c("dest" = "faa")) %>%
   select(origin, dest, name)
@@ -299,7 +299,7 @@ flights
 ```{r include = FALSE}
 # Your turn: Is this combination a key? Why/why not?
 ```
-```{r 61-your-turn-is-this-combination-a-key-why-why-not}
+```{r 601-your-turn-is-this-combination-a-key-why-why-not}
 weather
 
 weather %>%
@@ -311,7 +311,7 @@ weather %>%
 ```{r include = FALSE}
 # How to find the offenders?
 ```
-```{r 61-how-to-find-the-offenders}
+```{r 601-how-to-find-the-offenders}
 try(
   weather %>%
     count(...) %>%
@@ -324,7 +324,7 @@ try(
 ```{r include = FALSE}
 # Explain!
 ```
-```{r 61-explain}
+```{r 601-explain}
 
 ```
 
@@ -332,7 +332,7 @@ try(
 ```{r include = FALSE}
 # A novel approach: https://krlmlr.github.io/dm/
 ```
-```{r 61-a-novel-approach-https-krlmlr-github-io-dm}
+```{r 601-a-novel-approach-https-krlmlr-github-io-dm}
 
 ```
 
@@ -341,6 +341,6 @@ try(
 ##install.packages("devtools")
 ##devtools::install_github("krlmlr/dm")
 ```
-```{r 61-install-packages-devtools}
+```{r 601-install-packages-devtools}
 NA
 ```

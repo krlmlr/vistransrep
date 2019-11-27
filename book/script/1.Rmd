@@ -1,26 +1,26 @@
-```{r child = here::here("script", "11-ggplot-skeleton.Rmd")}
+```{r child = here::here("script", "101-ggplot-skeleton.Rmd")}
 ```
 
-```{r child = here::here("script", "12-geoms.Rmd")}
+```{r child = here::here("script", "102-geoms.Rmd")}
 ```
 
-```{r child = here::here("script", "13-two-var.Rmd")}
+```{r child = here::here("script", "103-two-var.Rmd")}
 ```
 
-```{r child = here::here("script", "14-one-var.Rmd")}
+```{r child = here::here("script", "104-one-var.Rmd")}
 ```
 
-```{r child = here::here("script", "15-colors-shape-alpha.Rmd")}
+```{r child = here::here("script", "105-colors-shape-alpha.Rmd")}
 ```
 
-```{r child = here::here("script", "16-labels.Rmd")}
+```{r child = here::here("script", "106-labels.Rmd")}
 ```
 
-```{r child = here::here("script", "17-theme.Rmd")}
+```{r child = here::here("script", "107-theme.Rmd")}
 ```
 
-```{r child = here::here("script", "18-scales.Rmd")}
+```{r child = here::here("script", "108-scales.Rmd")}
 ```
 
-```{r child = here::here("script", "19-export.Rmd")}
+```{r child = here::here("script", "109-export.Rmd")}
 ```

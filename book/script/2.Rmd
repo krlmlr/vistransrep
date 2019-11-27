@@ -1,23 +1,23 @@
-```{r child = here::here("script", "21-conflicted.Rmd")}
+```{r child = here::here("script", "201-conflicted.Rmd")}
 ```
 
-```{r child = here::here("script", "22-filter.Rmd")}
+```{r child = here::here("script", "202-filter.Rmd")}
 ```
 
-```{r child = here::here("script", "23-arrange.Rmd")}
+```{r child = here::here("script", "203-arrange.Rmd")}
 ```
 
-```{r child = here::here("script", "24-pipe.Rmd")}
+```{r child = here::here("script", "204-pipe.Rmd")}
 ```
 
-```{r child = here::here("script", "25-select.Rmd")}
+```{r child = here::here("script", "205-select.Rmd")}
 ```
 
-```{r child = here::here("script", "26-mutate.Rmd")}
+```{r child = here::here("script", "206-mutate.Rmd")}
 ```
 
-```{r child = here::here("script", "27-summarize.Rmd")}
+```{r child = here::here("script", "207-summarize.Rmd")}
 ```
 
-```{r child = here::here("script", "28-multiplot.Rmd")}
+```{r child = here::here("script", "208-multiplot.Rmd")}
 ```

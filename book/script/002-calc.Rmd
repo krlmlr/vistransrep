@@ -1,4 +1,4 @@
-```{r 02-remove-all, include = FALSE}
+```{r 002-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Calculating expressions
 
 ```
-```{r 02-setup-02-calc-r}
+```{r 002-setup-002-calc-r}
 1 + 2
 
 3 * 5
@@ -22,7 +22,7 @@ rm(list = ls())
 # Like a good one, too!
 # It knows operator precedence rules.
 ```
-```{r 02-like-a-good-one-too}
+```{r 002-like-a-good-one-too}
 3 + 4 * 5
 
 (3 + 4) * 5
@@ -37,7 +37,7 @@ rm(list = ls())
 # The following examples are built-in
 # arithmetic functions.
 ```
-```{r 02-the-following-examples-are-built-in}
+```{r 002-the-following-examples-are-built-in}
 round(1.7)
 
 sin(pi)

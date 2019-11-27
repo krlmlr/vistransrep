@@ -1,8 +1,8 @@
-```{r child = here::here("script", "41-pivot.Rmd")}
+```{r child = here::here("script", "401-pivot.Rmd")}
 ```
 
-```{r child = here::here("script", "42-separate.Rmd")}
+```{r child = here::here("script", "402-separate.Rmd")}
 ```
 
-```{r child = here::here("script", "43-ftable.Rmd")}
+```{r child = here::here("script", "403-ftable.Rmd")}
 ```

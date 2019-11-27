@@ -1,4 +1,4 @@
-```{r 15-remove-all, include = FALSE}
+```{r 105-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Colors and shape
 
 ```
-```{r 15-setup-15-colors-shape-alpha-r}
+```{r 105-setup-105-colors-shape-alpha-r}
 library(tidyverse)
 ```
 </details>
@@ -25,7 +25,7 @@ The simplest is to set all observations of a geom to a dedicated color, supplied
 ```{r include = FALSE}
 # static color: blue
 ```
-```{r 15-static-color-blue}
+```{r 105-static-color-blue}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -54,7 +54,7 @@ The `class` variable is discrete and leads to a discrete color scale.
 ```{r include = FALSE}
 # dynamic color: variable mapping discrete
 ```
-```{r 15-dynamic-color-variable-mapping-discrete}
+```{r 105-dynamic-color-variable-mapping-discrete}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -69,7 +69,7 @@ The `cty` attribute is continuous, the color scale is adapted accordingly.
 ```{r include = FALSE}
 # dynamic color: variable mapping cont.
 ```
-```{r 15-dynamic-color-variable-mapping-cont}
+```{r 105-dynamic-color-variable-mapping-cont}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -84,7 +84,7 @@ One more degree of freedom is the shape of the symbols to be plotted.
 ```{r include = FALSE}
 # shape
 ```
-```{r 15-shape}
+```{r 105-shape}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -102,7 +102,7 @@ Color and shape can be combined.
 ```{r include = FALSE}
 # dynamic: combining color and shape
 ```
-```{r 15-dynamic-combining-color-and-shape}
+```{r 105-dynamic-combining-color-and-shape}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -118,7 +118,7 @@ And last but not least, the size of the plotted symbols can be linked to numeric
 ```{r include = FALSE}
 # dynamic: size
 ```
-```{r 15-dynamic-size}
+```{r 105-dynamic-size}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -135,7 +135,7 @@ However, be aware that adding too much information to a plot does not necessaril
 ```{r include = FALSE}
 # sometimes less is more...
 ```
-```{r 15-sometimes-less-is-more}
+```{r 105-sometimes-less-is-more}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -157,7 +157,7 @@ This is useful to get an impression of how many data points share the same coord
 ```{r include = FALSE}
 # transparency: alpha
 ```
-```{r 15-transparency-alpha}
+```{r 105-transparency-alpha}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -175,7 +175,7 @@ If you try to specify a color in the `mapping`-argument of the main `ggplot()` c
 ```{r include = FALSE}
 # what can go wrong
 ```
-```{r 15-what-can-go-wrong}
+```{r 105-what-can-go-wrong}
 try(print(
   ggplot(
     data = mpg,
@@ -196,7 +196,7 @@ Use quotation marks if you mean a string, as opposed to a variable or object nam
 ```{r include = FALSE}
 # quoted and unquoted
 ```
-```{r 15-quoted-and-unquoted}
+```{r 105-quoted-and-unquoted}
 mpg
 "mpg"
 ```
@@ -206,7 +206,7 @@ So what if we pass the color as a character variable?
 ```{r include = FALSE}
 # what happens with strings in aes()
 ```
-```{r 15-what-happens-with-strings-in-aes}
+```{r 105-what-happens-with-strings-in-aes}
 ggplot(
   data = mpg,
   mapping = aes(
@@ -224,7 +224,7 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 ```{r include = FALSE}
 # map static colors outside of aes()
 ```
-```{r 15-map-static-colors-outside-of-aes}
+```{r 105-map-static-colors-outside-of-aes}
 ggplot(
   data = mpg,
   mapping = aes(

@@ -1,26 +1,26 @@
-```{r child = here::here("script", "01-hello.Rmd"), eval = FALSE}
+```{r child = here::here("script", "001-hello.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "02-calc.Rmd"), eval = FALSE}
+```{r child = here::here("script", "002-calc.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "03-debug.Rmd"), eval = FALSE}
+```{r child = here::here("script", "003-debug.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "03-incomplete.Rmd"), eval = FALSE}
+```{r child = here::here("script", "003-incomplete.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "04-error.Rmd"), eval = FALSE}
+```{r child = here::here("script", "004-error.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "04-help.Rmd"), eval = FALSE}
+```{r child = here::here("script", "004-help.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "05-multiline.Rmd"), eval = FALSE}
+```{r child = here::here("script", "005-multiline.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "06-premature.Rmd"), eval = FALSE}
+```{r child = here::here("script", "006-premature.Rmd"), eval = FALSE}
 ```
 
-```{r child = here::here("script", "07-help.Rmd"), eval = FALSE}
+```{r child = here::here("script", "007-help.Rmd"), eval = FALSE}
 ```

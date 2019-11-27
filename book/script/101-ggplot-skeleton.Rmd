@@ -1,4 +1,4 @@
-```{r 11-remove-all, include = FALSE}
+```{r 101-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Basics for visualisation in R using {ggplot2}
 
 ```
-```{r 11-setup-11-ggplot-skeleton-r}
+```{r 101-setup-101-ggplot-skeleton-r}
 library(tidyverse)
 ```
 </details>
@@ -25,7 +25,7 @@ In this section we want to give a short introduction, how to get started with {g
 # # One time:
 # install.packages("tidyverse") OR install.packages("ggplot2")
 ```
-```{r 11-one-time}
+```{r 101-one-time}
 
 ```
 
@@ -42,7 +42,7 @@ By setting the arguments of the function, you can:
 ```{r include = FALSE}
 # Empty graph
 ```
-```{r 11-empty-graph}
+```{r 101-empty-graph}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -55,7 +55,7 @@ We do this by adding (with the help of the `+` operator after the `ggplot()`-cal
 ```{r include = FALSE}
 # visualize variables as points: scatterplot
 ```
-```{r 11-visualize-variables-as-points-scatterplot}
+```{r 101-visualize-variables-as-points-scatterplot}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
@@ -69,7 +69,7 @@ To map a different variable than `disp` to the x-axis, change the respective var
 ```{r include = FALSE}
 # aes() determines which variables are plotted
 ```
-```{r 11-aes-determines-which-variables-are-plotted}
+```{r 101-aes-determines-which-variables-are-plotted}
 ggplot(
   data = mpg,
   mapping = aes(x = cyl, y = hwy)
@@ -82,7 +82,7 @@ You can exchange the variables to be plotted freely, without changing anything e
 ```{r include = FALSE}
 # Pattern unchanged if only variables are plotted
 ```
-```{r 11-pattern-unchanged-if-only-variables-are-plotted}
+```{r 101-pattern-unchanged-if-only-variables-are-plotted}
 ggplot(
   data = mpg,
   mapping = aes(x = hwy, y = cty)
