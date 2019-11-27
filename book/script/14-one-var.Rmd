@@ -62,7 +62,7 @@ ggplot(mpg, aes(fl)) +
   geom_bar()
 ```
 
-## Exercises
+**Exercises**
 
 ```{r include = FALSE}
 # Exercise

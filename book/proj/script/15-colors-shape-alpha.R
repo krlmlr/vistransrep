@@ -117,3 +117,6 @@ ggplot(
   geom_point(
     color = "blue"
   )
+
+# Exercises
+browseURL("https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter3.html")

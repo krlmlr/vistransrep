@@ -89,3 +89,6 @@ ggplot(
 # For "corporate design": ggthemr, https://github.com/cttobin/ggthemr
 ## install.packages("remotes")
 ## remotes::install_github("cttobin/ggthemr")
+
+# Exercises
+browseURL("https://krlmlr.github.io/vistransrep/2019-11-zhr/scales.html")
