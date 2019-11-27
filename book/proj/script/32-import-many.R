@@ -8,6 +8,7 @@ library(here)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 
+# List all files of interest
 files <- dir(path = here("data"), pattern = "[.]xlsx$", full.names = TRUE)
 files
 

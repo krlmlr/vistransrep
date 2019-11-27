@@ -18,11 +18,17 @@ library(here)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+```
+</details>
 
+
+```{r include = FALSE}
+# List all files of interest
+```
+```{r 32-list-all-files-of-interest}
 files <- dir(path = here("data"), pattern = "[.]xlsx$", full.names = TRUE)
 files
 ```
-</details>
 
 
 ```{r include = FALSE}
