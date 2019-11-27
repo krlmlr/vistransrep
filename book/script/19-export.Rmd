@@ -23,14 +23,18 @@ It differs slightly from other "exporting" functions in R because it comes with 
 > ggsave() is a convenient function for saving a plot. It defaults to **saving the last plot** that you displayed, using the size of the current graphics device. It also **guesses the type** of graphics device from the extension.
 
 ```{r include = FALSE}
-## xxx1
+## create plot for export
 ```
-```{r eval = FALSE}
-ggplot(mtcars, aes(mpg, wt)) + 
+```{r 19-create-plot-for-export}
+ggplot(mtcars, aes(mpg, wt)) +
   geom_point()
 ```
 
-```{r}
+
+```{r include = FALSE}
+# show exporting
+```
+```{r 19-show-exporting}
 ggsave("mtcars.pdf")
 ggsave("mtcars.png")
 ```
@@ -52,13 +56,20 @@ In base R
 
 - and close the graphic device again.
 
-```{r eval = FALSE, out.width="100%"}
+```{r include = FALSE}
+# show how base plot exporting works
+```
+```{r 19-show-how-base-plot-exporting-works, eval = FALSE, out.width="100%"}
 png("Plot.png")
 plot(mpg$displ, mpg$hwy)
 dev.off()
 ```
 
-```{r eval=FALSE}
+
+```{r include = FALSE}
+# show how ggplot exporting works
+```
+```{r 19-ggplot-mpg-aes-disply-hwy, eval = FALSE}
 ggplot(mpg, aes(disply, hwy)) +
   geom_point()
 ggsave("Plot.png")
@@ -78,16 +89,36 @@ One of the major advantages of `ggplot()` is that you can save a plot as an R ob
 
 This is not possible with base R plots.
 
-```{r eval=TRUE, fig.height=3}
+
+```{r include = FALSE}
+# ggplot plots can be stored in R objects
+```
+```{r 19-ggplot-plots-can-be-stored-in-r-objects}
 p <- ggplot(mpg, aes(displ, hwy)) +
   geom_point()
+```
 
+
+```{r include = FALSE}
+# saved ggplot objects can be used later on
+```
+```{r 19-saved-ggplot-objects-can-be-used-later-on}
 p + geom_point(aes(color = class))
+```
 
+
+```{r include = FALSE}
+# print the ggplot obj
+```
+```{r 19-print-the-ggplot-obj}
 print(p)
 ```
 
-```{r}
+
+```{r include = FALSE}
+# look at ggplot2 obj structure
+```
+```{r 19-look-at-ggplot-2-obj-structure}
 str(p)
 ```
 

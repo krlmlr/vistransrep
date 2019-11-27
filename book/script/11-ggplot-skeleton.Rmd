@@ -23,7 +23,7 @@ In this section we want to give a short introduction, how to get started with {g
 
 ```{r include = FALSE}
 # # One time:
-# install.packages("tidyverse")
+# install.packages("tidyverse") OR install.packages("ggplot2")
 ```
 ```{r 11-one-time}
 
@@ -53,9 +53,9 @@ This created only an empty plot, because we did not tell {ggplot2} which geometr
 We do this by adding (with the help of the `+` operator after the `ggplot()`-call) a different function starting with `geom_` to provide this information.
 
 ```{r include = FALSE}
-# Scatterplot
+# visualize variables as points: scatterplot
 ```
-```{r 11-scatterplot}
+```{r 11-visualize-variables-as-points-scatterplot}
 ggplot(
   data = mpg,
   mapping = aes(x = displ, y = hwy)
