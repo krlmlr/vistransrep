@@ -1,4 +1,4 @@
-### Create new columns based on old ones: `dplyr::mutate()`
+### Create new columns
 
 library(tidyverse)
 library(nycflights13)

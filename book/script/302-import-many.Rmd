@@ -118,3 +118,7 @@ The details are out of scope here.
 files %>%
   map_dfr(~ readxl::read_excel(.))
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html, task 3 and 4

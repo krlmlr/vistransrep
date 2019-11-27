@@ -152,3 +152,7 @@ try(
 
 To rearrange rows, you can use the shortcut `Alt + Cursor up/down`.
 In a piped expression, no further editing is necessary!
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/pipe.html

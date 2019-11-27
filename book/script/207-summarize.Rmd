@@ -55,10 +55,9 @@ The following functions compute summary values:
     mean(is.na(arr_time))
     ```
 
-## Ranking
-
-- `n()`
-- `first()`, `last()`, `nth()`
+- Ranking
+    - `n()`
+    - `first()`, `last()`, `nth()`
 
 
 Simple counts can be computed with `n()` inside `summarize()`:
@@ -114,6 +113,20 @@ flights %>%
   ungroup()
 ```
 
+Conceptually this corresponds to the following sequence of operations:
+
+1. **Split** the dataset into groups defined by the values of the `origin` column.
+    Each group has the same value in `origin`.
+2. **Apply** the same summary for each group.
+    In this case, the size, mean air time, and median air time is computed
+    across all flights for each group.
+3. **Combine** the results into one data frame.
+    The grouping variables and the results are bound together for further analysis.
+
+More often than not, the question "how do I iterate over each group and do ..." can be reprased as "what summary value do I want to compute for each group".
+Recognizing this takes a bit of practice but is worth the effort, because the analysis code becomes shorter and more robust and often runs faster.
+
+Groups can be defined over multiple columns as well.
 The next example splits the data into one group for each day.
 
 ```{r include = FALSE}
@@ -147,18 +160,19 @@ flights %>%
   ungroup()
 ```
 
+The `n()` function computes a simple count, and is one of the most frequently used summary functions.
+The `count()` function provides a convenient alternative.
 
 ```{r include = FALSE}
-# FIXME: introduce count()?
+# count() = group_by() + summarize() + ungroup()
 ```
 ```{r 27-fixme-introduce-count}
-TRUE
+flights %>%
+  count(year, month, day)
 ```
 
+### Exercises {-}
 
-```{r include = FALSE}
-# FIXME: Copy mre examples from 27-summarize.R?
-```
-```{r 27-fixme-copy-mre-examples-from-27-summarize-r}
-TRUE
-```
+https://krlmlr.github.io/vistransrep/2019-11-zhr/summarize.html
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/summarize-mult.html

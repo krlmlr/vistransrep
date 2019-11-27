@@ -47,3 +47,7 @@ After importing, use `view()` to display the ingested dataset.
 ```{r 31-view-the-result}
 view(example1)
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html, task 1 and 2

@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Create new columns based on old ones: `dplyr::mutate()`
+## Create new columns
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Create new columns based on old ones: `dplyr::mutate()`
+### Create new columns
 
 ```
 ```{r 26-setup-26-mutate-r}
@@ -46,12 +46,14 @@ flights %>%
 The following constructs are often applied inside `mutate()`:
 
 - Arithmetic: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`
+
     ```r
     dep_delay - arr_delay
     dep_time %/% 100
     dep_time %% 100
     dep_delay - mean(dep_delay)   # Deviation from mean
     ```
+
 - Real functions, see `?base::Math` and `?dplyr::lead`:
     - Rounding: `floor()`, `ceiling()`, `round()`
     - Sign: `abs()`, `sign()`
@@ -254,3 +256,7 @@ on_time_flights <-
   select(arr_delay, delayed) %>%
   filter(!delayed)
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/mutate.html

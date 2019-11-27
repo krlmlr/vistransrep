@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Sort rows: `dplyr::arrange()`
+## Sorting
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Sort rows: `dplyr::arrange()`
+### Sorting
 
 ```
 ```{r 23-setup-23-arrange-r}
@@ -135,3 +135,7 @@ flights %>%
   arrange(dep_time, desc(arr_time)) %>%
   view()
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/arrange.html

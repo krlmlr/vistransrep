@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Filtering: `dplyr::filter()`
+## Filtering
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Filtering: `dplyr::filter()`
+### Filtering
 
 ```
 ```{r 22-setup-22-filter-r}
@@ -50,17 +50,22 @@ flights %>%
 The following building blocks are frequently used in a filter:
 
 - Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+
     ```r
     month == 3              # careful: two =
     month >= 10
     carrier != "UA"         # careful: <> doesn't work
     arr_time < dep_time
     ```
+    
 - `near()`
+
     ```r
     near(sin(pi), 0)
     ```
+
 - `between()`, `%in%`
+
     ```r
     between(hour, 8, 12)
     month %in% c(12, 1, 2)
@@ -107,3 +112,9 @@ Use `|` to return all rows that match either criterion or both:
 flights %>%
   filter(dep_time < 600 | arr_time > 2200)
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/filtering.html
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/filter-combine.html

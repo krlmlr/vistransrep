@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Pick columns: `dplyr::select()`
+## Pick columns
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Pick columns: `dplyr::select()`
+### Pick columns
 
 ```
 ```{r 25-setup-25-select-r}
@@ -99,3 +99,7 @@ Select helpers allow selecting multiple related columns conveniently:
 flights %>%
   select(origin, dest, ends_with("_time"))
 ```
+
+### Exercises {-}
+
+https://krlmlr.github.io/vistransrep/2019-11-zhr/select-rename.html
