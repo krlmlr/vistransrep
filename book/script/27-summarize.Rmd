@@ -3,11 +3,11 @@ rm(list = ls())
 ```
 
 
-## Summarize data (by groups): `dplyr::summarize()`, `dplyr::group_by()` + `dplyr::ungroup()`
+## Summarize data
 
 <details><summary>*Click here to show setup code.*</summary>
 ```{r include = FALSE}
-### Summarize data (by groups): `dplyr::summarize()`, `dplyr::group_by()` + `dplyr::ungroup()`
+### Summarize data `dplyr::ungroup()`
 
 ```
 ```{r 27-setup-27-summarize-r}
@@ -42,6 +42,24 @@ To reduce the result to a single row, use `summarize()`:
 flights %>%
   summarize(total_air_time = sum(air_time, na.rm = TRUE))
 ```
+
+The following functions compute summary values:
+
+- `sum()`, `prod()`
+    - `na.rm = TRUE`
+- `mean()`, `median()`
+- `sd()`, `IQR()`, `mad()`
+- `min()`, `quantile(0.75)`, `max()`
+- `sum()` and `mean()` for `logical` variables:
+    ```r
+    mean(is.na(arr_time))
+    ```
+
+## Ranking
+
+- `n()`
+- `first()`, `last()`, `nth()`
+
 
 Simple counts can be computed with `n()` inside `summarize()`:
 

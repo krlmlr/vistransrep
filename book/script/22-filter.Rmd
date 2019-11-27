@@ -22,13 +22,16 @@ conflict_prefer("filter", "dplyr")
 During this lecture we will be working with data from the package {nycflights13}, which contains flights in the year 2013 with their departure in New York City (airports: JFK, LGA or EWR) to destinations in the United States, Puerto Rico, and the American Virgin Islands.
 
 ```{r include = FALSE}
-# example data
+# show example data
 ```
 ```{r 22-example-data}
 flights
-?flights
 ```
 
+
+```{r include = FALSE}
+# access help for example data
+```
 ```{r 22-example-data-help, eval = FALSE}
 ?flights
 ```
@@ -44,15 +47,38 @@ flights %>%
   filter(dep_time < 600)
 ```
 
-If you use one or more variables of the dataset in the filter condition, a vectorized evaluation of the condition is taking place.
-Generally you can provide any logical vector with a length equal to the number of rows (or alternatively equal to 1, if you want to keep/drop all rows).
+The following building blocks are frequently used in a filter:
+
+- Operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+    ```r
+    month == 3              # careful: two =
+    month >= 10
+    carrier != "UA"         # careful: <> doesn't work
+    arr_time < dep_time
+    ```
+- `near()`
+    ```r
+    near(sin(pi), 0)
+    ```
+- `between()`, `%in%`
+    ```r
+    between(hour, 8, 12)
+    month %in% c(12, 1, 2)
+    ```
+
+- `str_detect()` for strings
+
+Missing values can be detected with `is.na()`:
 
 ```{r include = FALSE}
-# filter: logical result from function
+# filter: NA values
 ```
-```{r 22-filter-logical-result-from-function}
+```{r 22-filter-na-values}
 flights %>%
   filter(is.na(dep_time))
+
+flights %>%
+  filter(is.na(dep_time - arr_time))
 ```
 
 Use `&` or multiple filters to return only rows that match both criteria:

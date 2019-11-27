@@ -16,9 +16,12 @@ flights
 flights %>%
   filter(dep_time < 600)
 
-# filter: logical result from function
+# filter: NA values
 flights %>%
   filter(is.na(dep_time))
+
+flights %>%
+  filter(is.na(dep_time - arr_time))
 
 # one AND the other
 flights %>%

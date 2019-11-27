@@ -6,5 +6,17 @@
 
 This chapter discusses data transformation with the [dplyr package](https://dplyr.tidyverse.org/).
 
+- One table:
+    - `filter()`
+    - `select()`
+    - `arrange()`
+    - `mutate()`
+    - `summarise()`
+- Grouped operations
+    - `group_by()`
+    - `ungroup()`
+- Joins
+    - `xxx_join()`
+
 ```{r 02-Transformation-1, child = here::here("script", "2.Rmd")}
 ```

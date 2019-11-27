@@ -43,6 +43,32 @@ flights %>%
   select(dep_delay, arr_delay, recovery)
 ```
 
+The following constructs are often applied inside `mutate()`:
+
+- Arithmetic: `+`, `-`, `*`, `/`, `^`, `%%`, `%/%`
+    ```r
+    dep_delay - arr_delay
+    dep_time %/% 100
+    dep_time %% 100
+    dep_delay - mean(dep_delay)   # Deviation from mean
+    ```
+- Real functions, see `?base::Math` and `?dplyr::lead`:
+    - Rounding: `floor()`, `ceiling()`, `round()`
+    - Sign: `abs()`, `sign()`
+    - Transform: `sqrt()`, `log()`, `log2()`, `exp()`
+    - Trigonometric: `sin()` etc.
+    
+- Recoding: `if_else()`, `case_when()`, `recode()`
+
+- All filtering functions for a new `logical` column
+
+- `str_replace()` for string columns
+
+- Functions that process values from other rows:
+    - Cumulative: `cumsum()` etc.
+    - Lead and lag: `lead()`, `lag()`
+    - Ranking: `row_number()`, `min_rank()`, `ntile()`
+
 Work with the newly created variable just like with the original ones:
 
 ```{r include = FALSE}

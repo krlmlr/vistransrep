@@ -90,7 +90,7 @@ flights_with_spaces %>%
 
 The {janitor} package helps fixing issues with colum names automatically.
 
-Select helpers allow selecting multiple related columns conveniently.
+Select helpers allow selecting multiple related columns conveniently:
 
 ```{r include = FALSE}
 # select helpers
