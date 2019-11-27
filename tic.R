@@ -12,5 +12,6 @@ get_stage("deploy") %>%
   add_step(step_setup_push_deploy(path = "docs", branch = "gh-pages")) %>%
   add_step(step_run_code(withr::with_dir("website", rmarkdown::render_site()))) %>%
   add_step(step_run_code(withr::with_dir("book", bookdown::render_book("_output.yml", output_format = "all")))) %>%
+  add_step(step_run_code(unlink(dir("docs", pattern = "^[^0-9]"), recursive = TRUE))) %>%
   add_step(step_run_code(file.copy(dir("book/_book", full.names = TRUE), "docs", recursive = TRUE))) %>%
   add_step(step_do_push_deploy(path = "docs"))
