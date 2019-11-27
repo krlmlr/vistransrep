@@ -99,7 +99,7 @@ However, `facet_grid` might be preferred in the following cases:
 
 - when plots of empty combinations should be shown
 
-Let's compare how `facet_grid` and `facet_wrap` differ for 2 grouping variables
+Let's compare how `facet_grid()` and `facet_wrap()` differ for 2 grouping variables
 
 ```{r, fig.height=10}
 fc_gd = ggplot(mpg, aes(displ, hwy)) +
@@ -150,4 +150,3 @@ ggplot(mpg, aes(displ, hwy)) +
   facet_grid(vars(), vars(cyl), labeller = label_both) +
   theme_pubr()
 ```
-
