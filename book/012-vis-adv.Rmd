@@ -38,7 +38,7 @@ The position of `<variable>` in `facet_wrap()` denotes on which axis the facets 
 
 ### `facet_wrap()`
 
-```{r facet-wrap1, out.width="50%", fig.show='hold'}
+```{r facet-wrap1, out.width="48%", fig.show='hold'}
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(colour = fl)) +
   scale_color_nejm() +
