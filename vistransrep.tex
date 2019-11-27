@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{27 November 2019, 18:16 CET}
+\date{27 November 2019, 20:35 CET}
 
 \begin{document}
 \maketitle
@@ -322,9 +322,11 @@ Licensed under \href{https://creativecommons.org/licenses/by-nc/4.0/}{CC-BY-NC 4
 \section*{Speakers}\label{speakers}}
 \addcontentsline{toc}{section}{Speakers}
 
-\textbf{Kirill Müller} (@krlmlr)
+\textbf{Kirill Müller} (@krlmlr) \url{https://www.cynkra.com/about.html}
 
-\textbf{Patrick Schratz} (@pat-s)
+\begin{flushright}\includegraphics[width=9.33in]{img/kirill} \end{flushright}
+
+\textbf{Patrick Schratz} (@pat-s) \url{https://pat-s.me}
 
 \begin{flushright}\includegraphics[width=3.47in]{img/pjs} \end{flushright}
 
@@ -879,7 +881,7 @@ We do this by adding (with the help of the \texttt{+} operator after the \texttt
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-scatterplot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/11-visualize-variables-as-points-scatterplot-1} \end{flushright}
 
 This is maybe the most basic plot you can create.
 To map a different variable than \texttt{disp} to the x-axis, change the respective variable name in the \texttt{aes()} argument.
@@ -1131,7 +1133,7 @@ In the case of boxplots, a special position arrangement function is used to arra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-geom-point-mapping-null-data-null-stat-identity-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-show-geom-boxplot-1} \end{flushright}
 
 \hypertarget{combining-geoms}{%
 \subsection{Combining geoms}\label{combining-geoms}}
@@ -1147,7 +1149,7 @@ A combination that is often used together is \texttt{geom\_point()} and \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-37-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-combining-multiple-geoms-1} \end{flushright}
 
 Unless specified differently in the \texttt{geom\_*()} call, all geoms will use the same variables.
 
@@ -1202,7 +1204,9 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-39-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-continuous-x-and-y-1} \end{flushright}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \hypertarget{discrete-x-and-continuous-y}{%
 \subsection{Discrete X and continuous Y}\label{discrete-x-and-continuous-y}}
@@ -1214,7 +1218,7 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-40-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-discrete-x-and-continuous-y-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1228,7 +1232,7 @@ An extensive description of all geometric objects can be found on the \texttt{gg
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-41-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-discrete-x-and-y-1} \end{flushright}
 
 \hypertarget{one-variable-plots}{%
 \section{One variable plots}\label{one-variable-plots}}
@@ -1270,7 +1274,7 @@ This one is automatically grouped into 30 bins.
 ## `binwidth`.
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-43-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-continuous-variables-histogram-most-common-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -1281,7 +1285,7 @@ This one is automatically grouped into 30 bins.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-44-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-showcase-density-1} \end{flushright}
 
 \hypertarget{discrete-variables}{%
 \subsection{Discrete variables}\label{discrete-variables}}
@@ -1299,12 +1303,15 @@ For discrete data, there is actually only one visualization method - the bar plo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-45-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/14-example-for-discrete-var-barplot-1} \end{flushright}
 
-\hypertarget{exercises}{%
-\section{Exercises}\label{exercises}}
+\textbf{Exercises}
 
-\url{https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{browseURL}\NormalTok{(}\StringTok{"https://krlmlr.github.io/vistransrep/2019-11-zhr/scatter.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{colors-and-shape}{%
 \section{Colors and shape}\label{colors-and-shape}}
@@ -1335,7 +1342,7 @@ The simplest is to set all observations of a geom to a dedicated color, supplied
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-different-color-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-static-color-blue-1} \end{flushright}
 
 \hypertarget{dynamic-colors}{%
 \subsection{Dynamic colors}\label{dynamic-colors}}
@@ -1369,7 +1376,7 @@ The \texttt{class} variable is discrete and leads to a discrete color scale.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-discrete-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-color-variable-mapping-discrete-1} \end{flushright}
 
 \textbf{Continuous}
 
@@ -1385,7 +1392,7 @@ The \texttt{cty} attribute is continuous, the color scale is adapted accordingly
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-color-as-3-rd-aesthetic-continuous-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-color-variable-mapping-cont-1} \end{flushright}
 
 \hypertarget{shape}{%
 \subsection{Shape}\label{shape}}
@@ -1405,7 +1412,7 @@ One more degree of freedom is the shape of the symbols to be plotted.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-shape-as-3-rd-aesthetic-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-shape-1} \end{flushright}
 
 \hypertarget{combining-color-and-shape}{%
 \subsection{Combining color and shape}\label{combining-color-and-shape}}
@@ -1425,7 +1432,7 @@ Color and shape can be combined.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-shape-mapped-on-drv-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-combining-color-and-shape-1} \end{flushright}
 
 And last but not least, the size of the plotted symbols can be linked to numeric values of the mapped variable.
 
@@ -1435,15 +1442,14 @@ And last but not least, the size of the plotted symbols can be linked to numeric
   \DataTypeTok{data =}\NormalTok{ mpg,}
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
     \DataTypeTok{x =}\NormalTok{ displ,}
-    \DataTypeTok{y =}\NormalTok{ hwy,}
-    \DataTypeTok{size =}\NormalTok{ cty}
+    \DataTypeTok{y =}\NormalTok{ hwy}
 \NormalTok{  )}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{size =}\NormalTok{ cty))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-point-size-as-3-rd-aesthetic-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-dynamic-size-1} \end{flushright}
 
 You can mix different aesthetic mappings in order to produce a plot with densely packed information.
 However, be aware that adding too much information to a plot does not necessarily make it better.
@@ -1454,16 +1460,17 @@ However, be aware that adding too much information to a plot does not necessaril
   \DataTypeTok{data =}\NormalTok{ mpg,}
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
     \DataTypeTok{x =}\NormalTok{ displ,}
-    \DataTypeTok{y =}\NormalTok{ hwy,}
-    \DataTypeTok{color =}\NormalTok{ class,}
-    \DataTypeTok{size =}\NormalTok{ cty}
+    \DataTypeTok{y =}\NormalTok{ hwy}
 \NormalTok{  )}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}
+    \DataTypeTok{color =}\NormalTok{ class,}
+    \DataTypeTok{size =}\NormalTok{ cty}
+\NormalTok{  ))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-mix-to-increase-num-of-aesthetics-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-sometimes-less-is-more-1} \end{flushright}
 
 \hypertarget{transparency}{%
 \subsection{Transparency}\label{transparency}}
@@ -1484,7 +1491,7 @@ This is useful to get an impression of how many data points share the same coord
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-semi-transparency-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-transparency-alpha-1} \end{flushright}
 
 \hypertarget{what-can-go-wrong}{%
 \subsection{What can go wrong}\label{what-can-go-wrong}}
@@ -1507,7 +1514,11 @@ If you try to specify a color in the \texttt{mapping}-argument of the main \text
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-unquoted-col-in-aes-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-what-can-go-wrong-1} \end{flushright}
+
+\begin{verbatim}
+## Error in FUN(X[[i]], ...) : object 'blue' not found
+\end{verbatim}
 
 R treats objects without quotation marks in a special way, expecting them to be variables.
 Since \texttt{blue} is not a variable of \texttt{mpg}, this did not work.
@@ -1548,15 +1559,14 @@ So what if we pass the color as a character variable?
   \DataTypeTok{data =}\NormalTok{ mpg,}
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}
     \DataTypeTok{x =}\NormalTok{ displ,}
-    \DataTypeTok{y =}\NormalTok{ hwy,}
-    \DataTypeTok{color =} \StringTok{"blue"}
+    \DataTypeTok{y =}\NormalTok{ hwy}
 \NormalTok{  )}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-quoted-color-in-aes-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-what-happens-with-strings-in-aes-1} \end{flushright}
 
 At least there was no error, but now the constant value \texttt{blue} is mapped to the first default color of the color mapping, which happens to be red.
 We could have been fooled, if it had been blue.
@@ -1577,7 +1587,7 @@ Recall, it is best to specify geom related mappings with the respective geom fun
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/12-correct-way-to-specify-manual-aesthetic-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/15-map-static-colors-outside-of-aes-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -1607,7 +1617,7 @@ For character variables there is further way of integrating its value to a plot.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-geom-text-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/16-showcase-geom-text-1} \end{flushright}
 
 Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset in the \texttt{mapping} argument of \texttt{ggplot()}.
 
@@ -1621,7 +1631,7 @@ Let's try to map this argument to a variable (here: \texttt{drv}) of our dataset
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-set-label-in-aes-for-geom-text-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/16-object-vs-string-again-1} \end{flushright}
 
 Right, of course we need to pass the variable without quotation marks, otherwise it is interpreted as a (constant) character variable.
 When changing this, a vector with the values of the variable is passed on to \texttt{geom\_text()}.
@@ -1637,7 +1647,7 @@ This is one way of including the values of character variables in a plot.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-3-rd-aesthetic-as-label-for-geom-text-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/16-dynamic-labeling-to-variable-1} \end{flushright}
 
 When adding more than one \texttt{geom()}-function, multiple geometries are added to the plot.
 However, because \texttt{geom\_point()} has no support for passing a label, we can only use this mapping in \texttt{geom\_text()}.
@@ -1653,7 +1663,7 @@ However, because \texttt{geom\_point()} has no support for passing a label, we c
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/16-points-and-labels-overplotting-1} \end{flushright}
 
 Since this looks just slightly odd, let's try to make it more apparent, what is happening.
 
@@ -1668,7 +1678,7 @@ Since this looks just slightly odd, let's try to make it more apparent, what is 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/13-two-layers-more-clearly-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/16-aesthetic-changes-to-distinguish-better-1} \end{flushright}
 
 \hypertarget{themes}{%
 \section{Themes}\label{themes}}
@@ -1695,7 +1705,7 @@ We start with the introduction of the default theme -- \texttt{theme\_grey()} fu
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-base-plot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-base-plot-with-default-theme-1} \end{flushright}
 
 Change the default \texttt{theme\_grey()} to a more traditional black-and-white theme:
 
@@ -1719,14 +1729,14 @@ The black-and-whiteness only relates to the background.
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(}
   \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-data-can-have-color-in-bw-theme-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-theme-does-not-affect-color-palette-of-geoms-1} \end{flushright}
 
 Calling the function \texttt{theme()} after a \texttt{theme\_...()} call let's you tweak certain aspects of the theme.
 
@@ -1736,9 +1746,9 @@ Some plots work better with the legend at the bottom.
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(}
   \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
 \end{Highlighting}
@@ -1752,15 +1762,15 @@ Mind that \texttt{theme\_...()} functions overwrite all previous settings of \te
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(}
   \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-theme-functions-overwrite-theme-if-called-afterwards-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-theme-overwrites-theme-calls-mind-the-order-1} \end{flushright}
 
 The first argument of each \texttt{theme\_...()} function is \texttt{base\_size}, which refers to the font size of all elements in the plot.
 
@@ -1802,7 +1812,7 @@ Here is how \texttt{ggpubr::theme\_pubr()} looks like.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-predefined-themes-available-e-g-in-ggpubr-package-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/17-predefined-custom-themes-available-e-g-in-ggpubr-package-1} \end{flushright}
 
 Also from here onward we will use \texttt{theme\_pubr()} as the default theme for plots.
 This can be done by setting
@@ -1840,6 +1850,12 @@ This can be done by setting
 ##     extract
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{theme_set}\NormalTok{(}\KeywordTok{theme_pubr}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
 In this section we want to spend some time getting to know how to customize the labels and scales of plots using \{ggplot2\}.
 We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with the \{tidyverse\}.
 
@@ -1849,12 +1865,11 @@ We start with a pretty basic plot using the \texttt{mpg}-tibble which comes with
   \DataTypeTok{data =}\NormalTok{ mpg,}
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-base-plot-to-start-with-1} \end{flushright}
 
 \hypertarget{labs}{%
 \subsection{\texorpdfstring{\texttt{labs()}}{labs()}}\label{labs}}
@@ -1869,7 +1884,6 @@ Additionally you can set the title/subtitle and also add a caption and a tag.
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
 \NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}
     \DataTypeTok{x =} \StringTok{"Displacement"}\NormalTok{,}
     \DataTypeTok{y =} \StringTok{"Highway mileage}\CharTok{\textbackslash{}n}\StringTok{[miles per gallon]"}\NormalTok{,}
@@ -1895,7 +1909,6 @@ For example there is a function to change the scale of an axis to a logarithmic 
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
 \NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -1915,7 +1928,6 @@ If you do both, only the name set in the latter will prevail.
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}
     \DataTypeTok{x =} \StringTok{"Displacement"}
 \NormalTok{  ) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_log10}\NormalTok{(}\DataTypeTok{name =} \StringTok{"xxx"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1932,7 +1944,6 @@ These enable custom axis breaks and labels if the ones autogenerated from the da
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{), }\DataTypeTok{breaks =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -1942,7 +1953,7 @@ These enable custom axis breaks and labels if the ones autogenerated from the da
 ## (geom_point).
 \end{verbatim}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx1-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-showcase-manual-axis-scaling-limits-breaks-labels-1} \end{flushright}
 
 Values not falling into the custom limits will be silently droppend including a warning message.
 
@@ -1960,12 +1971,11 @@ By default, \texttt{scale\_color\_hue()} will be used for categorical variables.
   \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_hue}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx2-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-default-color-palette-1} \end{flushright}
 
 To change the color palette, pass a palette-function of your liking in the form of
 
@@ -1988,15 +1998,14 @@ To specify that we are dealing with categorical values, we add a \texttt{\_d} at
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(}
   \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_viridis_d}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xx3-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-show-viridis-color-palette-discrete-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2010,10 +2019,9 @@ Another helpful scenario is when there are more levels in the data than colors s
 \begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(}
   \DataTypeTok{data =}\NormalTok{ mpg,}
-  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy, }\DataTypeTok{color =}\NormalTok{ class)}
+  \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy)}
 \NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_pubr}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}
     \StringTok{"2seater"}\NormalTok{ =}\StringTok{ "#000000"}\NormalTok{,}
     \StringTok{"compact"}\NormalTok{ =}\StringTok{ "#3355FF"}\NormalTok{,}
@@ -2026,7 +2034,7 @@ Another helpful scenario is when there are more levels in the data than colors s
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-xxx4-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/18-show-how-to-set-manual-colors-1} \end{flushright}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2064,10 +2072,12 @@ ggsave() is a convenient function for saving a plot. It defaults to \textbf{savi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(mpg, wt)) }\OperatorTok{+}\StringTok{ }
+\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(mpg, wt)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-create-plot-for-export-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2144,12 +2154,16 @@ This is not possible with base R plots.
 \begin{Highlighting}[]
 \NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ class))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-71-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-saved-ggplot-objects-can-be-used-later-on-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2157,7 +2171,7 @@ This is not possible with base R plots.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-71-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/19-print-the-ggplot-obj-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2342,9 +2356,14 @@ The variables used for faceting should be passed encapsulated in \texttt{vars()}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{facet_grid}\NormalTok{(}\DataTypeTok{facets =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
-\KeywordTok{facet_wrap}\NormalTok{(}\DataTypeTok{rows =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }\DataTypeTok{cols =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
-           \DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, ...)}
+\KeywordTok{facet_grid}\NormalTok{(}\DataTypeTok{facets =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
+           \DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, }
+\NormalTok{           ...)}
+
+\KeywordTok{facet_wrap}\NormalTok{(}\DataTypeTok{rows =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
+           \DataTypeTok{cols =} \KeywordTok{vars}\NormalTok{(}\OperatorTok{<}\NormalTok{variable}\OperatorTok{>}\NormalTok{), }
+           \DataTypeTok{scales =} \StringTok{"fixed"}\NormalTok{, }
+\NormalTok{           ...)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2380,7 +2399,7 @@ The position of \texttt{\textless{}variable\textgreater{}} in \texttt{facet\_wra
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-1} \includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/facet-wrap1-2} \end{flushright}
+\begin{flushright}\includegraphics[width=0.48\linewidth]{vistransrep_files/figure-latex/facet-wrap1-1} \includegraphics[width=0.48\linewidth]{vistransrep_files/figure-latex/facet-wrap1-2} \end{flushright}
 
 Rather than visualizing a 2D-facet plot on x and y, there is also the option to combine both in one axis.
 (For this to work, the variables need to be of class \texttt{factor}).
@@ -2432,14 +2451,20 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year), }\KeywordTok{vars}\NormalTok{(cyl))}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-1} \end{flushright}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(displ, hwy)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ class)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(year, cyl))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-1} \includegraphics[width=0.5\linewidth]{vistransrep_files/figure-latex/unnamed-chunk-3-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-2} \end{flushright}
 
 \hypertarget{scales-1}{%
 \subsection{Scales}\label{scales-1}}
@@ -2457,7 +2482,7 @@ By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-4-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{flushright}
 
 This only makes sense if the ranges for each facet differ substantially (so not in this example!).
 This example is good to show the confusion that this setting might introduce.
@@ -2484,7 +2509,7 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-5-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-6-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -2680,7 +2705,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-6-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-7-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
