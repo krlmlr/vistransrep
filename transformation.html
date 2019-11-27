@@ -135,6 +135,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><strong><a href="./">vistransrep</a></strong></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links"><i class="fa fa-check"></i>Links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#package-versions-used"><i class="fa fa-check"></i>Package versions used</a></li>
@@ -1197,13 +1200,13 @@ Here is a basic barplot of <code>flights$carrier</code>:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb184-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>Same with one facet per month:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>month)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-one-facet-per-month-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-bar-plot-flights-per-carrier-one-facet-per-month-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>We can extract a function that takes any data and produces a barplot of the variable <code>carrier</code>:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">plot_fun &lt;-<span class="st"> </span><span class="cf">function</span>(data) {</a>
 <a class="sourceLine" id="cb186-2" data-line-number="2">  data <span class="op">%&gt;%</span></a>
@@ -1212,7 +1215,7 @@ Here is a basic barplot of <code>flights$carrier</code>:</p>
 <a class="sourceLine" id="cb186-5" data-line-number="5">}</a>
 <a class="sourceLine" id="cb186-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb186-7" data-line-number="7"><span class="kw">plot_fun</span>(flights)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/28-extract-a-function-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-extract-a-function-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>The result of <code>ggplot()</code> is first and foremost an object.
 Only when R tries to display it on the console a method is triggered, which causes it to show the graph in the “Viewer”.
 Therefore, we can use the <code>group_by</code> – <code>summarize()</code> – <code>ungroup()</code> pattern to produce one plot per group and store it in a new column:</p>
@@ -1237,40 +1240,40 @@ Therefore, we can use the <code>group_by</code> – <code>summarize()</code> –
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">plot_df <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">  </span><span class="kw">pull</span>()</a></code></pre></div>
 <pre><code>## [[1]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[2]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-2.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[3]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-3.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-3.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[4]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-4.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-4.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[5]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-5.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-5.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[6]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-6.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-6.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[7]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-7.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-7.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[8]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-8.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-8.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[9]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-9.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-9.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[10]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-10.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-10.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[11]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-11.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-11.png" width="518.4" style="display: block; margin: auto;" /></p>
 <pre><code>## 
 ## [[12]]</code></pre>
-<p><img src="vistransrep_files/figure-html/28-show-the-plots-12.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/28-show-the-plots-12.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>Use the left arrow to click through the different plots.</p>
 
 </div>
@@ -1296,16 +1299,7 @@ Therefore, we can use the <code>group_by</code> – <code>summarize()</code> –
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",

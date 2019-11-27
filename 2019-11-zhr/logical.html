@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kirill Müller, cynkra GmbH" />
+
+
+<title>Logical operators and NA</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">R + tidyverse</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Setup
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">intro</a>
+    </li>
+    <li>
+      <a href="rstudio.html">rstudio</a>
+    </li>
+    <li>
+      <a href="outro.html">outro</a>
+    </li>
+    <li>
+      <a href="support.html">support</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="ggplot2.html">ggplot2</a>
+</li>
+<li>
+  <a href="dplyr.html">dplyr</a>
+</li>
+<li>
+  <a href="tidyr.html">tidyr</a>
+</li>
+<li>
+  <a href="import.html">import</a>
+</li>
+<li>
+  <a href="rmarkdown.html">rmarkdown</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Logical operators and NA</h1>
+<h4 class="author">Kirill Müller, cynkra GmbH</h4>
+
+</div>
+
+
+<div id="todays-flights-flown-by-us" class="section level2">
+<h2>Today’s flights, flown by “US”</h2>
+<pre class="r"><code>flights %&gt;%
+  filter((month == 6) &amp; (day == 2) &amp; (carrier == &quot;US&quot;))</code></pre>
+<pre><code>## # A tibble: 50 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     6     2      515            500        15      649            640
+##  2  2013     6     2      554            600        -6      649            655
+##  3  2013     6     2      613            615        -2      800            808
+##  4  2013     6     2      625            630        -5      810            835
+##  5  2013     6     2      631            629         2      801            818
+##  6  2013     6     2      639            645        -6      906            906
+##  7  2013     6     2      641            645        -4      822            834
+##  8  2013     6     2      643            645        -2      841            908
+##  9  2013     6     2      729            730        -1      856            833
+## 10  2013     6     2      748            755        -7      939            950
+## # … with 40 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>flights %&gt;%
+  filter(month == 6, day == 2, carrier == &quot;US&quot;)</code></pre>
+<pre><code>## # A tibble: 50 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     6     2      515            500        15      649            640
+##  2  2013     6     2      554            600        -6      649            655
+##  3  2013     6     2      613            615        -2      800            808
+##  4  2013     6     2      625            630        -5      810            835
+##  5  2013     6     2      631            629         2      801            818
+##  6  2013     6     2      639            645        -6      906            906
+##  7  2013     6     2      641            645        -4      822            834
+##  8  2013     6     2      643            645        -2      841            908
+##  9  2013     6     2      729            730        -1      856            833
+## 10  2013     6     2      748            755        -7      939            950
+## # … with 40 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="inconvenient-flights" class="section level2">
+<h2>Inconvenient flights</h2>
+<pre class="r"><code>## Logical OR: |
+
+flights %&gt;% 
+  filter(dep_time &lt; 600 | dep_time &gt;= 2200)</code></pre>
+<pre><code>## # A tibble: 16,858 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      533            529         4      850            830
+##  3  2013     1     1      542            540         2      923            850
+##  4  2013     1     1      544            545        -1     1004           1022
+##  5  2013     1     1      554            600        -6      812            837
+##  6  2013     1     1      554            558        -4      740            728
+##  7  2013     1     1      555            600        -5      913            854
+##  8  2013     1     1      557            600        -3      709            723
+##  9  2013     1     1      557            600        -3      838            846
+## 10  2013     1     1      558            600        -2      753            745
+## # … with 16,848 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="flown-by-other-airline-than-ua-or-wn" class="section level2">
+<h2>Flown by other airline than UA or WN</h2>
+<pre class="r"><code>## Logical NOT and OR: ! |
+
+flights %&gt;% 
+  filter(!(carrier == &quot;UA&quot; | carrier == &quot;WN&quot;))</code></pre>
+<pre><code>## # A tibble: 265,836 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      542            540         2      923            850
+##  2  2013     1     1      544            545        -1     1004           1022
+##  3  2013     1     1      554            600        -6      812            837
+##  4  2013     1     1      555            600        -5      913            854
+##  5  2013     1     1      557            600        -3      709            723
+##  6  2013     1     1      557            600        -3      838            846
+##  7  2013     1     1      558            600        -2      753            745
+##  8  2013     1     1      558            600        -2      849            851
+##  9  2013     1     1      558            600        -2      853            856
+## 10  2013     1     1      559            600        -1      941            910
+## # … with 265,826 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>## Logical NOT and %in%
+
+flights %&gt;% 
+  filter(!(carrier %in% c(&quot;UA&quot;, &quot;WN&quot;)))</code></pre>
+<pre><code>## # A tibble: 265,836 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      542            540         2      923            850
+##  2  2013     1     1      544            545        -1     1004           1022
+##  3  2013     1     1      554            600        -6      812            837
+##  4  2013     1     1      555            600        -5      913            854
+##  5  2013     1     1      557            600        -3      709            723
+##  6  2013     1     1      557            600        -3      838            846
+##  7  2013     1     1      558            600        -2      753            745
+##  8  2013     1     1      558            600        -2      849            851
+##  9  2013     1     1      558            600        -2      853            856
+## 10  2013     1     1      559            600        -1      941            910
+## # … with 265,826 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>## Logical AND: &amp;
+
+flights %&gt;%
+  filter(carrier != &quot;UA&quot; &amp; carrier != &quot;WN&quot;)</code></pre>
+<pre><code>## # A tibble: 265,836 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      542            540         2      923            850
+##  2  2013     1     1      544            545        -1     1004           1022
+##  3  2013     1     1      554            600        -6      812            837
+##  4  2013     1     1      555            600        -5      913            854
+##  5  2013     1     1      557            600        -3      709            723
+##  6  2013     1     1      557            600        -3      838            846
+##  7  2013     1     1      558            600        -2      753            745
+##  8  2013     1     1      558            600        -2      849            851
+##  9  2013     1     1      558            600        -2      853            856
+## 10  2013     1     1      559            600        -1      941            910
+## # … with 265,826 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>flights %&gt;% 
+  filter(carrier != &quot;UA&quot;) %&gt;% 
+  filter(carrier != &quot;WN&quot;)</code></pre>
+<pre><code>## # A tibble: 265,836 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      542            540         2      923            850
+##  2  2013     1     1      544            545        -1     1004           1022
+##  3  2013     1     1      554            600        -6      812            837
+##  4  2013     1     1      555            600        -5      913            854
+##  5  2013     1     1      557            600        -3      709            723
+##  6  2013     1     1      557            600        -3      838            846
+##  7  2013     1     1      558            600        -2      753            745
+##  8  2013     1     1      558            600        -2      849            851
+##  9  2013     1     1      558            600        -2      853            856
+## 10  2013     1     1      559            600        -1      941            910
+## # … with 265,826 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div id="missing-departure-or-arrival-time" class="section level2">
+<h2>Missing departure or arrival time</h2>
+<pre class="r"><code>## is.na()
+
+flights %&gt;% 
+  filter(is.na(dep_time))</code></pre>
+<pre><code>## # A tibble: 8,255 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1       NA           1630        NA       NA           1815
+##  2  2013     1     1       NA           1935        NA       NA           2240
+##  3  2013     1     1       NA           1500        NA       NA           1825
+##  4  2013     1     1       NA            600        NA       NA            901
+##  5  2013     1     2       NA           1540        NA       NA           1747
+##  6  2013     1     2       NA           1620        NA       NA           1746
+##  7  2013     1     2       NA           1355        NA       NA           1459
+##  8  2013     1     2       NA           1420        NA       NA           1644
+##  9  2013     1     2       NA           1321        NA       NA           1536
+## 10  2013     1     2       NA           1545        NA       NA           1910
+## # … with 8,245 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>## is.na()
+
+flights %&gt;% 
+  filter(is.na(arr_time))</code></pre>
+<pre><code>## # A tibble: 8,713 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1     2016           1930        46       NA           2220
+##  2  2013     1     1       NA           1630        NA       NA           1815
+##  3  2013     1     1       NA           1935        NA       NA           2240
+##  4  2013     1     1       NA           1500        NA       NA           1825
+##  5  2013     1     1       NA            600        NA       NA            901
+##  6  2013     1     2     2041           2045        -4       NA           2359
+##  7  2013     1     2     2145           2129        16       NA             33
+##  8  2013     1     2       NA           1540        NA       NA           1747
+##  9  2013     1     2       NA           1620        NA       NA           1746
+## 10  2013     1     2       NA           1355        NA       NA           1459
+## # … with 8,703 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>## is.na()
+
+flights %&gt;% 
+  filter(is.na(dep_time) | is.na(arr_time))</code></pre>
+<pre><code>## # A tibble: 8,713 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1     2016           1930        46       NA           2220
+##  2  2013     1     1       NA           1630        NA       NA           1815
+##  3  2013     1     1       NA           1935        NA       NA           2240
+##  4  2013     1     1       NA           1500        NA       NA           1825
+##  5  2013     1     1       NA            600        NA       NA            901
+##  6  2013     1     2     2041           2045        -4       NA           2359
+##  7  2013     1     2     2145           2129        16       NA             33
+##  8  2013     1     2       NA           1540        NA       NA           1747
+##  9  2013     1     2       NA           1620        NA       NA           1746
+## 10  2013     1     2       NA           1355        NA       NA           1459
+## # … with 8,703 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<pre class="r"><code>## is.na()
+
+flights %&gt;% 
+  filter(!is.na(dep_time) &amp; is.na(arr_time))</code></pre>
+<pre><code>## # A tibble: 458 x 19
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1     2016           1930        46       NA           2220
+##  2  2013     1     2     2041           2045        -4       NA           2359
+##  3  2013     1     2     2145           2129        16       NA             33
+##  4  2013     1     9      615            615         0       NA            855
+##  5  2013     1     9     2042           2040         2       NA           2357
+##  6  2013     1    11     1344           1350        -6       NA           1518
+##  7  2013     1    13     1907           1634       153       NA           1837
+##  8  2013     1    13     2239           2159        40       NA             30
+##  9  2013     1    16      837            840        -3       NA           1030
+## 10  2013     1    25     1452           1500        -8       NA           1619
+## # … with 448 more rows, and 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;,
+## #   flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;,
+## #   distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>I don’t think we had hundreds of plane crashes in 2013.</p>
+</div>
+
+<p>Copyright &copy; 2019 Kirill Müller. Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

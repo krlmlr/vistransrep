@@ -135,6 +135,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><strong><a href="./">vistransrep</a></strong></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links"><i class="fa fa-check"></i>Links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#package-versions-used"><i class="fa fa-check"></i>Package versions used</a></li>
@@ -479,14 +482,14 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
 <a class="sourceLine" id="cb242-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, population), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year) <span class="op">+</span></a>
 <a class="sourceLine" id="cb243-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>On the other hand, iIf only a single measurement needs to be plotted, the “wider” form is easier to work with.</p>
 <ul>
 <li><code>table1</code> only requires selecting the correct column</li>
@@ -496,20 +499,20 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <a class="sourceLine" id="cb244-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, cases)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb244-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(type <span class="op">==</span><span class="st"> &quot;cases&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(country, count)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="518.4" style="display: block; margin: auto;" /></p>
 <p>The “wider” form is also the only way to map different measures to different aesthetics, e.g. to correlate values.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb246-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb246-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(cases, population, <span class="dt">color =</span> <span class="kw">factor</span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb246-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb246-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="288" style="display: block; margin: auto 0 auto auto;" /></p>
+<p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="518.4" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combining-vertically" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Combining vertically</h3>
@@ -858,16 +861,7 @@ The data in <code>table5</code> stores year data in two columns.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
