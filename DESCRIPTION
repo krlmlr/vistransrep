@@ -19,6 +19,7 @@ Imports:
     ggthemes,
     here,
     leaflet,
+    memisc,
     nycflights13,
     patchwork,
     plotly,
