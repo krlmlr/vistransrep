@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{28 November 2019, 09:32 CET}
+\date{28 November 2019, 12:38 CET}
 
 \begin{document}
 \maketitle
@@ -873,7 +873,7 @@ In this section we want to give a short introduction, how to get started with \{
 
 \hfill{}\includegraphics[width=11.11in]{img/ggplot2_exploratory} 
 
-\caption{© Allison Horst}\label{fig:unnamed-chunk-29}
+\caption{© Allison Horst}\label{fig:unnamed-chunk-30}
 \end{figure}
 
 \hypertarget{creating-the-plot-skeleton-ggplot}{%
@@ -2486,7 +2486,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-99-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-100-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2496,7 +2496,7 @@ Let's compare how \texttt{facet\_grid} and \texttt{facet\_wrap} differ for 2 gro
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-99-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-100-2} \end{flushright}
 
 \hypertarget{scales-1}{%
 \subsection{Scales}\label{scales-1}}
@@ -2514,7 +2514,7 @@ By setting this argument to either \texttt{"free\_x"} or \texttt{"free\_y"} one 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-100-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-101-1} \end{flushright}
 
 This only makes sense if the ranges for each facet differ substantially (so not in this example!).
 This example is good to show the confusion that this setting might introduce.
@@ -2541,7 +2541,7 @@ This can be achieved by setting the \texttt{labeller} argument of \texttt{facet\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-101-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-102-1} \end{flushright}
 
 \textbf{Exercises}
 
@@ -2737,7 +2737,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-103-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-104-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
@@ -2830,6 +2830,15 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 Using a consistent grammar of data manipulation.
 \end{quote}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+\NormalTok{conflicted}\OperatorTok{::}\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\NormalTok{conflicted}\OperatorTok{::}\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 This chapter discusses data transformation with the \href{https://dplyr.tidyverse.org/}{dplyr package}.
 
 \begin{itemize}
@@ -2882,6 +2891,10 @@ This chapter discusses data transformation with the \href{https://dplyr.tidyvers
 \KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
 
 \begin{verbatim}
 ## [conflicted] Will prefer dplyr::filter over any other package
@@ -3826,6 +3839,10 @@ Select helpers allow selecting multiple related columns conveniently:
 \KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
 
 \begin{verbatim}
 ## [conflicted] Will prefer dplyr::lag over any other package
