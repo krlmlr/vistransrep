@@ -72,7 +72,7 @@ An [R Markdown cheatsheet](https://rstudio.com/wp-content/uploads/2016/03/rmarkd
 
 ## Literate programming in R
 
-Packages {{rmarkdown}} and {{knitr}} are the base of literate programming in R.
+Packages {rmarkdown} and {knitr} are the base of literate programming in R.
 
 RMD's documents can be compiled
 
@@ -80,12 +80,12 @@ RMD's documents can be compiled
 
 - via the command line by calling `rmarkdown::render()`
 
-Behind the scenes the {{rmarkdown}} package first converts the `.Rmd` file to `.md` (markdown).
+Behind the scenes the {rmarkdown} package first converts the `.Rmd` file to `.md` (markdown).
 Then [pandoc](https://pandoc.org/), which is a universal markdown converter library, converts the `.md` file to the chosen output format.
 
 ### R Markdown packages
 
-The following packages are built upon {{rmarkdown}} and simplify special purposes.
+The following packages are built upon {rmarkdown} and simplify special purposes.
 
 - [bookdown](https://bookdown.org/yihui/bookdown/): Mainly used for writing books but can also be used for reports (formats `html_document2`, `git_book`, `pdf_book`, etc.).
 
@@ -96,7 +96,7 @@ Provides ready-to-go templates for different types and simplifies advanced LaTeX
 
 - [xaringan](https://github.com/yihui/xaringan): For HTML presentations via [remark.js](https://remarkjs.com).
 
-- [blogdown](https://github.com/rstudio/blogdown): For creating websites. Example: [https://pjs-web.de/](https://pjs-web.de/)
+- [blogdown](https://github.com/rstudio/blogdown): For creating websites. Example: https://pat-s.me
 
 - [rticles](https://github.com/rstudio/rticles): For scientific paper writing in R.
 
@@ -143,7 +143,7 @@ Reporting often splits up into different formats:
 - written reports (Word, PDF), possibly using LaTeX input
 
 R objects (containing results) can directly be used in the reports to present the results (data, plots).
-If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.
+If the complete workflow of an analysis has been set up in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.
 
 This is the point where packages like [drake](https://docs.ropensci.org/drake/), [workflowr](https://jdblischak.github.io/workflowr/) and [rrtools](https://github.com/benmarwick/rrtools) jump in to simplify reproducible workflows in R.
 
@@ -152,7 +152,7 @@ This helps due to
 
 - a consistent directory structure of R scripts and R Markdown documents
 - documented custom functions 
-- simplified integration into workflow packages like {{drake}} and friends.
+- simplified integration into workflow packages like {drake} and friends.
 
 R "research packages" can be installed locally like any other R package and simplify usage and sharing among colleagues. 
 
