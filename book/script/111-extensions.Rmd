@@ -18,6 +18,8 @@ Here is a selected list of our favorite {ggplot2} extensions including some use 
 
 {gganimate}: https://gganimate.com/
 
+{plotly}: https://plotly-r.com/
+
 {ggtext}: https://github.com/clauswilke/ggtext
 
 {ggiraph}: http://davidgohel.github.io/ggiraph
@@ -46,9 +48,13 @@ library(ggpmisc)
 library(ggiraph)
 library(ggbeeswarm)
 library(gganimate)
+library(plotly)
 library(ggrepel)
 library(ggforce)
+library(ggpubr)
 library(gapminder)
+
+theme_set(theme_pubr())
 ```
 </details>
 
@@ -93,6 +99,18 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
   gganimate::transition_time(year) +
   ease_aes('linear')
+```
+
+### {plotly}
+
+```{r, eval=if !knitr::is_latex_output()}
+p <- ggplot(diamonds, aes(x = log(carat), y = log(price))) + 
+  geom_hex(bins = 100)
+ggplotly(p)
+```
+
+```{r, eval=if !knitr::is_latex_output()}
+plot_ly(z = ~volcano, type = "surface")
 ```
 
 ### {ggtext}
