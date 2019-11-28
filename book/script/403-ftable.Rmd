@@ -1,4 +1,4 @@
-```{r 43-remove-all, include = FALSE}
+```{r 403-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,30 +10,41 @@ rm(list = ls())
 ### <No caption defined>
 
 ```
-```{r 43-setup-43-ftable-r}
+```{r 403-setup-403-ftable-r}
 library(tidyverse)
 library(nycflights13)
 
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
-
-
-table2 %>%
-  xtabs(count ~ ., .) %>%
-  ftable()
-
-table2 %>%
-  xtabs(count ~ ., .) %>%
-  ftable(col.vars = c("year", "type"))
 ```
 </details>
 
 
 ```{r include = FALSE}
+# Formatting for presentation with ftable()
+```
+```{r 403-formatting-for-presentation-with-ftable}
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable()
+```
+
+
+```{r include = FALSE}
+# Deciding what goes into the columns, what into the rows
+```
+```{r 403-deciding-what-goes-into-the-columns-what-into-the-rows}
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable(col.vars = c("year", "type"))
+```
+
+
+```{r include = FALSE}
 # gt package
 ```
-```{r 43-gt-package}
+```{r 403-gt-package}
 
 ```
 
@@ -41,7 +52,7 @@ table2 %>%
 ```{r include = FALSE}
 # reporttools package
 ```
-```{r 43-reporttools-package}
+```{r 403-reporttools-package}
 
 ?`tidyr-package`
 ```
@@ -50,6 +61,6 @@ table2 %>%
 ```{r include = FALSE}
 # https://tidyr.tidyverse.org/
 ```
-```{r 43-https-tidyr-tidyverse-org}
+```{r 403-https-tidyr-tidyverse-org}
 NA
 ```
