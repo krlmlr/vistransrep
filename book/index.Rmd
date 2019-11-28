@@ -80,6 +80,7 @@ writeLines("## Links to material for past workshops {-}
 ## Download data and code {-}
 
 ```{r eval = FALSE}
+# install.packages("usethis")
 usethis::use_course("krlmlr/vistransrep-proj")
 ```
 
