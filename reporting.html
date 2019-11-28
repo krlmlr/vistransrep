@@ -1,63 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Reporting | Visualization, transformation and reporting with the tidyverse</title>
-  <meta name="description" content="6 Reporting | Visualization, transformation and reporting with the tidyverse" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="6 Reporting | Visualization, transformation and reporting with the tidyverse" />
-  <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://krlmlr.github.io/vistransrep" />
-  
-  
-  <meta name="github-repo" content="krlmlr/vistransrep" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Reporting | Visualization, transformation and reporting with the tidyverse" />
-  
-  
-  
-
-<meta name="author" content="Kirill Müller, Tobias Schieferdecker, Patrick Schratz" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="tidying.html"/>
-<link rel="next" href="appendix-best-practices.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="libs/d3/d3.min.js"></script>
-<script src="libs/d3-lasso/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
-<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding/girafe.js"></script>
-
-
-<style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>6 Reporting | Visualization, transformation and reporting with the tidyverse</title>
+<meta name="description" content="6 Reporting | Visualization, transformation and reporting with the tidyverse">
+<meta name="generator" content="bookdown 0.16 and GitBook 2.6.7">
+<meta property="og:title" content="6 Reporting | Visualization, transformation and reporting with the tidyverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://krlmlr.github.io/vistransrep">
+<meta name="github-repo" content="krlmlr/vistransrep">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6 Reporting | Visualization, transformation and reporting with the tidyverse">
+<meta name="author" content="Kirill Müller, Tobias Schieferdecker, Patrick Schratz">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="prev" href="tidying.html">
+<link rel="next" href="appendix-best-practices.html">
+<script src="libs/jquery/jquery.min.js"></script><link href="libs/gitbook/css/style.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet">
+<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script><script src="libs/girafe-binding/girafe.js"></script><style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; position: absolute; }
@@ -121,11 +91,9 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
-<link rel="stylesheet" href="scroll.css" type="text/css" />
-<link rel="stylesheet" href="extra.css" type="text/css" />
+<link rel="stylesheet" href="scroll.css" type="text/css">
+<link rel="stylesheet" href="extra.css" type="text/css">
 </head>
-
 <body>
 
 
@@ -133,13 +101,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
     <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
+      <nav role="navigation"><ul class="summary">
 <li><strong><a href="./">vis trans rep</a></strong></li>
 
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="divider">
+<li class="chapter" data-level="" data-path="index.html">
+<a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-to-material-for-past-workshops"><i class="fa fa-check"></i>Links to material for past workshops</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links"><i class="fa fa-check"></i>Links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-data-and-code"><i class="fa fa-check"></i>Download data and code</a></li>
@@ -147,18 +114,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#speakers"><i class="fa fa-check"></i>Speakers</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="1" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Why R and RStudio?</a></li>
 <li class="chapter" data-level="1.1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#some-r-basics"><i class="fa fa-check"></i><b>1.1.2</b> Some R basics</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#linear-regression"><i class="fa fa-check"></i><b>1.2.1</b> Linear regression</a></li>
 <li class="chapter" data-level="1.2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#base-r-plot"><i class="fa fa-check"></i><b>1.2.2</b> Base R plot</a></li>
 <li class="chapter" data-level="1.2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
 <li class="chapter" data-level="1.2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#gganimate"><i class="fa fa-check"></i><b>1.2.4</b> gganimate</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="1.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.rstudio"><i class="fa fa-check"></i><b>1.3</b> R vs. RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.r-packages"><i class="fa fa-check"></i><b>1.4</b> R vs. R packages</a></li>
 <li class="chapter" data-level="1.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-packages"><i class="fa fa-check"></i><b>1.5</b> R packages</a></li>
@@ -168,56 +141,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-addins"><i class="fa fa-check"></i><b>1.9</b> RStudio addins</a></li>
 <li class="chapter" data-level="1.10" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>1.10</b> RStudio projects</a></li>
 <li class="chapter" data-level="1.11" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#alternatives-to-rstudio"><i class="fa fa-check"></i><b>1.11</b> Alternatives to RStudio</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="vis-basics.html"><a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> Visualization</a><ul>
-<li class="chapter" data-level="2.1" data-path="vis-basics.html"><a href="vis-basics.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2" data-path="vis-basics.html">
+<a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> Visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="vis-basics.html">
+<a href="vis-basics.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>2.1.1</b> Creating the plot skeleton: <code>ggplot()</code></a></li>
 <li class="chapter" data-level="2.1.2" data-path="vis-basics.html"><a href="vis-basics.html#what-is-a-statistical-graphic"><i class="fa fa-check"></i><b>2.1.2</b> What is a “statistical graphic”?</a></li>
 <li class="chapter" data-level="2.1.3" data-path="vis-basics.html"><a href="vis-basics.html#terminology"><i class="fa fa-check"></i><b>2.1.3</b> Terminology</a></li>
 <li class="chapter" data-level="2.1.4" data-path="vis-basics.html"><a href="vis-basics.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.1.4</b> The Grammar of graphics …</a></li>
 <li class="chapter" data-level="2.1.5" data-path="vis-basics.html"><a href="vis-basics.html#about-ggplot2"><i class="fa fa-check"></i><b>2.1.5</b> About {ggplot2}</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="vis-basics.html"><a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.2" data-path="vis-basics.html">
+<a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="vis-basics.html"><a href="vis-basics.html#arguments"><i class="fa fa-check"></i><b>2.2.1</b> Arguments</a></li>
 <li class="chapter" data-level="2.2.2" data-path="vis-basics.html"><a href="vis-basics.html#combining-geoms"><i class="fa fa-check"></i><b>2.2.2</b> Combining geoms</a></li>
 <li class="chapter" data-level="2.2.3" data-path="vis-basics.html"><a href="vis-basics.html#summary"><i class="fa fa-check"></i><b>2.2.3</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="vis-basics.html"><a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.3</b> Two variable plots</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.3" data-path="vis-basics.html">
+<a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.3</b> Two variable plots</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-x-and-y"><i class="fa fa-check"></i><b>2.3.1</b> Continuous X and Y</a></li>
 <li class="chapter" data-level="2.3.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-continuous-y"><i class="fa fa-check"></i><b>2.3.2</b> Discrete X and continuous Y</a></li>
 <li class="chapter" data-level="2.3.3" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-y"><i class="fa fa-check"></i><b>2.3.3</b> Discrete X and Y</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="vis-basics.html"><a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.4</b> One variable plots</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.4" data-path="vis-basics.html">
+<a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.4</b> One variable plots</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-variables"><i class="fa fa-check"></i><b>2.4.1</b> Continuous variables</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-variables"><i class="fa fa-check"></i><b>2.4.2</b> Discrete variables</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="vis-basics.html"><a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.5</b> Colors and shape</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.5" data-path="vis-basics.html">
+<a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.5</b> Colors and shape</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="vis-basics.html"><a href="vis-basics.html#static-colors"><i class="fa fa-check"></i><b>2.5.1</b> Static colors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="vis-basics.html"><a href="vis-basics.html#dynamic-colors"><i class="fa fa-check"></i><b>2.5.2</b> Dynamic colors</a></li>
 <li class="chapter" data-level="2.5.3" data-path="vis-basics.html"><a href="vis-basics.html#shape"><i class="fa fa-check"></i><b>2.5.3</b> Shape</a></li>
 <li class="chapter" data-level="2.5.4" data-path="vis-basics.html"><a href="vis-basics.html#combining-color-and-shape"><i class="fa fa-check"></i><b>2.5.4</b> Combining color and shape</a></li>
 <li class="chapter" data-level="2.5.5" data-path="vis-basics.html"><a href="vis-basics.html#transparency"><i class="fa fa-check"></i><b>2.5.5</b> Transparency</a></li>
 <li class="chapter" data-level="2.5.6" data-path="vis-basics.html"><a href="vis-basics.html#what-can-go-wrong"><i class="fa fa-check"></i><b>2.5.6</b> What can go wrong</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="2.6" data-path="vis-basics.html"><a href="vis-basics.html#labels"><i class="fa fa-check"></i><b>2.6</b> Labels</a></li>
 <li class="chapter" data-level="2.7" data-path="vis-basics.html"><a href="vis-basics.html#themes"><i class="fa fa-check"></i><b>2.7</b> Themes</a></li>
-<li class="chapter" data-level="2.8" data-path="vis-basics.html"><a href="vis-basics.html#scales"><i class="fa fa-check"></i><b>2.8</b> Scales</a><ul>
+<li class="chapter" data-level="2.8" data-path="vis-basics.html">
+<a href="vis-basics.html#scales"><i class="fa fa-check"></i><b>2.8</b> Scales</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="vis-basics.html"><a href="vis-basics.html#labs"><i class="fa fa-check"></i><b>2.8.1</b> <code>labs()</code></a></li>
 <li class="chapter" data-level="2.8.2" data-path="vis-basics.html"><a href="vis-basics.html#axes"><i class="fa fa-check"></i><b>2.8.2</b> Axes</a></li>
 <li class="chapter" data-level="2.8.3" data-path="vis-basics.html"><a href="vis-basics.html#color-scale"><i class="fa fa-check"></i><b>2.8.3</b> Color scale</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="vis-basics.html"><a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.9</b> Export &amp; saving</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.9" data-path="vis-basics.html">
+<a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.9</b> Export &amp; saving</a><ul>
 <li class="chapter" data-level="2.9.1" data-path="vis-basics.html"><a href="vis-basics.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>2.9.1</b> Base R vs. {{ggplot2}}</a></li>
 <li class="chapter" data-level="2.9.2" data-path="vis-basics.html"><a href="vis-basics.html#storing-the-plot-as-an-r-object"><i class="fa fa-check"></i><b>2.9.2</b> Storing the plot as an R object</a></li>
 <li class="chapter" data-level="2.9.3" data-path="vis-basics.html"><a href="vis-basics.html#best-practices-for-exporting"><i class="fa fa-check"></i><b>2.9.3</b> Best practices for exporting</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="vis-basics.html"><a href="vis-basics.html#facetting"><i class="fa fa-check"></i><b>2.10</b> Facetting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.10" data-path="vis-basics.html">
+<a href="vis-basics.html#facetting"><i class="fa fa-check"></i><b>2.10</b> Facetting</a><ul>
 <li class="chapter" data-level="2.10.1" data-path="vis-basics.html"><a href="vis-basics.html#facet_wrap"><i class="fa fa-check"></i><b>2.10.1</b> <code>facet_wrap()</code></a></li>
 <li class="chapter" data-level="2.10.2" data-path="vis-basics.html"><a href="vis-basics.html#facet_grid"><i class="fa fa-check"></i><b>2.10.2</b> <code>facet_grid()</code></a></li>
 <li class="chapter" data-level="2.10.3" data-path="vis-basics.html"><a href="vis-basics.html#scales-1"><i class="fa fa-check"></i><b>2.10.3</b> Scales</a></li>
 <li class="chapter" data-level="2.10.4" data-path="vis-basics.html"><a href="vis-basics.html#renaming-of-facet-labels"><i class="fa fa-check"></i><b>2.10.4</b> Renaming of facet labels</a></li>
-</ul></li>
-<li class="chapter" data-level="2.11" data-path="vis-basics.html"><a href="vis-basics.html#extensions"><i class="fa fa-check"></i><b>2.11</b> Extensions</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.11" data-path="vis-basics.html">
+<a href="vis-basics.html#extensions"><i class="fa fa-check"></i><b>2.11</b> Extensions</a><ul>
 <li class="chapter" data-level="2.11.1" data-path="vis-basics.html"><a href="vis-basics.html#ggsci"><i class="fa fa-check"></i><b>2.11.1</b> {ggsci}</a></li>
 <li class="chapter" data-level="2.11.2" data-path="vis-basics.html"><a href="vis-basics.html#ggforce"><i class="fa fa-check"></i><b>2.11.2</b> {ggforce}</a></li>
 <li class="chapter" data-level="2.11.3" data-path="vis-basics.html"><a href="vis-basics.html#gganimate-1"><i class="fa fa-check"></i><b>2.11.3</b> {gganimate}</a></li>
@@ -227,74 +219,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.7</b> {ggbeeswarm}</a></li>
 <li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.8</b> {ggpmisc}</a></li>
 <li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.9</b> {esquisse}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="3" data-path="transformation.html">
+<a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
 <li class="chapter" data-level="3.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>3.1</b> Package: {conflicted}</a></li>
-<li class="chapter" data-level="3.2" data-path="transformation.html"><a href="transformation.html#filtering"><i class="fa fa-check"></i><b>3.2</b> Filtering</a><ul>
+<li class="chapter" data-level="3.2" data-path="transformation.html">
+<a href="transformation.html#filtering"><i class="fa fa-check"></i><b>3.2</b> Filtering</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="transformation.html"><a href="transformation.html#sorting"><i class="fa fa-check"></i><b>3.3</b> Sorting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.3" data-path="transformation.html">
+<a href="transformation.html#sorting"><i class="fa fa-check"></i><b>3.3</b> Sorting</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.4" data-path="transformation.html">
+<a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="transformation.html"><a href="transformation.html#further-advantages"><i class="fa fa-check"></i><b>3.4.1</b> Further advantages</a></li>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns"><i class="fa fa-check"></i><b>3.5</b> Pick columns</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.5" data-path="transformation.html">
+<a href="transformation.html#pick-columns"><i class="fa fa-check"></i><b>3.5</b> Pick columns</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns"><i class="fa fa-check"></i><b>3.6</b> Create new columns</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.6" data-path="transformation.html">
+<a href="transformation.html#create-new-columns"><i class="fa fa-check"></i><b>3.6</b> Create new columns</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data"><i class="fa fa-check"></i><b>3.7</b> Summarize data</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.7" data-path="transformation.html">
+<a href="transformation.html#summarize-data"><i class="fa fa-check"></i><b>3.7</b> Summarize data</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
-<li class="chapter" data-level="4.1" data-path="import.html"><a href="import.html#import-single-files"><i class="fa fa-check"></i><b>4.1</b> Import single files</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="4" data-path="import.html">
+<a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
+<li class="chapter" data-level="4.1" data-path="import.html">
+<a href="import.html#import-single-files"><i class="fa fa-check"></i><b>4.1</b> Import single files</a><ul>
 <li class="chapter" data-level="" data-path="import.html"><a href="import.html#exercises-6"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="import.html"><a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="4.2" data-path="import.html">
+<a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a><ul>
 <li class="chapter" data-level="" data-path="import.html"><a href="import.html#exercises-7"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
-<li class="chapter" data-level="5.1" data-path="tidying.html"><a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="5" data-path="tidying.html">
+<a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
+<li class="chapter" data-level="5.1" data-path="tidying.html">
+<a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="tidying.html"><a href="tidying.html#convert-to-longer-form"><i class="fa fa-check"></i><b>5.1.1</b> Convert to longer form</a></li>
 <li class="chapter" data-level="5.1.2" data-path="tidying.html"><a href="tidying.html#convert-to-wider-form"><i class="fa fa-check"></i><b>5.1.2</b> Convert to wider form</a></li>
 <li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
 <li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
 <li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="tidying.html"><a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="5.2" data-path="tidying.html">
+<a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <No caption defined></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>6</b> Reporting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <no caption defined></no></a></li>
+</ul>
+</li>
+<li class="chapter" data-level="6" data-path="reporting.html">
+<a href="reporting.html"><i class="fa fa-check"></i><b>6</b> Reporting</a><ul>
 <li class="chapter" data-level="6.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
 <li class="chapter" data-level="6.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>6.2</b> The YAML header</a></li>
-<li class="chapter" data-level="6.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>6.3</b> Literate programming in R</a><ul>
+<li class="chapter" data-level="6.3" data-path="reporting.html">
+<a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>6.3</b> Literate programming in R</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>6.3.1</b> R Markdown packages</a></li>
 <li class="chapter" data-level="6.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>6.3.2</b> Code chunks in R Markdown</a></li>
 <li class="chapter" data-level="6.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>6.3.3</b> R Notebooks</a></li>
 <li class="chapter" data-level="6.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>6.3.4</b> Workflow</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="6.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>6.4</b> Shiny: Interactive visualizations</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html"><i class="fa fa-check"></i><b>7</b> Appendix: Best practices</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="7" data-path="appendix-best-practices.html">
+<a href="appendix-best-practices.html"><i class="fa fa-check"></i><b>7</b> Appendix: Best practices</a><ul>
 <li class="chapter" data-level="7.1" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
 <li class="chapter" data-level="7.2" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
 <li class="chapter" data-level="7.3" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
 <li class="chapter" data-level="7.4" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
-
-      </nav>
-    </div>
+</li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul></nav>
+</div>
 
     <div class="book-body">
       <div class="body-inner">
@@ -307,22 +331,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <div class="page-wrapper" tabindex="-1" role="main">
           <div class="page-inner">
 
-            <section class="normal" id="section-">
-<div id="reporting" class="section level1">
-<h1><span class="header-section-number">6</span> Reporting</h1>
+            <section class="normal" id="section-"><div id="reporting" class="section level1">
+<h1>
+<span class="header-section-number">6</span> Reporting</h1>
 <p>After the successful processing and visualization of the data, the results need to be reported.
 This can be done best in a “literate programming” fashion as provided by R Markdown.</p>
 <p>Using R Markdown, one is able to combine R code (and its results) with text (written in <em>markdown</em>) to create professional looking reports in various output formats (Word, PDF, HTML).</p>
 <p>Both interactive and static documents can be created.
 <a href="https://rmarkdown.rstudio.com/gallery.html">This gallery</a> (maintained by RStudio) gives a first overview of how documents created using R Markdown can look like.</p>
 <div id="overview" class="section level2">
-<h2><span class="header-section-number">6.1</span> Overview</h2>
+<h2>
+<span class="header-section-number">6.1</span> Overview</h2>
 <p>File Format: <code>.Rmd</code> (R Markdown)</p>
 <p>New document (in RStudio): <code>File -&gt; New File -&gt; R Markdown/R Notebook</code>.
 LaTeX Math is supported via <a href="https://www.mathjax.org/">Mathjax</a>:</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="op">$</span>y=\frac{(x <span class="op">-</span><span class="st"> </span>\mu)}{(max <span class="op">-</span><span class="st"> </span>min)}<span class="op">$</span></a></code></pre></div>
 <p><span class="math inline">\(y=\frac{(x - \mu)}{(max - min)}\)</span></p>
-<hr />
+<hr>
 <p>Any file with the <code>.Rmd</code> file extension is an “R Markdown document”.
 RMD’s consist <strong>code</strong> and <strong>text</strong> (written in <em>markdown</em> syntax) which need to be <em>compiled</em> into a high-level output format.</p>
 <p>Possible output formats are:</p>
@@ -335,16 +360,17 @@ RMD’s consist <strong>code</strong> and <strong>text</strong> (written in <em>
 <p>Which output format should be used is specified in the “YAML header” of the R Markdown document.</p>
 </div>
 <div id="the-yaml-header" class="section level2">
-<h2><span class="header-section-number">6.2</span> The YAML header</h2>
+<h2>
+<span class="header-section-number">6.2</span> The YAML header</h2>
 <p>In the YAML (Yet Another Markup Language) header users can specify metadata which denote the final appearance of the document.</p>
 <p>Each output format has different settings.
 Fortunately, most settings apply to all formats.</p>
 <p>The YAML header starts and ends with three dashes: <code>---</code>.
 The <strong>output</strong> field is mandatory.</p>
 <div class="sourceCode" id="cb311"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">&quot;&lt;title&gt;&quot;</span></a>
-<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">&quot;&lt;author&gt;&quot;</span></a>
-<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&quot;2019-11-28&quot;</span></a>
+<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">"&lt;title&gt;"</span></a>
+<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">"&lt;author&gt;"</span></a>
+<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">"2019-11-28"</span></a>
 <a class="sourceLine" id="cb311-5" data-line-number="5"><span class="fu">output:</span></a>
 <a class="sourceLine" id="cb311-6" data-line-number="6">  <span class="fu">rmarkdown:</span><span class="at">:html_document:</span></a>
 <a class="sourceLine" id="cb311-7" data-line-number="7">    <span class="fu">toc:</span><span class="at"> yes</span></a>
@@ -359,17 +385,19 @@ The <strong>output</strong> field is mandatory.</p>
 <p>An <a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown cheatsheet</a> also exists.</p>
 </div>
 <div id="literate-programming-in-r" class="section level2">
-<h2><span class="header-section-number">6.3</span> Literate programming in R</h2>
+<h2>
+<span class="header-section-number">6.3</span> Literate programming in R</h2>
 <p>Packages {rmarkdown} and {knitr} are the base of literate programming in R.</p>
 <p>RMD’s documents can be compiled</p>
 <ul>
 <li><p>by clicking the “knit” button in RStudio (the name relates to the {{knitr}} package)</p></li>
-<li><p>via the command line by calling <code>rmarkdown::render()</code></p></li>
+<li><p>via the command line by calling <code><a href="https://rdrr.io/pkg/rmarkdown/man/render.html">rmarkdown::render()</a></code></p></li>
 </ul>
 <p>Behind the scenes the {rmarkdown} package first converts the <code>.Rmd</code> file to <code>.md</code> (markdown).
 Then <a href="https://pandoc.org/">pandoc</a>, which is a universal markdown converter library, converts the <code>.md</code> file to the chosen output format.</p>
 <div id="r-markdown-packages" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> R Markdown packages</h3>
+<h3>
+<span class="header-section-number">6.3.1</span> R Markdown packages</h3>
 <p>The following packages are built upon {rmarkdown} and simplify special purposes.</p>
 <ul>
 <li><p><a href="https://bookdown.org/yihui/bookdown/">bookdown</a>: Mainly used for writing books but can also be used for reports (formats <code>html_document2</code>, <code>git_book</code>, <code>pdf_book</code>, etc.).</p></li>
@@ -382,7 +410,8 @@ Provides ready-to-go templates for different types and simplifies advanced LaTeX
 </ul>
 </div>
 <div id="code-chunks-in-r-markdown" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Code chunks in R Markdown</h3>
+<h3>
+<span class="header-section-number">6.3.2</span> Code chunks in R Markdown</h3>
 <p>To insert code into an R Markdown document, one needs to add a so called “code chunk”.</p>
 <pre><code>```{&lt;language&gt;}
 
@@ -392,7 +421,8 @@ Code can be shown/hidden, evaluation can be prevented on demand, results can be 
 See <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a> for a full list of supported options</p>
 </div>
 <div id="r-notebooks" class="section level3">
-<h3><span class="header-section-number">6.3.3</span> R Notebooks</h3>
+<h3>
+<span class="header-section-number">6.3.3</span> R Notebooks</h3>
 <p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html">R Notebooks</a> are a special form of the <code>html_document</code>.
 To use it, specify <code>html_notebook</code> as the “output” type in the YAML header.
 This output format was created by RStudio as an alternative to <code>html_document</code>.</p>
@@ -406,7 +436,8 @@ This output format was created by RStudio as an alternative to <code>html_docume
 </ul>
 </div>
 <div id="workflow" class="section level3">
-<h3><span class="header-section-number">6.3.4</span> Workflow</h3>
+<h3>
+<span class="header-section-number">6.3.4</span> Workflow</h3>
 <p>R Markdown documents are most often used for reporting of results created in an Rscript.
 This enables a seamless integration of data processing tasks into the subsequent reporting.</p>
 <p>Reporting often splits up into different formats:</p>
@@ -428,31 +459,22 @@ This helps due to</p>
 </div>
 </div>
 <div id="shiny-interactive-visualizations" class="section level2">
-<h2><span class="header-section-number">6.4</span> Shiny: Interactive visualizations</h2>
+<h2>
+<span class="header-section-number">6.4</span> Shiny: Interactive visualizations</h2>
 <p>Javascript based R ecosystem which provides options for rich visualizations.
 <a href="https://shiny.rstudio.com/gallery/">The shiny gallery from RStudio</a> gives a good overview what can be done using <code>shiny</code>.</p>
 
 </div>
 </div>
             </section>
-
-          </div>
+</div>
         </div>
       </div>
 <a href="tidying.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendix-best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
-<script src="libs/gitbook/js/clipboard.min.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
-<script src="libs/gitbook/js/plugin-clipboard.js"></script>
-<script>
+<script src="libs/gitbook/js/app.min.js"></script><script src="libs/gitbook/js/lunr.js"></script><script src="libs/gitbook/js/clipboard.min.js"></script><script src="libs/gitbook/js/plugin-search.js"></script><script src="libs/gitbook/js/plugin-sharing.js"></script><script src="libs/gitbook/js/plugin-fontsettings.js"></script><script src="libs/gitbook/js/plugin-bookdown.js"></script><script src="libs/gitbook/js/jquery.highlight.js"></script><script src="libs/gitbook/js/plugin-clipboard.js"></script><script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
@@ -485,10 +507,7 @@ gitbook.start({
 }
 });
 });
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -502,5 +521,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

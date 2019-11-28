@@ -1,63 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Import | Visualization, transformation and reporting with the tidyverse</title>
-  <meta name="description" content="4 Import | Visualization, transformation and reporting with the tidyverse" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="4 Import | Visualization, transformation and reporting with the tidyverse" />
-  <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://krlmlr.github.io/vistransrep" />
-  
-  
-  <meta name="github-repo" content="krlmlr/vistransrep" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Import | Visualization, transformation and reporting with the tidyverse" />
-  
-  
-  
-
-<meta name="author" content="Kirill Müller, Tobias Schieferdecker, Patrick Schratz" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="transformation.html"/>
-<link rel="next" href="tidying.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<script src="libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="libs/d3/d3.min.js"></script>
-<script src="libs/d3-lasso/d3-lasso.min.js"></script>
-<link href="libs/ggiraphjs/styles.css" rel="stylesheet" />
-<script src="libs/ggiraphjs/ggiraphjs.min.js"></script>
-<script src="libs/girafe-binding/girafe.js"></script>
-
-
-<style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>4 Import | Visualization, transformation and reporting with the tidyverse</title>
+<meta name="description" content="4 Import | Visualization, transformation and reporting with the tidyverse">
+<meta name="generator" content="bookdown 0.16 and GitBook 2.6.7">
+<meta property="og:title" content="4 Import | Visualization, transformation and reporting with the tidyverse">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://krlmlr.github.io/vistransrep">
+<meta name="github-repo" content="krlmlr/vistransrep">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 Import | Visualization, transformation and reporting with the tidyverse">
+<meta name="author" content="Kirill Müller, Tobias Schieferdecker, Patrick Schratz">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="prev" href="transformation.html">
+<link rel="next" href="tidying.html">
+<script src="libs/jquery/jquery.min.js"></script><link href="libs/gitbook/css/style.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet">
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet">
+<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
+<script src="libs/ggiraphjs/ggiraphjs.min.js"></script><script src="libs/girafe-binding/girafe.js"></script><style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; position: absolute; }
@@ -121,11 +91,9 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
-
-<link rel="stylesheet" href="scroll.css" type="text/css" />
-<link rel="stylesheet" href="extra.css" type="text/css" />
+<link rel="stylesheet" href="scroll.css" type="text/css">
+<link rel="stylesheet" href="extra.css" type="text/css">
 </head>
-
 <body>
 
 
@@ -133,13 +101,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
     <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
+      <nav role="navigation"><ul class="summary">
 <li><strong><a href="./">vis trans rep</a></strong></li>
 
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="divider">
+<li class="chapter" data-level="" data-path="index.html">
+<a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links-to-material-for-past-workshops"><i class="fa fa-check"></i>Links to material for past workshops</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#links"><i class="fa fa-check"></i>Links</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#download-data-and-code"><i class="fa fa-check"></i>Download data and code</a></li>
@@ -147,18 +114,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#speakers"><i class="fa fa-check"></i>Speakers</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="1" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html#r-as-a-toolkit"><i class="fa fa-check"></i><b>1.1</b> R as a toolkit</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#why-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Why R and RStudio?</a></li>
 <li class="chapter" data-level="1.1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#some-r-basics"><i class="fa fa-check"></i><b>1.1.2</b> Some R basics</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="1.2" data-path="r-and-rstudio.html">
+<a href="r-and-rstudio.html#r-code-examples"><i class="fa fa-check"></i><b>1.2</b> R code examples</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#linear-regression"><i class="fa fa-check"></i><b>1.2.1</b> Linear regression</a></li>
 <li class="chapter" data-level="1.2.2" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#base-r-plot"><i class="fa fa-check"></i><b>1.2.2</b> Base R plot</a></li>
 <li class="chapter" data-level="1.2.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
 <li class="chapter" data-level="1.2.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#gganimate"><i class="fa fa-check"></i><b>1.2.4</b> gganimate</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="1.3" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.rstudio"><i class="fa fa-check"></i><b>1.3</b> R vs. RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-vs.r-packages"><i class="fa fa-check"></i><b>1.4</b> R vs. R packages</a></li>
 <li class="chapter" data-level="1.5" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-packages"><i class="fa fa-check"></i><b>1.5</b> R packages</a></li>
@@ -168,56 +141,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-addins"><i class="fa fa-check"></i><b>1.9</b> RStudio addins</a></li>
 <li class="chapter" data-level="1.10" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#rstudio-projects"><i class="fa fa-check"></i><b>1.10</b> RStudio projects</a></li>
 <li class="chapter" data-level="1.11" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#alternatives-to-rstudio"><i class="fa fa-check"></i><b>1.11</b> Alternatives to RStudio</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="vis-basics.html"><a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> Visualization</a><ul>
-<li class="chapter" data-level="2.1" data-path="vis-basics.html"><a href="vis-basics.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>2.1.1</b> Creating the plot skeleton: <code>ggplot()</code></a></li>
+</ul>
+</li>
+<li class="chapter" data-level="2" data-path="vis-basics.html">
+<a href="vis-basics.html"><i class="fa fa-check"></i><b>2</b> Visualization</a><ul>
+<li class="chapter" data-level="2.1" data-path="vis-basics.html">
+<a href="vis-basics.html#basics-for-visualisation-in-r-using-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Basics for visualisation in R using {ggplot2}</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="vis-basics.html"><a href="vis-basics.html#creating-the-plot-skeleton-ggplot"><i class="fa fa-check"></i><b>2.1.1</b> Creating the plot skeleton: <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code></a></li>
 <li class="chapter" data-level="2.1.2" data-path="vis-basics.html"><a href="vis-basics.html#what-is-a-statistical-graphic"><i class="fa fa-check"></i><b>2.1.2</b> What is a “statistical graphic”?</a></li>
 <li class="chapter" data-level="2.1.3" data-path="vis-basics.html"><a href="vis-basics.html#terminology"><i class="fa fa-check"></i><b>2.1.3</b> Terminology</a></li>
 <li class="chapter" data-level="2.1.4" data-path="vis-basics.html"><a href="vis-basics.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>2.1.4</b> The Grammar of graphics …</a></li>
 <li class="chapter" data-level="2.1.5" data-path="vis-basics.html"><a href="vis-basics.html#about-ggplot2"><i class="fa fa-check"></i><b>2.1.5</b> About {ggplot2}</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="vis-basics.html"><a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.2" data-path="vis-basics.html">
+<a href="vis-basics.html#geom_-functions"><i class="fa fa-check"></i><b>2.2</b> <code>geom_*</code> functions</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="vis-basics.html"><a href="vis-basics.html#arguments"><i class="fa fa-check"></i><b>2.2.1</b> Arguments</a></li>
 <li class="chapter" data-level="2.2.2" data-path="vis-basics.html"><a href="vis-basics.html#combining-geoms"><i class="fa fa-check"></i><b>2.2.2</b> Combining geoms</a></li>
 <li class="chapter" data-level="2.2.3" data-path="vis-basics.html"><a href="vis-basics.html#summary"><i class="fa fa-check"></i><b>2.2.3</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="vis-basics.html"><a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.3</b> Two variable plots</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.3" data-path="vis-basics.html">
+<a href="vis-basics.html#two-variable-plots"><i class="fa fa-check"></i><b>2.3</b> Two variable plots</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-x-and-y"><i class="fa fa-check"></i><b>2.3.1</b> Continuous X and Y</a></li>
 <li class="chapter" data-level="2.3.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-continuous-y"><i class="fa fa-check"></i><b>2.3.2</b> Discrete X and continuous Y</a></li>
 <li class="chapter" data-level="2.3.3" data-path="vis-basics.html"><a href="vis-basics.html#discrete-x-and-y"><i class="fa fa-check"></i><b>2.3.3</b> Discrete X and Y</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="vis-basics.html"><a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.4</b> One variable plots</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.4" data-path="vis-basics.html">
+<a href="vis-basics.html#one-variable-plots"><i class="fa fa-check"></i><b>2.4</b> One variable plots</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="vis-basics.html"><a href="vis-basics.html#continuous-variables"><i class="fa fa-check"></i><b>2.4.1</b> Continuous variables</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vis-basics.html"><a href="vis-basics.html#discrete-variables"><i class="fa fa-check"></i><b>2.4.2</b> Discrete variables</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="vis-basics.html"><a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.5</b> Colors and shape</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.5" data-path="vis-basics.html">
+<a href="vis-basics.html#colors-and-shape"><i class="fa fa-check"></i><b>2.5</b> Colors and shape</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="vis-basics.html"><a href="vis-basics.html#static-colors"><i class="fa fa-check"></i><b>2.5.1</b> Static colors</a></li>
 <li class="chapter" data-level="2.5.2" data-path="vis-basics.html"><a href="vis-basics.html#dynamic-colors"><i class="fa fa-check"></i><b>2.5.2</b> Dynamic colors</a></li>
 <li class="chapter" data-level="2.5.3" data-path="vis-basics.html"><a href="vis-basics.html#shape"><i class="fa fa-check"></i><b>2.5.3</b> Shape</a></li>
 <li class="chapter" data-level="2.5.4" data-path="vis-basics.html"><a href="vis-basics.html#combining-color-and-shape"><i class="fa fa-check"></i><b>2.5.4</b> Combining color and shape</a></li>
 <li class="chapter" data-level="2.5.5" data-path="vis-basics.html"><a href="vis-basics.html#transparency"><i class="fa fa-check"></i><b>2.5.5</b> Transparency</a></li>
 <li class="chapter" data-level="2.5.6" data-path="vis-basics.html"><a href="vis-basics.html#what-can-go-wrong"><i class="fa fa-check"></i><b>2.5.6</b> What can go wrong</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="2.6" data-path="vis-basics.html"><a href="vis-basics.html#labels"><i class="fa fa-check"></i><b>2.6</b> Labels</a></li>
 <li class="chapter" data-level="2.7" data-path="vis-basics.html"><a href="vis-basics.html#themes"><i class="fa fa-check"></i><b>2.7</b> Themes</a></li>
-<li class="chapter" data-level="2.8" data-path="vis-basics.html"><a href="vis-basics.html#scales"><i class="fa fa-check"></i><b>2.8</b> Scales</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="vis-basics.html"><a href="vis-basics.html#labs"><i class="fa fa-check"></i><b>2.8.1</b> <code>labs()</code></a></li>
+<li class="chapter" data-level="2.8" data-path="vis-basics.html">
+<a href="vis-basics.html#scales"><i class="fa fa-check"></i><b>2.8</b> Scales</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="vis-basics.html"><a href="vis-basics.html#labs"><i class="fa fa-check"></i><b>2.8.1</b> <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code></a></li>
 <li class="chapter" data-level="2.8.2" data-path="vis-basics.html"><a href="vis-basics.html#axes"><i class="fa fa-check"></i><b>2.8.2</b> Axes</a></li>
 <li class="chapter" data-level="2.8.3" data-path="vis-basics.html"><a href="vis-basics.html#color-scale"><i class="fa fa-check"></i><b>2.8.3</b> Color scale</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="vis-basics.html"><a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.9</b> Export &amp; saving</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.9" data-path="vis-basics.html">
+<a href="vis-basics.html#export-saving"><i class="fa fa-check"></i><b>2.9</b> Export &amp; saving</a><ul>
 <li class="chapter" data-level="2.9.1" data-path="vis-basics.html"><a href="vis-basics.html#base-r-vs.-ggplot2"><i class="fa fa-check"></i><b>2.9.1</b> Base R vs. {{ggplot2}}</a></li>
 <li class="chapter" data-level="2.9.2" data-path="vis-basics.html"><a href="vis-basics.html#storing-the-plot-as-an-r-object"><i class="fa fa-check"></i><b>2.9.2</b> Storing the plot as an R object</a></li>
 <li class="chapter" data-level="2.9.3" data-path="vis-basics.html"><a href="vis-basics.html#best-practices-for-exporting"><i class="fa fa-check"></i><b>2.9.3</b> Best practices for exporting</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="vis-basics.html"><a href="vis-basics.html#facetting"><i class="fa fa-check"></i><b>2.10</b> Facetting</a><ul>
-<li class="chapter" data-level="2.10.1" data-path="vis-basics.html"><a href="vis-basics.html#facet_wrap"><i class="fa fa-check"></i><b>2.10.1</b> <code>facet_wrap()</code></a></li>
-<li class="chapter" data-level="2.10.2" data-path="vis-basics.html"><a href="vis-basics.html#facet_grid"><i class="fa fa-check"></i><b>2.10.2</b> <code>facet_grid()</code></a></li>
+</ul>
+</li>
+<li class="chapter" data-level="2.10" data-path="vis-basics.html">
+<a href="vis-basics.html#facetting"><i class="fa fa-check"></i><b>2.10</b> Facetting</a><ul>
+<li class="chapter" data-level="2.10.1" data-path="vis-basics.html"><a href="vis-basics.html#facet_wrap"><i class="fa fa-check"></i><b>2.10.1</b> <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="vis-basics.html"><a href="vis-basics.html#facet_grid"><i class="fa fa-check"></i><b>2.10.2</b> <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid()</a></code></a></li>
 <li class="chapter" data-level="2.10.3" data-path="vis-basics.html"><a href="vis-basics.html#scales-1"><i class="fa fa-check"></i><b>2.10.3</b> Scales</a></li>
 <li class="chapter" data-level="2.10.4" data-path="vis-basics.html"><a href="vis-basics.html#renaming-of-facet-labels"><i class="fa fa-check"></i><b>2.10.4</b> Renaming of facet labels</a></li>
-</ul></li>
-<li class="chapter" data-level="2.11" data-path="vis-basics.html"><a href="vis-basics.html#extensions"><i class="fa fa-check"></i><b>2.11</b> Extensions</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="2.11" data-path="vis-basics.html">
+<a href="vis-basics.html#extensions"><i class="fa fa-check"></i><b>2.11</b> Extensions</a><ul>
 <li class="chapter" data-level="2.11.1" data-path="vis-basics.html"><a href="vis-basics.html#ggsci"><i class="fa fa-check"></i><b>2.11.1</b> {ggsci}</a></li>
 <li class="chapter" data-level="2.11.2" data-path="vis-basics.html"><a href="vis-basics.html#ggforce"><i class="fa fa-check"></i><b>2.11.2</b> {ggforce}</a></li>
 <li class="chapter" data-level="2.11.3" data-path="vis-basics.html"><a href="vis-basics.html#gganimate-1"><i class="fa fa-check"></i><b>2.11.3</b> {gganimate}</a></li>
@@ -227,74 +219,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.7</b> {ggbeeswarm}</a></li>
 <li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.8</b> {ggpmisc}</a></li>
 <li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.9</b> {esquisse}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="transformation.html"><a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="3" data-path="transformation.html">
+<a href="transformation.html"><i class="fa fa-check"></i><b>3</b> Transformation</a><ul>
 <li class="chapter" data-level="3.1" data-path="transformation.html"><a href="transformation.html#package-conflicted"><i class="fa fa-check"></i><b>3.1</b> Package: {conflicted}</a></li>
-<li class="chapter" data-level="3.2" data-path="transformation.html"><a href="transformation.html#filtering"><i class="fa fa-check"></i><b>3.2</b> Filtering</a><ul>
+<li class="chapter" data-level="3.2" data-path="transformation.html">
+<a href="transformation.html#filtering"><i class="fa fa-check"></i><b>3.2</b> Filtering</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="transformation.html"><a href="transformation.html#sorting"><i class="fa fa-check"></i><b>3.3</b> Sorting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.3" data-path="transformation.html">
+<a href="transformation.html#sorting"><i class="fa fa-check"></i><b>3.3</b> Sorting</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-1"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="transformation.html"><a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.4" data-path="transformation.html">
+<a href="transformation.html#the-pipe"><i class="fa fa-check"></i><b>3.4</b> The pipe</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="transformation.html"><a href="transformation.html#further-advantages"><i class="fa fa-check"></i><b>3.4.1</b> Further advantages</a></li>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-2"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="transformation.html"><a href="transformation.html#pick-columns"><i class="fa fa-check"></i><b>3.5</b> Pick columns</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.5" data-path="transformation.html">
+<a href="transformation.html#pick-columns"><i class="fa fa-check"></i><b>3.5</b> Pick columns</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-3"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="transformation.html"><a href="transformation.html#create-new-columns"><i class="fa fa-check"></i><b>3.6</b> Create new columns</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.6" data-path="transformation.html">
+<a href="transformation.html#create-new-columns"><i class="fa fa-check"></i><b>3.6</b> Create new columns</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-4"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="transformation.html"><a href="transformation.html#summarize-data"><i class="fa fa-check"></i><b>3.7</b> Summarize data</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="3.7" data-path="transformation.html">
+<a href="transformation.html#summarize-data"><i class="fa fa-check"></i><b>3.7</b> Summarize data</a><ul>
 <li class="chapter" data-level="" data-path="transformation.html"><a href="transformation.html#exercises-5"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
-<li class="chapter" data-level="4.1" data-path="import.html"><a href="import.html#import-single-files"><i class="fa fa-check"></i><b>4.1</b> Import single files</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="4" data-path="import.html">
+<a href="import.html"><i class="fa fa-check"></i><b>4</b> Import</a><ul>
+<li class="chapter" data-level="4.1" data-path="import.html">
+<a href="import.html#import-single-files"><i class="fa fa-check"></i><b>4.1</b> Import single files</a><ul>
 <li class="chapter" data-level="" data-path="import.html"><a href="import.html#exercises-6"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="import.html"><a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="4.2" data-path="import.html">
+<a href="import.html#import-many-files"><i class="fa fa-check"></i><b>4.2</b> Import many files</a><ul>
 <li class="chapter" data-level="" data-path="import.html"><a href="import.html#exercises-7"><i class="fa fa-check"></i>Exercises</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
-<li class="chapter" data-level="5.1" data-path="tidying.html"><a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li class="chapter" data-level="5" data-path="tidying.html">
+<a href="tidying.html"><i class="fa fa-check"></i><b>5</b> Tidying</a><ul>
+<li class="chapter" data-level="5.1" data-path="tidying.html">
+<a href="tidying.html#pivoting"><i class="fa fa-check"></i><b>5.1</b> Pivoting</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="tidying.html"><a href="tidying.html#convert-to-longer-form"><i class="fa fa-check"></i><b>5.1.1</b> Convert to longer form</a></li>
 <li class="chapter" data-level="5.1.2" data-path="tidying.html"><a href="tidying.html#convert-to-wider-form"><i class="fa fa-check"></i><b>5.1.2</b> Convert to wider form</a></li>
 <li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
 <li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
 <li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="tidying.html"><a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="5.2" data-path="tidying.html">
+<a href="tidying.html#separating-and-uniting"><i class="fa fa-check"></i><b>5.2</b> Separating and uniting</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <No caption defined></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="reporting.html"><a href="reporting.html"><i class="fa fa-check"></i><b>6</b> Reporting</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <no caption defined></no></a></li>
+</ul>
+</li>
+<li class="chapter" data-level="6" data-path="reporting.html">
+<a href="reporting.html"><i class="fa fa-check"></i><b>6</b> Reporting</a><ul>
 <li class="chapter" data-level="6.1" data-path="reporting.html"><a href="reporting.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
 <li class="chapter" data-level="6.2" data-path="reporting.html"><a href="reporting.html#the-yaml-header"><i class="fa fa-check"></i><b>6.2</b> The YAML header</a></li>
-<li class="chapter" data-level="6.3" data-path="reporting.html"><a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>6.3</b> Literate programming in R</a><ul>
+<li class="chapter" data-level="6.3" data-path="reporting.html">
+<a href="reporting.html#literate-programming-in-r"><i class="fa fa-check"></i><b>6.3</b> Literate programming in R</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="reporting.html"><a href="reporting.html#r-markdown-packages"><i class="fa fa-check"></i><b>6.3.1</b> R Markdown packages</a></li>
 <li class="chapter" data-level="6.3.2" data-path="reporting.html"><a href="reporting.html#code-chunks-in-r-markdown"><i class="fa fa-check"></i><b>6.3.2</b> Code chunks in R Markdown</a></li>
 <li class="chapter" data-level="6.3.3" data-path="reporting.html"><a href="reporting.html#r-notebooks"><i class="fa fa-check"></i><b>6.3.3</b> R Notebooks</a></li>
 <li class="chapter" data-level="6.3.4" data-path="reporting.html"><a href="reporting.html#workflow"><i class="fa fa-check"></i><b>6.3.4</b> Workflow</a></li>
-</ul></li>
+</ul>
+</li>
 <li class="chapter" data-level="6.4" data-path="reporting.html"><a href="reporting.html#shiny-interactive-visualizations"><i class="fa fa-check"></i><b>6.4</b> Shiny: Interactive visualizations</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html"><i class="fa fa-check"></i><b>7</b> Appendix: Best practices</a><ul>
+</ul>
+</li>
+<li class="chapter" data-level="7" data-path="appendix-best-practices.html">
+<a href="appendix-best-practices.html"><i class="fa fa-check"></i><b>7</b> Appendix: Best practices</a><ul>
 <li class="chapter" data-level="7.1" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#description"><i class="fa fa-check"></i><b>7.1</b> DESCRIPTION</a></li>
 <li class="chapter" data-level="7.2" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#r"><i class="fa fa-check"></i><b>7.2</b> R</a></li>
 <li class="chapter" data-level="7.3" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#roxygen2"><i class="fa fa-check"></i><b>7.3</b> roxygen2</a></li>
 <li class="chapter" data-level="7.4" data-path="appendix-best-practices.html"><a href="appendix-best-practices.html#testthat"><i class="fa fa-check"></i><b>7.4</b> testthat</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
-
-      </nav>
-    </div>
+</li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul></nav>
+</div>
 
     <div class="book-body">
       <div class="body-inner">
@@ -307,21 +331,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <div class="page-wrapper" tabindex="-1" role="main">
           <div class="page-inner">
 
-            <section class="normal" id="section-">
-<div id="import" class="section level1">
-<h1><span class="header-section-number">4</span> Import</h1>
+            <section class="normal" id="section-"><div id="import" class="section level1">
+<h1>
+<span class="header-section-number">4</span> Import</h1>
 <blockquote>
 <p>Ingesting data.</p>
 </blockquote>
 <p>This chapter discusses data import with RStudio, with the help of the <a href="https://readr.tidyverse.org/">readr</a>, <a href="https://readxl.tidyverse.org/">readxl</a>, and <a href="https://github.com/leeper/rio">rio</a> packages.</p>
 <div id="import-single-files" class="section level2">
-<h2><span class="header-section-number">4.1</span> Import single files</h2>
-<details>
-<p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw">library</span>(readr)</a></code></pre></div>
-</details>
-<p>The RStudio IDE offers a convenient way to import files in various common formats, including CSV and Excel.
+<h2>
+<span class="header-section-number">4.1</span> Import single files</h2>
+<details><p><summary><em>Click here to show setup code.</em></summary></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(readr)</a></code></pre></div>
+</details><p>The RStudio IDE offers a convenient way to import files in various common formats, including CSV and Excel.
 The “File / Import Dataset / From …” menus provide access to import assistants that:</p>
 <ol style="list-style-type: decimal">
 <li>open a file for preview,</li>
@@ -331,152 +354,151 @@ The “File / Import Dataset / From …” menus provide access to import assist
 <p>The assistant is run once for each dataset, from then only the generated code is required to import the data in a consistent way.</p>
 <p>This is an example of auto-generated code for importing a dataset from the <code>data/</code> directory.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">example1 &lt;-</a>
-<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="st">  </span><span class="kw">read_delim</span>(</a>
-<a class="sourceLine" id="cb232-3" data-line-number="3">    <span class="st">&quot;data/example1.csv&quot;</span>,</a>
-<a class="sourceLine" id="cb232-4" data-line-number="4">    <span class="st">&quot;;&quot;</span>,</a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span>(</a>
+<a class="sourceLine" id="cb232-3" data-line-number="3">    <span class="st">"data/example1.csv"</span>,</a>
+<a class="sourceLine" id="cb232-4" data-line-number="4">    <span class="st">";"</span>,</a>
 <a class="sourceLine" id="cb232-5" data-line-number="5">    <span class="dt">escape_double =</span> <span class="ot">FALSE</span>, <span class="dt">trim_ws =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb232-6" data-line-number="6">  )</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
-##   col1 = [32mcol_double()[39m,
-##   col2 = [31mcol_character()[39m,
-##   col3 = [31mcol_character()[39m
+##   col1 = [32mcol_double()[39m,
+##   col2 = [31mcol_character()[39m,
+##   col3 = [31mcol_character()[39m
 ## )</code></pre>
-<p>After importing, use <code>view()</code> to display the ingested dataset.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="kw">view</span>(example1)</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 2 x 3</span><span>
-##    </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>   1   a     X    
-## </span><span style='color: #555555;'>2</span><span>   2.5 b     Y
-</span></CODE></PRE>
+<p>After importing, use <code><a href="https://dplyr.tidyverse.org/reference/reexports.html">view()</a></code> to display the ingested dataset.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">view</a></span>(example1)</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 3</span><span>
+##    </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>   1   a     X    
+## </span><span style="color: #555555;">2</span><span>   2.5 b     Y
+</span></code></pre>
 <div id="exercises-6" class="section level3 unnumbered">
 <h3>Exercises</h3>
 <p><a href="https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html" class="uri">https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html</a>, task 1 and 2</p>
 </div>
 </div>
 <div id="import-many-files" class="section level2">
-<h2><span class="header-section-number">4.2</span> Import many files</h2>
-<details>
-<p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a>
+<h2>
+<span class="header-section-number">4.2</span> Import many files</h2>
+<details><p><summary><em>Click here to show setup code.</em></summary></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
 <a class="sourceLine" id="cb235-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb235-4" data-line-number="4"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb235-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(here)</a>
 <a class="sourceLine" id="cb235-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="kw">library</span>(conflicted)</a>
-<a class="sourceLine" id="cb235-7" data-line-number="7"><span class="kw">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
+<a class="sourceLine" id="cb235-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
-<pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-</details>
-<p>Occasionally, a dataset is split across many files with a very similar format.
+<pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
+</details><p>Occasionally, a dataset is split across many files with a very similar format.
 The <code>data/</code> directory contains several Excel files with the <code>.xlsx</code> extension with tables of nearly identical format.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">files &lt;-<span class="st"> </span><span class="kw">dir</span>(<span class="dt">path =</span> <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>), <span class="dt">pattern =</span> <span class="st">&quot;[.]xlsx$&quot;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">files &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="dt">path =</span> <span class="kw"><a href="https://rdrr.io/pkg/here/man/here.html">here</a></span>(<span class="st">"data"</span>), <span class="dt">pattern =</span> <span class="st">"[.]xlsx$"</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb238-2" data-line-number="2">files</a></code></pre></div>
-<pre><code>## [1] &quot;/home/travis/build/krlmlr/vistransrep/book/data/example6a.xlsx&quot;
-## [2] &quot;/home/travis/build/krlmlr/vistransrep/book/data/example6b.xlsx&quot;
-## [3] &quot;/home/travis/build/krlmlr/vistransrep/book/data/example6c.xlsx&quot;</code></pre>
-<p>An easy way to import all files at once is the <code>rio::import_list()</code> function from the {rio} package.</p>
+<pre><code>## [1] "/home/travis/build/krlmlr/vistransrep/book/data/example6a.xlsx"
+## [2] "/home/travis/build/krlmlr/vistransrep/book/data/example6b.xlsx"
+## [3] "/home/travis/build/krlmlr/vistransrep/book/data/example6c.xlsx"</code></pre>
+<p>An easy way to import all files at once is the <code><a href="https://rdrr.io/pkg/rio/man/import_list.html">rio::import_list()</a></code> function from the {rio} package.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">files <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span>rio<span class="op">::</span><span class="kw">import_list</span>(<span class="dt">setclass =</span> <span class="kw">class</span>(<span class="kw">tibble</span>()), <span class="dt">rbind =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 5</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span>  </span><span style='font-weight: bold;'>`_file`</span><span>                             
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                               
-## </span><span style='color: #555555;'>1</span><span>     1   1   a     X     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'>2</span><span>     1   2.5 b     Y     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'>3</span><span>     2   1.5 c     Z     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'>4</span><span>     2   2   d     W     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'>5</span><span>     3   4   g     J     /home/travis/build/krlmlr/vistransr…
-## </span><span style='color: #555555;'>6</span><span>     3   3.5 f     H     /home/travis/build/krlmlr/vistransr…
-</span></CODE></PRE>
+<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span>rio<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rio/man/import_list.html">import_list</a></span>(<span class="dt">setclass =</span> <span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>()), <span class="dt">rbind =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 5</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span>  </span><span style="font-weight: bold;">`_file`</span><span>                             
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                               
+## </span><span style="color: #555555;">1</span><span>     1   1   a     X     /home/travis/build/krlmlr/vistransr…
+## </span><span style="color: #555555;">2</span><span>     1   2.5 b     Y     /home/travis/build/krlmlr/vistransr…
+## </span><span style="color: #555555;">3</span><span>     2   1.5 c     Z     /home/travis/build/krlmlr/vistransr…
+## </span><span style="color: #555555;">4</span><span>     2   2   d     W     /home/travis/build/krlmlr/vistransr…
+## </span><span style="color: #555555;">5</span><span>     3   4   g     J     /home/travis/build/krlmlr/vistransr…
+## </span><span style="color: #555555;">6</span><span>     3   3.5 f     H     /home/travis/build/krlmlr/vistransr…
+</span></code></pre>
 <p>If some files need manipulation before the data can be bound together, {rio} also offers a way to import them as a “named list”.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">list_of_tables &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw">import_list</span>(files, <span class="dt">setclass =</span> <span class="kw">class</span>(<span class="kw">tibble</span>()))</a>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">list_of_tables &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rio/man/import_list.html">import_list</a></span>(files, <span class="dt">setclass =</span> <span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>()))</a>
 <a class="sourceLine" id="cb241-2" data-line-number="2">list_of_tables</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## $example6a
-## <span style='color: #555555;'># A tibble: 2 x 4</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>     1   1   a     X    
-## </span><span style='color: #555555;'>2</span><span>     1   2.5 b     Y    
+<pre class="fansi fansi-output"><code>## $example6a
+## <span style="color: #555555;"># A tibble: 2 x 4</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>     1   1   a     X    
+## </span><span style="color: #555555;">2</span><span>     1   2.5 b     Y    
 ## 
 ## $example6b
-## </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>     2   1.5 c     Z    
-## </span><span style='color: #555555;'>2</span><span>     2   2   d     W    
+## </span><span style="color: #555555;"># A tibble: 2 x 4</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>     2   1.5 c     Z    
+## </span><span style="color: #555555;">2</span><span>     2   2   d     W    
 ## 
 ## $example6c
-## </span><span style='color: #555555;'># A tibble: 2 x 4</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>     3   4   g     J    
-## </span><span style='color: #555555;'>2</span><span>     3   3.5 f     H
-</span></CODE></PRE>
+## </span><span style="color: #555555;"># A tibble: 2 x 4</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>     3   4   g     J    
+## </span><span style="color: #555555;">2</span><span>     3   3.5 f     H
+</span></code></pre>
 <p>The data can be accessed individually for each input file.</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">list_of_tables<span class="op">$</span>example6b</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 2 x 4</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>     2   1.5 c     Z    
-## </span><span style='color: #555555;'>2</span><span>     2   2   d     W
-</span></CODE></PRE>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 4</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>     2   1.5 c     Z    
+## </span><span style="color: #555555;">2</span><span>     2   2   d     W
+</span></code></pre>
 <p>If a tweak is necessary, the data can be overwritten as needed.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">try</span>(</a>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
 <a class="sourceLine" id="cb243-2" data-line-number="2">  list_of_tables<span class="op">$</span>example6b &lt;-</a>
 <a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">    </span>list_of_tables<span class="op">$</span>example6b <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(...) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb243-5" data-line-number="5"><span class="st">    </span><span class="kw">select</span>(...)</a>
+<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(...)</a>
 <a class="sourceLine" id="cb243-6" data-line-number="6">)</a></code></pre></div>
-<pre><code>## Error in function_list[[i]](value) : &#39;...&#39; used in an incorrect context</code></pre>
-<p>The <code>bind_rows()</code> function combines these components into a single dataset again.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">all_tables &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(list_of_tables, <span class="dt">.id =</span> <span class="st">&quot;path&quot;</span>)</a>
+<pre><code>## Error in function_list[[i]](value) : '...' used in an incorrect context</code></pre>
+<p>The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function combines these components into a single dataset again.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">all_tables &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(list_of_tables, <span class="dt">.id =</span> <span class="st">"path"</span>)</a>
 <a class="sourceLine" id="cb245-2" data-line-number="2">all_tables</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 5</span><span>
-##   </span><span style='font-weight: bold;'>path</span><span>         </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span> example6a     1   1   a     X    
-## </span><span style='color: #555555;'>2</span><span> example6a     1   2.5 b     Y    
-## </span><span style='color: #555555;'>3</span><span> example6b     2   1.5 c     Z    
-## </span><span style='color: #555555;'>4</span><span> example6b     2   2   d     W    
-## </span><span style='color: #555555;'>5</span><span> example6c     3   4   g     J    
-## </span><span style='color: #555555;'>6</span><span> example6c     3   3.5 f     H
-</span></CODE></PRE>
-<p>When done, use <code>filter()</code> to access a single dataset.</p>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 5</span><span>
+##   </span><span style="font-weight: bold;">path</span><span>         </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>     </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span> example6a     1   1   a     X    
+## </span><span style="color: #555555;">2</span><span> example6a     1   2.5 b     Y    
+## </span><span style="color: #555555;">3</span><span> example6b     2   1.5 c     Z    
+## </span><span style="color: #555555;">4</span><span> example6b     2   2   d     W    
+## </span><span style="color: #555555;">5</span><span> example6c     3   4   g     J    
+## </span><span style="color: #555555;">6</span><span> example6c     3   3.5 f     H
+</span></code></pre>
+<p>When done, use <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> to access a single dataset.</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">all_tables <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(path <span class="op">==</span><span class="st"> &quot;example6b&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(col1), <span class="kw">first</span>(col2))</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 1 x 2</span><span>
-##   </span><span style='font-weight: bold;'>`mean(col1)`</span><span> </span><span style='font-weight: bold;'>`first(col2)`</span><span>
-##          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-## </span><span style='color: #555555;'>1</span><span>         1.75 c
-</span></CODE></PRE>
-<p>For performing an analysis across the entire dataset, per input file, use <code>group_by()</code>:</p>
+<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(path <span class="op">==</span><span class="st"> "example6b"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(col1), <span class="kw"><a href="https://dplyr.tidyverse.org/reference/nth.html">first</a></span>(col2))</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1 x 2</span><span>
+##   </span><span style="font-weight: bold;">`mean(col1)`</span><span> </span><span style="font-weight: bold;">`first(col2)`</span><span>
+##          </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        
+## </span><span style="color: #555555;">1</span><span>         1.75 c
+</span></code></pre>
+<p>For performing an analysis across the entire dataset, per input file, use <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>:</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">all_tables <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(path) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(col1), <span class="kw">first</span>(col2)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 3 x 3</span><span>
-##   </span><span style='font-weight: bold;'>path</span><span>      </span><span style='font-weight: bold;'>`mean(col1)`</span><span> </span><span style='font-weight: bold;'>`first(col2)`</span><span>
-##   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        
-## </span><span style='color: #555555;'>1</span><span> example6a         1.75 a            
-## </span><span style='color: #555555;'>2</span><span> example6b         1.75 c            
-## </span><span style='color: #555555;'>3</span><span> example6c         3.75 g
-</span></CODE></PRE>
-<p>Finally, <code>map_dfr()</code> offers a way to import files with more control.
+<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(path) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(col1), <span class="kw"><a href="https://dplyr.tidyverse.org/reference/nth.html">first</a></span>(col2)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3 x 3</span><span>
+##   </span><span style="font-weight: bold;">path</span><span>      </span><span style="font-weight: bold;">`mean(col1)`</span><span> </span><span style="font-weight: bold;">`first(col2)`</span><span>
+##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        
+## </span><span style="color: #555555;">1</span><span> example6a         1.75 a            
+## </span><span style="color: #555555;">2</span><span> example6b         1.75 c            
+## </span><span style="color: #555555;">3</span><span> example6c         3.75 g
+</span></code></pre>
+<p>Finally, <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr()</a></code> offers a way to import files with more control.
 The details are out of scope here.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">files <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw">map_dfr</span>(<span class="op">~</span><span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(.))</a></code></pre></div>
-<PRE class="fansi fansi-output"><CODE>## <span style='color: #555555;'># A tibble: 6 x 4</span><span>
-##      </span><span style='font-weight: bold;'>id</span><span>  </span><span style='font-weight: bold;'>col1</span><span> </span><span style='font-weight: bold;'>col2</span><span>  </span><span style='font-weight: bold;'>col3</span><span> 
-##   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-## </span><span style='color: #555555;'>1</span><span>     1   1   a     X    
-## </span><span style='color: #555555;'>2</span><span>     1   2.5 b     Y    
-## </span><span style='color: #555555;'>3</span><span>     2   1.5 c     Z    
-## </span><span style='color: #555555;'>4</span><span>     2   2   d     W    
-## </span><span style='color: #555555;'>5</span><span>     3   4   g     J    
-## </span><span style='color: #555555;'>6</span><span>     3   3.5 f     H
-</span></CODE></PRE>
+<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_dfr</a></span>(<span class="op">~</span><span class="st"> </span>readxl<span class="op">::</span><span class="kw"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span>(.))</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
+##      </span><span style="font-weight: bold;">id</span><span>  </span><span style="font-weight: bold;">col1</span><span> </span><span style="font-weight: bold;">col2</span><span>  </span><span style="font-weight: bold;">col3</span><span> 
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>     1   1   a     X    
+## </span><span style="color: #555555;">2</span><span>     1   2.5 b     Y    
+## </span><span style="color: #555555;">3</span><span>     2   1.5 c     Z    
+## </span><span style="color: #555555;">4</span><span>     2   2   d     W    
+## </span><span style="color: #555555;">5</span><span>     3   4   g     J    
+## </span><span style="color: #555555;">6</span><span>     3   3.5 f     H
+</span></code></pre>
 <div id="exercises-7" class="section level3 unnumbered">
 <h3>Exercises</h3>
 <p><a href="https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html" class="uri">https://krlmlr.github.io/vistransrep/2019-11-zhr/import.html</a>, task 3 and 4</p>
@@ -485,24 +507,14 @@ The details are out of scope here.</p>
 </div>
 </div>
             </section>
-
-          </div>
+</div>
         </div>
       </div>
 <a href="transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="tidying.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
-<script src="libs/gitbook/js/clipboard.min.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
-<script src="libs/gitbook/js/plugin-clipboard.js"></script>
-<script>
+<script src="libs/gitbook/js/app.min.js"></script><script src="libs/gitbook/js/lunr.js"></script><script src="libs/gitbook/js/clipboard.min.js"></script><script src="libs/gitbook/js/plugin-search.js"></script><script src="libs/gitbook/js/plugin-sharing.js"></script><script src="libs/gitbook/js/plugin-fontsettings.js"></script><script src="libs/gitbook/js/plugin-bookdown.js"></script><script src="libs/gitbook/js/jquery.highlight.js"></script><script src="libs/gitbook/js/plugin-clipboard.js"></script><script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
@@ -535,10 +547,7 @@ gitbook.start({
 }
 });
 });
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -552,5 +561,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>
