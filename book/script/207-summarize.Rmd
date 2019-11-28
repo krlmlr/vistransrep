@@ -98,6 +98,10 @@ The `summarize()` verb gains its full power in grouped operations.
 Surround with `group_by()` and `ungroup()` to compute summaries in groups defined by common values in one or more columns.
 In the next example, the same summary is computed separately for each origin airport.
 
+```{r group-by-pic, fig.cap="© Allison Horst", echo=FALSE}
+knitr::include_graphics("img/group_by_ungroup.png")
+```
+
 ```{r include = FALSE}
 # Use group_by() and ungroup() to split data into groups
 # ALWAYS use ungroup()
