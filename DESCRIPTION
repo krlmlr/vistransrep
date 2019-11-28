@@ -22,6 +22,7 @@ Imports:
     nycflights13,
     patchwork,
     plotly,
+    pkgdown,
     rio,
     RSQLite,
     sessioninfo,

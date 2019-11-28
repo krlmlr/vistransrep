@@ -2,6 +2,14 @@
 
 > Using a consistent grammar of data manipulation.
 
+```{r results="hide", warning=FALSE, message=FALSE}
+library(tidyverse)
+library(nycflights13)
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("lag", "dplyr")
+```
+
+
 This chapter discusses data transformation with the [dplyr package](https://dplyr.tidyverse.org/).
 
 - One table:
