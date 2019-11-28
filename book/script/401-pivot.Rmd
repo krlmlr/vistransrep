@@ -282,7 +282,7 @@ The next two sections show examples of datasets that violate these principles.
 
 ### The Anscombe dataset
 
-This is a dataset where principal statistical summaries 
+This is a dataset where principal statistical summaries (means, standard deviations, intercept and slope after regression) are identical across four subgroups but the layout of the data differs vastly.
 
 ```{r include = FALSE}
 # anscombe data
@@ -293,6 +293,7 @@ anscombe %>%
   as_tibble()
 ```
 
+Working with this data in original form is rather tedious.
 
 ```{r include = FALSE}
 # Difficult to aggregate and visualize
@@ -306,8 +307,16 @@ lm(y1 ~ x1, anscombe)
 lm(y2 ~ x2, anscombe)
 lm(y3 ~ x3, anscombe)
 lm(y4 ~ x4, anscombe)
+
+try(
+  ggplot(anscombe) + 
+    ...
+)
 ```
 
+**Your turn**: Which principles of tidy data does the `anscombe` dataset violate?
+
+Many operations become much more natural when the data is in longer form.
 
 ```{r include = FALSE}
 # Easier to work with in longer form
@@ -325,6 +334,11 @@ anscombe_longer <-
 
 anscombe_longer %>%
   group_by(measurement) %>%
+  summarize_at(vars(x, y), list(~ mean(.), ~sd(.))) %>%
+  ungroup()
+
+anscombe_longer %>%
+  group_by(measurement) %>%
   summarize(model = list(lm(y ~ x, .))) %>%
   ungroup() %>%
   pull()
@@ -337,7 +351,7 @@ anscombe_longer %>%
 
 ### WHO data
 
-The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
+The following example shows a case that violates the first two rules of tidy data: WHO data arranged for optimal use of screen space.
 The column names define, in addition to the measurement type `new_sp`, `new_sn`, `new_ep` and `newrel`, the age and sex stratum of the corresponding measurements.
 One single `pivot_longer()` call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
 The `names_pattern` is a regular expression that defines what part of the column name is stored where.
@@ -367,7 +381,8 @@ who_longer %>%
 
 ### Formatting tables for presentation
 
-Wide tables make better use of screen or paper space, and should be used when presenting 
+Wide tables make better use of screen or paper space, and should be used when presenting tables that summarize across multiple dimensions.
+For this, `ftable()` is the better tool.
 
 ```{r include = FALSE}
 # Formatting for presentation with ftable()
@@ -378,14 +393,16 @@ table2 %>%
   ftable()
 ```
 
+These can be converted to HTML for inclusion in reports, e.g. with `memisc::format_html()`.
 
 ```{r include = FALSE}
 # Deciding what goes into the columns, what into the rows
 ```
-```{r 401-deciding-what-goes-into-the-columns-what-into-the-rows}
+```{r 401-deciding-what-goes-into-the-columns-what-into-the-rows, results="asis"}
 table2 %>%
   xtabs(count ~ ., .) %>%
-  ftable(col.vars = c("year", "type"))
+  ftable(col.vars = c("year", "type")) %>% 
+  memisc::format_html()
 ```
 
-The [{gt} package](https://gt.rstudio.com/) is a moden approach to present tables for formatting.
+The [{gt} package](https://gt.rstudio.com/) is a modern approach to present tables for formatting.
