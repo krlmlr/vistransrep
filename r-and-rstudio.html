@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.2</span> R code examples</h2>
 <div id="linear-regression" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Linear regression</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(dist <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>speed, <span class="dt">data =</span> cars)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(dist <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>speed, <span class="dt">data =</span> cars)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = dist ~ 1 + speed, data = cars)
@@ -367,20 +367,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="base-r-plot" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Base R plot</h3>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">abline</span>(fit, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">plot</span>(cars, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">col =</span> <span class="st">&quot;darkgray&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">abline</span>(fit, <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/cars_basefig-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ggplot2" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> ggplot2</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">library</span>(gapminder) ## For the gapminder data</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">data =</span> gapminder,</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">library</span>(gapminder) ## For the gapminder data</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">data =</span> gapminder,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap, <span class="dt">y =</span> lifeExp)</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="vistransrep_files/figure-html/gapm_plot-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gganimate" class="section level3">
@@ -560,10 +560,10 @@ It can be installed as a normal package from CRAN:</p>
 <div id="rstudio-projects" class="section level2">
 <h2><span class="header-section-number">1.10</span> RStudio projects</h2>
 <p>Without a project, you will need to define <strong>long</strong> file paths which <strong>only exist on your machine</strong>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/&lt;yourname&gt;/somewhere/on/this/machine/sample.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;/Users/&lt;yourname&gt;/somewhere/on/this/machine/sample.csv&quot;</span>)</a></code></pre></div>
 <p>With a project, R automatically references the project’s folder as the current working directory.</p>
 <p>From there on, you can use <em>relative paths</em> to point to files.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;sample.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">sample_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;sample.csv&quot;</span>)</a></code></pre></div>
 <p><strong>Double-plus bonus</strong>: The <a href="https://github.com/r-lib/here"><em>here</em></a> package extends <em>RStudio project</em> philosophy even more and helps in cases when not using RStudio (e.g. on the command line).</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="img/here.png" alt="© Allison Horst" width="400" />

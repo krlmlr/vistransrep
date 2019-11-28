@@ -320,7 +320,7 @@ This can be done best in a “literate programming” fashion as provided by R M
 <p>File Format: <code>.Rmd</code> (R Markdown)</p>
 <p>New document (in RStudio): <code>File -&gt; New File -&gt; R Markdown/R Notebook</code>.
 LaTeX Math is supported via <a href="https://www.mathjax.org/">Mathjax</a>:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="op">$</span>y=\frac{(x <span class="op">-</span><span class="st"> </span>\mu)}{(max <span class="op">-</span><span class="st"> </span>min)}<span class="op">$</span></a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="op">$</span>y=\frac{(x <span class="op">-</span><span class="st"> </span>\mu)}{(max <span class="op">-</span><span class="st"> </span>min)}<span class="op">$</span></a></code></pre></div>
 <p><span class="math inline">\(y=\frac{(x - \mu)}{(max - min)}\)</span></p>
 <hr />
 <p>Any file with the <code>.Rmd</code> file extension is an “R Markdown document”.
@@ -341,19 +341,19 @@ RMD’s consist <strong>code</strong> and <strong>text</strong> (written in <em>
 Fortunately, most settings apply to all formats.</p>
 <p>The YAML header starts and ends with three dashes: <code>---</code>.
 The <strong>output</strong> field is mandatory.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">&quot;&lt;title&gt;&quot;</span></a>
-<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">&quot;&lt;author&gt;&quot;</span></a>
-<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&quot;2019-11-27&quot;</span></a>
-<a class="sourceLine" id="cb311-5" data-line-number="5"><span class="fu">output:</span></a>
-<a class="sourceLine" id="cb311-6" data-line-number="6">  <span class="fu">rmarkdown:</span><span class="at">:html_document:</span></a>
-<a class="sourceLine" id="cb311-7" data-line-number="7">    <span class="fu">toc:</span><span class="at"> yes</span></a>
-<a class="sourceLine" id="cb311-8" data-line-number="8">    <span class="fu">number_sections:</span><span class="at"> yes</span></a>
-<a class="sourceLine" id="cb311-9" data-line-number="9">    <span class="fu">fig_caption:</span><span class="at"> yes</span></a>
-<a class="sourceLine" id="cb311-10" data-line-number="10">    <span class="fu">css:</span><span class="at"> ../custom.css</span></a>
-<a class="sourceLine" id="cb311-11" data-line-number="11"><span class="fu">bibliography:</span><span class="at"> lib.bib</span></a>
-<a class="sourceLine" id="cb311-12" data-line-number="12"><span class="fu">biblio-style:</span><span class="at"> apalike</span></a>
-<a class="sourceLine" id="cb311-13" data-line-number="13"><span class="ot">---</span></a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb310-2" data-line-number="2"><span class="fu">title:</span><span class="at"> </span><span class="st">&quot;&lt;title&gt;&quot;</span></a>
+<a class="sourceLine" id="cb310-3" data-line-number="3"><span class="fu">author:</span><span class="at"> </span><span class="st">&quot;&lt;author&gt;&quot;</span></a>
+<a class="sourceLine" id="cb310-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&quot;2019-11-28&quot;</span></a>
+<a class="sourceLine" id="cb310-5" data-line-number="5"><span class="fu">output:</span></a>
+<a class="sourceLine" id="cb310-6" data-line-number="6">  <span class="fu">rmarkdown:</span><span class="at">:html_document:</span></a>
+<a class="sourceLine" id="cb310-7" data-line-number="7">    <span class="fu">toc:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb310-8" data-line-number="8">    <span class="fu">number_sections:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb310-9" data-line-number="9">    <span class="fu">fig_caption:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb310-10" data-line-number="10">    <span class="fu">css:</span><span class="at"> ../custom.css</span></a>
+<a class="sourceLine" id="cb310-11" data-line-number="11"><span class="fu">bibliography:</span><span class="at"> lib.bib</span></a>
+<a class="sourceLine" id="cb310-12" data-line-number="12"><span class="fu">biblio-style:</span><span class="at"> apalike</span></a>
+<a class="sourceLine" id="cb310-13" data-line-number="13"><span class="ot">---</span></a></code></pre></div>
 <p>Valid options for each output format can usually be looked up in the help page of the specific output format.</p>
 <p>For the default output format <code>html_document</code> the <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">R Markdown - The definitive guide</a> book is a good reference.</p>
 <p>An <a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">R Markdown cheatsheet</a> also exists.</p>
