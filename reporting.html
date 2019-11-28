@@ -360,24 +360,24 @@ The <strong>output</strong> field is mandatory.</p>
 </div>
 <div id="literate-programming-in-r" class="section level2">
 <h2><span class="header-section-number">6.3</span> Literate programming in R</h2>
-<p>Packages {{rmarkdown}} and {{knitr}} are the base of literate programming in R.</p>
+<p>Packages {rmarkdown} and {knitr} are the base of literate programming in R.</p>
 <p>RMD’s documents can be compiled</p>
 <ul>
 <li><p>by clicking the “knit” button in RStudio (the name relates to the {{knitr}} package)</p></li>
 <li><p>via the command line by calling <code>rmarkdown::render()</code></p></li>
 </ul>
-<p>Behind the scenes the {{rmarkdown}} package first converts the <code>.Rmd</code> file to <code>.md</code> (markdown).
+<p>Behind the scenes the {rmarkdown} package first converts the <code>.Rmd</code> file to <code>.md</code> (markdown).
 Then <a href="https://pandoc.org/">pandoc</a>, which is a universal markdown converter library, converts the <code>.md</code> file to the chosen output format.</p>
 <div id="r-markdown-packages" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> R Markdown packages</h3>
-<p>The following packages are built upon {{rmarkdown}} and simplify special purposes.</p>
+<p>The following packages are built upon {rmarkdown} and simplify special purposes.</p>
 <ul>
 <li><p><a href="https://bookdown.org/yihui/bookdown/">bookdown</a>: Mainly used for writing books but can also be used for reports (formats <code>html_document2</code>, <code>git_book</code>, <code>pdf_book</code>, etc.).</p></li>
 <li><p><a href="https://github.com/ismayc/thesisdown">thesisdown</a>: A package for thesis writing.
 Provides ready-to-go templates for different types and simplifies advanced LaTeX usage.</p></li>
 <li><p><a href="https://github.com/juba/rmdformats">rmdformats</a>, <a href="https://github.com/eddelbuettel/pinp">pinp</a> : Different templates for literate programming documents.</p></li>
 <li><p><a href="https://github.com/yihui/xaringan">xaringan</a>: For HTML presentations via <a href="https://remarkjs.com">remark.js</a>.</p></li>
-<li><p><a href="https://github.com/rstudio/blogdown">blogdown</a>: For creating websites. Example: <a href="https://pjs-web.de/" class="uri">https://pjs-web.de/</a></p></li>
+<li><p><a href="https://github.com/rstudio/blogdown">blogdown</a>: For creating websites. Example: <a href="https://pat-s.me" class="uri">https://pat-s.me</a></p></li>
 <li><p><a href="https://github.com/rstudio/rticles">rticles</a>: For scientific paper writing in R.</p></li>
 </ul>
 </div>
@@ -415,14 +415,14 @@ This enables a seamless integration of data processing tasks into the subsequent
 <li>written reports (Word, PDF), possibly using LaTeX input</li>
 </ul>
 <p>R objects (containing results) can directly be used in the reports to present the results (data, plots).
-If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.</p>
+If the complete workflow of an analysis has been set up in R, changes at certain stages of the workflow (e.g. incoming data) can easily be integrated.</p>
 <p>This is the point where packages like <a href="https://docs.ropensci.org/drake/">drake</a>, <a href="https://jdblischak.github.io/workflowr/">workflowr</a> and <a href="https://github.com/benmarwick/rrtools">rrtools</a> jump in to simplify reproducible workflows in R.</p>
 <p>A widely used concept is to start a project following the structure of an R package.
 This helps due to</p>
 <ul>
 <li>a consistent directory structure of R scripts and R Markdown documents</li>
 <li>documented custom functions</li>
-<li>simplified integration into workflow packages like {{drake}} and friends.</li>
+<li>simplified integration into workflow packages like {drake} and friends.</li>
 </ul>
 <p>R “research packages” can be installed locally like any other R package and simplify usage and sharing among colleagues.</p>
 </div>

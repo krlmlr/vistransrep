@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{28 November 2019, 12:38 CET}
+\date{28 November 2019, 20:56 CET}
 
 \begin{document}
 \maketitle
@@ -6007,7 +6007,7 @@ An \href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0
 \hypertarget{literate-programming-in-r}{%
 \section{Literate programming in R}\label{literate-programming-in-r}}
 
-Packages \{\{rmarkdown\}\} and \{\{knitr\}\} are the base of literate programming in R.
+Packages \{rmarkdown\} and \{knitr\} are the base of literate programming in R.
 
 RMD's documents can be compiled
 
@@ -6018,13 +6018,13 @@ RMD's documents can be compiled
   via the command line by calling \texttt{rmarkdown::render()}
 \end{itemize}
 
-Behind the scenes the \{\{rmarkdown\}\} package first converts the \texttt{.Rmd} file to \texttt{.md} (markdown).
+Behind the scenes the \{rmarkdown\} package first converts the \texttt{.Rmd} file to \texttt{.md} (markdown).
 Then \href{https://pandoc.org/}{pandoc}, which is a universal markdown converter library, converts the \texttt{.md} file to the chosen output format.
 
 \hypertarget{r-markdown-packages}{%
 \subsection{R Markdown packages}\label{r-markdown-packages}}
 
-The following packages are built upon \{\{rmarkdown\}\} and simplify special purposes.
+The following packages are built upon \{rmarkdown\} and simplify special purposes.
 
 \begin{itemize}
 \item
@@ -6037,7 +6037,7 @@ The following packages are built upon \{\{rmarkdown\}\} and simplify special pur
 \item
   \href{https://github.com/yihui/xaringan}{xaringan}: For HTML presentations via \href{https://remarkjs.com}{remark.js}.
 \item
-  \href{https://github.com/rstudio/blogdown}{blogdown}: For creating websites. Example: \url{https://pjs-web.de/}
+  \href{https://github.com/rstudio/blogdown}{blogdown}: For creating websites. Example: \url{https://pat-s.me}
 \item
   \href{https://github.com/rstudio/rticles}{rticles}: For scientific paper writing in R.
 \end{itemize}
@@ -6096,7 +6096,7 @@ Reporting often splits up into different formats:
 \end{itemize}
 
 R objects (containing results) can directly be used in the reports to present the results (data, plots).
-If the complete workflow of an analysis has been setup in R, changes at certain stages of the workflow (e.g.~incoming data) can easily be integrated.
+If the complete workflow of an analysis has been set up in R, changes at certain stages of the workflow (e.g.~incoming data) can easily be integrated.
 
 This is the point where packages like \href{https://docs.ropensci.org/drake/}{drake}, \href{https://jdblischak.github.io/workflowr/}{workflowr} and \href{https://github.com/benmarwick/rrtools}{rrtools} jump in to simplify reproducible workflows in R.
 
@@ -6110,7 +6110,7 @@ This helps due to
 \item
   documented custom functions
 \item
-  simplified integration into workflow packages like \{\{drake\}\} and friends.
+  simplified integration into workflow packages like \{drake\} and friends.
 \end{itemize}
 
 R ``research packages'' can be installed locally like any other R package and simplify usage and sharing among colleagues.
