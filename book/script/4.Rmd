@@ -3,6 +3,3 @@
 
 ```{r child = here::here("script", "402-separate.Rmd")}
 ```
-
-```{r child = here::here("script", "403-ftable.Rmd")}
-```

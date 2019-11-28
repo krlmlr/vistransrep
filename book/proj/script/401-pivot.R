@@ -17,7 +17,7 @@ table1 %>%
   summarize(
     max_cases = max(cases),
     max_population = max(population)
-  ) %>% 
+  ) %>%
   ungroup()
 
 # Iterate over columns:
@@ -26,7 +26,7 @@ table1 %>%
   summarize_at(
     vars(cases, population),
     max
-  ) %>% 
+  ) %>%
   ungroup()
 
 # In the longer form, this becomes a grouped operation:
@@ -34,7 +34,7 @@ table2 %>%
   group_by(country, type) %>%
   summarize(
     max = max(count)
-  ) %>% 
+  ) %>%
   ungroup()
 
 # Converting to longer form: pivot_longer()
@@ -43,19 +43,19 @@ table1
 table1 %>%
   pivot_longer(-c(country, year))
 
-# Need to rename and arrange to create table1
-table1 %>%
-  pivot_longer(-c(country, year)) %>%
-  rename(type = name, count = value) %>%
-  arrange(country, year, type)
+# Your turn: How to rename and arrange to create `table1`?
+try(
+  table1 %>%
+    pivot_longer(-c(country, year)) %>%
+    select(....., everything())
+)
 
 table1 %>%
   pivot_longer(
     -c(country, year),
     names_to = "type",
     values_to = "count"
-  ) %>%
-  arrange(country, year, type)
+  )
 
 # Converting to wider form: pivot_wider()
 table2
@@ -63,9 +63,14 @@ table2
 table2 %>%
   pivot_wider(names_from = type, values_from = count)
 
-table2 %>%
-  rename(name = type, value = count) %>%
-  pivot_wider()
+# Your turn:
+# pivot_wider() expects columns `name` and `value` by default.
+# How to transform so that we don't need `names_from` and `values_from`?
+try(
+  table2 %>%
+    select(......, everything()) %>%
+    pivot_wider()
+)
 
 # Longer form: more useful for plotting all values side by side
 table2 %>%
@@ -113,9 +118,49 @@ table4 <-
   )
 table4
 
-# Imperfect results -- what is missing?
-table4 %>%
-  pivot_longer(c(`1999`, `2000`))
+# Your turn: The results aren't quite the same as those of `table2` yet,
+# what is missing?
+try(
+  table4 %>%
+    ...(c(.....))
+)
+
+# anscombe data
+anscombe
+anscombe %>%
+  as_tibble()
+
+# Difficult to aggregate and visualize
+anscombe %>%
+  as_tibble() %>%
+  summarize_all(list(~ mean(.), ~ sd(.)))
+
+lm(y1 ~ x1, anscombe)
+lm(y2 ~ x2, anscombe)
+lm(y3 ~ x3, anscombe)
+lm(y4 ~ x4, anscombe)
+
+# Easier to work with in longer form
+anscombe_longer <-
+  anscombe %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(
+    -id,
+    names_pattern = "(.)(.)",
+    names_to = c(".value", "measurement")
+  ) %>%
+  arrange(measurement, id)
+
+anscombe_longer %>%
+  group_by(measurement) %>%
+  summarize(model = list(lm(y ~ x, .))) %>%
+  ungroup() %>%
+  pull()
+
+anscombe_longer %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(vars(measurement))
 
 # WHO data
 who %>%
@@ -133,3 +178,15 @@ who_longer
 
 who_longer %>%
   count(sex, age)
+
+# Formatting for presentation with ftable()
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable()
+
+# Deciding what goes into the columns, what into the rows
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable(col.vars = c("year", "type"))
+
+# gt package

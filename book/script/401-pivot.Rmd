@@ -1,4 +1,4 @@
-```{r 41-remove-all, include = FALSE}
+```{r 401-remove-all, include = FALSE}
 rm(list = ls())
 ```
 
@@ -10,7 +10,7 @@ rm(list = ls())
 ### Pivoting
 
 ```
-```{r 41-setup-41-pivot-r}
+```{r 401-setup-401-pivot-r}
 library(tidyverse)
 library(nycflights13)
 
@@ -26,7 +26,7 @@ The following two tables contain the same data arranged differently.
 ```{r include = FALSE}
 # Two datasets containing the same data, wider and longer:
 ```
-```{r 41-two-datasets-containing-the-same-data-wider-and-longer}
+```{r 401-two-datasets-containing-the-same-data-wider-and-longer}
 table1
 table2
 ```
@@ -45,13 +45,13 @@ This may work with two columns but becomes tedious once more measurements are ad
 ```{r include = FALSE}
 # How to summarize?
 ```
-```{r 41-how-to-summarize}
+```{r 401-how-to-summarize}
 table1 %>%
   group_by(country) %>%
   summarize(
     max_cases = max(cases),
     max_population = max(population)
-  ) %>% 
+  ) %>%
   ungroup()
 ```
 
@@ -61,13 +61,13 @@ The `_at` family of functions helps iterating over columns, but all columns stil
 ```{r include = FALSE}
 # Iterate over columns:
 ```
-```{r 41-iterate-over-columns}
+```{r 401-iterate-over-columns}
 table1 %>%
   group_by(country) %>%
   summarize_at(
     vars(cases, population),
     max
-  ) %>% 
+  ) %>%
   ungroup()
 ```
 
@@ -77,12 +77,12 @@ The same code works for arbitrary number of measurements.
 ```{r include = FALSE}
 # In the longer form, this becomes a grouped operation:
 ```
-```{r 41-in-the-longer-form-this-becomes-a-grouped-operation}
+```{r 401-in-the-longer-form-this-becomes-a-grouped-operation}
 table2 %>%
   group_by(country, type) %>%
   summarize(
     max = max(count)
-  ) %>% 
+  ) %>%
   ungroup()
 ```
 
@@ -95,7 +95,7 @@ The `pivot_longer()` function takes a "wider-form" dataset and converts it to an
 ```{r include = FALSE}
 # Converting to longer form: pivot_longer()
 ```
-```{r 41-converting-to-longer-form-pivot-longer}
+```{r 401-converting-to-longer-form-pivot-longer}
 table1
 
 table1 %>%
@@ -105,25 +105,27 @@ table1 %>%
 The `-c(...)` notation indicates that all column except `country` and `year` are to be transformed into longer form.
 The column names become the contents of the new `name` column, the values are available in the `value` column.
 
-The result of this operation isn't strictly equivalent to `table2`, we need to rename and sort differently.
+**Your turn**: The result of this operation isn't strictly equivalent to `table2`.
+What is missing?
+
 Alternatively, the `names_to` and `values_to` arguments allow specifying the names of the new columns.
 
 ```{r include = FALSE}
-# Need to rename and arrange to create table1
+# Your turn: How to rename and arrange to create `table1`?
 ```
-```{r 41-need-to-rename-and-arrange-to-create-table-1}
-table1 %>%
-  pivot_longer(-c(country, year)) %>%
-  rename(type = name, count = value) %>%
-  arrange(country, year, type)
+```{r 401-your-turn-how-to-rename-and-arrange-to-create-table-1}
+try(
+  table1 %>%
+    pivot_longer(-c(country, year)) %>%
+    select(....., everything())
+)
 
 table1 %>%
   pivot_longer(
     -c(country, year),
     names_to = "type",
     values_to = "count"
-  ) %>%
-  arrange(country, year, type)
+  )
 ```
 
 ### Convert to wider form
@@ -134,15 +136,28 @@ If the `name` and `value` columns are named differently, these columns can be pr
 ```{r include = FALSE}
 # Converting to wider form: pivot_wider()
 ```
-```{r 41-converting-to-wider-form-pivot-wider}
+```{r 401-converting-to-wider-form-pivot-wider}
 table2
 
 table2 %>%
   pivot_wider(names_from = type, values_from = count)
+```
 
-table2 %>%
-  rename(name = type, value = count) %>%
-  pivot_wider()
+**Your turn**: `pivot_wider()` expects columns `name` and `value` by default.
+What do we need to do to get rid of `names_from` and `values_from`?
+
+
+```{r include = FALSE}
+# Your turn:
+# pivot_wider() expects columns `name` and `value` by default.
+# How to transform so that we don't need `names_from` and `values_from`?
+```
+```{r 401-your-turn}
+try(
+  table2 %>%
+    select(......, everything()) %>%
+    pivot_wider()
+)
 ```
 
 
@@ -158,7 +173,7 @@ For a bar chart that shows cases and population side by side, mapped to the `y` 
 ```{r include = FALSE}
 # Longer form: more useful for plotting all values side by side
 ```
-```{r 41-longer-form-more-useful-for-plotting-all-values-side-by-side}
+```{r 401-longer-form-more-useful-for-plotting-all-values-side-by-side}
 table2 %>%
   ggplot() +
   geom_col(aes(country, count, fill = type), position = "dodge") +
@@ -181,7 +196,7 @@ On the other hand, iIf only a single measurement needs to be plotted, the "wider
 ```{r include = FALSE}
 # Wider form: more useful for plotting a single value
 ```
-```{r 41-wider-form-more-useful-for-plotting-a-single-value}
+```{r 401-wider-form-more-useful-for-plotting-a-single-value}
 table1 %>%
   ggplot() +
   geom_col(aes(country, cases)) +
@@ -199,7 +214,7 @@ The "wider" form is also the only way to map different measures to different aes
 ```{r include = FALSE}
 # Wider form: the only way to correlate values
 ```
-```{r 41-wider-form-the-only-way-to-correlate-values}
+```{r 401-wider-form-the-only-way-to-correlate-values}
 table1 %>%
   ggplot() +
   geom_point(aes(cases, population, color = factor(year), shape = country)) +
@@ -215,7 +230,7 @@ A different view on the same data is given in the two tables `table4a` and `tabl
 ```{r include = FALSE}
 # Split data
 ```
-```{r 41-split-data}
+```{r 401-split-data}
 table4a
 table4b
 ```
@@ -227,7 +242,7 @@ The `.id = "type"` setting ensures that the input datasets gain different tags i
 ```{r include = FALSE}
 # Combine
 ```
-```{r 41-combine}
+```{r 401-combine}
 table4 <-
   bind_rows(
     cases = table4a,
@@ -237,18 +252,19 @@ table4 <-
 table4
 ```
 
-As before, `pivot_longer()` helps converting the results into something similar to `table2`.
+**Your turn**: As before, `pivot_longer()` helps converting the results into something similar to `table2`.
 The result isn't quite the same yet, can you spot the difference?
 
 ```{r include = FALSE}
-# Imperfect results -- what is missing?
+# Your turn: The results aren't quite the same as those of `table2` yet,
+# what is missing?
 ```
-```{r 41-imperfect-results-what-is-missing}
-table4 %>%
-  pivot_longer(c(`1999`, `2000`))
+```{r 401-your-turn-the-results-aren-t-quite-the-same-as-those-of-table-2-yet}
+try(
+  table4 %>%
+    ...(c(.....))
+)
 ```
-
-
 
 ### Tidy data
 
@@ -262,6 +278,65 @@ From "R for data science":
 
 ![Tidy data](img/tidy-1.png)
 
+The next two sections show examples of datasets that violate these principles.
+
+### The Anscombe dataset
+
+This is a dataset where principal statistical summaries 
+
+```{r include = FALSE}
+# anscombe data
+```
+```{r 401-anscombe-data}
+anscombe
+anscombe %>%
+  as_tibble()
+```
+
+
+```{r include = FALSE}
+# Difficult to aggregate and visualize
+```
+```{r 401-difficult-to-aggregate-and-visualize}
+anscombe %>%
+  as_tibble() %>%
+  summarize_all(list(~ mean(.), ~ sd(.)))
+
+lm(y1 ~ x1, anscombe)
+lm(y2 ~ x2, anscombe)
+lm(y3 ~ x3, anscombe)
+lm(y4 ~ x4, anscombe)
+```
+
+
+```{r include = FALSE}
+# Easier to work with in longer form
+```
+```{r 401-easier-to-work-with-in-longer-form}
+anscombe_longer <-
+  anscombe %>%
+  mutate(id = row_number()) %>%
+  pivot_longer(
+    -id,
+    names_pattern = "(.)(.)",
+    names_to = c(".value", "measurement")
+  ) %>%
+  arrange(measurement, id)
+
+anscombe_longer %>%
+  group_by(measurement) %>%
+  summarize(model = list(lm(y ~ x, .))) %>%
+  ungroup() %>%
+  pull()
+
+anscombe_longer %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(vars(measurement))
+```
+
+### WHO data
+
 The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
 The column names define, in addition to the measurement type `new_sp`, `new_sn`, `new_ep` and `newrel`, the age and sex stratum of the corresponding measurements.
 One single `pivot_longer()` call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
@@ -272,7 +347,7 @@ The `names_to` sequence defines, for each `()` group in `names_pattern`, if the 
 ```{r include = FALSE}
 # WHO data
 ```
-```{r 41-who-data}
+```{r 401-who-data}
 who %>%
   view()
 
@@ -289,3 +364,28 @@ who_longer
 who_longer %>%
   count(sex, age)
 ```
+
+### Formatting tables for presentation
+
+Wide tables make better use of screen or paper space, and should be used when presenting 
+
+```{r include = FALSE}
+# Formatting for presentation with ftable()
+```
+```{r 401-formatting-for-presentation-with-ftable}
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable()
+```
+
+
+```{r include = FALSE}
+# Deciding what goes into the columns, what into the rows
+```
+```{r 401-deciding-what-goes-into-the-columns-what-into-the-rows}
+table2 %>%
+  xtabs(count ~ ., .) %>%
+  ftable(col.vars = c("year", "type"))
+```
+
+The [{gt} package](https://gt.rstudio.com/) is a moden approach to present tables for formatting.
