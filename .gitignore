@@ -15,3 +15,4 @@ docs-landing-page/
 book/script/_main.Rmd
 .DS_store
 *.tex
+book/vistransrep.Rmd
