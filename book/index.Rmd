@@ -159,6 +159,6 @@ This course covers several topics, which everyone working more intently with the
 The topics are organized in chapters that contain mostly R code with output and text.
 In each section, exercises are provided.
 
-```{r r4ds, fig.cap="© Allison Horst", eval=FALSE}
+```{r r4ds, fig.cap="© Allison Horst", echo=FALSE}
 knitr::include_graphics("img/environmental-data-science-r4ds-general.png")
 ```
