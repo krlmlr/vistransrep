@@ -31,5 +31,6 @@ Imports:
     xaringan
 Remotes:
     clauswilke/ggtext,
+    krlmlr/pkgdown@f-tidyverse,
     thomasp85/patchwork
 Encoding: UTF-8
