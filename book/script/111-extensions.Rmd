@@ -103,13 +103,13 @@ ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 
 ### {plotly}
 
-```{r, eval=if !knitr::is_latex_output()}
+```{r, eval=if knitr::is_html_output()}
 p <- ggplot(diamonds, aes(x = log(carat), y = log(price))) + 
   geom_hex(bins = 100)
 ggplotly(p)
 ```
 
-```{r, eval=if !knitr::is_latex_output()}
+```{r, eval=if knitr::is_html_output()}
 plot_ly(z = ~volcano, type = "surface")
 ```
 
