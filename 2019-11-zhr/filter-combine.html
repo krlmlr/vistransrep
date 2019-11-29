@@ -564,14 +564,14 @@ flights %&gt;%
     filter(carrier == &quot;UA&quot;)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.233   0.000   0.234</code></pre>
+##   0.217   0.000   0.216</code></pre>
 <pre class="r"><code>system.time(
   flights %&gt;%
     filter(carrier == &quot;UA&quot;) %&gt;%
     arrange(arr_delay)
 )</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.045   0.000   0.044</code></pre>
+##   0.042   0.000   0.042</code></pre>
 </details>
 </div>
 <div id="understand-predicate-logic" class="section level2">
