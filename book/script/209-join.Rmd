@@ -23,6 +23,12 @@ conflict_prefer("lag", "dplyr")
 </details>
 
 
+Joins combine two tables horizontally by combining matching rows.
+Two rows match if they have the same value in columns common to both tables.
+The resulting table contains all columns from both tables.
+
+The `airlines` data contains details (really just the name) of airlines, by carrier code.
+
 ```{r include = FALSE}
 # `airlines` contain detailed information for each airline
 # (in this case only the name)
@@ -31,16 +37,19 @@ conflict_prefer("lag", "dplyr")
 airlines
 ```
 
+Only the carrier code is available in the `flights` dataset.
+The airline name can be brought in with the `left_join()` function, e.g., to use in a pretty label.
 
 ```{r include = FALSE}
 # `flights` can be augmented with this detailed information
 ```
 ```{r 209-flights-can-be-augmented-with-this-detailed-information}
 flights %>%
-  left_join(airlines) %>%
-  select(dep_time, carrier, name)
+  count(carrier) %>%
+  left_join(airlines)
 ```
 
+For code stability, it is useful to always specify the column names to join by.
 
 ```{r include = FALSE}
 # for "production code", always indicate the columns to join by
@@ -51,6 +60,9 @@ flights %>%
   select(dep_time, carrier, name)
 ```
 
+
+** Your turn**: Bring in data from the `planes` table.
+What happens if you omit the `by` argument?
 
 ```{r include = FALSE}
 # Your turn: join the `planes` table
@@ -81,6 +93,7 @@ try(
 )
 ```
 
+The `airports` table does not have any columns common to `flights`.
 
 ```{r include = FALSE}
 # `airports` contain detailed information for each airport
@@ -94,6 +107,7 @@ try(
 )
 ```
 
+A `by` argument with a specific syntax is required here.
 
 ```{r include = FALSE}
 # in this case, explicit "by" columns are required
@@ -104,6 +118,7 @@ flights %>%
   select(origin, dest, name)
 ```
 
+Mismatches introduce cells with missing values.
 
 ```{r include = FALSE}
 # we have mismatches!
@@ -115,6 +130,7 @@ flights %>%
   filter(is.na(name))
 ```
 
+The `airports` table does not contain a row for the BQN airport.
 
 ```{r include = FALSE}
 # what about the NA name?
@@ -124,6 +140,8 @@ airports %>%
   filter(faa == "BQN")
 ```
 
+The `inner_join()` discards rows with mismatches.
+Beware: It is tempting to always use the inner join, but often a mismatch indicates problems that have occurred earlier in your analysis.
 
 ```{r include = FALSE}
 # left vs. inner vs. outer joins control what happens in case of mismatches
@@ -134,6 +152,8 @@ flights %>%
   select(origin, dest, name)
 ```
 
+
+**Your turn**: Why are some rows with the `planes` table not matched?
 
 ```{r include = FALSE}
 # Your turn: understand mismatches when joining the `planes` data
