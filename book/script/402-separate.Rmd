@@ -20,7 +20,7 @@ conflict_prefer("lag", "dplyr")
 ```
 </details>
 
-The `table3` table violates the third principle of tidy data: each cell contains two values.
+The `table3` table violates the third principle of tidy data: each cell in the `rate` column contains two values.
 
 ```{r include = FALSE}
 # Yet another view at the same data
