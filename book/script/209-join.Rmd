@@ -384,5 +384,4 @@ The join logic becomes part of the metadata and not the code.
 ##devtools::install_github("krlmlr/dm")
 ```
 ```{r 209-install-packages-devtools}
-NA
 ```
