@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{29 November 2019, 13:23 CET}
+\date{29 November 2019, 13:55 CET}
 
 \begin{document}
 \maketitle
@@ -4798,6 +4798,12 @@ Use the left arrow to click through the different plots.
 ## [conflicted] Will prefer dplyr::lag over any other package
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{20191129}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 Joins combine two tables horizontally by combining matching rows.
 Two rows match if they have the same value in columns common to both tables.
 The resulting table contains all columns from both tables.
@@ -5064,6 +5070,9 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ##   '...' used in an incorrect context
 \end{verbatim}
 
+The following example uses \texttt{rpart::rpart()} to classify missingness by the other columns.
+Turns out there is a pattern, which needs to be investigated further in the original data.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
@@ -5088,6 +5097,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ##       14) dest=DFW,EGE,ORD,STL,TVC 16769  3376.5240 0.72055580 *
 ##       15) dest=ATL,AUS,BNA,BOS,BWI,CLE,CLT,CMH,CRW,CVG,DCA,DTW,FLL,IAH,IND,LAS,LAX,MCO,MIA,MSP,ORF,PBI,PIT,RDU,SAN,SEA,SJU,STT,TPA,XNA 37718  1981.3020 0.94437670 *
 \end{verbatim}
+
+For complex joins, it is worthwhile preparing the tables you intend to join beforehand.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5152,6 +5163,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## # ... with 3.368e+05 more rows
 \end{verbatim}
 
+Still, it is recommended to explicitly specify the \texttt{by} column.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
@@ -5171,6 +5184,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## # ... with 3.368e+05 more rows
 \end{verbatim}
 
+\textbf{Your turn}: How do we bring in only the \texttt{engines} and \texttt{seats} columns from the \texttt{planes} table?
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{try}\NormalTok{(\{}
@@ -5187,6 +5202,13 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 \begin{verbatim}
 ## Error in try({ : '...' used in an incorrect context
 \end{verbatim}
+
+\hypertarget{keys}{%
+\subsection{Keys}\label{keys}}
+
+For the join to work as expected, it is important that the columns in \texttt{by} uniquely define observations, either in the left-hand-side or in the right-hand-side table, or in both.
+If this is given, the column or columns are a \emph{primary key} to the table.
+The \texttt{count()} function helps asserting this.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5220,6 +5242,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## 1     1  1458
 \end{verbatim}
 
+\textbf{Your turn}: Double-check that \texttt{tailnum} is indeed a key to \texttt{planes}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{try}\NormalTok{(}
@@ -5233,6 +5257,9 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 \begin{verbatim}
 ## Error in eval(lhs, parent, parent) : '...' used in an incorrect context
 \end{verbatim}
+
+In the example below we derive a dataset from \texttt{airports} that intentionally has duplicate observations.
+The \texttt{faa} column is no longer a key to the table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5283,11 +5310,14 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## # A tibble: 100 x 3
 ##   faa       n    nn
 ##   <chr> <int> <int>
-## 1 1C9       2   100
-## 2 2B2       2   100
-## 3 3G3       2   100
+## 1 2A0       2   100
+## 2 9A5       2   100
+## 3 AOS       2   100
 ## # ... with 97 more rows
 \end{verbatim}
+
+Because we have duplicate observations with the same value in the \texttt{faa} column (and of course we have many more flights), the join will produce duplicate flights.
+This is almost always undesirable!
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5298,13 +5328,13 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 356,557 x 3
+## # A tibble: 347,409 x 3
 ##   origin dest  name                        
 ##   <chr>  <chr> <chr>                       
 ## 1 EWR    IAH   George Bush Intercontinental
 ## 2 LGA    IAH   George Bush Intercontinental
 ## 3 JFK    MIA   Miami Intl                  
-## # ... with 3.566e+05 more rows
+## # ... with 3.474e+05 more rows
 \end{verbatim}
 
 \begin{Shaded}
@@ -5326,6 +5356,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
 ## #   time_hour <dttm>
 \end{verbatim}
+
+\textbf{Your turn}: Find a key to the \texttt{weather} table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5375,6 +5407,11 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 \begin{verbatim}
 ## Error in function_list[[i]](value) : '...' used in an incorrect context
 \end{verbatim}
+
+The \href{https://krlmlr.github.io/dm/}{\{dm\} package} is a modern take on handling multiple tables in your R session.
+A \texttt{dm} object combines the data and metadata for tables, and the relationships between these tables.
+Joins no longer require specification of the \texttt{by} columns.
+The join logic becomes part of the metadata and not the code.
 
 \begin{Shaded}
 \begin{Highlighting}[]

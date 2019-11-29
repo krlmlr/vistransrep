@@ -261,7 +261,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </li>
 <li class="chapter" data-level="3.8" data-path="transformation.html"><a href="transformation.html#summary-plots"><i class="fa fa-check"></i><b>3.8</b> Summary-plots</a></li>
-<li class="chapter" data-level="3.9" data-path="transformation.html"><a href="transformation.html#joins"><i class="fa fa-check"></i><b>3.9</b> Joins</a></li>
+<li class="chapter" data-level="3.9" data-path="transformation.html">
+<a href="transformation.html#joins"><i class="fa fa-check"></i><b>3.9</b> Joins</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="transformation.html"><a href="transformation.html#keys"><i class="fa fa-check"></i><b>3.9.1</b> Keys</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="chapter" data-level="4" data-path="import.html">
@@ -1499,11 +1503,12 @@ Therefore, we can use the <code>group_by</code> – <code><a href="https://dplyr
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">20191129</span>)</a></code></pre></div>
 </details><p>Joins combine two tables horizontally by combining matching rows.
 Two rows match if they have the same value in columns common to both tables.
 The resulting table contains all columns from both tables.</p>
 <p>The <code>airlines</code> data contains details (really just the name) of airlines, by carrier code.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">airlines</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">airlines</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 16 x 2</span><span>
 ##   </span><span style="font-weight: bold;">carrier</span><span> </span><span style="font-weight: bold;">name</span><span>                  
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                 
@@ -1514,9 +1519,9 @@ The resulting table contains all columns from both tables.</p>
 </span></code></pre>
 <p>Only the carrier code is available in the <code>flights</code> dataset.
 The airline name can be brought in with the <code><a href="https://dplyr.tidyverse.org/reference/join.html">left_join()</a></code> function, e.g., to use in a pretty label.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(carrier) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb240-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airlines)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(carrier) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airlines)</a></code></pre></div>
 <pre><code>## Joining, by = "carrier"</code></pre>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 16 x 3</span><span>
 ##   </span><span style="font-weight: bold;">carrier</span><span>     </span><span style="font-weight: bold;">n</span><span> </span><span style="font-weight: bold;">name</span><span>                  
@@ -1527,9 +1532,9 @@ The airline name can be brought in with the <code><a href="https://dplyr.tidyver
 ## </span><span style="color: #555555;"># … with 13 more rows</span><span>
 </span></code></pre>
 <p>For code stability, it is useful to always specify the column names to join by.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(dep_time, carrier, name)</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(dep_time, carrier, name)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 336,776 x 3</span><span>
 ##   </span><span style="font-weight: bold;">dep_time</span><span> </span><span style="font-weight: bold;">carrier</span><span> </span><span style="font-weight: bold;">name</span><span>                  
 ##      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                 
@@ -1540,7 +1545,7 @@ The airline name can be brought in with the <code><a href="https://dplyr.tidyver
 </span></code></pre>
 <p>** Your turn**: Bring in data from the <code>planes</code> table.
 What happens if you omit the <code>by</code> argument?</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">planes</a></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">planes</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3,322 x 9</span><span>
 ##   </span><span style="font-weight: bold;">tailnum</span><span>  </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">type</span><span>  </span><span style="font-weight: bold;">manufacturer</span><span> </span><span style="font-weight: bold;">model</span><span> </span><span style="font-weight: bold;">engines</span><span> </span><span style="font-weight: bold;">seats</span><span> </span><span style="font-weight: bold;">speed</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -1549,19 +1554,19 @@ What happens if you omit the <code>by</code> argument?</p>
 ## </span><span style="color: #555555;">3</span><span> N103US   </span><span style="text-decoration: underline;">1</span><span>999 Fixe… AIRBUS INDU… A320…       2   182    </span><span style="color: #BB0000;">NA</span><span>
 ## </span><span style="color: #555555;"># … with 3,319 more rows, and 1 more variable: </span><span style="color: #555555;font-weight: bold;">engine</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb244-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(...)</a>
-<a class="sourceLine" id="cb244-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(...)</a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">)</a></code></pre></div>
 <pre><code>## Error in try(... %&gt;% ..._join(...)) : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
-<a class="sourceLine" id="cb246-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb247-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
+<a class="sourceLine" id="cb247-4" data-line-number="4">)</a></code></pre></div>
 <pre><code>## Error in try(... %&gt;% ..._join(..., ... = "...")) : 
 ##   '...' used in an incorrect context</code></pre>
 <p>The <code>airports</code> table does not have any columns common to <code>flights</code>.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">airports</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">airports</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1,458 x 8</span><span>
 ##   </span><span style="font-weight: bold;">faa</span><span>   </span><span style="font-weight: bold;">name</span><span>             </span><span style="font-weight: bold;">lat</span><span>   </span><span style="font-weight: bold;">lon</span><span>   </span><span style="font-weight: bold;">alt</span><span>    </span><span style="font-weight: bold;">tz</span><span> </span><span style="font-weight: bold;">dst</span><span>   </span><span style="font-weight: bold;">tzone</span><span>    
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>          </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>    
@@ -1570,15 +1575,15 @@ What happens if you omit the <code>by</code> argument?</p>
 ## </span><span style="color: #555555;">3</span><span> 06C   Schaumburg Re…  42.0 -</span><span style="color: #BB0000;">88.1</span><span>   801    -</span><span style="color: #BB0000;">6</span><span> A     America/…
 ## </span><span style="color: #555555;"># … with 1,455 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2">  flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports)</a>
-<a class="sourceLine" id="cb249-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">  flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb250-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports)</a>
+<a class="sourceLine" id="cb250-4" data-line-number="4">)</a></code></pre></div>
 <pre><code>## Error : `by` required, because the data sources have no common variables</code></pre>
 <p>A <code>by</code> argument with a specific syntax is required here.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 336,776 x 3</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">name</span><span>                        
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                       
@@ -1588,10 +1593,10 @@ What happens if you omit the <code>by</code> argument?</p>
 ## </span><span style="color: #555555;"># … with 3.368e+05 more rows</span><span>
 </span></code></pre>
 <p>Mismatches introduce cells with missing values.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(name))</a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(name))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 7,602 x 3</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">name</span><span> 
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
@@ -1601,17 +1606,17 @@ What happens if you omit the <code>by</code> argument?</p>
 ## </span><span style="color: #555555;"># … with 7,599 more rows</span><span>
 </span></code></pre>
 <p>The <code>airports</code> table does not contain a row for the BQN airport.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(faa <span class="op">==</span><span class="st"> "BQN"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(faa <span class="op">==</span><span class="st"> "BQN"</span>)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 0 x 8</span><span>
 ## </span><span style="color: #555555;"># … with 8 variables: </span><span style="color: #555555;font-weight: bold;">faa</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">name</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">lat</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">,
 ## #   </span><span style="color: #555555;font-weight: bold;">lon</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">alt</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">tz</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">dst</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">tzone</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
 </span></code></pre>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join()</a></code> discards rows with mismatches.
 Beware: It is tempting to always use the inner join, but often a mismatch indicates problems that have occurred earlier in your analysis.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb255-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 329,174 x 3</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">name</span><span>                        
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                       
@@ -1621,30 +1626,32 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;"># … with 3.292e+05 more rows</span><span>
 </span></code></pre>
 <p><strong>Your turn</strong>: Why are some rows with the <code>planes</code> table not matched?</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb255-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb255-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(...))</a>
-<a class="sourceLine" id="cb255-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb256-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(...))</a>
+<a class="sourceLine" id="cb256-5" data-line-number="5">)</a></code></pre></div>
 <pre><code>## Error in eval(lhs, parent, parent) : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb257-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">mismatch =</span> <span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(...), <span class="dt">is_aa =</span> (carrier <span class="op">==</span><span class="st"> "AA"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.....)</a>
-<a class="sourceLine" id="cb257-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb258-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb258-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">mismatch =</span> <span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(...), <span class="dt">is_aa =</span> (carrier <span class="op">==</span><span class="st"> "AA"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb258-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(.....)</a>
+<a class="sourceLine" id="cb258-6" data-line-number="6">)</a></code></pre></div>
 <pre><code>## Error in eval(lhs, parent, parent) : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb259-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
-<a class="sourceLine" id="cb259-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="st">    </span><span class="kw">..._join</span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
+<a class="sourceLine" id="cb260-4" data-line-number="4">)</a></code></pre></div>
 <pre><code>## Error in try(... %&gt;% ..._join(..., ... = "...")) : 
 ##   '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(planes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(tailnum, manufacturer), <span class="dt">by =</span> <span class="st">"tailnum"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">mismatch =</span> <span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(manufacturer)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>tailnum, <span class="op">-</span>manufacturer) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-5" data-line-number="5"><span class="st">  </span>rpart<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart</a></span>(mismatch <span class="op">~</span><span class="st"> </span>., .)</a></code></pre></div>
+<p>The following example uses <code><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart::rpart()</a></code> to classify missingness by the other columns.
+Turns out there is a pattern, which needs to be investigated further in the original data.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(planes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(tailnum, manufacturer), <span class="dt">by =</span> <span class="st">"tailnum"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">mismatch =</span> <span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(manufacturer)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span>tailnum, <span class="op">-</span>manufacturer) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="st">  </span>rpart<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart</a></span>(mismatch <span class="op">~</span><span class="st"> </span>., .)</a></code></pre></div>
 <pre><code>## n= 336776 
 ## 
 ## node), split, n, deviance, yval
@@ -1657,11 +1664,12 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ##      7) distance&lt; 2464.5 54487  5939.3460 0.87549320  
 ##       14) dest=DFW,EGE,ORD,STL,TVC 16769  3376.5240 0.72055580 *
 ##       15) dest=ATL,AUS,BNA,BOS,BWI,CLE,CLT,CMH,CRW,CVG,DCA,DTW,FLL,IAH,IND,LAS,LAX,MCO,MIA,MSP,ORF,PBI,PIT,RDU,SAN,SEA,SJU,STT,TPA,XNA 37718  1981.3020 0.94437670 *</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">origin_airports &lt;-</a>
-<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span>airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">origin =</span> faa, <span class="dt">origin_name =</span> name)</a>
-<a class="sourceLine" id="cb263-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb263-5" data-line-number="5">origin_airports</a></code></pre></div>
+<p>For complex joins, it is worthwhile preparing the tables you intend to join beforehand.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">origin_airports &lt;-</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span>airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">origin =</span> faa, <span class="dt">origin_name =</span> name)</a>
+<a class="sourceLine" id="cb264-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb264-5" data-line-number="5">origin_airports</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1,458 x 2</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">origin_name</span><span>                  
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                        
@@ -1670,11 +1678,11 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> 06C    Schaumburg Regional          
 ## </span><span style="color: #555555;"># … with 1,455 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">dest_airports &lt;-</a>
-<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="st">  </span>airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">dest =</span> faa, <span class="dt">dest_name =</span> name)</a>
-<a class="sourceLine" id="cb264-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb264-5" data-line-number="5">dest_airports</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">dest_airports &lt;-</a>
+<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span>airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb265-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">dest =</span> faa, <span class="dt">dest_name =</span> name)</a>
+<a class="sourceLine" id="cb265-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb265-5" data-line-number="5">dest_airports</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1,458 x 2</span><span>
 ##   </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">dest_name</span><span>                    
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                        
@@ -1683,10 +1691,10 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> 06C   Schaumburg Regional          
 ## </span><span style="color: #555555;"># … with 1,455 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(origin_airports) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb265-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dest_airports) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb265-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, origin_name, dest, dest_name)</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(origin_airports) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dest_airports) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb266-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, origin_name, dest, dest_name)</a></code></pre></div>
 <pre><code>## Joining, by = "origin"Joining, by = "dest"</code></pre>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 336,776 x 4</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">origin_name</span><span>         </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">dest_name</span><span>                  
@@ -1696,10 +1704,11 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> JFK    John F Kennedy Intl MIA   Miami Intl                 
 ## </span><span style="color: #555555;"># … with 3.368e+05 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(origin_airports, <span class="dt">by =</span> <span class="st">"origin"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb267-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dest_airports, <span class="dt">by =</span> <span class="st">"dest"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, origin_name, dest, dest_name)</a></code></pre></div>
+<p>Still, it is recommended to explicitly specify the <code>by</code> column.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(origin_airports, <span class="dt">by =</span> <span class="st">"origin"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dest_airports, <span class="dt">by =</span> <span class="st">"dest"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, origin_name, dest, dest_name)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 336,776 x 4</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">origin_name</span><span>         </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">dest_name</span><span>                  
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>               </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                      
@@ -1708,17 +1717,24 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> JFK    John F Kennedy Intl MIA   Miami Intl                 
 ## </span><span style="color: #555555;"># … with 3.368e+05 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>({</a>
-<a class="sourceLine" id="cb268-2" data-line-number="2">  planes_join &lt;-</a>
-<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="st">    </span>... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/base/dots.html">...</a></span>(...)</a>
-<a class="sourceLine" id="cb268-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb268-6" data-line-number="6">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb268-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
-<a class="sourceLine" id="cb268-8" data-line-number="8">})</a></code></pre></div>
+<p><strong>Your turn</strong>: How do we bring in only the <code>engines</code> and <code>seats</code> columns from the <code>planes</code> table?</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>({</a>
+<a class="sourceLine" id="cb269-2" data-line-number="2">  planes_join &lt;-</a>
+<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="st">    </span>... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/base/dots.html">...</a></span>(...)</a>
+<a class="sourceLine" id="cb269-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb269-6" data-line-number="6">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-7" data-line-number="7"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(..., <span class="dt">... =</span> <span class="st">"..."</span>)</a>
+<a class="sourceLine" id="cb269-8" data-line-number="8">})</a></code></pre></div>
 <pre><code>## Error in try({ : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa)</a></code></pre></div>
+<div id="keys" class="section level3">
+<h3>
+<span class="header-section-number">3.9.1</span> Keys</h3>
+<p>For the join to work as expected, it is important that the columns in <code>by</code> uniquely define observations, either in the left-hand-side or in the right-hand-side table, or in both.
+If this is given, the column or columns are a <em>primary key</em> to the table.
+The <code><a href="https://dplyr.tidyverse.org/reference/tally.html">count()</a></code> function helps asserting this.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1,458 x 2</span><span>
 ##   </span><span style="font-weight: bold;">faa</span><span>       </span><span style="font-weight: bold;">n</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -1727,25 +1743,28 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> 06C       1
 ## </span><span style="color: #555555;"># … with 1,455 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1 x 2</span><span>
 ##       </span><span style="font-weight: bold;">n</span><span>    </span><span style="font-weight: bold;">nn</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 ## </span><span style="color: #555555;">1</span><span>     1  </span><span style="text-decoration: underline;">1</span><span>458
 </span></code></pre>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb272-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(...) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb272-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/base/dots.html">...</a></span>(...)</a>
-<a class="sourceLine" id="cb272-5" data-line-number="5">)</a></code></pre></div>
+<p><strong>Your turn</strong>: Double-check that <code>tailnum</code> is indeed a key to <code>planes</code>.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb273-2" data-line-number="2">  ... <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb273-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/base/dots.html">...</a></span>(...)</a>
+<a class="sourceLine" id="cb273-5" data-line-number="5">)</a></code></pre></div>
 <pre><code>## Error in eval(lhs, parent, parent) : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">dup_airports &lt;-</a>
-<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(airports, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_n</a></span>(airports, <span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb274-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb274-4" data-line-number="4">dup_airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb274-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa)</a></code></pre></div>
+<p>In the example below we derive a dataset from <code>airports</code> that intentionally has duplicate observations.
+The <code>faa</code> column is no longer a key to the table.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">dup_airports &lt;-</a>
+<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(airports, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample_n</a></span>(airports, <span class="dv">100</span>))</a>
+<a class="sourceLine" id="cb275-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb275-4" data-line-number="4">dup_airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb275-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1,458 x 2</span><span>
 ##   </span><span style="font-weight: bold;">faa</span><span>       </span><span style="font-weight: bold;">n</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -1754,39 +1773,41 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## </span><span style="color: #555555;">3</span><span> 06C       1
 ## </span><span style="color: #555555;"># … with 1,455 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">dup_airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb275-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">dup_airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 2</span><span>
 ##       </span><span style="font-weight: bold;">n</span><span>    </span><span style="font-weight: bold;">nn</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 ## </span><span style="color: #555555;">1</span><span>     1  </span><span style="text-decoration: underline;">1</span><span>358
 ## </span><span style="color: #555555;">2</span><span>     2   100
 </span></code></pre>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">dup_airports <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">add_count</a></span>(n) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">dup_airports <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(faa) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">add_count</a></span>(n) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb277-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(n <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 100 x 3</span><span>
 ##   </span><span style="font-weight: bold;">faa</span><span>       </span><span style="font-weight: bold;">n</span><span>    </span><span style="font-weight: bold;">nn</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
-## </span><span style="color: #555555;">1</span><span> 17G       2   100
-## </span><span style="color: #555555;">2</span><span> 36U       2   100
-## </span><span style="color: #555555;">3</span><span> 4B8       2   100
+## </span><span style="color: #555555;">1</span><span> 2A0       2   100
+## </span><span style="color: #555555;">2</span><span> 9A5       2   100
+## </span><span style="color: #555555;">3</span><span> AOS       2   100
 ## </span><span style="color: #555555;"># … with 97 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dup_airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
-<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 340,058 x 3</span><span>
+<p>Because we have duplicate observations with the same value in the <code>faa</code> column (and of course we have many more flights), the join will produce duplicate flights.
+This is almost always undesirable!</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(dup_airports, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dest"</span> =<span class="st"> "faa"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb278-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(origin, dest, name)</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 347,409 x 3</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span> </span><span style="font-weight: bold;">dest</span><span>  </span><span style="font-weight: bold;">name</span><span>                        
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                       
 ## </span><span style="color: #555555;">1</span><span> EWR    IAH   George Bush Intercontinental
 ## </span><span style="color: #555555;">2</span><span> LGA    IAH   George Bush Intercontinental
 ## </span><span style="color: #555555;">3</span><span> JFK    MIA   Miami Intl                  
-## </span><span style="color: #555555;"># … with 3.401e+05 more rows</span><span>
+## </span><span style="color: #555555;"># … with 3.474e+05 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">flights</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">flights</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 336,776 x 19</span><span>
 ##    </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">month</span><span>   </span><span style="font-weight: bold;">day</span><span> </span><span style="font-weight: bold;">dep_time</span><span> </span><span style="font-weight: bold;">sched_dep_time</span><span> </span><span style="font-weight: bold;">dep_delay</span><span> </span><span style="font-weight: bold;">arr_time</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>          </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>     </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -1799,7 +1820,8 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## #   </span><span style="color: #555555;font-weight: bold;">air_time</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">distance</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">hour</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">minute</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">,
 ## #   </span><span style="color: #555555;font-weight: bold;">time_hour</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">weather</a></code></pre></div>
+<p><strong>Your turn</strong>: Find a key to the <code>weather</code> table.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">weather</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 26,115 x 15</span><span>
 ##   </span><span style="font-weight: bold;">origin</span><span>  </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">month</span><span>   </span><span style="font-weight: bold;">day</span><span>  </span><span style="font-weight: bold;">hour</span><span>  </span><span style="font-weight: bold;">temp</span><span>  </span><span style="font-weight: bold;">dewp</span><span> </span><span style="font-weight: bold;">humid</span><span> </span><span style="font-weight: bold;">wind_dir</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
@@ -1810,25 +1832,30 @@ Beware: It is tempting to always use the inner join, but often a mismatch indica
 ## #   </span><span style="color: #555555;font-weight: bold;">wind_speed</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">wind_gust</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">precip</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">,
 ## #   </span><span style="color: #555555;font-weight: bold;">pressure</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">visib</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">time_hour</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">weather <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(origin, year, month, day, hour) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb280-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">weather <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(origin, year, month, day, hour) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(n)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 2</span><span>
 ##       </span><span style="font-weight: bold;">n</span><span>    </span><span style="font-weight: bold;">nn</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 ## </span><span style="color: #555555;">1</span><span>     1 </span><span style="text-decoration: underline;">26</span><span>109
 ## </span><span style="color: #555555;">2</span><span>     2     3
 </span></code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
-<a class="sourceLine" id="cb281-2" data-line-number="2">  weather <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(...) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">add_count</a></span>(...) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(...)</a>
-<a class="sourceLine" id="cb281-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb282-2" data-line-number="2">  weather <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb282-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb282-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">add_count</a></span>(...) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb282-5" data-line-number="5"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(...)</a>
+<a class="sourceLine" id="cb282-6" data-line-number="6">)</a></code></pre></div>
 <pre><code>## Error in function_list[[i]](value) : '...' used in an incorrect context</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="ot">NA</span></a></code></pre></div>
+<p>The <a href="https://krlmlr.github.io/dm/">{dm} package</a> is a modern take on handling multiple tables in your R session.
+A <code>dm</code> object combines the data and metadata for tables, and the relationships between these tables.
+Joins no longer require specification of the <code>by</code> columns.
+The join logic becomes part of the metadata and not the code.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="ot">NA</span></a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 
+</div>
 </div>
 </div>
             </section>
