@@ -399,10 +399,13 @@ These can be converted to HTML for inclusion in reports, e.g. with `memisc::form
 # Deciding what goes into the columns, what into the rows
 ```
 ```{r 401-deciding-what-goes-into-the-columns-what-into-the-rows, results="asis", eval=knitr::is_html_output()}
-table2 %>%
+table2_html <-
+  table2 %>%
   xtabs(count ~ ., .) %>%
   ftable(col.vars = c("year", "type")) %>% 
   memisc::format_html()
+
+cat(table2_html)
 ```
 
 The [{gt} package](https://gt.rstudio.com/) is a modern approach to present tables for formatting.
