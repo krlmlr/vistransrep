@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{29 November 2019, 08:57 CET}
+\date{29 November 2019, 13:23 CET}
 
 \begin{document}
 \maketitle
@@ -283,7 +283,7 @@ Click to expand
 ##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
 ##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
 ##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
-##  tic            0.2.13.9021 2019-11-28 [1] Github (ropenscilabs/tic@4760093)
+##  tic            0.2.13.9021 2019-11-29 [1] Github (ropenscilabs/tic@afd2c0f)
 ##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
 ##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
 ##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
@@ -4759,6 +4759,633 @@ When using \texttt{dplyr::pull()} (this function ``extracts'' a variable from a 
 
 Use the left arrow to click through the different plots.
 
+\hypertarget{joins}{%
+\section{Joins}\label{joins}}
+
+\emph{Click here to show setup code.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(nycflights13)}
+
+\KeywordTok{library}\NormalTok{(here)}
+
+\KeywordTok{library}\NormalTok{(conflicted)}
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::filter over any other package
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [conflicted] Removing existing preference
+\end{verbatim}
+
+\begin{verbatim}
+## [conflicted] Will prefer dplyr::lag over any other package
+\end{verbatim}
+
+Joins combine two tables horizontally by combining matching rows.
+Two rows match if they have the same value in columns common to both tables.
+The resulting table contains all columns from both tables.
+
+The \texttt{airlines} data contains details (really just the name) of airlines, by carrier code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airlines}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 16 x 2
+##   carrier name                  
+##   <chr>   <chr>                 
+## 1 9E      Endeavor Air Inc.     
+## 2 AA      American Airlines Inc.
+## 3 AS      Alaska Airlines Inc.  
+## # ... with 13 more rows
+\end{verbatim}
+
+Only the carrier code is available in the \texttt{flights} dataset.
+The airline name can be brought in with the \texttt{left\_join()} function, e.g., to use in a pretty label.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(carrier) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(airlines)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "carrier"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 16 x 3
+##   carrier     n name                  
+##   <chr>   <int> <chr>                 
+## 1 9E      18460 Endeavor Air Inc.     
+## 2 AA      32729 American Airlines Inc.
+## 3 AS        714 Alaska Airlines Inc.  
+## # ... with 13 more rows
+\end{verbatim}
+
+For code stability, it is useful to always specify the column names to join by.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(airlines, }\DataTypeTok{by =} \StringTok{"carrier"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(dep_time, carrier, name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   dep_time carrier name                  
+##      <int> <chr>   <chr>                 
+## 1      517 UA      United Air Lines Inc. 
+## 2      533 UA      United Air Lines Inc. 
+## 3      542 AA      American Airlines Inc.
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+** Your turn**: Bring in data from the \texttt{planes} table.
+What happens if you omit the \texttt{by} argument?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{planes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3,322 x 9
+##   tailnum  year type  manufacturer model engines seats speed
+##   <chr>   <int> <chr> <chr>        <chr>   <int> <int> <int>
+## 1 N10156   2004 Fixe~ EMBRAER      EMB-~       2    55    NA
+## 2 N102UW   1998 Fixe~ AIRBUS INDU~ A320~       2   182    NA
+## 3 N103US   1999 Fixe~ AIRBUS INDU~ A320~       2   182    NA
+## # ... with 3,319 more rows, and 1 more variable: engine <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{..._join}\NormalTok{(...)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in try(... %>% ..._join(...)) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{..._join}\NormalTok{(..., }\DataTypeTok{... =} \StringTok{"..."}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in try(... %>% ..._join(..., ... = "...")) : 
+##   '...' used in an incorrect context
+\end{verbatim}
+
+The \texttt{airports} table does not have any columns common to \texttt{flights}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airports}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,458 x 8
+##   faa   name             lat   lon   alt    tz dst   tzone    
+##   <chr> <chr>          <dbl> <dbl> <dbl> <dbl> <chr> <chr>    
+## 1 04G   Lansdowne Air~  41.1 -80.6  1044    -5 A     America/~
+## 2 06A   Moton Field M~  32.5 -85.7   264    -6 A     America/~
+## 3 06C   Schaumburg Re~  42.0 -88.1   801    -6 A     America/~
+## # ... with 1,455 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  flights }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(airports)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error : `by` required, because the data sources have no common variables
+\end{verbatim}
+
+A \texttt{by} argument with a specific syntax is required here.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(airports, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"dest"}\NormalTok{ =}\StringTok{ "faa"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 3
+##   origin dest  name                        
+##   <chr>  <chr> <chr>                       
+## 1 EWR    IAH   George Bush Intercontinental
+## 2 LGA    IAH   George Bush Intercontinental
+## 3 JFK    MIA   Miami Intl                  
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+Mismatches introduce cells with missing values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(airports, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"dest"}\NormalTok{ =}\StringTok{ "faa"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(name))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7,602 x 3
+##   origin dest  name 
+##   <chr>  <chr> <chr>
+## 1 JFK    BQN   <NA> 
+## 2 JFK    SJU   <NA> 
+## 3 JFK    SJU   <NA> 
+## # ... with 7,599 more rows
+\end{verbatim}
+
+The \texttt{airports} table does not contain a row for the BQN airport.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(faa }\OperatorTok{==}\StringTok{ "BQN"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 0 x 8
+## # ... with 8 variables: faa <chr>, name <chr>, lat <dbl>,
+## #   lon <dbl>, alt <dbl>, tz <dbl>, dst <chr>, tzone <chr>
+\end{verbatim}
+
+The \texttt{inner\_join()} discards rows with mismatches.
+Beware: It is tempting to always use the inner join, but often a mismatch indicates problems that have occurred earlier in your analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{inner_join}\NormalTok{(airports, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"dest"}\NormalTok{ =}\StringTok{ "faa"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 329,174 x 3
+##   origin dest  name                        
+##   <chr>  <chr> <chr>                       
+## 1 EWR    IAH   George Bush Intercontinental
+## 2 LGA    IAH   George Bush Intercontinental
+## 3 JFK    MIA   Miami Intl                  
+## # ... with 3.292e+05 more rows
+\end{verbatim}
+
+\textbf{Your turn}: Why are some rows with the \texttt{planes} table not matched?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(..., }\DataTypeTok{... =} \StringTok{"..."}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(...))}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in eval(lhs, parent, parent) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(..., }\DataTypeTok{... =} \StringTok{"..."}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mismatch =} \KeywordTok{is.na}\NormalTok{(...), }\DataTypeTok{is_aa =}\NormalTok{ (carrier }\OperatorTok{==}\StringTok{ "AA"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{count}\NormalTok{(.....)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in eval(lhs, parent, parent) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{..._join}\NormalTok{(..., }\DataTypeTok{... =} \StringTok{"..."}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in try(... %>% ..._join(..., ... = "...")) : 
+##   '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(planes }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(tailnum, manufacturer), }\DataTypeTok{by =} \StringTok{"tailnum"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mismatch =} \KeywordTok{is.na}\NormalTok{(manufacturer)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{tailnum, }\OperatorTok{-}\NormalTok{manufacturer) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{rpart}\OperatorTok{::}\KeywordTok{rpart}\NormalTok{(mismatch }\OperatorTok{~}\StringTok{ }\NormalTok{., .)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## n= 336776 
+## 
+## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+##  1) root 336776 44388.6900 0.15620470  
+##    2) carrier=9E,AS,B6,DL,EV,F9,FL,HA,OO,UA,US,VX,WN,YV 277650  4573.0900 0.01675131 *
+##    3) carrier=AA,MQ 59126  9060.4020 0.81106450  
+##      6) distance>=2464.5 4639   238.3108 0.05432205 *
+##      7) distance< 2464.5 54487  5939.3460 0.87549320  
+##       14) dest=DFW,EGE,ORD,STL,TVC 16769  3376.5240 0.72055580 *
+##       15) dest=ATL,AUS,BNA,BOS,BWI,CLE,CLT,CMH,CRW,CVG,DCA,DTW,FLL,IAH,IND,LAS,LAX,MCO,MIA,MSP,ORF,PBI,PIT,RDU,SAN,SEA,SJU,STT,TPA,XNA 37718  1981.3020 0.94437670 *
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{origin_airports <-}
+\StringTok{  }\NormalTok{airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{origin =}\NormalTok{ faa, }\DataTypeTok{origin_name =}\NormalTok{ name)}
+
+\NormalTok{origin_airports}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,458 x 2
+##   origin origin_name                  
+##   <chr>  <chr>                        
+## 1 04G    Lansdowne Airport            
+## 2 06A    Moton Field Municipal Airport
+## 3 06C    Schaumburg Regional          
+## # ... with 1,455 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dest_airports <-}
+\StringTok{  }\NormalTok{airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\DataTypeTok{dest =}\NormalTok{ faa, }\DataTypeTok{dest_name =}\NormalTok{ name)}
+
+\NormalTok{dest_airports}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,458 x 2
+##   dest  dest_name                    
+##   <chr> <chr>                        
+## 1 04G   Lansdowne Airport            
+## 2 06A   Moton Field Municipal Airport
+## 3 06C   Schaumburg Regional          
+## # ... with 1,455 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(origin_airports) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(dest_airports) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, origin_name, dest, dest_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "origin"Joining, by = "dest"
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 4
+##   origin origin_name         dest  dest_name                  
+##   <chr>  <chr>               <chr> <chr>                      
+## 1 EWR    Newark Liberty Intl IAH   George Bush Intercontinent~
+## 2 LGA    La Guardia          IAH   George Bush Intercontinent~
+## 3 JFK    John F Kennedy Intl MIA   Miami Intl                 
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(origin_airports, }\DataTypeTok{by =} \StringTok{"origin"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(dest_airports, }\DataTypeTok{by =} \StringTok{"dest"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, origin_name, dest, dest_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 4
+##   origin origin_name         dest  dest_name                  
+##   <chr>  <chr>               <chr> <chr>                      
+## 1 EWR    Newark Liberty Intl IAH   George Bush Intercontinent~
+## 2 LGA    La Guardia          IAH   George Bush Intercontinent~
+## 3 JFK    John F Kennedy Intl MIA   Miami Intl                 
+## # ... with 3.368e+05 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(\{}
+\NormalTok{  planes_join <-}
+\StringTok{    }\NormalTok{... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{...}\NormalTok{(...)}
+
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{left_join}\NormalTok{(..., }\DataTypeTok{... =} \StringTok{"..."}\NormalTok{)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in try({ : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(faa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,458 x 2
+##   faa       n
+##   <chr> <int>
+## 1 04G       1
+## 2 06A       1
+## 3 06C       1
+## # ... with 1,455 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(faa) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##       n    nn
+##   <int> <int>
+## 1     1  1458
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  ... }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{count}\NormalTok{(...) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{...}\NormalTok{(...)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in eval(lhs, parent, parent) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dup_airports <-}
+\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(airports, }\KeywordTok{sample_n}\NormalTok{(airports, }\DecValTok{100}\NormalTok{))}
+
+\NormalTok{dup_airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(faa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,458 x 2
+##   faa       n
+##   <chr> <int>
+## 1 04G       1
+## 2 06A       1
+## 3 06C       1
+## # ... with 1,455 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dup_airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(faa) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##       n    nn
+##   <int> <int>
+## 1     1  1358
+## 2     2   100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dup_airports }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(faa) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{add_count}\NormalTok{(n) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(n }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 100 x 3
+##   faa       n    nn
+##   <chr> <int> <int>
+## 1 1C9       2   100
+## 2 2B2       2   100
+## 3 3G3       2   100
+## # ... with 97 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(dup_airports, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"dest"}\NormalTok{ =}\StringTok{ "faa"}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(origin, dest, name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 356,557 x 3
+##   origin dest  name                        
+##   <chr>  <chr> <chr>                       
+## 1 EWR    IAH   George Bush Intercontinental
+## 2 LGA    IAH   George Bush Intercontinental
+## 3 JFK    MIA   Miami Intl                  
+## # ... with 3.566e+05 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flights}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 336,776 x 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   <int> <int> <int>    <int>          <int>     <dbl>    <int>
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## # ... with 3.368e+05 more rows, and 12 more variables:
+## #   sched_arr_time <int>, arr_delay <dbl>, carrier <chr>,
+## #   flight <int>, tailnum <chr>, origin <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour <dbl>, minute <dbl>,
+## #   time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weather}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 26,115 x 15
+##   origin  year month   day  hour  temp  dewp humid wind_dir
+##   <chr>  <int> <int> <int> <int> <dbl> <dbl> <dbl>    <dbl>
+## 1 EWR     2013     1     1     1  39.0  26.1  59.4      270
+## 2 EWR     2013     1     1     2  39.0  27.0  61.6      250
+## 3 EWR     2013     1     1     3  39.0  28.0  64.4      240
+## # ... with 2.611e+04 more rows, and 6 more variables:
+## #   wind_speed <dbl>, wind_gust <dbl>, precip <dbl>,
+## #   pressure <dbl>, visib <dbl>, time_hour <dttm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weather }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(origin, year, month, day, hour) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##       n    nn
+##   <int> <int>
+## 1     1 26109
+## 2     2     3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  weather }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{count}\NormalTok{(...) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{add_count}\NormalTok{(...) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{filter}\NormalTok{(...)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in function_list[[i]](value) : '...' used in an incorrect context
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
 \hypertarget{import}{%
 \chapter{Import}\label{import}}
 
@@ -5951,7 +6578,7 @@ The \href{https://gt.rstudio.com/}{\{gt\} package} is a modern approach to prese
 ## [conflicted] Will prefer dplyr::lag over any other package
 \end{verbatim}
 
-The \texttt{table3} table violates the third principle of tidy data: each cell contains two values.
+The \texttt{table3} table violates the third principle of tidy data: each cell in the \texttt{rate} column contains two values.
 
 \begin{Shaded}
 \begin{Highlighting}[]
