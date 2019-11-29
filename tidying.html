@@ -867,72 +867,153 @@ For this, <code><a href="https://rdrr.io/r/stats/ftable.html">ftable()</a></code
 ## China       1999          212258 1272915272
 ##             2000          213766 1280428583</code></pre>
 <p>These can be converted to HTML for inclusion in reports, e.g. with <code><a href="https://rdrr.io/pkg/memisc/man/format_html.html">memisc::format_html()</a></code>.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>(<span class="dt">col.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>, <span class="st">"type"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb304-4" data-line-number="4"><span class="st">  </span>memisc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/memisc/man/format_html.html">format_html</a></span>()</a></code></pre></div>
-[1] "&lt;table class="ftable" style="border-collapse: collapse; border-style: none; margin: 2ex auto;"&gt;year:
-
-<td colspan='\"6\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid border-top:>1999</td>
-<td colspan='\"6\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid border-top:>2000</td>
-
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">table2_html &lt;-</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="st">  </span>table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>(<span class="dt">col.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>, <span class="st">"type"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="st">  </span>memisc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/memisc/man/format_html.html">format_html</a></span>()</a>
+<a class="sourceLine" id="cb304-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(table2_html)</a></code></pre></div>
+<table class="ftable" style="border-collapse: collapse; border-style: none; margin: 2ex auto;">
+<tr style="border-style: none;">
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; border-top: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; border-top: 1px solid;">
+year:
+</td>
+<td colspan="6" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid; border-top: 1px solid;">
+1999
+</td>
+<td colspan="6" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid; border-top: 1px solid;">
+2000
+</td>
+</tr>
+<tr style="border-style: none;">
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; border-bottom: 1px solid;">
 country
-
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left border-bottom: solid>type:</td>
-<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>cases</td>
-<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>population</td>
-<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>cases</td>
-<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>population</td>
-
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; border-bottom: 1px solid;">
+type:
+</td>
+<td colspan="3" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid;">
+cases
+</td>
+<td colspan="3" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid;">
+population
+</td>
+<td colspan="3" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid;">
+cases
+</td>
+<td colspan="3" style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.3em; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; border-bottom: 1px solid;">
+population
+</td>
+</tr>
+<tr style="border-style: none;">
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px;">
 Afghanistan
-
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>745</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>19987071</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>2666</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>20595360</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+745
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+19987071
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+2666
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+20595360
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+</tr>
+<tr style="border-style: none;">
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px;">
 Brazil
-
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>37737</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>172006362</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>80488</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>174504898</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
-
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+37737
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+172006362
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+80488
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em;">
+174504898
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em;">
+</td>
+</tr>
+<tr style="border-style: none;">
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; border-bottom: 1px solid;">
 China
-
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>212258</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>1272915272</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>213766</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>1280428583</td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
-<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
-
-<p>"</p>
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.3em; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-bottom: 1px solid;">
+212258
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-bottom: 1px solid;">
+1272915272
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-bottom: 1px solid;">
+213766
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: right; margin-right: 0px; padding-right: 0px; padding-left: 0.3em; border-bottom: 1px solid;">
+1280428583
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: center; margin-left: 0px; margin-right: 0px; padding-right: 0px; padding-left: 0px; width: 1px; border-bottom: 1px solid;">
+</td>
+<td style="padding-top: 3px; padding-bottom: 0px; padding-left: 0.5ex; padding-right: 0.5ex; margin-top: 0px; margin-bottom: 0px; border-style: none; border-width: 0px; text-align: left; margin-left: 0px; padding-left: 0px; padding-right: 0.3em; border-bottom: 1px solid;">
+</td>
+</tr>
+</table>
 <p>The <a href="https://gt.rstudio.com/">{gt} package</a> is a modern approach to present tables for formatting.</p>
 </div>
 </div>

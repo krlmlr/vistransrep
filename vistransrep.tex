@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{29 November 2019, 08:13 CET}
+\date{29 November 2019, 08:57 CET}
 
 \begin{document}
 \maketitle
@@ -5902,10 +5902,13 @@ These can be converted to HTML for inclusion in reports, e.g.~with \texttt{memis
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{table2 }\OperatorTok{%>%}
+\NormalTok{table2_html <-}
+\StringTok{  }\NormalTok{table2 }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ftable}\NormalTok{(}\DataTypeTok{col.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\NormalTok{memisc}\OperatorTok{::}\KeywordTok{format_html}\NormalTok{()}
+
+\KeywordTok{cat}\NormalTok{(table2_html)}
 \end{Highlighting}
 \end{Shaded}
 
