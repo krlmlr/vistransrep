@@ -19,6 +19,7 @@ library(here)
 library(conflicted)
 conflict_prefer("filter", "dplyr")
 conflict_prefer("lag", "dplyr")
+set.seed(20191129)
 ```
 </details>
 
@@ -190,6 +191,8 @@ try(
 )
 ```
 
+The following example uses `rpart::rpart()` to classify missingness by the other columns.
+Turns out there is a pattern, which needs to be investigated further in the original data.
 
 ```{r include = FALSE}
 # Case study: classification of mismatches
@@ -202,6 +205,7 @@ flights %>%
   rpart::rpart(mismatch ~ ., .)
 ```
 
+For complex joins, it is worthwhile preparing the tables you intend to join beforehand.
 
 ```{r include = FALSE}
 # before joining, prepare the RHS table(s)
@@ -231,6 +235,7 @@ flights %>%
   select(origin, origin_name, dest, dest_name)
 ```
 
+Still, it is recommended to explicitly specify the `by` column.
 
 ```{r include = FALSE}
 # "by" still recommended
@@ -242,6 +247,8 @@ flights %>%
   select(origin, origin_name, dest, dest_name)
 ```
 
+
+**Your turn**: How do we bring in only the `engines` and `seats` columns from the `planes` table?
 
 ```{r include = FALSE}
 # Your turn: we only need `engines` and `seats` from the `planes` table
@@ -257,6 +264,11 @@ try({
 })
 ```
 
+### Keys
+
+For the join to work as expected, it is important that the columns in `by` uniquely define observations, either in the left-hand-side or in the right-hand-side table, or in both.
+If this is given, the column or columns are a *primary key* to the table.
+The `count()` function helps asserting this.
 
 ```{r include = FALSE}
 # either LHS or RHS should have a key as part of "by"
@@ -270,6 +282,7 @@ airports %>%
   count(n)
 ```
 
+**Your turn**: Double-check that `tailnum` is indeed a key to `planes`.
 
 ```{r include = FALSE}
 # Your turn: double-check that `tailnum` is indeed a key in `planes`
@@ -282,6 +295,8 @@ try(
 )
 ```
 
+In the example below we derive a dataset from `airports` that intentionally has duplicate observations.
+The `faa` column is no longer a key to the table.
 
 ```{r include = FALSE}
 # create artificial dataset where airport is not a key
@@ -303,6 +318,8 @@ dup_airports %>%
   filter(n > 1)
 ```
 
+Because we have duplicate observations with the same value in the `faa` column (and of course we have many more flights), the join will produce duplicate flights.
+This is almost always undesirable!
 
 ```{r include = FALSE}
 # what happens if not key?
@@ -315,6 +332,7 @@ flights %>%
 flights
 ```
 
+**Your turn**: Find a key to the `weather` table.
 
 ```{r include = FALSE}
 # Your turn: Is this combination a key? Why/why not?
@@ -348,6 +366,10 @@ try(
 
 ```
 
+The [{dm} package](https://krlmlr.github.io/dm/) is a modern take on handling multiple tables in your R session.
+A `dm` object combines the data and metadata for tables, and the relationships between these tables.
+Joins no longer require specification of the `by` columns.
+The join logic becomes part of the metadata and not the code.
 
 ```{r include = FALSE}
 # A novel approach: https://krlmlr.github.io/dm/
