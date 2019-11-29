@@ -25,7 +25,9 @@
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet">
 <link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet">
 <link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet">
-<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
+<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/plotly-binding/plotly.js"></script><script src="libs/typedarray/typedarray.min.js"></script><link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main/plotly-latest.min.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
 <script src="libs/ggiraphjs/ggiraphjs.min.js"></script><script src="libs/girafe-binding/girafe.js"></script><style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -212,12 +214,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.1" data-path="vis-basics.html"><a href="vis-basics.html#ggsci"><i class="fa fa-check"></i><b>2.11.1</b> {ggsci}</a></li>
 <li class="chapter" data-level="2.11.2" data-path="vis-basics.html"><a href="vis-basics.html#ggforce"><i class="fa fa-check"></i><b>2.11.2</b> {ggforce}</a></li>
 <li class="chapter" data-level="2.11.3" data-path="vis-basics.html"><a href="vis-basics.html#gganimate-1"><i class="fa fa-check"></i><b>2.11.3</b> {gganimate}</a></li>
-<li class="chapter" data-level="2.11.4" data-path="vis-basics.html"><a href="vis-basics.html#ggtext"><i class="fa fa-check"></i><b>2.11.4</b> {ggtext}</a></li>
-<li class="chapter" data-level="2.11.5" data-path="vis-basics.html"><a href="vis-basics.html#ggrepel"><i class="fa fa-check"></i><b>2.11.5</b> {ggrepel}</a></li>
-<li class="chapter" data-level="2.11.6" data-path="vis-basics.html"><a href="vis-basics.html#ggiraph"><i class="fa fa-check"></i><b>2.11.6</b> {ggiraph}</a></li>
-<li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.7</b> {ggbeeswarm}</a></li>
-<li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.8</b> {ggpmisc}</a></li>
-<li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.9</b> {esquisse}</a></li>
+<li class="chapter" data-level="2.11.4" data-path="vis-basics.html"><a href="vis-basics.html#plotly"><i class="fa fa-check"></i><b>2.11.4</b> {plotly}</a></li>
+<li class="chapter" data-level="2.11.5" data-path="vis-basics.html"><a href="vis-basics.html#ggtext"><i class="fa fa-check"></i><b>2.11.5</b> {ggtext}</a></li>
+<li class="chapter" data-level="2.11.6" data-path="vis-basics.html"><a href="vis-basics.html#ggrepel"><i class="fa fa-check"></i><b>2.11.6</b> {ggrepel}</a></li>
+<li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggiraph"><i class="fa fa-check"></i><b>2.11.7</b> {ggiraph}</a></li>
+<li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.8</b> {ggbeeswarm}</a></li>
+<li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.9</b> {ggpmisc}</a></li>
+<li class="chapter" data-level="2.11.10" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.10</b> {esquisse}</a></li>
 </ul>
 </li>
 </ul>
@@ -282,6 +285,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
 <li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
 <li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
+<li class="chapter" data-level="5.1.6" data-path="tidying.html"><a href="tidying.html#the-anscombe-dataset"><i class="fa fa-check"></i><b>5.1.6</b> The Anscombe dataset</a></li>
+<li class="chapter" data-level="5.1.7" data-path="tidying.html"><a href="tidying.html#who-data"><i class="fa fa-check"></i><b>5.1.7</b> WHO data</a></li>
+<li class="chapter" data-level="5.1.8" data-path="tidying.html"><a href="tidying.html#formatting-tables-for-presentation"><i class="fa fa-check"></i><b>5.1.8</b> Formatting tables for presentation</a></li>
 </ul>
 </li>
 <li class="chapter" data-level="5.2" data-path="tidying.html">
@@ -289,7 +295,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
 </ul>
 </li>
-<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <no caption defined></no></a></li>
 </ul>
 </li>
 <li class="chapter" data-level="6" data-path="reporting.html">

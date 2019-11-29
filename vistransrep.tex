@@ -131,7 +131,7 @@
 
 \title{Visualization, transformation and reporting with the tidyverse}
 \author{Kirill Müller, Tobias Schieferdecker, Patrick Schratz}
-\date{28 November 2019, 21:08 CET}
+\date{29 November 2019, 08:13 CET}
 
 \begin{document}
 \maketitle
@@ -199,7 +199,7 @@ Click to expand
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2019-11-28                  
+##  date     2019-11-29                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package      * version     date       lib source                           
@@ -283,7 +283,7 @@ Click to expand
 ##  stringi        1.4.3       2019-03-12 [1] CRAN (R 3.6.1)                   
 ##  stringr      * 1.4.0       2019-02-10 [1] CRAN (R 3.6.1)                   
 ##  tibble       * 2.1.3       2019-06-06 [1] CRAN (R 3.6.1)                   
-##  tic            0.2.13.9021 2019-11-27 [1] Github (ropenscilabs/tic@8d76ddb)
+##  tic            0.2.13.9021 2019-11-28 [1] Github (ropenscilabs/tic@4760093)
 ##  tidyr        * 1.0.0       2019-09-11 [1] CRAN (R 3.6.1)                   
 ##  tidyselect     0.2.5       2018-10-11 [1] CRAN (R 3.6.1)                   
 ##  tidyverse    * 1.3.0       2019-11-21 [1] CRAN (R 3.6.1)                   
@@ -2563,6 +2563,8 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 
 \{gganimate\}: \url{https://gganimate.com/}
 
+\{plotly\}: \url{https://plotly-r.com/}
+
 \{ggtext\}: \url{https://github.com/clauswilke/ggtext}
 
 \{ggiraph\}: \url{http://davidgohel.github.io/ggiraph}
@@ -2598,9 +2600,41 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \KeywordTok{library}\NormalTok{(ggiraph)}
 \KeywordTok{library}\NormalTok{(ggbeeswarm)}
 \KeywordTok{library}\NormalTok{(gganimate)}
+\KeywordTok{library}\NormalTok{(plotly)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'plotly'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     filter
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:graphics':
+## 
+##     layout
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(ggrepel)}
 \KeywordTok{library}\NormalTok{(ggforce)}
+\KeywordTok{library}\NormalTok{(ggpubr)}
 \KeywordTok{library}\NormalTok{(gapminder)}
+
+\KeywordTok{theme_set}\NormalTok{(}\KeywordTok{theme_pubr}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2664,6 +2698,23 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 ## Warning: No renderer available. Please install the gifski, av,
 ## or magick package to create animated output
 \end{verbatim}
+
+\hypertarget{plotly}{%
+\subsection{\{plotly\}}\label{plotly}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(diamonds, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{log}\NormalTok{(carat), }\DataTypeTok{y =} \KeywordTok{log}\NormalTok{(price))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_hex}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{100}\NormalTok{)}
+\KeywordTok{ggplotly}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_ly}\NormalTok{(}\DataTypeTok{z =} \OperatorTok{~}\NormalTok{volcano, }\DataTypeTok{type =} \StringTok{"surface"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{ggtext}{%
 \subsection{\{ggtext\}}\label{ggtext}}
@@ -2737,7 +2788,7 @@ Here is a selected list of our favorite \{ggplot2\} extensions including some us
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-104-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/unnamed-chunk-106-1} \end{flushright}
 
 \hypertarget{ggiraph}{%
 \subsection{\{ggiraph\}}\label{ggiraph}}
@@ -4378,6 +4429,13 @@ The \texttt{summarize()} verb gains its full power in grouped operations.
 Surround with \texttt{group\_by()} and \texttt{ungroup()} to compute summaries in groups defined by common values in one or more columns.
 In the next example, the same summary is computed separately for each origin airport.
 
+\begin{figure}
+
+\hfill{}\includegraphics[width=11.11in]{img/group_by_ungroup} 
+
+\caption{© Allison Horst}\label{fig:group-by-pic}
+\end{figure}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{flights }\OperatorTok{%>%}
@@ -5096,7 +5154,7 @@ This may work with two columns but becomes tedious once more measurements are ad
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}
     \DataTypeTok{max_cases =} \KeywordTok{max}\NormalTok{(cases),}
     \DataTypeTok{max_population =} \KeywordTok{max}\NormalTok{(population)}
-\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{  ) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -5120,7 +5178,7 @@ The \texttt{\_at} family of functions helps iterating over columns, but all colu
 \StringTok{  }\KeywordTok{summarize_at}\NormalTok{(}
     \KeywordTok{vars}\NormalTok{(cases, population),}
 \NormalTok{    max}
-\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{  ) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -5143,7 +5201,7 @@ The same code works for arbitrary number of measurements.
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(country, type) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}
     \DataTypeTok{max =} \KeywordTok{max}\NormalTok{(count)}
-\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{  ) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -5205,26 +5263,23 @@ The \texttt{pivot\_longer()} function takes a ``wider-form'' dataset and convert
 The \texttt{-c(...)} notation indicates that all column except \texttt{country} and \texttt{year} are to be transformed into longer form.
 The column names become the contents of the new \texttt{name} column, the values are available in the \texttt{value} column.
 
-The result of this operation isn't strictly equivalent to \texttt{table2}, we need to rename and sort differently.
+\textbf{Your turn}: The result of this operation isn't strictly equivalent to \texttt{table2}.
+What is missing?
+
 Alternatively, the \texttt{names\_to} and \texttt{values\_to} arguments allow specifying the names of the new columns.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{table1 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{type =}\NormalTok{ name, }\DataTypeTok{count =}\NormalTok{ value) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(country, year, type)}
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  table1 }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{pivot_longer}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select}\NormalTok{(....., }\KeywordTok{everything}\NormalTok{())}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 12 x 4
-##   country      year type          count
-##   <chr>       <int> <chr>         <int>
-## 1 Afghanistan  1999 cases           745
-## 2 Afghanistan  1999 population 19987071
-## 3 Afghanistan  2000 cases          2666
-## # ... with 9 more rows
+## Error in .f(.x[[i]], ...) : object '.....' not found
 \end{verbatim}
 
 \begin{Shaded}
@@ -5234,8 +5289,7 @@ Alternatively, the \texttt{names\_to} and \texttt{values\_to} arguments allow sp
     \OperatorTok{-}\KeywordTok{c}\NormalTok{(country, year),}
     \DataTypeTok{names_to =} \StringTok{"type"}\NormalTok{,}
     \DataTypeTok{values_to =} \StringTok{"count"}
-\NormalTok{  ) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(country, year, type)}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5290,24 +5344,21 @@ If the \texttt{name} and \texttt{value} columns are named differently, these col
 ## 6 China        2000 213766 1280428583
 \end{verbatim}
 
+\textbf{Your turn}: \texttt{pivot\_wider()} expects columns \texttt{name} and \texttt{value} by default.
+What do we need to do to get rid of \texttt{names\_from} and \texttt{values\_from}?
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{table2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{name =}\NormalTok{ type, }\DataTypeTok{value =}\NormalTok{ count) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{()}
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  table2 }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{select}\NormalTok{(......, }\KeywordTok{everything}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{pivot_wider}\NormalTok{()}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 6 x 4
-##   country      year  cases population
-##   <chr>       <int>  <int>      <int>
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583
+## Error in .f(.x[[i]], ...) : object '......' not found
 \end{verbatim}
 
 \hypertarget{use-cases}{%
@@ -5335,7 +5386,7 @@ For a bar chart that shows cases and population side by side, mapped to the \tex
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-longer-form-more-useful-for-plotting-all-values-side-by-side-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5348,7 +5399,7 @@ For a bar chart that shows cases and population side by side, mapped to the \tex
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-longer-form-more-useful-for-plotting-all-values-side-by-side-2} \end{flushright}
 
 On the other hand, iIf only a single measurement needs to be plotted, the ``wider'' form is easier to work with.
 
@@ -5369,7 +5420,7 @@ On the other hand, iIf only a single measurement needs to be plotted, the ``wide
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-wider-form-more-useful-for-plotting-a-single-value-1} \end{flushright}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5381,7 +5432,7 @@ On the other hand, iIf only a single measurement needs to be plotted, the ``wide
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-more-useful-for-plotting-a-single-value-2} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-wider-form-more-useful-for-plotting-a-single-value-2} \end{flushright}
 
 The ``wider'' form is also the only way to map different measures to different aesthetics, e.g.~to correlate values.
 
@@ -5395,7 +5446,7 @@ The ``wider'' form is also the only way to map different measures to different a
 \end{Highlighting}
 \end{Shaded}
 
-\begin{flushright}\includegraphics{vistransrep_files/figure-latex/41-wider-form-the-only-way-to-correlate-values-1} \end{flushright}
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-wider-form-the-only-way-to-correlate-values-1} \end{flushright}
 
 \hypertarget{combining-vertically}{%
 \subsection{Combining vertically}\label{combining-vertically}}
@@ -5459,24 +5510,20 @@ The \texttt{.id\ =\ "type"} setting ensures that the input datasets gain differe
 ## 6 population China       1272915272 1280428583
 \end{verbatim}
 
-As before, \texttt{pivot\_longer()} helps converting the results into something similar to \texttt{table2}.
+\textbf{Your turn}: As before, \texttt{pivot\_longer()} helps converting the results into something similar to \texttt{table2}.
 The result isn't quite the same yet, can you spot the difference?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{table4 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{`}\DataTypeTok{1999}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{2000}\StringTok{`}\NormalTok{))}
+\KeywordTok{try}\NormalTok{(}
+\NormalTok{  table4 }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{...}\NormalTok{(}\KeywordTok{c}\NormalTok{(.....))}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 12 x 4
-##   type  country     name  value
-##   <chr> <chr>       <chr> <int>
-## 1 cases Afghanistan 1999    745
-## 2 cases Afghanistan 2000   2666
-## 3 cases Brazil      1999  37737
-## # ... with 9 more rows
+## Error in ...(., c(.....)) : could not find function "..."
 \end{verbatim}
 
 \hypertarget{tidy-data}{%
@@ -5505,7 +5552,239 @@ In a tidy dataset,
 \caption{Tidy data}
 \end{figure}
 
-The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
+The next two sections show examples of datasets that violate these principles.
+
+\hypertarget{the-anscombe-dataset}{%
+\subsection{The Anscombe dataset}\label{the-anscombe-dataset}}
+
+This is a dataset where principal statistical summaries (means, standard deviations, intercept and slope after regression) are identical across four subgroups but the layout of the data differs vastly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   x1 x2 x3 x4   y1   y2   y3   y4
+## 1 10 10 10  8 8.04 9.14 7.46 6.58
+## 2  8  8  8  8 6.95 8.14 6.77 5.76
+##  [ reached 'max' / getOption("max.print") -- omitted 9 rows ]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as_tibble}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11 x 8
+##      x1    x2    x3    x4    y1    y2    y3    y4
+##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1    10    10    10     8  8.04  9.14  7.46  6.58
+## 2     8     8     8     8  6.95  8.14  6.77  5.76
+## 3    13    13    13     8  7.58  8.74 12.7   7.71
+## # ... with 8 more rows
+\end{verbatim}
+
+Working with this data in original form is rather tedious.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{as_tibble}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize_all}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{mean}\NormalTok{(.), }\OperatorTok{~}\StringTok{ }\KeywordTok{sd}\NormalTok{(.)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 16
+##   x1_mean x2_mean x3_mean x4_mean y1_mean y2_mean y3_mean
+##     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+## 1       9       9       9       9    7.50    7.50     7.5
+## # ... with 9 more variables: y4_mean <dbl>, x1_sd <dbl>,
+## #   x2_sd <dbl>, x3_sd <dbl>, x4_sd <dbl>, y1_sd <dbl>,
+## #   y2_sd <dbl>, y3_sd <dbl>, y4_sd <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y1 }\OperatorTok{~}\StringTok{ }\NormalTok{x1, anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y1 ~ x1, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x1  
+##      3.0001       0.5001
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y2 }\OperatorTok{~}\StringTok{ }\NormalTok{x2, anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y2 ~ x2, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x2  
+##       3.001        0.500
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y3 }\OperatorTok{~}\StringTok{ }\NormalTok{x3, anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y3 ~ x3, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x3  
+##      3.0025       0.4997
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(y4 }\OperatorTok{~}\StringTok{ }\NormalTok{x4, anscombe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y4 ~ x4, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x4  
+##      3.0017       0.4999
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{try}\NormalTok{(}
+  \KeywordTok{ggplot}\NormalTok{(anscombe) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\NormalTok{...}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in try(ggplot(anscombe) + ...) : '...' used in an incorrect context
+\end{verbatim}
+
+\textbf{Your turn}: Which principles of tidy data does the \texttt{anscombe} dataset violate?
+
+Many operations become much more natural when the data is in longer form.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe_longer <-}
+\StringTok{  }\NormalTok{anscombe }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{id =} \KeywordTok{row_number}\NormalTok{()) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}
+    \OperatorTok{-}\NormalTok{id,}
+    \DataTypeTok{names_pattern =} \StringTok{"(.)(.)"}\NormalTok{,}
+    \DataTypeTok{names_to =} \KeywordTok{c}\NormalTok{(}\StringTok{".value"}\NormalTok{, }\StringTok{"measurement"}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(measurement, id)}
+
+\NormalTok{anscombe_longer }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(measurement) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize_at}\NormalTok{(}\KeywordTok{vars}\NormalTok{(x, y), }\KeywordTok{list}\NormalTok{(}\OperatorTok{~}\StringTok{ }\KeywordTok{mean}\NormalTok{(.), }\OperatorTok{~}\KeywordTok{sd}\NormalTok{(.))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 5
+##   measurement x_mean y_mean  x_sd  y_sd
+##   <chr>        <dbl>  <dbl> <dbl> <dbl>
+## 1 1                9   7.50  3.32  2.03
+## 2 2                9   7.50  3.32  2.03
+## 3 3                9   7.5   3.32  2.03
+## 4 4                9   7.50  3.32  2.03
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe_longer }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(measurement) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{model =} \KeywordTok{list}\NormalTok{(}\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, .))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pull}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[4]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anscombe_longer }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\KeywordTok{vars}\NormalTok{(measurement))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{flushright}\includegraphics{vistransrep_files/figure-latex/401-easier-to-work-with-in-longer-form-1} \end{flushright}
+
+\hypertarget{who-data}{%
+\subsection{WHO data}\label{who-data}}
+
+The following example shows a case that violates the first two rules of tidy data: WHO data arranged for optimal use of screen space.
 The column names define, in addition to the measurement type \texttt{new\_sp}, \texttt{new\_sn}, \texttt{new\_ep} and \texttt{newrel}, the age and sex stratum of the corresponding measurements.
 One single \texttt{pivot\_longer()} call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
 The \texttt{names\_pattern} is a regular expression that defines what part of the column name is stored where.
@@ -5593,6 +5872,44 @@ The \texttt{names\_to} sequence defines, for each \texttt{()} group in \texttt{n
 ## 3 f     2534   7240
 ## # ... with 11 more rows
 \end{verbatim}
+
+\hypertarget{formatting-tables-for-presentation}{%
+\subsection{Formatting tables for presentation}\label{formatting-tables-for-presentation}}
+
+Wide tables make better use of screen or paper space, and should be used when presenting tables that summarize across multiple dimensions.
+For this, \texttt{ftable()} is the better tool.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ftable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  type      cases population
+## country     year                           
+## Afghanistan 1999             745   19987071
+##             2000            2666   20595360
+## Brazil      1999           37737  172006362
+##             2000           80488  174504898
+## China       1999          212258 1272915272
+##             2000          213766 1280428583
+\end{verbatim}
+
+These can be converted to HTML for inclusion in reports, e.g.~with \texttt{memisc::format\_html()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ftable}\NormalTok{(}\DataTypeTok{col.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{memisc}\OperatorTok{::}\KeywordTok{format_html}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+The \href{https://gt.rstudio.com/}{\{gt\} package} is a modern approach to present tables for formatting.
 
 \hypertarget{separating-and-uniting}{%
 \section{Separating and uniting}\label{separating-and-uniting}}
@@ -5841,95 +6158,6 @@ See the help for further details.
 ## 2 2000000
 \end{verbatim}
 
-\hypertarget{section}{%
-\section{}\label{section}}
-
-\emph{Click here to show setup code.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(nycflights13)}
-
-\KeywordTok{library}\NormalTok{(conflicted)}
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"filter"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::filter over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{conflict_prefer}\NormalTok{(}\StringTok{"lag"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [conflicted] Removing existing preference
-\end{verbatim}
-
-\begin{verbatim}
-## [conflicted] Will prefer dplyr::lag over any other package
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{table2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ftable}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                  type      cases population
-## country     year                           
-## Afghanistan 1999             745   19987071
-##             2000            2666   20595360
-## Brazil      1999           37737  172006362
-##             2000           80488  174504898
-## China       1999          212258 1272915272
-##             2000          213766 1280428583
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{table2 }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{xtabs}\NormalTok{(count }\OperatorTok{~}\StringTok{ }\NormalTok{., .) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{ftable}\NormalTok{(}\DataTypeTok{col.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"type"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             year       1999                  2000           
-##             type      cases population      cases population
-## country                                                     
-## Afghanistan             745   19987071       2666   20595360
-## Brazil                37737  172006362      80488  174504898
-## China                212258 1272915272     213766 1280428583
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?}\StringTok{`}\DataTypeTok{tidyr-package}\StringTok{`}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\OtherTok{NA}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] NA
-\end{verbatim}
-
 \hypertarget{reporting}{%
 \chapter{Reporting}\label{reporting}}
 
@@ -5993,7 +6221,7 @@ The \textbf{output} field is mandatory.
 \OtherTok{---}
 \FunctionTok{title:}\AttributeTok{ }\StringTok{"<title>"}
 \FunctionTok{author:}\AttributeTok{ }\StringTok{"<author>"}
-\FunctionTok{date:}\AttributeTok{ }\StringTok{"2019-11-28"}
+\FunctionTok{date:}\AttributeTok{ }\StringTok{"2019-11-29"}
 \FunctionTok{output:}
   \FunctionTok{rmarkdown:}\AttributeTok{:html_document:}
     \FunctionTok{toc:}\AttributeTok{ yes}
@@ -6342,8 +6570,8 @@ Check that the test actually detects failures by modifying the implementation of
 Run the new test with \texttt{devtools::test()}, you can use the shortcut Ctrl + Shift + T or Cmd + Shift + T in RStudio.
 One test should be failing now.
 
-\hypertarget{section-1}{%
-\chapter{}\label{section-1}}
+\hypertarget{section}{%
+\chapter{}\label{section}}
 
 \begin{itemize}
 \item

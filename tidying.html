@@ -26,7 +26,9 @@
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet">
 <link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet">
 <link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet">
-<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
+<script src="libs/htmlwidgets/htmlwidgets.js"></script><script src="libs/plotly-binding/plotly.js"></script><script src="libs/typedarray/typedarray.min.js"></script><link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet">
+<script src="libs/crosstalk/js/crosstalk.min.js"></script><link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main/plotly-latest.min.js"></script><script src="libs/d3/d3.min.js"></script><script src="libs/d3-lasso/d3-lasso.min.js"></script><link href="libs/ggiraphjs/styles.css" rel="stylesheet">
 <script src="libs/ggiraphjs/ggiraphjs.min.js"></script><script src="libs/girafe-binding/girafe.js"></script><style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
@@ -213,12 +215,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11.1" data-path="vis-basics.html"><a href="vis-basics.html#ggsci"><i class="fa fa-check"></i><b>2.11.1</b> {ggsci}</a></li>
 <li class="chapter" data-level="2.11.2" data-path="vis-basics.html"><a href="vis-basics.html#ggforce"><i class="fa fa-check"></i><b>2.11.2</b> {ggforce}</a></li>
 <li class="chapter" data-level="2.11.3" data-path="vis-basics.html"><a href="vis-basics.html#gganimate-1"><i class="fa fa-check"></i><b>2.11.3</b> {gganimate}</a></li>
-<li class="chapter" data-level="2.11.4" data-path="vis-basics.html"><a href="vis-basics.html#ggtext"><i class="fa fa-check"></i><b>2.11.4</b> {ggtext}</a></li>
-<li class="chapter" data-level="2.11.5" data-path="vis-basics.html"><a href="vis-basics.html#ggrepel"><i class="fa fa-check"></i><b>2.11.5</b> {ggrepel}</a></li>
-<li class="chapter" data-level="2.11.6" data-path="vis-basics.html"><a href="vis-basics.html#ggiraph"><i class="fa fa-check"></i><b>2.11.6</b> {ggiraph}</a></li>
-<li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.7</b> {ggbeeswarm}</a></li>
-<li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.8</b> {ggpmisc}</a></li>
-<li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.9</b> {esquisse}</a></li>
+<li class="chapter" data-level="2.11.4" data-path="vis-basics.html"><a href="vis-basics.html#plotly"><i class="fa fa-check"></i><b>2.11.4</b> {plotly}</a></li>
+<li class="chapter" data-level="2.11.5" data-path="vis-basics.html"><a href="vis-basics.html#ggtext"><i class="fa fa-check"></i><b>2.11.5</b> {ggtext}</a></li>
+<li class="chapter" data-level="2.11.6" data-path="vis-basics.html"><a href="vis-basics.html#ggrepel"><i class="fa fa-check"></i><b>2.11.6</b> {ggrepel}</a></li>
+<li class="chapter" data-level="2.11.7" data-path="vis-basics.html"><a href="vis-basics.html#ggiraph"><i class="fa fa-check"></i><b>2.11.7</b> {ggiraph}</a></li>
+<li class="chapter" data-level="2.11.8" data-path="vis-basics.html"><a href="vis-basics.html#ggbeeswarm"><i class="fa fa-check"></i><b>2.11.8</b> {ggbeeswarm}</a></li>
+<li class="chapter" data-level="2.11.9" data-path="vis-basics.html"><a href="vis-basics.html#ggpmisc"><i class="fa fa-check"></i><b>2.11.9</b> {ggpmisc}</a></li>
+<li class="chapter" data-level="2.11.10" data-path="vis-basics.html"><a href="vis-basics.html#esquisse"><i class="fa fa-check"></i><b>2.11.10</b> {esquisse}</a></li>
 </ul>
 </li>
 </ul>
@@ -283,6 +286,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.3" data-path="tidying.html"><a href="tidying.html#use-cases"><i class="fa fa-check"></i><b>5.1.3</b> Use cases</a></li>
 <li class="chapter" data-level="5.1.4" data-path="tidying.html"><a href="tidying.html#combining-vertically"><i class="fa fa-check"></i><b>5.1.4</b> Combining vertically</a></li>
 <li class="chapter" data-level="5.1.5" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>5.1.5</b> Tidy data</a></li>
+<li class="chapter" data-level="5.1.6" data-path="tidying.html"><a href="tidying.html#the-anscombe-dataset"><i class="fa fa-check"></i><b>5.1.6</b> The Anscombe dataset</a></li>
+<li class="chapter" data-level="5.1.7" data-path="tidying.html"><a href="tidying.html#who-data"><i class="fa fa-check"></i><b>5.1.7</b> WHO data</a></li>
+<li class="chapter" data-level="5.1.8" data-path="tidying.html"><a href="tidying.html#formatting-tables-for-presentation"><i class="fa fa-check"></i><b>5.1.8</b> Formatting tables for presentation</a></li>
 </ul>
 </li>
 <li class="chapter" data-level="5.2" data-path="tidying.html">
@@ -290,7 +296,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.1" data-path="tidying.html"><a href="tidying.html#parsing-numbers"><i class="fa fa-check"></i><b>5.2.1</b> Parsing numbers</a></li>
 </ul>
 </li>
-<li class="chapter" data-level="5.3" data-path="tidying.html"><a href="tidying.html#section"><i class="fa fa-check"></i><b>5.3</b> <no caption defined></no></a></li>
 </ul>
 </li>
 <li class="chapter" data-level="6" data-path="reporting.html">
@@ -342,19 +347,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>
 <span class="header-section-number">5.1</span> Pivoting</h2>
 <details><p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb249-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
-<a class="sourceLine" id="cb249-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
 </details><p>Pivoting describes operations that help rearrange data in different ways.
 The following two tables contain the same data arranged differently.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">table1</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -365,7 +370,7 @@ The following two tables contain the same data arranged differently.</p>
 ## </span><span style="color: #555555;">5</span><span> China        </span><span style="text-decoration: underline;">1</span><span>999 </span><span style="text-decoration: underline;">212</span><span>258 </span><span style="text-decoration: underline;">1</span><span>272</span><span style="text-decoration: underline;">915</span><span>272
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 </span><span style="text-decoration: underline;">213</span><span>766 </span><span style="text-decoration: underline;">1</span><span>280</span><span style="text-decoration: underline;">428</span><span>583
 </span></code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">table2</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">type</span><span>          </span><span style="font-weight: bold;">count</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -382,13 +387,13 @@ In the “longer” version, <code>table2</code>, the number of cases and the po
 <p>The following example computes the maximum number of cases and population for each country.
 For the wider form, this requires repeating the same expression for all columns.
 This may work with two columns but becomes tedious once more measurements are added.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(</a>
-<a class="sourceLine" id="cb257-4" data-line-number="4">    <span class="dt">max_cases =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(cases),</a>
-<a class="sourceLine" id="cb257-5" data-line-number="5">    <span class="dt">max_population =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(population)</a>
-<a class="sourceLine" id="cb257-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb257-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(</a>
+<a class="sourceLine" id="cb259-4" data-line-number="4">    <span class="dt">max_cases =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(cases),</a>
+<a class="sourceLine" id="cb259-5" data-line-number="5">    <span class="dt">max_population =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(population)</a>
+<a class="sourceLine" id="cb259-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb259-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">max_cases</span><span> </span><span style="font-weight: bold;">max_population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>           </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>          </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -398,13 +403,13 @@ This may work with two columns but becomes tedious once more measurements are ad
 </span></code></pre>
 <p>The <code>_at</code> family of functions helps iterating over columns, but all columns still need to be enumerated.
 (Specifying ranges of columns is rather brittle.)</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_at</a></span>(</a>
-<a class="sourceLine" id="cb258-4" data-line-number="4">    <span class="kw"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(cases, population),</a>
-<a class="sourceLine" id="cb258-5" data-line-number="5">    max</a>
-<a class="sourceLine" id="cb258-6" data-line-number="6">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb258-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_at</a></span>(</a>
+<a class="sourceLine" id="cb260-4" data-line-number="4">    <span class="kw"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(cases, population),</a>
+<a class="sourceLine" id="cb260-5" data-line-number="5">    max</a>
+<a class="sourceLine" id="cb260-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb260-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -414,12 +419,12 @@ This may work with two columns but becomes tedious once more measurements are ad
 </span></code></pre>
 <p>If the data is in the “longer” form, it is sufficient to include <code>type</code> in the grouping variables.
 The same code works for arbitrary number of measurements.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country, type) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(</a>
-<a class="sourceLine" id="cb259-4" data-line-number="4">    <span class="dt">max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(count)</a>
-<a class="sourceLine" id="cb259-5" data-line-number="5">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb259-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(country, type) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(</a>
+<a class="sourceLine" id="cb261-4" data-line-number="4">    <span class="dt">max =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(count)</a>
+<a class="sourceLine" id="cb261-5" data-line-number="5">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb261-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">type</span><span>              </span><span style="font-weight: bold;">max</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>           </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -435,7 +440,7 @@ The same code works for arbitrary number of measurements.</p>
 <h3>
 <span class="header-section-number">5.1.1</span> Convert to longer form</h3>
 <p>The <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> function takes a “wider-form” dataset and converts it to an equivalent dataset with more rows.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">table1</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -446,8 +451,8 @@ The same code works for arbitrary number of measurements.</p>
 ## </span><span style="color: #555555;">5</span><span> China        </span><span style="text-decoration: underline;">1</span><span>999 </span><span style="text-decoration: underline;">212</span><span>258 </span><span style="text-decoration: underline;">1</span><span>272</span><span style="text-decoration: underline;">915</span><span>272
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 </span><span style="text-decoration: underline;">213</span><span>766 </span><span style="text-decoration: underline;">1</span><span>280</span><span style="text-decoration: underline;">428</span><span>583
 </span></code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year))</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">name</span><span>          </span><span style="font-weight: bold;">value</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -458,27 +463,21 @@ The same code works for arbitrary number of measurements.</p>
 </span></code></pre>
 <p>The <code>-c(...)</code> notation indicates that all column except <code>country</code> and <code>year</code> are to be transformed into longer form.
 The column names become the contents of the new <code>name</code> column, the values are available in the <code>value</code> column.</p>
-<p>The result of this operation isn’t strictly equivalent to <code>table2</code>, we need to rename and sort differently.
-Alternatively, the <code>names_to</code> and <code>values_to</code> arguments allow specifying the names of the new columns.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">type =</span> name, <span class="dt">count =</span> value) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(country, year, type)</a></code></pre></div>
-<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
-##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">type</span><span>          </span><span style="font-weight: bold;">count</span><span>
-##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
-## </span><span style="color: #555555;">1</span><span> Afghanistan  </span><span style="text-decoration: underline;">1</span><span>999 cases           745
-## </span><span style="color: #555555;">2</span><span> Afghanistan  </span><span style="text-decoration: underline;">1</span><span>999 population 19</span><span style="text-decoration: underline;">987</span><span>071
-## </span><span style="color: #555555;">3</span><span> Afghanistan  </span><span style="text-decoration: underline;">2</span><span>000 cases          </span><span style="text-decoration: underline;">2</span><span>666
-## </span><span style="color: #555555;"># … with 9 more rows</span><span>
-</span></code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(</a>
-<a class="sourceLine" id="cb263-3" data-line-number="3">    <span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year),</a>
-<a class="sourceLine" id="cb263-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">"type"</span>,</a>
-<a class="sourceLine" id="cb263-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">"count"</span></a>
-<a class="sourceLine" id="cb263-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb263-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(country, year, type)</a></code></pre></div>
+<p><strong>Your turn</strong>: The result of this operation isn’t strictly equivalent to <code>table2</code>.
+What is missing?</p>
+<p>Alternatively, the <code>names_to</code> and <code>values_to</code> arguments allow specifying the names of the new columns.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2">  table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb264-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(....., <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">everything</a></span>())</a>
+<a class="sourceLine" id="cb264-5" data-line-number="5">)</a></code></pre></div>
+<pre><code>## Error in .f(.x[[i]], ...) : object '.....' not found</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(</a>
+<a class="sourceLine" id="cb266-3" data-line-number="3">    <span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(country, year),</a>
+<a class="sourceLine" id="cb266-4" data-line-number="4">    <span class="dt">names_to =</span> <span class="st">"type"</span>,</a>
+<a class="sourceLine" id="cb266-5" data-line-number="5">    <span class="dt">values_to =</span> <span class="st">"count"</span></a>
+<a class="sourceLine" id="cb266-6" data-line-number="6">  )</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">type</span><span>          </span><span style="font-weight: bold;">count</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -493,7 +492,7 @@ Alternatively, the <code>names_to</code> and <code>values_to</code> arguments al
 <span class="header-section-number">5.1.2</span> Convert to wider form</h3>
 <p>The <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> form does the inverse: it creates a dataset with fewer rows.
 If the <code>name</code> and <code>value</code> columns are named differently, these columns can be provided via the <code>names_from</code> and <code>values_from</code> arguments.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">table2</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">type</span><span>          </span><span style="font-weight: bold;">count</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>         </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -502,8 +501,8 @@ If the <code>name</code> and <code>value</code> columns are named differently, t
 ## </span><span style="color: #555555;">3</span><span> Afghanistan  </span><span style="text-decoration: underline;">2</span><span>000 cases          </span><span style="text-decoration: underline;">2</span><span>666
 ## </span><span style="color: #555555;"># … with 9 more rows</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span>(<span class="dt">names_from =</span> type, <span class="dt">values_from =</span> count)</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span>(<span class="dt">names_from =</span> type, <span class="dt">values_from =</span> count)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -514,19 +513,14 @@ If the <code>name</code> and <code>value</code> columns are named differently, t
 ## </span><span style="color: #555555;">5</span><span> China        </span><span style="text-decoration: underline;">1</span><span>999 </span><span style="text-decoration: underline;">212</span><span>258 </span><span style="text-decoration: underline;">1</span><span>272</span><span style="text-decoration: underline;">915</span><span>272
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 </span><span style="text-decoration: underline;">213</span><span>766 </span><span style="text-decoration: underline;">1</span><span>280</span><span style="text-decoration: underline;">428</span><span>583
 </span></code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">rename</a></span>(<span class="dt">name =</span> type, <span class="dt">value =</span> count) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span>()</a></code></pre></div>
-<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
-##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
-##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
-## </span><span style="color: #555555;">1</span><span> Afghanistan  </span><span style="text-decoration: underline;">1</span><span>999    745   19</span><span style="text-decoration: underline;">987</span><span>071
-## </span><span style="color: #555555;">2</span><span> Afghanistan  </span><span style="text-decoration: underline;">2</span><span>000   </span><span style="text-decoration: underline;">2</span><span>666   20</span><span style="text-decoration: underline;">595</span><span>360
-## </span><span style="color: #555555;">3</span><span> Brazil       </span><span style="text-decoration: underline;">1</span><span>999  </span><span style="text-decoration: underline;">37</span><span>737  172</span><span style="text-decoration: underline;">006</span><span>362
-## </span><span style="color: #555555;">4</span><span> Brazil       </span><span style="text-decoration: underline;">2</span><span>000  </span><span style="text-decoration: underline;">80</span><span>488  174</span><span style="text-decoration: underline;">504</span><span>898
-## </span><span style="color: #555555;">5</span><span> China        </span><span style="text-decoration: underline;">1</span><span>999 </span><span style="text-decoration: underline;">212</span><span>258 </span><span style="text-decoration: underline;">1</span><span>272</span><span style="text-decoration: underline;">915</span><span>272
-## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 </span><span style="text-decoration: underline;">213</span><span>766 </span><span style="text-decoration: underline;">1</span><span>280</span><span style="text-decoration: underline;">428</span><span>583
-</span></code></pre>
+<p><strong>Your turn</strong>: <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> expects columns <code>name</code> and <code>value</code> by default.
+What do we need to do to get rid of <code>names_from</code> and <code>values_from</code>?</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb269-2" data-line-number="2">  table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(......, <span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">everything</a></span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span>()</a>
+<a class="sourceLine" id="cb269-5" data-line-number="5">)</a></code></pre></div>
+<pre><code>## Error in .f(.x[[i]], ...) : object '......' not found</code></pre>
 </div>
 <div id="use-cases" class="section level3">
 <h3>
@@ -540,19 +534,19 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <li>
 <code>table1</code> requires two layers, manual assignment of fill color, and manual creation of legend (not shown)</li>
 </ul>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb267-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">"dodge"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year) <span class="op">+</span></a>
-<a class="sourceLine" id="cb267-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="624" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, population), <span class="dt">position =</span> <span class="st">"dodge"</span>, <span class="dt">fill =</span> <span class="st">"blue"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, cases), <span class="dt">position =</span> <span class="st">"dodge"</span>, <span class="dt">fill =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year) <span class="op">+</span></a>
-<a class="sourceLine" id="cb268-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="624" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, count, <span class="dt">fill =</span> type), <span class="dt">position =</span> <span class="st">"dodge"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb271-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year) <span class="op">+</span></a>
+<a class="sourceLine" id="cb271-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-longer-form-more-useful-for-plotting-all-values-side-by-side-1.png" width="624" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, population), <span class="dt">position =</span> <span class="st">"dodge"</span>, <span class="dt">fill =</span> <span class="st">"blue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, cases), <span class="dt">position =</span> <span class="st">"dodge"</span>, <span class="dt">fill =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year) <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-longer-form-more-useful-for-plotting-all-values-side-by-side-2.png" width="624" style="display: block; margin: auto;"></p>
 <p>On the other hand, iIf only a single measurement needs to be plotted, the “wider” form is easier to work with.</p>
 <ul>
 <li>
@@ -561,30 +555,30 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 <code>table2</code> requires a <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, cases)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-1.png" width="624" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "cases"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb270-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, count)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb270-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-more-useful-for-plotting-a-single-value-2.png" width="624" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb273-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, cases)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb273-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-wider-form-more-useful-for-plotting-a-single-value-1.png" width="624" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "cases"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb274-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb274-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(country, count)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb274-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>year)</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-wider-form-more-useful-for-plotting-a-single-value-2.png" width="624" style="display: block; margin: auto;"></p>
 <p>The “wider” form is also the only way to map different measures to different aesthetics, e.g. to correlate values.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb271-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb271-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(cases, population, <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb271-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb271-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
-<p><img src="vistransrep_files/figure-html/41-wider-form-the-only-way-to-correlate-values-1.png" width="624" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">table1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(cases, population, <span class="dt">color =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(year), <span class="dt">shape =</span> country)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_log10</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb275-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_log10</a></span>()</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-wider-form-the-only-way-to-correlate-values-1.png" width="624" style="display: block; margin: auto;"></p>
 </div>
 <div id="combining-vertically" class="section level3">
 <h3>
 <span class="header-section-number">5.1.4</span> Combining vertically</h3>
 <p>A different view on the same data is given in the two tables <code>table4a</code> and <code>table4b</code>.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">table4a</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">table4a</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">`1999`</span><span> </span><span style="font-weight: bold;">`2000`</span><span>
 ## </span><span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -592,7 +586,7 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 ## </span><span style="color: #555555;">2</span><span> Brazil       </span><span style="text-decoration: underline;">37</span><span>737  </span><span style="text-decoration: underline;">80</span><span>488
 ## </span><span style="color: #555555;">3</span><span> China       </span><span style="text-decoration: underline;">212</span><span>258 </span><span style="text-decoration: underline;">213</span><span>766
 </span></code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">table4b</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">table4b</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 3 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>         </span><span style="font-weight: bold;">`1999`</span><span>     </span><span style="font-weight: bold;">`2000`</span><span>
 ## </span><span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -602,13 +596,13 @@ For a bar chart that shows cases and population side by side, mapped to the <cod
 </span></code></pre>
 <p>The <code><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows()</a></code> function combines these two parts into a single table.
 The <code>.id = "type"</code> setting ensures that the input datasets gain different tags in the new <code>type</code> column.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">table4 &lt;-</a>
-<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(</a>
-<a class="sourceLine" id="cb274-3" data-line-number="3">    <span class="dt">cases =</span> table4a,</a>
-<a class="sourceLine" id="cb274-4" data-line-number="4">    <span class="dt">population =</span> table4b,</a>
-<a class="sourceLine" id="cb274-5" data-line-number="5">    <span class="dt">.id =</span> <span class="st">"type"</span></a>
-<a class="sourceLine" id="cb274-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb274-7" data-line-number="7">table4</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">table4 &lt;-</a>
+<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(</a>
+<a class="sourceLine" id="cb278-3" data-line-number="3">    <span class="dt">cases =</span> table4a,</a>
+<a class="sourceLine" id="cb278-4" data-line-number="4">    <span class="dt">population =</span> table4b,</a>
+<a class="sourceLine" id="cb278-5" data-line-number="5">    <span class="dt">.id =</span> <span class="st">"type"</span></a>
+<a class="sourceLine" id="cb278-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb278-7" data-line-number="7">table4</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">type</span><span>       </span><span style="font-weight: bold;">country</span><span>         </span><span style="font-weight: bold;">`1999`</span><span>     </span><span style="font-weight: bold;">`2000`</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -619,18 +613,13 @@ The <code>.id = "type"</code> setting ensures that the input datasets gain diffe
 ## </span><span style="color: #555555;">5</span><span> population Brazil       172</span><span style="text-decoration: underline;">006</span><span>362  174</span><span style="text-decoration: underline;">504</span><span>898
 ## </span><span style="color: #555555;">6</span><span> population China       </span><span style="text-decoration: underline;">1</span><span>272</span><span style="text-decoration: underline;">915</span><span>272 </span><span style="text-decoration: underline;">1</span><span>280</span><span style="text-decoration: underline;">428</span><span>583
 </span></code></pre>
-<p>As before, <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> helps converting the results into something similar to <code>table2</code>.
+<p><strong>Your turn</strong>: As before, <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> helps converting the results into something similar to <code>table2</code>.
 The result isn’t quite the same yet, can you spot the difference?</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">table4 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb275-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>))</a></code></pre></div>
-<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 12 x 4</span><span>
-##   </span><span style="font-weight: bold;">type</span><span>  </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">name</span><span>  </span><span style="font-weight: bold;">value</span><span>
-##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
-## </span><span style="color: #555555;">1</span><span> cases Afghanistan 1999    745
-## </span><span style="color: #555555;">2</span><span> cases Afghanistan 2000   </span><span style="text-decoration: underline;">2</span><span>666
-## </span><span style="color: #555555;">3</span><span> cases Brazil      1999  </span><span style="text-decoration: underline;">37</span><span>737
-## </span><span style="color: #555555;"># … with 9 more rows</span><span>
-</span></code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb279-2" data-line-number="2">  table4 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://rdrr.io/r/base/dots.html">...</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(.....))</a>
+<a class="sourceLine" id="cb279-4" data-line-number="4">)</a></code></pre></div>
+<pre><code>## Error in ...(., c(.....)) : could not find function "..."</code></pre>
 </div>
 <div id="tidy-data" class="section level3">
 <h3>
@@ -647,14 +636,160 @@ The result isn’t quite the same yet, can you spot the difference?</p>
 <div class="figure">
 <img src="img/tidy-1.png" alt="Tidy data"><p class="caption">Tidy data</p>
 </div>
-<p>The following example shows a case that violates the first two rules: WHO data arranged for optimal use of screen space.
+<p>The next two sections show examples of datasets that violate these principles.</p>
+</div>
+<div id="the-anscombe-dataset" class="section level3">
+<h3>
+<span class="header-section-number">5.1.6</span> The Anscombe dataset</h3>
+<p>This is a dataset where principal statistical summaries (means, standard deviations, intercept and slope after regression) are identical across four subgroups but the layout of the data differs vastly.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">anscombe</a></code></pre></div>
+<pre><code>##   x1 x2 x3 x4   y1   y2   y3   y4
+## 1 10 10 10  8 8.04 9.14 7.46 6.58
+## 2  8  8  8  8 6.95 8.14 6.77 5.76
+##  [ reached 'max' / getOption("max.print") -- omitted 9 rows ]</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1">anscombe <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>()</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 11 x 8</span><span>
+##      </span><span style="font-weight: bold;">x1</span><span>    </span><span style="font-weight: bold;">x2</span><span>    </span><span style="font-weight: bold;">x3</span><span>    </span><span style="font-weight: bold;">x4</span><span>    </span><span style="font-weight: bold;">y1</span><span>    </span><span style="font-weight: bold;">y2</span><span>    </span><span style="font-weight: bold;">y3</span><span>    </span><span style="font-weight: bold;">y4</span><span>
+##   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>    10    10    10     8  8.04  9.14  7.46  6.58
+## </span><span style="color: #555555;">2</span><span>     8     8     8     8  6.95  8.14  6.77  5.76
+## </span><span style="color: #555555;">3</span><span>    13    13    13     8  7.58  8.74 12.7   7.71
+## </span><span style="color: #555555;"># … with 8 more rows</span><span>
+</span></code></pre>
+<p>Working with this data in original form is rather tedious.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">anscombe <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_all</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(.), <span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(.)))</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 1 x 16</span><span>
+##   </span><span style="font-weight: bold;">x1_mean</span><span> </span><span style="font-weight: bold;">x2_mean</span><span> </span><span style="font-weight: bold;">x3_mean</span><span> </span><span style="font-weight: bold;">x4_mean</span><span> </span><span style="font-weight: bold;">y1_mean</span><span> </span><span style="font-weight: bold;">y2_mean</span><span> </span><span style="font-weight: bold;">y3_mean</span><span>
+##     </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span>       9       9       9       9    7.50    7.50     7.5
+## </span><span style="color: #555555;"># … with 9 more variables: </span><span style="color: #555555;font-weight: bold;">y4_mean</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">x1_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">,
+## #   </span><span style="color: #555555;font-weight: bold;">x2_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">x3_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">x4_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">y1_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">,
+## #   </span><span style="color: #555555;font-weight: bold;">y2_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">y3_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">y4_sd</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+</span></code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(y1 <span class="op">~</span><span class="st"> </span>x1, anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y1 ~ x1, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x1  
+##      3.0001       0.5001</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(y2 <span class="op">~</span><span class="st"> </span>x2, anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y2 ~ x2, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x2  
+##       3.001        0.500</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(y3 <span class="op">~</span><span class="st"> </span>x3, anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y3 ~ x3, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x3  
+##      3.0025       0.4997</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(y4 <span class="op">~</span><span class="st"> </span>x4, anscombe)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y4 ~ x4, data = anscombe)
+## 
+## Coefficients:
+## (Intercept)           x4  
+##      3.0017       0.4999</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span>(</a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">  <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(anscombe) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">    </span>...</a>
+<a class="sourceLine" id="cb293-4" data-line-number="4">)</a></code></pre></div>
+<pre><code>## Error in try(ggplot(anscombe) + ...) : '...' used in an incorrect context</code></pre>
+<p><strong>Your turn</strong>: Which principles of tidy data does the <code>anscombe</code> dataset violate?</p>
+<p>Many operations become much more natural when the data is in longer form.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">anscombe_longer &lt;-</a>
+<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="st">  </span>anscombe <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(</a>
+<a class="sourceLine" id="cb295-5" data-line-number="5">    <span class="op">-</span>id,</a>
+<a class="sourceLine" id="cb295-6" data-line-number="6">    <span class="dt">names_pattern =</span> <span class="st">"(.)(.)"</span>,</a>
+<a class="sourceLine" id="cb295-7" data-line-number="7">    <span class="dt">names_to =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">".value"</span>, <span class="st">"measurement"</span>)</a>
+<a class="sourceLine" id="cb295-8" data-line-number="8">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-9" data-line-number="9"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(measurement, id)</a>
+<a class="sourceLine" id="cb295-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb295-11" data-line-number="11">anscombe_longer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(measurement) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_at</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(x, y), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="op">~</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(.), <span class="op">~</span><span class="kw"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(.))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb295-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>()</a></code></pre></div>
+<pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 4 x 5</span><span>
+##   </span><span style="font-weight: bold;">measurement</span><span> </span><span style="font-weight: bold;">x_mean</span><span> </span><span style="font-weight: bold;">y_mean</span><span>  </span><span style="font-weight: bold;">x_sd</span><span>  </span><span style="font-weight: bold;">y_sd</span><span>
+##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>        </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+## </span><span style="color: #555555;">1</span><span> 1                9   7.50  3.32  2.03
+## </span><span style="color: #555555;">2</span><span> 2                9   7.50  3.32  2.03
+## </span><span style="color: #555555;">3</span><span> 3                9   7.5   3.32  2.03
+## </span><span style="color: #555555;">4</span><span> 4                9   7.50  3.32  2.03
+</span></code></pre>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">anscombe_longer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(measurement) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">model =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(y <span class="op">~</span><span class="st"> </span>x, .))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb296-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>()</a></code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999  
+## 
+## 
+## [[4]]
+## 
+## Call:
+## lm(formula = y ~ x, data = .)
+## 
+## Coefficients:
+## (Intercept)            x  
+##      3.0013       0.4999</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">anscombe_longer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb298-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb298-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(measurement))</a></code></pre></div>
+<p><img src="vistransrep_files/figure-html/401-easier-to-work-with-in-longer-form-1.png" width="624" style="display: block; margin: auto;"></p>
+</div>
+<div id="who-data" class="section level3">
+<h3>
+<span class="header-section-number">5.1.7</span> WHO data</h3>
+<p>The following example shows a case that violates the first two rules of tidy data: WHO data arranged for optimal use of screen space.
 The column names define, in addition to the measurement type <code>new_sp</code>, <code>new_sn</code>, <code>new_ep</code> and <code>newrel</code>, the age and sex stratum of the corresponding measurements.
 One single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> call transforms the data into a longer-form version with four measurement columns and one row for each age/sex stratum.
 The <code>names_pattern</code> is a regular expression that defines what part of the column name is stored where.
 (<a href="https://en.wikipedia.org/wiki/Regular_expression">Regular expressions</a> are a powerful tool for parsing text data, out of scope for this lecture but very much worth looking into.)
 The <code>names_to</code> sequence defines, for each <code>()</code> group in <code>names_pattern</code>, if the data encoded in the column name is stored in a new column or if it is kept as column name.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">who <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">view</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">who <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb299-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">view</a></span>()</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 7,240 x 60</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span> </span><span style="font-weight: bold;">iso2</span><span>  </span><span style="font-weight: bold;">iso3</span><span>   </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">new_sp_m014</span><span> </span><span style="font-weight: bold;">new_sp_m1524</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>        </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -686,15 +821,15 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## #   </span><span style="color: #555555;font-weight: bold;">newrel_f2534</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">newrel_f3544</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">,
 ## #   </span><span style="color: #555555;font-weight: bold;">newrel_f4554</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">newrel_f5564</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">newrel_f65</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">who_longer &lt;-</a>
-<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="st">  </span>who <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(</a>
-<a class="sourceLine" id="cb277-4" data-line-number="4">    <span class="op">-</span>(country<span class="op">:</span>year),</a>
-<a class="sourceLine" id="cb277-5" data-line-number="5">    <span class="dt">names_pattern =</span> <span class="st">"([a-z_]+)_(.)([0-9]+)"</span>,</a>
-<a class="sourceLine" id="cb277-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">".value"</span>, <span class="st">"sex"</span>, <span class="st">"age"</span>)</a>
-<a class="sourceLine" id="cb277-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb277-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb277-9" data-line-number="9">who_longer</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">who_longer &lt;-</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="st">  </span>who <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(</a>
+<a class="sourceLine" id="cb300-4" data-line-number="4">    <span class="op">-</span>(country<span class="op">:</span>year),</a>
+<a class="sourceLine" id="cb300-5" data-line-number="5">    <span class="dt">names_pattern =</span> <span class="st">"([a-z_]+)_(.)([0-9]+)"</span>,</a>
+<a class="sourceLine" id="cb300-6" data-line-number="6">    <span class="dt">names_to =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">".value"</span>, <span class="st">"sex"</span>, <span class="st">"age"</span>)</a>
+<a class="sourceLine" id="cb300-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb300-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb300-9" data-line-number="9">who_longer</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 101,360 x 10</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span> </span><span style="font-weight: bold;">iso2</span><span>  </span><span style="font-weight: bold;">iso3</span><span>   </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">sex</span><span>   </span><span style="font-weight: bold;">age</span><span>   </span><span style="font-weight: bold;">new_sp</span><span> </span><span style="font-weight: bold;">new_sn</span><span> </span><span style="font-weight: bold;">new_ep</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -704,8 +839,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style="color: #555555;"># … with 1.014e+05 more rows, and 1 more variable:
 ## #   </span><span style="color: #555555;font-weight: bold;">newrel</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 </span></code></pre>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">who_longer <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(sex, age)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">who_longer <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb301-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(sex, age)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 14 x 3</span><span>
 ##   </span><span style="font-weight: bold;">sex</span><span>   </span><span style="font-weight: bold;">age</span><span>       </span><span style="font-weight: bold;">n</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -715,23 +850,108 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style="color: #555555;"># … with 11 more rows</span><span>
 </span></code></pre>
 </div>
+<div id="formatting-tables-for-presentation" class="section level3">
+<h3>
+<span class="header-section-number">5.1.8</span> Formatting tables for presentation</h3>
+<p>Wide tables make better use of screen or paper space, and should be used when presenting tables that summarize across multiple dimensions.
+For this, <code><a href="https://rdrr.io/r/stats/ftable.html">ftable()</a></code> is the better tool.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb302-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>()</a></code></pre></div>
+<pre><code>##                  type      cases population
+## country     year                           
+## Afghanistan 1999             745   19987071
+##             2000            2666   20595360
+## Brazil      1999           37737  172006362
+##             2000           80488  174504898
+## China       1999          212258 1272915272
+##             2000          213766 1280428583</code></pre>
+<p>These can be converted to HTML for inclusion in reports, e.g. with <code><a href="https://rdrr.io/pkg/memisc/man/format_html.html">memisc::format_html()</a></code>.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>(<span class="dt">col.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>, <span class="st">"type"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb304-4" data-line-number="4"><span class="st">  </span>memisc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/memisc/man/format_html.html">format_html</a></span>()</a></code></pre></div>
+[1] "&lt;table class="ftable" style="border-collapse: collapse; border-style: none; margin: 2ex auto;"&gt;year:
+
+<td colspan='\"6\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid border-top:>1999</td>
+<td colspan='\"6\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid border-top:>2000</td>
+
+country
+
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left border-bottom: solid>type:</td>
+<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>cases</td>
+<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>population</td>
+<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>cases</td>
+<td colspan='\"3\"' style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center border-bottom: solid>population</td>
+
+Afghanistan
+
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>745</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>19987071</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>2666</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>20595360</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+
+Brazil
+
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>37737</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>172006362</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>80488</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right:>174504898</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width:></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left:></td>
+
+China
+
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: padding-top: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>212258</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>1272915272</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>213766</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: right margin-right: border-bottom: solid>1280428583</td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: center margin-left: margin-right: width: border-bottom: solid></td>
+<td style='\"padding-top:' padding-bottom: padding-left: padding-right: margin-top: margin-bottom: border-style: none border-width: text-align: left margin-left: border-bottom: solid></td>
+
+<p>"</p>
+<p>The <a href="https://gt.rstudio.com/">{gt} package</a> is a modern approach to present tables for formatting.</p>
+</div>
 </div>
 <div id="separating-and-uniting" class="section level2">
 <h2>
 <span class="header-section-number">5.2</span> Separating and uniting</h2>
 <details><p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
-<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
-<a class="sourceLine" id="cb279-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb279-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
-<a class="sourceLine" id="cb279-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
+<a class="sourceLine" id="cb305-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb305-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
+<a class="sourceLine" id="cb305-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
 <pre><code>## [conflicted] Removing existing preference</code></pre>
 <pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
 </details><p>The <code>table3</code> table violates the third principle of tidy data: each cell contains two values.</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">table3</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">rate</span><span>             
 ## </span><span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            
@@ -743,8 +963,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 213766/1280428583
 </span></code></pre>
 <p>The <code><a href="https://tidyr.tidyverse.org/reference/separate.html">separate()</a></code> verb offers a convenient way to deal with this situation, including automatic type conversion.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(rate, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cases"</span>, <span class="st">"population"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb312-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(rate, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cases"</span>, <span class="st">"population"</span>))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">cases</span><span>  </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>     
@@ -755,8 +975,8 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 ## </span><span style="color: #555555;">5</span><span> China        </span><span style="text-decoration: underline;">1</span><span>999 212258 1272915272
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 213766 1280428583
 </span></code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(rate, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cases"</span>, <span class="st">"population"</span>), <span class="dt">sep =</span> <span class="st">"/"</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">table3 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(rate, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"cases"</span>, <span class="st">"population"</span>), <span class="dt">sep =</span> <span class="st">"/"</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">cases</span><span> </span><span style="font-weight: bold;">population</span><span>
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -769,7 +989,7 @@ The <code>names_to</code> sequence defines, for each <code>()</code> group in <c
 </span></code></pre>
 <p>The inverse is offered by <code><a href="https://tidyr.tidyverse.org/reference/unite.html">unite()</a></code>.
 The data in <code>table5</code> stores year data in two columns.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">table5</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">table5</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 4</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">century</span><span> </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">rate</span><span>             
 ## </span><span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            
@@ -780,8 +1000,8 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style="color: #555555;">5</span><span> China       19      99    212258/1272915272
 ## </span><span style="color: #555555;">6</span><span> China       20      00    213766/1280428583
 </span></code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb289-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year))</a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">rate</span><span>             
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            
@@ -793,8 +1013,8 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style="color: #555555;">6</span><span> China       20_00 213766/1280428583
 </span></code></pre>
 <p>The result needs a few tweaks to finally resemble <code>table3</code>.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year), <span class="dt">sep =</span> <span class="st">""</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb316-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year), <span class="dt">sep =</span> <span class="st">""</span>)</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>     </span><span style="font-weight: bold;">year</span><span>  </span><span style="font-weight: bold;">rate</span><span>             
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            
@@ -805,9 +1025,9 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style="color: #555555;">5</span><span> China       1999  212258/1272915272
 ## </span><span style="color: #555555;">6</span><span> China       2000  213766/1280428583
 </span></code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year), <span class="dt">sep =</span> <span class="st">""</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb291-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">year =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(year))</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1">table5 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/unite.html">unite</a></span>(<span class="st">"year"</span>, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(century, year), <span class="dt">sep =</span> <span class="st">""</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb317-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">year =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(year))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 6 x 3</span><span>
 ##   </span><span style="font-weight: bold;">country</span><span>      </span><span style="font-weight: bold;">year</span><span> </span><span style="font-weight: bold;">rate</span><span>             
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>            
@@ -819,27 +1039,27 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style="color: #555555;">6</span><span> China        </span><span style="text-decoration: underline;">2</span><span>000 213766/1280428583
 </span></code></pre>
 <p>See the help for further details.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">?separate</a>
-<a class="sourceLine" id="cb292-2" data-line-number="2">?unite</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">?separate</a>
+<a class="sourceLine" id="cb318-2" data-line-number="2">?unite</a></code></pre></div>
 <div id="parsing-numbers" class="section level3">
 <h3>
 <span class="header-section-number">5.2.1</span> Parsing numbers</h3>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">thousand_separator &lt;-</a>
-<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(</a>
-<a class="sourceLine" id="cb293-3" data-line-number="3">    <span class="op">~</span>num,</a>
-<a class="sourceLine" id="cb293-4" data-line-number="4">    <span class="st">"1'000.00"</span>,</a>
-<a class="sourceLine" id="cb293-5" data-line-number="5">    <span class="st">"2'000'000.00"</span></a>
-<a class="sourceLine" id="cb293-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb293-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb293-8" data-line-number="8">thousand_separator</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">thousand_separator &lt;-</a>
+<a class="sourceLine" id="cb319-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(</a>
+<a class="sourceLine" id="cb319-3" data-line-number="3">    <span class="op">~</span>num,</a>
+<a class="sourceLine" id="cb319-4" data-line-number="4">    <span class="st">"1'000.00"</span>,</a>
+<a class="sourceLine" id="cb319-5" data-line-number="5">    <span class="st">"2'000'000.00"</span></a>
+<a class="sourceLine" id="cb319-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb319-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb319-8" data-line-number="8">thousand_separator</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 1</span><span>
 ##   </span><span style="font-weight: bold;">num</span><span>         
 ##   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>       
 ## </span><span style="color: #555555;">1</span><span> 1'000.00    
 ## </span><span style="color: #555555;">2</span><span> 2'000'000.00
 </span></code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(num, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"num"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb320-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/separate.html">separate</a></span>(num, <span class="dt">into =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"num"</span>))</a></code></pre></div>
 <pre><code>## Warning: Expected 1 pieces. Additional pieces discarded in 2
 ## rows [1, 2].</code></pre>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 1</span><span>
@@ -848,56 +1068,17 @@ The data in <code>table5</code> stores year data in two columns.</p>
 ## </span><span style="color: #555555;">1</span><span> 1    
 ## </span><span style="color: #555555;">2</span><span> 2
 </span></code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb296-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">num =</span> <span class="kw"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span>(num, <span class="st">"[^-0-9.]"</span>, <span class="st">""</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">num =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(num))</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">thousand_separator <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb322-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">num =</span> <span class="kw"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span>(num, <span class="st">"[^-0-9.]"</span>, <span class="st">""</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb322-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">num =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(num))</a></code></pre></div>
 <pre class="fansi fansi-output"><code>## <span style="color: #555555;"># A tibble: 2 x 1</span><span>
 ##       </span><span style="font-weight: bold;">num</span><span>
 ##     </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
 ## </span><span style="color: #555555;">1</span><span>    </span><span style="text-decoration: underline;">1</span><span>000
 ## </span><span style="color: #555555;">2</span><span> 2</span><span style="text-decoration: underline;">000</span><span>000
 </span></code></pre>
-</div>
-</div>
-<div id="section" class="section level2">
-<h2>
-<span class="header-section-number">5.3</span> <no caption defined></no>
-</h2>
-<details><p><summary><em>Click here to show setup code.</em></summary></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
-<a class="sourceLine" id="cb297-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</a>
-<a class="sourceLine" id="cb297-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb297-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(conflicted)</a>
-<a class="sourceLine" id="cb297-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"filter"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
-<pre><code>## [conflicted] Will prefer [34mdplyr::filter[39m over any other package</code></pre>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/conflicted/man/conflict_prefer.html">conflict_prefer</a></span>(<span class="st">"lag"</span>, <span class="st">"dplyr"</span>)</a></code></pre></div>
-<pre><code>## [conflicted] Removing existing preference</code></pre>
-<pre><code>## [conflicted] Will prefer [34mdplyr::lag[39m over any other package</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb303-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>()</a></code></pre></div>
-<pre><code>##                  type      cases population
-## country     year                           
-## Afghanistan 1999             745   19987071
-##             2000            2666   20595360
-## Brazil      1999           37737  172006362
-##             2000           80488  174504898
-## China       1999          212258 1272915272
-##             2000          213766 1280428583</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/xtabs.html">xtabs</a></span>(count <span class="op">~</span><span class="st"> </span>., .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/ftable.html">ftable</a></span>(<span class="dt">col.vars =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year"</span>, <span class="st">"type"</span>))</a></code></pre></div>
-<pre><code>##             year       1999                  2000           
-##             type      cases population      cases population
-## country                                                     
-## Afghanistan             745   19987071       2666   20595360
-## Brazil                37737  172006362      80488  174504898
-## China                212258 1272915272     213766 1280428583</code></pre>
-</details><div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">?<span class="st">`</span><span class="dt">tidyr-package</span><span class="st">`</span></a></code></pre></div>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="ot">NA</span></a></code></pre></div>
-<pre><code>## [1] NA</code></pre>
 
+</div>
 </div>
 </div>
             </section>
